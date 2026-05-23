@@ -1,0 +1,59 @@
+{
+  "benchmark_name": "MILU: Multi-task Indic Language Understanding Benchmark",
+  "publication_year": 2024,
+  "humanities_role": "both",
+  "humanities_role_explanation": "Uses humanities content as both evaluation material (regional examinations covering local history, arts, festivals, laws) and is designed specifically for culturally relevant humanities understanding in Indian languages",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Text-only multiple choice questions in 11 Indic languages covering culturally specific topics from regional examinations",
+  "analytical_tasks": [
+    "multiple choice question answering",
+    "cross-lingual evaluation",
+    "cultural knowledge assessment"
+  ],
+  "analytical_tasks_explanation": "Cultural knowledge evaluation requiring understanding of region-specific history, arts, festivals, laws, and traditions across Indian states; tests both linguistic competence and cultural understanding beyond simple factual recall",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": true,
+      "note": "Comprehensive benchmark spanning 8 domains and 41 subjects across multiple languages for evaluating LLM capabilities"
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates 42+ LLMs including GPT-4o, GPT-4o-mini, Gemini-1.5-Pro, Gemini-1.5-Flash, Llama-3.1 series, Gemma-2 series, and various Indic language-specific models"
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "LLMs are the primary systems being benchmarked for their cultural and linguistic understanding capabilities"
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Language and Linguistics (1206), History, Literature and Literary Theory, Visual Arts and Performing Arts, Philosophy, Religious Studies - covers local history, arts, festivals, literature, music, performing arts"
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Accuracy scores across languages, domains, and shot settings (0-shot, 1-shot, 5-shot)"
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "arXiv preprint from November 2024 (arXiv:2411.02538v3)"
+    },
+    "english_language": {
+      "met": true,
+      "note": "Paper written in English, benchmark includes English alongside 10 Indic languages"
+    }
+  },
+  "summary": "MILU introduces the first comprehensive benchmark for evaluating LLMs on culturally relevant knowledge in 11 Indic languages, covering 8 domains and 41 subjects with questions sourced from regional Indian examinations. The benchmark specifically tests cultural understanding of local history, arts, festivals, and laws rather than just linguistic capability.",
+  "key_findings": "GPT-4o achieved highest accuracy at 74%. Open multilingual models outperformed language-specific fine-tuned models. Models performed significantly worse in culturally relevant domains (Arts & Humanities, Social Sciences) compared to STEM fields, highlighting lack of cultural knowledge in current models.",
+  "relevant_asjc_areas": [
+    "Language and Linguistics",
+    "History",
+    "Literature and Literary Theory",
+    "Visual Arts and Performing Arts",
+    "Philosophy",
+    "Religious Studies"
+  ],
+  "paper_id": "2411.02538",
+  "paper_name": "Fine-tuning Large Language Models for Automated Pun Translation",
+  "csv_row": 2
+}

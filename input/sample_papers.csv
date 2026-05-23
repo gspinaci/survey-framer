@@ -1,0 +1,4 @@
+Notes GS,Notes RG,Article URL,Hunter,Name,Year,Modalities,Domain,Evaluation metrics,Humanities?,ASJC code,Resource URL (Benchmark + Dataset),Source,Specific source
+,,https://arxiv.org/abs/2406.09181,,MMLU: Measuring Massive Multitask Language Understanding,2020,Text,Science & Social Sciences,Accuracy,Yes,3300,https://github.com/hendrycks/test,arxiv,preprint
+,,https://doi.org/10.1145/3571730,,VQArt-Bench: Visual Question Answering on Art,2023,Image + Text,Arts History,Accuracy + F1,Yes,3101,https://github.com/vqart-bench/dataset,GitHub,repository
+,,https://arxiv.org/abs/2305.03047,,Evaluating Multimodal Large Language Models on Renaissance Artworks,2023,Image + Text,Art History,Accuracy,Yes,3101,https://github.com/renaissance-art-bench,arxiv,preprint

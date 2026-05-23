@@ -1,0 +1,54 @@
+{
+  "benchmark_name": "LAMBADA (LAnguage Modeling Broadened to Account for Discourse Aspects)",
+  "publication_year": 2016,
+  "humanities_role": "content",
+  "humanities_role_explanation": "Uses narrative passages from novels as content for language modeling tasks, but is designed as a general-purpose language understanding benchmark rather than for literary analysis",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Text-only benchmark consisting of narrative passages from novels where models must predict the final word of a target sentence given broader discourse context",
+  "analytical_tasks": [
+    "word prediction",
+    "discourse understanding",
+    "coreference resolution"
+  ],
+  "analytical_tasks_explanation": "Word prediction requiring broad discourse context understanding including coreference resolution, bridging inferences, and reasoning about prototypical participants in events described in narrative passages",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": true,
+      "note": "Designed as a general language understanding benchmark to evaluate computational models' ability to track information in broader discourse context"
+    },
+    "evaluates_generative_llm": {
+      "met": false,
+      "note": "Evaluates traditional language models (RNN, LSTM, N-gram models, Memory Networks) but predates modern generative LLMs like GPT"
+    },
+    "llm_is_primary_system": {
+      "met": false,
+      "note": "Evaluates language models as primary systems, but these are not generative LLMs in the modern sense"
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Uses narrative passages from unpublished novels (Literature and Literary Theory domain)"
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Accuracy (percentage of correct word predictions), perplexity, and median rank of correct word"
+    },
+    "published_after_march_2023": {
+      "met": false,
+      "note": "Published in 2016 (arXiv:1606.06031v1, 20 Jun 2016)"
+    },
+    "english_language": {
+      "met": true,
+      "note": "Paper written in English, benchmark uses English novel passages"
+    }
+  },
+  "summary": "This paper introduces LAMBADA, a word prediction benchmark that requires models to use broad discourse context rather than local sentence context to predict the final word of narrative passages. The benchmark consists of 10,022 passages from novels where humans can guess the target word given the full context but not from the final sentence alone.",
+  "key_findings": "All tested language models (RNN, LSTM, Memory Networks, N-gram models) performed poorly on LAMBADA with accuracy below 1%, while achieving 15-22% accuracy on a control dataset, demonstrating the challenge of broad context understanding for existing models.",
+  "relevant_asjc_areas": [
+    "Literature and Literary Theory"
+  ],
+  "paper_id": "1606.06031",
+  "paper_name": "Evaluating Automatic Speech Recognition Systems on Multilingual Audio Benchmarks",
+  "csv_row": 3
+}

@@ -1,0 +1,6 @@
+Name,Year,Article URL,Modalities,Domain,Evaluation metrics,Humanities?,ASJC code
+Fine-tuning Large Language Models for Automated Pun Translation,2025,https://arxiv.org/abs/2411.02538,Text,Language & Linguistics,Accuracy,Yes,1206
+Evaluating Automatic Speech Recognition Systems on Multilingual Audio Benchmarks,2024,https://arxiv.org/abs/1606.06031,Audio + Text,Language & Linguistics,WER / CER,Yes,1206
+JOKER 2025: Computational Task on Pun and Wordplay Translation,2025,https://arxiv.org/abs/2601.07984,Text,Language & Linguistics,F1 / Accuracy,Yes,1206
+Taiwanese Hakka Cultural Knowledge Benchmark,2024,https://arxiv.org/abs/2503.15358,Text,Language & Linguistics,Accuracy,Yes,1203
+Arabic Semantic Understanding Evaluation,2024,https://arxiv.org/abs/2409.02813,Text,Language & Linguistics,F1 Score,Yes,1206
