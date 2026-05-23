@@ -1,0 +1,56 @@
+{
+  "benchmark_name": "Christian Iconography Classification Benchmark",
+  "publication_year": 2025,
+  "humanities_role": "domain",
+  "humanities_role_explanation": "Designed specifically for art-historical visual understanding of Christian iconography, using domain-specific datasets (ArtDL, ICONCLASS, Wikidata) with Iconclass codes for saint classification",
+  "benchmark_modalities": [
+    "text",
+    "image"
+  ],
+  "benchmark_modalities_explanation": "Multi-modal evaluation combining artwork images of Christian saints with natural language prompts. Three test configurations: (1) classification with class labels only, (2) classification with Iconclass descriptions, and (3) few-shot learning with exemplar images",
+  "analytical_tasks": [
+    "single-label image classification",
+    "zero-shot classification",
+    "few-shot learning",
+    "iconographic recognition"
+  ],
+  "analytical_tasks_explanation": "Single-label classification of Christian saints in religious paintings, requiring recognition of complex iconographic symbols and religious themes. Tasks involve zero-shot classification using semantic labels or detailed iconographic descriptions, and few-shot learning with visual exemplars",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": true,
+      "note": "Evaluates multiple general-purpose vision-language models (CLIP, SigLIP) and multimodal LLMs across standardized tasks"
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "GPT-4o, GPT-4o-mini, Gemini-2.5-Pro, Gemini-2.5-Flash, plus vision-language models CLIP and SigLIP"
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "LLMs and VLMs are the primary systems being benchmarked for Christian iconography classification performance"
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Visual Arts - uses Christian religious paintings and iconographic datasets (ArtDL, ICONCLASS AI Test Set, Wikidata) with Iconclass classification codes"
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Accuracy scores, consistency analysis across datasets using Hamming distance for duplicate detection"
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Preprint dated September 24, 2025"
+    },
+    "english_language": {
+      "met": true,
+      "note": "Paper written in English, benchmark uses English class labels and descriptions"
+    }
+  },
+  "summary": "This paper introduces a benchmark for evaluating vision-language models and multimodal LLMs on Christian iconography classification using three datasets (ArtDL, ICONCLASS, Wikidata) with Iconclass codes. The study compares zero-shot and few-shot performance across different prompt configurations, finding that multimodal LLMs (Gemini-2.5 Pro, GPT-4o) generally outperform traditional supervised baselines.",
+  "key_findings": "Gemini-2.5 Pro achieved highest performance with 90.45% accuracy on ArtDL, while GPT-4o reached 88.20%. Performance dropped significantly on Wikidata dataset where SigLIP-SO400M achieved best results at 64.86%. Enriching prompts with iconographic descriptions generally improved zero-shot performance, but few-shot learning produced mixed results with mostly lower accuracy scores.",
+  "relevant_asjc_areas": [
+    "Visual Arts and Performing Arts"
+  ],
+  "paper_id": "2509.18839",
+  "paper_name": "Christian Iconography",
+  "csv_row": 9
+}

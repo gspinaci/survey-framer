@@ -2,56 +2,55 @@
   "benchmark_name": "MMMU-Pro",
   "publication_year": 2024,
   "humanities_role": "domain",
-  "humanities_role_explanation": "Includes humanities disciplines (Art & Design, History, Literature, Sociology, Psychology) as part of its broader multi-discipline evaluation framework",
+  "humanities_role_explanation": "Includes humanities domains like History, Literature, Sociology, Psychology as subject areas within the multi-discipline benchmark, but not specifically designed for humanities analysis",
   "benchmark_modalities": [
     "text",
     "image"
   ],
-  "benchmark_modalities_explanation": "Multi-modal evaluation combining visual and textual information, with a special 'vision-only' setting where questions are embedded within images/screenshots that models must read and interpret",
+  "benchmark_modalities_explanation": "Multi-modal evaluation combining images with textual questions in both standard format (separate text and images) and vision-only format (questions embedded within screenshots/photos)",
   "analytical_tasks": [
     "multimodal reasoning",
-    "visual question answering",
-    "complex problem solving",
-    "domain-specific knowledge application"
+    "visual-textual integration",
+    "domain-specific knowledge application",
+    "complex problem solving"
   ],
-  "analytical_tasks_explanation": "College-level analytical tasks requiring integration of visual and textual information across disciplines, with emphasis on true multimodal understanding rather than exploiting shortcuts",
+  "analytical_tasks_explanation": "College-level questions requiring integration of visual and textual information across multiple disciplines, with emphasis on preventing shortcut exploitation and testing true multimodal understanding rather than simple factual recall",
   "inclusion_criteria": {
     "general_purpose_benchmark": {
       "met": true,
-      "note": "Evaluates multimodal capabilities across 6 major disciplines including humanities, sciences, business, health, and engineering"
+      "note": "Evaluates multimodal capabilities across six core disciplines: Art & Design, Business, Science, Health & Medicine, Humanities & Social Science, Tech & Engineering"
     },
     "evaluates_generative_llm": {
       "met": true,
-      "note": "Evaluates GPT-4o, Claude 3.5 Sonnet, Gemini 1.5 Pro, LLaVA-OneVision, InternVL2, and other multimodal LLMs"
+      "note": "Evaluated proprietary models (GPT-4o, Claude 3.5 Sonnet, Gemini 1.5 Pro) and open-source models (InternVL2, LLaVA-OneVision, VILA, MiniCPM-V, etc.)"
     },
     "llm_is_primary_system": {
       "met": true,
-      "note": "Multimodal LLMs are the primary systems being benchmarked for their reasoning and understanding capabilities"
+      "note": "Multimodal LLMs are the primary systems being benchmarked for their visual-textual reasoning capabilities"
     },
     "arts_humanities_data": {
       "met": true,
-      "note": "Includes Art & Design (Art, Art Theory, Design, Music), History, Literature, Sociology, Psychology as part of the multi-discipline framework"
+      "note": "Includes History, Literature, Sociology, Psychology within Humanities & Social Science discipline, plus Art Theory, Music within Art & Design discipline"
     },
     "quantitative_metrics": {
       "met": true,
-      "note": "Uses accuracy metrics, performance comparisons, and statistical analysis across different settings"
+      "note": "Uses accuracy metrics across different settings, with performance comparisons and statistical analysis"
     },
     "published_after_march_2023": {
       "met": true,
-      "note": "Published in 2024 (arXiv preprint from September 2024, updated May 2025)"
+      "note": "arXiv preprint dated 2409.02813v3 from May 22, 2025"
     },
     "english_language": {
       "met": true,
-      "note": "Paper is in English, though the benchmark focuses on Arabic semantic understanding evaluation"
+      "note": "Paper written in English, though focuses on Arabic semantic understanding based on title and metadata"
     }
   },
-  "summary": "MMMU-Pro introduces a more robust version of the MMMU benchmark that filters text-only solvable questions, augments answer options to 10 choices, and includes a vision-only input setting where questions are embedded in images. The benchmark aims to evaluate true multimodal understanding by preventing models from exploiting shortcuts and requiring genuine integration of visual and textual information.",
-  "key_findings": "Performance drops significantly across all models compared to original MMMU, ranging from 16.8% to 26.9% decreases. GPT-4o achieved 51.9% on MMMU-Pro vs 69.1% on original MMMU. Chain-of-thought prompting generally improves performance, while OCR prompts show minimal impact. The vision-only setting particularly challenges models' ability to seamlessly integrate visual and textual information.",
+  "summary": "MMMU-Pro introduces a more robust version of the MMMU benchmark that filters out text-only answerable questions, increases candidate options from 4 to 10, and adds a vision-only input setting where questions are embedded in images. The benchmark aims to prevent shortcut exploitation and test true multimodal understanding across college-level questions in six disciplines.",
+  "key_findings": "All tested models showed significant performance drops on MMMU-Pro compared to original MMMU, ranging from 16.8% to 26.9% decrease. GPT-4o achieved 51.9% average performance (54.0% standard, 49.7% vision-only). Chain-of-thought prompting generally improved performance, while OCR prompts had minimal effect. The vision-only setting particularly challenged models' ability to integrate visual and textual information.",
   "relevant_asjc_areas": [
     "History",
     "Literature and Literary Theory",
     "Music",
-    "Philosophy",
     "Visual Arts and Performing Arts"
   ],
   "paper_id": "2409.02813",

@@ -1,0 +1,57 @@
+{
+  "benchmark_name": "Appear2Meaning",
+  "publication_year": 2026,
+  "humanities_role": "domain",
+  "humanities_role_explanation": "Designed specifically for cultural heritage understanding - evaluates structured metadata inference about cultural objects including creator, origin, period, and culture from museum collections",
+  "benchmark_modalities": [
+    "text",
+    "image"
+  ],
+  "benchmark_modalities_explanation": "Vision-language evaluation where models analyze cultural heritage object images and predict structured metadata fields (culture, period, origin, creator) which are then evaluated using LLM-as-Judge framework",
+  "analytical_tasks": [
+    "structured metadata inference",
+    "cultural attribution",
+    "historical period classification",
+    "creator identification",
+    "cross-cultural reasoning"
+  ],
+  "analytical_tasks_explanation": "Models must infer non-observable cultural attributes from visual input alone, including cultural classification (e.g., Chinese, Greek), historical periodization (e.g., Tang dynasty, 5th century BCE), geographical origin, and creator attribution - requiring deep cultural and historical knowledge beyond visual perception",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": true,
+      "note": "Evaluates general vision-language model capabilities on cultural metadata inference across multiple object types and cultural regions"
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "9 VLMs evaluated: Qwen-VL-Max, Qwen3-VL series (Plus, Flash, 8B-Instruct, 32B-Instruct), Pixtral-12B, GPT-4.1-mini, GPT-5.4-mini, Claude Haiku 4.5"
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "Vision-language models are the primary systems being benchmarked for structured cultural metadata inference"
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Visual Arts - cultural heritage objects from Getty and Metropolitan Museum collections including ceramics, paintings, metalwork, sculpture across East Asia, Ancient Mediterranean, Europe, Americas"
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Exact match accuracy, partial match rates, attribute-level accuracy across culture/period/origin/creator fields using LLM-as-Judge evaluation"
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "arXiv preprint dated April 8, 2026"
+    },
+    "english_language": {
+      "met": true,
+      "note": "Paper written in English, benchmark uses English language prompts and evaluation"
+    }
+  },
+  "summary": "Appear2Meaning introduces a cross-cultural benchmark for evaluating vision-language models on structured cultural metadata inference from heritage images, covering 750 objects across 4 cultural regions and 4 object categories. The benchmark evaluates whether VLMs can infer non-observable cultural attributes (creator, origin, period, culture) from visual input alone using an LLM-as-Judge framework.",
+  "key_findings": "All models achieve very low exact match accuracy (0.005-0.029) but substantially higher partial match rates (0.453-0.658), indicating models capture fragmented signals but fail at coherent multi-attribute prediction. Performance varies significantly across cultures, with East Asia showing highest accuracy and Americas showing lowest. Models perform better on title and creator attributes while culture, period, and origin remain more challenging.",
+  "relevant_asjc_areas": [
+    "Visual Arts and Performing Arts"
+  ],
+  "paper_id": "2604.07338",
+  "paper_name": "Appear2Meaning",
+  "csv_row": 10
+}

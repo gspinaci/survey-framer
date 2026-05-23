@@ -1,0 +1,60 @@
+{
+  "benchmark_name": "VULCA-BENCH",
+  "publication_year": 2024,
+  "humanities_role": "both",
+  "humanities_role_explanation": "Uses artworks from 8 cultural traditions as visual content AND evaluates cultural understanding capabilities through art-historical interpretation across 5 hierarchical levels (L1-L5)",
+  "benchmark_modalities": [
+    "text",
+    "image"
+  ],
+  "benchmark_modalities_explanation": "Vision-language evaluation combining artwork images with expert-written bilingual critiques. Models generate art criticism text based on visual analysis of cultural artworks.",
+  "analytical_tasks": [
+    "cultural art critique generation",
+    "hierarchical cultural understanding",
+    "cross-cultural aesthetic interpretation",
+    "symbolic meaning analysis",
+    "philosophical aesthetics reasoning"
+  ],
+  "analytical_tasks_explanation": "Five-layer framework (L1-L5) from visual perception to philosophical aesthetics. Tasks require progressively deeper cultural knowledge: visual recognition (L1), technical analysis (L2), cultural symbolism (L3), historical context (L4), and philosophical aesthetics (L5). Evaluated through dimension coverage of culture-specific concepts.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": true,
+      "note": "Comprehensive multicultural VLM benchmark for cultural understanding evaluation across 8 traditions"
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "GPT-4o, Claude-Sonnet-4.5, Gemini-2.5-Pro, Qwen3-VL-235B, GLM-4V-Flash evaluated in pilot experiments"
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "Vision-Language Models (VLMs) are the primary systems being benchmarked for cultural understanding capabilities"
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Visual Arts and Performing Arts (8 cultural art traditions), History (historical context analysis), Philosophy (aesthetic theories), Religious Studies (Buddhist art, religious iconography)"
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Dimension Coverage Rate (DCR), layer-wise performance gaps (\u0394L), inter-annotator agreement (Cohen's \u03ba), cultural-fact accuracy percentages"
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "arXiv preprint published February 24, 2026"
+    },
+    "english_language": {
+      "met": true,
+      "note": "Paper in English with bilingual Chinese-English benchmark content"
+    }
+  },
+  "summary": "VULCA-BENCH introduces a comprehensive multicultural art critique benchmark with 7,410 image-critique pairs across 8 cultural traditions, operationalized through a five-layer cultural understanding framework (L1-L5) with 225 culture-specific dimensions. The benchmark addresses gaps in existing VLM evaluation by measuring hierarchical cultural interpretation beyond surface-level visual perception.",
+  "key_findings": "All evaluated VLMs show a consistent 25-40 percentage-point performance drop from visual perception (L1-L2) to cultural interpretation (L3-L5), with Gemini-2.5-Pro achieving highest DCR of 72.4% and GLM-4V-Flash lowest at 58.2%. Error analysis reveals systematic failures in surface-level terminology use, historical anachronism, and cultural conflation.",
+  "relevant_asjc_areas": [
+    "Visual Arts and Performing Arts",
+    "History",
+    "Philosophy",
+    "Religious Studies"
+  ],
+  "paper_id": "2601.07986",
+  "paper_name": "Vulca-Bench",
+  "csv_row": 11
+}

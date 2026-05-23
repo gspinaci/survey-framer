@@ -4,3 +4,8 @@ Evaluating Automatic Speech Recognition Systems on Multilingual Audio Benchmarks
 JOKER 2025: Computational Task on Pun and Wordplay Translation,2025,https://arxiv.org/abs/2601.07984,Text,Language & Linguistics,F1 / Accuracy,Yes,1206
 Taiwanese Hakka Cultural Knowledge Benchmark,2024,https://arxiv.org/abs/2503.15358,Text,Language & Linguistics,Accuracy,Yes,1203
 Arabic Semantic Understanding Evaluation,2024,https://arxiv.org/abs/2409.02813,Text,Language & Linguistics,F1 Score,Yes,1206
+VQArt-Bench,2025,https://arxiv.org/abs/2510.12750,Text + Image,Visual Arts,Accuracy,Yes,1213
+HiST-LLM,2024,https://neurips.cc/virtual/2024/poster/97439,Text,History,Accuracy,Yes,1202
+Christian Iconography,2025,https://arxiv.org/abs/2509.18839,Text + Image,Visual Arts,Accuracy,Yes,1213
+Appear2Meaning,2026,https://arxiv.org/abs/2604.07338,Text + Image,Visual Arts,Accuracy,Yes,1213
+Vulca-Bench,2026,https://arxiv.org/abs/2601.07986,Text + Image,Visual Arts,,Yes,1213
