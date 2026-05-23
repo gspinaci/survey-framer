@@ -1,52 +1,53 @@
 {
-  "benchmark_name": "AdMIRe (Advancing Multimodal Idiomaticity Representation)",
-  "publication_year": 2025,
+  "benchmark_name": "AdMIRe - Advancing Multimodal Idiomaticity Representation",
+  "publication_year": 2024,
   "humanities_role": "domain",
-  "humanities_role_explanation": "Designed specifically for linguistic understanding of idiomatic expressions, a core phenomenon in language and linguistics research",
+  "humanities_role_explanation": "Designed for linguistic understanding of idiomatic expressions, targeting a core language and linguistics phenomenon",
   "benchmark_modalities": [
     "text",
-    "image",
-    "image_sequence"
+    "images",
+    "visual-temporal sequences"
   ],
-  "benchmark_modalities_explanation": "Multi-modal benchmark combining text (context sentences with idiomatic expressions), static images (depicting literal/figurative meanings), and temporal image sequences (three-panel comic-style progressions)",
+  "benchmark_modalities_explanation": "Multi-modal benchmark combining text context sentences with static images and temporal image sequences. Images are generated to represent literal vs idiomatic meanings of expressions, with captions provided for text-only evaluation.",
   "analytical_tasks": [
-    "multimodal_ranking",
-    "image_completion",
-    "idiomaticity_classification"
+    "image ranking",
+    "next image prediction",
+    "idiomaticity detection",
+    "semantic representation"
   ],
-  "analytical_tasks_explanation": "Task A requires ranking images based on alignment with idiomatic vs literal meanings in context. Task B involves predicting narrative completion in image sequences while distinguishing literal from figurative interpretations. Both require deep semantic understanding of non-compositional language phenomena.",
+  "analytical_tasks_explanation": "Tasks require ranking images by alignment with idiomatic/literal meanings in context, predicting sequence completions, and distinguishing between literal and figurative interpretations - all requiring deep semantic understanding rather than surface pattern matching",
   "inclusion_criteria": {
     "general_purpose_benchmark": {
-      "met": true,
-      "note": "Evaluates general capability of models to understand idiomatic expressions across multiple languages and modalities"
+      "met": false,
+      "note": "Specialized benchmark focused specifically on idiomatic expression understanding in multimodal contexts"
     },
     "evaluates_generative_llm": {
       "met": true,
-      "note": "GPT-4, QWEN, LLaVA, CLIP, RoBERTa, SBERT, DeepSeek, and other large language/vision models were evaluated"
+      "note": "GPT-4, QWEN2.5, DeepSeek, LLaVA, and other large language and vision-language models"
     },
     "llm_is_primary_system": {
       "met": true,
-      "note": "LLMs and VLMs are the primary systems being benchmarked for idiomaticity understanding"
+      "note": "LLMs and VLMs are the primary systems being benchmarked for idiomaticity representation"
     },
     "arts_humanities_data": {
       "met": true,
-      "note": "Language and Linguistics - focuses on idiomatic expressions, multi-word expressions, and figurative language processing"
+      "note": "Language and Linguistics - focuses on idiomatic expressions, multi-word expressions, and figurative language understanding"
     },
     "quantitative_metrics": {
       "met": true,
-      "note": "Top Image Accuracy, Discounted Cumulative Gain (DCG), Image Completion Accuracy, Sentence Type Accuracy"
+      "note": "Top Image Accuracy, Discounted Cumulative Gain (DCG), Image completion accuracy, Sentence type accuracy"
     },
     "published_after_march_2023": {
       "met": true,
-      "note": "arXiv:2503.15358v3, June 4, 2025"
+      "note": "Published June 4, 2025"
     },
     "english_language": {
       "met": true,
       "note": "Paper is in English, benchmark includes both English and Brazilian Portuguese data"
     }
   },
-  "summary": "AdMIRe introduces a multimodal benchmark for evaluating models' understanding of idiomatic expressions through image ranking and sequence completion tasks. The dataset contains 100 English and 55 Portuguese potentially idiomatic noun compounds with corresponding visual representations depicting both literal and figurative meanings.",
-  "key_findings": "Top-performing systems achieved human-level performance (0.93 top-1 accuracy) using mixture-of-experts approaches with multiple LLM queries. However, this required substantial computational resources and prompt engineering. Models exhibited bias toward idiomatic interpretations regardless of context.",
+  "summary": "This paper presents AdMIRe, a multimodal benchmark for evaluating how well language models understand idiomatic expressions through visual representation tasks. The benchmark includes two subtasks: ranking images by their alignment with literal vs idiomatic meanings, and predicting the next image in sequences depicting idiomatic expressions.",
+  "key_findings": "Top-performing systems achieved human-level performance (93% accuracy) by leveraging mixture-of-experts approaches with multiple LLM queries, though this required substantial computational resources and prompt engineering to overcome models' bias toward literal interpretations.",
   "relevant_asjc_areas": [
     "Language and Linguistics"
   ],

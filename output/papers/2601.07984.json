@@ -1,57 +1,58 @@
 {
   "benchmark_name": "VULCA-BENCH",
-  "publication_year": 2024,
+  "publication_year": 2026,
   "humanities_role": "both",
-  "humanities_role_explanation": "Uses art history images from six cultural traditions as domain content AND is specifically designed for cultural art interpretation and understanding",
+  "humanities_role_explanation": "Uses art history images as domain-specific content AND is designed for cultural understanding and art-historical interpretation across six traditions (Chinese, Western, Japanese, Korean, Islamic, Indian)",
   "benchmark_modalities": [
-    "visual",
+    "vision",
     "text"
   ],
-  "benchmark_modalities_explanation": "Multi-modal evaluation combining artwork images with bilingual text generation - VLMs receive artwork images and generate bilingual (Chinese-English) art critiques covering L1-L5 levels of cultural understanding",
+  "benchmark_modalities_explanation": "Multi-modal evaluation combining artwork images with bilingual (Chinese-English) text generation for art critique, using a tri-tier framework with automated metrics, judge scoring, and human calibration",
   "analytical_tasks": [
     "cultural interpretation",
     "art critique generation",
-    "symbolic analysis",
-    "historical contextualization",
-    "aesthetic evaluation"
+    "iconographic analysis",
+    "aesthetic evaluation",
+    "historical contextualization"
   ],
-  "analytical_tasks_explanation": "Five-level analytical hierarchy from visual perception (L1-L2) to deep cultural interpretation (L3-L5): L1 visual perception, L2 technical analysis, L3 cultural symbolism, L4 historical context, L5 philosophical aesthetics. Tasks require interpreting culture-specific concepts, identifying artistic techniques, and contextualizing within art-historical traditions",
+  "analytical_tasks_explanation": "Evaluates five levels of cultural understanding from visual perception (L1) through technical analysis (L2) to cultural symbolism (L3), historical context (L4), and philosophical aesthetics (L5). Tasks require iconographic interpretation, culture-specific terminology usage, and deep aesthetic understanding rather than factual recognition",
   "inclusion_criteria": {
     "general_purpose_benchmark": {
-      "met": true,
-      "note": "Evaluates general cultural understanding capabilities across multiple VLMs from different providers"
+      "met": false,
+      "note": "Specialized benchmark for cross-cultural art critique evaluation across six cultural traditions"
     },
     "evaluates_generative_llm": {
       "met": true,
-      "note": "Evaluates 15 VLMs including GPT-4o, GPT-5, Claude-Sonnet-4.5, Claude-Opus-4.5, Gemini-2.5-Pro, Qwen3-VL-235B, Llama4-Scout, and others"
+      "note": "Evaluates 15 VLMs including GPT-5, GPT-4o, Claude-Sonnet-4.5, Claude-Opus-4.5, Gemini-2.5-Pro, Qwen3-VL-235B, Llama4-Scout, and others"
     },
     "llm_is_primary_system": {
       "met": true,
-      "note": "VLMs are the primary systems being benchmarked for cultural art interpretation capabilities"
+      "note": "VLMs are the primary systems being benchmarked for cultural art critique generation, with Claude Opus 4.5 used as auxiliary judge"
     },
     "arts_humanities_data": {
       "met": true,
-      "note": "Visual Arts and Performing Arts, History, Language and Linguistics - covers 6,695 artwork images across six cultural traditions with expert art critiques"
+      "note": "Visual Arts and Performing Arts (art history images), History (historical contextualization), Language and Linguistics (bilingual critique generation), Philosophy (aesthetic philosophy)"
     },
     "quantitative_metrics": {
       "met": true,
-      "note": "Multiple metrics: tri-tier framework with automated metrics (DCR, CSA, CDS, LQS), rubric-based scoring (1-5 scale), human expert calibration, ICC agreement measures"
+      "note": "Calibrated aggregate scores, ICC agreement coefficients, Cohen's d effect sizes, bootstrap confidence intervals, and five-dimension rubric scoring"
     },
     "published_after_march_2023": {
       "met": true,
-      "note": "arXiv preprint dated February 24, 2026"
+      "note": "Preprint arXiv:2601.07984v3 dated 24 Feb 2026"
     },
     "english_language": {
       "met": true,
       "note": "Paper written in English, benchmark uses bilingual Chinese-English critiques"
     }
   },
-  "summary": "VULCA-BENCH introduces a tri-tier evaluation framework for assessing Vision-Language Models' cultural understanding in art interpretation across six cultural traditions. The framework combines automated metrics, single-judge rubric scoring, and human expert calibration to evaluate cultural competence from visual description (L1-L2) to deep cultural interpretation (L3-L5).",
-  "key_findings": "VLMs show degraded performance from visual description (L1-L2) to cultural interpretation (L3-L5), with Critique Depth (\u03c3=0.56) and Cultural Alignment (\u03c3=0.48) being most discriminative. 13 of 15 models exhibit systematic bias favoring Western art over non-Western traditions (Cohen's d = -0.74, p < 0.001). Automated metrics and judge scoring measure different constructs (ICC < 0.2).",
+  "summary": "This paper introduces VULCA-BENCH, a cross-cultural vision-language benchmark for evaluating VLM cultural understanding in art critique across six traditions. The tri-tier evaluation framework combines automated metrics, single-judge scoring, and human calibration to assess five levels of cultural understanding from visual perception to philosophical aesthetics.",
+  "key_findings": "Cultural understanding degrades from visual description (L1-L2) to cultural interpretation (L3-L5), with Depth (\u03c3=0.56) and Alignment (\u03c3=0.48) as most discriminative dimensions. 13 of 15 VLMs show systematic bias favoring Western art (Cohen's d = -0.74, p < 0.001). Automated metrics and judge scoring measure different constructs (ICC < 0.2).",
   "relevant_asjc_areas": [
     "Visual Arts and Performing Arts",
     "History",
-    "Language and Linguistics"
+    "Language and Linguistics",
+    "Philosophy"
   ],
   "paper_id": "2601.07984",
   "paper_name": "JOKER 2025: Computational Task on Pun and Wordplay Translation",

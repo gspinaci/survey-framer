@@ -1,39 +1,38 @@
 {
-  "benchmark_name": "MILU: A Multi-task Indic Language Understanding Benchmark",
+  "benchmark_name": "MILU (Multi-task Indic Language Understanding Benchmark)",
   "publication_year": 2024,
-  "humanities_role": "both",
-  "humanities_role_explanation": "Uses humanities content (Arts & Humanities, Social Sciences, History, Literature, etc.) both as evaluation data and as a core domain for assessing multilingual LLM capabilities in culturally relevant areas",
+  "humanities_role": "domain",
+  "humanities_role_explanation": "Designed specifically to evaluate LLMs on culturally relevant Indian humanities content including local history, arts, festivals, literature, and laws",
   "benchmark_modalities": [
     "text"
   ],
-  "benchmark_modalities_explanation": "Text-only multiple-choice questions covering 41 subjects across 8 domains in 11 Indic languages",
+  "benchmark_modalities_explanation": "Text-only benchmark consisting of multiple-choice questions (MCQs) across 11 Indic languages covering both general and culturally specific knowledge",
   "analytical_tasks": [
-    "multiple-choice question answering",
-    "multilingual understanding",
-    "cultural knowledge assessment",
-    "domain-specific reasoning"
+    "knowledge_assessment",
+    "cultural_understanding",
+    "multilingual_reasoning"
   ],
-  "analytical_tasks_explanation": "Evaluates factual knowledge and reasoning across culturally relevant domains like Arts & Humanities (26.1%), Social Sciences, History, Literature, and Law & Governance, requiring both linguistic competence and cultural understanding",
+  "analytical_tasks_explanation": "Multiple-choice questions testing factual knowledge and cultural understanding across domains like Arts & Humanities, Social Sciences, Law & Governance, alongside STEM subjects, requiring culturally-aware reasoning in low-resource languages",
   "inclusion_criteria": {
     "general_purpose_benchmark": {
       "met": true,
-      "note": "Multi-domain benchmark covering 8 domains and 41 subjects across multiple languages"
+      "note": "Comprehensive benchmark spanning 8 domains and 41 subjects across multiple languages"
     },
     "evaluates_generative_llm": {
       "met": true,
-      "note": "GPT-4o, GPT-4o-mini, Gemini-1.5-Pro, Gemini-1.5-Flash, Llama-3.1/3.2 series, Gemma-2 series, and various Indic language models"
+      "note": "Evaluated 45 different LLMs including GPT-4o, GPT-4o-mini, Gemini-1.5-Pro, Llama-3 series, Gemma-2 series, and various Indic language-specific models"
     },
     "llm_is_primary_system": {
       "met": true,
-      "note": "LLMs are the primary systems being benchmarked for multilingual and cultural understanding"
+      "note": "LLMs are the primary systems being benchmarked for their performance on Indic language understanding"
     },
     "arts_humanities_data": {
       "met": true,
-      "note": "Language and Linguistics (ASJC 1206), plus substantial Arts & Humanities content including local history, arts, festivals, literature, and cultural knowledge"
+      "note": "Arts & Humanities (19.5% of questions), History, Literature and Literary Theory, Language Studies, Music and Performing Arts, Philosophy (Religion and Spirituality)"
     },
     "quantitative_metrics": {
       "met": true,
-      "note": "Accuracy scores reported across languages, domains, and shot settings"
+      "note": "Accuracy scores across different shot settings (0-shot, 1-shot, 5-shot), with performance analysis by domain, language, and model size"
     },
     "published_after_march_2023": {
       "met": true,
@@ -44,12 +43,14 @@
       "note": "Paper written in English, benchmark includes English alongside 10 Indic languages"
     }
   },
-  "summary": "MILU introduces a comprehensive multilingual benchmark for evaluating LLMs across 11 Indic languages, spanning 8 domains and 41 subjects with emphasis on culturally relevant knowledge. The benchmark reveals significant performance gaps in culturally specific domains like Arts & Humanities compared to general STEM fields.",
-  "key_findings": "GPT-4o achieved highest performance at 74% average accuracy. Models perform significantly better in high-resource languages and general domains like STEM, but struggle with culturally relevant areas like Arts & Humanities and Social Sciences. Open multilingual models outperformed language-specific fine-tuned models.",
+  "summary": "MILU introduces a comprehensive evaluation benchmark for Large Language Models across 11 Indic languages, spanning 8 domains and 41 subjects with culturally relevant content from Indian regional exams. The benchmark reveals that current LLMs struggle with culturally specific knowledge, with GPT-4o achieving the highest accuracy of 74%.",
+  "key_findings": "GPT-4o achieved highest performance at 74% average accuracy. Open multilingual models outperformed language-specific fine-tuned models. Models performed significantly better on high-resource languages vs low-resource ones, and struggled most with culturally relevant domains like Arts & Humanities and Law & Governance compared to STEM subjects.",
   "relevant_asjc_areas": [
-    "Language and Linguistics",
     "History",
+    "Language and Linguistics",
     "Literature and Literary Theory",
+    "Music",
+    "Religious Studies",
     "Visual Arts and Performing Arts"
   ],
   "paper_id": "2411.02538",

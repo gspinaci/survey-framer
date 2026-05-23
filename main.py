@@ -22,7 +22,7 @@ from src.csv_reader import read_papers_csv
 from src.pdf_fetcher import fetch_pdf
 from src.pdf_extractor import extract_text
 from src.analyzer import analyze_paper
-from src.report_writer import write_paper_report
+from src.report_writer import write_paper_report, append_exclusion_note
 from src.narrative import generate_narrative
 
 
@@ -86,7 +86,46 @@ def step_analyze(papers: list[dict], pdf_paths: dict[str, Path]) -> list[dict]:
     return analyses
 
 
-def step_narrative() -> None:
+REQUIRED_CRITERIA = [
+    "evaluates_generative_llm",
+    "published_after_march_2023",
+]
+
+
+def step_validate() -> set[str]:
+    """Check inclusion criteria for all analyzed papers.
+
+    Appends an exclusion note to the markdown report of any failing paper.
+    Returns the set of paper IDs that pass all criteria.
+    """
+    print("\n--- Validating inclusion criteria ---")
+    json_files = sorted(PAPERS_DIR.glob("*.json"))
+    passing, failing = [], []
+
+    for jf in json_files:
+        analysis = json.loads(jf.read_text(encoding="utf-8"))
+        paper_id = analysis.get("paper_id", jf.stem)
+        criteria = analysis.get("inclusion_criteria", {})
+
+        failed = [
+            (key, criteria[key].get("note", "no note"))
+            for key in REQUIRED_CRITERIA
+            if not criteria.get(key, {}).get("met", False)
+        ]
+
+        if failed:
+            append_exclusion_note(paper_id, failed, PAPERS_DIR)
+            print(f"  EXCLUDED: {paper_id} — failed {len(failed)} criterion/criteria")
+            failing.append(paper_id)
+        else:
+            print(f"  INCLUDED: {paper_id}")
+            passing.append(paper_id)
+
+    print(f"Validation complete: {len(passing)} included, {len(failing)} excluded")
+    return set(passing)
+
+
+def step_narrative(passing_ids: set[str] | None = None) -> None:
     print("\n--- Generating narrative synthesis ---")
     json_files = sorted(PAPERS_DIR.glob("*.json"))
     if not json_files:
@@ -95,7 +134,13 @@ def step_narrative() -> None:
 
     analyses = []
     for jf in json_files:
-        analyses.append(json.loads(jf.read_text(encoding="utf-8")))
+        a = json.loads(jf.read_text(encoding="utf-8"))
+        if passing_ids is None or a.get("paper_id", jf.stem) in passing_ids:
+            analyses.append(a)
+
+    if not analyses:
+        print("No papers passed inclusion criteria — narrative not generated.")
+        return
 
     print(f"Synthesizing narrative from {len(analyses)} papers...")
     output_path = OUTPUT_DIR / "narrative_synthesis.md"
@@ -145,8 +190,10 @@ def main():
     if args.step in ("analyze", "all"):
         step_analyze(papers, pdf_paths)
 
+    passing_ids = None
     if args.step in ("narrative", "all"):
-        step_narrative()
+        passing_ids = step_validate()
+        step_narrative(passing_ids)
 
     print("\nDone.")
 

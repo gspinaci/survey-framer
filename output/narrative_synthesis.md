@@ -1,143 +1,129 @@
 # Survey Narrative Synthesis
 
-# Benchmarking LLMs in Arts & Humanities: A Systematic Analysis
+# AI Benchmarks for Arts & Humanities: A Synthesis
 
 ## 1. Thematic Clusters
 
-### **Visual Arts & Cultural Heritage Analysis**
-**Papers:** VQArt-Bench, VULCA-BENCH, Christian Iconography Classification, Appear2Meaning
+### Visual Arts & Cultural Heritage
+**Papers**: MMMU-Pro, Christian Iconography Classification, VQArt-Bench, VULCA-BENCH (both versions), Appear2Meaning
 
-**Common Thread:** These benchmarks focus on visual interpretation of artistic and cultural heritage objects, requiring models to understand iconographic symbols, cultural contexts, and art-historical knowledge. They emphasize the gap between visual perception and deep cultural interpretation, testing capabilities from basic object recognition to sophisticated aesthetic and symbolic analysis.
+**Common Thread**: These benchmarks center on visual analysis of cultural artifacts, requiring models to interpret artistic content, iconographic symbols, and cultural metadata. They span from basic visual recognition to sophisticated cultural understanding, with tasks ranging from saint identification in religious art to cross-cultural aesthetic critique generation.
 
-### **Language & Linguistic Phenomena**
-**Papers:** LAMBADA, AdMIRe, MILU
+### Linguistic & Literary Understanding
+**Papers**: MILU, AdMIRe
 
-**Common Thread:** These evaluate models' understanding of complex linguistic structures and cultural language use, from discourse comprehension and idiomatic expressions to multilingual cultural knowledge. They highlight the challenge of non-compositional meaning and culturally-embedded linguistic phenomena.
+**Common Thread**: Focus on language-specific cultural phenomena including idiomatic expressions, multilingual reasoning, and culturally embedded linguistic knowledge. These benchmarks test models' ability to navigate the semantic complexity of figurative language and culture-specific expressions across multiple languages.
 
-### **Historical Knowledge Systems**
-**Papers:** HiST-LLM, MILU (historical components)
+### Historical Knowledge Assessment
+**Papers**: HiST-LLM
 
-**Common Thread:** Focus on factual historical knowledge and temporal reasoning across different cultural contexts. These benchmarks test expert-level domain knowledge rather than interpretive skills, emphasizing the breadth of historical coverage and cultural representation.
-
-### **Multimodal Cross-Cultural Understanding**
-**Papers:** MMMU-Pro, VULCA-BENCH, VQArt-Bench
-
-**Common Thread:** These represent the most sophisticated benchmarks, combining multiple modalities with cultural interpretation tasks. They test whether models can integrate visual and textual information while navigating cultural specificity and avoiding Western-centric biases.
+**Common Thread**: Evaluates factual historical comprehension using expert-curated datasets, testing models on graduate-level historical knowledge across civilizations and time periods.
 
 ## 2. Modality & Task Landscape
 
-### **Modality Coverage**
-- **Text-only dominance:** Traditional benchmarks (LAMBADA, HiST-LLM, MILU) remain text-centric, focusing on linguistic and factual knowledge
-- **Image+Text emergence:** The majority of recent benchmarks (6/10) incorporate visual elements, reflecting the importance of visual culture in humanities
-- **Underrepresented modalities:** Audio is completely absent despite music being a core humanities domain. Video/temporal sequences appear only in AdMIRe's comic-style progressions
-- **Multimodal complexity:** Advanced benchmarks like VULCA-BENCH test true integration rather than parallel processing of modalities
+### Modality Coverage
+**Text-Only Dominance**: Text-only benchmarks (MILU, HiST-LLM) focus on knowledge assessment and multilingual understanding, representing the most straightforward evaluation approach for humanities content.
 
-### **Task Types**
-- **Factual recognition tasks** dominate simpler benchmarks (HiST-LLM, MILU multiple-choice sections)
-- **Cultural interpretation tasks** represent the most challenging category, requiring deep domain knowledge and cultural sensitivity
-- **Generation tasks** (VULCA-BENCH art critiques) are less common but more aligned with humanities scholarship practices
-- **Hybrid reasoning tasks** (VQArt-Bench's seven-dimensional framework) attempt to bridge perception and interpretation
+**Vision-Language Integration**: The majority of benchmarks (6/9) employ multimodal approaches combining images with text, reflecting the visual nature of much humanities scholarship, particularly in art history and cultural studies.
 
-### **Task-Domain Alignment**
-Strong alignment exists in specialized domains (Christian iconography, art criticism) but gaps remain in:
-- **Temporal reasoning** for historical analysis
-- **Aesthetic judgment** beyond cultural attribution  
-- **Comparative analysis** across traditions or periods
-- **Methodological reasoning** reflecting humanities scholarship practices
+**Underrepresented Modalities**: Audio remains completely absent despite music being a core humanities domain. Temporal sequences appear only in AdMIRe's limited visual-temporal component.
+
+### Task Types
+**Factual Recognition Dominance**: Most benchmarks emphasize factual knowledge assessment through classification tasks (iconography identification, historical knowledge, cultural attribution).
+
+**Emerging Generation Tasks**: VULCA-BENCH introduces sophisticated critique generation, representing a shift toward evaluating creative and analytical capabilities rather than mere recognition.
+
+**Complex Reasoning Gap**: While VQArt-Bench includes "Visual-Inspired Reasoning," most benchmarks focus on surface-level recognition rather than the causal reasoning, interpretation, and synthesis central to humanities scholarship.
+
+### Task-Domain Alignment
+**Strong Alignment**: Visual arts benchmarks appropriately emphasize iconographic analysis and cultural interpretation. Historical benchmarks correctly focus on factual knowledge assessment.
+
+**Potential Misalignment**: The emphasis on multiple-choice formats may not capture the discursive, interpretive nature of humanities scholarship. VULCA-BENCH's critique generation better aligns with authentic humanities practices.
 
 ## 3. Methodological Patterns
 
-### **Model Selection**
-- **GPT-4 variants** appear in 80% of benchmarks, serving as de facto baselines
-- **Gemini and Claude** models increasingly tested for multimodal capabilities
-- **Open-source models** (Llama, Qwen) consistently underperform but provide accessibility
-- **Domain-specific fine-tuning** surprisingly rare despite humanities' specialized vocabularies
+### Evaluation Approaches
+**Accuracy-Based Metrics**: Nearly universal use of accuracy scores for classification tasks, with some benchmarks introducing sophisticated rubrics (VULCA-BENCH's 225-dimension framework).
 
-### **Evaluation Approaches**
-- **Multiple-choice formats** dominate (7/10 benchmarks) for standardization but may not capture humanities reasoning
-- **LLM-as-Judge frameworks** emerging for complex generation tasks (VULCA-BENCH, Appear2Meaning)
-- **Human expert validation** present in cultural domains but scaling challenges evident
-- **Hierarchical evaluation** (VULCA-BENCH's L1-L5 framework) represents methodological innovation
+**LLM-as-Judge Framework**: Emerging pattern in Appear2Meaning and VULCA-BENCH for evaluating complex generative tasks, addressing the challenge of assessing open-ended humanities outputs.
 
-### **Metrics and Complexity**
-- **Accuracy metrics** standard across factual tasks
-- **Cultural bias measurement** increasingly important (VULCA-BENCH's systematic bias detection)
-- **Interpretability challenges** in distinguishing visual perception from cultural knowledge
-- **Cross-lingual evaluation** underexplored despite humanities' multilingual nature
+**Multi-Shot Learning**: Consistent evaluation across zero-shot, few-shot, and chain-of-thought prompting strategies.
+
+### Model Coverage
+**Dominant Models**: GPT-4 variants, Gemini series, and Claude models appear across most benchmarks, establishing these as standard evaluation targets.
+
+**Multimodal Focus**: Strong emphasis on Vision-Language Models (VLMs) reflecting the visual nature of cultural heritage and arts domains.
+
+**Specialized Models**: Limited evaluation of humanities-specific or culturally-adapted models, with most benchmarks testing general-purpose systems.
+
+### Analytical Complexity
+**Hierarchical Frameworks**: VULCA-BENCH's five-layer framework (L1-L5) and VQArt-Bench's seven-dimension approach represent sophisticated attempts to capture varying levels of analytical sophistication.
+
+**Cultural Specificity**: Increasing attention to culture-specific knowledge (MILU's Indic languages, VULCA-BENCH's cross-cultural approach) rather than Western-centric evaluation.
 
 ## 4. Narrative Framing Options
 
-### **For Newcomers: "Bridging AI and Cultural Understanding"**
-Emphasize the unique challenges humanities poses to AI systems: non-factual knowledge, cultural specificity, interpretive reasoning, and multimodal integration. Frame around three progressive challenges: (1) Cultural Knowledge Acquisition, (2) Cross-Modal Cultural Interpretation, (3) Sophisticated Cultural Reasoning. Highlight how humanities benchmarks reveal fundamental limitations in current AI systems' cultural competence.
+### For Newcomers: "Multimodal AI Meets Cultural Understanding"
+Frame around the challenge of moving beyond text-only AI to systems that can interpret visual culture, historical artifacts, and cross-cultural knowledge. Emphasize the progression from basic recognition to sophisticated cultural interpretation, using concrete examples like identifying saints in paintings or understanding idiomatic expressions across languages.
 
-### **For Digital Humanities Experts: "Computational Methods Meet Cultural Analysis"**
-Focus on methodological innovations in evaluation frameworks, particularly the development of hierarchical cultural understanding measures and bias detection in AI systems. Emphasize gaps in representing actual humanities scholarship practices and the need for benchmarks that reflect disciplinary methods (comparative analysis, close reading, historical contextualization) rather than just factual recall.
+### For Experts: "Evaluating Computational Approaches to Cultural Analysis"
+Frame around methodological challenges of quantifying humanities scholarship - how do we measure aesthetic judgment, cultural interpretation, or historical reasoning? Focus on the tension between standardized metrics and the interpretive, discursive nature of humanities work, highlighting innovations like VULCA-BENCH's critique generation.
 
-### **For AI Researchers: "Cultural Intelligence as a Frontier Challenge"**
-Frame around technical challenges: non-compositional meaning, long-range contextual dependencies, cultural bias mitigation, and multimodal reasoning. Highlight how humanities benchmarks expose fundamental limitations in current architectures and training paradigms, particularly around cultural knowledge representation and cross-cultural generalization.
+### For AI Researchers: "Beyond Classification: Reasoning and Generation in Cultural Domains"
+Frame around technical challenges: multimodal fusion for cultural content, handling low-resource languages/cultures, evaluating generated cultural analysis, and the need for hierarchical reasoning frameworks that capture increasing analytical sophistication from perception to philosophical aesthetics.
 
 ## 5. Gaps and Opportunities
 
-### **Underrepresented Modalities**
-- **Audio analysis:** Music theory, oral traditions, linguistic prosody completely absent
-- **Temporal media:** Video analysis for film studies, performance documentation
-- **3D/Spatial:** Archaeological artifacts, architectural analysis, sculpture
-- **Archival materials:** Manuscript analysis, paleography, codicology
+### Underrepresented Modalities
+- **Audio**: Complete absence of music, oral history, or linguistic audio analysis
+- **Temporal Media**: No evaluation of film, performance, or time-based arts
+- **3D/Spatial**: Missing archaeological, architectural, and sculptural analysis
 
-### **Missing Analytical Tasks**
-- **Comparative analysis:** Cross-cultural, cross-temporal, cross-media comparisons
-- **Argumentation:** Thesis construction, evidence evaluation, interpretive reasoning
-- **Contextual synthesis:** Integrating multiple sources and perspectives
-- **Creative generation:** Poetry, narrative, creative translation
+### Task Complexity Gaps
+- **Comparative Analysis**: No benchmarks require comparing works across periods, cultures, or media
+- **Argumentation**: Missing evaluation of thesis development, evidence synthesis, or scholarly debate
+- **Creative Generation**: Limited evaluation of creative or interpretive writing in humanities contexts
 
-### **Disciplinary Gaps**
-- **Philosophy:** Logical reasoning, conceptual analysis, argumentation
-- **Music:** Composition analysis, performance interpretation, cultural contexts  
-- **Literature:** Close reading, narrative analysis, genre classification
-- **Archaeology:** Material culture analysis, stratigraphic reasoning
+### Cultural and Linguistic Limitations
+- **Geographic Bias**: Limited representation of African, Oceanic, and Indigenous knowledge systems
+- **Temporal Scope**: Heavy focus on established canonical works rather than contemporary cultural production
+- **Methodological Diversity**: Missing evaluation of different humanities methodologies (formalist, marxist, postcolonial approaches)
 
-### **Next-Generation Benchmark Vision**
-A comprehensive humanities AI benchmark should integrate:
-1. **Multi-temporal reasoning** across historical periods and cultural development
-2. **Argumentative structure evaluation** reflecting actual humanities scholarship
-3. **Cross-cultural comparative capabilities** with systematic bias measurement
-4. **Creative-analytical tasks** combining interpretation with generation
-5. **Collaborative reasoning** simulating scholarly discourse and peer review
+### Next-Generation Benchmark Vision
+A comprehensive humanities AI benchmark would include:
+1. **Multimodal Integration**: Audio-visual-textual analysis of cultural productions
+2. **Temporal Reasoning**: Understanding cultural change, influence, and historical development
+3. **Argumentative Tasks**: Generating and evaluating scholarly arguments with evidence
+4. **Collaborative Analysis**: Multi-perspective interpretation reflecting humanities' interpretive plurality
+5. **Ethical Reasoning**: Evaluating cultural sensitivity and power dynamics in interpretation
 
 ## 6. Suggested Survey Structure
 
-### **Proposed Table of Contents**
+### Option A: Modality-Driven Organization
+1. **Introduction**: The Challenge of Humanities AI Evaluation
+2. **Text-Only Benchmarks**: Knowledge Assessment and Linguistic Understanding
+3. **Vision-Language Benchmarks**: Visual Culture and Multimodal Interpretation
+4. **Emerging Modalities**: Toward Audio-Visual-Temporal Integration
+5. **Evaluation Methodologies**: From Accuracy to Interpretive Assessment
+6. **Cultural Representation and Bias**: Geographic and Temporal Scope
+7. **Future Directions**: Toward Comprehensive Humanities AI Evaluation
 
-1. **Introduction: Cultural Intelligence as an AI Challenge**
-   - Defining humanities AI evaluation
-   - Unique challenges vs. STEM domains
+### Option B: Analytical Complexity Organization
+1. **Introduction**: Operationalizing Humanities Scholarship for AI Evaluation
+2. **Level 1: Recognition and Classification**: Basic Cultural Knowledge
+3. **Level 2: Analysis and Interpretation**: Understanding Cultural Meaning
+4. **Level 3: Synthesis and Critique**: Generating Humanities Scholarship
+5. **Cross-Cutting Concerns**: Multimodality, Cultural Specificity, Bias
+6. **Methodological Innovations**: LLM-as-Judge, Hierarchical Frameworks
+7. **Research Agenda**: Gaps and Future Benchmark Development
 
-2. **Modality-Centric Analysis**
-   - 2.1 Text-Based Cultural Understanding
-   - 2.2 Visual-Cultural Interpretation
-   - 2.3 Multimodal Cultural Integration
-   - 2.4 Missing Modalities and Future Directions
+### Option C: Domain-Task Matrix Organization
+1. **Introduction**: Mapping AI Capabilities Across Humanities Domains
+2. **Visual Arts**: From Iconography to Aesthetic Critique
+3. **Historical Studies**: Knowledge Assessment and Temporal Reasoning
+4. **Linguistic Studies**: Multilingual and Cross-Cultural Understanding
+5. **Methodological Synthesis**: Evaluation Approaches Across Domains
+6. **Cultural Representation**: Geographic and Temporal Coverage Analysis
+7. **Future Trajectories**: Toward Comprehensive Humanities AI Assessment
 
-3. **Task Complexity Hierarchy**
-   - 3.1 Factual Cultural Knowledge
-   - 3.2 Interpretive Reasoning
-   - 3.3 Comparative and Synthetic Analysis
-   - 3.4 Creative-Analytical Integration
-
-4. **Disciplinary Deep Dives**
-   - 4.1 Visual Arts and Cultural Heritage
-   - 4.2 Historical Analysis and Temporal Reasoning
-   - 4.3 Language, Literature, and Linguistic Phenomena
-   - 4.4 Cross-Cultural and Comparative Studies
-
-5. **Methodological Innovations**
-   - 5.1 Evaluation Framework Evolution
-   - 5.2 Cultural Bias Detection and Mitigation
-   - 5.3 Expert Validation and Scaling Challenges
-
-6. **Critical Assessment and Future Directions**
-   - 6.1 Alignment with Humanities Scholarship Practices
-   - 6.2 Technical Limitations and Opportunities
-   - 6.3 Toward Next-Generation Cultural AI Evaluation
-
-This structure balances technical AI concerns with humanities domain expertise while providing clear progression from current capabilities to future challenges and opportunities.
+**Recommendation**: Option B (Analytical Complexity) best captures the progression from basic recognition to sophisticated interpretation that characterizes humanities scholarship, while allowing discussion of methodological innovations and cultural considerations at each level.

@@ -1,37 +1,37 @@
 {
   "benchmark_name": "HiST-LLM",
   "publication_year": 2024,
-  "humanities_role": "domain",
-  "humanities_role_explanation": "Designed specifically for evaluating expert-level historical knowledge and comprehension using curated historical data from the Seshat Global History Databank",
+  "humanities_role": "both",
+  "humanities_role_explanation": "Uses expert-curated historical data from the Seshat Global History Databank as content and is specifically designed for evaluating graduate-level history comprehension",
   "benchmark_modalities": [
     "text"
   ],
-  "benchmark_modalities_explanation": "Text-based evaluation using structured historical data points converted into multiple-choice questions covering global historical societies and periods",
+  "benchmark_modalities_explanation": "Text-based four-choice questions derived from structured historical data covering 600 historical societies",
   "analytical_tasks": [
-    "historical knowledge comprehension",
-    "multiple-choice question answering"
+    "historical knowledge assessment",
+    "factual comprehension"
   ],
-  "analytical_tasks_explanation": "Expert-level historical knowledge evaluation through four-choice format questions based on curated historical data covering 600 historical societies from Neolithic to Industrial Revolution periods across major world regions",
+  "analytical_tasks_explanation": "Graduate-level historical knowledge evaluation across major world regions from Neolithic to Industrial Revolution, testing factual understanding of historical societies and periods",
   "inclusion_criteria": {
     "general_purpose_benchmark": {
       "met": true,
-      "note": "Evaluates general historical knowledge capabilities across multiple LLM families"
+      "note": "Evaluates multiple LLM families on standardized historical knowledge tasks"
     },
     "evaluates_generative_llm": {
       "met": true,
-      "note": "Evaluated models from Gemini, OpenAI (GPT-4-Turbo), and Llama (Llama-3.1-8B) families"
+      "note": "GPT-4-Turbo, Llama-3.1-8B, and Gemini family models"
     },
     "llm_is_primary_system": {
       "met": true,
-      "note": "LLMs are the primary systems being benchmarked for historical knowledge comprehension"
+      "note": "LLMs are the primary systems being benchmarked for historical knowledge"
     },
     "arts_humanities_data": {
       "met": true,
-      "note": "History - uses Seshat Global History Databank with 36,000 data points across historical societies and scholarly references"
+      "note": "History - uses Seshat Global History Databank covering 600 historical societies"
     },
     "quantitative_metrics": {
       "met": true,
-      "note": "Balanced accuracy scores ranging from 33.6% to 46% compared to random baseline of 25%"
+      "note": "Balanced accuracy scores ranging from 33.6% to 46%"
     },
     "published_after_march_2023": {
       "met": true,
@@ -42,8 +42,8 @@
       "note": "Paper and benchmark appear to be in English"
     }
   },
-  "summary": "HiST-LLM introduces a benchmark for evaluating LLMs' expert-level historical knowledge using the Seshat Global History Databank, covering 36,000 data points across 600 historical societies from the Neolithic to Industrial Revolution. The benchmark tests seven models from major LLM families using a four-choice format, finding performance ranges from 33.6% to 46% accuracy.",
-  "key_findings": "LLMs achieved balanced accuracy between 33.6% (Llama-3.1-8B) and 46% (GPT-4-Turbo), outperforming random chance (25%) but falling short of expert-level comprehension. Models performed better on earlier historical periods, with regional performance being more balanced but lowest in Oceania and Sub-Saharan Africa.",
+  "summary": "HiST-LLM introduces a benchmark for evaluating LLMs' graduate-level historical knowledge using the expert-curated Seshat Global History Databank. The benchmark tests seven major LLM models on 36,000 data points covering 600 historical societies from the Neolithic to Industrial Revolution.",
+  "key_findings": "LLMs achieved balanced accuracy between 33.6% (Llama-3.1-8B) and 46% (GPT-4-Turbo) on four-choice historical questions, outperforming random chance (25%) but falling short of expert-level comprehension. Performance varied by historical period and region, with better results on earlier periods and uneven regional performance.",
   "relevant_asjc_areas": [
     "History"
   ],

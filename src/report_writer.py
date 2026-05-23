@@ -83,3 +83,39 @@ def write_paper_report(paper: dict, analysis: dict, output_dir: Path) -> Path:
 
     dest.write_text("\n".join(lines), encoding="utf-8")
     return dest
+
+
+def append_exclusion_note(paper_id: str, failed_criteria: list[tuple[str, str]], output_dir: Path) -> None:
+    """Append an exclusion section to an existing paper report."""
+    filename = _safe_filename(paper_id)
+    dest = output_dir / filename
+    if not dest.exists():
+        return
+
+    labels = {
+        "general_purpose_benchmark": "General-purpose benchmark",
+        "evaluates_generative_llm": "Evaluates generative LLM",
+        "llm_is_primary_system": "LLM is primary evaluated system",
+        "arts_humanities_data": "Arts & Humanities data/tasks",
+        "quantitative_metrics": "Quantitative performance metrics",
+        "published_after_march_2023": "Published after Mar 2023",
+        "english_language": "English language",
+    }
+
+    lines = [
+        "",
+        "---",
+        "",
+        "## Exclusion Note",
+        "",
+        "This paper **does not meet all inclusion criteria** and will be excluded from the narrative synthesis.",
+        "",
+        "| Failed Criterion | Reason |",
+        "|------------------|--------|",
+    ]
+    for key, note in failed_criteria:
+        label = labels.get(key, key)
+        lines.append(f"| {label} | {note} |")
+
+    existing = dest.read_text(encoding="utf-8")
+    dest.write_text(existing + "\n".join(lines) + "\n", encoding="utf-8")
