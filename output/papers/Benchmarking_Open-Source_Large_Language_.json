@@ -1,0 +1,63 @@
+{
+  "benchmark_name": null,
+  "publication_year": 2024,
+  "humanities_role": "content",
+  "humanities_role_explanation": "Uses Persian MMLU subcategories covering humanities subjects (Theology, History, Philosophy, Literature) and linguistic tasks to evaluate general-purpose LLM capabilities.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Monolingual and cross-lingual text-based NLP tasks including reading comprehension, translation, and multiple-choice question answering.",
+  "analytical_tasks": [
+    "reading comprehension",
+    "textual entailment",
+    "sentiment classification",
+    "machine translation",
+    "emotion detection",
+    "named entity recognition",
+    "multiple-choice question answering",
+    "abstractive summarization"
+  ],
+  "analytical_tasks_explanation": "Evaluates semantic reasoning (textual entailment), factual recall and academic reasoning across multiple disciplines (Persian MMLU), sequence labeling (named entity recognition), affective classification (sentiment and emotion), and generative text processing (summarization and translation).",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": true,
+      "note": "Evaluates LLMs across a wide array of general NLP tasks and multiple academic subject domains."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates eleven open-source LLMs including Gemma 2, GLM4, Llama 3.1, Llama 3.2, Qwen 2, Qwen 2.5, Mistral, Marco-O1, Aya Expanse, Falcon 3, and Tulu 3."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "The LLMs are the primary systems being benchmarked and compared."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Utilizes datasets containing content in Language and Linguistics, Philosophy, Religious Studies (Theology), History, and Literature."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Evaluates performance using Accuracy, F1-score (macro and token-level), Exact Match, BLEU, and ROUGE metrics."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Published/released in 2024, containing references up to late 2024."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper is written in English."
+    }
+  },
+  "summary": "This paper presents a comprehensive benchmarking study of eleven open-source large language models on Persian natural language processing. Using zero-shot and 5-shot learning paradigms, the models are evaluated across multiple established Persian datasets covering sentiment analysis, named entity recognition, reading comprehension, machine translation, summarization, and academic subject knowledge. The results demonstrate that while models like Gemma 2 exhibit strong cross-lingual transfer, substantial performance gaps and difficulties with token-level understanding (such as NER) persist for Persian.",
+  "key_findings": "Gemma 2 consistently outperformed all other models, achieving the highest overall average score of 0.61 in few-shot and 0.42 in zero-shot settings. Few-shot prompting yielded an average performance improvement of 13.8% across tasks, with the most notable gains in semantic reasoning (17.3% gain). However, models struggled with sequence labeling in Named Entity Recognition (achieving very low scores, such as single-digit F1-scores in zero-shot settings), and performed better in humanities subjects (average score: 0.395) compared to STEM fields (average score: 0.287) in the Persian MMLU benchmark.",
+  "relevant_asjc_areas": [
+    "Language and Linguistics",
+    "Philosophy",
+    "Religious Studies",
+    "History",
+    "Literature and Literary Theory"
+  ],
+  "paper_id": "Benchmarking_Open-Source_Large_Language_",
+  "paper_name": "Benchmarking Open-Source Large Language Models for Persian in Zero-Shot and Few-Shot Learning",
+  "csv_row": 35
+}

@@ -1,0 +1,56 @@
+{
+  "benchmark_name": "Bias Benchmark for QA (BBQ)",
+  "publication_year": 2022,
+  "humanities_role": "content",
+  "humanities_role_explanation": "Uses socio-demographic labels, linguistic structures, and religious categories as content templates to evaluate bias and stereotype reinforcement in language models.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Text-only multiple-choice question answering where models are provided with a context (either ambiguous or disambiguated), a question, and three answer options.",
+  "analytical_tasks": [
+    "question answering",
+    "bias detection",
+    "stereotype attribution",
+    "uncertainty reasoning"
+  ],
+  "analytical_tasks_explanation": "Evaluates whether models systematically select answers aligning with negative social stereotypes in under-informative contexts (where 'unknown' is correct) and whether these biases override factual text comprehension in fully informative contexts.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "BBQ is a specialized benchmark focusing specifically on social bias in question answering, not a general-purpose capability test."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates language models including UnifiedQA, RoBERTa, and DeBERTaV3."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "Language models are the primary systems evaluated for their propensity to output biased answers."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Involves Language and Linguistics (linguistic templating, name-identity associations) and Religious Studies (addressing stereotypes about Jewish, Muslim, and Protestant groups)."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Uses accuracy, bias score (sAMB and sDIS), and the accuracy cost of bias nonalignment."
+    },
+    "published_after_march_2023": {
+      "met": false,
+      "note": "Published on arXiv in October 2021, with revisions in March 2022."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper and the BBQ dataset are in English, focused on U.S. cultural contexts."
+    }
+  },
+  "summary": "This paper introduces the Bias Benchmark for QA (BBQ), a hand-built dataset of 58,492 examples targeting social biases across nine categories in U.S. English contexts. BBQ tests language models under both ambiguous and disambiguated contexts to determine if they default to harmful stereotypes or if those biases override factual text. The evaluations reveal that models heavily rely on stereotypes when context is under-informative and suffer accuracy drops when correct answers conflict with social biases.",
+  "key_findings": "In ambiguous contexts, models rely heavily on stereotypes, with up to 77% of UnifiedQA's errors aligning with targeted social biases. In disambiguated contexts, models suffer up to a 3.4 percentage point accuracy drop when the correct answer contradicts a social stereotype, widening to over 5 points on gender-targeted templates.",
+  "relevant_asjc_areas": [
+    "Language and Linguistics",
+    "Religious Studies"
+  ],
+  "paper_id": "2110.08193",
+  "paper_name": "BBQ",
+  "csv_row": 12
+}

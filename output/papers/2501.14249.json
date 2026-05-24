@@ -1,0 +1,65 @@
+{
+  "benchmark_name": "Humanity's Last Exam",
+  "publication_year": 2025,
+  "humanities_role": "both",
+  "humanities_role_explanation": "Uses specialized humanities content (e.g., transcriptions of ancient inscriptions, Hebrew source text) to evaluate advanced reasoning and domain knowledge across humanities fields such as Classics, Philosophy, Art History, and Linguistics.",
+  "benchmark_modalities": [
+    "text",
+    "image"
+  ],
+  "benchmark_modalities_explanation": "Consists of text-only questions and multimodal questions (around 14%) where a text question is accompanied by an image reference.",
+  "analytical_tasks": [
+    "multiple-choice question answering",
+    "exact-match short-answer question answering",
+    "translation of ancient scripts",
+    "phonological and syllabic analysis",
+    "mathematical reasoning",
+    "scientific chemical reasoning"
+  ],
+  "analytical_tasks_explanation": "Evaluates high-level academic tasks including translating ancient Palmyrene script from tombstone images, classifying closed and open syllables in Tiberian Biblical Hebrew pronunciation, reasoning over natural cotransformations in category theory, and identifying thermal pericyclic cascade steps in organic chemistry.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": true,
+      "note": "The benchmark spans dozens of academic subject areas across mathematics, humanities, and natural sciences."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluated frontier generative models including GPT-4o, Grok 2, Claude 3.5 Sonnet, Gemini 1.5 Pro, Gemini 2.0 Flash Thinking, o1, DeepSeek-R1, and o3-mini."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "LLMs and reasoning models are the primary systems whose capabilities are benchmarked."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Includes questions in Classics, Linguistics, Philosophy, Art History, Musicology, Poetry, English Literature, and Archaeology."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Uses accuracy (%) and RMS calibration error (%) as its quantitative metrics."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "The paper was first published as an arXiv preprint in January 2025 (arXiv:2501.14249)."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper and the overall benchmark framework are in English."
+    }
+  },
+  "summary": "This paper introduces Humanity's Last Exam (HLE), a multi-modal benchmark consisting of 2,500 highly challenging questions designed to test models at the limit of academic human knowledge. Developed by global subject-matter experts, HLE features a mixture of multiple-choice and exact-match questions that currently stump frontier LLMs, exposing substantial gaps in their expert-level reasoning capabilities.",
+  "key_findings": "State-of-the-art models demonstrate low performance on HLE, with the highest-performing text-only reasoning model, o3-mini (high), achieving just 13.4% accuracy. Additionally, models show poor calibration, with RMS calibration errors exceeding 70% across all evaluated systems, highlighting a strong tendency to confidently output incorrect answers.",
+  "relevant_asjc_areas": [
+    "Classics",
+    "Language and Linguistics",
+    "Philosophy",
+    "Literature and Literary Theory",
+    "History",
+    "Visual Arts and Performing Arts",
+    "Music",
+    "Archaeology"
+  ],
+  "paper_id": "2501.14249",
+  "paper_name": "Humanity's Last Exam",
+  "csv_row": 13
+}

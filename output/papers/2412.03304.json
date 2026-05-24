@@ -1,0 +1,57 @@
+{
+  "benchmark_name": "Global-MMLU",
+  "publication_year": 2025,
+  "humanities_role": "both",
+  "humanities_role_explanation": "Evaluates LLMs using multiple-choice questions from humanities subjects (such as history, philosophy, and world religions) while explicitly identifying and analyzing the impact of Western-centric cultural and geographical knowledge on multilingual model performance.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Textual multiple-choice question answering across 42 languages, combining human translations, post-edits, and machine-translated content.",
+  "analytical_tasks": [
+    "multiple-choice question answering",
+    "cultural sensitivity classification",
+    "cross-lingual knowledge retrieval"
+  ],
+  "analytical_tasks_explanation": "Evaluates factual knowledge and reasoning across multiple disciplines, specifically dividing tasks into culturally-sensitive (requiring localized cultural, geographic, or dialectal context) and culturally-agnostic subsets.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": true,
+      "note": "Spans 57 diverse subjects across STEM, Humanities, Social Sciences, Business, and Medicine."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates several SOTA open and proprietary LLMs including GPT-4o, Claude 3.5 Sonnet, Llama 3.1, Qwen 2.5, Aya Expanse, Command R/R+, Gemma 2, Mistral Nemo, and SEA-LION v3."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "Generative LLMs are the primary systems being benchmarked."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Evaluates subjects within History, Philosophy, Jurisprudence, World Religions, and Dialect/Language variations."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Evaluates performance using accuracy, relative rank changes, and position shifts."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "The preprint was updated and released in February 2025."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper is written in English, and the benchmark evaluates English alongside 41 other languages."
+    }
+  },
+  "summary": "Global-MMLU (GMMLU) is a multilingual evaluation benchmark across 42 languages designed to analyze and address linguistic and cultural biases in machine-translated versions of the MMLU dataset. The authors systematically annotate MMLU to identify culturally-sensitive and culturally-agnostic subsets, exposing a heavy Western-centric bias in the original questions, and release a high-quality human-verified translation to enable more accurate global evaluations.",
+  "key_findings": "The analysis reveals that 28% of MMLU questions require culturally-sensitive (CS) knowledge, with 86.5% of those being Western-centric and 84.9% of geographic questions focusing on North America or Europe. Evaluating models on CS vs. culturally-agnostic (CA) subsets causes significant ranking volatility (averaging 5.7 rank changes on CS vs. 3.4 on CA), showing that standard translated MMLU distorts true multilingual capabilities.",
+  "relevant_asjc_areas": [
+    "History",
+    "Language and Linguistics",
+    "Philosophy",
+    "Religious Studies"
+  ],
+  "paper_id": "2412.03304",
+  "paper_name": "GMMLU",
+  "csv_row": 5
+}

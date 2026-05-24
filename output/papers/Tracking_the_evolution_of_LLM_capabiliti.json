@@ -1,0 +1,59 @@
+{
+  "benchmark_name": null,
+  "publication_year": 2026,
+  "humanities_role": "domain",
+  "humanities_role_explanation": "Designed specifically to evaluate linguistic and orthographic competencies of Belarusian, including classical orthography (Tara\u0161kievica), morphology, phonology, and grammar.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Evaluates models using text-based prompts and responses in Belarusian (and cross-lingual translation tasks with Russian and English).",
+  "analytical_tasks": [
+    "syllable counting",
+    "numeral to digit conversion",
+    "lexical acceptability judgment",
+    "orthographic conversion",
+    "rhyme translation and identification",
+    "morphological analogy completion",
+    "grammatical acceptability judgment",
+    "round-trip translation fidelity"
+  ],
+  "analytical_tasks_explanation": "Evaluates phonological awareness (syllable counting, rhyming), orthographic variation (converting between modern standard and classical Tara\u0161kievica spelling), morphological generalization (solving inflectional analogies), and syntactic/lexical precision (acceptability judgements and translation stability).",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "Specifically targets linguistic capabilities for a single low-resource language (Belarusian) rather than general-purpose multi-task evaluation."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluated multiple generative LLMs including OpenAI's o4-mini, GPT-4.1, GPT-4o, GPT-3.5 Turbo, Claude 3.7 Sonnet, Gemini 2.5 Flash, Gemma 3, gpt-oss-120b, and Qwen3."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "The LLMs are the primary systems under evaluation to track their raw capabilities and progression over time."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Focuses on Language and Linguistics, evaluating morpho-syntactic, phonological, lexical, and orthographic properties of Belarusian."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Uses accuracy as the primary evaluation metric and BLEU for translation evaluation."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Published in March 2026."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper is written in English."
+    }
+  },
+  "summary": "This paper evaluates the longitudinal progress of state-of-the-art LLMs on eight Belarusian language tasks originally contributed to OpenAI's Evals framework in 2023. To prevent evaluation issues stemming from data contamination, the authors introduce and validate new, non-overlapping test sets and provide a detailed linguistic error analysis.",
+  "key_findings": "While models have progressed significantly in grammatical and numerical reasoning, improvements are uneven. LLMs still struggle with orthographic conversion (especially modern to classical Tara\u0161kievica), lexical discrimination (frequently misidentifying non-words as real vocabulary), and complex inflectional analogies, often exhibiting negative transfer from higher-resource Russian.",
+  "relevant_asjc_areas": [
+    "Language and Linguistics"
+  ],
+  "paper_id": "Tracking_the_evolution_of_LLM_capabiliti",
+  "paper_name": "Tracking the evolution of LLM capabilities for Belarusian with OpenAI Evals",
+  "csv_row": 45
+}

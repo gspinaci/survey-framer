@@ -1,0 +1,57 @@
+{
+  "benchmark_name": "TriviaQA",
+  "publication_year": 2017,
+  "humanities_role": "content",
+  "humanities_role_explanation": "Uses trivia questions and documents containing historical, literary, and artistic facts (e.g., WWII campaigns, novel characters, 1960s films) as factual QA items to evaluate general NLP models.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Text-only reading comprehension benchmark consisting of written trivia questions and corresponding web/Wikipedia text documents.",
+  "analytical_tasks": [
+    "reading comprehension",
+    "open-domain question answering",
+    "multi-sentence reasoning"
+  ],
+  "analytical_tasks_explanation": "Requires resolving complex question semantics, handling syntactic and lexical variations, and performing reasoning across multiple sentences in long documents to extract correct answer spans.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": true,
+      "note": "Designed as a general-purpose reading comprehension and question-answering benchmark for NLP systems."
+    },
+    "evaluates_generative_llm": {
+      "met": false,
+      "note": "The paper was published in 2017 and evaluates pre-LLM neural models like BiDAF and linear entity classifiers."
+    },
+    "llm_is_primary_system": {
+      "met": false,
+      "note": "Benchmarks older neural network architectures (BiDAF) and classifiers, not large language models."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Features extensive coverage of Language and Linguistics, History, Literature and Literary Theory, and Visual Arts and Performing Arts via trivia questions."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Evaluates models using Exact Match (EM) and F1 score."
+    },
+    "published_after_march_2023": {
+      "met": false,
+      "note": "Published in 2017."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper, questions, and evidence documents are in English."
+    }
+  },
+  "summary": "The paper introduces TriviaQA, a large-scale reading comprehension dataset of over 650K question-answer-evidence triples. TriviaQA uses organically authored questions from trivia enthusiasts coupled with retrospectively collected Web and Wikipedia documents, creating a realistic and challenging benchmark.",
+  "key_findings": "The best-performing baseline, a modified BiDAF model, achieves ~40% exact match under distant supervision on both Wikipedia and Web domains. This performance lags significantly behind the human baseline of approximately 80%, showing that the benchmark is highly challenging due to lexical variation and multi-sentence reasoning demands.",
+  "relevant_asjc_areas": [
+    "Language and Linguistics",
+    "History",
+    "Literature and Literary Theory",
+    "Visual Arts and Performing Arts"
+  ],
+  "paper_id": "1705.03551",
+  "paper_name": "TriviaQA",
+  "csv_row": 8
+}

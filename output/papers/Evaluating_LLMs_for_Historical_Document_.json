@@ -1,0 +1,60 @@
+{
+  "benchmark_name": null,
+  "publication_year": 2025,
+  "humanities_role": "both",
+  "humanities_role_explanation": "Uses a newly digitized corpus of 18th-century Russian Civil font books as evaluation data (content) and designs domain-specific evaluation protocols and metrics tailored to historical diplomatic transcription in Digital Humanities (domain).",
+  "benchmark_modalities": [
+    "image",
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Multimodal OCR task where models are evaluated on transcribing historical document page images using textual prompts with different levels of contextual information.",
+  "analytical_tasks": [
+    "diplomatic transcription",
+    "optical character recognition",
+    "historical character preservation",
+    "error analysis",
+    "post-OCR correction"
+  ],
+  "analytical_tasks_explanation": "Transcription of 18th-century Russian texts with character-level accuracy (preserving original orthography, hyphens, and typos), and evaluation of model performance under constraints like 'over-historicization' (incorrect insertion of obsolete pre-Petrine characters).",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "The evaluation framework and dataset are highly specialized for historical OCR and diplomatic transcription, rather than a general-purpose benchmark."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates 12 commercial and open-source generative multimodal LLMs, including Claude (3.7 Sonnet, 3.5 Sonnet), OpenAI (GPT-4o, GPT-4.1, o4-mini), Gemini (2.0 Flash, 2.5 Pro, 2.5 Flash, 2.0 Flash-Lite), Qwen2.5-VL, and Llama-4 (Maverick, Scout)."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "LLMs are the primary systems being benchmarked for direct OCR recognition and post-OCR correction."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Uses 1,029 scanned pages from 428 unique 18th-century Russian books across ASJC areas such as History, Language and Linguistics, Literature and Literary Theory (fiction), and Religious Studies."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Employs Character Error Rate (WER), Word Error Rate (WER), Case-Insensitive metrics, Historical Character Preservation Rate (HCPR), Archaic Insertion Rate (AIR), Case Error Rate (CaseER), and Coefficient of Variation (CV) for stability testing."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Published in September 2025."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper is written in English, and includes prompts in both English and Russian."
+    }
+  },
+  "summary": "This paper presents a comprehensive methodological framework and evaluation dataset for benchmarking LLMs on historical OCR, specifically focusing on 18th-century Russian Civil font documents. The author introduces novel metrics like Historical Character Preservation Rate (HCPR) and Archaic Insertion Rate (AIR) to detect subtle temporal biases and 'over-historicization' errors in LLM outputs. The study evaluates 12 leading multimodal LLMs, establishing guidelines for model selection, prompting strategies, and quality assessment in digital humanities digitization workflows.",
+  "key_findings": "Gemini 2.5 Pro achieved the best overall performance with a 3.36% CER and 4.69% WER in full-page mode, alongside the highest output stability (CV of 0.037). Top LLMs significantly outperformed traditional OCR systems like Tesseract (21.55% CER) and specialized Transkribus PyLaia models (26.93% CER). However, LLMs (especially OpenAI models) exhibited 'over-historicization' by inserting pre-Petrine archaic characters (e.g., GPT-4o introduced archaic characters in 59% of files). Furthermore, LLM-based post-OCR correction consistently degraded transcription quality rather than improving it.",
+  "relevant_asjc_areas": [
+    "Language and Linguistics",
+    "History",
+    "Literature and Literary Theory",
+    "Religious Studies"
+  ],
+  "paper_id": "Evaluating_LLMs_for_Historical_Document_",
+  "paper_name": "Evaluating LLMs for Historical Document OCR: A Methodological Framework for Digital Humanities",
+  "csv_row": 37
+}

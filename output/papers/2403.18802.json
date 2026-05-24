@@ -1,0 +1,58 @@
+{
+  "benchmark_name": "LongFact",
+  "publication_year": 2024,
+  "humanities_role": "content",
+  "humanities_role_explanation": "Uses factual QA items from humanities disciplines (such as history, philosophy, music, architecture, and world religions) to evaluate the general long-form factual accuracy of large language models.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "A unimodal text-based benchmark consisting of fact-seeking prompts designed to elicit multi-paragraph, long-form text responses.",
+  "analytical_tasks": [
+    "long-form open-domain question answering",
+    "information extraction",
+    "atomic fact verification"
+  ],
+  "analytical_tasks_explanation": "Decomposes long-form generative responses into independent, self-contained atomic facts, filters them for prompt relevance, and verifies each claim against Google Search using an iterative, multi-step LLM-agent reasoning process.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": true,
+      "note": "Evaluates long-form factuality across 38 diverse topics spanning STEM, social sciences, humanities, and other general-knowledge domains."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates thirteen generative models across four major families: Gemini (Ultra, Pro), GPT (4-Turbo, 4, 3.5), Claude (3-Opus, 3-Sonnet, 3-Haiku, 2.1, 2.0, Instant), and PaLM-2."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "The LLMs themselves are the primary target systems being benchmarked for long-form generation factuality."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Includes multiple ASJC areas: History (20th-century events, general history), Philosophy (philosophy, moral disputes, business ethics), Religious Studies (world religions), and Visual Arts and Performing Arts (movies, music, architecture)."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Calculates precision (percentage of supported facts), recall (measured relative to a target length parameter K), the unified F1@K score, and human-agreement percentages."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Preprint first published in March 2024 and presented at NeurIPS 2024."
+    },
+    "english_language": {
+      "met": true,
+      "note": "Both the research paper and the generated LongFact prompt set are in English."
+    }
+  },
+  "summary": "This paper presents LongFact, a new prompt set spanning 38 topics designed to test the factuality of large language models in generating long-form answers. To automate evaluation, the authors introduce SAFE (Search-Augmented Factuality Evaluator), which uses an LLM to split answers into atomic facts and verify them using Google Search, as well as an F1@K metric to balance factual precision with a user-preferred response length.",
+  "key_findings": "The automated evaluator SAFE matches or beats human crowd-workers, agreeing with human annotations 72% of the time and winning 76% of disagreement cases, while being more than 20 times cheaper ($0.19 vs $4.00 per response). Benchmarking 13 models reveals that larger models (such as GPT-4-Turbo, Gemini-Ultra, and PaLM-2-L-IT-RLHF) perform best, showing that scaling primarily improves factual recall.",
+  "relevant_asjc_areas": [
+    "History",
+    "Language and Linguistics",
+    "Philosophy",
+    "Religious Studies",
+    "Visual Arts and Performing Arts"
+  ],
+  "paper_id": "2403.18802",
+  "paper_name": "LongFact",
+  "csv_row": 10
+}

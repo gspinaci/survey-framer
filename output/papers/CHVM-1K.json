@@ -1,0 +1,58 @@
+{
+  "benchmark_name": "CHVM-1K",
+  "publication_year": 2024,
+  "humanities_role": "both",
+  "humanities_role_explanation": "Designed specifically for the cultural heritage domain to evaluate value misalignment, cultural sensitivity, and ethical representations in LLM-generated texts.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Evaluates text-based prompts and LLM-generated narratives regarding cultural heritage sites, museum artifacts, and historical events.",
+  "analytical_tasks": [
+    "value alignment assessment",
+    "cultural sensitivity detection",
+    "historical bias identification",
+    "factual representation analysis"
+  ],
+  "analytical_tasks_explanation": "Evaluates whether LLM-generated cultural heritage texts align with localized ethical values, historical facts, and cultural sensitivities, identifying cases of Western/Eurocentric bias or misrepresentation of marginalized heritage.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "Specifically designed for evaluating LLMs within the niche domain of cultural heritage and museum representation."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates commercial and open-source generative LLMs (such as GPT models) on generating heritage narratives."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "The generative LLM is the primary system evaluated for cultural value alignment."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Involves Museology, History, Visual Arts and Performing Arts, and Conservation."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Employs metrics such as misalignment rates, semantic similarity/BERTScore, and structured human preference/alignment ratings."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Published in late 2023/2024."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper and benchmark are written and evaluated in English."
+    }
+  },
+  "summary": "This paper introduces CHVM-1K, a benchmark dataset specifically designed to investigate and quantify value misalignment in LLM-generated texts for cultural heritage. It evaluates the risks associated with deploying LLMs in museums and heritage sites, focusing on how these models construct narratives around historical artifacts.",
+  "key_findings": "The paper demonstrates that popular LLMs exhibit significant value misalignments, including historical distortion, Western-centric biases, and cultural insensitivities, when generating heritage-related content. Larger models show improved factual consistency but still suffer from subtle narrative biases.",
+  "relevant_asjc_areas": [
+    "History",
+    "Museology",
+    "Conservation",
+    "Visual Arts and Performing Arts"
+  ],
+  "paper_id": "CHVM-1K",
+  "paper_name": "CHVM-1K",
+  "csv_row": 41
+}

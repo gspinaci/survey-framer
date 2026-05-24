@@ -1,8 +1,12 @@
 import json
 
 import requests
+import google.genai as genai
 
-from config import BEDROCK_BASE_URL, BEDROCK_MODEL, BEDROCK_API_KEY, ANTHROPIC_VERSION, MAX_TOKENS
+from config import (
+    BEDROCK_BASE_URL, BEDROCK_MODEL, BEDROCK_API_KEY, ANTHROPIC_VERSION, MAX_TOKENS,
+    MODEL, GEMINI_API_KEY, GEMINI_MODEL
+)
 
 ANALYSIS_PROMPT = """\
 You are an expert in AI benchmarking and digital humanities. Analyze the following scientific paper and extract structured information.
@@ -60,6 +64,11 @@ PAPER TEXT:
 
 
 def analyze_paper(text: str, title: str = "", metadata: dict | None = None) -> dict:
+    # Branch based on configured model
+    if MODEL == "gemini":
+        return _analyze_with_gemini(text, title, metadata)
+
+    # Default: Bedrock (Claude)
     url = f"{BEDROCK_BASE_URL}/model/{BEDROCK_MODEL}/invoke"
 
     user_content = ANALYSIS_PROMPT + text
@@ -105,6 +114,44 @@ def analyze_paper(text: str, title: str = "", metadata: dict | None = None) -> d
     data = resp.json()
     reply = data["content"][0]["text"]
 
+    try:
+        return json.loads(reply)
+    except json.JSONDecodeError:
+        cleaned = reply.strip()
+        if cleaned.startswith("```"):
+            cleaned = cleaned.split("\n", 1)[1]
+            cleaned = cleaned.rsplit("```", 1)[0]
+        return json.loads(cleaned)
+
+
+def _analyze_with_gemini(text: str, title: str = "", metadata: dict | None = None) -> dict:
+    """Analyze paper using Google Gemini API."""
+    # Configure Gemini client
+    client = genai.Client(api_key=GEMINI_API_KEY)
+
+    user_content = ANALYSIS_PROMPT + text
+    if title:
+        user_content = f"Paper title: {title}\n\n" + user_content
+
+    if metadata:
+        meta_str = f"\nCSV Metadata:\n"
+        if metadata.get("modalities"):
+            meta_str += f"  - Modalities: {metadata['modalities']}\n"
+        if metadata.get("domain"):
+            meta_str += f"  - Domain: {metadata['domain']}\n"
+        if metadata.get("evaluation_metrics"):
+            meta_str += f"  - Evaluation metrics: {metadata['evaluation_metrics']}\n"
+        if metadata.get("asjc_code"):
+            meta_str += f"  - ASJC code: {metadata['asjc_code']}\n"
+        if metadata.get("humanities"):
+            meta_str += f"  - Humanities flag: {metadata['humanities']}\n"
+        user_content = user_content.replace("PAPER TEXT:", meta_str + "\nPAPER TEXT:")
+
+    # Call Gemini API
+    response = client.models.generate_content(model=GEMINI_MODEL, contents=user_content)
+    reply = response.text
+
+    # Parse JSON response (same logic as Bedrock)
     try:
         return json.loads(reply)
     except json.JSONDecodeError:

@@ -1,0 +1,54 @@
+{
+  "benchmark_name": "PSH v1.0",
+  "publication_year": 2025,
+  "humanities_role": "both",
+  "humanities_role_explanation": "Uses transcript data from parole hearings (content) to evaluate stylistic and rhetorical mimicry, which is a core task in computational linguistics and digital humanities (domain).",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Text-only analysis using verbatim transcripts of parole suitability hearings and LLM-generated decision statements.",
+  "analytical_tasks": [
+    "stylistic replication",
+    "rhetorical analysis",
+    "linguistic feature control"
+  ],
+  "analytical_tasks_explanation": "Evaluates the capacity of LLMs to match human speakers across several rhetorical dimensions, including syntactic complexity, lexical diversity, discourse markers, nominalizations, modal verbs, pronoun usage, and domain-specific jargon.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "The dataset is a highly specialized domain-specific conversational corpus from Californian parole hearings."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates GPT-4o, GPT-4.1, and DeepSeek R1."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "The LLMs are the primary systems being benchmarked on their text-generation and stylistic impersonation capabilities."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Language and Linguistics (linguistic and stylistic analysis of speech styles)."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Evaluates using z-scores of normalized relative frequencies of stylistic features, MTLD for lexical diversity, and dependency-parsed clausal counts for sentence complexity."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Published in September 2025."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper and the corpus transcripts are in English."
+    }
+  },
+  "summary": "This paper investigates whether state-of-the-art LLMs can be prompted to impersonate human speakers in a high-stakes legal setting (generating parole suitability decision statements). By distilling a 'rhetorical fingerprint' from transcripts of specific presiding commissioners and using it to enhance prompts, the authors test the limits of LLMs' stylistic adaptability.",
+  "key_findings": "LLMs fail to fully replicate the linguistic profiles of specific human speakers because their own model-specific stylistic fingerprints remain dominant. Across all prompting conditions, LLMs demonstrated excessively high lexical diversity and sentence complexity (z-scores up to 40) compared to human speech, reflecting a strong training bias towards written, formal language that could not be mitigated by prompting.",
+  "relevant_asjc_areas": [
+    "Language and Linguistics"
+  ],
+  "paper_id": "Exploring_the_Limits_of_Prompting_LLMs_w",
+  "paper_name": "Exploring the Limits of Prompting LLMs with Speaker-Specific Rhetorical Fingerprints",
+  "csv_row": 39
+}

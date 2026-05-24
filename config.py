@@ -17,4 +17,11 @@ BEDROCK_API_KEY = os.getenv("HARVARD_BEDROCK_API_KEY", "")
 ANTHROPIC_VERSION = "bedrock-2023-05-31"
 MAX_TOKENS = 4096
 
+# Model selection: "bedrock" (default) or "gemini"
+MODEL = os.getenv("MODEL", "bedrock")
+
+# Gemini configuration
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
+GEMINI_MODEL = "gemini-3.5-flash"
+
 UNPAYWALL_EMAIL = "gspinaci@itatti.harvard.edu"

@@ -1,0 +1,54 @@
+{
+  "benchmark_name": "Travelogues ABSA Dataset",
+  "publication_year": 2024,
+  "humanities_role": "both",
+  "humanities_role_explanation": "Uses 19th and 20th-century historical travelogues as evaluation data to test how well computational models can extract environment-related aspects and associated sentiments for literary-historical analysis.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Text-only evaluation utilizing historical travelogues written in English, French, German, and Dutch.",
+  "analytical_tasks": [
+    "aspect extraction",
+    "sentiment classification"
+  ],
+  "analytical_tasks_explanation": "Aspect extraction tasks evaluate the identification of specific domain-relevant entities (e.g., flora, fauna, biomes, weather) in historical texts. Sentiment classification tasks evaluate the categorization of evaluative sentiment directed toward these aspects on both 3-point and 5-point scales.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "Specifically designed for literary-historical research on environmental aspects in historical travelogues."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates the open-source generative large language model Mixtral-8x7B-Instruct-v0.1."
+    },
+    "llm_is_primary_system": {
+      "met": false,
+      "note": "The LLM is evaluated alongside rule-based and supervised machine learning architectures (BERT, MacBERTh)."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "History, Literature and Literary Theory"
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Strict macro F1-score and Fleiss' Kappa."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Published in May 2024 at LT4HALA 2024 @ LREC-COLING 2024."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper is written in English, and the pilot experiments are conducted on the English subset of the travelogues dataset."
+    }
+  },
+  "summary": "This paper presents a pilot study exploring aspect-based sentiment analysis (ABSA) methodologies on 19th and 20th-century historical travelogues. It develops and evaluates three distinct toolchains\u2014a rule-based system, a supervised machine learning classifier utilizing BERT and MacBERTh embeddings, and a prompt-based generative workflow using Mixtral 8x7B\u2014to capture fine-grained environmental aspects and sentiments.",
+  "key_findings": "For aspect extraction, the supervised Flair sequence tagger with BERT embeddings achieved the highest strict F1 (0.62), followed by MacBERTh (0.59), Mixtral 8x7B (0.34), and the rule-based system (0.20). For sentiment classification on a 3-point scale, the supervised MLP classifier with MacBERTh embeddings achieved the highest F1 (0.62), followed closely by BERT (0.61), while Mixtral 8x7B achieved 0.42 and the rule-based system achieved 0.37.",
+  "relevant_asjc_areas": [
+    "History",
+    "Literature and Literary Theory"
+  ],
+  "paper_id": "Exploring_Aspect-Based_Sentiment_Analysi",
+  "paper_name": "Exploring Aspect-Based Sentiment Analysis Methodologies for Literary-Historical Research Purposes",
+  "csv_row": 30
+}

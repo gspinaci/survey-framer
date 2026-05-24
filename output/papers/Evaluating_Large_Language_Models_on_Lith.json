@@ -1,0 +1,53 @@
+{
+  "benchmark_name": null,
+  "publication_year": 2026,
+  "humanities_role": "both",
+  "humanities_role_explanation": "Evaluates the linguistic and syntactic capabilities (domain) of LLMs using Lithuanian grammatical error data sourced from language regulatory authorities (content).",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Evaluation is performed using text-only minimal pairs consisting of grammatical and ungrammatical Lithuanian sentences.",
+  "analytical_tasks": [
+    "syntactic acceptability judgment",
+    "morphological error detection"
+  ],
+  "analytical_tasks_explanation": "Evaluates the model's capacity to recognize correct grammatical case markings and syntactic structures by comparing sentence negative log-likelihoods (acceptability judgment).",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "It is a targeted evaluation benchmark focusing specifically on Lithuanian grammatical cases rather than broad general-purpose capabilities."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates multiple LLM families including Neurotechnology LLM (7B, 13B), EuroLLM (1.7B, 9B, 22B), and Qwen3 (0.6B to 30B)."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "The LLMs are the primary systems under evaluation."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "The dataset is designed around Lithuanian morphology and syntax, which falls under Language and Linguistics."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Uses accuracy computed via normalized negative log-likelihood (NLL) comparisons."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Published in March 2026."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper is written in English, although the benchmark dataset itself is in Lithuanian."
+    }
+  },
+  "summary": "The paper introduces a new Lithuanian grammatical case marking benchmark consisting of 305 minimal sentence pairs across six cases and various error types. It evaluates three LLM families (Neurotechnology, EuroLLM, and Qwen3) to assess their morphological and syntactic competence in a low-resource setting. The results show that Lithuanian case marking remains highly challenging, with monolingual training offering a significant advantage over model scale.",
+  "key_findings": "Overall model accuracies ranged from 0.662 to 0.852, with the Lithuanian-specific Neurotechnology 7B model achieving the highest overall accuracy (0.852). Models generally showed higher accuracy on genitive and locative cases but struggled with complex rules and rare cases like the vocative (where non-Lithuanian models scored as low as 0.091).",
+  "relevant_asjc_areas": [
+    "Language and Linguistics"
+  ],
+  "paper_id": "Evaluating_Large_Language_Models_on_Lith",
+  "paper_name": "Evaluating Large Language Models on Lithuanian Grammatical Cases",
+  "csv_row": 44
+}

@@ -1,0 +1,63 @@
+{
+  "benchmark_name": "GDPval",
+  "publication_year": 2025,
+  "humanities_role": "content",
+  "humanities_role_explanation": "Includes tasks from creative and text-focused occupations like producers, directors, and editors as part of a wider economic evaluation of LLMs on real-world professional work.",
+  "benchmark_modalities": [
+    "text",
+    "images",
+    "documents",
+    "spreadsheets",
+    "slides",
+    "multimedia"
+  ],
+  "benchmark_modalities_explanation": "Evaluates models on complex multi-modal tasks where instructions and reference files are provided, and outputs can range from text documents and presentations to spreadsheets, diagrams, and multimedia.",
+  "analytical_tasks": [
+    "professional drafting",
+    "editing",
+    "media production planning",
+    "domain-specific reasoning",
+    "concept design"
+  ],
+  "analytical_tasks_explanation": "Evaluates performance on complex real-world deliverables such as legal brief writing, video editing instructions, engineering conceptualization, and financial analysis.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": true,
+      "note": "Evaluates model capabilities across 44 occupations spanning 9 major industries."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates several leading generative models including GPT-4o, o4-mini, OpenAI o3, GPT-5, Claude Opus 4.1, Gemini 2.5 Pro, and Grok 4."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "The primary focus is measuring generative LLM capabilities on economic tasks."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Covers occupations such as Producers and Directors, Editors, and News Analysts/Reporters/Journalists, which fall under Visual Arts and Performing Arts, and Literature and Literary Theory."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Measures win/tie/loss rates against human experts, cost, and speed of completion."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Published on September 25, 2025."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper and benchmark materials are in English."
+    }
+  },
+  "summary": "GDPval is a benchmark developed by OpenAI to measure LLM performance on 1,320 economically valuable, real-world knowledge work tasks across 44 occupations in 9 industries. The tasks are derived from real-world deliverables and graded blindly by experienced human professionals and an automated grader.",
+  "key_findings": "Frontier models are starting to approach human expert quality on professional tasks; Claude Opus 4.1 performed best, producing outputs rated as good as or better than humans in nearly half of the tasks. Performance more than tripled from GPT-4o to GPT-5, and models completed tasks roughly 100x faster and 100x cheaper than human experts (excluding human oversight and iteration).",
+  "relevant_asjc_areas": [
+    "Visual Arts and Performing Arts",
+    "Literature and Literary Theory",
+    "Language and Linguistics"
+  ],
+  "paper_id": "GDPval-AA",
+  "paper_name": "GDPval-AA",
+  "csv_row": 42
+}

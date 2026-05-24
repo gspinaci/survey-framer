@@ -2,6 +2,10 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Important
+- Never read/open/process .env file. Any strutural modification should be done on the .env.example file.
+- Test and Run the process with the correct venv
+
 ---
 
 ## Quick Start
@@ -15,6 +19,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Common Commands
 
 ```bash
+
+# Run the venv 
+source .venv/bin/activate 
+
 # Install dependencies
 pip install -r requirements.txt
 
@@ -108,7 +116,14 @@ CSV metadata is automatically appended to the prompt (see `src/analyzer.py` line
 
 **Environment variables** (in `.env`):
 ```bash
-HARVARD_BEDROCK_API_KEY=<from-harvard-portal>
+# Model selection: "bedrock" (default) or "gemini"
+MODEL=bedrock
+
+# Harvard Bedrock API (for Claude Sonnet analysis)
+HARVARD_BEDROCK_API_KEY=<from-portal.apis.huit.harvard.edu>
+
+# Google Gemini API (optional, only if MODEL=gemini)
+GEMINI_API_KEY=<from-aistudio.google.com/apikey>
 ```
 
 **Paths** (in `config.py`):
@@ -121,10 +136,24 @@ PDFS_DIR = "output/pdfs/"         # Downloaded PDFs
 
 **API Settings** (in `config.py`):
 ```python
+# Model selection
+MODEL = "bedrock"                 # or "gemini"
+
+# Bedrock (Harvard) configuration
 BEDROCK_BASE_URL = "https://go.apis.huit.harvard.edu/ais-bedrock-llm/v2"
 BEDROCK_MODEL = "us.anthropic.claude-sonnet-4-20250514-v1:0"
-MAX_TOKENS = 4096  # Output token budget
+
+# Gemini configuration
+GEMINI_MODEL = "gemini-1.5-flash"
+
+# Token budget
+MAX_TOKENS = 4096                 # Output token budget
 ```
+
+**Switching Models:**
+- Use Claude (Bedrock) by default: `MODEL=bedrock` in `.env`
+- Switch to Gemini: `MODEL=gemini` in `.env` (requires `GEMINI_API_KEY`)
+- Both APIs use the same analysis prompt and return identical JSON structure
 
 ---
 

@@ -1,0 +1,57 @@
+{
+  "benchmark_name": "OfficeQA Pro",
+  "publication_year": 2026,
+  "humanities_role": "none",
+  "humanities_role_explanation": "The benchmark is designed for enterprise document workflows and financial/economic analysis of U.S. Treasury Bulletins, which falls under Social Sciences (Economics/Finance) rather than Arts and Humanities.",
+  "benchmark_modalities": [
+    "text",
+    "tables",
+    "images"
+  ],
+  "benchmark_modalities_explanation": "Multi-modal reasoning combining unstructured text, highly complex tabular data, and visual charts or figures extracted from PDF documents.",
+  "analytical_tasks": [
+    "document retrieval",
+    "tabular data extraction",
+    "longitudinal financial reconciliation",
+    "statistical analysis",
+    "mathematical calculation",
+    "visual reasoning"
+  ],
+  "analytical_tasks_explanation": "Tasks require locating information across a large 100-year corpus, parsing nested tables, adjusting figures for inflation using external CPI data, fitting ordinary least squares (OLS) linear regressions, and reasoning over trend lines in charts.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "OfficeQA Pro is a domain-specific enterprise benchmark focusing on grounded reasoning, financial QA, and document processing."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates several frontier generative models, including GPT-5.4, GPT-5.1, Claude Opus (4.5 and 4.6), Claude Sonnet (4.5 and 4.6), Claude Haiku 4.5, Gemini 3.1 Pro, and Gemini 3 Pro."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "LLMs and LLM-based autonomous agents are the primary systems evaluated."
+    },
+    "arts_humanities_data": {
+      "met": false,
+      "note": "The corpus consists of historical financial reports (U.S. Treasury Bulletins) requiring economic analysis, which aligns with Economics, Econometrics and Finance (Social Sciences) rather than Arts and Humanities ASJC areas."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Evaluated using exact match accuracy with varying allowable absolute relative error thresholds (0.0%, 0.1%, 1.0%, 5.0%), alongside average latency, tool call counts, and token costs."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Published in March 2026."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper and the benchmark are in English."
+    }
+  },
+  "summary": "OfficeQA Pro is an enterprise benchmark containing 133 questions designed to evaluate AI agents on grounded reasoning over a 100-year corpus of U.S. Treasury Bulletins. It requires systems to perform multi-step document retrieval, extract data from complex hierarchical tables, and execute advanced quantitative and statistical computations. The benchmark demonstrates that state-of-the-art agents struggle on these tasks, and highlights high-quality document parsing as a critical bottleneck for success.",
+  "key_findings": "Frontier models score under 5% accuracy on parametric knowledge alone. The best-performing agent (Claude Opus 4.6) achieves 48.1% accuracy on the full PDF corpus, which improves to 54.1% when utilizing Databricks' ai_parse_document for text parsing, and reaches a peak of 66.9% when provided with oracle parsed pages.",
+  "relevant_asjc_areas": [],
+  "paper_id": "2603.08655",
+  "paper_name": "OfficeQA Pro",
+  "csv_row": 43
+}

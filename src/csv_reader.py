@@ -6,8 +6,15 @@ from pathlib import Path
 def read_papers_csv(csv_path: Path) -> list[dict]:
     papers = []
     with open(csv_path, newline="", encoding="utf-8") as f:
+        first_line = f.readline()
+        # Skip leading metadata/empty row if it doesn't contain the expected header
+        if "Name" not in first_line and "Article URL" not in first_line:
+            start_idx = 3
+        else:
+            f.seek(0)
+            start_idx = 2
         reader = csv.DictReader(f)
-        for idx, row in enumerate(reader, start=2):
+        for idx, row in enumerate(reader, start=start_idx):
             name = row.get("Name", "").strip()
             article_url = row.get("Article URL", "").strip()
             resource_url = row.get("Resource URL (Benchmark + Dataset)", "").strip()

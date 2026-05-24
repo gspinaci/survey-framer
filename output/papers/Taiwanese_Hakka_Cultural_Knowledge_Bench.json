@@ -1,0 +1,57 @@
+{
+  "benchmark_name": "Taiwanese Hakka Cultural Knowledge Benchmark",
+  "publication_year": 2024,
+  "humanities_role": "both",
+  "humanities_role_explanation": "Evaluates LLMs on domain-specific Hakka cultural heritage (history, language, cuisine, architecture) using questions designed across Bloom's Taxonomy cognitive levels.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Text-only multiple-choice question-and-answer format based on the Hakka Culture Encyclopedia and the Ministry of Education's Hakka Knowledge Base.",
+  "analytical_tasks": [
+    "multiple-choice question answering",
+    "factual recall",
+    "cultural reasoning",
+    "creative synthesis evaluation"
+  ],
+  "analytical_tasks_explanation": "Tasks evaluate six hierarchical cognitive levels from Bloom's Taxonomy: Remembering (recalling Hakka settlements), Understanding (comprehending culinary practices), Applying (adapting clothing styles), Analyzing (comparing Hakka opera to other forms), Evaluating (assessing historical social status), and Creating (evaluating ideas for showcasing heritage).",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "Specifically designed for evaluating Taiwanese Hakka cultural knowledge, not general-purpose capabilities."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates several advanced LLMs including GPT-4o, Gemini 1.5 Pro, Claude 3.5 Sonnet, and Llama 3.1."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "LLMs are the primary systems being benchmarked to evaluate their performance across cognitive domains."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Covers History, Language and Linguistics, and Visual Arts and Performing Arts (focusing on local customs, architecture, cuisine, festivals, and theater)."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Evaluated using accuracy rates (%) across various categories and cognitive domains."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "The paper references 2024 sources and was generated in September 2024."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper is written in English."
+    }
+  },
+  "summary": "This paper introduces a specialized benchmark consisting of 10,158 multiple-choice questions designed to evaluate LLMs' understanding of Taiwanese Hakka culture. Using Bloom's Taxonomy, the authors structure the questions across six cognitive levels (from basic recall to creative synthesis) to systematically assess model reasoning. Additionally, the study demonstrates how integrating Retrieval-Augmented Generation (RAG) dramatically improves the cultural knowledge accuracy of lower-performing models like Llama 3.1.",
+  "key_findings": "Claude 3.5 Sonnet (83.33% accuracy) outperformed GPT-4o (82.09%) and Gemini 1.5 Pro (79.25%) among baseline models. However, integrating RAG with Llama 3.1 achieved the highest overall accuracy of 90.20%, significantly boosting performance in factual recall (from 61.61% to 91.08%). In contrast, baseline models still excelled in the 'Creating' cognitive domain without RAG, with GPT-4o scoring highest at 87.89%.",
+  "relevant_asjc_areas": [
+    "History",
+    "Language and Linguistics",
+    "Visual Arts and Performing Arts"
+  ],
+  "paper_id": "Taiwanese_Hakka_Cultural_Knowledge_Bench",
+  "paper_name": "Taiwanese Hakka Cultural Knowledge Benchmark",
+  "csv_row": 40
+}

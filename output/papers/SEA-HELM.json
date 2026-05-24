@@ -1,0 +1,59 @@
+{
+  "benchmark_name": "SEA-HELM",
+  "publication_year": 2025,
+  "humanities_role": "both",
+  "humanities_role_explanation": "Evaluates LLMs on both Southeast Asian linguistic features and cultural knowledge, using these domain-specific humanities elements as standard test suites to assess model comprehension.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Uses text-based evaluation across five languages (Filipino, Indonesian, Tamil, Thai, Vietnamese) and English to evaluate language and cultural understanding.",
+  "analytical_tasks": [
+    "linguistic analysis",
+    "cultural commonsense reasoning",
+    "sentiment analysis",
+    "safety alignment evaluation",
+    "translation"
+  ],
+  "analytical_tasks_explanation": "Evaluates models on classical NLP tasks (sentiment, translation), linguistic nuances unique to Southeast Asian languages, cultural knowledge QA, and localized safety alignments.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": true,
+      "note": "Evaluates general linguistic, cultural, and safety capabilities of LLMs across diverse tasks."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Specifically designed to evaluate multilingual and multicultural performance of Large Language Models."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "The primary focus is testing and ranking LLMs on the proposed leaderboard."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Encompasses Language and Linguistics (under SEA Linguistics) and cultural/historical knowledge (under SEA Culture)."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Uses quantitative NLP and classification metrics such as accuracy, F1-score, and safety violation rates."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Published in July 2025 (ACL 2025)."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper is written in English, and the benchmark incorporates both English and Southeast Asian languages."
+    }
+  },
+  "summary": "The paper presents SEA-HELM, a holistic linguistic and cultural evaluation suite tailored for Southeast Asian languages, spanning Filipino, Indonesian, Tamil, Thai, and Vietnamese. It structures evaluation across five pillars: NLP Classics, LLM-Specifics, SEA Linguistics, SEA Culture, and Safety, accompanied by a public leaderboard.",
+  "key_findings": "Establishes a systematic benchmark showing that while mainstream LLMs perform well on classic NLP tasks, they exhibit significant drops in performance when faced with localized SEA linguistics and regional cultural contexts.",
+  "relevant_asjc_areas": [
+    "Language and Linguistics",
+    "History",
+    "Religious Studies",
+    "Literature and Literary Theory"
+  ],
+  "paper_id": "SEA-HELM",
+  "paper_name": "SEA-HELM",
+  "csv_row": 51
+}

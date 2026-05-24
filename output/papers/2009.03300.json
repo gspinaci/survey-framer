@@ -1,0 +1,58 @@
+{
+  "benchmark_name": "Massive Multitask Language Understanding (MMLU)",
+  "publication_year": 2021,
+  "humanities_role": "content",
+  "humanities_role_explanation": "Uses humanities subjects (such as US History, European History, World History, Philosophy, and World Religions) as factual and conceptual multiple-choice QA items to evaluate general multitask language understanding.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Text-only multiple-choice questions with four options (A, B, C, D) presented to models in zero-shot and few-shot learning configurations.",
+  "analytical_tasks": [
+    "multiple-choice question answering",
+    "subject-specific factual recall",
+    "moral reasoning",
+    "legal reasoning",
+    "logical deduction"
+  ],
+  "analytical_tasks_explanation": "Evaluates models on their ability to retrieve domain-specific knowledge and perform reasoning, including analyzing historical events, applying legal precedents to complex scenarios, and evaluating moral intuitions.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": true,
+      "note": "Evaluates general academic, professional, and world knowledge across 57 diverse subjects spanning STEM, humanities, and social sciences."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates GPT-3 (Ada, Babbage, Curie, Davinci / Small, Medium, Large, X-Large), GPT-2, UnifiedQA, RoBERTa, and ALBERT."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "Large language models are the primary systems being benchmarked to evaluate their multitask language understanding capabilities."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Includes multiple humanities subjects such as History (US, European, and World History), Philosophy, World Religions, Jurisprudence, and Business Ethics."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Evaluates performance using multiple-choice classification accuracy (percentage correct) and Root Mean Squared (RMS) calibration error."
+    },
+    "published_after_march_2023": {
+      "met": false,
+      "note": "The paper was published in ICLR 2021 and preprints were released on arXiv in late 2020."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper and all the benchmark questions are written in English."
+    }
+  },
+  "summary": "This paper proposes the Massive Multitask Language Understanding (MMLU) benchmark, a test containing 15,908 multiple-choice questions across 57 academic and professional subjects. It is designed to evaluate the depth and breadth of a model's knowledge and problem-solving abilities in zero-shot and few-shot settings. The benchmark serves as a comprehensive tool to identify models' blind spots across STEM, humanities, and social sciences.",
+  "key_findings": "The largest GPT-3 model (175B parameters) achieves an average accuracy of 43.9% (significantly outperforming the 25% random baseline), while UnifiedQA (11B) achieves 48.9%. However, performance across subjects is highly lopsided (e.g., GPT-3 scores 69% on US Foreign Policy but near-random on College Chemistry), and the models are poorly calibrated with confidence estimates deviating from actual accuracy by up to 24%.",
+  "relevant_asjc_areas": [
+    "History",
+    "Philosophy",
+    "Religious Studies"
+  ],
+  "paper_id": "2009.03300",
+  "paper_name": "MMMLU",
+  "csv_row": 3
+}

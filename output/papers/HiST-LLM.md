@@ -1,4 +1,4 @@
-# HiST-LLM
+# History Seshat Test for LLMs (HiST-LLM)
 
 **Paper name:** HiST-LLM
 **DOI:** None
@@ -10,8 +10,8 @@
 ## Humanities Role
 
 **Classification:** both
-**Explanation:** Uses expert-curated historical data from the Seshat Global History Databank as content and is specifically designed for evaluating graduate-level history comprehension
-**Relevant ASJC areas:** History
+**Explanation:** Designed specifically to evaluate LLMs on historical knowledge and uses expert-curated data from the Seshat Global History Databank covering global history from the Neolithic to the Industrial Revolution.
+**Relevant ASJC areas:** History, Archaeology
 **CSV Humanities?:** Yes
 **CSV ASJC code:** 1202
 
@@ -19,30 +19,30 @@
 
 | Criterion | Met? | Note |
 |-----------|------|------|
-| General-purpose benchmark | YES | Evaluates multiple LLM families on standardized historical knowledge tasks |
-| Evaluates generative LLM | YES | GPT-4-Turbo, Llama-3.1-8B, and Gemini family models |
-| LLM is primary evaluated system | YES | LLMs are the primary systems being benchmarked for historical knowledge |
-| Arts & Humanities data/tasks | YES | History - uses Seshat Global History Databank covering 600 historical societies |
-| Quantitative performance metrics | YES | Balanced accuracy scores ranging from 33.6% to 46% |
-| Published after Mar 2023 | YES | Published at NeurIPS 2024 |
-| English language | YES | Paper and benchmark appear to be in English |
+| General-purpose benchmark | NO | Designed specifically for evaluating historical knowledge and comprehension, not general capabilities. |
+| Evaluates generative LLM | YES | Evaluates seven models from the Gemini, OpenAI, and Llama families, including Llama-3.1-8B and GPT-4-Turbo. |
+| LLM is primary evaluated system | YES | LLMs are the primary systems evaluated on the benchmark. |
+| Arts & Humanities data/tasks | YES | History, Archaeology |
+| Quantitative performance metrics | YES | Balanced accuracy |
+| Published after Mar 2023 | YES | Published/Presented in 2024 (NeurIPS 2024). |
+| English language | YES | The paper and dataset are in English. |
 
 ## Benchmark Modalities
 
-**Modality Types:** text
+**Modality Types:** Text
 
-**Description:** Text-based four-choice questions derived from structured historical data covering 600 historical societies
+**Description:** Text-only evaluations based on structured multiple-choice questions (four options).
 
 ## Analytical Tasks
 
-**Task Types:** historical knowledge assessment, factual comprehension
+**Task Types:** factual historical retrieval, expert-level history comprehension
 
-**Detailed Description:** Graduate-level historical knowledge evaluation across major world regions from Neolithic to Industrial Revolution, testing factual understanding of historical societies and periods
+**Detailed Description:** Evaluates historical fact retrieval and complex historical comprehension across different geographical regions and chronological eras (Neolithic to Industrial Revolution) in a four-choice format.
 
 ## Summary
 
-HiST-LLM introduces a benchmark for evaluating LLMs' graduate-level historical knowledge using the expert-curated Seshat Global History Databank. The benchmark tests seven major LLM models on 36,000 data points covering 600 historical societies from the Neolithic to Industrial Revolution.
+The paper introduces HiST-LLM, a benchmark designed to evaluate Large Language Models' graduate-level historical knowledge and comprehension. Based on the Seshat Global History Databank, the benchmark evaluates models across various regions and historical periods from the Neolithic period to the Industrial Revolution. The study tests seven state-of-the-art LLMs, revealing that while they outperform random guessing, they still fall significantly short of human expert-level comprehension.
 
 ## Key Findings
 
-LLMs achieved balanced accuracy between 33.6% (Llama-3.1-8B) and 46% (GPT-4-Turbo) on four-choice historical questions, outperforming random chance (25%) but falling short of expert-level comprehension. Performance varied by historical period and region, with better results on earlier periods and uneven regional performance.
+LLMs achieved a balanced accuracy ranging from 33.6% (Llama-3.1-8B) to 46% (GPT-4-Turbo) on a four-choice question format, outperforming random guessing (25%) but failing to reach expert-level performance. Models performed better on earlier historical periods, with regional biases showing higher performance for the Americas and lowest for Oceania and Sub-Saharan Africa in advanced models.

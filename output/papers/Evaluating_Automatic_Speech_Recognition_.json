@@ -1,0 +1,54 @@
+{
+  "benchmark_name": null,
+  "publication_year": 2026,
+  "humanities_role": "domain",
+  "humanities_role_explanation": "Evaluates the accuracy of automatic speech recognition (ASR) systems on sensitive oral history testimonies, specifically analyzing how speech models handle the linguistic complexities of Holocaust survivor narratives.",
+  "benchmark_modalities": [
+    "audio",
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Compares automatically generated text transcripts transcribed from the audio recordings of Holocaust testimonies against manually verified ground-truth text transcripts.",
+  "analytical_tasks": [
+    "automatic speech recognition"
+  ],
+  "analytical_tasks_explanation": "Transcription of spontaneous, emotional, accented, and multilingual historical speech from oral history archives, evaluated using Word Error Rate (WER) across eight different languages.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "The paper is a domain-specific evaluation of ASR performance on the Fortunoff Video Archive, rather than a general-purpose benchmark."
+    },
+    "evaluates_generative_llm": {
+      "met": false,
+      "note": "Evaluates OpenAI's Whisper, which is an encoder-decoder speech recognition model, rather than a general-purpose generative LLM."
+    },
+    "llm_is_primary_system": {
+      "met": false,
+      "note": "The primary system being benchmarked is an ASR model (Whisper) rather than an LLM."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "History, Language and Linguistics"
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Word Error Rate (WER) across eight languages."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Published in May 2026 as part of the HTRes workshop at LREC 2026."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper is written in English and evaluates ASR performance on English testimonies alongside seven other languages."
+    }
+  },
+  "summary": "This paper presents the first large-scale evaluation of OpenAI's Whisper automatic speech recognition model on the Fortunoff Video Archive of Holocaust testimonies. The study systematically assesses Whisper's transcription performance across eight languages, highlighting the challenges of applying off-the-shelf speech technologies to highly sensitive, accented, and emotional historical oral histories.",
+  "key_findings": "Provides a comprehensive linguistic and technical analysis of Whisper's performance on spontaneous testimony speech across eight languages, identifying crucial bottlenecks such as code-switching, emotional expressions, and non-native accents.",
+  "relevant_asjc_areas": [
+    "History",
+    "Language and Linguistics"
+  ],
+  "paper_id": "Evaluating_Automatic_Speech_Recognition_",
+  "paper_name": "Evaluating Automatic Speech Recognition for Holocaust Testimonies: A Large-Scale Analysis of Whisper Performance on the Fortunoff Video Archive",
+  "csv_row": 33
+}

@@ -1,0 +1,55 @@
+{
+  "benchmark_name": "SemEval-2025 Task 10: Multilingual Characterization and Extraction of Narratives from Online News",
+  "publication_year": 2025,
+  "humanities_role": "both",
+  "humanities_role_explanation": "Utilizes online news articles as content to evaluate models using narrative theory, rhetorical analysis, and literary character archetypes (protagonists, antagonists, innocents) as the core analytical framework.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "The benchmark is entirely text-based, consisting of multilingual news articles, entity lists, taxonomic labels, and natural language explanations in Bulgarian, English, Hindi, Portuguese, and Russian.",
+  "analytical_tasks": [
+    "Entity Framing",
+    "Hierarchical Document Classification",
+    "Explanatory Text Generation"
+  ],
+  "analytical_tasks_explanation": "Evaluates the attribution of highly nuanced, character-archetypal roles (e.g., martyr, tyrant, saboteur) to entities (Subtask 1), hierarchical multi-label classification into domain-specific narrative taxonomies (Subtask 2), and free-text generation of justifications explaining dominant narrative choices (Subtask 3).",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "The benchmark is domain-specific, focusing on narrative extraction, media analysis, and propaganda detection in news articles regarding Climate Change and the Ukraine-Russia War."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates multiple generative LLMs, including GPT-4o, Llama 3/3.1, Phi-3/4, Qwen 2.5, Gemma 2, DeepSeek-R1, Mistral, and Flan-T5 across participant submissions."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "Large Language Models are the primary technologies evaluated, fine-tuned, and benchmarked by the participating teams."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Includes 'Literature and Literary Theory' due to its structural use of narrative theory, framing, and literary character archetypes, as well as 'Language and Linguistics' for multilingual processing."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Uses Exact Match Ratio (EMR) for Subtask 1, sample-averaged and macro-averaged F1 for Subtask 2, and BertScore F1 for Subtask 3."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Published in July-August 2025 as part of the SemEval-2025 proceedings."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper is written in English, and English is one of the five core languages featured in the benchmark dataset."
+    }
+  },
+  "summary": "This paper presents SemEval-2025 Task 10, introducing a multilingual and multi-faceted benchmark designed to characterize and extract narratives from online news. The task evaluates systems across three layers: entity framing (assigning role archetypes to named entities), hierarchical narrative classification, and generating natural language justifications for dominant narratives in Climate Change and Ukraine-Russia War coverage.",
+  "key_findings": "Participating systems leveraged generative LLMs (e.g., GLM-4, Qwen 2.5, Phi-4) optimized via prompting techniques (CoT, hierarchical prompting) or DPO tuning. For Subtask 1, the top system achieved an average Exact Match Ratio of 0.475; for Subtask 2, the top system scored an average Sample F1 of 0.435; and for Subtask 3, the best average BertScore F1 reached 0.727.",
+  "relevant_asjc_areas": [
+    "Literature and Literary Theory",
+    "Language and Linguistics"
+  ],
+  "paper_id": "Multilingual_Characterization_and_Extrac",
+  "paper_name": "Multilingual Characterization and Extraction of Narratives from Online New",
+  "csv_row": 48
+}

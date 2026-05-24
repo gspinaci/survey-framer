@@ -13,11 +13,14 @@ Usage:
 import argparse
 import json
 import sys
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 from tqdm import tqdm
 
-from config import PAPERS_DIR, PDFS_DIR, OUTPUT_DIR, BEDROCK_API_KEY
+MAX_ANALYZE_WORKERS = 8
+
+from config import PAPERS_DIR, PDFS_DIR, OUTPUT_DIR, BEDROCK_API_KEY, MODEL, GEMINI_API_KEY
 from src.csv_reader import read_papers_csv
 from src.pdf_fetcher import fetch_pdf
 from src.pdf_extractor import extract_text
@@ -41,47 +44,57 @@ def step_fetch(papers: list[dict]) -> dict[str, Path]:
 
 
 def step_analyze(papers: list[dict], pdf_paths: dict[str, Path]) -> list[dict]:
-    print(f"\n--- Analyzing {len(pdf_paths)} papers ---")
+    print(f"\n--- Analyzing {len(pdf_paths)} papers (up to {MAX_ANALYZE_WORKERS} in parallel) ---")
     analyses = []
-    for paper in tqdm(papers, desc="Analyzing"):
+
+    def _analyze_one(paper: dict) -> dict | None:
         pid = paper["id"]
         pdf_path = pdf_paths.get(pid)
         if not pdf_path:
             tqdm.write(f"  SKIP: {pid} — no PDF")
-            continue
+            return None
 
         report_path = PAPERS_DIR / (pid.replace("/", "_") + ".md")
         if report_path.exists():
             tqdm.write(f"  CACHED: {pid}")
-            continue
+            return None
 
-        try:
-            text = extract_text(pdf_path)
-            if len(text.strip()) < 200:
-                tqdm.write(f"  SKIP: {pid} — PDF text too short, possibly scanned")
-                continue
+        text = extract_text(pdf_path)
+        if len(text.strip()) < 200:
+            tqdm.write(f"  SKIP: {pid} — PDF text too short, possibly scanned")
+            return None
 
-            metadata = {
-                "modalities": paper.get("modalities", ""),
-                "domain": paper.get("domain", ""),
-                "evaluation_metrics": paper.get("evaluation_metrics", ""),
-                "asjc_code": paper.get("asjc_code", ""),
-                "humanities": paper.get("humanities", ""),
-            }
-            analysis = analyze_paper(text, title=paper.get("name", ""), metadata=metadata)
-            analysis["paper_id"] = pid
-            analysis["paper_name"] = paper.get("name", "")
-            analysis["csv_row"] = paper.get("csv_row", "")
-            analyses.append(analysis)
+        metadata = {
+            "modalities": paper.get("modalities", ""),
+            "domain": paper.get("domain", ""),
+            "evaluation_metrics": paper.get("evaluation_metrics", ""),
+            "asjc_code": paper.get("asjc_code", ""),
+            "humanities": paper.get("humanities", ""),
+        }
+        analysis = analyze_paper(text, title=paper.get("name", ""), metadata=metadata)
+        analysis["paper_id"] = pid
+        analysis["paper_name"] = paper.get("name", "")
+        analysis["csv_row"] = paper.get("csv_row", "")
 
-            write_paper_report(paper, analysis, PAPERS_DIR)
-            tqdm.write(f"  OK: {pid}")
+        write_paper_report(paper, analysis, PAPERS_DIR)
+        analysis_json = PAPERS_DIR / (pid.replace("/", "_") + ".json")
+        analysis_json.write_text(json.dumps(analysis, indent=2), encoding="utf-8")
+        tqdm.write(f"  OK: {pid}")
+        return analysis
 
-            analysis_json = PAPERS_DIR / (pid.replace("/", "_") + ".json")
-            analysis_json.write_text(json.dumps(analysis, indent=2), encoding="utf-8")
-
-        except Exception as e:
-            tqdm.write(f"  ERROR: {pid} — {e}")
+    with tqdm(total=len(papers), desc="Analyzing") as pbar:
+        with ThreadPoolExecutor(max_workers=MAX_ANALYZE_WORKERS) as pool:
+            futures = {pool.submit(_analyze_one, p): p for p in papers}
+            for fut in as_completed(futures):
+                try:
+                    result = fut.result()
+                    if result:
+                        analyses.append(result)
+                except Exception as e:
+                    pid = futures[fut]["id"]
+                    tqdm.write(f"  ERROR: {pid} — {e}")
+                finally:
+                    pbar.update(1)
 
     return analyses
 
@@ -175,9 +188,23 @@ def main():
         print(f"Error: {csv_path} not found")
         sys.exit(1)
 
-    if args.step in ("analyze", "all") and not BEDROCK_API_KEY:
-        print("Error: HARVARD_BEDROCK_API_KEY not set. Copy .env.example to .env and fill in your key.")
-        sys.exit(1)
+    # Validate configuration based on selected model
+    if args.step in ("analyze", "all"):
+        if MODEL not in ("bedrock", "gemini"):
+            print(f"Error: Invalid MODEL='{MODEL}'. Must be 'bedrock' or 'gemini'.")
+            sys.exit(1)
+
+        if MODEL == "bedrock" and not BEDROCK_API_KEY:
+            print("Error: HARVARD_BEDROCK_API_KEY not set. Copy .env.example to .env and fill in your key.")
+            sys.exit(1)
+
+        if MODEL == "gemini" and not GEMINI_API_KEY:
+            print("Error: GEMINI_API_KEY not set. Set MODEL=bedrock or add GEMINI_API_KEY to .env.")
+            sys.exit(1)
+
+    PAPERS_DIR.mkdir(parents=True, exist_ok=True)
+    PDFS_DIR.mkdir(parents=True, exist_ok=True)
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
     papers = read_papers_csv(csv_path)
     print(f"Loaded {len(papers)} papers from {csv_path}")

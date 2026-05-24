@@ -1,0 +1,55 @@
+{
+  "benchmark_name": "SimpleQA",
+  "publication_year": 2024,
+  "humanities_role": "content",
+  "humanities_role_explanation": "Uses factual questions about history, media, art, and culture (e.g., television shows and video games) as part of a general-purpose dataset for evaluating LLM factuality.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Consists of short text-based queries and ground-truth text answers, which are evaluated using an LLM-as-a-judge classifier.",
+  "analytical_tasks": [
+    "factual question answering",
+    "confidence calibration"
+  ],
+  "analytical_tasks_explanation": "Short-form factual retrieval requiring precise, indisputable answers (e.g., identifying specific sports players or media titles) and meta-cognitive evaluation of model confidence versus accuracy.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": true,
+      "note": "Designed as a general-purpose benchmark covering science, technology, television, video games, history, and more."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates several frontier LLMs, specifically GPT-4o, GPT-4o-mini, o1-preview, and o1-mini."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "The LLM is the central system being benchmarked for its baseline factuality and calibration capabilities."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Includes questions related to History, Visual Arts and Performing Arts, and Literature and Literary Theory (e.g., television shows, video games, and cultural historical events)."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Evaluates using accuracy (percentage correct), hallucination rate (percentage incorrect), non-attempt rate, and calibration curve metrics."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Published on October 30, 2024."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The benchmark questions, answers, and the publication are in English."
+    }
+  },
+  "summary": "SimpleQA is a highly challenging, curated dataset of 4,326 short, fact-seeking questions designed to measure the factuality and hallucination rates of frontier large language models. To ensure high quality, the dataset utilizes independent double-trainer verification and focuses on questions with single, indisputable answers that tend to cause hallucinations in contemporary models.",
+  "key_findings": "Even frontier models struggle significantly on SimpleQA, with GPT-4o scoring under 40% accuracy. The study shows that reasoning-optimized models (like o1-preview) choose to decline to answer ('not attempted') rather than hallucinate and demonstrate superior calibration, alignment, and awareness of their own limitations compared to standard models.",
+  "relevant_asjc_areas": [
+    "History",
+    "Visual Arts and Performing Arts",
+    "Literature and Literary Theory"
+  ],
+  "paper_id": "SimpleQA",
+  "paper_name": "SimpleQA",
+  "csv_row": 9
+}

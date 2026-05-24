@@ -1,0 +1,56 @@
+{
+  "benchmark_name": null,
+  "publication_year": 2025,
+  "humanities_role": "domain",
+  "humanities_role_explanation": "Applies LLMs to the translation of classical Islamic religious and scholarly texts (Qur'an, Tafseer, Hadith, Jurisprudence) from Arabic to English.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Evaluates text translation quality by comparing original Arabic texts with back-translated Arabic texts using vector embeddings.",
+  "analytical_tasks": [
+    "machine translation",
+    "back-translation validation",
+    "semantic similarity analysis"
+  ],
+  "analytical_tasks_explanation": "Evaluates the preservation of meaning (semantic similarity) of complex classical religious texts across forward (Arabic to English) and backward (English to Arabic) translations.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "The paper presents an automated translation pipeline and a translated dataset rather than a general-purpose evaluation benchmark."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates GPT-4o, GPT-4o-mini, Llama 3.2, Qwen 2.5, Silma 9B, Jais 13B, Mistral 7B, Claude 3.5 Sonnet, Claude 3.5 Haiku, and Claude 3.0 Haiku."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "LLMs are the primary systems used for translation, OCR processing, and back-translation validation."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Focuses on Religious Studies and Literature and Literary Theory (classical Islamic literature from the Al-Shamela library)."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Evaluated using cosine similarity of vector embeddings."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Published in January 2025."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper and the target translation language are in English."
+    }
+  },
+  "summary": "This paper presents an automated pipeline using Large Language Models to translate over 250,000 pages of classical Islamic literature (including the Qur'an, Hadith, and Jurisprudence) from Arabic to English. To validate translation quality, the authors employ a back-translation validation methodology evaluated via vector embedding cosine similarity using OpenAI and Anthropic models.",
+  "key_findings": "GPT-4o-mini was chosen as the primary translation model due to its cost-efficiency and translation quality. Back-translation validation revealed that 71% of OpenAI model results and 86% of Anthropic model results achieved acceptable semantic similarity (cosine similarity >= 0.7) compared to the original Arabic source texts.",
+  "relevant_asjc_areas": [
+    "Religious Studies",
+    "Literature and Literary Theory",
+    "Language and Linguistics"
+  ],
+  "paper_id": "Automated_Translation_of_Islamic_Literat",
+  "paper_name": "Automated Translation of Islamic Literature with LLMs: Al-Shamela Library",
+  "csv_row": 26
+}

@@ -1,0 +1,58 @@
+{
+  "benchmark_name": "LLMs4Subjects",
+  "publication_year": 2025,
+  "humanities_role": "both",
+  "humanities_role_explanation": "The benchmark falls within the domain of Library Science and Museology (indexing and cataloging), and its dataset content covers academic literature containing humanities disciplines such as Architecture, History, Linguistics, and Literature Studies.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Text-only bilingual processing of bibliographic metadata (titles and abstracts) in English and German mapped to the German Integrated Authority File (GND) subject taxonomy.",
+  "analytical_tasks": [
+    "extreme multi-label text classification",
+    "semantic retrieval",
+    "subject tagging"
+  ],
+  "analytical_tasks_explanation": "Predicting and ranking a target set of top-k semantically relevant subject terms from the massive GND taxonomy (up to 204,739 terms) for various electronic library records (articles, books, theses, reports).",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "A specialized domain-specific benchmark focused specifically on automated subject tagging in library catalogs."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates generative LLMs including Llama-3.1 (8B/70B), Llama-3.2, Qwen2.5 (0.5B/72B), ChatGLM 4, and GPT-4o."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "Large language models serve as the primary systems for generating, retrieving, and ranking subject tags."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Covers ASJC disciplines: Museology (library metadata systems), History, Language and Linguistics, Literature and Literary Theory, and Visual Arts and Performing Arts (Architecture)."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Precision@k, Recall@k, and F1-score@k evaluated at multiple cutoffs (k = 5, 10, ..., 50)."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Published in May 2025 for the SemEval-2025 workshop."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The scientific paper and portions of the benchmark dataset are in English (the other portion is in German)."
+    }
+  },
+  "summary": "This paper outlines SemEval-2025 Task 5: LLMs4Subjects, a shared task evaluating automated subject tagging for technical library catalog records in English and German using the GND taxonomy. It evaluates various machine learning and LLM-based systems over both quantitative benchmarks and manual qualitative validations performed by expert librarians.",
+  "key_findings": "Traditional text classifiers (like Annif) and fast retrieval models (like RUC Team) achieved the highest quantitative recall scores (up to 0.66). However, in manual qualitative evaluations by professional librarians, the DNB-AI-Project\u2014which used a zero/few-shot ensemble of LLMs (such as Llama-3.1-70B)\u2014secured the highest precision, demonstrating the strong real-world taxonomy-mapping capabilities of LLMs without deep task-specific finetuning.",
+  "relevant_asjc_areas": [
+    "Museology",
+    "History",
+    "Language and Linguistics",
+    "Literature and Literary Theory",
+    "Visual Arts and Performing Arts"
+  ],
+  "paper_id": "2504.07199",
+  "paper_name": "LLMs4Subjects",
+  "csv_row": 47
+}
