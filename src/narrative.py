@@ -5,7 +5,7 @@ import google.genai as genai
 
 from config import (
     BEDROCK_BASE_URL, BEDROCK_MODEL, BEDROCK_API_KEY, ANTHROPIC_VERSION, MAX_TOKENS,
-    MODEL, GEMINI_API_KEY, GEMINI_MODEL
+    MODEL, GEMINI_API_KEY, GEMINI_MODEL, GEMINI_NARRATIVE_MODEL
 )
 
 NARRATIVE_PROMPT = """\
@@ -53,12 +53,8 @@ PAPER ANALYSES:
 
 
 def generate_narrative(analyses: list[dict], output_path) -> None:
-    # Branch based on configured model
-    if MODEL == "gemini":
-        narrative = _generate_narrative_with_gemini(analyses)
-    else:
-        # Default: Bedrock (Claude)
-        narrative = _generate_narrative_with_bedrock(analyses)
+    # Framer always uses Gemini 3.1 Pro regardless of MODEL setting
+    narrative = _generate_narrative_with_gemini(analyses)
 
     header = "# Survey Narrative Synthesis\n\n"
     output_path.write_text(header + narrative, encoding="utf-8")
@@ -105,7 +101,7 @@ def _generate_narrative_with_gemini(analyses: list[dict]) -> str:
     user_content = NARRATIVE_PROMPT + summaries
 
     response = client.models.generate_content(
-        model=GEMINI_MODEL,
+        model=GEMINI_NARRATIVE_MODEL,
         contents=user_content
     )
     narrative = response.text

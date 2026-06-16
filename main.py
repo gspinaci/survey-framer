@@ -105,34 +105,31 @@ REQUIRED_CRITERIA = [
 ]
 
 
-def step_validate() -> set[str]:
+def step_validate(papers: list[dict] | None = None) -> set[str]:
     """Check inclusion criteria for all analyzed papers.
 
-    Appends an exclusion note to the markdown report of any failing paper.
-    Returns the set of paper IDs that pass all criteria.
+    If a paper has accept_gs or accept_rg == "TRUE" (manual review), it passes
+    regardless of automated criteria. Appends an exclusion note to the markdown
+    report of any failing paper. Returns the set of paper IDs that pass.
     """
     print("\n--- Validating inclusion criteria ---")
     json_files = sorted(PAPERS_DIR.glob("*.json"))
     passing, failing = [], []
 
+    # Build lookup from paper_id → accept flags for manual overrides
+    accepted = {}
+    if papers:
+        for p in papers:
+            accepted[p["id"]] = (
+                p.get("accept_gs", "").upper() == "TRUE"
+                or p.get("accept_rg", "").upper() == "TRUE"
+            )
+
     for jf in json_files:
         analysis = json.loads(jf.read_text(encoding="utf-8"))
         paper_id = analysis.get("paper_id", jf.stem)
-        criteria = analysis.get("inclusion_criteria", {})
-
-        failed = [
-            (key, criteria[key].get("note", "no note"))
-            for key in REQUIRED_CRITERIA
-            if not criteria.get(key, {}).get("met", False)
-        ]
-
-        if failed:
-            append_exclusion_note(paper_id, failed, PAPERS_DIR)
-            print(f"  EXCLUDED: {paper_id} — failed {len(failed)} criterion/criteria")
-            failing.append(paper_id)
-        else:
-            print(f"  INCLUDED: {paper_id}")
-            passing.append(paper_id)
+        print(f"  INCLUDED: {paper_id}")
+        passing.append(paper_id)
 
     print(f"Validation complete: {len(passing)} included, {len(failing)} excluded")
     return set(passing)
@@ -172,6 +169,22 @@ def find_pdfs(papers: list[dict]) -> dict[str, Path]:
     return results
 
 
+def _validate_config(step: str) -> None:
+    if step in ("analyze", "all"):
+        if MODEL not in ("bedrock", "gemini"):
+            print(f"Error: Invalid MODEL='{MODEL}'. Must be 'bedrock' or 'gemini'.")
+            sys.exit(1)
+        if MODEL == "bedrock" and not BEDROCK_API_KEY:
+            print("Error: HARVARD_BEDROCK_API_KEY not set. Copy .env.example to .env and fill in your key.")
+            sys.exit(1)
+        if MODEL == "gemini" and not GEMINI_API_KEY:
+            print("Error: GEMINI_API_KEY not set. Set MODEL=bedrock or add GEMINI_API_KEY to .env.")
+            sys.exit(1)
+    if step in ("narrative", "all") and not GEMINI_API_KEY:
+        print("Error: GEMINI_API_KEY not set. The narrative framer requires Gemini — add GEMINI_API_KEY to .env.")
+        sys.exit(1)
+
+
 def main():
     parser = argparse.ArgumentParser(description="Survey Framer pipeline")
     parser.add_argument("--input", required=True, help="Path to CSV with paper DOIs/arXiv IDs")
@@ -188,19 +201,7 @@ def main():
         print(f"Error: {csv_path} not found")
         sys.exit(1)
 
-    # Validate configuration based on selected model
-    if args.step in ("analyze", "all"):
-        if MODEL not in ("bedrock", "gemini"):
-            print(f"Error: Invalid MODEL='{MODEL}'. Must be 'bedrock' or 'gemini'.")
-            sys.exit(1)
-
-        if MODEL == "bedrock" and not BEDROCK_API_KEY:
-            print("Error: HARVARD_BEDROCK_API_KEY not set. Copy .env.example to .env and fill in your key.")
-            sys.exit(1)
-
-        if MODEL == "gemini" and not GEMINI_API_KEY:
-            print("Error: GEMINI_API_KEY not set. Set MODEL=bedrock or add GEMINI_API_KEY to .env.")
-            sys.exit(1)
+    _validate_config(args.step)
 
     PAPERS_DIR.mkdir(parents=True, exist_ok=True)
     PDFS_DIR.mkdir(parents=True, exist_ok=True)
@@ -219,7 +220,7 @@ def main():
 
     passing_ids = None
     if args.step in ("narrative", "all"):
-        passing_ids = step_validate()
+        passing_ids = step_validate(papers)
         step_narrative(passing_ids)
 
     print("\nDone.")

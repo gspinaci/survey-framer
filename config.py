@@ -23,5 +23,7 @@ MODEL = os.getenv("MODEL", "bedrock")
 # Gemini configuration
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
 GEMINI_MODEL = "gemini-3.5-flash"
+# Narrative ("framer") always uses Gemini 3.1 Pro, independent of MODEL
+GEMINI_NARRATIVE_MODEL = "gemini-3.1-pro-preview"
 
 UNPAYWALL_EMAIL = "gspinaci@itatti.harvard.edu"

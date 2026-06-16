@@ -39,9 +39,12 @@ def read_papers_csv(csv_path: Path) -> list[dict]:
                 "humanities": row.get("Humanities?", "").strip(),
                 "asjc_code": row.get("ASJC code", "").strip(),
                 "source": row.get("Source", "").strip(),
+                "source_2": row.get("Source 2", "").strip(),
                 "specific_source": row.get("Specific source", "").strip(),
                 "notes_gs": row.get("Notes GS", "").strip(),
                 "notes_rg": row.get("Notes RG", "").strip(),
+                "accept_gs": row.get("Accept GS", "").strip(),
+                "accept_rg": row.get("Accept RG", "").strip(),
                 "hunter": row.get("Hunter", "").strip(),
                 "csv_row": idx,
             }

@@ -56,3 +56,33 @@ This paper **does not meet all inclusion criteria** and will be excluded from th
 | Failed Criterion | Reason |
 |------------------|--------|
 | Evaluates generative LLM | Evaluates OpenAI's Whisper, which is an encoder-decoder speech recognition model, rather than a general-purpose generative LLM. |
+
+---
+
+## Exclusion Note
+
+This paper **does not meet all inclusion criteria** and will be excluded from the narrative synthesis.
+
+| Failed Criterion | Reason |
+|------------------|--------|
+| Evaluates generative LLM | Evaluates OpenAI's Whisper, which is an encoder-decoder speech recognition model, rather than a general-purpose generative LLM. |
+
+---
+
+## Exclusion Note
+
+This paper **does not meet all inclusion criteria** and will be excluded from the narrative synthesis.
+
+| Failed Criterion | Reason |
+|------------------|--------|
+| Evaluates generative LLM | Evaluates OpenAI's Whisper, which is an encoder-decoder speech recognition model, rather than a general-purpose generative LLM. |
+
+---
+
+## Exclusion Note
+
+This paper **does not meet all inclusion criteria** and will be excluded from the narrative synthesis.
+
+| Failed Criterion | Reason |
+|------------------|--------|
+| Evaluates generative LLM | Evaluates OpenAI's Whisper, which is an encoder-decoder speech recognition model, rather than a general-purpose generative LLM. |
