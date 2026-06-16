@@ -1,4 +1,5 @@
 import json
+from pathlib import Path
 
 import requests
 import google.genai as genai
@@ -8,48 +9,8 @@ from config import (
     MODEL, GEMINI_API_KEY, GEMINI_MODEL, GEMINI_NARRATIVE_MODEL
 )
 
-NARRATIVE_PROMPT = """\
-You are an expert in AI benchmarking and digital humanities, writing for an academic survey paper.
-
-Below are structured analyses of multiple papers that benchmark LLMs on Arts & Humanities tasks. Based on these analyses, produce a narrative synthesis document in Markdown with the following sections:
-
-## 1. Thematic Clusters
-Group the papers into meaningful clusters by:
-- ASJC humanities areas (History, Visual Arts, Music, Literature, Philosophy, etc.)
-- Benchmark modality combinations (text-only, image+text, multimodal)
-- Analytical task types (factual recognition, causal reasoning, generation, etc.)
-
-For each cluster, name it, list the papers, and explain the common thread.
-
-## 2. Modality & Task Landscape
-Describe the distribution across:
-- **Modality Coverage**: Which modality combinations are well-covered? Which are rare? (e.g., text-only dominates, audio is underrepresented)
-- **Task Types**: What analytical tasks dominate the benchmarks? (e.g., factual recognition vs. generation vs. reasoning)
-- **Task-Domain Alignment**: How well do tasks match the domain requirements? (e.g., economic reasoning for business history vs. aesthetic judgment for art)
-
-## 3. Methodological Patterns
-What evaluation approaches recur? Which models are most frequently tested? What metrics are standard vs. novel? How do analytical task complexity levels vary?
-
-## 4. Narrative Framing Options
-Propose 2-3 alternative framings for a survey paper based on this corpus:
-- **For newcomers**: How would you frame this for researchers new to AI + Humanities?
-- **For experts**: How would you frame this for established digital humanities scholars?
-- **For AI researchers**: How would you frame this for ML researchers interested in humanities applications?
-
-Consider how each framing would emphasize different aspects (modalities, task types, ASJC areas, analytical sophistication).
-
-## 5. Gaps and Opportunities
-What benchmark gaps exist? Consider:
-- Underrepresented modalities or task types
-- Missing ASJC areas or sub-domains
-- Gaps in analytical task complexity
-- What would a "next-generation" humanities AI benchmark look like?
-
-## 6. Suggested Survey Structure
-Propose a table of contents for a survey paper synthesizing these findings, organized around modalities, task types, or domains.
-
-PAPER ANALYSES:
-"""
+_PROMPTS_DIR = Path(__file__).parent.parent / "prompts"
+NARRATIVE_PROMPT = (_PROMPTS_DIR / "narrative.txt").read_text(encoding="utf-8")
 
 
 def generate_narrative(analyses: list[dict], output_path) -> None:
