@@ -1,0 +1,58 @@
+{
+  "benchmark_name": "Appear2Meaning",
+  "publication_year": 2026,
+  "humanities_role": "both",
+  "humanities_role_explanation": "Introduces a benchmark designed for evaluating VLMs on art-historical/cultural visual understanding using curated museum objects from Getty and Met collections.",
+  "benchmark_modalities": [
+    "text",
+    "image"
+  ],
+  "benchmark_modalities_explanation": "The benchmark presents models with image-only inputs of heritage objects and prompts them to output structured text metadata (JSON format), which is then evaluated using an LLM-as-a-Judge framework.",
+  "analytical_tasks": [
+    "structured prediction",
+    "factual recognition",
+    "cultural reasoning",
+    "attribute inference"
+  ],
+  "analytical_tasks_explanation": "Models must infer non-observable cultural and historical attributes of artworks (culture, period, geographic origin, creator) that cannot be directly perceived through simple visual description.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "Specifically designed to evaluate structured cultural metadata inference for heritage artifacts."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates 9 vision-language models, including Qwen-VL-Max, Qwen3-VL-Plus, Qwen3-VL-Flash, Qwen3-VL-8B-Instruct, Qwen3-VL-32B-Instruct, Pixtral-12B, GPT-4.1-mini, GPT-5.4-mini, and Claude Haiku 4.5."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "The primary models being benchmarked are generative Vision-Language Models (VLMs), and an LLM is used as an evaluator."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Includes museum artifacts categorized under History, Archaeology, Conservation, and Visual Arts and Performing Arts (ceramics, paintings, metalwork, sculpture)."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Uses exact match accuracy, partial match rate, and attribute-level accuracy."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Published as a preprint in April 2026."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper and prompt templates are written in English."
+    }
+  },
+  "summary": "The paper introduces Appear2Meaning, a cross-cultural benchmark designed to evaluate vision-language models on structured cultural metadata inference from images of museum objects. It formalizes heritage understanding as a structured prediction task (inferring culture, period, origin, creator) and evaluates nine state-of-the-art VLMs using an LLM-as-a-Judge framework. The findings reveal that while models can capture partial, fragmented stylistic signals, they perform poorly on exact attribute alignment and exhibit systematic biases.",
+  "key_findings": "All evaluated VLMs achieved very low exact-match accuracy (ranging from 0.005 to 0.029), demonstrating that unified multi-attribute metadata inference is highly challenging. However, partial match rates were significantly higher, with Qwen3-VL-Flash leading at 0.658 overall accuracy. The models showed strong regional disparities, performing best on East Asian artifacts (up to 0.740 partial match) but struggling on European and American objects where they often relied on stylistic shortcuts and Eurocentric misattributions.",
+  "relevant_asjc_areas": [
+    "Visual Arts and Performing Arts",
+    "History",
+    "Archaeology",
+    "Conservation"
+  ],
+  "dataset_size": 750,
+  "primary_evaluation_setting": "zero-shot"
+}

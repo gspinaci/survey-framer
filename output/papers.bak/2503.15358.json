@@ -1,0 +1,55 @@
+{
+  "benchmark_name": "AdMIRe",
+  "publication_year": 2025,
+  "humanities_role": "domain",
+  "humanities_role_explanation": "Designed for evaluating figurative language understanding and idiomaticity representation, which are core topics in linguistics and semantic analysis.",
+  "benchmark_modalities": [
+    "text",
+    "image"
+  ],
+  "benchmark_modalities_explanation": "Integrates natural language sentences containing potentially idiomatic nominal compounds with generated static images (Subtask A) or sequential image panels representing visual narratives (Subtask B). It also offers a text-only modality using descriptive image captions.",
+  "analytical_tasks": [
+    "multimodal image ranking",
+    "next image prediction",
+    "sentence classification"
+  ],
+  "analytical_tasks_explanation": "Tasks require identifying whether a nominal compound is used in a literal or figurative context, ranking generated illustrations based on semantic alignment, and predicting sequential visual outcomes of idiomatic scenarios.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "Specifically targets idiomaticity and figurative language understanding rather than broad general-purpose capabilities."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates several generative models including GPT-4, Qwen, LLaVA, DeepSeek, and various CLIP/VLM configurations."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "LLMs and vision-language models are the primary systems evaluated by participating teams."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Language and Linguistics"
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Top 1 Accuracy, Discounted Cumulative Gain (DCG), Image Completion Accuracy, and Sentence Type Accuracy."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Published in 2025 as part of SemEval-2025."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper and dataset are written in English (with Portuguese also supported in the dataset)."
+    }
+  },
+  "summary": "This paper introduces AdMIRe (SemEval-2025 Task 1), a benchmark designed to evaluate how well vision-language models represent idiomatic expressions in English and Brazilian Portuguese. The benchmark features two tasks: ranking images based on their alignment with idiomatic or literal context sentences, and predicting the next image in a narrative sequence. The top-performing submissions used mixture-of-experts settings with large language and vision models to achieve human-level performance.",
+  "key_findings": "The top-performing systems achieved up to 93% Top-1 accuracy on the English Subtask A test set and 100% on the Portuguese test set, matching or slightly exceeding human-expert baselines (human average of 71% accuracy, pool-of-experts at 83%). Achieving this performance required complex mixture-of-experts pipelines, data augmentation, and targeted prompt engineering to mitigate generative models' inherent biases towards literal interpretations.",
+  "relevant_asjc_areas": [
+    "Language and Linguistics"
+  ],
+  "paper_id": "2503.15358",
+  "paper_name": "AdMIRe",
+  "csv_row": 21
+}

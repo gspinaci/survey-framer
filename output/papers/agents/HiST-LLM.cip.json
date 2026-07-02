@@ -1,0 +1,53 @@
+{
+  "benchmark_name": "History Seshat Test for LLMs (HiST-LLM)",
+  "publication_year": 2024,
+  "humanities_role": "domain",
+  "humanities_role_explanation": "Designed specifically for evaluating graduate-level historical knowledge and global history comprehension using structured historical data.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "A text-only benchmark presenting multiple-choice historical questions formulated from the structured Seshat Global History Databank.",
+  "analytical_tasks": [
+    "multiple-choice QA",
+    "historical knowledge retrieval",
+    "cross-regional factual recognition"
+  ],
+  "analytical_tasks_explanation": "Evaluates factual recall and understanding of historical societies spanning different periods (Neolithic to Industrial Revolution) and geographical regions.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "Specifically designed to evaluate deep, specialized historical knowledge rather than a general suite of capabilities."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates seven generative models from the OpenAI, Gemini, and Llama families, such as Llama-3.1-8B and GPT-4-Turbo."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "Generative LLMs are the primary systems under evaluation to assess their historical accuracy."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Focuses on the ASJC area of History."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Evaluated using balanced accuracy on a 4-choice format."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Published as part of the NeurIPS 2024 Datasets and Benchmarks track."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper and the underlying benchmark are in English."
+    }
+  },
+  "summary": "The paper introduces HiST-LLM, a specialized text benchmark based on the Seshat Global History Databank to test LLMs on expert-level, global history knowledge across 600 societies from the Neolithic to the Industrial Revolution. It evaluates seven state-of-the-art LLMs, identifying substantial performance disparities depending on the historical epoch and geographical region.",
+  "key_findings": "The evaluated LLMs achieve a balanced accuracy ranging from 33.6% (Llama-3.1-8B) to 46% (GPT-4-Turbo) in a 4-choice setting, outperforming random guess (25%) but remaining below expert comprehension. Performance is stronger for earlier historical periods, with notable regional imbalances (lowest accuracy in Oceania and Sub-Saharan Africa for advanced models).",
+  "relevant_asjc_areas": [
+    "History"
+  ],
+  "dataset_size": 36000,
+  "primary_evaluation_setting": "zero-shot"
+}

@@ -1,0 +1,56 @@
+{
+  "benchmark_name": "AdMIRe",
+  "publication_year": 2025,
+  "humanities_role": "both",
+  "humanities_role_explanation": "AdMIRe uses figurative language, specifically the semantic duality of nominal compounds (literal vs. idiomatic interpretations), as both the evaluation content and the core domain of inquiry. It probes the models' capacity to handle metaphorical representation, semantic shifts, and multi-modal semantic alignment, which are fundamental topics in linguistics, semiotics, and literary theory.",
+  "benchmark_modalities": [
+    "text",
+    "image"
+  ],
+  "benchmark_modalities_explanation": "Integrates natural language text (context sentences, nominal compounds, and descriptive captions) with static synthetic images (Midjourney-generated visual scenes of figurative and literal meanings) and temporal image sequences.",
+  "analytical_tasks": [
+    "semantic disambiguation",
+    "multimodal image-text ranking",
+    "next-image sequence prediction",
+    "figurative language classification"
+  ],
+  "analytical_tasks_explanation": "Subtask A requires models to rank five candidate images based on how well they align with the contextual meaning (idiomatic vs. literal) of a target nominal compound. Subtask B evaluates temporal narrative reasoning, requiring the model to select the correct completing image in a three-panel sequence and classify whether the sequence depicts a literal or figurative meaning.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "Specifically targets idiomaticity, figurative language comprehension, and multimodal semantic representation rather than general capabilities."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates generative language and vision-language models such as GPT-4, Qwen2.5, LLaVA, CLIP, and DeepSeek, employed by participating systems."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "The shared task primarily benchmarks the capabilities of state-of-the-art LLMs and Vision-Language Models in representing idiomatic meaning."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Focuses on Language and Linguistics (specifically semantics, phraseology, and multilingual idiomaticity) and Literature and Literary Theory (figurative and metaphorical language)."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Uses Top-1 Accuracy, Discounted Cumulative Gain (DCG), Image Completion Accuracy, and Sentence Type Accuracy."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Published in March 2025 for SemEval-2025."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper is written in English and the benchmark includes English data alongside Brazilian Portuguese."
+    }
+  },
+  "summary": "This paper presents SemEval-2025 Task 1: AdMIRe, a benchmark designed to evaluate and improve how language and vision-language models represent idiomatic expressions in multimodal and multilingual contexts. The benchmark includes static image-ranking tasks and narrative image-sequence completion tasks across English and Brazilian Portuguese, evaluating the models' capacity to navigate the literal-figurative boundary.",
+  "key_findings": "Top-performing systems approached human-level baseline performance (achieving up to 93% top-1 accuracy in English and 100% in Portuguese for Subtask A). However, this success required complex, resource-intensive pipelines, such as mixture-of-experts ensembles, self-consistency prompt smoothing, and translating idiomatic compounds into compositional synonyms to bypass the models' bias toward literal interpretations of visual data.",
+  "relevant_asjc_areas": [
+    "Language and Linguistics",
+    "Literature and Literary Theory"
+  ],
+  "dataset_size": 185,
+  "primary_evaluation_setting": "mix"
+}

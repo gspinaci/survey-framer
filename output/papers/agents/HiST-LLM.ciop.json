@@ -1,0 +1,52 @@
+{
+  "benchmark_name": "HiST-LLM",
+  "publication_year": 2024,
+  "humanities_role": "both",
+  "humanities_role_explanation": "Designed to test expert-level historical knowledge and comprehension utilizing curated datasets from the Seshat Global History Databank.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Text-based multiple-choice question answering (four-choice format) evaluating knowledge of historical events and societies.",
+  "analytical_tasks": [
+    "multiple-choice question answering",
+    "historical knowledge retrieval"
+  ],
+  "analytical_tasks_explanation": "Factual recall and comprehension of global historical developments, spanning from the Neolithic period to the Industrial Revolution, across 600 historical societies.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "Specifically targets history knowledge and comprehension."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates seven models from the Gemini, OpenAI, and Llama families, including Llama-3.1-8B and GPT-4-Turbo."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "LLMs are the primary systems evaluated on their historical knowledge."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "History"
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Balanced accuracy"
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Published at NeurIPS in 2024."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper and benchmark are in English."
+    }
+  },
+  "summary": "This paper introduces HiST-LLM, a benchmark for evaluating LLMs on expert-level global history knowledge, derived from a subset of the Seshat Global History Databank. Spanning from the Neolithic period to the Industrial Revolution, it tests LLM reasoning across 600 historical societies and evaluates seven major models. The findings reveal that while LLMs outperform random guessing, they show distinct chronological and regional biases and fall short of human expert-level performance.",
+  "key_findings": "LLMs achieved balanced accuracy scores ranging from 33.6% (Llama-3.1-8B) to 46% (GPT-4-Turbo) in a four-choice format, outperforming the random guessing baseline of 25% but underperforming compared to human experts. Models performed better on earlier historical periods, with regional performance being highest in the Americas and lowest in Oceania and Sub-Saharan Africa.",
+  "relevant_asjc_areas": [
+    "History"
+  ],
+  "dataset_size": null,
+  "primary_evaluation_setting": "not specified in the abstract"
+}

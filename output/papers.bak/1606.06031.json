@@ -1,0 +1,56 @@
+{
+  "benchmark_name": "LAMBADA",
+  "publication_year": 2016,
+  "humanities_role": "both",
+  "humanities_role_explanation": "Uses narrative text from novels (literature) to evaluate linguistic discourse comprehension and narrative tracking capabilities.",
+  "benchmark_modalities": [
+    "Text"
+  ],
+  "benchmark_modalities_explanation": "Passages of text consisting of a narrative context (average of 4.6 sentences) followed by a target sentence with a missing final word.",
+  "analytical_tasks": [
+    "Word prediction",
+    "Discourse tracking",
+    "Co-reference resolution",
+    "Pragmatic inference"
+  ],
+  "analytical_tasks_explanation": "Predicting a target word that is contextually constrained by broader discourse and narrative structures, requiring reasoning about character interactions, event sequences, and semantic associations across multiple sentences.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": true,
+      "note": "Designed as a general language modeling benchmark to evaluate broad text understanding capacities."
+    },
+    "evaluates_generative_llm": {
+      "met": false,
+      "note": "Evaluated pre-transformer models of its era, including standard LSTMs, RNNs, Memory Networks, and N-gram models."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "Language models are the primary systems being evaluated on their text understanding capabilities."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Utilizes data from the Book Corpus (unpublished novels), mapping to Language and Linguistics as well as Literature and Literary Theory."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Accuracy, perplexity, and median rank of the target word."
+    },
+    "published_after_march_2023": {
+      "met": false,
+      "note": "Published as a preprint in June 2016."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper and the dataset are in English."
+    }
+  },
+  "summary": "The paper introduces the LAMBADA dataset, a text-based benchmark consisting of narrative passages designed to test language models on broad context comprehension. The target words are selected to be easily guessable by humans when presented with the full context, but impossible to guess from the final sentence alone. Baseline results show that contemporary language models struggle significantly, failing to achieve even 1% accuracy.",
+  "key_findings": "None of the tested models (RNN, LSTM, Memory Network, and N-gram variants) exceeded 1% accuracy on the LAMBADA dataset, despite achieving up to 21.9% accuracy on an unfiltered control set of similar shape, highlighting a severe limitation in long-range discourse comprehension.",
+  "relevant_asjc_areas": [
+    "Language and Linguistics",
+    "Literature and Literary Theory"
+  ],
+  "paper_id": "1606.06031",
+  "paper_name": "Evaluating Automatic Speech Recognition Systems on Multilingual Audio Benchmarks",
+  "csv_row": 3
+}

@@ -1,0 +1,61 @@
+{
+  "benchmark_name": "MILU",
+  "publication_year": 2024,
+  "humanities_role": "both",
+  "humanities_role_explanation": "Incorporates India-centric topics like regional history, literature, arts, festivals, and religious studies from competitive exams to evaluate both linguistic adaptation and domain-specific cultural competence in Indic languages.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Monomodal text-based multiple-choice question answering (MCQs) across 11 Indic languages and English.",
+  "analytical_tasks": [
+    "multiple-choice question answering",
+    "cultural knowledge retrieval",
+    "historical reasoning",
+    "legal and governance comprehension",
+    "linguistic adaptation"
+  ],
+  "analytical_tasks_explanation": "Evaluates factual knowledge retrieval and cultural/historical reasoning on region-specific topics (e.g., local administrative laws, regional historical events, and traditional Indian performing arts) sourced from qualification and civil service exams.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": true,
+      "note": "Spans 8 diverse domains including STEM, Business, Law, and Humanities, mirroring the general-purpose design of MMLU for Indic languages."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluated 42+ models including GPT-4o, GPT-4o-mini, Gemini-1.5 (Pro/Flash), Llama-3.1, Llama-3.2, Gemma-2, Aya-23, and several Indic-specialized models such as Airavata, Ambari, and Navarasa."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "The primary objective of the benchmark is to evaluate and compare the general capabilities of large language models."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Covers several ASJC humanities areas including History, Language and Linguistics, Literature and Literary Theory, Philosophy, Religious Studies, and Visual Arts and Performing Arts."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Evaluates performance using 0-shot, 1-shot, and 5-shot multiple-choice accuracy, analyzed via log-likelihood and generative parser techniques."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Originally submitted as a preprint in November 2024."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The scientific paper is written in English, and the benchmark contains both English and Indic-language questions."
+    }
+  },
+  "summary": "MILU (Multi-task Indic Language Understanding) is a comprehensive multi-task benchmark designed to evaluate LLMs across 11 Indic languages and English. It consists of approximately 79K multiple-choice questions spanning 8 domains and 41 subjects curated from Indian civil service and regional exams, placing a strong emphasis on culturally specific and localized knowledge.",
+  "key_findings": "GPT-4o achieved the highest overall average accuracy at 74.74%. Current LLMs generally struggle with MILU; specialized language-specific fine-tuned models often perform near random baselines, while open multilingual models (like Llama-3.1 and Gemma-2) perform better. Models consistently perform worse in low-resource and agglutinative languages (such as Tamil and Telugu) and show weaker performance in culturally grounded domains like Arts & Humanities compared to general STEM subjects.",
+  "relevant_asjc_areas": [
+    "History",
+    "Language and Linguistics",
+    "Literature and Literary Theory",
+    "Philosophy",
+    "Religious Studies",
+    "Visual Arts and Performing Arts"
+  ],
+  "paper_id": "2411.02538",
+  "paper_name": "MILU",
+  "csv_row": 6
+}

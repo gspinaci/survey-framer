@@ -1,0 +1,59 @@
+{
+  "benchmark_name": "MMMU-Pro",
+  "publication_year": 2024,
+  "humanities_role": "both",
+  "humanities_role_explanation": "Evaluates college-level expertise across arts and humanities disciplines (domain) by leveraging multimodal items consisting of historical cartoons, sheet music, and architectural floor plans (content).",
+  "benchmark_modalities": [
+    "text",
+    "image"
+  ],
+  "benchmark_modalities_explanation": "Combines text and images in a standard multiple-choice format, and also features a 'vision-only' setting where textual questions and choices are embedded as screenshots/photos to enforce simultaneous seeing and reading.",
+  "analytical_tasks": [
+    "multiple-choice QA",
+    "visual reasoning",
+    "factual recognition",
+    "text extraction",
+    "conceptual understanding"
+  ],
+  "analytical_tasks_explanation": "Factual and style recognition of artworks, music theory analysis from musical notation, historical interpretation of political cartoons, and complex visual-textual spatial reasoning.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": true,
+      "note": "Evaluates 30 academic subjects spanning Science, Tech, Health, Humanities, and Art & Design."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates state-of-the-art MLLMs including GPT-4o, Claude 3.5 Sonnet, Gemini 1.5 Pro, LLaVA-OneVision, and InternVL2."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "The primary objective is benchmarking the robust reasoning and multimodal understanding of MLLMs."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Includes substantial evaluation data in Visual Arts (Art, Art Theory, Design), Music, History, and Literature."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Utilizes classification accuracy for the multiple-choice tasks and Levenshtein distance for OCR similarity."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "The paper was first preprinted on arXiv in September 2024."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper and all benchmark questions are in English."
+    }
+  },
+  "summary": "MMMU-Pro introduces a more robust evaluation framework for the Massive Multi-discipline Multimodal Understanding benchmark to prevent shortcut exploitation by MLLMs. It eliminates text-only solvable questions, scales the candidate option space from 4 to 10 choices, and introduces a vision-only setting where questions are embedded directly into images. This design forces models to integrate visual and textual modalities holistically, exposing significant performance gaps in current frontier models.",
+  "key_findings": "All evaluated MLLMs showed significant performance drops on MMMU-Pro compared to MMMU, with accuracy declines ranging from 16.8% to 26.9%. GPT-4o achieved the highest overall score with 54.0% in the standard 10-option setting and 49.7% in the vision-only setting. Chain of Thought (CoT) prompting showed strong gains in structured reasoning fields (e.g., Engineering) but was ineffective or even detrimental in subjective domains like Art and Design.",
+  "relevant_asjc_areas": [
+    "Visual Arts and Performing Arts",
+    "Music",
+    "History",
+    "Literature and Literary Theory"
+  ],
+  "dataset_size": 3460,
+  "primary_evaluation_setting": "zero-shot"
+}

@@ -1,0 +1,59 @@
+{
+  "benchmark_name": "VQArt-Bench",
+  "publication_year": 2025,
+  "humanities_role": "both",
+  "humanities_role_explanation": "Designed for art-historical visual understanding using collaborative, expert-curated art descriptions.",
+  "benchmark_modalities": [
+    "text",
+    "image"
+  ],
+  "benchmark_modalities_explanation": "Multi-modal VQA matching cultural heritage images with English multiple-choice questions.",
+  "analytical_tasks": [
+    "instance identity",
+    "instance attribute",
+    "instance location",
+    "instance counting",
+    "spatial relation",
+    "instance interaction",
+    "visual-inspired reasoning"
+  ],
+  "analytical_tasks_explanation": "Evaluates foundational visual perception and advanced iconographic, spatial, and causal reasoning on art.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "Specifically designed for the specialized domain of art and cultural heritage."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluated 14 MLLMs including Gemini 2.5, GPT-4o, Kimi-VL, Aria, Phi-4, and Gemma 3."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "Multimodal Large Language Models (MLLMs) are the primary systems evaluated."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Visual Arts and Performing Arts"
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Evaluation is based on multiple-choice accuracy."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Published as a preprint in October 2025."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper and dataset questions are in English."
+    }
+  },
+  "summary": "The paper presents VQArt-Bench, a visual question answering dataset of 14,463 questions on art history and cultural heritage. It utilizes a collaborative multi-agent LLM pipeline to generate high-quality, linguistically diverse multiple-choice questions.",
+  "key_findings": "Gemini 2.5 achieved the highest overall accuracy (71%), followed by Kimi-VL (67%) as the top open-source model. All models showed a notable weakness in instance counting despite stronger performance in higher-level visual reasoning.",
+  "relevant_asjc_areas": [
+    "Visual Arts and Performing Arts"
+  ],
+  "paper_id": "2510.12750",
+  "paper_name": "VQArt-Bench",
+  "csv_row": 15
+}

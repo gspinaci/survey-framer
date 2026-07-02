@@ -2,13 +2,14 @@
   "benchmark_name": "VQArt-Bench",
   "publication_year": 2025,
   "humanities_role": "both",
-  "humanities_role_explanation": "Designed for art-historical visual understanding using collaborative, expert-curated art descriptions.",
+  "humanities_role_explanation": "Evaluates MLLMs on art-historical visual reasoning using images of artworks and expert-curated descriptions of art history, religious iconography, and cultural motifs to test fine-grained artistic comprehension.",
   "benchmark_modalities": [
     "text",
     "image"
   ],
-  "benchmark_modalities_explanation": "Multi-modal VQA matching cultural heritage images with English multiple-choice questions.",
+  "benchmark_modalities_explanation": "A multi-modal Visual Question Answering (VQA) benchmark combining digital images of fine art and cultural heritage with multiple-choice textual questions.",
   "analytical_tasks": [
+    "visual question answering",
     "instance identity",
     "instance attribute",
     "instance location",
@@ -17,27 +18,27 @@
     "instance interaction",
     "visual-inspired reasoning"
   ],
-  "analytical_tasks_explanation": "Evaluates foundational visual perception and advanced iconographic, spatial, and causal reasoning on art.",
+  "analytical_tasks_explanation": "Evaluates models on seven cognitive dimensions of art historical interpretation: Instance Identity, Instance Attribute, Instance Location, Instance Counting, Spatial Relation, Instance Interaction, and Visual-Inspired Reasoning (commonsense or causal inference).",
   "inclusion_criteria": {
     "general_purpose_benchmark": {
       "met": false,
-      "note": "Specifically designed for the specialized domain of art and cultural heritage."
+      "note": "Specifically designed as a domain-specific evaluation for visual art and cultural heritage understanding."
     },
     "evaluates_generative_llm": {
       "met": true,
-      "note": "Evaluated 14 MLLMs including Gemini 2.5, GPT-4o, Kimi-VL, Aria, Phi-4, and Gemma 3."
+      "note": "Evaluated 14 MLLMs including Gemini 2.5, GPT-4o, GPT-4o mini, Aria, Aya Vision, Kimi-VL, Phi-4, Pixtral, LLaVA, LLaVA-NeXT, InstructBLIP-Vicuna, and Gemma 3."
     },
     "llm_is_primary_system": {
       "met": true,
-      "note": "Multimodal Large Language Models (MLLMs) are the primary systems evaluated."
+      "note": "Generative multimodal large language models are the primary systems being benchmarked."
     },
     "arts_humanities_data": {
       "met": true,
-      "note": "Visual Arts and Performing Arts"
+      "note": "Matched with Visual Arts and Performing Arts (ASJC 1213), as well as History and Religious Studies, using artistic paintings and cultural heritage images."
     },
     "quantitative_metrics": {
       "met": true,
-      "note": "Evaluation is based on multiple-choice accuracy."
+      "note": "Evaluation is based on multiple-choice accuracy across overall performance and seven individual spatial-reasoning dimensions."
     },
     "published_after_march_2023": {
       "met": true,
@@ -45,15 +46,20 @@
     },
     "english_language": {
       "met": true,
-      "note": "The paper and dataset questions are in English."
+      "note": "The paper and the benchmark dataset are in English."
     }
   },
-  "summary": "The paper presents VQArt-Bench, a visual question answering dataset of 14,463 questions on art history and cultural heritage. It utilizes a collaborative multi-agent LLM pipeline to generate high-quality, linguistically diverse multiple-choice questions.",
-  "key_findings": "Gemini 2.5 achieved the highest overall accuracy (71%), followed by Kimi-VL (67%) as the top open-source model. All models showed a notable weakness in instance counting despite stronger performance in higher-level visual reasoning.",
+  "summary": "VQArt-Bench is a large-scale visual question answering benchmark designed to evaluate multimodal LLMs on the complex semantic interpretations required for visual art analysis. The dataset is built using a multi-agent pipeline to generate 14,463 nuanced, multiple-choice questions derived from Wikipedia descriptions of cultural heritage images. Extensive evaluation reveals that while proprietary models lead, even top-performing MLLMs struggle significantly with basic instance counting within complex artistic compositions.",
+  "key_findings": "Proprietary models lead in artistic visual analysis, with Gemini 2.5 achieving the highest overall accuracy (71%), followed by the open-source Kimi-VL (67%). All models struggle significantly with art-focused instance counting (e.g., Gemini 2.5 scores 66%, LLaVA-NeXT at 31%) while performing comparatively better on higher-level visual-inspired reasoning tasks.",
   "relevant_asjc_areas": [
-    "Visual Arts and Performing Arts"
+    "Visual Arts and Performing Arts",
+    "History",
+    "Religious Studies"
   ],
+  "dataset_size": 14463,
+  "primary_evaluation_setting": "zero-shot",
+  "review_notes": "Resolved minor terminology differences in analytical tasks by aligning exactly with the seven dimensions explicitly named in the paper's section 3.1. Combined ASJC areas from both analysts to reflect the paper's explicit mention of historical and religious art alongside the CSV metadata's visual arts code. Adopted Cip's inclusion of Museology as implied by cultural heritage, but restricted the final ASJC list strictly to matches from the predefined set.",
   "paper_id": "2510.12750",
   "paper_name": "VQArt-Bench",
-  "csv_row": 15
+  "csv_row": 7
 }

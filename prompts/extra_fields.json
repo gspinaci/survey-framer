@@ -1,0 +1,1 @@
+{"dataset_size": {"description": "Number of examples/items in the benchmark, as an integer; null if not stated", "type": "integer|null"}, "primary_evaluation_setting": {"description": "The primary way models are evaluated: zero-shot, few-shot, fine-tuned, or a mix", "type": "string"}}

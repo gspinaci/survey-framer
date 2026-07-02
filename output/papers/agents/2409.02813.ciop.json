@@ -1,0 +1,59 @@
+{
+  "benchmark_name": "MMMU-Pro",
+  "publication_year": 2024,
+  "humanities_role": "both",
+  "humanities_role_explanation": "The benchmark includes specific subsets for Art, Art Theory, Music, Literature, and History as academic domains requiring expert knowledge. However, from a humanist perspective, these materials are primarily deployed as testing grounds for general-purpose visual-textual reasoning. They are evaluated through a standardized, multiple-choice framework rather than open-ended hermeneutic analysis.",
+  "benchmark_modalities": [
+    "text",
+    "image"
+  ],
+  "benchmark_modalities_explanation": "Multi-modal evaluation combining text and images. It features a novel 'vision-only' input setting where the entire multiple-choice question and options are rendered as an image (screenshot or photo), requiring models to visually process both text and figures together.",
+  "analytical_tasks": [
+    "multiple-choice question answering",
+    "visual character recognition",
+    "structural and spatial document analysis",
+    "cross-modal thematic interpretation",
+    "stylistic and aesthetic category recognition"
+  ],
+  "analytical_tasks_explanation": "Evaluates tasks such as identifying architectural systems from floor plans, recognizing photographic motion techniques (e.g., panning blur), identifying musical keys from sheet music, conducting thematic analysis of poetry, and contextualizing historical war posters. However, these complex interpretive tasks are ultimately flattened into a 10-option multiple-choice format.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": true,
+      "note": "Evaluates multi-discipline performance across 30 subjects spanning science, engineering, business, medicine, and humanities."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates state-of-the-art multimodal models, including GPT-4o, GPT-4o mini, Claude 3.5 Sonnet, Gemini 1.5 Pro, LLaVA, and InternVL2."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "The LLMs/MLLMs are the primary systems being benchmarked."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Includes substantial evaluation data in History, Literature and Literary Theory, Music, and Visual Arts and Performing Arts (including Art, Art Theory, and Design)."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Uses multiple-choice accuracy (percentage) and Levenshtein distance for calculating OCR accuracy."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "First published as a preprint in September 2024, with updates in May 2025."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper and all benchmark datasets are in English."
+    }
+  },
+  "summary": "MMMU-Pro is a robust and more challenging version of the Massive Multi-discipline Multimodal Understanding (MMMU) benchmark. It addresses 'shortcut learning' in MLLMs by filtering out questions solvable by text-only models, expanding multiple-choice options from four to ten, and introducing a vision-only setting where questions are embedded directly into images. This design pushes models to truly integrate visual and textual streams, simulating how human experts interact with multimodal material.",
+  "key_findings": "The robust modifications lead to significant performance drops across all evaluated models, ranging from 16.8% to 26.9% compared to the original MMMU. GPT-4o remains the top performer but drops from 69.1% on MMMU to 54.0% on the standard 10-option setting and 49.7% in the vision-only setting. Interestingly, Chain of Thought (CoT) prompting shows positive impacts in reasoning-heavy scientific domains but exhibits limited or even negative effects on subjective, interpretation-heavy domains like Art and Design.",
+  "relevant_asjc_areas": [
+    "History",
+    "Literature and Literary Theory",
+    "Music",
+    "Visual Arts and Performing Arts"
+  ],
+  "dataset_size": 3460,
+  "primary_evaluation_setting": "zero-shot"
+}

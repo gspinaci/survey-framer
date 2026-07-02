@@ -6,7 +6,8 @@ An agentic pipeline that analyzes scientific papers on LLM benchmarks in the Art
 
 - **PDF Fetching**: Automatically downloads PDFs from arXiv, DOI resolvers, or direct URLs
 - **Text Extraction**: Parses PDF text via PyMuPDF (handles up to 80 pages, 200k tokens)
-- **LLM Analysis**: Sends full paper text to Claude via Harvard Bedrock API for structured analysis
+- **Multi-Agent Analysis**: Two persona agents — **Ciop** (humanist background) and **Cip** (technical background) — each read the full paper and extract structured metrics via Gemini; a **Reviewer** agent adjudicates their reports against the paper text and writes the final report
+- **Incremental Extra Fields**: New optional fields can be declared in `prompts/extra_fields.json` at any time; re-running the analyze step extracts only the missing fields for cached papers and merges them in
 - **Inclusion Criteria Evaluation**: Automatically assesses papers against 7 criteria:
   - General-purpose benchmark
   - Evaluates generative LLMs (GPT, Llama, Gemini, Claude, Mistral)
@@ -29,15 +30,13 @@ An agentic pipeline that analyzes scientific papers on LLM benchmarks in the Art
    pip install -r requirements.txt
    ```
 
-2. **Get your Harvard API key:**
-   - Visit https://portal.apis.huit.harvard.edu
-   - Register your app (requires HUIT billing ID from your lab/department)
-   - Copy your API key from the portal
+2. **Get your Gemini API key:**
+   - Visit https://aistudio.google.com/apikey
 
 3. **Configure:**
    ```bash
    cp .env.example .env
-   # Edit .env and paste your HARVARD_BEDROCK_API_KEY
+   # Edit .env and paste your GEMINI_API_KEY
    ```
 
 ## Input CSV Format
@@ -74,7 +73,22 @@ python main.py --input input/papers.csv --step analyze
 
 # Generate narrative synthesis (requires analysis JSON files)
 python main.py --input input/papers.csv --step narrative
+
+# Recompute all fields for all papers, ignoring the cache
+python main.py --input input/papers.csv --step analyze --force
 ```
+
+### Add extra extraction fields between runs:
+Declare optional fields in `prompts/extra_fields.json`:
+```json
+{
+  "dataset_size": {
+    "description": "Number of examples in the benchmark, as an integer; null if not stated",
+    "type": "integer|null"
+  }
+}
+```
+Then re-run `--step analyze`: fully cached papers log `CACHED`, papers missing the new field log `INCREMENTAL` and only that field is extracted and merged into the existing reports.
 
 ## Output
 
@@ -90,11 +104,14 @@ Each analyzed paper generates:
   - Summary and key findings
   - Relevant ASJC areas
 
-- **`output/papers/{paper_id}.json`** — Structured JSON with full analysis data including:
+- **`output/papers/{paper_id}.json`** — Final reviewed JSON with full analysis data including:
   - `benchmark_modalities` — List of modality types
   - `benchmark_modalities_explanation` — How modalities are combined
   - `analytical_tasks` — List of task types
   - `analytical_tasks_explanation` — Detailed analysis of task types
+  - `review_notes` — Disagreements between Ciop and Cip and how the Reviewer resolved them
+
+- **`output/papers/agents/{paper_id}.ciop.json` / `{paper_id}.cip.json`** — Intermediate persona reports, kept for auditing how the final values were adjudicated
 
 ### PDFs
 Downloaded PDFs stored in `output/pdfs/` (gitignored)
@@ -116,23 +133,24 @@ Downloaded PDFs stored in `output/pdfs/` (gitignored)
 
 ## Architecture
 
-- **`config.py`** — Settings, API endpoints, paths
+- **`config.py`** — Settings, models, paths
 - **`src/csv_reader.py`** — Parses input CSV and extracts paper identifiers
 - **`src/pdf_fetcher.py`** — Downloads PDFs from arXiv, Unpaywall, or direct URLs
 - **`src/pdf_extractor.py`** — Extracts text from PDFs via PyMuPDF
-- **`src/analyzer.py`** — Calls Claude via Harvard Bedrock for structured analysis
+- **`src/analyzer.py`** — Multi-agent analysis: Ciop + Cip personas, then Reviewer adjudication
+- **`src/fields.py`** — Field registry: core schema + optional extra fields, missing-field detection
+- **`src/llm.py`** — Shared Gemini call helpers and prompt loading
 - **`src/report_writer.py`** — Generates per-paper markdown reports
 - **`src/narrative.py`** — Synthesizes findings into narrative survey
-- **`main.py`** — CLI orchestrator with progress bars and error handling
+- **`main.py`** — CLI orchestrator with progress bars, caching, and incremental merge
+- **`prompts/`** — Agent prompts (`ciop.txt`, `cip.txt`, `reviewer.txt`, `narrative.txt`) and `extra_fields.json`
 
 ## API Details
 
-### Harvard Bedrock (v2)
-- **Endpoint:** `https://go.apis.huit.harvard.edu/ais-bedrock-llm/v2`
-- **Model:** Claude Sonnet 4 (us.anthropic.claude-sonnet-4-20250514-v1:0)
-- **Auth:** `x-api-key` header
-- **Pricing:** AWS Bedrock rates, no markup
-- **Budget:** Can set per-app limits via email to apihelp@harvard.edu
+### Google Gemini
+- **Persona agents (Ciop, Cip):** `gemini-3.5-flash`
+- **Reviewer & narrative:** `gemini-3.1-pro-preview`
+- **Auth:** `GEMINI_API_KEY` in `.env` (from https://aistudio.google.com/apikey)
 
 ### Paper Fetching
 - **arXiv:** Direct PDF download
@@ -141,15 +159,15 @@ Downloaded PDFs stored in `output/pdfs/` (gitignored)
 
 ## Limitations
 
-- PDFs are truncated at 200k tokens (~80 pages) to fit Claude's context
+- PDFs are truncated at 200k tokens (~80 pages) to fit the model context
 - Scanned PDFs (OCR) may fail text extraction — these are skipped
 - Requires stable internet for PDF fetching (~1-2 sec delay between requests)
-- Harvard Bedrock API key required for analysis (pay-as-you-go billing)
+- Gemini API key required for analysis
 
 ## Troubleshooting
 
-**"HARVARD_BEDROCK_API_KEY not set"**
-- Copy `.env.example` to `.env` and fill in your key from the Harvard API Portal
+**"GEMINI_API_KEY not set"**
+- Copy `.env.example` to `.env` and fill in your key from https://aistudio.google.com/apikey
 
 **"PDF text too short"**
 - Paper likely a scanned PDF (no OCR). Manually upload if needed or skip.
@@ -161,11 +179,11 @@ Downloaded PDFs stored in `output/pdfs/` (gitignored)
 - API key invalid or expired. Regenerate from portal.
 
 **API 429 error**
-- You've hit your budget limit. Request increase via apihelp@harvard.edu.
+- You've hit your Gemini rate limit or quota — wait and re-run; cached papers are skipped automatically.
 
 ## Notes
 
-- Each paper analysis calls Claude once (~2-4 min per paper depending on queue)
-- Narrative synthesis uses a separate call (costs ~10-20 input tokens per summary)
+- Each full paper analysis makes 3 LLM calls (Ciop, Cip, Reviewer); incremental runs are much shorter
+- Narrative synthesis uses a separate call
 - Progress bars show live status; check logs for errors
-- JSON analyses are cached — re-running analyze step skips already-analyzed papers
+- Analyses are cached — re-running analyze skips complete papers and only fills in newly declared fields

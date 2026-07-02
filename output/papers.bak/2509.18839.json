@@ -1,0 +1,56 @@
+{
+  "benchmark_name": null,
+  "publication_year": 2025,
+  "humanities_role": "domain",
+  "humanities_role_explanation": "Evaluates the capability of multimodal models to understand domain-specific Christian iconography and identify Christian saints in religious art.",
+  "benchmark_modalities": [
+    "image",
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Evaluates multimodal models using artwork images (paintings) alongside textual prompts featuring either class labels (saint names) or detailed semantic descriptions from the Iconclass classification system.",
+  "analytical_tasks": [
+    "image classification",
+    "zero-shot learning",
+    "few-shot learning"
+  ],
+  "analytical_tasks_explanation": "Performs single-label iconographical image classification to identify 10 distinct categories of Christian saints under zero-shot conditions (using names vs. detailed descriptions) and few-shot learning conditions.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "The evaluation framework is specifically focused on Christian iconography in art history rather than general-purpose tasks."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates OpenAI's GPT-4o and GPT-4o-mini, as well as Google's Gemini 2.5 Pro and Gemini 2.5 Flash."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "Multimodal LLMs (and VLMs) are the primary systems being evaluated on their zero-shot and few-shot capabilities."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Focuses heavily on Visual Arts and Performing Arts and Religious Studies through datasets of paintings depicting Christian iconography."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Evaluates model performance quantitatively using top-1 accuracy scores."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Published as a preprint in September 2025."
+    },
+    "english_language": {
+      "met": true,
+      "note": "Both the paper and the prompt datasets are in English."
+    }
+  },
+  "summary": "This study benchmarks the performance of Vision-Language Models (CLIP, SigLIP) and Multimodal Large Language Models (GPT-4o, Gemini 2.5) on classifying Christian iconography. Using curated subsets of three cultural heritage datasets (ArtDL, ICONCLASS, and Wikidata) representing the ten most common saints, the authors test models under zero-shot (labels only), description-enriched, and few-shot configurations. The results reveal that advanced multimodal LLMs can outperform traditional fine-tuned supervised baselines, though performance remains sensitive to data consistency and formatting.",
+  "key_findings": "Gemini 2.5 Pro and GPT-4o achieved high accuracies on ArtDL (90.45% and 88.20% respectively) and ICONCLASS (84.82% and 75.43% respectively), outperforming a fine-tuned ResNet50 baseline. Conversely, the Wikidata dataset proved challenging for LLMs, with the contrastive model SigLIP-SO400M-Patch14-384 reaching the top accuracy of 66.29%. Enriching prompts with Iconclass descriptions generally improved zero-shot performance, whereas few-shot learning with five exemplars typically resulted in lower accuracies.",
+  "relevant_asjc_areas": [
+    "Visual Arts and Performing Arts",
+    "Religious Studies"
+  ],
+  "paper_id": "2509.18839",
+  "paper_name": "Christian Iconography",
+  "csv_row": 22
+}

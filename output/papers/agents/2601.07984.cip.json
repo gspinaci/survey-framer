@@ -1,0 +1,59 @@
+{
+  "benchmark_name": "VULCA-BENCH",
+  "publication_year": 2026,
+  "humanities_role": "both",
+  "humanities_role_explanation": "Introduces an evaluation framework grounded in art-theoretical constructs to benchmark VLM capabilities in generating expert-level art critiques and cultural interpretations across six traditions.",
+  "benchmark_modalities": [
+    "text",
+    "image"
+  ],
+  "benchmark_modalities_explanation": "Combines artwork images with bilingual (Chinese-English) natural language prompts and model-generated critiques to evaluate cultural art interpretation.",
+  "analytical_tasks": [
+    "generative art critique",
+    "visual description",
+    "technical art analysis",
+    "cultural symbolism decoding",
+    "art-historical attribution",
+    "philosophical aesthetic interpretation"
+  ],
+  "analytical_tasks_explanation": "Evaluates models across a five-level hierarchy: visual perception (L1), technical analysis (L2), cultural symbolism (L3), historical context (L4), and philosophical aesthetics (L5), moving from basic pre-iconographic description to deep iconological interpretation.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "Specifically designed for evaluating domain-specific cultural competence and art-historical interpretation rather than general-purpose abilities."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates 15 vision-language models including GPT-5, GPT-5.2, GPT-4o, Claude-Sonnet-4.5, Claude-Opus-4.5, Claude-Haiku-3.5, Gemini-2.5-Pro, Gemini-3-Pro, Qwen3-VL-235B, Llama4-Scout, and DeepSeek-VL2."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "The primary systems being benchmarked are generative Vision-Language Models (VLMs) acting as critique generators."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Covers Visual Arts and Performing Arts (ASJC 1213), Art History, Philosophy (Aesthetics), and Literature across Chinese, Western, Japanese, Korean, Islamic, and Indian traditions."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Uses multi-dimensional rubric-based scores (Coverage, Alignment, Depth, Accuracy, Quality), automated metrics (DCR, CSA, CDS, LQS), Mean Absolute Error (MAE), and ICC(2,1)."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Preprinted in February 2026."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper and evaluation framework are written in English, using bilingual (English and Chinese) critiques."
+    }
+  },
+  "summary": "The paper presents VULCA-BENCH, a tri-tier evaluation framework for cross-cultural, expert-level art critique generation in Vision-Language Models. Grounded in Panofsky's and Goodman's theories of art interpretation, it maps critiques to a 5-level analytical depth hierarchy and leverages a single-judge calibration strategy to align model-based evaluation with human expert ratings. The framework is applied to 15 major VLMs across six distinct cultural traditions to diagnose systematic degradation in interpretive depth and cultural biases.",
+  "key_findings": "VLM cultural competence degrades significantly from surface-level visual description (L1-L2) to deep cultural interpretation (L3-L5), with Depth and Alignment serving as the most discriminative dimensions. In addition, 13 of 15 evaluated VLMs display systematic Western bias, scoring Western art significantly higher than non-Western traditions (Cohen's d = -0.74, p < 0.001). Automated metrics and dual-judge averaging are highly unreliable (ICC < 0.2), validating the paper's single-judge sigmoid calibration which successfully aligns automated outputs with human experts (reducing held-out MAE to 0.446).",
+  "relevant_asjc_areas": [
+    "Visual Arts and Performing Arts",
+    "Philosophy",
+    "History"
+  ],
+  "dataset_size": 6695,
+  "primary_evaluation_setting": "zero-shot"
+}

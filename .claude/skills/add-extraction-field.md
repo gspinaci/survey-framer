@@ -1,232 +1,102 @@
 # Skill: Add New Extraction Field
 
-This guided workflow walks you through adding a new field to the paper analysis pipeline. Follow the steps to extract a new piece of data from papers.
+This guided workflow walks you through adding a new field to the paper analysis pipeline. No code changes needed — fields are declared in a config file and picked up incrementally.
 
 ---
 
 ## Overview
 
-When you want Survey Framer to extract additional information from papers (e.g., "benchmark_year", "dataset_size", "model_family"), you need to:
-1. Update the JSON schema in the Claude prompt
-2. Update the markdown report template
-3. Test with a sample paper
+Extraction fields come in two kinds:
+- **Core fields** — the fixed schema in `src/fields.py` (`CORE_FIELDS`). Extracted for every paper on a full run.
+- **Extra fields** — optional fields declared in `prompts/extra_fields.json`. They can be added at any time; the next analyze run extracts **only the missing fields** for already-processed papers and merges them into the existing reports (incremental merge). No cache clearing needed.
 
-**Time:** ~5 minutes | **Difficulty:** Easy | **Files modified:** 2
+Every field goes through the full multi-agent flow: Ciop (humanist) and Cip (technical) each extract it, then the Reviewer adjudicates and writes the final value.
 
----
-
-## Step 1: Decide Your Field
-
-**What do you want to extract?**
-
-Examples:
-- `benchmark_year` — The year the benchmark was introduced
-- `dataset_size` — Number of examples in the benchmark
-- `primary_language` — Main language of the benchmark
-- `model_family` — Which model families were evaluated
-
-Choose a field name using snake_case (e.g., `my_field_name`).
-
-**Field name:** `________________`
+**Time:** ~2 minutes | **Difficulty:** Easy | **Files modified:** 1
 
 ---
 
-## Step 2: Update the Analysis Prompt
+## Step 1: Declare Your Field
 
-Open `src/analyzer.py` and find the `ANALYSIS_PROMPT` (lines 7–59).
+Open `prompts/extra_fields.json` and add an entry:
 
-**Location to edit:**
-```python
-# src/analyzer.py, lines 7-59
-ANALYSIS_PROMPT = """\
-...
+```json
 {
-  "benchmark_name": "Name of the benchmark",
-  ...
-  "key_findings": "Main quantitative results or takeaways",
-  "relevant_asjc_areas": ["list of matched ASJC humanities areas"]
+  "dataset_size": {
+    "description": "Number of examples in the benchmark, as an integer; null if not stated",
+    "type": "integer|null"
+  },
+  "models_evaluated": {
+    "description": "List of LLM names evaluated in the paper",
+    "type": "list[string]"
+  }
 }
-...
-"""
 ```
 
-**What to do:**
-1. Find the JSON schema in the prompt (between `{` and `}`)
-2. Add your new field as a JSON key-value pair
-3. Include a brief instruction for Claude about what to extract
-
-**Example: Adding "benchmark_year"**
-
-Before:
-```json
-"key_findings": "Main quantitative results or takeaways",
-"relevant_asjc_areas": ["list of matched ASJC humanities areas"]
-```
-
-After:
-```json
-"benchmark_year": 2024,
-"key_findings": "Main quantitative results or takeaways",
-"relevant_asjc_areas": ["list of matched ASJC humanities areas"]
-```
-
-**Do this now:**
-- [ ] Open `src/analyzer.py`
-- [ ] Find `ANALYSIS_PROMPT` (line 7)
-- [ ] Add your field to the JSON schema with a sample value or type hint
-- [ ] Save the file
+- Use snake_case for the field name.
+- `description` is shown verbatim to the agents — be specific, include an example or the expected format.
+- `type` is a free-form hint (e.g. `string`, `integer|null`, `list[string]`).
 
 ---
 
-## Step 3: Update the Report Template
-
-Open `src/report_writer.py` and add your field to the markdown report.
-
-**Location to edit:**
-```python
-# src/report_writer.py
-def write_paper_report(paper, analysis, output_dir):
-    # Find where markdown is generated
-    # Look for lines that write analysis fields to the report
-```
-
-**What to do:**
-1. Find where other analysis fields are written to the markdown (look for `analysis["benchmark_name"]`, etc.)
-2. Add a section for your new field
-3. Format it as markdown (heading + value)
-
-**Example: Adding "benchmark_year"**
-
-If other fields look like:
-```python
-report += f"**Publication year (from analysis):** {analysis.get('publication_year', 'N/A')}\n"
-```
-
-Add something like:
-```python
-if analysis.get("benchmark_year"):
-    report += f"**Benchmark year:** {analysis['benchmark_year']}\n"
-```
-
-**Do this now:**
-- [ ] Open `src/report_writer.py`
-- [ ] Find where other analysis fields are written (search for `analysis.get` or `analysis[`)
-- [ ] Add your field to the report markdown
-- [ ] Save the file
-
----
-
-## Step 4: Test with a Sample Paper
-
-Clear the cache and re-analyze one paper to verify your field was extracted.
+## Step 2: Run the Analyze Step
 
 ```bash
-# Remove cached reports (keep one paper's JSON for testing)
-rm output/papers/*.md
-
-# Run analysis again
+source .venv/bin/activate
 python main.py --input input/test_papers.csv --step analyze
 ```
 
-**Verify:**
-1. Check the markdown report: `cat output/papers/2601_07984.md`
-   - Look for your new field in the report
-2. Check the JSON: `cat output/papers/2601_07984.json | python -m json.tool`
-   - Look for your new field in the JSON output
-3. If the field is missing, Claude didn't extract it — check your prompt wording
+Papers that already have all fields log `CACHED`. Papers missing your new field log:
 
-**Do this now:**
-- [ ] Run: `rm output/papers/*.md`
-- [ ] Run: `python main.py --input input/test_papers.csv --step analyze`
-- [ ] Verify field appears in markdown and JSON output
-
----
-
-## Step 5: Refine the Prompt (If Needed)
-
-If your field wasn't extracted or the value seems wrong:
-
-1. **Too vague?** Make the prompt instruction more specific
-   - ❌ Bad: `"year": 2024`
-   - ✅ Good: `"year": "Publication or preprint year (e.g., 2024)"`
-
-2. **Extraction failed?** Add an example or type hint
-   - ❌ Bad: `"language": "..."`
-   - ✅ Good: `"primary_language": "English, Chinese, Multilingual, etc."`
-
-3. **Wrong format?** Specify the expected format
-   - ❌ Bad: `"size": "number of examples"`
-   - ✅ Good: `"num_examples": 10000` or `"size": "large (>10k), medium (1k-10k), small (<1k)"`
-
-**To iterate:**
-1. Edit `ANALYSIS_PROMPT` in `src/analyzer.py`
-2. Delete cached markdown: `rm output/papers/*.md`
-3. Re-run: `python main.py --input input/test_papers.csv --step analyze`
-4. Check output again
-
-**Do this now (if needed):**
-- [ ] Review Claude's extraction in the JSON
-- [ ] If incorrect, refine the prompt and re-test
-- [ ] Repeat until satisfied
-
----
-
-## Step 6: Re-analyze All Papers
-
-Once your field works, re-analyze the full paper set:
-
-```bash
-# Remove all cached markdown (keeps JSON)
-rm output/papers/*.md
-
-# Re-analyze everything
-python main.py --input input/papers.csv --step analyze
-
-# Re-generate narrative (uses updated analyses)
-python main.py --input input/papers.csv --step narrative
+```
+INCREMENTAL: <paper_id> — added: dataset_size
 ```
 
-**Do this now:**
-- [ ] Run: `rm output/papers/*.md`
-- [ ] Run: `python main.py --input input/papers.csv --step analyze`
-- [ ] Run: `python main.py --input input/papers.csv --step narrative`
+Only the missing fields are extracted (cheap, short calls); existing values are never recomputed.
+
+---
+
+## Step 3: Verify
+
+1. Check the JSON: `cat output/papers/<id>.json | python -m json.tool` — your field should be present.
+2. Check the markdown: `cat output/papers/<id>.md` — the field appears in the **Additional Fields** section (rendered automatically, no template change needed).
+3. Persona artifacts in `output/papers/agents/<id>.ciop.json` / `<id>.cip.json` also carry the field, for auditing disagreements.
+
+**Field extracted as `null`?** That counts as done — the paper doesn't state it, and it won't be retried on the next run. If you think the description was just too vague, refine it in `extra_fields.json`, then delete the key from the affected `output/papers/<id>.json` files and re-run.
+
+---
+
+## Step 4: Roll Out to the Full Corpus
+
+```bash
+python main.py --input input/papers.csv --step analyze    # incremental over all papers
+python main.py --input input/papers.csv --step narrative  # regenerate synthesis
+```
 
 ---
 
 ## Troubleshooting
 
 **Field not in output JSON?**
-- Check the prompt syntax — JSON must be valid
-- Verify field name doesn't have spaces or special characters
-- Claude may not extract if the instruction is too vague
-
-**Field in JSON but not in markdown report?**
-- Check `src/report_writer.py` — you may have forgotten to add it there
-- Verify the key name matches exactly (case-sensitive)
+- Check `prompts/extra_fields.json` is valid JSON (`python -m json.tool prompts/extra_fields.json`)
+- Make the description more specific with examples
 
 **Wrong values extracted?**
-- Make the prompt instruction more specific with examples
-- Try a different field name or wording
+- Refine the description, delete the key from the paper's JSON, re-run analyze
+- Compare the Ciop and Cip artifacts in `output/papers/agents/` to see where the disagreement came from; the final report's `review_notes` explains the Reviewer's resolution
 
-**Questions?**
-- See `docs/CLAUDE.md` for architecture overview
-- Check `docs/ARCHITECTURE.md` for detailed explanation of analyzer.py
+**Need to recompute everything (core fields included)?**
+```bash
+python main.py --input input/papers.csv --step analyze --force
+```
 
----
-
-## Done!
-
-Your new extraction field is now part of the pipeline. Every paper will now include this data in the analysis output.
-
-**Next steps:**
-- Use the field in your narrative synthesis
-- Add it to your survey visualization or analysis
-- Share the updated code with your team
+**Changing a CORE field?**
+- Edit `CORE_FIELDS` in `src/fields.py` (and `src/report_writer.py` if it needs a dedicated report section), then re-run with `--force`.
 
 ---
 
 **Quick Reference:**
-- Add field to prompt: `src/analyzer.py` lines 7–59
-- Add field to report: `src/report_writer.py` (search for "analysis.get")
-- Test: `python main.py --input input/test_papers.csv --step analyze`
-- Full re-run: `rm output/papers/*.md && python main.py --input input/papers.csv`
+- Declare field: `prompts/extra_fields.json`
+- Incremental run: `python main.py --input input/papers.csv --step analyze`
+- Full recompute: add `--force`
+- Core schema: `src/fields.py` | Report template: `src/report_writer.py`

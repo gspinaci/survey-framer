@@ -20,12 +20,19 @@ from tqdm import tqdm
 
 MAX_ANALYZE_WORKERS = 8
 
-from config import PAPERS_DIR, PDFS_DIR, OUTPUT_DIR, BEDROCK_API_KEY, MODEL, GEMINI_API_KEY
+_NOOP_NOTE_PREFIXES = ("no significant disagreement", "no disagreement")
+
+
+def _is_noop_note(note: str) -> bool:
+    return note.strip().lower().startswith(_NOOP_NOTE_PREFIXES)
+
+from config import PAPERS_DIR, PDFS_DIR, OUTPUT_DIR, AGENTS_DIR, GEMINI_API_KEY
 from src.csv_reader import read_papers_csv
 from src.pdf_fetcher import fetch_pdf
 from src.pdf_extractor import extract_text
 from src.analyzer import analyze_paper
-from src.report_writer import write_paper_report, append_exclusion_note
+from src.fields import declared_fields, missing_fields
+from src.report_writer import write_paper_report
 from src.narrative import generate_narrative
 
 
@@ -43,7 +50,7 @@ def step_fetch(papers: list[dict]) -> dict[str, Path]:
     return results
 
 
-def step_analyze(papers: list[dict], pdf_paths: dict[str, Path]) -> list[dict]:
+def step_analyze(papers: list[dict], pdf_paths: dict[str, Path], force: bool = False) -> list[dict]:
     print(f"\n--- Analyzing {len(pdf_paths)} papers (up to {MAX_ANALYZE_WORKERS} in parallel) ---")
     analyses = []
 
@@ -54,10 +61,19 @@ def step_analyze(papers: list[dict], pdf_paths: dict[str, Path]) -> list[dict]:
             tqdm.write(f"  SKIP: {pid} — no PDF")
             return None
 
-        report_path = PAPERS_DIR / (pid.replace("/", "_") + ".md")
-        if report_path.exists():
-            tqdm.write(f"  CACHED: {pid}")
-            return None
+        safe = pid.replace("/", "_")
+        final_json = PAPERS_DIR / f"{safe}.json"
+        ciop_json = AGENTS_DIR / f"{safe}.ciop.json"
+        cip_json = AGENTS_DIR / f"{safe}.cip.json"
+
+        complete = final_json.exists() and ciop_json.exists() and cip_json.exists()
+        missing = {}
+        if not force and complete:
+            existing = json.loads(final_json.read_text(encoding="utf-8"))
+            missing = missing_fields(existing)
+            if not missing:
+                tqdm.write(f"  CACHED: {pid}")
+                return None
 
         text = extract_text(pdf_path)
         if len(text.strip()) < 200:
@@ -71,15 +87,32 @@ def step_analyze(papers: list[dict], pdf_paths: dict[str, Path]) -> list[dict]:
             "asjc_code": paper.get("asjc_code", ""),
             "humanities": paper.get("humanities", ""),
         }
-        analysis = analyze_paper(text, title=paper.get("name", ""), metadata=metadata)
-        analysis["paper_id"] = pid
-        analysis["paper_name"] = paper.get("name", "")
-        analysis["csv_row"] = paper.get("csv_row", "")
+        title = paper.get("name", "")
+
+        if force or not complete:
+            # FULL run: Ciop + Cip + Reviewer over all declared fields
+            ciop, cip, analysis = analyze_paper(text, declared_fields(), title=title, metadata=metadata)
+            analysis["paper_id"] = pid
+            analysis["paper_name"] = title
+            analysis["csv_row"] = paper.get("csv_row", "")
+            ciop_json.write_text(json.dumps(ciop, indent=2), encoding="utf-8")
+            cip_json.write_text(json.dumps(cip, indent=2), encoding="utf-8")
+            final_json.write_text(json.dumps(analysis, indent=2), encoding="utf-8")
+            tqdm.write(f"  OK: {pid}")
+        else:
+            # INCREMENTAL run: extract only the newly declared fields and merge
+            ciop_new, cip_new, final_new = analyze_paper(text, missing, title=title, metadata=metadata)
+            for path, new in ((ciop_json, ciop_new), (cip_json, cip_new), (final_json, final_new)):
+                data = json.loads(path.read_text(encoding="utf-8"))
+                data.update({k: new[k] for k in missing if k in new})
+                note = new.get("review_notes") if path is final_json else None
+                if note and not _is_noop_note(note):
+                    data.setdefault("review_notes_incremental", []).append(note)
+                path.write_text(json.dumps(data, indent=2), encoding="utf-8")
+            analysis = json.loads(final_json.read_text(encoding="utf-8"))
+            tqdm.write(f"  INCREMENTAL: {pid} — added: {', '.join(missing)}")
 
         write_paper_report(paper, analysis, PAPERS_DIR)
-        analysis_json = PAPERS_DIR / (pid.replace("/", "_") + ".json")
-        analysis_json.write_text(json.dumps(analysis, indent=2), encoding="utf-8")
-        tqdm.write(f"  OK: {pid}")
         return analysis
 
     with tqdm(total=len(papers), desc="Analyzing") as pbar:
@@ -170,18 +203,8 @@ def find_pdfs(papers: list[dict]) -> dict[str, Path]:
 
 
 def _validate_config(step: str) -> None:
-    if step in ("analyze", "all"):
-        if MODEL not in ("bedrock", "gemini"):
-            print(f"Error: Invalid MODEL='{MODEL}'. Must be 'bedrock' or 'gemini'.")
-            sys.exit(1)
-        if MODEL == "bedrock" and not BEDROCK_API_KEY:
-            print("Error: HARVARD_BEDROCK_API_KEY not set. Copy .env.example to .env and fill in your key.")
-            sys.exit(1)
-        if MODEL == "gemini" and not GEMINI_API_KEY:
-            print("Error: GEMINI_API_KEY not set. Set MODEL=bedrock or add GEMINI_API_KEY to .env.")
-            sys.exit(1)
-    if step in ("narrative", "all") and not GEMINI_API_KEY:
-        print("Error: GEMINI_API_KEY not set. The narrative framer requires Gemini — add GEMINI_API_KEY to .env.")
+    if step in ("analyze", "narrative", "all") and not GEMINI_API_KEY:
+        print("Error: GEMINI_API_KEY not set. Copy .env.example to .env and add your key.")
         sys.exit(1)
 
 
@@ -193,6 +216,11 @@ def main():
         choices=["fetch", "analyze", "narrative", "all"],
         default="all",
         help="Which pipeline step to run (default: all)",
+    )
+    parser.add_argument(
+        "--force",
+        action="store_true",
+        help="Recompute all fields for all papers, ignoring the cache",
     )
     args = parser.parse_args()
 
@@ -206,6 +234,7 @@ def main():
     PAPERS_DIR.mkdir(parents=True, exist_ok=True)
     PDFS_DIR.mkdir(parents=True, exist_ok=True)
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    AGENTS_DIR.mkdir(parents=True, exist_ok=True)
 
     papers = read_papers_csv(csv_path)
     print(f"Loaded {len(papers)} papers from {csv_path}")
@@ -216,7 +245,7 @@ def main():
         pdf_paths = find_pdfs(papers)
 
     if args.step in ("analyze", "all"):
-        step_analyze(papers, pdf_paths)
+        step_analyze(papers, pdf_paths, force=args.force)
 
     passing_ids = None
     if args.step in ("narrative", "all"):

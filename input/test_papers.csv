@@ -1,9 +1,9 @@
 Name,Year,Article URL,Modalities,Domain,Evaluation metrics,Humanities?,ASJC code
-Fine-tuning Large Language Models for Automated Pun Translation,2025,https://arxiv.org/abs/2411.02538,Text,Language & Linguistics,Accuracy,Yes,1206
-Evaluating Automatic Speech Recognition Systems on Multilingual Audio Benchmarks,2024,https://arxiv.org/abs/1606.06031,Audio + Text,Language & Linguistics,WER / CER,Yes,1206
-JOKER 2025: Computational Task on Pun and Wordplay Translation,2025,https://arxiv.org/abs/2601.07984,Text,Language & Linguistics,F1 / Accuracy,Yes,1206
-Taiwanese Hakka Cultural Knowledge Benchmark,2024,https://arxiv.org/abs/2503.15358,Text,Language & Linguistics,Accuracy,Yes,1203
-Arabic Semantic Understanding Evaluation,2024,https://arxiv.org/abs/2409.02813,Text,Language & Linguistics,F1 Score,Yes,1206
+MILU: A Multi-task Indic Language Understanding Benchmark,2024,https://arxiv.org/abs/2411.02538,Text,Language & Linguistics,Accuracy,Yes,1206
+The LAMBADA dataset: Word prediction requiring a broad discourse context,2016,https://arxiv.org/abs/1606.06031,Text,Language & Linguistics,Accuracy,Yes,1206
+Cross-Cultural Expert-Level Art Critique Evaluation with Vision-Language Models,2026,https://arxiv.org/abs/2601.07984,Text + Image,Visual Arts,F1 / Accuracy,Yes,1213
+SemEval-2025 Task 1: AdMIRe - Advancing Multimodal Idiomaticity Representation,2025,https://arxiv.org/abs/2503.15358,Text + Image,Language & Linguistics,Accuracy,Yes,1206
+MMMU-Pro: A More Robust Multi-discipline Multimodal Understanding Benchmark,2024,https://arxiv.org/abs/2409.02813,Text + Image,Visual Arts,F1 Score,Yes,1213
 VQArt-Bench,2025,https://arxiv.org/abs/2510.12750,Text + Image,Visual Arts,Accuracy,Yes,1213
 HiST-LLM,2024,https://neurips.cc/virtual/2024/poster/97439,Text,History,Accuracy,Yes,1202
 Christian Iconography,2025,https://arxiv.org/abs/2509.18839,Text + Image,Visual Arts,Accuracy,Yes,1213

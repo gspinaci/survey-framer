@@ -1,0 +1,55 @@
+{
+  "benchmark_name": null,
+  "publication_year": 2025,
+  "humanities_role": "both",
+  "humanities_role_explanation": "Evaluates general-purpose multimodal models on a domain-specific task (interpreting and classifying Christian iconography) using visual and textual art-historical data.",
+  "benchmark_modalities": [
+    "text",
+    "image"
+  ],
+  "benchmark_modalities_explanation": "Combines images of religious paintings with text prompts containing class labels or detailed Iconclass descriptions.",
+  "analytical_tasks": [
+    "fine-grained image classification",
+    "zero-shot classification",
+    "few-shot classification"
+  ],
+  "analytical_tasks_explanation": "Factual and visual recognition of Christian saints in art, tested via zero-shot classification with label names, zero-shot classification with rich iconographical descriptions, and in-context learning with five exemplars.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "Specifically designed to evaluate domain-specific performance on Christian iconography, not a general-purpose vision-language benchmark."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates OpenAI GPT-4o, GPT-4o-mini, Google Gemini 2.5 Pro, and Gemini 2.5 Flash."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "Multimodal generative LLMs and contrastive VLMs are the primary systems being benchmarked."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Focuses on Visual Arts and Performing Arts (ASJC 1213) and Religious Studies, evaluating Christian religious paintings annotated with Iconclass codes."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Uses classification Accuracy and cross-dataset consistency (prediction stability on near-duplicate images)."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "The paper is a preprint from September 2025."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper and prompt templates are written in English."
+    }
+  },
+  "summary": "This study benchmarks the performance of Vision-Language Models and Multimodal Large Language Models on single-label image classification of Christian iconography. Using refined subsets of ArtDL, ICONCLASS, and Wikidata, the authors test models across zero-shot and few-shot settings. The research highlights the potential of general-purpose LLMs as metadata curation tools in digital humanities while showing limitations under noisy data and few-shot conditions.",
+  "key_findings": "Gemini 2.5 Pro outperformed all models on the ArtDL and ICONCLASS datasets, achieving peak accuracies of 90.45% and 84.82% respectively. On the Wikidata dataset, performance dropped significantly for all models, with SigLIP-SO400M-Patch14-384 achieving the highest accuracy of 66.29%, outperforming the LLMs which hovered around 45%. Zero-shot classification with rich descriptions generally improved accuracy for contrastive models but had mixed results for LLMs, while few-shot learning rarely improved performance and often degraded it.",
+  "relevant_asjc_areas": [
+    "Visual Arts and Performing Arts",
+    "Religious Studies"
+  ],
+  "dataset_size": 3445,
+  "primary_evaluation_setting": "a mix"
+}

@@ -1,0 +1,59 @@
+{
+  "benchmark_name": "VULCA-BENCH",
+  "publication_year": 2026,
+  "humanities_role": "both",
+  "humanities_role_explanation": "VULCA-BENCH uses fine-art images from diverse global traditions as content, and evaluates models using a five-layer art-historical framework based on Panofsky's iconological method to measure deep cultural and philosophical understanding.",
+  "benchmark_modalities": [
+    "text",
+    "image"
+  ],
+  "benchmark_modalities_explanation": "The benchmark pairs high-resolution artwork images from eight distinct cultural traditions with structured, expert-written bilingual (Chinese-English) art-critique texts.",
+  "analytical_tasks": [
+    "generative art critique",
+    "multimodal cultural reasoning",
+    "symbolic analysis",
+    "historical context attribution",
+    "philosophical aesthetic interpretation"
+  ],
+  "analytical_tasks_explanation": "Evaluates VLMs on their capacity to perform hierarchical interpretation of art, transitioning from surface-level visual description (L1-L2) to complex symbolic decoding (L3), historical contextualization (L4), and native aesthetic philosophy (L5, e.g., 'yijing' in Chinese or 'wabi-sabi' in Japanese art).",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "It is a specialized benchmark designed specifically for multicultural art critique and deep cultural interpretation rather than general-purpose vision-language tasks."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates multiple state-of-the-art vision-language models, including GPT-4o, Claude-Sonnet-4.5, Claude-Opus-4.5, Gemini-2.5-Pro, Qwen3-VL-235B, GLM-4V-Flash, and DeepSeek-VL2."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "The primary targets of the evaluation are multimodal LLMs (Vision-Language Models)."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Covers visual art, calligraphy, religious iconography, and historical court art across Western, Chinese, Japanese, Korean, Islamic, Indian, and Buddhist cave mural traditions, mapping to Visual Arts and Performing Arts, History, and Philosophy."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Employs Dimension Coverage Rate (DCR), Pearson/Spearman correlation for ranking consistency, Cohen's kappa, and Intraclass Correlation (ICC) for human agreement verification."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "The preprint of this paper was published in February 2026."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper is written in English, and the benchmark's expert critiques are provided in a Chinese-English bilingual format."
+    }
+  },
+  "summary": "VULCA-BENCH is a multicultural art-critique benchmark consisting of 7,410 matched image-critique pairs across 8 cultural traditions, designed to evaluate Vision-Language Models' cultural understanding. It implements a five-layer interpretive hierarchy (from visual perception to philosophical aesthetics) and applies a Cultural Symmetry Principle to ensure methodological fairness across Western and non-Western traditions.",
+  "key_findings": "VLM evaluations reveal a massive 25\u201340 percentage-point layer gap (performance drop) when shifting from surface-level visual perception (L1-L2) to deep cultural/philosophical reasoning (L3-L5). Gemini-2.5-Pro achieved the highest overall Dimension Coverage Rate (72.4%) on the balanced subset. Furthermore, naive few-shot in-context learning actually degraded performance for several models (e.g., -41.3% for DeepSeek-VL2), showing that standard prompting is insufficient for eliciting deep cultural reasoning.",
+  "relevant_asjc_areas": [
+    "Visual Arts and Performing Arts",
+    "History",
+    "Philosophy"
+  ],
+  "paper_id": "2601.07986",
+  "paper_name": "Vulca-Bench",
+  "csv_row": 16
+}

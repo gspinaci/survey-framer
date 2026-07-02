@@ -1,5 +1,8 @@
+import json
 import re
 from pathlib import Path
+
+from src.fields import load_extra_fields
 
 
 def _safe_filename(paper_id: str) -> str:
@@ -81,41 +84,28 @@ def write_paper_report(paper: dict, analysis: dict, output_dir: Path) -> Path:
         "",
     ]
 
+    notes = [analysis.get("review_notes")] + analysis.get("review_notes_incremental", [])
+    notes = [n for n in notes if n]
+    if notes:
+        lines += ["## Reviewer Notes", ""]
+        lines += [f"- {n}" for n in notes]
+        lines.append("")
+
+    extras = {k: analysis[k] for k in load_extra_fields() if k in analysis}
+    if extras:
+        lines += ["## Additional Fields", ""]
+        for key, value in extras.items():
+            label = key.replace("_", " ").title()
+            lines.append(f"**{label}:** {_format_value(value)}")
+            lines.append("")
+
     dest.write_text("\n".join(lines), encoding="utf-8")
     return dest
 
 
-def append_exclusion_note(paper_id: str, failed_criteria: list[tuple[str, str]], output_dir: Path) -> None:
-    """Append an exclusion section to an existing paper report."""
-    filename = _safe_filename(paper_id)
-    dest = output_dir / filename
-    if not dest.exists():
-        return
-
-    labels = {
-        "general_purpose_benchmark": "General-purpose benchmark",
-        "evaluates_generative_llm": "Evaluates generative LLM",
-        "llm_is_primary_system": "LLM is primary evaluated system",
-        "arts_humanities_data": "Arts & Humanities data/tasks",
-        "quantitative_metrics": "Quantitative performance metrics",
-        "published_after_march_2023": "Published after Mar 2023",
-        "english_language": "English language",
-    }
-
-    lines = [
-        "",
-        "---",
-        "",
-        "## Exclusion Note",
-        "",
-        "This paper **does not meet all inclusion criteria** and will be excluded from the narrative synthesis.",
-        "",
-        "| Failed Criterion | Reason |",
-        "|------------------|--------|",
-    ]
-    for key, note in failed_criteria:
-        label = labels.get(key, key)
-        lines.append(f"| {label} | {note} |")
-
-    existing = dest.read_text(encoding="utf-8")
-    dest.write_text(existing + "\n".join(lines) + "\n", encoding="utf-8")
+def _format_value(value) -> str:
+    if isinstance(value, list):
+        return ", ".join(str(v) for v in value)
+    if isinstance(value, dict):
+        return "\n```json\n" + json.dumps(value, indent=2) + "\n```"
+    return str(value)

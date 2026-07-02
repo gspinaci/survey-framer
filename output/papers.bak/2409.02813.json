@@ -1,0 +1,59 @@
+{
+  "benchmark_name": "MMMU-Pro",
+  "publication_year": 2024,
+  "humanities_role": "content",
+  "humanities_role_explanation": "Uses college-level questions, texts, and images from humanities and arts disciplines (such as history, literature, art theory, and music) as evaluation content to test multimodal reasoning.",
+  "benchmark_modalities": [
+    "images",
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Combines visual modalities (including diagrams, charts, photos, and screenshots) with natural language questions. It specifically incorporates a vision-only input mode where the question and options are entirely embedded within the image.",
+  "analytical_tasks": [
+    "multimodal reasoning",
+    "factual question answering",
+    "visual understanding",
+    "contextual text extraction"
+  ],
+  "analytical_tasks_explanation": "Evaluates high-level academic reasoning, such as interpreting historical cartoons and propaganda, identifying artistic styles and architectural systems, recognizing musical structures from sheet music, and analyzing sociological concepts through visual scenarios.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": true,
+      "note": "Evaluates models across 30 academic subjects covering science, tech, humanities, social sciences, medicine, and art."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates leading MLLMs/LMMs including GPT-4o, Claude 3.5 Sonnet, Gemini 1.5 Pro, GPT-4o mini, InternVL2, Qwen2-VL, and LLaVA."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "The primary systems being benchmarked are Multimodal Large Language Models (MLLMs/LMMs)."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Includes subjects under Art & Design (Art, Art Theory, Design, Music) and Humanities & Social Science (History, Literature, Sociology, Psychology)."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Evaluates models using accuracy (%) and OCR similarity/accuracy based on Levenshtein distance."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "The preprint was first published in September 2024 and updated through May 2025."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper and all benchmark questions are written in English."
+    }
+  },
+  "summary": "MMMU-Pro is a robust and highly challenging version of the MMMU benchmark designed to evaluate the true multimodal understanding and reasoning capabilities of MLLMs. It filters out questions that can be solved by text-only LLMs, increases the multiple-choice option space to ten candidates to mitigate guessing, and introduces a vision-only setting where questions are embedded directly inside images. Experimental results reveal massive performance drops (16.8% to 26.9%) across leading models, highlighting the significant gap between superficial pattern matching and deep multimodal reasoning.",
+  "key_findings": "Model performance drops drastically on MMMU-Pro compared to the original MMMU (e.g., GPT-4o drops from 69.1% to 54.0% in the standard 10-option setting, and further to 49.7% in the vision-only setting). Open-source and proprietary models alike exhibit massive performance declines (up to a 37.8% drop for VILA-1.5-40B). Chain-of-Thought (CoT) prompting generally improves performance in reasoning-heavy disciplines but can hinder performance in subjective areas like Art and Design. Explicit OCR prompts do not significantly affect performance, indicating that advanced models have strong basic text extraction but still struggle to integrate and reason over visual-textual context.",
+  "relevant_asjc_areas": [
+    "Visual Arts and Performing Arts",
+    "History",
+    "Literature and Literary Theory",
+    "Music"
+  ],
+  "paper_id": "2409.02813",
+  "paper_name": "MMMU-Pro",
+  "csv_row": 4
+}

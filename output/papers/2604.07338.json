@@ -2,55 +2,64 @@
   "benchmark_name": "Appear2Meaning",
   "publication_year": 2026,
   "humanities_role": "both",
-  "humanities_role_explanation": "Designed for art-historical and cultural visual understanding, using curated museum collections from the Getty and Met as the primary data source to test the inference of non-observable cultural attributes.",
+  "humanities_role_explanation": "Introduces a benchmark designed to evaluate VLMs on structured art-historical and cultural metadata inference (culture, period, origin, creator) using curated museum objects, moving beyond surface perceptual descriptions to contextual, non-observable historical attributes.",
   "benchmark_modalities": [
-    "image",
-    "text"
+    "text",
+    "image"
   ],
-  "benchmark_modalities_explanation": "Multi-modal evaluation where models receive image-only inputs of cultural heritage objects and generate structured text predictions (JSON metadata) evaluated against textual ground truth.",
+  "benchmark_modalities_explanation": "The benchmark presents models with image inputs of heritage objects and natural language prompts, requiring them to output structured text metadata (JSON format) containing predicted cultural attributes.",
   "analytical_tasks": [
     "structured metadata inference",
     "cultural reasoning",
-    "attribute prediction"
+    "temporal attribution",
+    "provenance reasoning",
+    "creator attribution"
   ],
-  "analytical_tasks_explanation": "Evaluating the inference of non-observable historical and contextual attributes\u2014such as cultural classification, historical period, geographic origin, and creator attribution\u2014from visual evidence.",
+  "analytical_tasks_explanation": "Models must perform contextual and cultural reasoning to infer non-observable historical attributes of artworks (culture, production period, geographic origin, and artist/creator attribution) from visual input.",
   "inclusion_criteria": {
     "general_purpose_benchmark": {
       "met": false,
-      "note": "It is a domain-specific benchmark focused specifically on cultural heritage metadata inference."
+      "note": "Specifically designed as a domain-specific benchmark for cultural heritage and art-historical metadata inference."
     },
     "evaluates_generative_llm": {
       "met": true,
-      "note": "Evaluated nine vision-language models including Qwen-VL-Max, Qwen3-VL series, Pixtral-12B, GPT-4.1-mini, GPT-5.4-mini, and Claude Haiku 4.5."
+      "note": "Evaluates 9 vision-language models, including Qwen-VL-Max, Qwen3-VL series, Pixtral-12B, GPT-4.1-mini, GPT-5.4-mini, and Claude Haiku 4.5."
     },
     "llm_is_primary_system": {
       "met": true,
-      "note": "The primary systems being benchmarked are vision-language generative models (VLMs)."
+      "note": "The primary models evaluated are generative Vision-Language Models (VLMs), and an LLM (GPT-4.1-mini) is also used as a judge."
     },
     "arts_humanities_data": {
       "met": true,
-      "note": "Matches Visual Arts and Performing Arts, and Museology, utilizing curated museum collections (paintings, ceramics, metalwork, sculpture)."
+      "note": "Focuses on museum artifacts (ceramics, paintings, metalwork, sculpture), mapping to ASJC areas such as Visual Arts, Museology, History, Classics, Archaeology, and Conservation."
     },
     "quantitative_metrics": {
       "met": true,
-      "note": "Evaluates performance using exact-match accuracy, partial-match accuracy, and attribute-level accuracy."
+      "note": "Evaluates performance using exact match accuracy, partial match rate, and attribute-level accuracy."
     },
     "published_after_march_2023": {
       "met": true,
-      "note": "Published in April 2026."
+      "note": "Published as a preprint in April 2026."
     },
     "english_language": {
       "met": true,
-      "note": "The paper and benchmark metadata are in English."
+      "note": "The paper, prompts, and target benchmark metadata are in English."
     }
   },
-  "summary": "The paper introduces Appear2Meaning, a cross-cultural benchmark designed to evaluate vision-language models on structured cultural metadata inference from image-only inputs. Using a dataset of 750 validated museum artifacts spanning four cultural regions and four object types, the benchmark measures the models' capacity to infer non-observable attributes like creator, origin, and period using an LLM-as-a-Judge framework.",
-  "key_findings": "All evaluated VLMs perform poorly on exact match accuracy (ranging from 0.005 to 0.029), but show significantly higher partial match rates (up to 0.658 for Qwen3-VL-Flash). Models demonstrate substantial cultural variation, achieving stronger performance in East Asian contexts than European or American ones, and frequently default to Eurocentric stylistic shortcuts and period compression.",
+  "summary": "The paper introduces Appear2Meaning, a cross-cultural benchmark designed to evaluate how well vision-language models can infer structured, non-observable cultural metadata (culture, period, origin, creator) from images of heritage artifacts. Using 750 validated museum objects, the study formalizes heritage understanding as a structured prediction task and utilizes an LLM-as-a-Judge framework. Findings demonstrate that while models capture partial stylistic signals, they struggle with coherent multi-attribute metadata inference and exhibit systematic cross-cultural biases.",
+  "key_findings": "All 9 evaluated VLMs achieved very low exact-match accuracy (0.005 to 0.045), demonstrating the difficulty of joint multi-attribute prediction. However, partial match rates were significantly higher, with Qwen3-VL-Flash leading at 0.658. Performance varied strongly by region, with the highest accuracy in East Asia and the lowest in Europe and the Americas, where models often relied on stylistic shortcuts and Eurocentric misattributions.",
   "relevant_asjc_areas": [
     "Visual Arts and Performing Arts",
-    "Museology"
+    "Museology",
+    "History",
+    "Classics",
+    "Archaeology",
+    "Conservation"
   ],
+  "dataset_size": 750,
+  "primary_evaluation_setting": "zero-shot",
+  "review_notes": "Minor differences in task naming and ASJC area mapping were resolved by combining both analysts' lists, as the dataset encompasses Museology, Classics, Conservation, History, Archaeology, and Visual Arts. No significant disagreements were found.",
   "paper_id": "2604.07338",
   "paper_name": "Appear2Meaning",
-  "csv_row": 24
+  "csv_row": 10
 }

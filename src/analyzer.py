@@ -1,162 +1,69 @@
-import json
+"""Multi-agent paper analysis.
 
-import requests
-import google.genai as genai
-
-from config import (
-    BEDROCK_BASE_URL, BEDROCK_MODEL, BEDROCK_API_KEY, ANTHROPIC_VERSION, MAX_TOKENS,
-    MODEL, GEMINI_API_KEY, GEMINI_MODEL
-)
-
-ANALYSIS_PROMPT = """\
-You are an expert in AI benchmarking and digital humanities. Analyze the following scientific paper and extract structured information.
-
-Return a JSON object with exactly these fields:
-
-{
-  "benchmark_name": "Name of the benchmark (or null if paper does not introduce one)",
-  "publication_year": 2024,
-  "humanities_role": "content | domain | both | none",
-  "humanities_role_explanation": "Brief explanation: e.g., 'Uses art history images as factual QA items' vs 'Designed for art-historical visual understanding'",
-  "benchmark_modalities": ["list of modalities used in the benchmark"],
-  "benchmark_modalities_explanation": "Description of how modalities are combined and used (e.g., 'Multi-modal VQA combining artwork images with natural language questions')",
-  "analytical_tasks": ["list of task types evaluated"],
-  "analytical_tasks_explanation": "Detailed explanation of the analytical nature of tasks (e.g., 'factual recognition of art movements', 'economic-grade numerical reasoning', 'causal inference on historical events')",
-  "inclusion_criteria": {
-    "general_purpose_benchmark": {
-      "met": true/false,
-      "note": "Explanation"
-    },
-    "evaluates_generative_llm": {
-      "met": true/false,
-      "note": "Which models were evaluated (e.g., GPT-4, Llama, Gemini, Claude, Mistral)"
-    },
-    "llm_is_primary_system": {
-      "met": true/false,
-      "note": "Is the LLM the primary system being benchmarked, or is it auxiliary?"
-    },
-    "arts_humanities_data": {
-      "met": true/false,
-      "note": "Which ASJC areas: History, Language and Linguistics, Archaeology, Classics, Conservation, History and Philosophy of Science, Literature and Literary Theory, Museology, Music, Philosophy, Religious Studies, Visual Arts and Performing Arts"
-    },
-    "quantitative_metrics": {
-      "met": true/false,
-      "note": "Which metrics: accuracy, F1, BLEU, exact match, ranking, human preference scores, etc."
-    },
-    "published_after_march_2023": {
-      "met": true/false,
-      "note": "Publication or preprint date"
-    },
-    "english_language": {
-      "met": true/false,
-      "note": "Language of the paper and/or benchmark"
-    }
-  },
-  "summary": "2-3 sentence summary of the paper's contribution",
-  "key_findings": "Main quantitative results or takeaways",
-  "relevant_asjc_areas": ["list of matched ASJC humanities areas"]
-}
-
-Only return valid JSON. No markdown fences, no commentary outside the JSON.
-
-PAPER TEXT:
+Two persona agents read the paper independently — Ciop (humanist background)
+and Cip (technical background) — then a Reviewer agent adjudicates their
+reports against the paper text and writes the final report.
 """
 
+import json
 
-def analyze_paper(text: str, title: str = "", metadata: dict | None = None) -> dict:
-    # Branch based on configured model
-    if MODEL == "gemini":
-        return _analyze_with_gemini(text, title, metadata)
+from config import GEMINI_PERSONA_MODEL, GEMINI_REVIEWER_MODEL
+from src import llm
+from src.fields import render_schema
 
-    # Default: Bedrock (Claude)
-    url = f"{BEDROCK_BASE_URL}/model/{BEDROCK_MODEL}/invoke"
 
-    user_content = ANALYSIS_PROMPT + text
+def build_metadata_block(title: str, metadata: dict | None) -> str:
+    block = ""
     if title:
-        user_content = f"Paper title: {title}\n\n" + user_content
-
+        block += f"Paper title: {title}\n"
     if metadata:
-        meta_str = f"\nCSV Metadata:\n"
+        meta_lines = []
         if metadata.get("modalities"):
-            meta_str += f"  - Modalities: {metadata['modalities']}\n"
+            meta_lines.append(f"  - Modalities: {metadata['modalities']}")
         if metadata.get("domain"):
-            meta_str += f"  - Domain: {metadata['domain']}\n"
+            meta_lines.append(f"  - Domain: {metadata['domain']}")
         if metadata.get("evaluation_metrics"):
-            meta_str += f"  - Evaluation metrics: {metadata['evaluation_metrics']}\n"
+            meta_lines.append(f"  - Evaluation metrics: {metadata['evaluation_metrics']}")
         if metadata.get("asjc_code"):
-            meta_str += f"  - ASJC code: {metadata['asjc_code']}\n"
+            meta_lines.append(f"  - ASJC code: {metadata['asjc_code']}")
         if metadata.get("humanities"):
-            meta_str += f"  - Humanities flag: {metadata['humanities']}\n"
-        user_content = user_content.replace("PAPER TEXT:", meta_str + "\nPAPER TEXT:")
+            meta_lines.append(f"  - Humanities flag: {metadata['humanities']}")
+        if meta_lines:
+            block += "CSV Metadata:\n" + "\n".join(meta_lines) + "\n"
+    return block.strip()
 
-    payload = {
-        "anthropic_version": ANTHROPIC_VERSION,
-        "messages": [
-            {
-                "role": "user",
-                "content": [{"type": "text", "text": user_content}],
-            }
-        ],
-        "max_tokens": MAX_TOKENS,
-    }
 
-    resp = requests.post(
-        url,
-        headers={
-            "Content-Type": "application/json",
-            "x-api-key": BEDROCK_API_KEY,
-        },
-        json=payload,
-        timeout=120,
+def _fill(template: str, schema: str, text: str, title: str, metadata: dict | None) -> str:
+    return (
+        template.replace("<<SCHEMA>>", schema)
+        .replace("<<METADATA>>", build_metadata_block(title, metadata))
+        .replace("<<PAPER_TEXT>>", text)
     )
-    resp.raise_for_status()
-
-    data = resp.json()
-    reply = data["content"][0]["text"]
-
-    try:
-        return json.loads(reply)
-    except json.JSONDecodeError:
-        cleaned = reply.strip()
-        if cleaned.startswith("```"):
-            cleaned = cleaned.split("\n", 1)[1]
-            cleaned = cleaned.rsplit("```", 1)[0]
-        return json.loads(cleaned)
 
 
-def _analyze_with_gemini(text: str, title: str = "", metadata: dict | None = None) -> dict:
-    """Analyze paper using Google Gemini API."""
-    # Configure Gemini client
-    client = genai.Client(api_key=GEMINI_API_KEY)
+def run_persona(persona: str, text: str, fields: dict[str, str],
+                title: str = "", metadata: dict | None = None) -> dict:
+    """Run one persona agent ("ciop" or "cip") over the given fields."""
+    prompt = _fill(llm.load_prompt(persona), render_schema(fields), text, title, metadata)
+    return llm.generate_json(prompt, GEMINI_PERSONA_MODEL)
 
-    user_content = ANALYSIS_PROMPT + text
-    if title:
-        user_content = f"Paper title: {title}\n\n" + user_content
 
-    if metadata:
-        meta_str = f"\nCSV Metadata:\n"
-        if metadata.get("modalities"):
-            meta_str += f"  - Modalities: {metadata['modalities']}\n"
-        if metadata.get("domain"):
-            meta_str += f"  - Domain: {metadata['domain']}\n"
-        if metadata.get("evaluation_metrics"):
-            meta_str += f"  - Evaluation metrics: {metadata['evaluation_metrics']}\n"
-        if metadata.get("asjc_code"):
-            meta_str += f"  - ASJC code: {metadata['asjc_code']}\n"
-        if metadata.get("humanities"):
-            meta_str += f"  - Humanities flag: {metadata['humanities']}\n"
-        user_content = user_content.replace("PAPER TEXT:", meta_str + "\nPAPER TEXT:")
+def run_reviewer(text: str, fields: dict[str, str], ciop: dict, cip: dict,
+                 title: str = "", metadata: dict | None = None) -> dict:
+    prompt = _fill(llm.load_prompt("reviewer"), render_schema(fields), text, title, metadata)
+    prompt = prompt.replace("<<CIOP_REPORT>>", json.dumps(ciop, indent=2))
+    prompt = prompt.replace("<<CIP_REPORT>>", json.dumps(cip, indent=2))
+    return llm.generate_json(prompt, GEMINI_REVIEWER_MODEL)
 
-    # Call Gemini API
-    response = client.models.generate_content(model=GEMINI_MODEL, contents=user_content)
-    reply = response.text
 
-    # Parse JSON response (same logic as Bedrock)
-    try:
-        return json.loads(reply)
-    except json.JSONDecodeError:
-        cleaned = reply.strip()
-        if cleaned.startswith("```"):
-            cleaned = cleaned.split("\n", 1)[1]
-            cleaned = cleaned.rsplit("```", 1)[0]
-        return json.loads(cleaned)
+def analyze_paper(text: str, fields: dict[str, str], title: str = "",
+                  metadata: dict | None = None) -> tuple[dict, dict, dict]:
+    """Full multi-agent analysis over the given fields.
+
+    Used for both full runs (all declared fields) and incremental runs
+    (only the missing extra fields). Returns (ciop, cip, final).
+    """
+    ciop = run_persona("ciop", text, fields, title, metadata)
+    cip = run_persona("cip", text, fields, title, metadata)
+    final = run_reviewer(text, fields, ciop, cip, title, metadata)
+    return ciop, cip, final

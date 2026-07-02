@@ -1,0 +1,57 @@
+{
+  "benchmark_name": "MILU",
+  "publication_year": 2024,
+  "humanities_role": "both",
+  "humanities_role_explanation": "MILU evaluates general-purpose models on regional cultural knowledge (content) and contains dedicated subjects like Arts & Culture, History, Literature, and Music & Performing Arts (domain).",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "The benchmark consists entirely of text-only multiple-choice questions (MCQs) in 11 Indic languages and English.",
+  "analytical_tasks": [
+    "multiple choice qa",
+    "factual recognition",
+    "cultural reasoning"
+  ],
+  "analytical_tasks_explanation": "Models are evaluated on factual recognition and reasoning related to regional history, arts, festivals, grammar, and laws of India.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": true,
+      "note": "Evaluates a wide range of subjects (41 subjects across 8 domains) including STEM, Law, Business, and Humanities."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Benchmarked over 42 LLMs including GPT-4o, Gemini, Llama-3, Gemma, and various language-specific Indic models."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "Generative LLMs are the primary systems being benchmarked."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Includes subjects in History, Literature and Linguistics, Religious Studies, and Arts and Culture (Visual Arts and Performing Arts)."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Uses accuracy (multiple-choice question selection accuracy) calculated via conditional log-likelihood and generative parsing."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "First published as a preprint in November 2024."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The scientific paper is written in English, and English is also one of the evaluated languages in the benchmark."
+    }
+  },
+  "summary": "This paper introduces MILU (Multi-task Indic Language Understanding), a comprehensive multi-task benchmark spanning 41 subjects across 11 Indic languages. Sourced from competitive national and state-level exams, MILU evaluates both general knowledge and India-specific cultural nuances. The authors perform an extensive evaluation of 42 open, closed, and language-specific models, revealing substantial gaps in their multilingual and cultural performance.",
+  "key_findings": "GPT-4o achieved the highest average accuracy at 74.74%, followed by other closed models. Open-source multilingual models significantly outperformed domain-specific Indic models, which often performed near the random baseline (25%). Furthermore, models performed notably worse on culturally relevant domains like Arts & Humanities, Social Sciences, and Law & Governance compared to general STEM subjects, suggesting a critical lack of local cultural data in training corpora.",
+  "relevant_asjc_areas": [
+    "History",
+    "Literature and Literary Theory",
+    "Visual Arts and Performing Arts",
+    "Language and Linguistics",
+    "Religious Studies"
+  ],
+  "dataset_size": 79617,
+  "primary_evaluation_setting": "a mix"
+}
