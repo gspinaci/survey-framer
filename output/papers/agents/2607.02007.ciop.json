@@ -1,0 +1,57 @@
+{
+  "benchmark_name": "EduArt",
+  "publication_year": 2026,
+  "humanities_role": "both",
+  "humanities_role_explanation": "EduArt utilizes human-authored educational questions from secondary school tests and AP exams (content) to evaluate specialized domain capabilities such as visual reasoning, stylistic reasoning, and iconographic interpretation (domain).",
+  "benchmark_modalities": [
+    "text",
+    "image"
+  ],
+  "benchmark_modalities_explanation": "Visual question answering dataset that pairs low-to-medium resolution artwork images with structured and open-ended text questions.",
+  "analytical_tasks": [
+    "factual recognition",
+    "stylistic reasoning",
+    "iconographic interpretation",
+    "text completion",
+    "error identification"
+  ],
+  "analytical_tasks_explanation": "Evaluates a model's capacity for factual recall (e.g., identifying style or technique) and visual/interpretive reasoning (e.g., reading symbolic meaning from visual details), alongside complex text completion and finding historical/factual errors in written texts.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "It is a domain-specific evaluation focused specifically on Art History and visual reasoning, rather than a general-purpose benchmark."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates twelve generative multimodal models including GPT-5.5, GPT-5.4 Mini/Nano, Gemini 3.1 Pro/Flash, Gemini 3.5 Flash, Claude Opus/Sonnet 4.6, Claude Haiku 4.5, Qwen3-VL-235B, Mistral Large 3, and Pixtral Large."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "The primary systems under evaluation are multimodal Large Language Models."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Visual Arts and Performing Arts, History"
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Accuracy, exact match, F1 score, and Classical Test Theory (CTT) item discrimination (point-biserial correlation)."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Preprint published in July 2026."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper is written in English, and the benchmark evaluates bilingual datasets in English and Italian."
+    }
+  },
+  "summary": "EduArt is an educational-level benchmark containing 871 human-designed questions from AP Art History and MyZanichelli Italian textbook exercises to diagnose art-historical knowledge and visual reasoning in LLMs. The paper uses Classical Test Theory to assess item-level characteristics and analyzes how different formats and explanation requirements affect model accuracy.",
+  "key_findings": "Top frontier models score near-ceiling (92-97%) on multiple-choice items, but performance drops substantially on more complex formats like open completion (Claude Opus falls to 23.9%) and error identification (Claude Sonnet falls to 6.2%). Furthermore, requiring models to justify their answers (motivation condition) improves Claude models' accuracy slightly but degrades performance for GPT and Gemini models.",
+  "relevant_asjc_areas": [
+    "Visual Arts and Performing Arts",
+    "History"
+  ],
+  "dataset_size": 871,
+  "primary_evaluation_setting": "zero-shot"
+}

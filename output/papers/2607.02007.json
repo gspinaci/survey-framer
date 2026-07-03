@@ -1,0 +1,63 @@
+{
+  "benchmark_name": "EduArt",
+  "publication_year": 2026,
+  "humanities_role": "both",
+  "humanities_role_explanation": "Utilizes human-authored educational questions and artwork images from secondary school tests and AP exams (content) to diagnose domain-specific art-historical knowledge, stylistic reasoning, and visual interpretation in LLMs (domain).",
+  "benchmark_modalities": [
+    "text",
+    "image"
+  ],
+  "benchmark_modalities_explanation": "Visual question answering dataset that pairs natural language questions (English and Italian) with low-to-medium resolution artwork images to evaluate multimodal Visual Question Answering (VQA).",
+  "analytical_tasks": [
+    "factual recognition",
+    "visual reasoning",
+    "stylistic reasoning",
+    "iconographic interpretation",
+    "error identification",
+    "text completion",
+    "word positioning"
+  ],
+  "analytical_tasks_explanation": "Evaluates a model's capacity for factual recall of art history, visual and stylistic reasoning (e.g., reading symbolic meaning from visual details), alongside structured text tasks like word positioning, filling in blanks, and identifying historical or factual errors in written texts.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "Domain-specific benchmark focused specifically on Art History and visual reasoning."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates 12 generative multimodal LLMs including GPT-5.5, GPT-5.4 Mini/Nano, Gemini 3.1 Pro/Flash, Claude Opus/Sonnet/Haiku, Qwen3-VL-235B, Mistral Large 3, and Pixtral Large."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "Generative multimodal large language models are the primary systems being benchmarked."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Visual Arts and Performing Arts, History (Art History and Renaissance paintings)."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Exact match accuracy, F1 score, statement accuracy, element accuracy, blank-filling accuracy, and Classical Test Theory (CTT) item discrimination (point-biserial correlation)."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Preprint published in July 2026."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper is written in English, and the benchmark evaluates datasets in both English (AP Art History) and Italian (Zanichelli)."
+    }
+  },
+  "summary": "EduArt is an educational-level benchmark containing 871 human-authored questions from AP Art History and MyZanichelli Italian textbook exercises to diagnose art-historical knowledge and visual reasoning in multimodal LLMs. The study applies Classical Test Theory to assess item-level difficulty and analyzes how different formats (such as multiple choice, open completion, and error identification) affect model accuracy.",
+  "key_findings": "While six frontier models scored over 90% accuracy on standard multiple-choice questions, performance dropped substantially on more complex formats like open completion (Claude Opus 4.6 fell to 23.9%) and error identification (Claude Sonnet 4.6 fell to 6.2%). Furthermore, requiring models to justify their answers (motivation condition) improved Claude models slightly but degraded performance for GPT and Gemini models, demonstrating that task format variation reveals significant vulnerabilities.",
+  "relevant_asjc_areas": [
+    "Visual Arts and Performing Arts",
+    "History"
+  ],
+  "dataset_size": 871,
+  "primary_evaluation_setting": "zero-shot",
+  "review_notes": "Disagreements were minor and mostly related to the level of detail in the analytical tasks and relevant ASJC areas. Reconciled analytical tasks to include both high-level interpretive tasks (stylistic reasoning, iconographic interpretation) identified by Ciop and specific structural tasks (word positioning, closed/open completion) identified by Cip. Included both 'Visual Arts and Performing Arts' and 'History' for ASJC areas.",
+  "paper_id": "2607.02007",
+  "paper_name": "EduArt: An Educational-Level Benchmark for Evaluating Art History Knowledge in Large Language Models",
+  "csv_row": 46
+}
