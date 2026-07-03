@@ -1,0 +1,53 @@
+{
+  "benchmark_name": "CzechTopic",
+  "publication_year": 2026,
+  "humanities_role": "both",
+  "humanities_role_explanation": "The benchmark uses historical Czech archival documents (content) and is designed specifically to trace social, political, and historical themes in digital humanities and archival research (domain).",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Monolingual historical Czech texts extracted via PERO-OCR from digitized historical books and periodicals.",
+  "analytical_tasks": [
+    "topic presence detection",
+    "word-level topic span localization"
+  ],
+  "analytical_tasks_explanation": "Evaluates document-level identification of semantic topic presence and the precise word-level extraction/localization of text spans matching abstract, human-defined topic descriptions, requiring nuanced semantic understanding and context interpretation.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "Specifically designed as a domain-focused benchmark for topic localization in historical Czech archival documents rather than general-purpose NLP evaluation."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates GPT-5 variants, GPT-OSS, Llama 3, Gemma 3, and Gemini 3 Pro."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "Generative LLMs are the primary systems evaluated and compared against human annotators and fine-tuned BERT baselines."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Focuses on Language and Linguistics (Czech language parsing, OCR text) and History (historical archives, social and political historical themes)."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Precision, Recall, F1 score, Intersection over Union (IoU), and Krippendorff's alpha for inter-annotator agreement."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Preprint dated March 2026."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper is written in English, though the evaluated dataset consists of historical Czech texts."
+    }
+  },
+  "summary": "This paper introduces CzechTopic, a human-annotated benchmark for topic localization in historical Czech texts. Models must identify and localize word-level spans corresponding to human-defined, open-ended topic descriptions, evaluating semantic mapping capabilities on fuzzy and subjective thematic boundaries. The study establishes human baselines through inter-annotator agreement and benchmarks diverse LLMs alongside specialized BERT-based cross-encoders.",
+  "key_findings": "Large language models show a large performance gap, with word-level F1 scores spanning from 13.2 to 61.1. The best model (GPT-5-2) approaches but does not surpass human agreement (61.1 vs. 68.7 F1). Specialized fine-tuned BERT models (e.g., RobeCzech) remain highly competitive with larger LLMs, achieving an F1 of 48.3. Methodologically, matching-based span extraction outperforms tagging-based extraction by 10.4 F1 points, while prompt translation (Czech vs. English) has no significant effect.",
+  "relevant_asjc_areas": [
+    "Language and Linguistics",
+    "History"
+  ],
+  "dataset_size": 1820,
+  "primary_evaluation_setting": "zero-shot"
+}

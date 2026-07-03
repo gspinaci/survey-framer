@@ -1,0 +1,58 @@
+{
+  "benchmark_name": "CaLMQA",
+  "publication_year": 2025,
+  "humanities_role": "both",
+  "humanities_role_explanation": "CaLMQA uses cultural heritage, religious traditions, regional histories, and local customs as the core substance of its question-answering evaluation (content). Concurrently, it addresses the broader digital humanities question of how global AI systems align with and represent regional, multilingual, and socio-cultural human knowledge systems (domain).",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "A monomodal text-only benchmark consisting of 51.7K long-form questions, contextual translations, and reference answers across 23 diverse languages.",
+  "analytical_tasks": [
+    "long-form question answering",
+    "factuality verification",
+    "relevance evaluation",
+    "language alignment assessment"
+  ],
+  "analytical_tasks_explanation": "The benchmark moves beyond simple retrieval to evaluate complex narrative synthesis, contextual interpretation, and causal historical reasoning (e.g., explaining localized social practices, historical naming traditions, and regional governance policies).",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "It is a specialized benchmark focusing specifically on culturally specific, multilingual, long-form question answering."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates several leading generative models: GPT-4o, GPT-4-Turbo, Gemini 1.5 Pro, Claude 3 Opus, Llama 3 (70B), Mixtral 8x22B, and Aya Expanse (32B)."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "LLMs are the primary systems whose cultural knowledge and text-generation quality are evaluated."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Covers several ASJC humanities fields including History, Religious Studies, Language and Linguistics, Literature and Literary Theory, and Visual Arts and Performing Arts."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Utilizes quantitative metrics including language identification rates, repetition percentages, factual precision (VeriScore/FactScore claim counts), LLM-as-a-judge relevance scores, and human Likert-scale quality ratings."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Published at ACL in 2025."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper is written in English, and the benchmark incorporates parallel English translations and evaluations."
+    }
+  },
+  "summary": "This paper presents CaLMQA, a multilingual long-form question answering dataset designed to benchmark LLM knowledge of culturally specific and regionally localized concepts across 23 languages. Using a combination of community forum scraping for high-resource languages and native-speaker freelance generation for low-resource languages, the authors establish a robust pipeline to evaluate the factuality, relevance, and surface fluency of LLM outputs. Their findings show a pronounced gap in LLM capability when dealing with localized cultural knowledge compared to globally uniform, culturally agnostic topics.",
+  "key_findings": "Models show a major drop in factual precision (typically 12-19%) when answering culturally specific questions compared to culturally agnostic ones. Open-weight models fail significantly on low-resource languages\u2014frequently outputting English or apologies rather than the target language\u2014while proprietary models like GPT-4o show higher language stability but still struggle with localized factual accuracy.",
+  "relevant_asjc_areas": [
+    "History",
+    "Language and Linguistics",
+    "Literature and Literary Theory",
+    "Religious Studies",
+    "Visual Arts and Performing Arts"
+  ],
+  "dataset_size": 51698,
+  "primary_evaluation_setting": "zero-shot"
+}

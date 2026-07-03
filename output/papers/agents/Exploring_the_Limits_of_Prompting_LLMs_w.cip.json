@@ -1,0 +1,53 @@
+{
+  "benchmark_name": "PSH v1.0",
+  "publication_year": 2025,
+  "humanities_role": "domain",
+  "humanities_role_explanation": "Uses parole suitability hearing transcripts to analyze and evaluate the replication of individual human rhetorical and stylistic fingerprints.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Text-only evaluation using verbatim transcripts of parole suitability hearings.",
+  "analytical_tasks": [
+    "style mimicking",
+    "controlled text generation",
+    "linguistic style replication"
+  ],
+  "analytical_tasks_explanation": "Evaluates the alignment of generated text with specific human stylistic profiles based on linguistic metrics like clausal complexity, lexical diversity, and pronoun/jargon distribution.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "The evaluation focuses specifically on a specialized corpus of legal/parole hearing transcripts rather than being a broad, general-purpose benchmark."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates GPT-4o, GPT-4.1, and DeepSeek R1."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "The LLMs are tasked with generating the target decision statements and are the primary systems being benchmarked."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Evaluates forensic linguistics and rhetoric, aligning with Language and Linguistics."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Uses standardized z-scores of linguistic features (lexical diversity, sentence complexity, discourse markers, modals, jargon, nominalizations, and pronoun frequencies) compared against human baselines."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Published in September 2025."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper and the underlying PSH corpus are in English."
+    }
+  },
+  "summary": "This paper presents PSH v1.0, a corpus of anonymized parole suitability hearing transcripts, to study the limits of prompting LLMs to mimic human spoken dialogue. By designing speaker-specific rhetorical fingerprints, the authors evaluate whether LLMs can align their outputs with individual human stylistic profiles or if their own pre-trained patterns dominate.",
+  "key_findings": "LLMs show clear limitations in replicating human rhetorical fingerprints. Regardless of prompting conditions (primed-by-corpus vs. fingerprint-enhanced), models struggle to align with human sentence complexity and lexical diversity, maintaining high, writing-biased baselines. Additionally, models demonstrate inherent stylistic footprints that are consistent across versions (e.g., GPT-4o and GPT-4.1) or hard to shift with prompt adjustments (e.g., DeepSeek R1).",
+  "relevant_asjc_areas": [
+    "Language and Linguistics"
+  ],
+  "dataset_size": 100,
+  "primary_evaluation_setting": "zero-shot"
+}

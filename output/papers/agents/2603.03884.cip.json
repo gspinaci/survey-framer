@@ -1,0 +1,53 @@
+{
+  "benchmark_name": "CzechTopic",
+  "publication_year": 2026,
+  "humanities_role": "both",
+  "humanities_role_explanation": "Uses historical Czech archival texts as its dataset content, while being explicitly motivated by assisting historians and digital humanities researchers in tracing social and political themes across archives.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Text-only evaluations operating on transcribed Czech historical document segments obtained via PERO-OCR.",
+  "analytical_tasks": [
+    "topic presence detection",
+    "span localization"
+  ],
+  "analytical_tasks_explanation": "Topic presence detection (evaluating at the document level if a given topic is discussed) and span localization (identifying the exact word-level boundaries and disjoint or overlapping spans representing the topic).",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "It is a specialized benchmark focusing specifically on Czech historical documents and topic localization."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates several generative LLMs including GPT-5 (gpt-5-2, gpt-5-mini, gpt-5-nano), Llama 3, Llama 3.2, Gemma 3, Gemini 3 Pro, and gpt-oss-20b."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "Generative LLMs are evaluated as primary benchmark systems alongside auxiliary fine-tuned BERT baselines."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Utilizes Czech historical documents and periodicals, mapping to Language and Linguistics, and History."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Employs Precision, Recall, F1 score, Intersection over Union (IoU), and Krippendorff's alpha for inter-annotator agreement."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Published as a preprint in March 2026."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper is written in English, although the underlying benchmark text data is in Czech."
+    }
+  },
+  "summary": "This paper presents CzechTopic, a novel human-annotated benchmark for zero-shot topic localization in historical Czech documents. Grounded in inter-annotator agreement rather than a single gold reference, the dataset contains 1,820 manually annotated (text, topic) pairs. The authors establish baseline performances for both state-of-the-art generative LLMs and specialized BERT-based cross-encoders fine-tuned on distilled data.",
+  "key_findings": "LLMs demonstrate substantial performance variability, with the strongest model (GPT-5-2) achieving a word-level F1 of 61.1 and IoU of 48.7, which still lags significantly behind the human baseline (68.7 F1, 57.2 IoU). Specialized BERT-based models fine-tuned on distilled data remain highly competitive (achieving up to 48.3 word-level F1 with RobeCzech), outperforming several smaller open LLMs.",
+  "relevant_asjc_areas": [
+    "Language and Linguistics",
+    "History"
+  ],
+  "dataset_size": 1820,
+  "primary_evaluation_setting": "a mix"
+}

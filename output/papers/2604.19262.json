@@ -1,0 +1,63 @@
+{
+  "benchmark_name": "CulturALL",
+  "publication_year": 2026,
+  "humanities_role": "both",
+  "humanities_role_explanation": "CulturALL treats cultural heritage, regional linguistic idioms, and religious or philosophical beliefs both as the content of its scenarios and as the target domain of inquiry, moving beyond encyclopedic trivia toward contextual, grounded cultural reasoning.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "The benchmark is entirely text-based, consisting of grounded scenarios, questions, and answers written in 14 regional languages and translated into English. Multimodal inputs are explicitly excluded as a limitation.",
+  "analytical_tasks": [
+    "multiple-choice QA",
+    "short-answer QA",
+    "grounded reasoning",
+    "reading comprehension",
+    "cross-lingual alignment"
+  ],
+  "analytical_tasks_explanation": "The tasks operationalize a combination of multilingual reading comprehension, retrieval of long-tail regional/cultural facts, and multi-step contextual reasoning to resolve realistic situational scenarios. Structurally, answers are constrained to objective short-form or multiple-choice options for automated evaluation.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "Specifically designed to evaluate multilingual and multicultural competence on grounded daily tasks rather than general-purpose capabilities."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates several leading models including Gemini 2.5 Pro/Flash, GPT-5, Claude-4 (Opus/Sonnet), Qwen-Max, and the Qwen3 series."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "Generative LLMs are the primary systems being benchmarked across various configurations (reasoning levels and web search)."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Covers topics mapped to History (Heritage), Religious Studies and Philosophy (Belief), Language and Linguistics (Language), and Visual Arts and Performing Arts (Entertainment)."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Uses accuracy (%) based on a binary correctness judgment automated via an LLM judge (GPT-4o) against objective reference keys."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "The paper is published as an arXiv preprint dated April 2026."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper is written in English, and the benchmark includes English translations alongside native language prompts."
+    }
+  },
+  "summary": "CulturALL introduces a high-difficulty multilingual and multicultural benchmark comprising 2,610 text-based, scenario-grounded QA samples in 14 languages from 51 geographic regions. The benchmark was constructed using a collaborative human-LLM framework where native annotators elevated task difficulty through strategies like long-tail entity swaps and compositionality. A comprehensive evaluation shows that even state-of-the-art models struggle significantly on culturally grounded reasoning, leaving a substantial gap for future development.",
+  "key_findings": "The top-performing configuration (Gemini 2.5 Pro with web search and auto-reasoning) achieved only 44.48% overall accuracy and 18.47% on the 'Hard' subset, indicating a substantial performance gap. Proprietary models outperformed open-source alternatives (e.g., Qwen3-235B reached 23.68%). Web search provided a 6.59% accuracy boost for Gemini 2.5 Pro but yielded negligible gains for Qwen models. Additionally, evaluating models using native-language prompts yielded an 8.08% absolute accuracy improvement over translated English prompts.",
+  "relevant_asjc_areas": [
+    "History",
+    "Language and Linguistics",
+    "Philosophy",
+    "Religious Studies",
+    "Visual Arts and Performing Arts"
+  ],
+  "dataset_size": 2610,
+  "primary_evaluation_setting": "zero-shot",
+  "review_notes": "No significant disagreements. Minor differences in the listed analytical tasks and matched ASJC areas were resolved by combining the valid points from both analysts and verifying them against the paper text (e.g., adding Visual Arts and Performing Arts corresponding to the paper's 'Entertainment' topic).",
+  "paper_id": "2604.19262",
+  "paper_name": "CulturALL: Benchmarking Multilingual and Multicultural Competence of LLMs on Grounded Tasks",
+  "csv_row": 40
+}

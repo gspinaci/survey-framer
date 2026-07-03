@@ -1,0 +1,55 @@
+{
+  "benchmark_name": null,
+  "publication_year": 2024,
+  "humanities_role": "both",
+  "humanities_role_explanation": "Evaluates LLMs on repairing OCR errors in 19th-century British newspaper articles containing historical vocabulary, old currency systems, and archaic spelling conventions.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Text-only post-OCR correction task mapping corrupted historical text to human-transcribed ground truth segments.",
+  "analytical_tasks": [
+    "post-OCR correction",
+    "text denoising",
+    "spelling correction",
+    "named entity preservation"
+  ],
+  "analytical_tasks_explanation": "Denoising of textual representations to correct OCR mistakes (character substitutions, insertions, deletions) while maintaining historical linguistic context and named entities.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "The task is specialized for historical text post-OCR correction rather than general-purpose multi-task LLM evaluation."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates Llama 2 (7B and 13B) models."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "The primary objective is to evaluate generative LLMs (Llama 2) for post-OCR correction, comparing them against BART."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Evaluates on historical British newspapers (History, Language and Linguistics ASJC areas)."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Uses Character Error Rate (CER) reduction computed via Levenshtein distance."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Published in May 2024 (LT4HALA 2024 workshop at LREC-COLING 2024)."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper and the BLN600 benchmark dataset are in English."
+    }
+  },
+  "summary": "This paper investigates the adaptation of generative Large Language Models (LLMs) for post-OCR correction of historical documents, focusing on 19th-century British newspapers. By instruction-tuning Llama 2 and comparing it to fine-tuned BART on the BLN600 corpus, the authors demonstrate that a prompt-based generative approach significantly improves OCR quality and adapts exceptionally well to low-data environments.",
+  "key_findings": "Instruction-tuned Llama 2 (13B) achieved a 54.51% average reduction in Character Error Rate (CER), significantly outperforming the fine-tuned BART-large model (23.30% reduction). Furthermore, Llama 2 demonstrated robust performance even when trained on extremely small subsets of data (down to 80 samples).",
+  "relevant_asjc_areas": [
+    "History",
+    "Language and Linguistics"
+  ],
+  "dataset_size": 13192,
+  "primary_evaluation_setting": "fine-tuned"
+}

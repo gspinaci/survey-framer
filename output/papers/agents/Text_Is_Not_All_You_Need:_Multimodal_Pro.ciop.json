@@ -1,0 +1,54 @@
+{
+  "benchmark_name": null,
+  "publication_year": 2025,
+  "humanities_role": "both",
+  "humanities_role_explanation": "The paper uses puns and jokes as core material (content) and addresses the linguistic and rhetorical mechanics of verbal humor, wordplay, and phonetic/lexical ambiguity (domain), which are traditional areas of linguistics and literary analysis.",
+  "benchmark_modalities": [
+    "text",
+    "audio"
+  ],
+  "benchmark_modalities_explanation": "Multimodal prompting that pairs the text of a joke/pun with its synthesized audio counterpart generated via text-to-speech (TTS) to capture phonetic nuances.",
+  "analytical_tasks": [
+    "humor detection",
+    "humor explanation"
+  ],
+  "analytical_tasks_explanation": "Evaluating the LLM's ability to identify puns (homographic and heterographic) and generate natural language explanations of what makes a joke funny, which requires resolving phonetic ambiguity and semantic double meanings.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "The paper does not introduce a new general-purpose benchmark, but rather a multimodal prompting methodology evaluated across three existing humor datasets."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates Gemini-1.5-Flash for generation, and uses GPT-4o as a judge."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "Gemini-1.5-Flash is the primary system evaluated for its capacity to interpret humor under different prompting modalities."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Focuses on Language and Linguistics, as well as Literature and Literary Theory (specifically wordplay, punning, and humor theory)."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Uses win/tie rates evaluated via pairwise comparison with an LLM-as-a-judge (GPT-4o) to evaluate explanation quality."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Published in January 2025."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper and evaluated datasets (SemEval 2017, Context-Situated Puns, ExplainTheJoke) are in English."
+    }
+  },
+  "summary": "This paper investigates whether incorporating auditory modality helps LLMs better grasp the phonetic ambiguity inherent in verbal humor like puns. By presenting Gemini-1.5-Flash with combined text and TTS-generated audio, the study demonstrates that multimodal cues significantly improve the accuracy and quality of generated humor explanations compared to text-only prompts.",
+  "key_findings": "Adding audio cues to prompts improved humor explanation quality, yielding a win-rate increase over the baseline text-only prompts of approximately 4% on the SemEval 2017 dataset for both homographic and heterographic puns. Direct logit analysis of phonetic transcription tasks confirmed that models maintain probabilities for homophones (e.g., 'weight' vs 'wait') when exposed to audio.",
+  "relevant_asjc_areas": [
+    "Language and Linguistics",
+    "Literature and Literary Theory"
+  ],
+  "dataset_size": null,
+  "primary_evaluation_setting": "few-shot"
+}

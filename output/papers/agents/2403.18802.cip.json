@@ -1,0 +1,58 @@
+{
+  "benchmark_name": "LongFact",
+  "publication_year": 2024,
+  "humanities_role": "content",
+  "humanities_role_explanation": "Uses humanities disciplines (such as history, world religions, philosophy, music, and movies) as factual content domains within a multi-topic prompt set to test the general long-form factuality of language models.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Text-only prompts and responses are used to evaluate long-form open-ended factual text generation.",
+  "analytical_tasks": [
+    "long-form generation",
+    "factual recall",
+    "factual precision verification"
+  ],
+  "analytical_tasks_explanation": "Evaluates generative LLMs on long-form, open-domain generation by breaking down responses into atomic facts and verifying their accuracy (factual precision) and coverage (factual recall up to a target number of facts K).",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": true,
+      "note": "Evaluates model factuality across 38 broad topics spanning STEM, Social Sciences, Humanities, and other areas."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Benchmarks 13 prominent LLMs across the Gemini, GPT, Claude, and PaLM-2 model families."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "The primary systems being evaluated are generative LLMs (though an LLM is also used as an agent in the evaluation pipeline)."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Includes humanities topics corresponding to ASJC areas such as History, Philosophy, Music, Religious Studies, and Visual Arts and Performing Arts (movies, architecture, celebrities)."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Measures performance using precision, recall, and a proposed F1@K metric, annotated automatically by the search-augmented SAFE evaluator."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Published at NeurIPS in 2024."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper and the LongFact prompts are written in English."
+    }
+  },
+  "summary": "The paper introduces LongFact, a multi-topic dataset containing 2,280 prompts across 38 categories designed to evaluate the factuality of long-form LLM responses. It also presents SAFE, an agentic evaluation pipeline that extracts and fact-checks individual claims via Google Search, alongside F1@K, a novel metric combining factual precision and length-bounded recall.",
+  "key_findings": "Larger language models generally exhibit superior long-form factuality. The automated SAFE rater agrees with crowdsourced human annotators 72% of the time, outperforms them on disagreement cases (76% to 19%), and is over 20 times cheaper.",
+  "relevant_asjc_areas": [
+    "Language and Linguistics",
+    "History",
+    "Philosophy",
+    "Music",
+    "Visual Arts and Performing Arts",
+    "Religious Studies"
+  ],
+  "dataset_size": 2280,
+  "primary_evaluation_setting": "zero-shot"
+}

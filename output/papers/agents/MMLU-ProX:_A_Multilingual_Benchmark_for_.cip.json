@@ -1,0 +1,56 @@
+{
+  "benchmark_name": "MMLU-ProX",
+  "publication_year": 2025,
+  "humanities_role": "content",
+  "humanities_role_explanation": "Contains humanities disciplines (such as history, philosophy, law, and literature) as a subset of the 57 general-purpose academic subjects evaluated across 29 languages.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "A text-only multilingual multiple-choice dataset with up to 10 choices per question.",
+  "analytical_tasks": [
+    "factual recognition",
+    "multilingual reasoning",
+    "subject-specific academic reasoning"
+  ],
+  "analytical_tasks_explanation": "Evaluates complex academic knowledge retrieval, multilingual reasoning, and multi-step deduction across 57 disciplines using 10-choice questions and Chain-of-Thought prompting.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": true,
+      "note": "Covers 57 diverse academic and professional subjects across STEM, humanities, and social sciences."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates 36 state-of-the-art generative LLMs, including GPT-4, DeepSeek-R1, Llama 3.3, Claude 3.7, and Qwen3."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "The LLMs are the primary systems being benchmarked for cross-lingual reasoning and comprehension."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Includes humanities subjects such as History, Philosophy, Literature, and Law as part of the MMLU-Pro category set."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Evaluates performance using accuracy (%) under zero-shot and 5-shot CoT settings."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Published in November 2025."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper is written in English, and the source questions are in English before being translated into 28 other target languages."
+    }
+  },
+  "summary": "The paper introduces MMLU-ProX, a comprehensive multilingual benchmark spanning 29 typologically diverse languages to evaluate the advanced reasoning capabilities of LLMs. Developed via a semi-automated translation pipeline combined with over 400 hours of expert native-speaker verification, it contains 11,829 parallel questions per language and a 658-question lite version. Extensive evaluations of 36 state-of-the-art models demonstrate significant disparities in performance, highlighting that current LLMs still struggle heavily with low-resource African languages.",
+  "key_findings": "DeepSeek-R1 achieved the highest overall average accuracy of 75.5% across all 29 languages, followed by GPT-4.1 (72.7%) and DeepSeek-V3 (70.5%). Reasoning-focused models (e.g., DeepSeek-R1, Qwen3-Think) showed massive accuracy boosts over standard base models, especially in low-resource African languages (e.g., Wolof and Yoruba). Furthermore, the 658-question lite version maintained consistent relative model rankings with an average deviation of only 1.14% compared to the full 11,829-question set.",
+  "relevant_asjc_areas": [
+    "History",
+    "Philosophy",
+    "Literature and Literary Theory",
+    "Language and Linguistics"
+  ],
+  "dataset_size": 343041,
+  "primary_evaluation_setting": "few-shot"
+}

@@ -1,0 +1,57 @@
+{
+  "benchmark_name": "OfficeQA Pro",
+  "publication_year": 2026,
+  "humanities_role": "content",
+  "humanities_role_explanation": "The benchmark utilizes a century-long historical archive of U.S. Treasury Bulletins (1939-2020s) as its corpus, but treats these materials purely as complex, raw quantitative data for financial retrieval and mathematical calculation rather than as objects of qualitative historical, philological, or interpretive inquiry.",
+  "benchmark_modalities": [
+    "text",
+    "image"
+  ],
+  "benchmark_modalities_explanation": "Evaluates agents on text (both raw OCR extraction and structured markdown/HTML representations) and images (visual interpretation of figures, charts, and scanned historical PDF pages).",
+  "analytical_tasks": [
+    "document retrieval",
+    "tabular data parsing",
+    "arithmetic computation",
+    "statistical modeling",
+    "temporal data reconciliation",
+    "visual chart analysis"
+  ],
+  "analytical_tasks_explanation": "Requires multi-step reasoning including retrieving records across disconnected historical documents, parsing nested hierarchical tables, executing arithmetic and statistical calculations (such as ordinary least squares linear regression), reconciling revised historical figures over time, and resolving visual trend lines on charts.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "Specifically designed for enterprise document reasoning and grounded financial/numerical analysis over Treasury Bulletins."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates frontier models including Claude Opus (4.5, 4.6), Claude Sonnet (4.5, 4.6), Claude Haiku 4.5, GPT-5 (5.1, 5.4, Mini), and Gemini 3 (Pro, 3.1 Pro, Flash)."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "The LLMs and LLM-driven agent frameworks are the primary systems being benchmarked."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Evaluates data from History (specifically economic, administrative, and public policy history of the United States)."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Correctness (accuracy) evaluated under varying absolute relative error thresholds (0.0%, 0.1%, 1.0%, 5.0%), average latency, average tool calls, and monetary cost."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Preprint dated March 2026."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper and the entire benchmark corpus are in English."
+    }
+  },
+  "summary": "OfficeQA Pro is an enterprise-grade benchmark designed to evaluate AI agents on end-to-end grounded reasoning over a heterogeneous corpus of U.S. Treasury Bulletins spanning nearly 100 years. The benchmark challenges agents with 133 highly precise, verifiable analytical questions requiring multi-document retrieval, complex table parsing, and quantitative mathematical modeling. The study highlights that even state-of-the-art agent architectures struggle with temporal revision verification, parsing faithfulness, and precise numerical synthesis.",
+  "key_findings": "Frontier agents achieve less than 50% accuracy on OfficeQA Pro, with the strongest agent (Claude Opus 4.6) scoring 48.1% when processing raw PDFs. Converting the PDFs to a structured representation using Databricks' ai_parse_document yields a 16.1% relative accuracy gain on average and significantly decreases latency and cost. Surprisingly, AI agents consistently outperform human annotators in both speed and accuracy on a subset evaluation.",
+  "relevant_asjc_areas": [
+    "History"
+  ],
+  "dataset_size": 133,
+  "primary_evaluation_setting": "agentic tool-use"
+}

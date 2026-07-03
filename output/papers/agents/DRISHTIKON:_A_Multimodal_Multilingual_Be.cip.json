@@ -1,0 +1,57 @@
+{
+  "benchmark_name": "DRISHTIKON",
+  "publication_year": 2025,
+  "humanities_role": "both",
+  "humanities_role_explanation": "Evaluates cultural and heritage understanding of India, which serves as both the domain of evaluation and the primary humanities content (art forms, festivals, history, traditional attire).",
+  "benchmark_modalities": [
+    "text",
+    "image"
+  ],
+  "benchmark_modalities_explanation": "Comprises aligned text-image pairs where visual artifacts of Indian culture are paired with multilingual textual questions.",
+  "analytical_tasks": [
+    "visual question answering",
+    "cultural reasoning",
+    "factual recognition",
+    "multilingual comprehension"
+  ],
+  "analytical_tasks_explanation": "Requires VLMs to perform factual recognition and cultural reasoning over visually represented Indian traditions, attire, art forms, and historical heritage, answered in multiple languages.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "It is a domain-specific benchmark focused specifically on Indian culture, arts, and heritage."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates a wide range of vision-language models (VLMs) including open-source, proprietary, reasoning-specialized, and Indic-focused systems."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "The primary systems being benchmarked are generative vision-language models."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Covers Visual Arts and Performing Arts, History, Language and Linguistics, and aspects of Religious Studies (festivals)."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Model evaluation uses quantitative measures to assess performance across zero-shot and chain-of-thought settings."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Published in November 2025."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper is written in English, though the dataset itself is multilingual."
+    }
+  },
+  "summary": "The paper introduces DRISHTIKON, a first-of-its-kind multimodal and multilingual benchmark designed to evaluate the cultural understanding of generative vision-language models across India's diverse regions. The dataset spans 15 languages, covers all Indian states and union territories, and contains over 64,000 text-image pairs depicting festivals, attire, cuisine, art, and historical heritage.",
+  "key_findings": "Evaluations expose major gaps in current vision-language models' ability to reason over culturally grounded inputs, particularly for low-resource languages and lesser-known regional traditions.",
+  "relevant_asjc_areas": [
+    "Visual Arts and Performing Arts",
+    "History",
+    "Language and Linguistics"
+  ],
+  "dataset_size": 64000,
+  "primary_evaluation_setting": "zero-shot"
+}

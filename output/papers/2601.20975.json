@@ -1,0 +1,59 @@
+{
+  "benchmark_name": "DeepSearchQA",
+  "publication_year": 2026,
+  "humanities_role": "content",
+  "humanities_role_explanation": "Humanities material, specifically historical library archives like the Sherardian Library and geographical/media queries, is used as factual content for complex multi-step information retrieval. The benchmark tests constraint satisfaction and factual collation rather than interpretive humanities analysis.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Text-based agentic workflows evaluating prompts by querying, retrieving, and synthesizing text from the open web.",
+  "analytical_tasks": [
+    "structured retrieval",
+    "context management",
+    "logical reasoning",
+    "entity resolution",
+    "stopping criteria reasoning"
+  ],
+  "analytical_tasks_explanation": "Tests the agent's ability to construct multi-step search strategies, manage massive document contexts, resolve naming variations (entity resolution), apply logical constraint verification, and determine stopping criteria under epistemic uncertainty.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": true,
+      "note": "Evaluates agents across 17 diverse fields including history, geography, finance, politics, and science."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates Gemini Deep Research Agent, GPT-5 Pro High Reasoning, o3 Deep Research, Gemini 2.5 Flash, and the Claude 4.5 family."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "Autonomous LLM-based web agents are the primary systems being benchmarked."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Includes 'History' as a domain and utilizes archival query objects (e.g., historical library catalogs and botanists)."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Precision, Recall, F1-score, and strict set-based classification rates (Fully Correct, Fully Incorrect, and Correct with Extraneous Answers)."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Published as an arXiv preprint in January 2026."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper and the benchmark dataset are in English."
+    }
+  },
+  "summary": "DeepSearchQA is a 900-prompt benchmark designed to evaluate autonomous web agents on complex, multi-step information retrieval tasks requiring exhaustive answer-set generation. It focuses on the 'Comprehensiveness Gap' by assessing an agent's ability to systematically aggregate fragmented data, resolve overlapping entities, and determine appropriate stopping criteria under epistemic uncertainty. The evaluation employs strict set-based metrics to heavily penalize both under-retrieval and hedging.",
+  "key_findings": "Gemini Deep Research Agent and GPT-5 Pro High Reasoning represent the state-of-the-art, achieving F1 scores of 81.90% and 78.98% respectively, though exhibiting a 'Last Mile Problem' characterized by under- or over-retrieval that reduces their fully correct rates. A steep performance cliff exists for smaller models (e.g., Gemini 2.5 Flash drops to a 42.99% F1 score), illustrating a hard reasoning threshold. Increasing test-time compute via multiple samples monotonically scales accuracy.",
+  "relevant_asjc_areas": [
+    "History"
+  ],
+  "dataset_size": 900,
+  "primary_evaluation_setting": "zero-shot",
+  "review_notes": "Ciop and Cip were mostly in agreement. Combined their analytical tasks based on explicit categories and terms mentioned in the paper (Structured Retrieval, Context Management, Logical Reasoning, Entity Resolution, Stopping Criteria). Excluded 'Literature and Literary Theory' from the ASJC areas since the historical botanist archives firmly fall under History and History of Science rather than literature.",
+  "paper_id": "2601.20975",
+  "paper_name": "DeepSearchQA",
+  "csv_row": 11
+}

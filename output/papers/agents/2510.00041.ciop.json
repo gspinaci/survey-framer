@@ -1,0 +1,57 @@
+{
+  "benchmark_name": "C3B",
+  "publication_year": 2026,
+  "humanities_role": "both",
+  "humanities_role_explanation": "C3B treats cultural artifacts and comic art as both the empirical content (utilizing Japanese manga and Western comics) and the core analytical domain (evaluating models on semiotic interpretation, cultural conflict detection, and culturally-contextualized linguistic translation).",
+  "benchmark_modalities": [
+    "text",
+    "image"
+  ],
+  "benchmark_modalities_explanation": "Multimodal visual question answering combining comic panels (images) with natural language questions, options, and translation targets (text).",
+  "analytical_tasks": [
+    "cultural object extraction",
+    "cultural background identification",
+    "cultural conflict detection",
+    "multilingual machine translation"
+  ],
+  "analytical_tasks_explanation": "Progresses from basic visual identification of cultural symbols (dress, architecture) to complex hermeneutic reasoning about cultural inconsistencies ('cultural conflicts' in co-occurrence), ending with cross-lingual literary translation of manga dialogue across five languages.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "C3B is a highly specialized benchmark designed specifically for cultural awareness and comic-based multimodal understanding."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates 11 open-source Multimodal Large Language Models, including Qwen2.5-VL, Llama3.2, InternVL2, InternLM-XC2.5, and several LLaVA variants."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "The primary objective is benchmarking the cultural capabilities of MLLMs."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Utilizes manga/comics (Visual Arts), cultural heritage objects/symbols (Classics/History), and multilingual dialogue translation (Language and Linguistics)."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Uses Accuracy (ACC), a customized Composite Accuracy (CACC) for conflict detection, and translation metrics BLEU, COMET, and BLEURT."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Published as a conference paper at ICLR 2026 (preprint dated Feb 2026)."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper is written in English, and the benchmark questions/evaluation are conducted primarily in English alongside multilingual target outputs."
+    }
+  },
+  "summary": "This paper introduces the Comics Cross-Cultural Benchmark (C3B), a specialized multimodal evaluation suite containing 2,220 comic images and over 18,000 QA pairs. The benchmark evaluates MLLMs on progressive cultural awareness tasks ranging from basic object extraction to cultural conflict reasoning and cross-lingual manga dialogue translation. Systematic evaluation of 11 open-source MLLMs reveals a substantial performance gap between AI and human baselines.",
+  "key_findings": "The top-performing model, Qwen2.5-VL, leads across most tasks but still lags significantly behind human performance, particularly in high-level cultural conflict detection. MLLMs perform well on dominant cultures (e.g., Japan, China) and high-resource languages (English) but struggle severely with lesser-known cultures (e.g., Finnish, Somali) and low-resource translations (e.g., Japanese-to-Thai), highlighting a persistent Western-centric and majoritarian cultural bias.",
+  "relevant_asjc_areas": [
+    "Visual Arts and Performing Arts",
+    "Language and Linguistics",
+    "Literature and Literary Theory"
+  ],
+  "dataset_size": 18789,
+  "primary_evaluation_setting": "zero-shot"
+}

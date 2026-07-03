@@ -1,0 +1,65 @@
+{
+  "benchmark_name": "HistBench",
+  "publication_year": 2025,
+  "humanities_role": "both",
+  "humanities_role_explanation": "HistBench is designed specifically to assess domain-specific historical reasoning and research methods. It goes beyond simple fact-retrieval by treating history as an interpretive humanistic discipline and utilizes authentic primary sources such as manuscripts, paleographic materials, maps, and historical audio/visual media.",
+  "benchmark_modalities": [
+    "text",
+    "image",
+    "audio",
+    "video"
+  ],
+  "benchmark_modalities_explanation": "A multimodal setup combining printed texts, manuscript scans, maps, inscriptions, audio oral-history recordings, and historical video clips to test integrated visual, auditory, and textual interpretation.",
+  "analytical_tasks": [
+    "Bibliographic Retrieval",
+    "Source Identification",
+    "Source Processing",
+    "Historical Analysis",
+    "Interdisciplinary Integration",
+    "Cultural Contextualization"
+  ],
+  "analytical_tasks_explanation": "Evaluates complex interpretive skills, including decoding handwritten manuscripts and damaged inscriptions (Source Processing), causal reasoning and ideological analysis (Historical Analysis), integrating archaeological and linguistic evidence (Interdisciplinary Integration), and analyzing cultural metaphors and identities within historical discourse (Cultural Contextualization).",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "It is a highly domain-specific benchmark focused exclusively on historical reasoning and research methodologies."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates several state-of-the-art models including GPT-4o, DeepSeek-R1, Grok 3, o4-mini-high, and o3, alongside agentic pipelines."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "LLMs and LLM-based agent architectures are the primary systems evaluated."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Evaluates History, Classics (epigraphy/papyrology), Archaeology (material culture), Language and Linguistics (paleography/translation), Philosophy, Religious Studies, and Visual Arts (art history/iconography)."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Uses accuracy metrics (specifically pass@1 and pass@2 scores)."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "The paper is a preprint published in June 2025."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper and metadata are in English, although the benchmark materials evaluate source comprehension across 29 ancient and modern languages."
+    }
+  },
+  "summary": "This paper introduces HistBench, a specialized benchmark of 414 expert-curated, multilingual, and multimodal questions designed to assess advanced historical reasoning and research capabilities in AI. To address performance gaps on these tasks, the authors present HistAgent, a domain-specific agent utilizing custom historical-research tools (like paleographic OCR, translation, and scholarly literature search) to mimic humanistic workflows.",
+  "key_findings": "State-of-the-art LLMs equipped with online search perform poorly on HistBench, with GPT-4o achieving only 18.60% accuracy, DeepSeek-R1 achieving 14.49%, and o3 reaching 32.37%. HistAgent (built on GPT-4o) significantly outperforms these baselines, achieving 27.54% pass@1 and 36.47% pass@2, while maintaining a strong 60.00% pass@1 performance on general agent benchmarks like GAIA.",
+  "relevant_asjc_areas": [
+    "History",
+    "Classics",
+    "Archaeology",
+    "Language and Linguistics",
+    "Philosophy",
+    "Religious Studies",
+    "Visual Arts and Performing Arts"
+  ],
+  "dataset_size": 414,
+  "primary_evaluation_setting": "zero-shot"
+}

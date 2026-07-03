@@ -1,0 +1,56 @@
+{
+  "benchmark_name": "CaLMQA",
+  "publication_year": 2025,
+  "humanities_role": "both",
+  "humanities_role_explanation": "Evaluates LLMs on domain-specific cultural knowledge (history, religion, literature, and customs) by asking culturally specific, long-form questions, serving both as a content repository and an evaluation domain.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "A text-only long-form question answering dataset where questions are written in the native language of the target culture and require multi-sentence textual answers.",
+  "analytical_tasks": [
+    "long-form question answering",
+    "factual recognition",
+    "cultural reasoning"
+  ],
+  "analytical_tasks_explanation": "Operationalizes factual recall of localized historical and religious events, causal reasoning of regional customs and societal rules, and long-form linguistic generation.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "Specifically designed for evaluating cultural knowledge and multilingual long-form QA."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates Claude-3-Opus, Gemini-1.5-Pro, GPT-4-Turbo, GPT-4o, Aya-Expanse-32B, Llama-3-70B, and Mixtral-8x22B."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "Generative LLMs are the primary systems being benchmarked on long-form generation quality."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Covers several ASJC humanities areas including History, Language and Linguistics, Literature and Literary Theory, and Religious Studies."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Uses language identification accuracy, token repetition rate, factual precision (via VeriScore/FactScore), relevance (LLM-as-a-judge), and human evaluation (ratings/rankings)."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Published in July 2025 (ACL 2025)."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper is written in English and describes a multilingual benchmark."
+    }
+  },
+  "summary": "This paper presents CaLMQA, a translation-free multilingual dataset containing 51.7K culturally specific, long-form questions across 23 languages. It designs a rigorous evaluation framework measuring surface-level output quality (language and repetition), factual precision, and semantic relevance, paired with human ratings from native speakers. The work highlights critical performance gaps in LLMs' understanding of diverse cultures and low-resource languages.",
+  "key_findings": "Factual precision drops significantly for all models on culturally specific questions (45%-52%) compared to culturally agnostic questions (64%-71%). Open-weight models perform far worse than closed-source models in low-resource languages, often exhibiting major surface-level failures such as responding in English instead of the prompt language or getting stuck in repetitive loops.",
+  "relevant_asjc_areas": [
+    "History",
+    "Language and Linguistics",
+    "Literature and Literary Theory",
+    "Religious Studies"
+  ],
+  "dataset_size": 51698,
+  "primary_evaluation_setting": "zero-shot"
+}

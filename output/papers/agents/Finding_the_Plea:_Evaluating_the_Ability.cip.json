@@ -1,0 +1,54 @@
+{
+  "benchmark_name": null,
+  "publication_year": 2025,
+  "humanities_role": "both",
+  "humanities_role_explanation": "Uses historical 18th-century Swedish and English petitions as the data source to benchmark LLMs on rhetorical structure annotation, a task specifically designed to support digital humanities and historical research.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Text-only dataset consisting of historical transcriptions of 18th-century petitions written in Swedish and English.",
+  "analytical_tasks": [
+    "sequence labeling",
+    "rhetorical structure identification",
+    "uncertainty estimation"
+  ],
+  "analytical_tasks_explanation": "Annotation and segmentation of fine-grained rhetorical sections (Salutatio, Petitio, and Conclusio) in historical documents, as well as self-rating of document annotation difficulty (metacognitive/uncertainty estimation).",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "Designed specifically for historical petition rhetorical structure analysis rather than being a broad, general-purpose benchmark."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates commercial and open-source models: GPT-4, Gemini 1.5 Pro, Mixtral 8x22B, Mistral 7B, LLaMA 3 70B, and LLaMA 3 8B."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "The primary objective is evaluating the performance of various LLMs on the historical text annotation task."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Focuses on Language and Linguistics (rhetorical analysis of historical dialects) and History (18th-century administrative and legal petitions)."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Uses token-level precision, recall, F1-score, mean token-level edit distance, Mean Error (ME) for difficulty ratings, and Spearman's rank correlation coefficient (\u03c1)."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Published as part of the RANLP 2025 workshop in September 2025."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper is written in English, and the benchmark evaluates both English and Swedish language datasets."
+    }
+  },
+  "summary": "This paper presents a study evaluating the ability of several LLMs to identify and annotate key rhetorical structures (Salutatio, Petitio, and Conclusio) in 18th-century Swedish and English historical petitions. The authors construct a dataset of 200 annotated petitions and assess LLM performance using few-shot prompting across variations in prompt complexity, prompting languages, and model sizes. Additionally, the study contrasts human-assessed text difficulty with model-assigned difficulty ratings to analyze model confidence alignment.",
+  "key_findings": "Most models perform exceptionally well on identifying the opening greeting (Salutatio), achieving F1 scores in the high 90s. Identifying the request (Petitio) and conclusion (Conclusio) proves more challenging, especially for smaller models (such as LLaMA-3 8B and Mistral 7B) and Swedish-language texts. Furthermore, models consistently underestimate document difficulty compared to human annotators (showing negative Mean Errors) and demonstrate weak, often negative correlation with human difficulty rankings.",
+  "relevant_asjc_areas": [
+    "Language and Linguistics",
+    "History"
+  ],
+  "dataset_size": 200,
+  "primary_evaluation_setting": "few-shot"
+}

@@ -1,0 +1,58 @@
+{
+  "benchmark_name": "CulturALL",
+  "publication_year": 2026,
+  "humanities_role": "both",
+  "humanities_role_explanation": "CulturALL treats cultural heritage, regional linguistic idioms, and religious or philosophical beliefs both as the content of its scenarios and as the target domain of inquiry, attempting to move beyond encyclopedic trivia toward contextual, grounded cultural reasoning.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "The benchmark is entirely text-based, consisting of grounded scenarios, questions, answers, and explanations written in 14 regional languages and translated into English.",
+  "analytical_tasks": [
+    "contextual reasoning",
+    "reading comprehension",
+    "cross-lingual alignment",
+    "multiple-choice QA",
+    "short-answer QA"
+  ],
+  "analytical_tasks_explanation": "The tasks require integrating regional language comprehension with domain-specific cultural knowledge to make practical or contextual decisions. However, from a humanist perspective, the hermeneutic depth is limited; tasks are structurally constrained to objective, brief, or multiple-choice formats to facilitate automatic evaluation, converting complex cultural judgments into binary right/wrong classifications.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "It is specifically designed for evaluating multilingual and multicultural competence on grounded tasks rather than general-purpose capabilities."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates several state-of-the-art models including Gemini 2.5 Pro/Flash, GPT-5, Claude-4 (Opus/Sonnet), and Qwen-max/Qwen3."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "The primary focus is benchmarking and analyzing the performance of generative LLMs under various configurations (reasoning levels and web search)."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Covers several ASJC-relevant areas through topics like 'Heritage' (History), 'Belief' (Religious Studies and Philosophy), and 'Language' (Language and Linguistics)."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Evaluates model accuracy using a binary correctness judgment automated via an LLM judge (GPT-4o)."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "The paper is a preprint dated April 21, 2026."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper is written in English, and the benchmark includes English translations alongside native language prompts."
+    }
+  },
+  "summary": "CulturALL is a multilingual and multicultural benchmark consisting of 2,610 evaluation items designed to test LLMs on grounded real-world scenarios rather than shallow trivia. Developed through a human-AI collaborative framework, it spans 14 languages across 51 regions and covers 16 diverse everyday and cultural topics. The paper demonstrates that even state-of-the-art models struggle with these contextual tasks, with the best-performing model configuration reaching only 44.48% accuracy.",
+  "key_findings": "The top-performing setup (Gemini 2.5 Pro with web search and auto-reasoning) achieved only 44.48% accuracy, indicating a substantial performance gap. Proprietary models like Gemini, GPT-5, and Claude dramatically outperformed open-source alternatives like Qwen3. Web search proved highly beneficial for some models (boosting Gemini by 6.59%) but did not aid Qwen models, while increased reasoning effort had an uneven impact. Models struggled significantly with the 'Hard' subset, scoring under 19% accuracy.",
+  "relevant_asjc_areas": [
+    "History",
+    "Language and Linguistics",
+    "Philosophy",
+    "Religious Studies"
+  ],
+  "dataset_size": 2610,
+  "primary_evaluation_setting": "zero-shot"
+}

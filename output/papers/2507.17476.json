@@ -1,0 +1,60 @@
+{
+  "benchmark_name": "Multilingual Native Reasoning Challenge (MultiNRC)",
+  "publication_year": 2025,
+  "humanities_role": "both",
+  "humanities_role_explanation": "The benchmark tests reasoning over deep linguistic and cultural-historical domains (e.g., regional customs, traditional calendars). The humanities content (idioms, grammatical quirks, historical facts) is not merely raw text but the direct object of multi-step analytical reasoning.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Text-only benchmark evaluating models on native-language prompts in French, Spanish, and Chinese, along with a subset of human-translated English equivalents for cross-lingual comparison.",
+  "analytical_tasks": [
+    "language-specific linguistic reasoning",
+    "wordplay & riddles",
+    "cultural/tradition reasoning",
+    "math reasoning with cultural relevance"
+  ],
+  "analytical_tasks_explanation": "Operationalizes multi-step reasoning over language-specific grammatical conventions, decoding homophonic puns and ancient idioms, performing temporal calculations using traditional historical or religious calendars, and resolving math word problems anchored in regional socio-economic history and measurements.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "Specifically designed to evaluate multilingual reasoning capabilities under native linguistic and cultural contexts rather than serving as a general-purpose benchmark."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates 14 leading generative LLMs, including OpenAI's o3 and o4-mini, Gemini-2.5-Pro, Claude 3.7/4, DeepSeek-R1, and Llama-4."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "The generative LLMs are the primary systems being benchmarked across different languages and reasoning modes."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Involves data from 'Language and Linguistics' (grammatical conventions, puns, lexical nuances), 'History' (historical calendars, holiday timelines), and 'Literature and Literary Theory' (riddles and idiomatic expressions)."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Uses pass@1 accuracy evaluated via an LLM-as-a-judge (GPT-4.1) which maintains a >95% agreement rate with human annotators."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "The preprint was published in July 2025."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper is written in English and includes an English-translated equivalent subset of the benchmark for comparative analysis."
+    }
+  },
+  "summary": "MultiNRC is a native, multilingual reasoning benchmark comprising 1,055 questions in French, Spanish, and Chinese designed to evaluate LLMs on culturally and linguistically nuanced reasoning. Authored by native speakers, it avoids English-centric translation biases by testing deep linguistic, idiomatic, and cultural-historical knowledge. The study reveals that state-of-the-art models struggle significantly with native reasoning, exposing systemic deficiencies in their localized cultural knowledge.",
+  "key_findings": "No evaluated LLM surpasses 50% accuracy on MultiNRC, with the highest-performing model (o3-pro) reaching only 49%. Translating culturally relevant math questions to English improves accuracy by an average of 10-19%, indicating better retrieval of regional knowledge in English. However, scores on deep cultural and traditional reasoning remain stagnant even when translated, demonstrating that models fundamentally lack this localized cultural-historical knowledge regardless of the prompt language.",
+  "relevant_asjc_areas": [
+    "Language and Linguistics",
+    "History",
+    "Literature and Literary Theory"
+  ],
+  "dataset_size": 1055,
+  "primary_evaluation_setting": "zero-shot",
+  "review_notes": "Minor disagreements in benchmark_name completeness and general_purpose_benchmark inclusion flag. Resolved by using the full benchmark name (Multilingual Native Reasoning Challenge) and setting general_purpose_benchmark to false, as the benchmark specifically targets multilingual cultural and linguistic reasoning rather than broad general-purpose tasks. Combined task names to exactly match the four categories defined by the paper's authors.",
+  "paper_id": "2507.17476",
+  "paper_name": "MultiNRC: A Challenging and Native Multilingual Reasoning Evaluation Benchmark for LLMs",
+  "csv_row": 37
+}

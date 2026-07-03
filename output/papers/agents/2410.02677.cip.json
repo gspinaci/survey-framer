@@ -1,0 +1,56 @@
+{
+  "benchmark_name": "CulturalBench",
+  "publication_year": 2024,
+  "humanities_role": "domain",
+  "humanities_role_explanation": "Evaluates LLMs on multicultural knowledge across 45 countries, covering topics like social etiquette, celebrations, religion, language, and food.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Evaluates text-only QA across two formats: CulturalBench-Easy (multiple-choice) and CulturalBench-Hard (True/False binary judgment of all options).",
+  "analytical_tasks": [
+    "factual recognition",
+    "multiple-choice question answering",
+    "binary classification"
+  ],
+  "analytical_tasks_explanation": "Factual recognition of regional customs, celebrations, and communication etiquette; reasoning about situations with multiple valid cultural answers (multi-mode behavior).",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "Focused specifically on evaluating cultural knowledge and adaptability across 45 global regions, rather than general NLP capabilities."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluated 29 models including GPT-4o, Claude 3.5 Sonnet, Llama-3.3-70b, DeepSeek V3, Qwen-2.5-72b, and OpenAI o1."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "Generative LLMs are the primary systems being benchmarked."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Includes data related to Language and Linguistics, Religious Studies, History, and Performing Arts (e.g., traditional attire, celebrations, linguistics, and social norms)."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Evaluated using accuracy (specifically multi-choice accuracy for CulturalBench-Easy and joint binary decision accuracy for CulturalBench-Hard)."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "First submitted to arXiv in October 2024 (v2 in June 2025)."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper is written in English and the benchmark is primarily English-only (with an auxiliary multilingual translation experiment)."
+    }
+  },
+  "summary": "CulturalBench is a robust, human-in-the-loop cultural knowledge benchmark consisting of 1,696 questions spanning 45 global regions and 17 cultural topics. Built via Human-AI CulturalTeaming (a collaborative red-teaming pipeline), it features both an Easy (multiple-choice) and a Hard (multi-label binary T/F) evaluation setting to thoroughly assess model understanding of cultural diversity and nuance.",
+  "key_findings": "While frontier models achieve high accuracy on the Easy multiple-choice version (up to 89.6%), performance drops significantly on the Hard version, where the best model (OpenAI o1) achieves only 61.5% compared to a human baseline of 92.4%. Models systematically struggle with multi-mode questions (multiple valid answers) due to mode-seeking biases, and show uneven geographic performance, excelling in North America/South Asia but underperforming in South America, East Europe, and the Middle East.",
+  "relevant_asjc_areas": [
+    "Language and Linguistics",
+    "Religious Studies",
+    "History",
+    "Visual Arts and Performing Arts"
+  ],
+  "dataset_size": 1696,
+  "primary_evaluation_setting": "zero-shot"
+}

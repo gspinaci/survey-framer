@@ -1,0 +1,61 @@
+{
+  "benchmark_name": "MMLU",
+  "publication_year": 2021,
+  "humanities_role": "both",
+  "humanities_role_explanation": "MMLU includes specific academic humanities subjects (e.g., history, philosophy, world religions) as target evaluation domains to measure domain expertise, while using their textual questions to assess general multi-task language understanding.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "The benchmark is entirely text-based, consisting of multiple-choice questions with four options evaluated using zero-shot and few-shot text prompts.",
+  "analytical_tasks": [
+    "multiple-choice question answering",
+    "factual recognition",
+    "logical deduction",
+    "moral reasoning",
+    "legal rule application"
+  ],
+  "analytical_tasks_explanation": "Evaluates declarative knowledge retrieval in history and religion, logical deduction in formal logic, moral reasoning in everyday scenarios, and legal rule application in professional law cases.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": true,
+      "note": "Evaluates broad multitask language understanding across 57 diverse subjects spanning humanities, social sciences, STEM, and professional domains."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates GPT-3 (up to 175B parameters), GPT-2, and UnifiedQA."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "Generative LLMs and text-to-text models are the primary focus of the evaluation."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Includes subjects such as History (US, European, World, and Prehistory), Philosophy (Formal Logic, Fallacies, and Ethics), and Religious Studies (World Religions)."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Evaluated using multi-class classification accuracy and Root Mean Squared (RMS) calibration error."
+    },
+    "published_after_march_2023": {
+      "met": false,
+      "note": "Published at ICLR 2021, with preprints emerging in late 2020."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper and the benchmark dataset are written entirely in English."
+    }
+  },
+  "summary": "This paper introduces the Massive Multitask Language Understanding (MMLU) benchmark, a test spanning 57 subjects designed to measure LLM multitask knowledge and reasoning. By evaluating models in zero-shot and few-shot transfer settings across 15,908 multiple-choice questions, it aims to test the breadth and depth of real-world knowledge acquired during pretraining.",
+  "key_findings": "The 175B parameter GPT-3 model achieved 43.9% average accuracy, scoring well above the 25% random baseline but far below the 89.8% human expert-level estimate. The evaluation revealed that LLM capabilities were highly lopsided, showing particular weakness in calculation-heavy STEM tasks and socially sensitive subjects like morality and law, and exhibited poor calibration with confidence scores diverging from actual accuracy by up to 24%.",
+  "relevant_asjc_areas": [
+    "History",
+    "Philosophy",
+    "Religious Studies"
+  ],
+  "dataset_size": 15908,
+  "primary_evaluation_setting": "zero-shot and few-shot",
+  "review_notes": "Ciop and Cip largely agreed. Ciop classified humanities_role as 'content', while Cip classified it as 'both'. I resolved this to 'both' because MMLU aims to measure domain-specific competence in humanities subjects alongside using them as content for general multitask understanding. I combined their analytical tasks to encompass factual, logical, moral, and legal reasoning.",
+  "paper_id": "2009.03300",
+  "paper_name": "MMMLU",
+  "csv_row": 2
+}

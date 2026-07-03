@@ -1,0 +1,59 @@
+{
+  "benchmark_name": null,
+  "publication_year": 2025,
+  "humanities_role": "both",
+  "humanities_role_explanation": "Uses puns and jokes as core material (content) and evaluates the linguistic and rhetorical mechanics of verbal humor, wordplay, and phonetic ambiguity (domain).",
+  "benchmark_modalities": [
+    "text",
+    "audio"
+  ],
+  "benchmark_modalities_explanation": "Multimodal prompting that pairs the text of a joke or pun with its synthesized audio counterpart generated via text-to-speech (TTS) to capture phonetic nuances.",
+  "analytical_tasks": [
+    "humor detection",
+    "humor explanation",
+    "phonetic transcription evaluation"
+  ],
+  "analytical_tasks_explanation": "Factual and reasoning-based tasks identifying puns (humor detection), generating natural language explanations of linguistic and phonetic mechanics (humor explanation), and evaluating internal logit representations for homophones (phonetic transcription evaluation).",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "The paper does not introduce a new general-purpose benchmark; it evaluates a multimodal prompting methodology on existing humor datasets."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates Gemini-1.5-Flash (generation), GPT-4o (evaluator/judge), and Gazelle v0.2 (for transcription logit analysis)."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "The primary system being evaluated is the generative LLM (Gemini-1.5-Flash) for its capacity to interpret humor."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Focuses on Language and Linguistics, as well as Literature and Literary Theory (wordplay, punning, and humor theory)."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Uses pairwise win rates, tie rates, and token probabilities (logits) to evaluate performance."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Published in January 2025."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper and evaluated datasets (SemEval 2017, Context-Situated Puns, ExplainTheJoke) are in English."
+    }
+  },
+  "summary": "This paper investigates whether incorporating an auditory modality helps LLMs better grasp the phonetic ambiguity inherent in verbal humor, such as puns. By presenting models with combined text and TTS-generated audio, the study demonstrates that multimodal cues significantly improve the accuracy and quality of generated humor explanations compared to text-only prompts.",
+  "key_findings": "Adding audio cues to prompts improved Gemini-1.5-Flash's humor explanation quality across all tested datasets. For the SemEval 2017 dataset, it yielded a win-rate increase over the baseline text-only prompts of approximately 4% for both homographic and heterographic puns. Direct logit analysis of phonetic transcription tasks confirmed that models maintain high probabilities for homophones (e.g., 'weight' vs 'wait') when exposed to audio.",
+  "relevant_asjc_areas": [
+    "Language and Linguistics",
+    "Literature and Literary Theory"
+  ],
+  "dataset_size": null,
+  "primary_evaluation_setting": "few-shot",
+  "review_notes": "Ciop and Cip disagreed slightly on humanities_role (Ciop said 'both', Cip said 'domain'); resolved to 'both' because the methodology evaluates specific linguistic features (domain) using datasets of jokes and puns (content). Cip included 'phonetic transcription evaluation' under analytical_tasks, which was retained as it accurately reflects the logit analysis explicitly evaluated in the paper. Cip's inclusion of 'Visual Arts and Performing Arts' as an ASJC area was excluded to maintain a strict focus on the paper's primary disciplines of 'Language and Linguistics' and 'Literature and Literary Theory'.",
+  "paper_id": "Text_Is_Not_All_You_Need:_Multimodal_Pro",
+  "paper_name": "Text Is Not All You Need: Multimodal Prompting Helps LLMs Understand Humor",
+  "csv_row": 22
+}

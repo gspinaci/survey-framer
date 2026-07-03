@@ -1,0 +1,58 @@
+{
+  "benchmark_name": "M3Exam",
+  "publication_year": 2023,
+  "humanities_role": "content",
+  "humanities_role_explanation": "The benchmark uses humanities material\u2014specifically history, geography, and language/linguistics questions from school examinations\u2014as testing content to gauge general intelligence and cultural alignment, rather than engaging with humanities as an active, domain-specific methodological inquiry.",
+  "benchmark_modalities": [
+    "text",
+    "image"
+  ],
+  "benchmark_modalities_explanation": "Multimodal multiple-choice questions where text is paired with images of historical figures, diagrams, maps, or scripts.",
+  "analytical_tasks": [
+    "reading comprehension",
+    "factual recognition",
+    "script conversion",
+    "visual question answering",
+    "idiomatic interpretation"
+  ],
+  "analytical_tasks_explanation": "Tasks require parsing linguistic features (e.g., matching Swahili idioms or transliterating Javanese script), reading comprehension of literary/historical texts, factual historical QA (such as identifying Beijing's suburban reforms or Mahatma Gandhi's activities), and reasoning over visual representations (such as historical photos, maps, and diagrams).",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": true,
+      "note": "Evaluates LLMs across broad domains, including science, mathematics, language, and social sciences."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates closed-source generative LLMs (GPT-4, ChatGPT, Claude) and open-source models (BLOOM, Vicuna, BLIP-2, InstructBLIP, Fromage, OpenFlamingo)."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "The LLMs are the primary systems being benchmarked."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Includes substantial materials relevant to History, Language and Linguistics, and Literature and Literary Theory."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Uses accuracy as the quantitative evaluation metric."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Presented at NeurIPS 2023."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper is written in English, and English is one of the benchmarked languages."
+    }
+  },
+  "summary": "M3Exam is a multilingual, multimodal, and multilevel benchmark derived from real-world human school exams across nine countries. It evaluates LLM capabilities on diverse linguistic scripts, visual exam questions, and varying educational difficulties (low, mid, high school levels).",
+  "key_findings": "GPT-4 outperforms other models with 72.92% average accuracy but struggles with low-resource (Javanese) and non-Latin script (Thai) languages. Multimodal models perform poorly on complex visual questions (BLIP-2 scores under 50% overall). Notably, LLMs do not exhibit a monotonic decrease in performance as exam levels increase, contrasting sharply with human cognitive development.",
+  "relevant_asjc_areas": [
+    "History",
+    "Language and Linguistics",
+    "Literature and Literary Theory"
+  ],
+  "dataset_size": 12317,
+  "primary_evaluation_setting": "zero-shot"
+}

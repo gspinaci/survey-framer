@@ -1,0 +1,55 @@
+{
+  "benchmark_name": "JOKER 2025 Task 2",
+  "publication_year": 2025,
+  "humanities_role": "both",
+  "humanities_role_explanation": "Humour and wordplay are treated not just as plain text but as sophisticated literary and linguistic artifacts. The benchmark measures how well systems capture semantic double-entendres, phonology, and cultural-stylistic transfer in translation.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "The benchmark relies on parallel text datasets consisting of English source puns and their corresponding target French translations.",
+  "analytical_tasks": [
+    "machine translation of wordplay",
+    "humour preservation",
+    "double entendre/pun translation mapping",
+    "phonetic-semantic embedding alignment"
+  ],
+  "analytical_tasks_explanation": "The primary task is to translate English puns into French while preserving both the literal/contextual meaning and the humorous dual-meaning (wordplay) of the source, requiring deep stylistic and linguistic adaptation.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "It is a specialized domain-specific benchmark focused exclusively on pun translation and computational humour."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates several generative models, including Qwen2.5, mBART-50, NLLB-200, Mistral, and OpenAI's GPT-4o-mini (o4-mini)."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "The primary systems being benchmarked are large language models, either fine-tuned or prompted with advanced strategies."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Covers Language and Linguistics, as well as Literature and Literary Theory (stylistics, humour studies, and wordplay)."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Uses BLEU, BERTScore, a customized 'pun location-based' overlap metric, and expert manual translation quality scores."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Published in September 2025."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper is written in English, and the benchmark focuses on English-to-French translation."
+    }
+  },
+  "summary": "This paper presents the overview of Task 2 of the CLEF 2025 JOKER track, which evaluates automated translation of puns from English to French. It assesses 52 system runs submitted by nine teams, comparing standard machine translation metrics against a novel 'pun location-based' metric and native-speaker expert judgments. The findings show that while LLM translation has significantly progressed, preserving both linguistic humor and semantic sense across languages remains a highly complex task.",
+  "key_findings": "Standard machine translation metrics (BLEU, BERTScore) correlate poorly with wordplay preservation, whereas the newly introduced 'pun location-based' metric shows a high Pearson correlation (0.84) with human expert judgments. The best-performing pipeline\u2014a multi-agent architecture utilizing phonetic/semantic embeddings and contrastive learning built on GPT-4o-mini\u2014achieved a manually validated translation success rate of 74%.",
+  "relevant_asjc_areas": [
+    "Language and Linguistics",
+    "Literature and Literary Theory"
+  ],
+  "dataset_size": 1682,
+  "primary_evaluation_setting": "mix"
+}

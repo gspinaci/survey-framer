@@ -1,0 +1,57 @@
+{
+  "benchmark_name": "MMLU",
+  "publication_year": 2021,
+  "humanities_role": "both",
+  "humanities_role_explanation": "MMLU includes specific academic humanities subjects (e.g., history, philosophy, world religions) as target evaluation domains while using their textual questions as content to assess general multi-task language understanding and reasoning.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Text-only multiple-choice questions with four options, processed in zero-shot and few-shot text prompts.",
+  "analytical_tasks": [
+    "multiple choice question answering",
+    "factual recognition",
+    "causal reasoning",
+    "moral judgment",
+    "logical deduction"
+  ],
+  "analytical_tasks_explanation": "Evaluates factual recognition of historical and religious events, logical deduction in formal logic, moral reasoning in everyday scenarios, and legal rule application in professional law cases.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": true,
+      "note": "Evaluates broad language understanding across 57 diverse subjects spanning STEM, humanities, and social sciences."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates GPT-3 (ranging from Ada to Davinci/175B) and GPT-2."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "Generative LLMs and text-to-text models (UnifiedQA) are the primary focus of the evaluation."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Includes datasets for History (US, World, European), Philosophy, Religious Studies (World Religions), and Jurisprudence/Law."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Evaluated primarily via multi-choice classification accuracy, alongside calibration error metrics."
+    },
+    "published_after_march_2023": {
+      "met": false,
+      "note": "Published at ICLR in 2021 (preprinted in late 2020)."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper and all questions in the benchmark are written in English."
+    }
+  },
+  "summary": "This paper introduces the Massive Multitask Language Understanding (MMLU) benchmark, a test spanning 57 subjects designed to measure LLM multitask knowledge and reasoning. The dataset contains 15,908 multiple-choice questions covering elementary to professional difficulty levels. It evaluates models in zero-shot and few-shot transfer settings to assess real-world knowledge acquisition from pretraining.",
+  "key_findings": "The largest GPT-3 model (175B) achieved 43.9% average accuracy, scoring far above random chance (25%) but well below the expert human estimate of 89.8%. Smaller models performed close to random baseline. LLM capabilities were found to be highly lopsided, showing weakness in calculation-heavy STEM subjects, morality, and law, while exhibiting poor calibration (unaware of when they are wrong).",
+  "relevant_asjc_areas": [
+    "History",
+    "Philosophy",
+    "Religious Studies"
+  ],
+  "dataset_size": 15908,
+  "primary_evaluation_setting": "zero-shot and few-shot"
+}

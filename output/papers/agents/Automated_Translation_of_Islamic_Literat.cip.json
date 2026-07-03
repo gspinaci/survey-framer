@@ -1,0 +1,55 @@
+{
+  "benchmark_name": null,
+  "publication_year": 2025,
+  "humanities_role": "domain",
+  "humanities_role_explanation": "Evaluates LLM translation quality specifically on classical Islamic scholarly literature including the Quran, Hadith, Tafseer, and Islamic Jurisprudence.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Processes Arabic text from the Al-Shamela digital library and evaluates the generated English translation text.",
+  "analytical_tasks": [
+    "machine translation",
+    "semantic similarity",
+    "back-translation validation"
+  ],
+  "analytical_tasks_explanation": "Translating classical Arabic religious literature into English and assessing semantic preservation through back-translation and embedding-based cosine similarity analysis.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "The paper does not present a general-purpose benchmark, but rather an application-specific translation pipeline and evaluation framework for Islamic texts."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates commercial models (GPT-4o-mini, GPT-4o, Claude 3.5 Sonnet, Claude 3.5 Haiku, Claude 3.0/3.5 Haiku) and open-source models (Llama 3.2, Qwen 2.5, Silma, Jais, Mistral)."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "Generative LLMs are the primary systems evaluated for both the forward translation and back-translation verification tasks."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Evaluates on Islamic literature (Religious Studies, Philosophy, and Literature)."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Uses vector embedding cosine similarity scores to quantitatively validate translation quality."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Published in January 2025."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper is written in English and translates the Arabic corpus into English."
+    }
+  },
+  "summary": "This paper presents an automated pipeline using LLMs (primarily GPT-4o-mini) to translate over 250,000 pages of classical Islamic scholarly literature from the Al-Shamela library into English. It introduces a translation validation method that uses LLMs to back-translate the text into Arabic and evaluates semantic similarity using vector embedding cosine similarity.",
+  "key_findings": "71% of the OpenAI-based back-translations and 86% of the Anthropic-based back-translations achieved acceptable quality (cosine similarity score >= 0.7) compared to the original Arabic source, showing that low-cost LLMs can reliably translate complex religious literature.",
+  "relevant_asjc_areas": [
+    "Religious Studies",
+    "Language and Linguistics",
+    "Literature and Literary Theory"
+  ],
+  "dataset_size": 250000,
+  "primary_evaluation_setting": "zero-shot"
+}

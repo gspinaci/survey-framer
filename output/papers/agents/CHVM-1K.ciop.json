@@ -1,0 +1,57 @@
+{
+  "benchmark_name": "CHVM-1K",
+  "publication_year": 2024,
+  "humanities_role": "both",
+  "humanities_role_explanation": "The benchmark treats cultural heritage not merely as a passive source of data, but subjects LLM generations to critical domain-specific ethical and interpretative frameworks. It assesses value alignment, representation, and bias in cultural heritage discourse.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Natural language text prompts and generated narrative responses assessing cultural heritage value systems.",
+  "analytical_tasks": [
+    "value alignment evaluation",
+    "cultural bias assessment",
+    "ethical alignment analysis",
+    "factual accuracy verification"
+  ],
+  "analytical_tasks_explanation": "Evaluating LLM outputs against international cultural heritage ethics, measuring representation biases, identifying Western-centric historical framing, and evaluating the preservation of intangible cultural narratives.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "The benchmark is domain-specific, focusing explicitly on value alignment within cultural heritage contexts."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates generative LLMs including GPT-4, Llama, and other contemporary models."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "The primary focus is measuring the output quality and ethical alignment of generative LLMs."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Directly maps to Museology, History, Conservation, and Visual Arts and Performing Arts."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Uses alignment classifiers, semantic distance, toxic/bias scoring, and human evaluation metrics."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Published in late 2024/early-access timeline."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper and its evaluation frameworks are presented in English."
+    }
+  },
+  "summary": "The paper presents CHVM-1K, a benchmark designed to investigate value misalignment in LLM-generated texts regarding global cultural heritage. By analyzing model responses through the lens of heritage preservation ethics and representational bias, it exposes critical failures in current LLMs when discussing non-Western cultures.",
+  "key_findings": "The study demonstrates that state-of-the-art LLMs suffer from significant Western-centric bias, frequently generating narratives that misrepresent non-Western heritage site values, apply inappropriate colonial frameworks, and exhibit historical inaccuracies.",
+  "relevant_asjc_areas": [
+    "History",
+    "Museology",
+    "Conservation",
+    "Visual Arts and Performing Arts"
+  ],
+  "dataset_size": 1000,
+  "primary_evaluation_setting": "zero-shot"
+}

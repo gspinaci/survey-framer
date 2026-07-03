@@ -1,0 +1,55 @@
+{
+  "benchmark_name": null,
+  "publication_year": 2025,
+  "humanities_role": "both",
+  "humanities_role_explanation": "Evaluates LLMs on diplomatic transcription of 18th-century Russian prints. It treats historical texts not merely as raw data but as philological artifacts with strict temporal boundaries, introducing metrics to evaluate period-specific character preservation and temporal biases.",
+  "benchmark_modalities": [
+    "text",
+    "image"
+  ],
+  "benchmark_modalities_explanation": "Visual document transcription evaluating multimodal LLMs by feeding them page images of historical books and assessing the accuracy of the generated text transcriptions.",
+  "analytical_tasks": [
+    "diplomatic transcription",
+    "historical character preservation",
+    "temporal bias analysis"
+  ],
+  "analytical_tasks_explanation": "Evaluates character-level transcription fidelity of 18th-century Russian Civil font, specifically testing the preservation of period-specific characters (e.g., yat, decimal i) and analyzing whether models introduce incorrect, older archaic characters (over-historicization).",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "The paper presents a specialized domain-specific evaluation framework and dataset for historical Russian document OCR rather than a general-purpose benchmark."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates 12 leading LLMs including Claude 3.5/3.7 Sonnet, GPT-4o, GPT-4.1, o4-mini, Gemini 2.0/2.5, Qwen2.5-VL, and Llama-4."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "The primary focus is benchmarking LLMs as direct OCR engines and analyzing their transcription behaviors."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Uses 1,029 scanned pages of 18th-century Russian Civil print books, mapping to Language and Linguistics and History."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Employs standard metrics (CER, WER) alongside novel humanities-aligned metrics: Historical Character Preservation Rate (HCPR), Archaic Insertion Rate (AIR), and Case Error Rate (CaseER)."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Published in September 2025."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper and its evaluation framework are written in English, though the source dataset is in historical Russian."
+    }
+  },
+  "summary": "This paper presents a robust methodological framework for evaluating LLM-based OCR on historical documents, using a newly created corpus of 18th-century Russian Civil print books. It introduces novel philological metrics, such as Historical Character Preservation Rate and Archaic Insertion Rate, to measure specific temporal biases in LLMs. The study evaluates 12 multimodal models, revealing that while LLMs outperform traditional OCR, they suffer from 'over-historicization' by inserting incorrect pre-Petrine characters.",
+  "key_findings": "Gemini 2.5 Pro and Qwen 2.5 VL achieved the highest accuracy and stability on historical Russian OCR. A critical finding is 'over-historicization': LLMs (especially OpenAI models) frequently insert obsolete medieval Slavonic characters (like omega and yus) that were already eliminated from the 18th-century Civil font. Additionally, post-OCR correction was found to degrade performance compared to direct, high-quality OCR.",
+  "relevant_asjc_areas": [
+    "History",
+    "Language and Linguistics"
+  ],
+  "dataset_size": 1029,
+  "primary_evaluation_setting": "zero-shot"
+}

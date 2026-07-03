@@ -1,0 +1,56 @@
+{
+  "benchmark_name": null,
+  "publication_year": 2025,
+  "humanities_role": "domain",
+  "humanities_role_explanation": "Evaluates LLM comprehension of computational humor and puns, focusing on phonetic and semantic wordplay.",
+  "benchmark_modalities": [
+    "text",
+    "audio"
+  ],
+  "benchmark_modalities_explanation": "Combines text and generated audio of puns/jokes to provide multimodal context for humor explanation and detection.",
+  "analytical_tasks": [
+    "humor detection",
+    "humor explanation",
+    "phonetic transcription evaluation"
+  ],
+  "analytical_tasks_explanation": "Factual and reasoning-based tasks such as identifying puns (humor detection) and explaining the linguistic/phonetic mechanics of jokes (humor explanation).",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "Focuses specifically on humor and pun understanding, not a general-purpose capability suite."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates Gemini-1.5-Flash (generation), GPT-4o (evaluator/judge), and Gazelle v0.2 (for transcription logit analysis)."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "The primary systems being evaluated are generative LLMs (Gemini-1.5-Flash)."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Uses datasets on humor, puns, and jokes, mapping to Language and Linguistics, Literature and Literary Theory, and Performing Arts."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Uses pairwise win rates, tie rates, and token probabilities (logits) to evaluate performance."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Published in January 2025."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper and evaluated datasets are in English."
+    }
+  },
+  "summary": "The paper proposes a multimodal prompting approach combining text with TTS-generated audio to enhance Large Language Models' understanding and explanation of humor and puns. By evaluating on three datasets, the study shows that auditory cues significantly improve the generation of accurate humor explanations by capturing phonetic ambiguities. It also investigates the impact of voice styles and analyzes the models' internal logit representations of homophones.",
+  "key_findings": "Providing multimodal (text + audio) input improves Gemini-1.5-Flash's humor explanation performance over a text-only baseline across all datasets, increasing win rates against human explanations on SemEval by approximately 4% for both homographs (from 68.89% to 72.59%) and heterographs (from 47.76% to 51.74%). Direct pairwise LLM-as-a-judge evaluations also favored the multimodal approach on Context-Situated Puns and ExplainTheJoke datasets.",
+  "relevant_asjc_areas": [
+    "Language and Linguistics",
+    "Literature and Literary Theory",
+    "Visual Arts and Performing Arts"
+  ],
+  "dataset_size": null,
+  "primary_evaluation_setting": "few-shot"
+}

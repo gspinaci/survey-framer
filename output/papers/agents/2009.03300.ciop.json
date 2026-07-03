@@ -1,0 +1,56 @@
+{
+  "benchmark_name": "MMLU",
+  "publication_year": 2021,
+  "humanities_role": "content",
+  "humanities_role_explanation": "The benchmark utilizes humanities subjects (such as history, philosophy, and world religions) primarily as sources of factual, multiple-choice question-answering items, evaluating declarative knowledge retrieval rather than deep, hermeneutic, or open-ended interpretive analysis.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "The benchmark is entirely text-based, consisting of multiple-choice questions with four options.",
+  "analytical_tasks": [
+    "factual recognition",
+    "multiple-choice question answering",
+    "formal logical deduction",
+    "normative moral evaluation"
+  ],
+  "analytical_tasks_explanation": "Evaluates models on their ability to retrieve historical facts, identify logical fallacies, solve formal logic proofs, and recognize common moral intuitions within highly structured, closed-ended scenarios.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": true,
+      "note": "Evaluates broad multitask language understanding across 57 diverse subjects spanning humanities, social sciences, STEM, and professional domains."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates generative and text-to-text models including GPT-3 (up to 175B parameters) and UnifiedQA."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "Large language models are the central systems being benchmarked."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Features humanities subjects including History (US, European, World, and Prehistory), Philosophy (Formal Logic, Fallacies, and Ethics), and Religious Studies (World Religions)."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Evaluated using multi-class classification accuracy and Root Mean Squared (RMS) calibration error."
+    },
+    "published_after_march_2023": {
+      "met": false,
+      "note": "Published at ICLR 2021, with preprints emerging in early 2021."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper and the benchmark dataset are written entirely in English."
+    }
+  },
+  "summary": "This paper introduces a massive multitask language understanding benchmark designed to evaluate text models across 57 academic and professional subjects. By shifting from standard training/testing splits to zero-shot and few-shot evaluation of massive pre-trained corpora, it aims to test broader real-world knowledge. The authors demonstrate that while smaller models perform near random chance, the largest models show initial progress but remain highly lopsided and poorly calibrated.",
+  "key_findings": "The 175B parameter GPT-3 model achieved 43.9% average accuracy, moving significantly past the 25% random baseline, but fell far short of the estimated 89.8% human expert-level performance. Models performed poorest on highly procedural, calculation-heavy STEM tasks and socially sensitive subjects like law and moral scenarios, and demonstrated substantial miscalibration with confidence scores diverging from actual accuracy by up to 24%.",
+  "relevant_asjc_areas": [
+    "History",
+    "Philosophy",
+    "Religious Studies"
+  ],
+  "dataset_size": 15908,
+  "primary_evaluation_setting": "few-shot"
+}

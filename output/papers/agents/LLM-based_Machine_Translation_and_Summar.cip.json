@@ -1,0 +1,53 @@
+{
+  "benchmark_name": null,
+  "publication_year": 2024,
+  "humanities_role": "both",
+  "humanities_role_explanation": "Evaluates LLM performance on translating and summarizing 16th-century correspondence (history of Zurich reformation) written in historical languages (Latin and Early New High German).",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Evaluations are performed purely on textual inputs of historical letters.",
+  "analytical_tasks": [
+    "machine translation",
+    "summarization"
+  ],
+  "analytical_tasks_explanation": "Translation of historical Latin and Early New High German into modern German/English, and paragraph-by-paragraph cross-lingual summarization of correspondence.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "The evaluation focuses specifically on domain-specific translation and summarization of historical correspondence."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates GPT-4 in comparison with traditional online translation APIs."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "The generative LLM (GPT-4) is the primary system under evaluation."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Uses 16th-century letters from the Heinrich Bullinger correspondence, matching History and Language and Linguistics."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Uses BLEU and ChrF for automatic evaluation, and structured human preference scores for quality assessment."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Published in May 2024."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper and prompt designs are written in English."
+    }
+  },
+  "summary": "This paper presents a systematic evaluation of GPT-4 for machine translation and cross-language summarization of 16th-century letters written in Latin and Early New High German. By comparing GPT-4 against traditional translation engines, the authors demonstrate the model's significant superiority in processing historical languages. Additionally, the paper explores the viability of using paragraph-level summaries as a reference for translation and conducts a detailed human evaluation of automatic summarization quality.",
+  "key_findings": "GPT-4 outperforms Google Translate by nearly 10 BLEU points on Latin-to-German (scoring 27.07 BLEU) and Latin-to-English (scoring 34.50 BLEU) translation. Human evaluators rated GPT-4's paragraph summaries highly for capturing times, events, and names (scoring up to 54.5 out of 58 for events) with zero observed hallucinations.",
+  "relevant_asjc_areas": [
+    "Language and Linguistics",
+    "History"
+  ],
+  "dataset_size": 121,
+  "primary_evaluation_setting": "zero-shot"
+}

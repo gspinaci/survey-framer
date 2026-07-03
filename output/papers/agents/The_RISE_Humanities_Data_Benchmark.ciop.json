@@ -1,0 +1,58 @@
+{
+  "benchmark_name": "RISE Humanities Data Benchmark",
+  "publication_year": 2026,
+  "humanities_role": "both",
+  "humanities_role_explanation": "The benchmark treats humanities materials as structured 'content' for complex document processing, but frames the evaluation around the 'domain' needs of digital humanities researchers. It defines ground truths not as absolute facts but as operationalised scholarly interpretations of linguistically and materially challenging sources, such as medieval manuscripts and historical correspondence.",
+  "benchmark_modalities": [
+    "text",
+    "image"
+  ],
+  "benchmark_modalities_explanation": "A combination of scanned historical document images (used for layout segmentation and multimodal vision-language OCR tasks) and plain text JSON/XML formats (used for structured data correction and metadata extraction tasks).",
+  "analytical_tasks": [
+    "transcription",
+    "layout segmentation",
+    "named entity recognition",
+    "metadata extraction",
+    "data correction",
+    "person matching"
+  ],
+  "analytical_tasks_explanation": "The tasks assess models' capacities for paleographical transcription (including late medieval handwriting and Fraktur script), page layout segmentation on dense historical advertisements, structure parsing from multilingual lists, and logical correction of faulty LLM-generated XML structures.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "It is specifically designed for evaluating LLMs on digital humanities research workflows and domain-specific historical datasets."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates commercial and open models including OpenAI (GPT-4, GPT-4o, GPT-4.1-mini, GPT-5), Anthropic (Claude Sonnet 4.5), and Google (Gemini 2.0 Pro Exp)."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "The framework directly assesses the performance and accuracy of various generative large language models as the primary processing engines."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Features datasets from History (business correspondence, index cards, trade indices) and Language and Linguistics (medieval German, early modern German, multilingual catalogs)."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Uses F1 score, Character Error Rate (CER), and fuzzy matching metrics."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Published on February 4, 2026."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper is written in English, although the benchmark's source texts contain English, German, French, Latin, and Greek."
+    }
+  },
+  "summary": "The paper introduces the RISE Humanities Data Benchmark, a flexible, model-agnostic evaluation framework and suite of 8 curated, task-specific datasets built from actual digital humanities consulting projects. Designed to prioritize qualitative realism and interpretability over sheer scale, the framework evaluates both text-based and vision-language LLMs on complex document-processing workflows. It features an automated validation and scoring pipeline, with results made publicly browsable through a custom web interface to track model performance changes over time.",
+  "key_findings": "Models achieve high performance on structural correction (Claude Sonnet 4.5 scoring 97.47% on XML correction) and structured administrative cards (GPT-4.1-mini scoring 95.65% on Blacklist Cards). However, layout-heavy multilingual directories and historical manuscript transcriptions remain difficult, with metadata extraction from historical company lists peaking at only 58.40% (GPT-5). State-of-the-art models like GPT-5, GPT-4o, and Gemini 2.0 consistently lead across the various historical tasks.",
+  "relevant_asjc_areas": [
+    "History",
+    "Language and Linguistics"
+  ],
+  "dataset_size": 440,
+  "primary_evaluation_setting": "zero-shot"
+}

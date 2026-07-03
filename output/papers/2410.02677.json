@@ -1,0 +1,60 @@
+{
+  "benchmark_name": "CulturalBench",
+  "publication_year": 2024,
+  "humanities_role": "domain",
+  "humanities_role_explanation": "Evaluates LLMs on multicultural knowledge across 45 countries, using cultural concepts (e.g., social etiquette, celebrations, religion, language) as a distinct evaluation domain.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Text-only QA formatted as multiple-choice questions (CulturalBench-Easy) and binary True/False judgments for all options (CulturalBench-Hard).",
+  "analytical_tasks": [
+    "factual recognition",
+    "multiple-choice question answering",
+    "binary classification"
+  ],
+  "analytical_tasks_explanation": "Evaluates factual recognition of regional customs, social etiquette, and language markers; assesses models' ability to recognize scenarios with multiple valid cultural answers (multi-mode behavior) rather than over-converging on a single mode.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "It is a domain-specific evaluation suite targeting global cultural and socio-behavioral knowledge."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates 29 major models including OpenAI o1, GPT-4o, Claude 3.5 Sonnet, Llama-3.3, Gemma, Mistral, Qwen, and DeepSeek."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "Generative LLMs are the primary systems being benchmarked for their cultural intelligence."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "The dataset spans cultural anthropology, regional studies, religion, and colloquial linguistics, mapping to Language and Linguistics, Religious Studies, History, and Performing Arts."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Evaluated using standard accuracy metrics for multiple-choice and binary True/False tasks, comparing against human baselines."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "First published to arXiv in October 2024, with updates in 2025."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper and the primary evaluation benchmark are in English, with an auxiliary translation study included."
+    }
+  },
+  "summary": "This paper introduces CulturalBench, a text-based benchmark of 1,696 questions spanning 45 global regions and 17 cultural topics to evaluate the multicultural knowledge of LLMs. Developed through a human-AI collaborative red-teaming pipeline, the dataset includes multiple-choice (Easy) and multi-label binary True/False (Hard) evaluation formats to test model understanding of both single-answer and multi-answer cultural nuances.",
+  "key_findings": "While frontier LLMs achieve near-human performance on the Easy multiple-choice version (up to 89.6%), they struggle significantly on the Hard binary format, with the best model (OpenAI o1) reaching only 61.5% compared to humans' 92.4%. Models exhibit substantial mode-seeking biases, failing heavily on multi-mode questions (average 20.9% accuracy compared to 49.6% for single-mode), and systematically underperform on questions related to less-represented regions like South America, Eastern Europe, and the Middle East.",
+  "relevant_asjc_areas": [
+    "Language and Linguistics",
+    "Religious Studies",
+    "History",
+    "Visual Arts and Performing Arts"
+  ],
+  "dataset_size": 1696,
+  "primary_evaluation_setting": "zero-shot",
+  "review_notes": "Ciop categorized humanities_role as 'both', while Cip chose 'domain'; resolved to 'domain' as the benchmark explicitly tests multicultural understanding as the target capability. Reconciled analytical_tasks to include both Ciop's domain-specific tasks and Cip's technical task formats. Kept Cip's addition of 'Visual Arts and Performing Arts' in ASJC areas to cover the entertainment and attire cultural topics.",
+  "paper_id": "2410.02677",
+  "paper_name": "CulturalBench",
+  "csv_row": 30
+}

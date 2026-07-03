@@ -1,0 +1,59 @@
+{
+  "benchmark_name": "SuperGPQA",
+  "publication_year": 2025,
+  "humanities_role": "content",
+  "humanities_role_explanation": "Uses graduate-level academic questions from arts and humanities disciplines (such as Art Studies, Musicology, Philosophy, History, and Literature) as test content to evaluate general LLM knowledge and reasoning capabilities.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "The benchmark is text-only. Multimodal inputs (like diagrams or images) are explicitly filtered out during the quality inspection phase to ensure a clean text-based QA format.",
+  "analytical_tasks": [
+    "factual recall",
+    "logical reasoning",
+    "domain-specific knowledge retrieval",
+    "multiple-choice QA"
+  ],
+  "analytical_tasks_explanation": "Graduate-level multiple-choice questions requiring domain-specific factual knowledge retrieval, text analysis, and complex reasoning across specialized academic disciplines.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": true,
+      "note": "SuperGPQA scales LLM evaluation across 285 graduate disciplines spanning STEM, social sciences, and humanities."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates various SOTA generative models including DeepSeek-R1, OpenAI o1/o3-mini, GPT-4o, Claude-3.5-Sonnet, Qwen2.5, Llama-3.1, and Gemini-2.0-flash."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "The primary objective of the paper is to benchmark and analyze the performance capabilities of frontier LLMs."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Includes substantial subsets for History (674 questions), Philosophy (347 questions), Literature and Arts (1,676 questions including Art Studies, Musicology, and Language/Literature)."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Evaluated using accuracy (analyzed sample-wise, subfield-wise, field-wise, and discipline-wise)."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "The paper is a preprint from March 2025."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper is written in English, and all benchmark questions are curated in or translated into English."
+    }
+  },
+  "summary": "SuperGPQA is a massive, graduate-level multiple-choice benchmark evaluating LLM capabilities across 285 specialized disciplines, including several key arts and humanities domains. Using a human-LLM collaborative filtering framework, the authors curated a dataset of 26,529 highly difficult questions designed to challenge state-of-the-art reasoning models.",
+  "key_findings": "Reasoning models DeepSeek-R1 and OpenAI's o1 achieved the highest accuracies (~61.82% and ~60.24% respectively), demonstrating significant remaining climbing space. Instruction tuning provides a massive performance boost over base models, and incorporating subfield context into evaluation prompts systematically benefits larger models.",
+  "relevant_asjc_areas": [
+    "History",
+    "Language and Linguistics",
+    "Literature and Literary Theory",
+    "Music",
+    "Philosophy",
+    "Visual Arts and Performing Arts"
+  ],
+  "dataset_size": 26529,
+  "primary_evaluation_setting": "zero-shot and few-shot mix"
+}

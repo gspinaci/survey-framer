@@ -1,0 +1,56 @@
+{
+  "benchmark_name": "OfficeQA Pro",
+  "publication_year": 2026,
+  "humanities_role": "content",
+  "humanities_role_explanation": "Uses nearly a century (1939-2020s) of U.S. Treasury Bulletins as the document corpus, which serves as historical financial and economic data for factual QA items, connecting directly to modern economic history.",
+  "benchmark_modalities": [
+    "text",
+    "image"
+  ],
+  "benchmark_modalities_explanation": "Primarily relies on textual and tabular documents, but 3% of the questions require visual reasoning over figures, charts, or graphs present in the PDF bulletins.",
+  "analytical_tasks": [
+    "information retrieval",
+    "multi-step reasoning",
+    "quantitative analysis",
+    "visual reasoning",
+    "data analysis"
+  ],
+  "analytical_tasks_explanation": "Requires multi-step analytical reasoning across unstructured text and complex tables, including longitudinal financial analysis (e.g., ordinary least squares linear regression), inflation adjustment calculations, and high-precision numerical operations.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "Specifically designed as an enterprise grounded reasoning benchmark focused on financial and historical document QA."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates frontier LLMs and agent frameworks including Claude Opus 4.6/4.5, Claude Sonnet 4.6/4.5, Claude Haiku 4.5, GPT-5.4, GPT-5.1, GPT-5 Mini, Gemini 3.1 Pro Preview, Gemini 3 Pro Preview, and Gemini 3 Flash."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "The LLMs and LLM-based agents are the primary systems being evaluated and benchmarked."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Includes 'History' as it utilizes a 100-year historical archive of U.S. Treasury Bulletins spanning from 1939 onwards."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Evaluated using accuracy under varying absolute relative error thresholds (0.0%, 0.1%, 1.0%, 5.0%), exact match, and fuzzy text matching."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "The preprint date is March 2026."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper, corpus, and questions are written in English."
+    }
+  },
+  "summary": "OfficeQA Pro is an enterprise benchmark designed to evaluate AI agents on end-to-end grounded reasoning over a heterogeneous 100-year archive of U.S. Treasury Bulletins. It contains 133 highly complex and verifiable questions requiring precise document parsing, information retrieval, and multi-step quantitative data analysis. The benchmark unifies parsing, retrieval, and computation to measure SOTA model limitations in economically valuable enterprise tasks.",
+  "key_findings": "Frontier agents struggle on over half of the questions, scoring 34.1% on average on the full PDF corpus. Using Databricks' ai_parse_document for structured parsing yields a 16.1% relative performance gain. Claude Opus 4.6 achieves the highest accuracy at 57.1% when utilizing file search over pre-parsed documents, while direct LLM prompt-only baseline scores <3% accuracy.",
+  "relevant_asjc_areas": [
+    "History"
+  ],
+  "dataset_size": 133,
+  "primary_evaluation_setting": "zero-shot"
+}

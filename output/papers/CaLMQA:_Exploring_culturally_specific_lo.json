@@ -1,0 +1,62 @@
+{
+  "benchmark_name": "CaLMQA",
+  "publication_year": 2025,
+  "humanities_role": "both",
+  "humanities_role_explanation": "Evaluates LLMs on domain-specific cultural knowledge (history, religion, literature, and customs) using culturally specific, long-form questions, serving both as a content repository and an evaluation domain of global cultural alignment.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "A text-only long-form question answering dataset consisting of 51.7K questions across 23 languages, where questions are written in the native language of the target culture and require multi-sentence textual answers.",
+  "analytical_tasks": [
+    "long-form question answering",
+    "factual reasoning",
+    "cultural reasoning",
+    "factuality verification"
+  ],
+  "analytical_tasks_explanation": "The benchmark evaluates models on long-form question answering requiring complex narrative synthesis, contextual interpretation, and cultural reasoning (e.g., explaining localized social practices, historical naming traditions, and regional governance policies), alongside assessing factual precision, output relevance, and language adherence.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "It is a specialized benchmark focusing specifically on culturally specific, multilingual, long-form question answering."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates Claude-3-Opus, Gemini-1.5-Pro, GPT-4-Turbo, GPT-4o, Aya-Expanse-32B, Llama-3-70B, and Mixtral-8x22B."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "Generative LLMs are the primary systems being benchmarked on long-form generation quality and cultural knowledge."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Covers several ASJC humanities areas including History, Language and Linguistics, Literature and Literary Theory, Religious Studies, and Visual Arts and Performing Arts."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Uses language identification accuracy, token repetition rate, factual precision (via VeriScore/FactScore claim counts), relevance (LLM-as-a-judge), and human evaluation ratings."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Published at ACL 2025 (July 2025)."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper is written in English and describes a multilingual benchmark."
+    }
+  },
+  "summary": "This paper presents CaLMQA, a multilingual long-form question answering dataset designed to benchmark LLM knowledge of culturally specific and regionally localized concepts across 23 languages. It establishes a rigorous evaluation framework measuring surface-level output quality, factual precision, and semantic relevance, paired with human ratings from native speakers. The findings show a pronounced gap in LLM capability when dealing with localized cultural knowledge compared to culturally agnostic topics, particularly in low-resource languages.",
+  "key_findings": "Models show a major drop in factual precision (typically 45%-52%) when answering culturally specific questions compared to culturally agnostic ones (64%-71%). Open-weight models fail significantly on low-resource languages\u2014frequently outputting English or apologies rather than the prompt language\u2014while proprietary models like GPT-4o show higher language stability but still struggle with localized factual accuracy.",
+  "relevant_asjc_areas": [
+    "History",
+    "Language and Linguistics",
+    "Literature and Literary Theory",
+    "Religious Studies",
+    "Visual Arts and Performing Arts"
+  ],
+  "dataset_size": 51698,
+  "primary_evaluation_setting": "zero-shot",
+  "review_notes": "No significant disagreements. Minor differences in how the analytical tasks and key findings were described were resolved by combining the insights from both reports. The inclusion of 'Visual Arts and Performing Arts' as an ASJC area was kept as the dataset includes questions on 'Language, Art and Literature'.",
+  "paper_id": "CaLMQA:_Exploring_culturally_specific_lo",
+  "paper_name": "CaLMQA: Exploring culturally specific long-form question answering across 23 languages",
+  "csv_row": 39
+}

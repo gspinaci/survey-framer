@@ -1,0 +1,54 @@
+{
+  "benchmark_name": "SimpleQA",
+  "publication_year": 2024,
+  "humanities_role": "content",
+  "humanities_role_explanation": "Humanities topics (such as history, TV shows, and video games) are treated strictly as sources of raw, indisputable factual data. The benchmark does not engage with interpretive, aesthetic, or cultural analysis, focusing instead on whether a fact can be retrieved or hallucinated.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "The benchmark consists entirely of short-form textual questions and answers, evaluated using a generative text-based classifier.",
+  "analytical_tasks": [
+    "factual recognition",
+    "short-form question answering"
+  ],
+  "analytical_tasks_explanation": "The benchmark evaluates closed-book factual retrieval. Tasks require models to provide a single, indisputable factual answer (e.g., naming a specific athlete or event) rather than performing causal historical reasoning, textual analysis, or aesthetic evaluation.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": true,
+      "note": "Designed as a general-purpose factuality benchmark spanning various subjects including science, technology, and culture."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates frontier generative models including GPT-4o, GPT-4o-mini, o1-mini, and o1-preview."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "The language models are the primary systems under evaluation for factuality and self-calibration."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Includes questions about history, TV shows, video games, and culture, mapping generally to History, Visual Arts and Performing Arts, and Literature."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Evaluates models using accuracy metrics (correct, incorrect, not attempted rates) and calibration metrics (stated confidence vs. actual correctness)."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Published on October 30, 2024."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper and the SimpleQA dataset are written in English."
+    }
+  },
+  "summary": "SimpleQA is a benchmark containing 4,326 high-quality, short-form, fact-seeking questions designed to measure the factuality and calibration of frontier LLMs. It focuses on highly specific, stable, and indisputable facts that are highly likely to induce hallucinations in models like GPT-4.0. The framework also measures calibration, assessing whether models 'know what they know' by correlating their stated confidence with their actual accuracy.",
+  "key_findings": "Frontier models struggle on SimpleQA, with GPT-4o scoring below 40% accuracy. Reasoning models (o1-preview and o1-mini) demonstrate better calibration and higher 'not attempted' rates, indicating an improved ability to recognize when they do not know an answer rather than hallucinating.",
+  "relevant_asjc_areas": [
+    "History",
+    "Visual Arts and Performing Arts",
+    "Literature and Literary Theory"
+  ],
+  "dataset_size": 4326,
+  "primary_evaluation_setting": "zero-shot"
+}

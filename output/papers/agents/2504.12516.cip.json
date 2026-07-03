@@ -1,0 +1,57 @@
+{
+  "benchmark_name": "BrowseComp",
+  "publication_year": 2025,
+  "humanities_role": "content",
+  "humanities_role_explanation": "The benchmark includes a high percentage of questions about humanities and arts topics (e.g., Art, Music, History, TV shows & movies, Video games) used as challenging factual retrieval items, although the overall benchmark is designed for general-purpose web browsing agents.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "The benchmark questions and target reference answers are short-form text. Evaluating agents requires them to process and navigate text-based search queries and web page contents.",
+  "analytical_tasks": [
+    "factual recognition",
+    "information retrieval",
+    "multi-hop reasoning",
+    "constraint satisfaction"
+  ],
+  "analytical_tasks_explanation": "Tasks require agents to resolve complex, multi-constraint queries (e.g., identifying a specific historical soccer match with exact referee/card details, or finding a fictional character matching specific structural biography constraints) by dynamically searching, backtracking, and cross-referencing information across multiple websites.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": true,
+      "note": "Designed as a general-purpose benchmark for web browsing agents across a wide variety of topics."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluated GPT-4o, GPT-4.5, OpenAI o1, and OpenAI Deep Research."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "LLMs and LLM-based browsing agents are the primary systems evaluated."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Contains a large proportion of questions focused on History, Visual Arts and Performing Arts, Music, and Media/TV (Literature and Literary Theory)."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Uses exact match accuracy (graded by an LLM) and confidence calibration error."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Published on April 16, 2025."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper, benchmark questions, and reference answers are in English."
+    }
+  },
+  "summary": "This paper presents BrowseComp, a benchmark of 1,266 challenging, short-answer questions designed to evaluate the capability of web browsing agents to persistently search and retrieve obscure, deeply entangled information from the open web. The dataset features 'inverted questions' which are intentionally difficult and time-consuming for humans to solve (often taking hours) but remain extremely simple and cost-effective to verify automatically using short-string exact matching. Evaluations show that standard LLMs fail near-completely, while agentic systems utilizing reinforcement learning and search tools (like OpenAI's Deep Research) scale with test-time compute to achieve up to 51.5% accuracy in a single attempt and over 70% with parallel voting schemes.",
+  "key_findings": "Standard LLMs fail to retrieve the obscure facts, with GPT-4o achieving 0.6% and GPT-4.5 achieving 0.9% accuracy. Activating browsing for GPT-4o only yields 1.9% accuracy, whereas the non-browsing reasoning model OpenAI o1 achieves 9.9%. OpenAI Deep Research achieves 51.5% accuracy. When utilizing parallel sampling (up to 64 outputs) and a 'best-of-N' aggregation strategy based on model confidence, Deep Research's performance scales to over 70% accuracy.",
+  "relevant_asjc_areas": [
+    "History",
+    "Visual Arts and Performing Arts",
+    "Music",
+    "Literature and Literary Theory"
+  ],
+  "dataset_size": 1266,
+  "primary_evaluation_setting": "zero-shot"
+}

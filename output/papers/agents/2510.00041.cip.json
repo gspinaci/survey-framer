@@ -1,0 +1,57 @@
+{
+  "benchmark_name": "C3B (Comics Cross-Cultural Benchmark)",
+  "publication_year": 2026,
+  "humanities_role": "both",
+  "humanities_role_explanation": "Evaluates MLLMs on cultural studies and cross-cultural awareness (domain) using comics and manga as the primary medium of visual narrative, literature, and art (content).",
+  "benchmark_modalities": [
+    "text",
+    "image"
+  ],
+  "benchmark_modalities_explanation": "Pairs comic and manga pages (image) with multiple-choice questions, open-ended structured queries, and dialog translation tasks (text).",
+  "analytical_tasks": [
+    "factual recognition",
+    "visual reasoning",
+    "logical reasoning",
+    "machine translation"
+  ],
+  "analytical_tasks_explanation": "Factual recognition of background cultures and culturally representative objects; visual and logical reasoning to detect spatial and cultural co-occurrence conflicts; and machine translation of comic dialogue across diverse target languages.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "Specifically designed to evaluate cultural awareness, multimodal cultural conflict detection, and multilingual translation in comics, rather than broad general intelligence."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates 11 open-source multimodal models, including Qwen2.5-VL, Llama3.2, InternVL2, InternLM-XC2.5, and the LLaVA series."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "Multimodal Large Language Models (MLLMs) are the primary systems being benchmarked."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Uses data from Visual Arts and Performing Arts (comics/manga), Language and Linguistics (multilingual translation), and Literature and Literary Theory (fictional narrative context)."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Employs accuracy (ACC), a custom composite accuracy (CACC) for multi-step reasoning, BLEU, COMET, and BLEURT."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Published as an ICLR 2026 conference paper."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The scientific paper and the main question prompts are written in English."
+    }
+  },
+  "summary": "This paper presents C3B, a novel benchmark containing 2,220 images and 18,789 QA pairs to measure the cross-cultural awareness of multimodal LLMs. The benchmark leverages comics and manga to encapsulate highly dense, multicultural contexts within fictional scenes and evaluates models through three tasks of progressive difficulty. The experiment highlights a significant performance gap between state-of-the-art MLLMs and human performance, especially regarding minor cultures and cultural conflict reasoning.",
+  "key_findings": "Qwen2.5-VL was the top-performing model across most visual recognition, reasoning, and multilingual generation tasks. MLLMs showed severe weaknesses in identifying cultural conflicts, achieving extremely low accuracies on Q4 (with composite scores ranging from 7.7% to 34.2%, far below human benchmarks of 50.0% to 74.7%). Models consistently struggled with low-resource languages and lesser-known regional cultures (e.g., Finnish, Somali) compared to dominant Western and East Asian cultures.",
+  "relevant_asjc_areas": [
+    "Language and Linguistics",
+    "Visual Arts and Performing Arts",
+    "Literature and Literary Theory"
+  ],
+  "dataset_size": 18789,
+  "primary_evaluation_setting": "zero-shot"
+}

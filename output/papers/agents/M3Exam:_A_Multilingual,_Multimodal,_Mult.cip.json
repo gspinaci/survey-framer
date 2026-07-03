@@ -1,0 +1,58 @@
+{
+  "benchmark_name": "M3Exam",
+  "publication_year": 2023,
+  "humanities_role": "both",
+  "humanities_role_explanation": "Features school graduation exam questions on history and language/literature (content) to evaluate linguistic proficiency and socio-cultural/historical domain knowledge across multiple countries.",
+  "benchmark_modalities": [
+    "text",
+    "image"
+  ],
+  "benchmark_modalities_explanation": "Integrates monolingual multiple-choice text with visual components, utilizing image placeholders within questions or option sets for multimodal evaluation.",
+  "analytical_tasks": [
+    "multiple-choice question answering",
+    "factual recognition",
+    "reading comprehension",
+    "causal reasoning",
+    "mathematical reasoning"
+  ],
+  "analytical_tasks_explanation": "Operationalizes factual recall in history and social sciences, reading comprehension in language subjects, causal inference on historical shifts, and multi-step reasoning for science and math problems.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": true,
+      "note": "Constructed from human academic exams across diverse subjects including history, social science, math, natural science, and language."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates closed-source models (GPT-4, ChatGPT, Claude) and open-source models (BLOOM, Vicuna) alongside multimodal LLMs (BLIP-2, InstructBLIP, Fromage, OpenFlamingo)."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "The LLMs/MLLMs are the primary systems being benchmarked."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Includes subjects directly mapped to History, Language and Linguistics, and Literature and Literary Theory."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Evaluates model performance using accuracy."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Published in NeurIPS 2023 (December 2023)."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper is written in English, and English is one of the nine languages featured in the benchmark."
+    }
+  },
+  "summary": "M3Exam is a multilingual, multimodal, and multilevel benchmark constructed from real-world human graduation exams across nine countries. It contains 12,317 multiple-choice questions spanning three educational levels (primary, middle, and high school), with 23% of questions requiring visual understanding. The benchmark evaluates LLMs on their general intelligence, multilingual capabilities, and multimodal reasoning.",
+  "key_findings": "GPT-4 is the only model to achieve over 60% average accuracy (scoring 72.92%), outperforming all other models but still struggling with low-resource languages like Javanese and non-Latin scripts like Thai. Multimodal LLMs performed poorly on complex visual questions, with BLIP-2 achieving only 49.06% accuracy. Surprisingly, LLMs do not exhibit a monotonic performance decrease as educational levels increase, indicating their intelligence development differs from humans.",
+  "relevant_asjc_areas": [
+    "History",
+    "Language and Linguistics",
+    "Literature and Literary Theory"
+  ],
+  "dataset_size": 12317,
+  "primary_evaluation_setting": "zero-shot"
+}

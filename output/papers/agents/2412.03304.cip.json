@@ -1,0 +1,58 @@
+{
+  "benchmark_name": "Global-MMLU",
+  "publication_year": 2025,
+  "humanities_role": "content",
+  "humanities_role_explanation": "Uses arts and humanities subjects (e.g., History, Philosophy, World Religions) as test content to evaluate multilingual capabilities and cultural alignment of LLMs.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Text-only multiple choice questions from MMLU translated/adapted into 42 languages.",
+  "analytical_tasks": [
+    "multiple-choice question answering",
+    "factual recognition",
+    "cultural reasoning",
+    "geographical reasoning"
+  ],
+  "analytical_tasks_explanation": "Evaluates models on multi-subject factual knowledge and contextual reasoning, categorized into culturally-sensitive and culturally-agnostic questions.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": true,
+      "note": "Evaluates LLMs across 57 subjects including STEM, Humanities, and Social Sciences."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates 14 open-weights and closed-source generative LLMs (e.g., GPT-4o, Claude 3.5 Sonnet, Llama 3.1, Qwen 2.5, Gemma 2, Aya Expanse)."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "LLMs are the primary systems being benchmarked."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Includes humanities subjects like US History, World History, Philosophy, World Religions, and Jurisprudence."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Uses multi-choice accuracy, Krippendorff's Alpha for annotator agreement, ChrF++ for translation quality, and rank/position shifts."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Preprint released in February 2025."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper is written in English and the benchmark includes English as one of its 42 languages."
+    }
+  },
+  "summary": "This paper presents Global-MMLU, a high-quality multilingual adaptation of the MMLU dataset across 42 languages. It introduces annotations that partition the dataset into culturally-sensitive and culturally-agnostic subsets, exposing heavy Western-centric bias in the original MMLU. The authors demonstrate that model rankings fluctuate significantly depending on whether they are evaluated on culturally-sensitive or agnostic data.",
+  "key_findings": "28% of MMLU questions are culturally sensitive, with 86.5% of those being Western-centric and 84.9% of regional questions focusing on North America or Europe. Evaluating 14 LLMs on culturally-agnostic (CA) versus culturally-sensitive (CS) subsets reveals substantial volatility in model rankings (averaging 5.7 rank changes and 7.3 position shifts on CS subsets).",
+  "relevant_asjc_areas": [
+    "History",
+    "Philosophy",
+    "Religious Studies",
+    "Language and Linguistics",
+    "Literature and Literary Theory"
+  ],
+  "dataset_size": 589764,
+  "primary_evaluation_setting": "few-shot"
+}

@@ -1,0 +1,55 @@
+{
+  "benchmark_name": "CulturalBench",
+  "publication_year": 2024,
+  "humanities_role": "both",
+  "humanities_role_explanation": "Evaluates cultural and anthropological knowledge as a distinct domain of intelligence, but treats this knowledge primarily as static, factual content tested via multiple-choice and binary True/False tasks rather than discursive, interpretive reasoning.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Text-only questions formatted as either multiple-choice options (Easy) or binary True/False statements (Hard).",
+  "analytical_tasks": [
+    "factual recognition of cultural norms",
+    "linguistic quirk identification",
+    "etiquette judgment"
+  ],
+  "analytical_tasks_explanation": "Measures factual recall of cultural etiquette, regional traditions, religious habits, and colloquial linguistic markers across 45 countries. It does not evaluate deeper hermeneutic, contextual, or historical-causal reasoning.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "It is a domain-specific evaluation suite targeting cultural and socio-behavioral knowledge."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates 29 major models including OpenAI o1/GPT-4o, Claude 3.5 Sonnet, Llama-3.3, Gemma, Mistral, Qwen, and DeepSeek."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "The LLMs are the primary systems under evaluation to assess their cultural knowledge."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "The dataset spans cultural anthropology, regional studies, and colloquial linguistics, which map to Language and Linguistics, Religious Studies, and History."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Evaluated using standard accuracy metrics, comparing model outputs against human-expert consensus benchmarks."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "The preprint was first published in October 2024, with updates in 2025."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper and the primary evaluation benchmark are written and evaluated in English, though minor translation studies are included as supplementary analysis."
+    }
+  },
+  "summary": "This paper presents CulturalBench, a text-based benchmark of 1,696 questions covering 45 regions and 17 cultural topics designed to evaluate the multicultural knowledge of LLMs. Developed via an interactive human-AI collaborative red-teaming pipeline, the benchmark features single-mode and multi-mode questions in both multiple-choice (Easy) and binary True/False (Hard) settings. The evaluation reveals significant performance gaps between LLMs and humans, particularly in questions with multiple valid answers and regions traditionally underrepresented in pre-training data.",
+  "key_findings": "While models perform near human levels on the multiple-choice format (Easy) due to semantic heuristics, they fail significantly on the binary format (Hard). The highest-performing model (OpenAI o1) achieves 61.5% accuracy on the Hard setting, compared to a human baseline of 92.4%. Additionally, LLMs show a substantial drop in performance on multi-mode questions (average 20.9% accuracy compared to 49.6% for single-mode) and underperform on questions relating to South America, Eastern Europe, and the Middle East.",
+  "relevant_asjc_areas": [
+    "Language and Linguistics",
+    "Religious Studies",
+    "History"
+  ],
+  "dataset_size": 1696,
+  "primary_evaluation_setting": "zero-shot"
+}

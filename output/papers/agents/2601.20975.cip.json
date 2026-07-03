@@ -1,0 +1,55 @@
+{
+  "benchmark_name": "DeepSearchQA",
+  "publication_year": 2026,
+  "humanities_role": "content",
+  "humanities_role_explanation": "Uses historical library archives (e.g., Sherardian Library of botanists), geographical trivia, and media/history queries as content for complex multi-step web-search and collation tasks.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Text-only prompts requiring agents to query and retrieve text-based information from the open web.",
+  "analytical_tasks": [
+    "multi-step structured retrieval",
+    "context management",
+    "logical reasoning",
+    "entity resolution",
+    "stopping criteria reasoning"
+  ],
+  "analytical_tasks_explanation": "The benchmark operationalizes systematic collation of fragmented web information, entity de-duplication across diverse source texts, multi-hop constraint solving (e.g., intersecting attributes like populations, GDP, and years), and autonomous determination of search completion under epistemic uncertainty.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": true,
+      "note": "Evaluates agents on general-purpose deep research tasks across 17 diverse domain profiles (politics, science, health, history, geography, finance, etc.)."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates Gemini Deep Research, GPT-5 Pro High Reasoning, GPT-5 High Reasoning, Gemini 3 Pro Preview, o3 Deep Research, o4 Mini Deep Research, Gemini 2.5 Flash, and Claude 4.5 family."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "The LLM-based autonomous web agents are the primary systems being benchmarked."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Includes history (e.g., historical library records and archives) and geography/media topics."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Uses F1-Score, Precision, Recall, and categorical classification (Fully Correct, Fully Incorrect, Partially Correct, Correct with Extraneous Answers)."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Published in January 2026."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper and benchmark dataset are written in English."
+    }
+  },
+  "summary": "DeepSearchQA introduces a 900-prompt dataset to benchmark autonomous web agents on challenging multi-step information-seeking tasks requiring exhaustive answer-set generation rather than single-answer retrieval. The evaluation measures how effectively agents handle systematic collation of fragmented data, entity resolution, and stopping criteria. The results show a clear gap between advanced deep-research agents and standard reasoning models.",
+  "key_findings": "Gemini Deep Research Agent and GPT-5 Pro High Reasoning establish the state-of-the-art (F1 scores of 81.90% and 78.98% respectively). Performance drops significantly for smaller models (e.g., Gemini 2.5 Flash drops to 42.99% F1 and 45.27% fully incorrect), illustrating a hard reasoning threshold for agentic search. Increasing test-time compute via multiple samples monotonically scales accuracy (Gemini Deep Research climbs from 67.18% fully correct at n=1 to 85.71% at n=8).",
+  "relevant_asjc_areas": [
+    "History"
+  ],
+  "dataset_size": 900,
+  "primary_evaluation_setting": "zero-shot"
+}

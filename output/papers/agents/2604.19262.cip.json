@@ -1,0 +1,58 @@
+{
+  "benchmark_name": "CulturALL",
+  "publication_year": 2026,
+  "humanities_role": "both",
+  "humanities_role_explanation": "Evaluates cultural and linguistic dimensions of everyday human scenarios (domain) using concrete, localized scenario-based QA items spanning beliefs, heritage, and regional languages (content).",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "The benchmark is text-only, composed of written scenarios and questions. The authors explicitly note the exclusion of multimodal inputs (such as images, video, or audio cues) as a current limitation of the study.",
+  "analytical_tasks": [
+    "multiple choice QA",
+    "open-ended QA",
+    "grounded reasoning",
+    "reading comprehension"
+  ],
+  "analytical_tasks_explanation": "Operationalizes tasks requiring a combination of multilingual comprehension, retrieval of long-tail regional/cultural facts, and multi-step contextual reasoning to resolve realistic, grounded situational scenarios.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "Specifically designed to target multilingual and multicultural competence on grounded daily tasks rather than general-purpose multi-task reasoning."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluated multiple leading LLMs, including Gemini 2.5 Pro/Flash, GPT-5, Claude-4 (Opus/Sonnet), Qwen-Max, and Qwen3 series."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "Generative LLMs are the primary systems being evaluated across various reasoning and web-search configurations."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Includes topics such as Belief (religious traditions, wedding customs, trolley problem ethics), Heritage (historical events, public holidays), and Language (idioms, greetings, proverbs)."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Uses accuracy (%) as the quantitative metric, verified via an LLM judge (gpt-4o-2024-11-20) comparing model output against objective reference keys."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Published as a preprint in April 2026."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper is written in English, and the dataset includes parallel English translations of all multilingual scenarios."
+    }
+  },
+  "summary": "CulturALL introduces a high-difficulty multilingual and multicultural benchmark comprising 2,610 text-based, scenario-grounded QA samples in 14 languages from 51 geographic regions. The benchmark was constructed using a collaborative human-LLM framework where native annotators elevated task difficulty through strategies like long-tail entity swaps and compositionality. A comprehensive evaluation of 15 LLM settings shows that even state-of-the-art models struggle significantly on culturally grounded reasoning, leaving a substantial gap for future development.",
+  "key_findings": "The top-performing configuration (Gemini 2.5 Pro with web-search enabled and auto-reasoning) achieved only 44.48% overall accuracy and only 18.47% on the hard subset. Open-source models significantly lagged behind proprietary ones (e.g., Qwen3-235B reached only 23.68% accuracy). Enabling web-search provided a 6.59% boost for Gemini 2.5 Pro but yielded negligible gains for Qwen models. Additionally, evaluating models using native-language prompts yielded an 8.08% absolute accuracy improvement over translated English prompts.",
+  "relevant_asjc_areas": [
+    "Language and Linguistics",
+    "History",
+    "Philosophy",
+    "Religious Studies",
+    "Visual Arts and Performing Arts"
+  ],
+  "dataset_size": 2610,
+  "primary_evaluation_setting": "zero-shot"
+}

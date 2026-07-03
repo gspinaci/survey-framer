@@ -1,0 +1,56 @@
+{
+  "benchmark_name": "MultiNRC",
+  "publication_year": 2025,
+  "humanities_role": "both",
+  "humanities_role_explanation": "It targets the domain of cultural, linguistic, and regional native reasoning (domain), while operationalizing this through human-authored items involving language-specific wordplay, local history, traditional calendars, and regional customs (content).",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Text-only benchmark evaluating models on native-language prompts and short answers in French, Spanish, and Chinese, with a subset translated to English for cross-lingual performance comparison.",
+  "analytical_tasks": [
+    "linguistic reasoning",
+    "wordplay and riddle solving",
+    "cultural and tradition reasoning",
+    "mathematical reasoning with cultural relevance"
+  ],
+  "analytical_tasks_explanation": "Operationalizes multi-step reasoning over language-specific grammatical conventions, homophonic puns/ancient idioms (Chengyu), temporal/calendar calculations (e.g., traditional festivals), and regional units of measurement (e.g., codo de ribera).",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": true,
+      "note": "Evaluates the general-purpose reasoning capacities of LLMs using localized and culturally grounded reasoning problems."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates 14 leading generative LLMs, including OpenAI's o3 and o4-mini, Gemini-2.5-Pro, Claude 3.7/4, DeepSeek-R1, and Llama-4-Maverick."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "The generative LLMs are the primary systems being benchmarked."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Involves data from 'Language and Linguistics' (grammatical conventions, puns, lexical nuances) and 'History' (traditional historical calendars, regional holiday timelines, and cultural heritage)."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Uses pass@1 accuracy evaluated using an LLM-as-a-judge (GPT-4.1) which maintains a high (>95%) agreement rate with human annotators."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "The preprint was published in July 2025."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper is written in English, and includes an English-translated equivalent subset of the benchmark for comparative analysis."
+    }
+  },
+  "summary": "This paper introduces MultiNRC (Multilingual Native Reasoning Challenge), a challenging text-only benchmark designed to evaluate LLMs on linguistic and culturally grounded reasoning. It contains 1,055 questions across French, Spanish, and Chinese, written by native speakers to avoid the English-centric cultural framing typical of translated benchmarks. By testing 14 state-of-the-art models, the authors demonstrate significant performance gaps in models' ability to navigate regional and language-specific nuances.",
+  "key_findings": "No model scores above 50% accuracy on MultiNRC, with the best model (o3-pro) reaching 49.00%. LLMs perform 10% to 19% better on math reasoning when questions are translated into English, indicating that they retrieve regional knowledge (e.g., historical dates or regional units) more effectively in English. Conversely, translating highly specific cultural/tradition reasoning questions to English does not show significant improvement, demonstrating a systemic deficiency in localized cultural knowledge in the models regardless of the prompt language.",
+  "relevant_asjc_areas": [
+    "Language and Linguistics",
+    "History",
+    "Literature and Literary Theory"
+  ],
+  "dataset_size": 1055,
+  "primary_evaluation_setting": "zero-shot"
+}

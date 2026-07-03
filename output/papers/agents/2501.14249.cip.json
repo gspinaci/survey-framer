@@ -1,0 +1,64 @@
+{
+  "benchmark_name": "Humanity's Last Exam",
+  "publication_year": 2026,
+  "humanities_role": "content",
+  "humanities_role_explanation": "Includes humanities subjects such as Classics, Philosophy, Musicology, Art History, Archaeology, and Literature as part of its multi-disciplinary evaluation of expert-level general knowledge.",
+  "benchmark_modalities": [
+    "text",
+    "image"
+  ],
+  "benchmark_modalities_explanation": "A multimodal benchmark where 86% of the questions are text-only and approximately 14% combine text with an image reference.",
+  "analytical_tasks": [
+    "multiple-choice QA",
+    "exact-match short answer QA",
+    "factual recognition",
+    "multimodal reasoning",
+    "translation",
+    "symbolic reasoning"
+  ],
+  "analytical_tasks_explanation": "Evaluates multi-step expert reasoning, factual recognition of highly specialized academic concepts, translation of ancient scripts, and domain-specific symbolic reasoning (e.g., in musicology or formal logic).",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": true,
+      "note": "Designed as a broad academic benchmark spanning dozens of subjects across STEM, humanities, and social sciences."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates frontier LLMs such as GPT-4o, Claude 3.5 Sonnet, Gemini 1.5 Pro, Gemini 2.0 Flash Thinking, o1, o3-mini, DeepSeek-R1, and Grok 2."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "Generative LLMs are the primary systems under evaluation to measure the gap between current AI capabilities and human expertise."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Includes questions in Classics, Musicology, Philosophy, Art History, Poetry (Literature), and Archaeology."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Evaluates models using Accuracy (%) and RMS Calibration Error (%)."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Published as a preprint/paper in early 2026."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper and the benchmark questions are written in English."
+    }
+  },
+  "summary": "This paper introduces Humanity's Last Exam (HLE), a multi-modal benchmark consisting of 2,500 highly challenging, expert-level questions across dozens of academic subjects. The questions are crowdsourced from global subject-matter experts and vetted through a rigorous pipeline to ensure they cannot be easily retrieved online and are currently too difficult for frontier LLMs to solve. The benchmark is designed to serve as a high-difficulty standard for tracking AI capabilities as existing academic benchmarks reach saturation.",
+  "key_findings": "State-of-the-art LLMs demonstrate very low accuracy on HLE, with the best-performing reasoning model (o3-mini high) achieving only 13.4% accuracy on the text-only subset, while non-reasoning models like GPT-4o and Claude 3.5 Sonnet score between 2.7% and 4.1% overall. Furthermore, all evaluated models exhibit poor calibration with RMS calibration errors exceeding 70%, indicating a tendency to output incorrect answers with high confidence.",
+  "relevant_asjc_areas": [
+    "History",
+    "Language and Linguistics",
+    "Archaeology",
+    "Classics",
+    "Literature and Literary Theory",
+    "Music",
+    "Philosophy",
+    "Visual Arts and Performing Arts"
+  ],
+  "dataset_size": 2500,
+  "primary_evaluation_setting": "zero-shot"
+}

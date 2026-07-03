@@ -1,0 +1,58 @@
+{
+  "benchmark_name": "PSH v1.0",
+  "publication_year": 2025,
+  "humanities_role": "both",
+  "humanities_role_explanation": "Evaluates the linguistic, rhetorical, and stylistic mimicry capabilities of LLMs (humanities domain of Language and Linguistics) using a specially curated corpus of parole hearing transcripts compiled for digital humanities and linguistics analysis.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Text-only evaluation using verbatim transcripts of parole suitability hearings.",
+  "analytical_tasks": [
+    "stylistic mimicry",
+    "rhetorical style replication",
+    "controlled text generation",
+    "linguistic profiling"
+  ],
+  "analytical_tasks_explanation": "Evaluates the capacity of LLMs to replicate speaker-specific rhetorical fingerprints across multiple dimensions including sentence complexity, lexical diversity, discourse markers, nominalizations, modal verbs, and pronoun usage profiles.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "It is a domain-specific evaluation dataset and study focusing on rhetorical and stylistic impersonation in legal hearings, rather than a general-purpose benchmark."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates GPT-4o, GPT-4.1, and DeepSeek R1."
+    },
+    "llm_is_primary_system": {
+      "met": true,
+      "note": "LLMs are the primary systems being tested on their stylistic generation limits."
+    },
+    "arts_humanities_data": {
+      "met": true,
+      "note": "Mapped to Language and Linguistics (focusing on forensic linguistics, rhetoric, stylistics, and spoken discourse analysis)."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Evaluates using standardized z-scores of linguistic features, Measure of Textual Lexical Diversity (MTLD), and syntactic/dependency-based complexity measurements."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Published in September 2025 (RANLP 2025 workshop)."
+    },
+    "english_language": {
+      "met": true,
+      "note": "The paper and the evaluated PSH v1.0 corpus are in English."
+    }
+  },
+  "summary": "This paper evaluates the capacity of state-of-the-art LLMs to impersonate specific human speakers' rhetorical styles in a high-stakes legal context using PSH v1.0, a corpus of 100 anonymized parole hearing transcripts. By extracting multi-dimensional linguistic fingerprints of presiding commissioners, the authors test whether explicit rhetorical guidance in prompts improves stylistic alignment compared to corpus-based priming.",
+  "key_findings": "All tested LLMs show clear limitations in replicating human rhetorical fingerprints, failing to align with individual human stylistic profiles. Regardless of prompting conditions, models revert to their own inherent, writing-biased stylistic footprints, demonstrating massive overuses of nominalizations, excessively complex sentences, and significantly higher lexical diversity than natural human speech.",
+  "relevant_asjc_areas": [
+    "Language and Linguistics"
+  ],
+  "dataset_size": 100,
+  "primary_evaluation_setting": "zero-shot",
+  "review_notes": "Resolved minor disagreement on humanities_role by assigning 'both', as the text constitutes a specially curated corpus for linguistic study (presented at a Digital Humanities workshop) and tests a core linguistics domain (rhetorical and stylistic replication). Merged analytical tasks from both reviewers for completeness.",
+  "paper_id": "Exploring_the_Limits_of_Prompting_LLMs_w",
+  "paper_name": "Exploring the Limits of Prompting LLMs with Speaker-Specific Rhetorical Fingerprints",
+  "csv_row": 27
+}

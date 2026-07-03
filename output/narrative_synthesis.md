@@ -1,133 +1,118 @@
 # Survey Narrative Synthesis
 
-Here is a narrative synthesis document designed for an academic survey paper, based on the provided corpus of AI benchmarking and digital humanities (DH) research.
+Here is a narrative synthesis document designed for an academic survey paper at the intersection of AI benchmarking and Digital Humanities (DH).
 
-***
+---
 
-# Evaluating AI in the Arts & Humanities: A Synthesis of Current Benchmarks
+# AI Benchmarking in the Arts & Humanities: A Synthesis of Current Landscapes and Future Directions
 
 ## 1. Thematic Clusters
-The analyzed corpus reveals a distinct evolution in how AI models are evaluated on Arts & Humanities tasks, moving from broad, general-knowledge trivia to highly specialized, culturally situated evaluations. The papers can be grouped into five primary thematic clusters:
+The current corpus of AI benchmarks in the Arts and Humanities can be grouped into five distinct thematic clusters, reflecting a gradient from general factual knowledge to highly specialized methodological reasoning.
 
-### Cluster 1: Digital Philology and Computational Linguistics
-* **Common Thread:** Focuses on the structural, syntactic, and historical nuances of language. These benchmarks treat texts not just as data, but as historical artifacts requiring specialized parsing, translation, and error correction.
-* **Modalities:** Text-only (with minor image/text OCR tasks).
-* **Analytical Tasks:** OCR correction, diplomatic transcription, syntactic acceptability, machine translation of historical languages.
-* **Representative Papers:** *CzechTopic*, *Automated Translation of Islamic Literature*, *Historical Document OCR*, *Evaluating LLMs on Lithuanian*, *JOKER Task 1*, *LLM-based MT for Latin*, *Leveraging LLMs for Post-OCR*, *EvaHan2024*, *Tracking Belarusian*.
+### Cluster 1: Encyclopedic Knowledge and Global Cultural Alignment
+*   **Papers:** *MMLU, FActScore, LongFact, MILU, CulturalBench, Global-MMLU, CaLMQA, CulturALL, SimpleQA, MMLU-ProX, M3Exam, HiST-LLM.*
+*   **Common Thread:** This is the largest and most established cluster. It treats humanities disciplines (History, Literature, Religion) primarily as repositories of factual content. Modally restricted to text (with rare exceptions like *M3Exam*), these benchmarks evaluate LLMs on broad cultural competency, factual recall, and cross-cultural alignment, heavily utilizing multiple-choice question (MCQ) answering or short-form factual generation.
 
-### Cluster 2: Visual Arts, Iconography, and Cultural Heritage
-* **Common Thread:** Evaluates multimodal systems on their capacity to process, identify, and interpret visual culture. These benchmarks push beyond basic object recognition to demand aesthetic judgment, symbolic decoding, and cross-cultural contextualization.
-* **Modalities:** Multimodal (Image + Text).
-* **Analytical Tasks:** Generative art critique, iconography classification, visual reasoning, cultural metadata inference.
-* **Representative Papers:** *MMMU-Pro*, *Christian Iconography*, *VQArt-Bench*, *VULCA-BENCH*, *Appear2Meaning*.
+### Cluster 2: Visual Arts, Material Culture, and Aesthetics
+*   **Papers:** *MMMU-Pro, Christian Iconography, C3B, VQArt-Bench, VULCA-BENCH (x2), Appear2Meaning, Hanfu-Bench, DRISHTIKON.*
+*   **Common Thread:** Focused on Visual Arts, Museology, and Archaeology, this multimodal (image+text) cluster evaluates Vision-Language Models (VLMs). Unlike general vision tasks (e.g., object detection), these benchmarks require fine-grained cultural reasoning, such as decoding religious symbolism, recognizing dynastic clothing (*Hanfu-Bench*), and performing expert-level philosophical/aesthetic critiques (*VULCA-BENCH*). 
 
-### Cluster 3: Historical Knowledge and Factual Reasoning
-* **Common Thread:** Assesses models on their retrieval and synthesis of historical facts, chronological reasoning, and global historical comprehension. This cluster ranges from generalized multiple-choice trivia to complex, multi-hop archival search tasks.
-* **Modalities:** Text-only.
-* **Analytical Tasks:** Factual QA, multi-hop reasoning, open-domain web search, constraint solving.
-* **Representative Papers:** *TriviaQA*, *MMLU*, *LongFact*, *MILU*, *Global-MMLU*, *SuperGPQA*, *HiST-LLM*, *Hakka Cultural Knowledge Benchmark*, *SimpleQA*, *DeepSearchQA*, *BrowseComp*.
+### Cluster 3: Digital Humanities Workflows and Philology
+*   **Papers:** *LLMs4Subjects, CzechTopic, Russian OCR, Swedish Petitions, Post-OCR Llama, The RISE Humanities Data Benchmark.*
+*   **Common Thread:** These papers treat AI not as a subject-matter expert, but as a methodological tool for historians and archivists. Spanning text and image modalities, they focus on structural tasks like transcription, post-OCR error correction of 19th-century newspapers, layout segmentation, and topic localization in historical archives.
 
-### Cluster 4: Literary, Narrative, and Stylistic Analysis
-* **Common Thread:** Moves beyond literal meaning to evaluate how models handle figurative language, narrative framing, emotional polarity, and human stylistic mimicry.
-* **Modalities:** Primarily Text-only (with *AdMIRe* integrating images).
-* **Analytical Tasks:** Aspect-based sentiment analysis, rhetorical mimicry, narrative extraction, idiom representation.
-* **Representative Papers:** *LAMBADA*, *Travelogues ABSA*, *Rhetorical Fingerprints*, *SemEval-2025 Task 10*, *Nostra Domina at EvaLatin*, *AdMIRe*, *GDPval* (Creative occupations subset).
+### Cluster 4: Linguistic Nuance, Translation, and Rhetoric
+*   **Papers:** *LAMBADA, AdMIRe, MultiNRC, Al-Shamela, CLEF JOKER Task 2, Latin Translation, PSH v1.0, Multimodal Humor.*
+*   **Common Thread:** Centered on Language and Linguistics and Literature, this cluster tests deep semantic processing. Tasks range from translating classical Islamic texts (*Al-Shamela*) and 16th-century Neo-Latin correspondence to preserving phonetic wordplay (*JOKER, Multimodal Humor*) and replicating speaker-specific rhetorical fingerprints (*PSH v1.0*). 
 
-### Cluster 5: Epistemology, Bias, and Cultural Alignment
-* **Common Thread:** Investigates the ethical and epistemic limitations of LLMs when applied to humanities contexts, focusing on Western-centric biases, stereotyping, and historical distortion.
-* **Modalities:** Text-only.
-* **Analytical Tasks:** Bias detection, value alignment assessment, cultural sensitivity classification.
-* **Representative Papers:** *BBQ*, *FActScore*, *CHVM-1K*, *SEA-HELM*.
+### Cluster 5: Complex Reasoning and Agentic Archival Retrieval
+*   **Papers:** *Humanity's Last Exam, SuperGPQA, BrowseComp, HistBench, DeepSearchQA, OfficeQA Pro.*
+*   **Common Thread:** This cutting-edge cluster moves beyond static datasets to evaluate multi-hop reasoning and autonomous agentic workflows. By utilizing historical and financial archives, these benchmarks test an AI’s ability to navigate epistemic uncertainty, resolve entity variations over time, and construct complex historical narratives via search.
 
 ---
 
 ## 2. Modality & Task Landscape
 
 ### Modality Coverage
-* **Dominance of Text-Only:** The vast majority of benchmarks remain text-centric. Even when dealing with visually rich fields like history, models are mostly tested via textual proxies (e.g., *MMLU*, *HiST-LLM*).
-* **Growth in Image+Text:** Multimodal evaluation is rapidly maturing within Art History and Museology. Benchmarks like *VULCA-BENCH* and *Appear2Meaning* successfully integrate high-resolution visual art with complex textual critiques.
-* **Underrepresented Modalities:** Audio is severely lacking. Only one paper (*Evaluating ASR for Holocaust Testimonies*) touches on audio processing (and does so via an ASR model, not a generative LLM). Evaluating musicology via raw audio or performing arts via video remains a massive blind spot.
+*   **Dominant:** **Text-only** remains the most ubiquitous modality, driven by the legacy of NLP research and the text-heavy nature of historical and literary archives. **Image+Text (Multimodal)** is rapidly maturing, particularly for Visual Arts, Museology, and manuscript digitization.
+*   **Rare/Underrepresented:** **Audio and Video** are severely underrepresented. Only *Multimodal Humor* (audio TTS for puns) and *HistBench* (oral histories/video clips) incorporate time-based media, leaving fields like ethnomusicology, performing arts, and linguistic phonetics largely unbenchmarked.
 
 ### Task Types
-* **The Dominance of MCQA:** Multiple-Choice Question Answering (MCQA) remains the default evaluation mechanism due to its ease of grading (e.g., *SuperGPQA*, *Humanity's Last Exam*).
-* **Emergence of Generative Workflows:** There is a notable shift toward generative tasks. DH-specific benchmarks evaluate long-form generation (*LongFact*), structured data extraction (*RISE Humanities Data Benchmark*), and automated translation (*Al-Shamela Library*).
-* **Agentic Reasoning:** A new frontier involves agentic tasks, where models must browse the web or perform multi-step archival research (*BrowseComp*, *DeepSearchQA*).
+*   **Dominant:** **Factual Recognition (MCQs)** still dominates the landscape (*MMLU, HiST-LLM*). However, there is a strong shift toward **Structured Extraction/Classification** (*Appear2Meaning, LLMs4Subjects*) and **Generative Verification** (*FActScore, LongFact*).
+*   **Emerging:** **Agentic Retrieval** (*DeepSearchQA, BrowseComp*) and **Complex Visual Reasoning** (*VQArt-Bench*).
 
 ### Task-Domain Alignment
-The alignment between AI tasks and actual humanities domain requirements is bifurcated:
-1. **Superficial Alignment:** General benchmarks (like *MMLU* or *TriviaQA*) treat the humanities merely as a repository of static facts. 
-2. **Deep Alignment:** Recently, researchers are designing benchmarks rooted in humanist methodologies. For example, *VULCA-BENCH* structures its evaluation around Panofsky’s iconological method (from visual description to philosophical interpretation); the *Hakka Cultural Knowledge Benchmark* utilizes Bloom's Taxonomy; and *RISE* evaluates Pydantic-schema XML outputs mirroring actual DH workflows.
+Historically, benchmarks suffered from poor task-domain alignment—reducing deep humanities interpretation to trivial MCQs (flattening hermeneutics into trivia). However, recent papers show excellent alignment: *VULCA-BENCH* uses Panofsky’s established art-historical framework; *Russian OCR* measures period-specific archaic character insertion; and *RISE* uses exact XML workflows demanded by real-world archivists.
 
 ---
 
 ## 3. Methodological Patterns
 
-* **Dominant Models:** Across almost all recent papers (post-2023), OpenAI's GPT-4o, Anthropic's Claude 3.5 Sonnet, and Google's Gemini (1.5/2.0) are the de facto baselines. Open-weights models (Llama 3, Qwen 2.5) are increasingly tested, particularly for multilingual and low-resource tasks (*Persian LLMs*, *Belarusian*).
-* **Evaluation Paradigms:** Because exact-match metrics (BLEU, ROUGE) are inadequate for the humanities, there is a widespread adoption of **LLM-as-a-judge**. To counteract the unreliability of AI judges, benchmarks are using rigorous human-in-the-loop validation, double-blind grading (*SimpleQA*), and calibrated rubric scoring (*VULCA-BENCH*).
-* **Novel Metrics:** As tasks align closer to DH workflows, novel metrics have emerged. Examples include the *Historical Character Preservation Rate* (for measuring "over-historicization" in OCR), *Dimension Coverage Rate* (for art critique), and *Exact Match Ratio* for narrative framing.
-* **Analytical Complexity:** There is a clear ceiling for current LLMs. While they easily master basic factual retrieval, they fail dramatically on tasks requiring deep reasoning. *Humanity's Last Exam* and *MMMU-Pro* demonstrate that when multiple-choice options are expanded or visual reasoning is required without text anchors, state-of-the-art models degrade to near-random performance. Furthermore, models struggle with negative transfer from high-resource languages when processing historical/low-resource dialects (*Lithuanian*, *Belarusian*, *18th-century Russian*).
+*   **Evaluation Approaches:** The field is transitioning from static zero-shot/few-shot comparisons against human baselines toward **LLM-as-a-Judge** paradigms (*CulturALL, SimpleQA*). Agentic tool-use (web search, OCR tools) is becoming standard for high-complexity tasks (*HistAgent*).
+*   **Tested Models:** Benchmarks uniformly test frontier proprietary models (GPT-4o, Claude 3.5 Sonnet, Gemini 1.5/2.0 Pro) against high-performing open-weights (Llama 3, Qwen2.5/3, DeepSeek-R1). 
+*   **Metrics (Standard vs. Novel):** While BLEU, F1, and Accuracy are standard, researchers are increasingly inventing domain-specific metrics. Examples include *Historical Character Preservation Rate (HCPR)* for OCR, *Dimension Coverage Rate (DCR)* for art critique, and *Pun-Location Overlap* for humor translation.
+*   **Task Complexity:** Complexity has scaled aggressively. Models have saturated basic factual recall; modern benchmarks now test *epistemic limits*—such as solving multi-constraint historical puzzles (*BrowseComp*), translating low-resource archaic languages (*MultiNRC*), and identifying cultural co-occurrence conflicts in visual narratives (*C3B*).
 
 ---
 
 ## 4. Narrative Framing Options
 
-Depending on the target audience of the survey paper, this corpus can be synthesized using one of three distinct narrative arcs:
+Depending on the target audience for the survey paper, this corpus supports three distinct narrative framings:
 
-### Option 1: For AI & ML Researchers – "The Humanities as the Ultimate Reasoning Frontier"
-* **Emphasis:** Frame the Arts & Humanities not as "soft" subjects, but as the most rigorous stress tests for multimodal reasoning, ambiguity resolution, and constraint-solving.
-* **Narrative:** ML models have conquered STEM benchmarks via logical determinism. However, humanities benchmarks (*VULCA-BENCH*, *Humanity's Last Exam*, *BrowseComp*) expose massive gaps in AI's ability to handle epistemic uncertainty, deep cultural context, and multi-layered symbolic reasoning. The humanities represent the next grand challenge for AGI.
+### Framing 1: For AI Researchers (Focus: "The Ultimate Reasoning Frontier")
+*   **The Hook:** Humanities data is unstructured, culturally biased, multimodal, and full of epistemic uncertainty.
+*   **Emphasis:** Highlight how humanities benchmarks expose the limits of frontier reasoning models. Focus on agentic workflows (*DeepSearchQA*), multi-hop historical retrieval, and the failure of LLMs to handle non-Western cultural common sense (*CulturalBench, MMLU-ProX*). Humanities are framed as the ultimate stress test for Artificial General Intelligence (AGI).
 
-### Option 2: For Digital Humanities Scholars – "From Parlor Tricks to Practical Workflows"
-* **Emphasis:** Focus on utility, DH task-domain alignment, and the epistemic risks of automation.
-* **Narrative:** Chart the evolution from AI treating the humanities as multiple-choice trivia (*MMLU*) to genuinely useful tools that integrate into DH pipelines (OCR correction, transcription, XML schema validation via *RISE* and *CzechTopic*). Critically evaluate the risks of deploying these models, emphasizing findings from *CHVM-1K* and *Global-MMLU* regarding Eurocentric biases, hallucinated historical artifacts, and "over-historicization."
+### Framing 2: For Digital Humanities (DH) Scholars (Focus: "AI as a Methodological Tool")
+*   **The Hook:** Moving beyond chatbots, AI is ready to be integrated into rigorous DH pipelines.
+*   **Emphasis:** Focus heavily on *Cluster 3 (Workflows)*. Frame the survey around utility and methodological alignment. Highlight how LLMs perform on transcription, XML correction (*RISE*), structural rhetorical annotation (*Swedish Petitions*), and the novel philological metrics used to catch AI hallucinations like "over-historicization."
 
-### Option 3: For Newcomers – "The Three Waves of Humanities AI"
-* **Emphasis:** A historical/chronological overview of AI capability development in cultural domains.
-* **Narrative:** 
-    * *Wave 1 (Representation):* Can models read the text? (*LAMBADA*, *TriviaQA*).
-    * *Wave 2 (Knowledge):* Do models know the facts? (*MMLU*, *LongFact*).
-    * *Wave 3 (Interpretation & Workflow):* Can models engage in aesthetic critique, multilingual historical archival research, and cultural reasoning? (*VULCA-BENCH*, *SuperGPQA*, *RISE*).
+### Framing 3: For Interdisciplinary Newcomers (Focus: "Evaluating Machine Culture")
+*   **The Hook:** Can machines understand human culture, art, and humor?
+*   **Emphasis:** A broad, accessible overview of ASJC domains. Trace the evolution from simple factual recall (*MMLU*) to deep aesthetic critique (*VULCA-BENCH*). Highlight the multimodal capabilities of VLMs looking at historical artifacts, and the challenges of translating cultural nuances (*Al-Shamela, JOKER*).
 
 ---
 
 ## 5. Gaps and Opportunities
 
-Despite rapid advancements, several critical gaps remain in the current benchmarking landscape:
+### Missing Modalities & Task Types
+*   **Audio/Video/3D:** There is a glaring lack of benchmarks for Ethnomusicology, Performing Arts, and 3D Archaeological artifacts. 
+*   **Interpretive Conflict:** Current benchmarks mostly assume a single "ground truth." There are no benchmarks evaluating how an LLM handles conflicting primary sources or engages in historiographical debate.
 
-1. **Underrepresented Modalities (Audio & Video):** There are virtually no generative benchmarks for musicology (audio-in/audio-out), film studies (video interpretation), or the performing arts (dance choreography and theater).
-2. **Missing Sub-Domains:** While History and Linguistics are well-covered, domains like Philosophy (specifically Ethics and Aesthetics, outside of basic logic), Archaeology, and advanced Literary Theory (e.g., deconstructionist critique) are largely absent.
-3. **The "Generative Synthesis" Gap:** Current benchmarks heavily favor analytical breakdown (extraction, classification, multiple-choice). There is a gap in evaluating long-form, argumentative, synthetic writing. How well can an LLM act as a historian, reading three contradictory primary sources and writing a coherent historiographical essay?
-4. **The "Next-Generation" Humanities Benchmark:** A future benchmark should be **Agentic and Interactive**. Instead of a static Q&A dataset, an AI would be given a simulated digital archive. The task: navigate the archive, cross-reference messy, un-transcribed historical documents in multiple languages, resolve entity deduplication, and produce a scholarly literature review with accurate citations.
+### Missing ASJC Sub-domains
+While History and Visual Arts are well-represented, **Musicology**, **Performing Arts**, **Digital Sociology**, and **Non-Western Philosophy** remain sparse. Furthermore, evaluations of indigenous or heavily localized material cultures are often limited to translation tasks rather than deep cultural reasoning.
+
+### The "Next-Generation" Humanities Benchmark
+A next-generation benchmark—call it *HermeneuticBench*—would be:
+1.  **Agentic & Multimodal:** Providing an LLM agent with an archive of raw, untranscribed, multimodal primary sources (e.g., messy handwritten letters, audio recordings, and photographs).
+2.  **Epistemic/Argumentative:** Tasking the model to synthesize a coherent historical argument or aesthetic critique that accounts for biases in the sources.
+3.  **Humanist-Graded:** Evaluated not by an automated LLM-as-a-judge, but via double-blind peer review by domain experts assessing narrative coherence, historiographical awareness, and avoidance of anachronism.
 
 ---
 
 ## 6. Suggested Survey Structure
 
-To effectively synthesize these findings for an academic journal, the following Table of Contents is proposed:
+**Title:** *From Trivia to Hermeneutics: A Survey of AI Benchmarking in the Arts and Humanities*
 
-**Title: Beyond Trivia: A Survey of Large Language Model Benchmarks in the Arts and Humanities**
-
-1. **Introduction**
-    * The shift from general capabilities to domain-expert reasoning.
-    * Defining the scope (ASJC Arts & Humanities areas).
-2. **The Evolution of the Humanities Benchmark**
-    * *Phase 1:* Humanities as General Knowledge (MMLU, TriviaQA)
-    * *Phase 2:* Domain-Specific Competencies (C-Eval, SuperGPQA)
-    * *Phase 3:* Methodological Alignment (Integrating Panofsky, Bloom, and DH workflows)
-3. **Modality and Task Landscape**
-    * *Textual Processing:* Philology, translation, and historical OCR (RISE, EvaHan2024).
-    * *Multimodal Interpretation:* Visual arts, iconography, and cultural metadata (VULCA-BENCH, MMMU-Pro).
-    * *The Missing Modalities:* Audio, musicology, and the performing arts.
-4. **Evaluating DH Workflows: Practical Applications**
-    * Automated transcription and post-OCR correction.
-    * Archival search, structured metadata extraction, and agentic reasoning (DeepSearchQA).
-5. **Epistemology, Bias, and Cultural Representation**
-    * The Western-centric bias in translated benchmarks (Global-MMLU).
-    * Value alignment and representation in cultural heritage (CHVM-1K, SEA-HELM).
-6. **Methodological Challenges in Evaluation**
-    * The limits of Multiple-Choice Question Answering.
-    * The rise and risks of LLM-as-a-judge for subjective humanities evaluations.
-7. **Gaps and Future Directions**
-    * Pushing toward multi-document synthesis and historiography.
-    * The need for interactive, archive-based agentic benchmarks.
-8. **Conclusion**
+**Table of Contents:**
+1.  **Introduction**
+    *   The rise of LLMs/MLLMs and the need for domain-specific evaluation.
+    *   Scope of the survey (ASJC Arts & Humanities classifications).
+2.  **The Evolution of Task Complexity in Humanities AI**
+    *   *Phase 1:* Factual Recall and Encyclopedic Knowledge (MMLU, FActScore).
+    *   *Phase 2:* Cultural Alignment and Native Reasoning (MultiNRC, CulturALL).
+    *   *Phase 3:* Expert-Level Critique and Aesthetics (VULCA-BENCH, Humanity's Last Exam).
+3.  **Methodological Alignment: AI in Digital Humanities Workflows**
+    *   Post-OCR, Transcription, and Philology (Russian OCR, RISE Benchmark).
+    *   Linguistics, Rhetoric, and Translation (Al-Shamela, AdMIRe).
+    *   Agentic Archival Retrieval (DeepSearchQA, HistAgent).
+4.  **The Multimodal Frontier in Cultural Heritage**
+    *   Vision-Language Models in Visual Arts and Museology.
+    *   The missing modalities: Audio, Video, and Spatial data.
+5.  **Evaluation Paradigms and Novel Metrics**
+    *   Moving beyond Accuracy/F1: Introducing humanities-aligned metrics.
+    *   The role (and limits) of LLM-as-a-judge in subjective domains.
+6.  **Gaps, Biases, and Future Directions**
+    *   Western-centric biases in cultural evaluation.
+    *   Designing the next generation of argumentative/hermeneutic benchmarks.
+7.  **Conclusion**
