@@ -1,63 +1,54 @@
 {
   "benchmark_name": "MMMU-Pro",
   "publication_year": 2024,
-  "humanities_role": "both",
-  "humanities_role_explanation": "Evaluates college-level expertise across arts and humanities disciplines (domain) by leveraging multimodal items like historical cartoons, sheet music, and artworks (content). The benchmark uses these materials to test general-purpose visual-textual reasoning, evaluating them through a standardized multiple-choice framework rather than open-ended hermeneutic analysis.",
+  "humanities_role": "domain",
+  "humanities_role_explanation": "Evaluates models on college-level exam questions in humanities disciplines like Art, Art Theory, Music, History, and Literature, requiring expert-level disciplinary knowledge and professional reasoning rather than treating humanities corpora as mere raw text.",
   "benchmark_modalities": [
     "text",
     "image"
   ],
-  "benchmark_modalities_explanation": "Combines text and images in a multiple-choice format. It features a novel 'vision-only' setting where textual questions and options are embedded directly into images (as screenshots or photos), requiring models to visually process and holistically integrate both text and figures simultaneously.",
+  "benchmark_modalities_explanation": "Combines text-based questions and multiple-choice options with images (diagrams, art, maps, charts). It also introduces a vision-only setting where the entire question and its choices are embedded inside a single screenshot or photo.",
   "analytical_tasks": [
-    "multiple-choice QA",
-    "visual reasoning",
-    "text extraction",
-    "cross-modal thematic interpretation",
-    "stylistic and aesthetic category recognition"
+    "multiple_choice_qa",
+    "factual_recall",
+    "visual_recognition",
+    "visual_reasoning",
+    "logical_and_quantitative_reasoning",
+    "causal_and_temporal_reasoning",
+    "interpretation",
+    "transcription_and_correction"
   ],
-  "analytical_tasks_explanation": "Involves factual and stylistic recognition of artworks, identifying architectural systems, music theory analysis from notation, and historical interpretation of political cartoons. These complex visual-textual spatial reasoning and interpretive tasks are ultimately flattened into a 10-option multiple-choice evaluation format.",
+  "analytical_tasks_explanation": "Evaluates academic-grade multiple-choice QA involving factual recall, logical and quantitative calculations, visual recognition of objects and features, visual reasoning over complex diagrams, causal/temporal analysis of historical events, aesthetic interpretation of art and music notation, thematic interpretation of literature, and explicit measurement of OCR-based text extraction from images.",
   "inclusion_criteria": {
     "general_purpose_benchmark": {
       "met": true,
-      "note": "Evaluates 30 academic subjects spanning Science, Tech, Health, Business, Humanities, and Art & Design."
+      "note": "Evaluates broad multimodal reasoning across 30 diverse college-level subjects spanning humanities, social sciences, sciences, and engineering."
     },
     "evaluates_generative_llm": {
       "met": true,
-      "note": "Evaluates state-of-the-art MLLMs including GPT-4o, GPT-4o mini, Claude 3.5 Sonnet, Gemini 1.5 Pro, LLaVA-OneVision, and InternVL2."
-    },
-    "llm_is_primary_system": {
-      "met": true,
-      "note": "The primary objective is benchmarking the multimodal understanding and robust reasoning capabilities of MLLMs."
-    },
-    "arts_humanities_data": {
-      "met": true,
-      "note": "Includes subset evaluations in Visual Arts (Art, Art Theory, Design), Music, History, and Literature."
+      "note": "Evaluates state-of-the-art proprietary and open-source models including GPT-4o, Claude 3.5 Sonnet, Gemini 1.5 Pro, InternVL2, and LLaVA-OneVision."
     },
     "quantitative_metrics": {
       "met": true,
-      "note": "Uses classification accuracy for the multiple-choice tasks and Levenshtein distance for OCR similarity."
+      "note": "Uses multiple-choice accuracy and Levenshtein-distance-based OCR similarity scores."
     },
     "published_after_march_2023": {
       "met": true,
-      "note": "First preprinted on arXiv in September 2024, with updates in May 2025."
-    },
-    "english_language": {
-      "met": true,
-      "note": "The paper and all benchmark datasets are in English."
+      "note": "The preprint was published in September 2024 and updated in 2025."
     }
   },
-  "summary": "MMMU-Pro introduces a more robust evaluation framework for the Massive Multi-discipline Multimodal Understanding (MMMU) benchmark to prevent shortcut exploitation by MLLMs. It eliminates text-only solvable questions, scales the candidate options from 4 to 10 choices, and introduces a vision-only setting where questions are embedded directly into images. This design pushes models to truly integrate visual and textual modalities, exposing significant performance gaps in current frontier models.",
-  "key_findings": "All evaluated MLLMs showed significant performance drops on MMMU-Pro compared to MMMU, with accuracy declines ranging from 16.8% to 26.9%. GPT-4o achieved the highest overall score with 54.0% in the standard 10-option setting and 49.7% in the vision-only setting. Chain of Thought (CoT) prompting showed strong gains in structured reasoning fields but was found to be ineffective or even detrimental in subjective domains like Art and Design.",
+  "summary": "MMMU-Pro is an advanced and more robust iteration of the Massive Multi-discipline Multimodal Understanding (MMMU) benchmark. It addresses potential statistical shortcuts by filtering out questions solvable by text-only models, expanding multiple-choice options from four to ten, and introducing a vision-only setting where text is embedded directly within images.",
+  "key_findings": "Models experience significant performance drops on MMMU-Pro compared to the original MMMU, with decreases ranging from 16.8% to 26.9%. GPT-4o leads but falls to 54.0% in the standard setting and 49.7% in the vision-only setting, showing a massive gap to human expert performance (~85%). Chain-of-Thought (CoT) prompting benefits highly structured reasoning subjects but provides minimal or negative impact in interpretive domains like Art and Design. Furthermore, high OCR accuracy does not automatically guarantee strong downstream multimodal reasoning.",
   "relevant_asjc_areas": [
     "History",
     "Literature and Literary Theory",
-    "Music",
-    "Visual Arts and Performing Arts"
+    "Visual Arts and Performing Arts",
+    "Music"
   ],
   "dataset_size": 3460,
-  "primary_evaluation_setting": "zero-shot",
-  "review_notes": "No significant disagreements. Minor differences in the phrasing of analytical tasks and the humanities role explanation were resolved by synthesizing Ciop's critical perspective on the flattening of interpretive tasks into a multiple-choice format with Cip's technical description of multimodal visual reasoning.",
+  "primary_evaluation_setting": "mix",
+  "review_notes": "Minor disagreements on analytical tasks and relevant ASJC areas. Included 'logical_and_quantitative_reasoning' from Cip as the benchmark heavily features math and engineering, and mapped Ciop's 'information_extraction' to 'transcription_and_correction' as OCR accuracy is an explicitly evaluated metric. Included 'Music' as a relevant ASJC area alongside 'Visual Arts and Performing Arts' since it is evaluated as a distinct subfield.",
   "paper_id": "2409.02813",
-  "paper_name": "MMMU-Pro: A More Robust Multi-discipline Multimodal Understanding Benchmark",
-  "csv_row": 6
+  "paper_name": "MMMU-Pro",
+  "csv_row": 2
 }

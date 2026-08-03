@@ -9,7 +9,7 @@ import json
 
 from config import GEMINI_PERSONA_MODEL, GEMINI_REVIEWER_MODEL
 from src import llm
-from src.fields import render_schema
+from src.fields import render_schema, render_task_vocab
 
 
 def build_metadata_block(title: str, metadata: dict | None) -> str:
@@ -36,6 +36,7 @@ def build_metadata_block(title: str, metadata: dict | None) -> str:
 def _fill(template: str, schema: str, text: str, title: str, metadata: dict | None) -> str:
     return (
         template.replace("<<SCHEMA>>", schema)
+        .replace("<<TASK_VOCAB>>", render_task_vocab())
         .replace("<<METADATA>>", build_metadata_block(title, metadata))
         .replace("<<PAPER_TEXT>>", text)
     )

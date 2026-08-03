@@ -1,59 +1,49 @@
 {
   "benchmark_name": "AdMIRe",
   "publication_year": 2025,
-  "humanities_role": "both",
-  "humanities_role_explanation": "The benchmark uses humanities content (specifically idiomatic expressions and figurative multi-word phrases) to evaluate a core linguistics domain inquiry: models' capacity for semantic disambiguation and multimodal representation of literal versus idiomatic meaning.",
+  "humanities_role": "domain",
+  "humanities_role_explanation": "The benchmark explicitly targets a specialized computational linguistics and philological domain competence, specifically the semantic representation and interpretation of figurative language and idiomaticity.",
   "benchmark_modalities": [
     "text",
     "image"
   ],
-  "benchmark_modalities_explanation": "Combines natural language sentences containing idiomatic expressions with static images (multimodal VQA ranking) and temporal narrative image sequences (visual sequence prediction). Descriptive text captions are also available for text-only settings.",
+  "benchmark_modalities_explanation": "Combines natural language context sentences with static generated images (Subtask A) or three-panel sequential image narratives (Subtask B) depicting literal or idiomatic meanings. A text-only track replaces images with descriptive captions.",
   "analytical_tasks": [
-    "ranking",
+    "multiple_choice_qa",
     "classification",
-    "sequence prediction",
-    "semantic disambiguation"
+    "retrieval_and_ranking",
+    "sequence_prediction",
+    "interpretation"
   ],
-  "analytical_tasks_explanation": "Requires models to perform multimodal image-text ranking of candidate images against a literal/idiomatic target context, binary classification of contextual sentence types, and sequential narrative prediction for three-panel visual storylines.",
+  "analytical_tasks_explanation": "Tasks require ranking five candidate images or captions based on their relevance to a literal or figurative context (retrieval_and_ranking), selecting the correct image to complete a comic-style narrative sequence (multiple_choice_qa, sequence_prediction), distinguishing between literal and idiomatic meanings of nominal compounds (classification), and interpreting complex figurative semantics (interpretation).",
   "inclusion_criteria": {
     "general_purpose_benchmark": {
       "met": false,
-      "note": "Specifically targets idiomaticity, figurative language comprehension, and multimodal semantic representation rather than general NLP capabilities."
+      "note": "The benchmark is explicitly scoped to evaluate idiomaticity representation and figurative language understanding in multimodal contexts."
     },
     "evaluates_generative_llm": {
       "met": true,
-      "note": "Evaluates generative language and vision-language models such as GPT-4, Qwen, LLaVA, CLIP, and DeepSeek, as utilized by participating systems."
-    },
-    "llm_is_primary_system": {
-      "met": true,
-      "note": "Large Language Models and Vision-Language Models are the primary architectures being benchmarked by participating teams."
-    },
-    "arts_humanities_data": {
-      "met": true,
-      "note": "Focuses on Language and Linguistics (specifically nominal compounds, figurative language, and multi-word expressions)."
+      "note": "Evaluates models such as GPT-4, Qwen, DeepSeek, and LLaVA, as well as CLIP and SBERT."
     },
     "quantitative_metrics": {
       "met": true,
-      "note": "Uses Top-1 Accuracy, Discounted Cumulative Gain (DCG), Image Completion Accuracy, and Sentence Type Accuracy."
+      "note": "Uses Top 1 Accuracy, Discounted Cumulative Gain (DCG), Image Completion Accuracy, and Sentence Type Accuracy."
     },
     "published_after_march_2023": {
       "met": true,
-      "note": "Published as a SemEval-2025 task description paper (preprint dated June 2025/March 2025)."
-    },
-    "english_language": {
-      "met": true,
-      "note": "The paper is written in English and the benchmark dataset includes English alongside Brazilian Portuguese."
+      "note": "Published in 2025 as a SemEval-2025 shared task."
     }
   },
-  "summary": "This paper presents SemEval-2025 Task 1: AdMIRe, a benchmark designed to evaluate how well language and vision-language models interpret idiomatic expressions in multimodal and multilingual contexts (English and Portuguese). It features two main subtasks: ranking static images based on their alignment with a target expression's literal or figurative meaning, and predicting the correct final image in a sequential three-panel narrative.",
-  "key_findings": "Top-performing systems approached human-level baseline performance (up to 93% top-1 accuracy in English and 100% in Portuguese for Subtask A). However, achieving this required complex, resource-intensive pipelines such as mixture-of-experts ensembles, chain-of-thought prompt smoothing, and translating idioms into compositional synonyms to bypass the standard VLMs' bias toward interpreting expressions as literal regardless of context.",
+  "summary": "The AdMIRe benchmark (SemEval-2025 Task 1) evaluates the ability of large language and vision-language models to interpret nominal compounds in literal and idiomatic contexts. Provided in English and Brazilian Portuguese, it features tasks for ranking static images and predicting appropriate completions for visual-temporal image sequences. The results demonstrate that while top ensembled systems approach human-level performance, foundational models struggle with inherent biases toward treating these compounds as uniformly idiomatic regardless of context.",
+  "key_findings": "Top-performing systems achieved near human-level accuracy (e.g., up to 0.93 Top 1 Accuracy in English Subtask A) by employing mixture-of-experts ensembles, chain-of-thought reasoning, and synthetic data augmentation. However, models demonstrated a strong bias toward idiomatic interpretations and struggled to identify literal uses, heavily depending on complex prompt engineering or multi-step processing pipelines to mitigate these biases.",
   "relevant_asjc_areas": [
-    "Language and Linguistics"
+    "Language and Linguistics",
+    "Literature and Literary Theory"
   ],
   "dataset_size": 185,
   "primary_evaluation_setting": "mix",
-  "review_notes": "Ciop and Cip disagreed on 'humanities_role' (Ciop: 'both', Cip: 'domain') and the 'relevant_asjc_areas' (Ciop added 'Literature and Literary Theory'). Resolved 'humanities_role' to 'both' because the dataset content itself (idiomatic phrases) and the evaluation goal (semantic disambiguation) are deeply rooted in linguistics. Resolved ASJC areas to 'Language and Linguistics' exclusively to closely align with the provided CSV metadata (ASJC 1206). Merged the analytical tasks to reflect both standard ML task formats (ranking, classification) and the humanities-oriented nature of the task (semantic disambiguation).",
+  "review_notes": "No significant disagreements between the analysts. Both correctly identified the domain, tasks, and modalities. Minor variations in wording were resolved by integrating both perspectives and strictly adhering to the controlled vocabularies.",
   "paper_id": "2503.15358",
-  "paper_name": "SemEval-2025 Task 1: AdMIRe - Advancing Multimodal Idiomaticity Representation",
-  "csv_row": 5
+  "paper_name": "AdMIRe",
+  "csv_row": 3
 }

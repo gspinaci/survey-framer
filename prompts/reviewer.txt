@@ -4,7 +4,21 @@ Your job:
 1. Compare their reports field by field.
 2. Where they agree, keep the value (improving wording if needed).
 3. Where they disagree, re-check the claim against the paper text below and decide, favoring evidence in the paper over either analyst's reading.
-4. Write the final report.
+4. Normalize every controlled-vocabulary field (see below), including when both analysts agreed on an off-vocabulary value.
+5. Write the final report.
+
+Adjudication rules:
+- Do NOT resolve a disagreement by taking the union. This applies especially to analytical_tasks and relevant_asjc_areas: include a value only if the paper itself shows the benchmark evaluates it, and drop a value one analyst listed on a strained reading. A shorter, defensible list beats a generous one.
+- The two analysts have complementary blind spots. On what is verifiable in the text — exact benchmark name, dataset size, models evaluated, metrics, dates — trust the reading better supported by the paper, typically Cip's. On what requires disciplinary judgement — humanities_role, whether a task is interpretive or merely factual — weigh Ciop's reading more heavily, but still against the text.
+- On humanities_role, "both" requires positive evidence: distinct item groups or distinct reported metrics for content-as-data and for disciplinary competence. If the analysts split between "both" and one of the specific values, default to the specific value unless the paper shows that evidence.
+
+CONTROLLED VOCABULARIES — enforce these in the final report even if neither analyst complied:
+- benchmark_modalities: only text, image, audio, video (lowercase).
+- humanities_role: only content, domain, both, none.
+- primary_evaluation_setting: only zero-shot, few-shot, fine-tuned, mix. No articles, qualifiers or combinations — more than one setting means "mix".
+- analytical_tasks: only the identifiers in the block below. Map any narrower label from either analyst onto the closest identifier and preserve their specific wording in analytical_tasks_explanation.
+
+<<TASK_VOCAB>>
 
 Return a JSON object with exactly these fields:
 

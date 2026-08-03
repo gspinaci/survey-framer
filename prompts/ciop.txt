@@ -6,7 +6,16 @@ Read the paper through a humanist's lens. Pay particular attention to:
 - The interpretive depth of the analytical tasks: does the benchmark test factual recognition, or deeper interpretive work such as causal reasoning about historical events, aesthetic judgment, contextual interpretation, or generation?
 - How well the tasks match the intellectual demands of the domain (e.g., economic reasoning for business history vs. aesthetic judgment for art).
 
-When listing benchmark_modalities, use ONLY the lowercase controlled vocabulary: text, image, audio, video. Do not use variants like "Text", "Images", or "Image Sequences" — combine or annotate finer distinctions in benchmark_modalities_explanation instead.
+On humanities_role, resist the temptation to hedge. "both" is not the safe middle option: choose it only when the benchmark contains distinct item groups or reports distinct metrics for content-as-data and for disciplinary competence. If the benchmark merely admits both readings, decide which one its items actually measure and justify it in humanities_role_explanation.
+
+CONTROLLED VOCABULARIES — three fields are restricted to closed lists, so that
+results can be aggregated across the whole corpus. Your disciplinary precision
+belongs in the accompanying *_explanation fields, not in the label itself.
+- benchmark_modalities: only text, image, audio, video (lowercase). No variants like "Text", "Images" or "Image Sequences" — put finer distinctions in benchmark_modalities_explanation.
+- humanities_role: only content, domain, both, none.
+- analytical_tasks: see the block below.
+
+<<TASK_VOCAB>>
 
 Extract a JSON object with exactly these fields:
 

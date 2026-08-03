@@ -1,52 +1,41 @@
 {
   "benchmark_name": "AdMIRe",
   "publication_year": 2025,
-  "humanities_role": "both",
-  "humanities_role_explanation": "AdMIRe uses figurative language, specifically the semantic duality of nominal compounds (literal vs. idiomatic interpretations), as both the evaluation content and the core domain of inquiry. It probes the models' capacity to handle metaphorical representation, semantic shifts, and multi-modal semantic alignment, which are fundamental topics in linguistics, semiotics, and literary theory.",
+  "humanities_role": "domain",
+  "humanities_role_explanation": "The benchmark targets semantic and linguistic competence in the representation of idiomaticity (distinguishing between figurative and literal meanings of multi-word nominal compounds), which evaluates a specialized domain competence in linguistics and semantic theory rather than generic language processing.",
   "benchmark_modalities": [
     "text",
     "image"
   ],
-  "benchmark_modalities_explanation": "Integrates natural language text (context sentences, nominal compounds, and descriptive captions) with static synthetic images (Midjourney-generated visual scenes of figurative and literal meanings) and temporal image sequences.",
+  "benchmark_modalities_explanation": "Combines natural language context sentences with static images illustrating literal or idiomatic meanings (Subtask A), and three-frame narrative image sequences that depict temporal progressions of idioms (Subtask B).",
   "analytical_tasks": [
-    "semantic disambiguation",
-    "multimodal image-text ranking",
-    "next-image sequence prediction",
-    "figurative language classification"
+    "multiple_choice_qa",
+    "classification",
+    "retrieval_and_ranking",
+    "sequence_prediction",
+    "interpretation"
   ],
-  "analytical_tasks_explanation": "Subtask A requires models to rank five candidate images based on how well they align with the contextual meaning (idiomatic vs. literal) of a target nominal compound. Subtask B evaluates temporal narrative reasoning, requiring the model to select the correct completing image in a three-panel sequence and classify whether the sequence depicts a literal or figurative meaning.",
+  "analytical_tasks_explanation": "Tasks include mapping a figurative context to relevant visual representations by ranking five candidates (retrieval and ranking, multiple-choice QA), predicting the correct narrative resolution in a sequence of frames (sequence prediction), and classifying expressions as literal or idiomatic (classification). These require the models to perform complex figurative and semantic interpretation.",
   "inclusion_criteria": {
     "general_purpose_benchmark": {
       "met": false,
-      "note": "Specifically targets idiomaticity, figurative language comprehension, and multimodal semantic representation rather than general capabilities."
+      "note": "The benchmark is explicitly scoped to evaluate idiomaticity representation and figurative language understanding in multimodal contexts."
     },
     "evaluates_generative_llm": {
       "met": true,
-      "note": "Evaluates generative language and vision-language models such as GPT-4, Qwen2.5, LLaVA, CLIP, and DeepSeek, employed by participating systems."
-    },
-    "llm_is_primary_system": {
-      "met": true,
-      "note": "The shared task primarily benchmarks the capabilities of state-of-the-art LLMs and Vision-Language Models in representing idiomatic meaning."
-    },
-    "arts_humanities_data": {
-      "met": true,
-      "note": "Focuses on Language and Linguistics (specifically semantics, phraseology, and multilingual idiomaticity) and Literature and Literary Theory (figurative and metaphorical language)."
+      "note": "Evaluated multiple frontier generative LLMs and VLMs, such as GPT-4, Qwen, DeepSeek, and LLaVA, alongside fine-tuned models like SBERT and CLIP."
     },
     "quantitative_metrics": {
       "met": true,
-      "note": "Uses Top-1 Accuracy, Discounted Cumulative Gain (DCG), Image Completion Accuracy, and Sentence Type Accuracy."
+      "note": "Uses Top 1 Accuracy, Discounted Cumulative Gain (DCG), Image Completion Accuracy, and Sentence Type Accuracy."
     },
     "published_after_march_2023": {
       "met": true,
-      "note": "Published in March 2025 for SemEval-2025."
-    },
-    "english_language": {
-      "met": true,
-      "note": "The paper is written in English and the benchmark includes English data alongside Brazilian Portuguese."
+      "note": "The paper is a task description for SemEval-2025, published in June 2025."
     }
   },
-  "summary": "This paper presents SemEval-2025 Task 1: AdMIRe, a benchmark designed to evaluate and improve how language and vision-language models represent idiomatic expressions in multimodal and multilingual contexts. The benchmark includes static image-ranking tasks and narrative image-sequence completion tasks across English and Brazilian Portuguese, evaluating the models' capacity to navigate the literal-figurative boundary.",
-  "key_findings": "Top-performing systems approached human-level baseline performance (achieving up to 93% top-1 accuracy in English and 100% in Portuguese for Subtask A). However, this success required complex, resource-intensive pipelines, such as mixture-of-experts ensembles, self-consistency prompt smoothing, and translating idiomatic compounds into compositional synonyms to bypass the models' bias toward literal interpretations of visual data.",
+  "summary": "AdMIRe (SemEval-2025 Task 1) introduces a novel multimodal benchmark for evaluating how large language and vision-language models represent and interpret the figurative and literal meanings of nominal compounds. It provides hand-curated datasets in English and Brazilian Portuguese containing static and sequential images generated via diffusion models alongside linguistic context. The benchmark challenges models to correctly rank images according to idiomatic meaning and predict narrative progressions over multi-frame sequences.",
+  "key_findings": "Top-performing systems approached human-level accuracy (achieving up to 0.93-1.00 Top 1 accuracy on Subtask A) by utilizing sophisticated prompting strategies, chain-of-thought reasoning, and mixture-of-experts (MoE) ensembles. However, human evaluation confirms that understanding these figurative depictions is challenging, and models heavily depend on complex architectural frameworks and prompt engineering to mitigate their innate bias toward treating nominal compounds as idiomatic regardless of context.",
   "relevant_asjc_areas": [
     "Language and Linguistics",
     "Literature and Literary Theory"

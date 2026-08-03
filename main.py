@@ -31,9 +31,10 @@ from src.csv_reader import read_papers_csv
 from src.pdf_fetcher import fetch_pdf
 from src.pdf_extractor import extract_text
 from src.analyzer import analyze_paper
-from src.fields import declared_fields, missing_fields
+from src.fields import check_vocab, declared_fields, missing_fields
 from src.report_writer import write_paper_report
 from src.narrative import generate_narrative
+from src.dashboard import generate_dashboard
 
 
 def step_fetch(papers: list[dict]) -> dict[str, Path]:
@@ -111,6 +112,9 @@ def step_analyze(papers: list[dict], pdf_paths: dict[str, Path], force: bool = F
                 path.write_text(json.dumps(data, indent=2), encoding="utf-8")
             analysis = json.loads(final_json.read_text(encoding="utf-8"))
             tqdm.write(f"  INCREMENTAL: {pid} — added: {', '.join(missing)}")
+
+        for warning in check_vocab(analysis):
+            tqdm.write(f"  VOCAB: {pid} — {warning}")
 
         write_paper_report(paper, analysis, PAPERS_DIR)
         return analysis
@@ -213,7 +217,7 @@ def main():
     parser.add_argument("--input", required=True, help="Path to CSV with paper DOIs/arXiv IDs")
     parser.add_argument(
         "--step",
-        choices=["fetch", "analyze", "narrative", "all"],
+        choices=["fetch", "analyze", "narrative", "dashboard", "all"],
         default="all",
         help="Which pipeline step to run (default: all)",
     )
@@ -251,6 +255,10 @@ def main():
     if args.step in ("narrative", "all"):
         passing_ids = step_validate(papers)
         step_narrative(passing_ids)
+
+    if args.step in ("dashboard", "all"):
+        print("\n--- Building provenance dashboard ---")
+        generate_dashboard(papers)
 
     print("\nDone.")
 

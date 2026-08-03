@@ -9,6 +9,11 @@ INPUT_DIR = BASE_DIR / "input"
 OUTPUT_DIR = BASE_DIR / "output"
 PAPERS_DIR = OUTPUT_DIR / "papers"
 PDFS_DIR = OUTPUT_DIR / "pdfs"
+
+# Input CSVs used by the provenance dashboard (src/dashboard.py)
+PAPERS_CSV = INPUT_DIR / "papers.csv"
+SOURCES_CSV = INPUT_DIR / "Survey Benchmarks LLM+DH - Sources.csv"
+DASHBOARD_HTML = OUTPUT_DIR / "provenance.html"
 # Per-paper intermediate reports from the persona agents (Ciop / Cip).
 # Kept out of PAPERS_DIR so PAPERS_DIR.glob("*.json") only sees final reports.
 AGENTS_DIR = PAPERS_DIR / "agents"

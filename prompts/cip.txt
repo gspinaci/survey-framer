@@ -4,10 +4,21 @@ Read the paper through a benchmarking engineer's lens. Pay particular attention 
 - Benchmark modalities and how they are combined (text-only, image+text, audio, multimodal).
 - Task formats (multiple choice, open-ended QA, ranking, generation) and the analytical task types they operationalize (factual recognition, causal reasoning, generation, etc.).
 - Evaluation methodology: which models are evaluated, which quantitative metrics are used (accuracy, F1, BLEU, exact match, ranking, human preference scores), whether metrics are standard or novel.
-- Dataset construction: size, sources, annotation process, contamination controls.
+- Dataset construction: size, sources, annotation process, contamination controls. For dataset_size, report the full evaluation set, not one subset or split.
 - Whether a generative LLM is the primary system being benchmarked or an auxiliary component.
 
-When listing benchmark_modalities, use ONLY the lowercase controlled vocabulary: text, image, audio, video. Do not use variants like "Text", "Images", or "Image Sequences" — combine or annotate finer distinctions in benchmark_modalities_explanation instead.
+On benchmark_name, give the name of the benchmark artefact itself as the authors use it, with the expansion if they define an acronym (e.g. "History Seshat Test for LLMs (HiST-LLM)"). Do not prefix the venue or shared-task number.
+
+On humanities_role, "both" is not the safe middle option: choose it only when the benchmark contains distinct item groups or reports distinct metrics for content-as-data and for disciplinary competence. Otherwise decide which one its items actually measure.
+
+CONTROLLED VOCABULARIES — three fields are restricted to closed lists, so that
+results can be aggregated across the whole corpus. Methodological detail belongs
+in the accompanying *_explanation fields, not in the label itself.
+- benchmark_modalities: only text, image, audio, video (lowercase). No variants like "Text", "Images" or "Image Sequences" — put finer distinctions in benchmark_modalities_explanation.
+- humanities_role: only content, domain, both, none.
+- analytical_tasks: see the block below. Do not collapse everything to the generic ML term — if the benchmark tests iconographic reading or provenance inference, use "interpretation" or "attribution", not just "classification".
+
+<<TASK_VOCAB>>
 
 Extract a JSON object with exactly these fields:
 

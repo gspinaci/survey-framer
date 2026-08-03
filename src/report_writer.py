@@ -47,14 +47,20 @@ def write_paper_report(paper: dict, analysis: dict, output_dir: Path) -> Path:
     labels = {
         "general_purpose_benchmark": "General-purpose benchmark",
         "evaluates_generative_llm": "Evaluates generative LLM",
-        "llm_is_primary_system": "LLM is primary evaluated system",
-        "arts_humanities_data": "Arts & Humanities data/tasks",
         "quantitative_metrics": "Quantitative performance metrics",
         "published_after_march_2023": "Published after Mar 2023",
+    }
+    # Criteria retired from the schema still render for papers analyzed before
+    # the pruning, so older reports regenerate without losing rows.
+    retired = {
+        "llm_is_primary_system": "LLM is primary evaluated system",
+        "arts_humanities_data": "Arts & Humanities data/tasks",
         "english_language": "English language",
     }
 
-    for key, label in labels.items():
+    for key, label in {**labels, **retired}.items():
+        if key in retired and key not in criteria:
+            continue
         c = criteria.get(key, {})
         met = _criteria_icon(c.get("met", False))
         note = c.get("note", "")
@@ -70,7 +76,7 @@ def write_paper_report(paper: dict, analysis: dict, output_dir: Path) -> Path:
         "",
         "## Analytical Tasks",
         "",
-        f"**Task Types:** {', '.join(analysis.get('analytical_tasks', []))}",
+        f"**Task Types:** {', '.join(t.replace('_', ' ') for t in analysis.get('analytical_tasks', []))}",
         "",
         f"**Detailed Description:** {analysis.get('analytical_tasks_explanation', 'N/A')}",
         "",
