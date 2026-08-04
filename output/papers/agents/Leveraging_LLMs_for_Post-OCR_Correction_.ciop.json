@@ -1,54 +1,47 @@
 {
   "benchmark_name": null,
   "publication_year": 2024,
-  "humanities_role": "both",
-  "humanities_role_explanation": "The paper uses 19th-century historical newspaper texts containing domain-specific linguistic features (e.g., historical vocabulary, archaic currency formats, old spelling conventions) to evaluate how generative LLMs can improve document accessibility for digital humanities scholars.",
+  "humanities_role": "content",
+  "humanities_role_explanation": "The 19th-century British newspaper texts in the BLN600 dataset serve as raw content (noisy text input). While the material exhibits historical linguistic features (e.g., archaic abbreviations, old currency), the evaluation measures general language modeling denoising capabilities\u2014specifically character-level sequence correction\u2014rather than domain-specific historical analysis or critical interpretation.",
   "benchmark_modalities": [
     "text"
   ],
-  "benchmark_modalities_explanation": "Evaluates models solely on text sequences (mapping corrupted OCR output to clean, human-transcribed ground truth text).",
+  "benchmark_modalities_explanation": "The evaluation uses parallel text sequences consisting of noisy OCR text as inputs and clean, manually transcribed ground-truth text as targets.",
   "analytical_tasks": [
-    "post-OCR correction",
-    "spelling normalization",
-    "named entity correction"
+    "transcription_and_correction"
   ],
-  "analytical_tasks_explanation": "The tasks focus on sequence-to-sequence correction of OCR-induced character errors (substitutions, insertions, deletions) within a historical context, requiring the preservation of archaic lexical styles and restoration of corrupted named entities (e.g., people, organizations).",
+  "analytical_tasks_explanation": "The task is post-OCR correction of historical newspapers, focusing on character-level and word-level error repair (including handling substitutions, insertions, deletions, misnamed entities, and extreme OCR corruption/hallucinations).",
   "inclusion_criteria": {
     "general_purpose_benchmark": {
       "met": false,
-      "note": "The evaluation is restricted to the specific task of post-OCR correction on historical newspaper texts (BLN600)."
+      "note": "The evaluation is strictly scoped to the task of post-OCR correction on a single dataset of historical newspapers (BLN600)."
     },
     "evaluates_generative_llm": {
       "met": true,
-      "note": "Evaluates Llama 2 (7B and 13B models) and compares them with BART."
-    },
-    "llm_is_primary_system": {
-      "met": true,
-      "note": "Llama 2 is the primary generative LLM being instruction-tuned and evaluated."
-    },
-    "arts_humanities_data": {
-      "met": true,
-      "note": "Uses BLN600, containing 19th-century British newspaper articles (History, Language and Linguistics)."
+      "note": "Evaluates Llama 2 (7B and 13B) and compares its performance with BART (Base and Large)."
     },
     "quantitative_metrics": {
       "met": true,
-      "note": "Evaluates using Character Error Rate (CER) reduction percentage based on Levenshtein distance."
+      "note": "Evaluates using percentage reduction in Character Error Rate (CER), computed using Levenshtein distance."
     },
     "published_after_march_2023": {
       "met": true,
-      "note": "Published in May 2024."
-    },
-    "english_language": {
-      "met": true,
-      "note": "The paper is written in English, and the BLN600 dataset consists of 19th-century English-language newspapers."
+      "note": "Published in May 2024 at the LT4HALA workshop @ LREC-COLING 2024."
     }
   },
-  "summary": "The paper explores the application of generative LLMs for post-OCR correction in historical digital archives, using the BLN600 dataset of 19th-century British newspapers. It compares instruction-tuned Llama 2 models against a traditionally fine-tuned BART model, highlighting the superior performance of LLMs in low-data scenarios.",
-  "key_findings": "Instruction-tuned Llama 2 13B achieved a 54.51% reduction in Character Error Rate (CER) on the test set, substantially outperforming the fine-tuned BART Large model (23.30% reduction). Llama 2 also demonstrated much stronger performance when training data was severely limited.",
+  "summary": "This paper evaluates the performance of instruction-tuned generative Large Language Models (specifically Llama 2) against fine-tuned sequence-to-sequence models (BART) for the task of post-OCR correction. Using the BLN600 parallel dataset of 19th-century British newspaper articles, the authors demonstrate that instruction-tuned LLMs can effectively clean noisy OCR text, achieving strong results even under low-data constraints.",
+  "key_findings": "The instruction-tuned Llama 2 (13B) model achieved a 54.51% reduction in Character Error Rate (CER), significantly outperforming the fine-tuned BART-large model, which achieved a 23.30% reduction. Furthermore, Llama 2 displayed high correction performance with very small training sets, whereas BART's performance deteriorated significantly as the volume of training data decreased.",
   "relevant_asjc_areas": [
     "History",
     "Language and Linguistics"
   ],
   "dataset_size": 13192,
-  "primary_evaluation_setting": "fine-tuned"
+  "primary_evaluation_setting": "fine-tuned",
+  "gold_source": "not_stated",
+  "gold_beyond_stimulus": "no",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "not_stated",
+  "facets_explanation": "The reference answers are retrieved from the pre-existing BLN600 corpus, which features manually re-keyed human transcriptions of 19th-century British Library newspapers, though the paper does not state how these transcribers were trained or selected. Correcting the OCR errors relies on reconstructing the text segment itself, meaning no external knowledge beyond the stimulus is strictly required for the target alignment. The benchmark utilizes a single ground-truth transcription per item to calculate Character Error Rate, and the paper does not address annotator disagreement or alternative transcriptions."
 }

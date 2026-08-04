@@ -1,57 +1,54 @@
 {
-  "benchmark_name": "MMLU",
+  "benchmark_name": "Massive Multitask Language Understanding (MMLU)",
   "publication_year": 2021,
-  "humanities_role": "both",
-  "humanities_role_explanation": "MMLU includes specific academic humanities subjects (e.g., history, philosophy, world religions) as target evaluation domains while using their textual questions as content to assess general multi-task language understanding and reasoning.",
+  "humanities_role": "domain",
+  "humanities_role_explanation": "Evaluates disciplinary academic and professional competence across specialized humanities subjects including history, philosophy, world religions, jurisprudence, and professional law, rather than using humanities text for general reading comprehension tasks.",
   "benchmark_modalities": [
     "text"
   ],
-  "benchmark_modalities_explanation": "Text-only multiple-choice questions with four options, processed in zero-shot and few-shot text prompts.",
+  "benchmark_modalities_explanation": "The benchmark is text-only, consisting of multiple-choice questions spanning 57 subjects.",
   "analytical_tasks": [
-    "multiple choice question answering",
-    "factual recognition",
-    "causal reasoning",
-    "moral judgment",
-    "logical deduction"
+    "multiple_choice_qa",
+    "factual_recall",
+    "logical_and_quantitative_reasoning",
+    "causal_and_temporal_reasoning",
+    "normative_judgment"
   ],
-  "analytical_tasks_explanation": "Evaluates factual recognition of historical and religious events, logical deduction in formal logic, moral reasoning in everyday scenarios, and legal rule application in professional law cases.",
+  "analytical_tasks_explanation": "The benchmark utilizes multiple-choice questions to evaluate factual recall of declarative knowledge, logical and quantitative reasoning (e.g., formal logic, mathematics), causal and temporal reasoning (e.g., historical timelines), and normative judgment (e.g., moral scenarios, legal ethics).",
   "inclusion_criteria": {
     "general_purpose_benchmark": {
       "met": true,
-      "note": "Evaluates broad language understanding across 57 diverse subjects spanning STEM, humanities, and social sciences."
+      "note": "Evaluates LLM performance across 57 distinct academic and professional subjects spanning STEM, humanities, social sciences, and other areas."
     },
     "evaluates_generative_llm": {
       "met": true,
-      "note": "Evaluates GPT-3 (ranging from Ada to Davinci/175B) and GPT-2."
-    },
-    "llm_is_primary_system": {
-      "met": true,
-      "note": "Generative LLMs and text-to-text models (UnifiedQA) are the primary focus of the evaluation."
-    },
-    "arts_humanities_data": {
-      "met": true,
-      "note": "Includes datasets for History (US, World, European), Philosophy, Religious Studies (World Religions), and Jurisprudence/Law."
+      "note": "Evaluates GPT-3 (various sizes including Ada, Babbage, Curie, Davinci) and UnifiedQA."
     },
     "quantitative_metrics": {
       "met": true,
-      "note": "Evaluated primarily via multi-choice classification accuracy, alongside calibration error metrics."
+      "note": "Evaluates performance using classification accuracy and calibration error metrics."
     },
     "published_after_march_2023": {
       "met": false,
-      "note": "Published at ICLR in 2021 (preprinted in late 2020)."
-    },
-    "english_language": {
-      "met": true,
-      "note": "The paper and all questions in the benchmark are written in English."
+      "note": "Published as a conference paper at ICLR 2021 (preprinted on arXiv in Jan 2021)."
     }
   },
-  "summary": "This paper introduces the Massive Multitask Language Understanding (MMLU) benchmark, a test spanning 57 subjects designed to measure LLM multitask knowledge and reasoning. The dataset contains 15,908 multiple-choice questions covering elementary to professional difficulty levels. It evaluates models in zero-shot and few-shot transfer settings to assess real-world knowledge acquisition from pretraining.",
-  "key_findings": "The largest GPT-3 model (175B) achieved 43.9% average accuracy, scoring far above random chance (25%) but well below the expert human estimate of 89.8%. Smaller models performed close to random baseline. LLM capabilities were found to be highly lopsided, showing weakness in calculation-heavy STEM subjects, morality, and law, while exhibiting poor calibration (unaware of when they are wrong).",
+  "summary": "This paper proposes the Massive Multitask Language Understanding (MMLU) benchmark, designed to evaluate a model's academic and professional capabilities across 57 diverse subjects. The test is constructed to evaluate pretraining knowledge exclusively in zero-shot and few-shot settings, presenting a more rigorous challenge than previous linguistic or commonsense benchmarks.",
+  "key_findings": "The largest GPT-3 model (175B) moved beyond random-chance performance (25%) to achieve 43.9% average accuracy, but still fell far short of human expert-level performance (~89.8%). Highly procedural STEM subjects, along with value-aligned subjects like moral scenarios and professional law, proved to be particularly difficult for LLMs, and models demonstrated poor calibration with a weak relation between confidence and actual accuracy.",
   "relevant_asjc_areas": [
     "History",
     "Philosophy",
+    "Law",
+    "Language and Linguistics",
     "Religious Studies"
   ],
   "dataset_size": 15908,
-  "primary_evaluation_setting": "zero-shot and few-shot"
+  "primary_evaluation_setting": "mix",
+  "gold_source": "authored_answer_key",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "not_stated",
+  "facets_explanation": "The reference answers were obtained directly from pre-existing answer keys of standardized practice exams (such as the GRE, AP exams, and USMLE) and academic textbooks, which were collected online by graduate and undergraduate students. The tasks assess declarative and procedural knowledge that is not contained within the question stimulus itself. Because the ground truth is derived directly from these pre-existing authoritative answer keys, the paper does not address annotator disagreement or plurality of readings."
 }

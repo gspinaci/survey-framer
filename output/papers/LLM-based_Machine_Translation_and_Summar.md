@@ -9,9 +9,9 @@
 
 ## Humanities Role
 
-**Classification:** both
-**Explanation:** The paper uses 16th-century ecclesiastical and political correspondence (primary historical sources) as its content. It tests translation and cross-language summarization, demanding domain-specific historical linguistic knowledge (Neo-Latin, Early New High German, code-switching) and contextual interpretation of historical entities and concepts.
-**Relevant ASJC areas:** History, Language and Linguistics, Classics
+**Classification:** domain
+**Explanation:** Tests philological competence by evaluating machine translation and summarization of 16th-century historical languages (Latin and Early New High German), requiring domain-specific vocabulary and historical place-name resolution.
+**Relevant ASJC areas:** Classics, History, Language and Linguistics
 **CSV Humanities?:** Yes
 **CSV ASJC code:** 
 
@@ -19,40 +19,51 @@
 
 | Criterion | Met? | Note |
 |-----------|------|------|
-| General-purpose benchmark | NO | The paper does not propose a general-purpose benchmark; it evaluates LLMs on a specific, domain-targeted historical dataset of 16th-century letters. |
-| Evaluates generative LLM | YES | Evaluates GPT-4 (and compares it to Google Translate, DeepL, and other translation engines). |
-| LLM is primary evaluated system | YES | GPT-4 is the primary generative system evaluated for machine translation and summarization. |
-| Arts & Humanities data/tasks | YES | The dataset contains historical correspondence from the Zurich reformer Heinrich Bullinger, mapping to History, Language and Linguistics, and Classics. |
-| Quantitative performance metrics | YES | Uses BLEU and ChrF scores for automatic evaluation, alongside customized quantitative human evaluation rubrics (accuracy, completeness, correctness scores). |
-| Published after Mar 2023 | YES | Published in May 2024. |
-| English language | YES | The paper is written in English. |
+| General-purpose benchmark | NO | Scoped specifically to historical translation and summarization of a corpus of 16th-century letters. |
+| Evaluates generative LLM | YES | Evaluates GPT-4 against neural machine translation baselines. |
+| Quantitative performance metrics | YES | Uses BLEU and ChrF for translation and summarization, alongside structured human evaluation for historical correctness. |
+| Published after Mar 2023 | YES | Published in May 2024 at the LT4HALA workshop. |
 
 ## Benchmark Modalities
 
 **Modality Types:** text
 
-**Description:** The evaluation is purely text-based, involving the translation and summarization of historical letters written in Latin and Early New High German into modern German and English.
+**Description:** Text-only evaluation based on transcriptions of historical letters.
 
 ## Analytical Tasks
 
-**Task Types:** machine translation, cross-lingual summarization
+**Task Types:** translation, generation
 
-**Detailed Description:** Evaluates the translation accuracy of low-resource historical languages, as well as paragraph-by-paragraph cross-lingual summarization. The human evaluation of these tasks implicitly tests for the correct preservation of archaic names, places, and events.
+**Detailed Description:** Machine translation of historical Latin and Early New High German into modern languages, as well as paragraph-level summarization (generation) compared against expert historical commentaries.
 
 ## Summary
 
-This paper evaluates the capability of GPT-4 to perform machine translation and cross-lingual summarization on 16th-century letters from the Heinrich Bullinger correspondence, written in Latin and Early New High German. By comparing GPT-4 against traditional neural machine translation engines, the authors demonstrate the model's significant superiority in processing historical languages and producing summaries that align well with expert humanist editions without hallucinations.
+This paper evaluates the performance of LLMs (specifically GPT-4) on machine translation and summarization of 16th-century letters written in Latin and Early New High German. It demonstrates that generative models significantly outperform traditional neural machine translation baselines on these historical languages and produce summaries comparable to expert-written historical commentaries.
 
 ## Key Findings
 
-GPT-4 achieved a BLEU score of 27.07 for Latin-to-German translation (outperforming Google Translate by nearly 10 BLEU points) and 34.50 for Latin-to-English. Human evaluation of GPT-4's automatic summaries showed high correctness and historical accuracy, effectively capturing names (47.2/58) and events/times (54.5/58) with zero instances of hallucination.
+GPT-4 outperforms Google Translate by roughly 10 BLEU points for Latin-to-German (27.07 vs 17.53) and Latin-to-English (34.50 vs 25.22) translation. In manual evaluation of generated summaries, GPT-4 captured historical names, dates, and events with high accuracy and without hallucinations, despite relatively low automatic BLEU scores due to stylistic variances.
 
 ## Reviewer Notes
 
-- Ciop included 'historical entity resolution' and 'human evaluation' as standalone analytical tasks; resolved by subsuming them under cross-lingual summarization and machine translation, as they are evaluation criteria rather than distinct LLM tasks. Ciop's addition of 'Classics' to the ASJC areas was retained due to the substantial focus on Latin text.
+- Disagreement on humanities_role (Ciop: domain, Cip: content). Resolved in favor of 'domain', weighting Ciop's disciplinary judgment, because translating 16th-century historical texts and resolving historical place names (e.g., Argentina to Strasbourg) targets specific philological competence rather than merely generic MT capabilities.
 
 ## Additional Fields
 
-**Dataset Size:** 121
+**Dataset Size:** None
 
 **Primary Evaluation Setting:** zero-shot
+
+**Gold Source:** domain_expert
+
+**Gold Beyond Stimulus:** no
+
+**Gold Community Dependent:** no
+
+**Gold Concerns Genesis:** no
+
+**Answer Multiplicity:** single_answer
+
+**Plurality Treatment:** not_addressed
+
+**Facets Explanation:** The reference translations for the primary 8-letter machine translation test set were manually produced by a domain expert. The reference summaries for the paragraph-level evaluation were taken from a professional, expert-edited historical edition of Heinrich Bullinger's correspondence (acting as a secondary, pre-existing source of expert reference). Answering correctly does not require knowledge outside the text, as the tasks are translation and summarization of the provided letters. Evaluation relies on automated metrics (BLEU and ChrF) comparing the generated texts to these single reference targets. The paper does not address annotator disagreement or alternative readings during the creation of the reference texts.

@@ -2,53 +2,51 @@
   "benchmark_name": "SimpleQA",
   "publication_year": 2024,
   "humanities_role": "content",
-  "humanities_role_explanation": "SimpleQA contains general-knowledge factual questions which include humanities content, such as history, literature, art, and popular culture (e.g., TV shows and video games) as factual QA items.",
+  "humanities_role_explanation": "The benchmark uses short-form factual questions, many of which cover humanities topics (such as history, culture, and biography), as content to evaluate the factual accuracy of LLMs rather than assessing specialized disciplinary methodologies.",
   "benchmark_modalities": [
     "text"
   ],
-  "benchmark_modalities_explanation": "A text-only dataset of short, fact-seeking queries. Model completions are evaluated against a ground-truth answer using an LLM classifier.",
+  "benchmark_modalities_explanation": "Evaluates models in a text-only modality by presenting short-form questions and analyzing the generated text answers.",
   "analytical_tasks": [
-    "factual QA",
-    "calibration assessment"
+    "factual_recall",
+    "open_ended_qa",
+    "generation",
+    "calibration_and_uncertainty"
   ],
-  "analytical_tasks_explanation": "Evaluates the model's factual retrieval/recognition and its calibration (the alignment of its stated confidence or output frequency with its actual accuracy).",
+  "analytical_tasks_explanation": "Tests the retrieval of highly specific factual knowledge (factual recall) through short-form open-ended question answering. It specifically evaluates model calibration by measuring how often a model correctly refuses to answer ('not attempted' rate) when it does not know the fact.",
   "inclusion_criteria": {
     "general_purpose_benchmark": {
-      "met": true,
-      "note": "Designed as a general-purpose factuality benchmark spanning various topics from science to entertainment."
+      "met": false,
+      "note": "SimpleQA is a specialized benchmark focused entirely on evaluating short-form factual accuracy and hallucination rates, rather than a broad multi-task suite."
     },
     "evaluates_generative_llm": {
       "met": true,
-      "note": "Evaluated OpenAI models including GPT-4o, GPT-4o-mini, o1-preview, and o1-mini."
-    },
-    "llm_is_primary_system": {
-      "met": true,
-      "note": "The LLM is the primary system being evaluated on factuality and calibration."
-    },
-    "arts_humanities_data": {
-      "met": true,
-      "note": "Includes subjects like History, Literature, TV shows, and Video Games, which map to standard ASJC arts and humanities disciplines."
+      "note": "Evaluates frontier generative language models including OpenAI's GPT-4, o1, and o3 series, Anthropic's Claude 3.5, Google's Gemini 1.5, and Meta's Llama 3.1."
     },
     "quantitative_metrics": {
       "met": true,
-      "note": "Measures correctness rate (accuracy), incorrectness/hallucination rate, 'not attempted' rate, and calibration curves."
+      "note": "Uses quantitative metrics including factual accuracy, incorrect/hallucination rate, and not-attempted rate."
     },
     "published_after_march_2023": {
       "met": true,
-      "note": "Published on October 30, 2024."
-    },
-    "english_language": {
-      "met": true,
-      "note": "The paper and the SimpleQA dataset are in English."
+      "note": "Published in late 2024."
     }
   },
-  "summary": "SimpleQA is a text-based, short-form factual question-answering benchmark designed to measure factuality and calibration in frontier language models. It contains 4,326 high-quality, indisputable questions verified by multiple independent AI trainers to ensure a low error rate of approximately 3%. The benchmark evaluates model correctness, incorrect/hallucination rates, and how well models recognize their own knowledge limits.",
-  "key_findings": "Frontier models struggle on SimpleQA, with GPT-4o scoring under 40% accuracy. Reasoning models (o1-preview and o1-mini) choose to 'not attempt' questions more frequently than non-reasoning models (GPT-4o), showing better calibration. However, all models still consistently overstate their confidence.",
+  "summary": "SimpleQA is a benchmark designed to measure the short-form factuality and calibration of large language models. It uses high-difficulty, objective questions with single clear-cut answers to assess how often models hallucinate versus correctly acknowledging their lack of knowledge.",
+  "key_findings": "Frontier models struggle with the high-difficulty factual questions in SimpleQA, often exhibiting high hallucination rates, though newer reasoning models (like the OpenAI o-series) show improved accuracy and calibration.",
   "relevant_asjc_areas": [
+    "Multidisciplinary",
+    "General Arts and Humanities",
     "History",
-    "Literature and Literary Theory",
-    "Visual Arts and Performing Arts"
+    "Literature and Literary Theory"
   ],
-  "dataset_size": 4326,
-  "primary_evaluation_setting": "zero-shot"
+  "dataset_size": 4301,
+  "primary_evaluation_setting": "mix",
+  "gold_source": "not_stated",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "not_stated",
+  "gold_concerns_genesis": "not_stated",
+  "answer_multiplicity": "not_stated",
+  "plurality_treatment": "not_stated",
+  "facets_explanation": "The provided text is the README of the simple-evals repository, which only introduces SimpleQA as a benchmark for measuring short-form factuality without detailing its dataset construction process. Because it is a factual question-answering task without context, answering correctly requires knowledge beyond the prompt stimulus. Specific details regarding the gold source, scoring multiplicity, and plurality treatment are not stated in this repository documentation."
 }

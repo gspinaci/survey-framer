@@ -2,60 +2,59 @@
   "benchmark_name": "OfficeQA Pro",
   "publication_year": 2026,
   "humanities_role": "content",
-  "humanities_role_explanation": "Utilizes a century-long historical archive of U.S. Treasury Bulletins (1939-2020s) as its corpus, treating these historical documents as raw quantitative data for financial retrieval, factual QA, and mathematical calculation rather than as objects of qualitative interpretive inquiry.",
+  "humanities_role_explanation": "The benchmark relies on a historical archive spanning a century of U.S. Treasury Bulletins as its source corpus, but evaluates general capabilities like document parsing, multi-step retrieval, and mathematical reasoning rather than historical interpretation.",
   "benchmark_modalities": [
     "text",
     "image"
   ],
-  "benchmark_modalities_explanation": "Evaluates agents on text (both unstructured prose and structured tabular data) and images (visual interpretation of historical figures, charts, and scanned PDF pages).",
+  "benchmark_modalities_explanation": "The corpus consists of scanned and digital PDFs containing text, complex nested tables, and visual elements (figures, charts, and line graphs) that models must interpret.",
   "analytical_tasks": [
-    "document retrieval",
-    "tabular data parsing",
-    "quantitative reasoning",
-    "statistical analysis",
-    "temporal data reconciliation",
-    "visual reasoning"
+    "open_ended_qa",
+    "information_extraction",
+    "retrieval_and_ranking",
+    "logical_and_quantitative_reasoning",
+    "causal_and_temporal_reasoning",
+    "visual_reasoning",
+    "agentic_tool_use"
   ],
-  "analytical_tasks_explanation": "Requires multi-step reasoning across unstructured text and complex nested tables, including longitudinal financial analysis (e.g., ordinary least squares linear regression), inflation adjustments, temporal revision verification, and high-precision arithmetic computations.",
+  "analytical_tasks_explanation": "Tasks require multi-document retrieval across a large 100-year corpus, data extraction from highly complex hierarchical tables, longitudinal reconciliation of revised historical statistics over time (temporal reasoning), multi-step mathematical analysis (e.g., linear regression, inflation adjustments), reasoning over visual trend lines in charts, and autonomous coordination of these actions using tools like Python REPLs and file search APIs.",
   "inclusion_criteria": {
     "general_purpose_benchmark": {
       "met": false,
-      "note": "Specifically designed as an enterprise grounded reasoning benchmark focused on historical financial document QA."
+      "note": "Scoped to enterprise-grade grounded reasoning and quantitative analysis over financial/historical documents."
     },
     "evaluates_generative_llm": {
       "met": true,
-      "note": "Evaluates frontier LLMs and agent frameworks including Claude Opus (4.5, 4.6), Claude Sonnet (4.5, 4.6), Claude Haiku 4.5, GPT-5 (5.1, 5.4, Mini), and Gemini 3 (Pro, 3.1 Pro, Flash)."
-    },
-    "llm_is_primary_system": {
-      "met": true,
-      "note": "The LLMs and LLM-based agents are the primary systems being evaluated and benchmarked."
-    },
-    "arts_humanities_data": {
-      "met": true,
-      "note": "Includes History, as it utilizes a 100-year historical archive of U.S. Treasury Bulletins spanning from 1939 onwards."
+      "note": "Evaluates frontier generative models including GPT-5.4, Claude Opus 4.6, and Gemini 3.1 Pro Preview."
     },
     "quantitative_metrics": {
       "met": true,
-      "note": "Accuracy evaluated under varying absolute relative error thresholds (0.0%, 0.1%, 1.0%, 5.0%), exact match, and fuzzy text matching."
+      "note": "Evaluates correctness using exact match accuracy and absolute relative error thresholds (0.0%, 0.1%, 1.0%, 5.0%), plus latency and cost."
     },
     "published_after_march_2023": {
       "met": true,
-      "note": "The preprint date is March 2026."
-    },
-    "english_language": {
-      "met": true,
-      "note": "The paper, corpus, and questions are in English."
+      "note": "The preprint was published in March 2026."
     }
   },
-  "summary": "OfficeQA Pro is an enterprise benchmark designed to evaluate AI agents on end-to-end grounded reasoning over a heterogeneous 100-year archive of U.S. Treasury Bulletins. It contains 133 highly complex and verifiable questions requiring precise document parsing, multi-document retrieval, and quantitative mathematical modeling to measure SOTA model limitations.",
-  "key_findings": "Frontier agents struggle on over half of the questions, with the strongest agent (Claude Opus 4.6) scoring 48.1% when processing raw PDFs. Converting the PDFs to a structured representation yields a 16.1% relative accuracy gain on average and significantly decreases latency and cost. Surprisingly, AI agents consistently outperform human annotators in both speed and accuracy on a subset evaluation.",
+  "summary": "OfficeQA Pro is a grounded reasoning benchmark designed to evaluate AI agents on multi-document analysis over a 100-year corpus of U.S. Treasury Bulletins. It features 133 quantitative questions that require agents to parse complex tables, retrieve historical statistics, and perform multi-step mathematical synthesis. The paper demonstrates that document parsing quality is a significant bottleneck and that current frontier agents struggle to surpass 50% accuracy on the raw PDF corpus.",
+  "key_findings": "Direct LLM baselines fail completely on parametric knowledge (<5% accuracy). The strongest frontier agent (Claude Opus 4.6) achieves 48.1% accuracy on the full raw PDF corpus. Supplying documents pre-parsed by Databricks' ai_parse_document provides a 16.1% relative performance gain across agents and significantly reduces latency and cost.",
   "relevant_asjc_areas": [
     "History"
   ],
   "dataset_size": 133,
-  "primary_evaluation_setting": "zero-shot agentic tool-use",
-  "review_notes": "Minor disagreements in 'analytical_tasks' were resolved by merging the lists to encompass the specific tasks mentioned in the paper. For 'primary_evaluation_setting', Ciop wrote 'agentic tool-use' while Cip wrote 'zero-shot'; these were combined into 'zero-shot agentic tool-use' to reflect that the models are evaluated in an autonomous agent workflow on a zero-shot basis.",
+  "primary_evaluation_setting": "mix",
+  "review_notes": "Resolved dataset_size to 133 (Ciop) as the paper explicitly states '133 questions in OfficeQA Pro' (246 was the pre-filter set size). Added 'agentic_tool_use' to analytical_tasks (Ciop) since the paper heavily evaluates agent orchestration frameworks and API/tool usage. Set primary_evaluation_setting to 'mix' (Cip) because the paper utilizes zero-shot prompts with mandatory Chain-of-Thought reasoning tags alongside multi-turn agentic evaluations.",
   "paper_id": "2603.08655",
   "paper_name": "OfficeQA Pro",
-  "csv_row": 29
+  "csv_row": 29,
+  "gold_source": "crowd_annotation",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "noise",
+  "facets_explanation": "The reference answers were created primarily by hired annotators from partners SuperAnnotate and Turing, who generated questions grounded in the Treasury Bulletins starting from a seed set written by the authors. Disagreements during verification or conflicting AI predictions were treated as noise and systematically resolved by a third reviewer or by revising the question to remove ambiguity. Each question maps to a single, deterministic correct answer. Additionally, the paper states that 22% of questions require retrieving external knowledge (e.g., historical indices or exchange rates) not present in the provided documents.",
+  "review_notes_incremental": [
+    "Disagreement on gold_beyond_stimulus: Ciop marked 'yes' and Cip marked 'no'. Resolved to 'yes' because the paper explicitly states that 22% of the questions require internet search for external values (like historical exchange rates or CPI) that are not present in the provided documents."
+  ]
 }

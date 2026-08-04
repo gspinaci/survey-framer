@@ -2,55 +2,51 @@
   "benchmark_name": "OfficeQA Pro",
   "publication_year": 2026,
   "humanities_role": "content",
-  "humanities_role_explanation": "Uses nearly a century (1939-2020s) of U.S. Treasury Bulletins as the document corpus, which serves as historical financial and economic data for factual QA items, connecting directly to modern economic history.",
+  "humanities_role_explanation": "The benchmark relies on a nearly century-old archive of U.S. Treasury Bulletins (1939\u2013present) as its source corpus, but evaluates general-purpose document parsing, multi-step information retrieval, and quantitative/analytical reasoning rather than specific historical or humanities-disciplinary competencies.",
   "benchmark_modalities": [
     "text",
     "image"
   ],
-  "benchmark_modalities_explanation": "Primarily relies on textual and tabular documents, but 3% of the questions require visual reasoning over figures, charts, or graphs present in the PDF bulletins.",
+  "benchmark_modalities_explanation": "Combines structured textual/tabular extraction with visual reasoning tasks over charts, graphs, and figures embedded in both scanned and digital historical PDFs.",
   "analytical_tasks": [
-    "information retrieval",
-    "multi-step reasoning",
-    "quantitative analysis",
-    "visual reasoning",
-    "data analysis"
+    "open_ended_qa",
+    "information_extraction",
+    "retrieval_and_ranking",
+    "logical_and_quantitative_reasoning",
+    "causal_and_temporal_reasoning",
+    "visual_reasoning"
   ],
-  "analytical_tasks_explanation": "Requires multi-step analytical reasoning across unstructured text and complex tables, including longitudinal financial analysis (e.g., ordinary least squares linear regression), inflation adjustment calculations, and high-precision numerical operations.",
+  "analytical_tasks_explanation": "Tasks include multi-step mathematical analysis (such as OLS linear regression), extracting data from highly complex hierarchical tables, longitudinal tracking and revision verification over time, and reasoning over visual trend lines in financial charts.",
   "inclusion_criteria": {
     "general_purpose_benchmark": {
       "met": false,
-      "note": "Specifically designed as an enterprise grounded reasoning benchmark focused on financial and historical document QA."
+      "note": "Scoped specifically to grounded reasoning, document QA, and quantitative analysis over financial bulletins."
     },
     "evaluates_generative_llm": {
       "met": true,
-      "note": "Evaluates frontier LLMs and agent frameworks including Claude Opus 4.6/4.5, Claude Sonnet 4.6/4.5, Claude Haiku 4.5, GPT-5.4, GPT-5.1, GPT-5 Mini, Gemini 3.1 Pro Preview, Gemini 3 Pro Preview, and Gemini 3 Flash."
-    },
-    "llm_is_primary_system": {
-      "met": true,
-      "note": "The LLMs and LLM-based agents are the primary systems being evaluated and benchmarked."
-    },
-    "arts_humanities_data": {
-      "met": true,
-      "note": "Includes 'History' as it utilizes a 100-year historical archive of U.S. Treasury Bulletins spanning from 1939 onwards."
+      "note": "Evaluates several frontier LLM families, including GPT-5.4, Claude Opus 4.6, and Gemini 3.1 Pro Preview, both as standalone models and within agentic orchestration SDKs."
     },
     "quantitative_metrics": {
       "met": true,
-      "note": "Evaluated using accuracy under varying absolute relative error thresholds (0.0%, 0.1%, 1.0%, 5.0%), exact match, and fuzzy text matching."
+      "note": "Evaluates models using correctness/accuracy at multiple absolute relative error thresholds (0.0%, 0.1%, 1.0%, 5.0%), along with latency, cost per sample, and average tool calls."
     },
     "published_after_march_2023": {
       "met": true,
-      "note": "The preprint date is March 2026."
-    },
-    "english_language": {
-      "met": true,
-      "note": "The paper, corpus, and questions are written in English."
+      "note": "Published in March 2026."
     }
   },
-  "summary": "OfficeQA Pro is an enterprise benchmark designed to evaluate AI agents on end-to-end grounded reasoning over a heterogeneous 100-year archive of U.S. Treasury Bulletins. It contains 133 highly complex and verifiable questions requiring precise document parsing, information retrieval, and multi-step quantitative data analysis. The benchmark unifies parsing, retrieval, and computation to measure SOTA model limitations in economically valuable enterprise tasks.",
-  "key_findings": "Frontier agents struggle on over half of the questions, scoring 34.1% on average on the full PDF corpus. Using Databricks' ai_parse_document for structured parsing yields a 16.1% relative performance gain. Claude Opus 4.6 achieves the highest accuracy at 57.1% when utilizing file search over pre-parsed documents, while direct LLM prompt-only baseline scores <3% accuracy.",
+  "summary": "This paper introduces OfficeQA Pro, an enterprise-grade grounded reasoning benchmark containing 133 challenging quantitative questions based on a century-long corpus of U.S. Treasury Bulletins. It evaluates the end-to-end performance of state-of-the-art LLMs and multi-agent frameworks on document parsing, retrieval, and precise mathematical synthesis. The authors show that document parsing quality is a significant bottleneck, and even the strongest agentic setups struggle to surpass 50% accuracy.",
+  "key_findings": "The best-performing baseline agent (Claude Opus 4.6) achieves 48.1% accuracy on the raw PDF corpus. Pre-parsing the documents with Databricks' ai_parse_document yields a 16.1% relative performance gain across agents while reducing latency and costs. Expert human annotators score only 34.6% and are significantly slower than agents when navigating the full PDF corpus, primarily failing due to instruction-following slips and choosing incorrect adjacent metrics.",
   "relevant_asjc_areas": [
     "History"
   ],
-  "dataset_size": 133,
-  "primary_evaluation_setting": "zero-shot"
+  "dataset_size": 246,
+  "primary_evaluation_setting": "mix",
+  "gold_source": "crowd_annotation",
+  "gold_beyond_stimulus": "no",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "noise",
+  "facets_explanation": "The reference answers were created in collaboration with annotation partners SuperAnnotate and Turing, who generated questions grounded in the Treasury Bulletins. Disagreements during verification were treated as noise, resolved by a third annotator or by revising the question to eliminate ambiguity. Each question maps to a single, unambiguous correct answer evaluated via exact match or relative numerical error."
 }

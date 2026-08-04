@@ -1,0 +1,11 @@
+# JSONDecodeError: Expecting ',' delimiter: line 9 column 49 (char 926)
+
+{
+  "gold_source": "domain_expert",
+  "gold_beyond_stimulus": "no",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "not_addressed",
+  "facets_explanation": "The reference translations for the primary 8-letter test set were manually produced by a domain expert, while the reference summaries for the paragraph-level evaluation were taken from a scholarly edition of Heinrich Bullinger's correspondence, prepared by historical experts. The reference texts represent single valid answers for computing automated metrics like BLEU and ChrF. Generating the translations and summaries relies entirely on the provided stimulus texts rather than external knowledge, and the paper does not address annotator disagreement or alternative readings during the creation of these gold reference texts.",
+  "review_notes": "No significant disagreements"

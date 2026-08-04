@@ -2,54 +2,51 @@
   "benchmark_name": "DeepSearchQA",
   "publication_year": 2026,
   "humanities_role": "content",
-  "humanities_role_explanation": "Uses historical library archives (e.g., Sherardian Library of botanists), geographical trivia, and media/history queries as content for complex multi-step web-search and collation tasks.",
+  "humanities_role_explanation": "Humanities domains such as History and Media are used as content-level contexts for factual information-seeking tasks, but the evaluation targets general-purpose agentic capabilities like multi-step web retrieval and constraint satisfaction.",
   "benchmark_modalities": [
     "text"
   ],
-  "benchmark_modalities_explanation": "Text-only prompts requiring agents to query and retrieve text-based information from the open web.",
+  "benchmark_modalities_explanation": "The benchmark relies on text-based prompts requiring web browsing and text document synthesis, occasionally handling tabular structures like Excel sheets in a text-based representation.",
   "analytical_tasks": [
-    "multi-step structured retrieval",
-    "context management",
-    "logical reasoning",
-    "entity resolution",
-    "stopping criteria reasoning"
+    "agentic_tool_use",
+    "retrieval_and_ranking",
+    "logical_and_quantitative_reasoning",
+    "open_ended_qa",
+    "information_extraction",
+    "causal_and_temporal_reasoning"
   ],
-  "analytical_tasks_explanation": "The benchmark operationalizes systematic collation of fragmented web information, entity de-duplication across diverse source texts, multi-hop constraint solving (e.g., intersecting attributes like populations, GDP, and years), and autonomous determination of search completion under epistemic uncertainty.",
+  "analytical_tasks_explanation": "Evaluates agentic tool use (web browsing, planning, and stopping criteria), multi-step retrieval and ranking (collating disparate documents), logical and quantitative reasoning (filtering data based on complex constraints and thresholds), open-ended QA (generating exhaustive set lists), information extraction (entity resolution and de-duplication), and causal/temporal reasoning (resolving dependencies across chronological events).",
   "inclusion_criteria": {
     "general_purpose_benchmark": {
-      "met": true,
-      "note": "Evaluates agents on general-purpose deep research tasks across 17 diverse domain profiles (politics, science, health, history, geography, finance, etc.)."
+      "met": false,
+      "note": "Specifically scoped to deep research and multi-step agentic information-seeking workflows rather than broad general-purpose QA."
     },
     "evaluates_generative_llm": {
       "met": true,
-      "note": "Evaluates Gemini Deep Research, GPT-5 Pro High Reasoning, GPT-5 High Reasoning, Gemini 3 Pro Preview, o3 Deep Research, o4 Mini Deep Research, Gemini 2.5 Flash, and Claude 4.5 family."
-    },
-    "llm_is_primary_system": {
-      "met": true,
-      "note": "The LLM-based autonomous web agents are the primary systems being benchmarked."
-    },
-    "arts_humanities_data": {
-      "met": true,
-      "note": "Includes history (e.g., historical library records and archives) and geography/media topics."
+      "note": "Evaluates frontier reasoning models and deep research agents including Gemini Deep Research, GPT-5 Pro High Reasoning, Gemini 3 Pro, o3, o4-mini, and Claude 4.5 series."
     },
     "quantitative_metrics": {
       "met": true,
-      "note": "Uses F1-Score, Precision, Recall, and categorical classification (Fully Correct, Fully Incorrect, Partially Correct, Correct with Extraneous Answers)."
+      "note": "Uses Precision, Recall, F1-Score, and categorical metrics (Fully Correct, Fully Incorrect, Partially Correct, and Correct with Extraneous Answers)."
     },
     "published_after_march_2023": {
       "met": true,
       "note": "Published in January 2026."
-    },
-    "english_language": {
-      "met": true,
-      "note": "The paper and benchmark dataset are written in English."
     }
   },
-  "summary": "DeepSearchQA introduces a 900-prompt dataset to benchmark autonomous web agents on challenging multi-step information-seeking tasks requiring exhaustive answer-set generation rather than single-answer retrieval. The evaluation measures how effectively agents handle systematic collation of fragmented data, entity resolution, and stopping criteria. The results show a clear gap between advanced deep-research agents and standard reasoning models.",
-  "key_findings": "Gemini Deep Research Agent and GPT-5 Pro High Reasoning establish the state-of-the-art (F1 scores of 81.90% and 78.98% respectively). Performance drops significantly for smaller models (e.g., Gemini 2.5 Flash drops to 42.99% F1 and 45.27% fully incorrect), illustrating a hard reasoning threshold for agentic search. Increasing test-time compute via multiple samples monotonically scales accuracy (Gemini Deep Research climbs from 67.18% fully correct at n=1 to 85.71% at n=8).",
+  "summary": "DeepSearchQA is a 900-prompt benchmark designed to measure the capability of autonomous agents to execute complex, multi-step search plans on the open web to retrieve exhaustive answer sets. It addresses the 'Comprehensiveness Gap' of traditional single-answer verification benchmarks by assessing systematic collation, entity resolution, and dynamic stopping criteria. Outcome-based evaluations demonstrate that while current state-of-the-art models excel at single answers, they struggle to balance precision with high recall in exhaustive retrieval tasks.",
+  "key_findings": "Gemini Deep Research Agent and GPT-5 Pro High Reasoning lead the benchmark with F1-scores of 81.90% and 78.98% respectively, showing that recursive agentic loops outperform standalone reasoning models. However, there is a prominent 'Last Mile' gap of 13-15 percentage points between F1 and strict exact-match accuracy due to failures in stopping criteria and entity deduplication. Performance scales monotonically with increased test-time compute, but smaller models suffer from catastrophic trajectory divergence.",
   "relevant_asjc_areas": [
+    "Arts and Humanities (miscellaneous)",
     "History"
   ],
   "dataset_size": 900,
-  "primary_evaluation_setting": "zero-shot"
+  "primary_evaluation_setting": "mix",
+  "gold_source": "domain_expert",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "answer_set",
+  "plurality_treatment": "noise",
+  "facets_explanation": "The reference answers were curated by expert annotators and underwent a rigorous three-phase validation process where any inter-annotator discrepancies were resolved or discarded as noise. Because the queries are designed as open-web research tasks, correct answers require external knowledge not provided in the prompt stimulus. The evaluation system scores responses based on both single answers and structured answer sets containing multiple expected items, using an LLM-as-a-judge to assess semantic equivalence."
 }

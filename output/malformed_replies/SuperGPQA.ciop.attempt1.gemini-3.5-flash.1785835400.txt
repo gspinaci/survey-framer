@@ -1,0 +1,12 @@
+# JSONDecodeError: Expecting ',' delimiter: line 9 column 1 (char 707)
+
+{
+  "gold_source": "authored_answer_key",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "noise",
+  "facets_explanation": "The reference answers are primarily extracted from pre-existing textbook solutions and academic exam keys, which are screened by domain experts. Answering these graduate-level questions requires domain knowledge that is not provided within the question text itself. Any ambiguities, errors, or disagreements in the sourced questions are treated as noise and are resolved or filtered out through an iterative, multi-stage human-in-the-loop verification process."
+quality inspection process."
+}

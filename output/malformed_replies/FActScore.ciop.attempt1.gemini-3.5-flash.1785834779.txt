@@ -1,0 +1,13 @@
+# JSONDecodeError: Expecting ',' delimiter: line 9 column 2 (char 730)
+
+{
+  "gold_source": "crowd_annotation",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "noise",
+  "facets_explanation": "The ground truth was produced by hiring freelance fact-checking experts on Upwork to verify atomic facts against English Wikipedia. Answering the prompts requires external historical and biographical knowledge not present in the simple stimulus (e.g., 'Tell me a bio of <entity>'). Disagreements on a 10% double-annotated subset were analyzed to identify semantic ambiguities, but were ultimately treated as noise to be minimized through high consensus rather than preserved as signal."
+ as signal."
+as signal."
+}

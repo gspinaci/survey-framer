@@ -1,53 +1,47 @@
 {
-  "benchmark_name": "PSH v1.0",
+  "benchmark_name": "Parole Suitability Hearing Corpus (PSH v1.0)",
   "publication_year": 2025,
   "humanities_role": "domain",
-  "humanities_role_explanation": "Uses parole suitability hearing transcripts to analyze and evaluate the replication of individual human rhetorical and stylistic fingerprints.",
+  "humanities_role_explanation": "The benchmark measures the LLMs' domain-specific linguistic and stylistic alignment, evaluating whether they can replicate fine-grained rhetorical profiles (fingerprints) within a computational stylistics and forensic linguistics framework.",
   "benchmark_modalities": [
     "text"
   ],
-  "benchmark_modalities_explanation": "Text-only evaluation using verbatim transcripts of parole suitability hearings.",
+  "benchmark_modalities_explanation": "Text-only corpus consisting of transcript dialogues and generated spoken decision statements.",
   "analytical_tasks": [
-    "style mimicking",
-    "controlled text generation",
-    "linguistic style replication"
+    "stylistic_analysis",
+    "generation"
   ],
-  "analytical_tasks_explanation": "Evaluates the alignment of generated text with specific human stylistic profiles based on linguistic metrics like clausal complexity, lexical diversity, and pronoun/jargon distribution.",
+  "analytical_tasks_explanation": "Generative impersonation and stylistic analysis based on eight linguistic dimensions: sentence complexity, lexical diversity, discourse markers, nominalizations, modals, pronoun usage, and legal jargon.",
   "inclusion_criteria": {
     "general_purpose_benchmark": {
       "met": false,
-      "note": "The evaluation focuses specifically on a specialized corpus of legal/parole hearing transcripts rather than being a broad, general-purpose benchmark."
+      "note": "Scoped strictly to speaker-specific rhetorical impersonation and style mimicry within legal transcripts (parole suitability hearings)."
     },
     "evaluates_generative_llm": {
       "met": true,
       "note": "Evaluates GPT-4o, GPT-4.1, and DeepSeek R1."
     },
-    "llm_is_primary_system": {
-      "met": true,
-      "note": "The LLMs are tasked with generating the target decision statements and are the primary systems being benchmarked."
-    },
-    "arts_humanities_data": {
-      "met": true,
-      "note": "Evaluates forensic linguistics and rhetoric, aligning with Language and Linguistics."
-    },
     "quantitative_metrics": {
       "met": true,
-      "note": "Uses standardized z-scores of linguistic features (lexical diversity, sentence complexity, discourse markers, modals, jargon, nominalizations, and pronoun frequencies) compared against human baselines."
+      "note": "Uses z-scores over normalized linguistic feature counts (sentence complexity, lexical diversity (MTLD), and frequency-based features) compared against original human benchmarks."
     },
     "published_after_march_2023": {
       "met": true,
       "note": "Published in September 2025."
-    },
-    "english_language": {
-      "met": true,
-      "note": "The paper and the underlying PSH corpus are in English."
     }
   },
-  "summary": "This paper presents PSH v1.0, a corpus of anonymized parole suitability hearing transcripts, to study the limits of prompting LLMs to mimic human spoken dialogue. By designing speaker-specific rhetorical fingerprints, the authors evaluate whether LLMs can align their outputs with individual human stylistic profiles or if their own pre-trained patterns dominate.",
-  "key_findings": "LLMs show clear limitations in replicating human rhetorical fingerprints. Regardless of prompting conditions (primed-by-corpus vs. fingerprint-enhanced), models struggle to align with human sentence complexity and lexical diversity, maintaining high, writing-biased baselines. Additionally, models demonstrate inherent stylistic footprints that are consistent across versions (e.g., GPT-4o and GPT-4.1) or hard to shift with prompt adjustments (e.g., DeepSeek R1).",
+  "summary": "The paper explores the capacity of LLMs to mimic human conversational monologue in a high-stakes legal setting (parole hearings) by prompting them with speaker-specific rhetorical fingerprints. Using the PSH v1.0 corpus, the authors extract stylistic signatures of human commissioners to guide generative LLMs, analyzing the limits of prompt-based style alignment. Their findings show that LLMs possess strong, immutable model-specific fingerprints that dominate over the prompted styles.",
+  "key_findings": "All tested LLMs show a strong bias towards formal, written-style features (e.g., excessive lexical diversity, high sentence complexity, and frequent nominalizations) regardless of explicit style prompts. GPT-4o and GPT-4.1 share very similar, inherited rhetorical patterns, while DeepSeek R1 exhibits the highest complexity and jargon usage, consistently ignoring negative constraints.",
   "relevant_asjc_areas": [
     "Language and Linguistics"
   ],
   "dataset_size": 100,
-  "primary_evaluation_setting": "zero-shot"
+  "primary_evaluation_setting": "zero-shot",
+  "gold_source": "existing_metadata",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "not_stated",
+  "facets_explanation": "The reference decision statements are extracted from official transcripts of the California Department of Corrections and Rehabilitation, which represent pre-existing administrative metadata. Evaluating whether the model can generate the correct decision and rationale requires external knowledge of California state laws and parole guidelines not present in the interview transcript stimulus. The evaluation compares the statistical rhetorical properties of the generated text against a single original reference text per hearing, meaning plurality and annotator consensus are not addressed."
 }

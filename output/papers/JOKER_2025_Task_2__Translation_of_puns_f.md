@@ -10,8 +10,8 @@
 ## Humanities Role
 
 **Classification:** domain
-**Explanation:** Evaluates computational models on the translation of puns and wordplay, treating humour as a sophisticated linguistic and literary artifact requiring semantic and cultural-stylistic transfer.
-**Relevant ASJC areas:** Language and Linguistics, Literature and Literary Theory
+**Explanation:** The benchmark targets disciplinary competence in translation studies and computational linguistics, specifically evaluating the preservation of semantic and phonetic double meanings (wordplay and puns) during English-to-French translation.
+**Relevant ASJC areas:** Language and Linguistics
 **CSV Humanities?:** Yes
 **CSV ASJC code:** Language and Linguistics
 
@@ -19,40 +19,52 @@
 
 | Criterion | Met? | Note |
 |-----------|------|------|
-| General-purpose benchmark | NO | It is a specialized domain-specific benchmark focused exclusively on bilingual pun and wordplay translation. |
-| Evaluates generative LLM | YES | Evaluates several generative models, including Qwen2.5, GPT-4o-mini, Mistral, mBART, and NLLB. |
-| LLM is primary evaluated system | YES | The primary systems being benchmarked are generative LLMs and fine-tuned neural translation models. |
-| Arts & Humanities data/tasks | YES | Covers Language and Linguistics (translation, wordplay) as well as Literature and Literary Theory. |
-| Quantitative performance metrics | YES | Uses BLEU, BERTScore, a novel pun location-based overlap metric, and manual expert evaluation scores. |
-| Published after Mar 2023 | YES | Published in 2025 as part of the CLEF 2025 conference. |
-| English language | YES | The paper and the source benchmark data are in English. |
+| General-purpose benchmark | NO | Specifically scoped to the task of pun/wordplay translation rather than general linguistic capabilities. |
+| Evaluates generative LLM | YES | Evaluates a variety of generative systems, including Qwen2.5-14B, GPT-4o-mini, Mistral, mBART-50, and MarianMT. |
+| Quantitative performance metrics | YES | Evaluated using BLEU, BERTScore, a novel pun-location-based metric, and expert manual human evaluation. |
+| Published after Mar 2023 | YES | Published in September 2025 as part of the CLEF 2025 Working Notes. |
 
 ## Benchmark Modalities
 
 **Modality Types:** text
 
-**Description:** A text-only machine translation task converting English punning jokes into French translations.
+**Description:** Text-only machine translation task where English punning jokes are translated into French.
 
 ## Analytical Tasks
 
-**Task Types:** wordplay translation, humour preservation, semantic meaning preservation
+**Task Types:** translation, generation
 
-**Detailed Description:** Translating English puns into French while preserving both the literal/semantic meanings and the humorous dual-meaning wordplay of the source text.
+**Detailed Description:** The benchmark evaluates the translation of wordplay and puns from English into French, requiring generative text modeling that successfully preserves the dual meanings, phonetic structures, and humor of the original text.
 
 ## Summary
 
-This paper presents the overview of Task 2 of the CLEF 2025 JOKER track, which evaluates automated translation of puns from English to French. It assesses 52 system runs submitted by nine teams, comparing standard machine translation metrics against a novel 'pun location-based' metric and native-speaker expert judgments.
+This paper presents the overview and results of Task 2 of the CLEF 2025 JOKER track, which evaluates the translation of English puns into French. It introduces a test dataset of 1,682 distinct English puns with manually annotated pun locations to facilitate fine-grained evaluation. The paper details the diverse participant approaches, ranging from fine-tuned machine translation systems to complex multi-agent LLM prompting pipelines.
 
 ## Key Findings
 
-Standard translation metrics like BLEU and BERTScore correlated poorly with actual humor preservation, while the proposed 'pun location-based' metric showed a high Pearson correlation (0.84) with human expert judgments. The best-performing systems, which utilized multi-agent architectures and phonetic/semantic embeddings (e.g., based on GPT-4o-mini), achieved a manually validated translation success rate of up to 74%.
+Multi-agent pipelines incorporating LLMs, contrastive learning, and phonetic-semantic embeddings achieved the highest manual success rates, correctly translating up to 74% of the evaluated puns. Traditional metrics like BLEU and BERTScore proved insufficient for measuring wordplay preservation; however, a newly introduced pun location-based automatic metric demonstrated a strong Pearson correlation (0.84) with expert human evaluation.
 
 ## Reviewer Notes
 
-- 1) benchmark_name: Ciop omitted 'CLEF'; resolved to Cip's 'CLEF 2025 JOKER Task 2' for completeness. 2) humanities_role: Ciop chose 'both', Cip chose 'domain'; resolved to 'domain' because the benchmark is primarily a specialized linguistic evaluation design for wordplay translation. 3) analytical_tasks: Ciop included 'phonetic-semantic embedding alignment', which was a participant method rather than a benchmark task; adopted Cip's task list. 4) dataset_size: Ciop reported 1682 (the test set size), while Cip reported 3087 (train 1405 + test 1682); resolved to 3087 to represent the full corpus of distinct source puns provided for the benchmark.
+- Ciop included 'interpretation' and 'stylistic_analysis' under analytical_tasks, reasoning that understanding and preserving humor requires these competencies. While true conceptually, the benchmark formally evaluates the output via 'translation' and 'generation' tasks. I adopted Cip's more stringent reading to reflect the concrete evaluation setup. Both analysts agreed on all other substantive fields, which were blended for clarity.
+- plurality_treatment: Ciop selected 'not_addressed', while Cip selected 'signal'. Resolved to 'not_addressed' because, while the dataset preserves multiple valid translations, the paper does not explicitly discuss treating this divergence as a theoretical signal about the material itself; it simply accommodates the standard need for multiple references in translation tasks. All other fields were agreed upon.
 
 ## Additional Fields
 
-**Dataset Size:** 3087
+**Dataset Size:** 1682
 
 **Primary Evaluation Setting:** mix
+
+**Gold Source:** domain_expert
+
+**Gold Beyond Stimulus:** yes
+
+**Gold Community Dependent:** no
+
+**Gold Concerns Genesis:** no
+
+**Answer Multiplicity:** answer_set
+
+**Plurality Treatment:** not_addressed
+
+**Facets Explanation:** Reference translations and pun location annotations were produced by professional translators, who serve as domain experts. A significant portion of the English puns is provided with multiple valid French translations, yielding an answer set that captures different creative strategies for rendering the wordplay. The paper does not explicitly analyze annotator disagreement or divergence as signal or noise, instead treating the multiple references as standard variations to allow robust machine translation evaluation. Successfully translating these puns requires deep linguistic, phonetic, and semantic knowledge of both languages that is not present in the source stimulus.

@@ -2,55 +2,53 @@
   "benchmark_name": "Multilingual Native Reasoning Challenge (MultiNRC)",
   "publication_year": 2025,
   "humanities_role": "both",
-  "humanities_role_explanation": "The benchmark relies on deep linguistic, philological, and cultural-historical context. Humanities material (idioms, grammatical quirks, historical calendars, and regional customs) is not merely raw text but the very object of analytical and interpretive reasoning.",
+  "humanities_role_explanation": "MultiNRC features distinct item groups: the linguistic reasoning, wordplay, and cultural reasoning categories directly evaluate deep, domain-specific philological and cultural competencies (domain), whereas the mathematical reasoning category uses localized cultural variables (calendars, regional real estate systems) as raw contextual data to test general quantitative reasoning (content).",
   "benchmark_modalities": [
     "text"
   ],
-  "benchmark_modalities_explanation": "Evaluates native-language textual prompts and their human-translated English equivalents.",
+  "benchmark_modalities_explanation": "The benchmark consists entirely of text-based prompts and short answers in French, Spanish, Chinese, and English translations.",
   "analytical_tasks": [
-    "linguistic reasoning",
-    "wordplay and riddle decoding",
-    "cultural and traditional temporal reasoning",
-    "culturally-contextualized mathematical reasoning"
+    "open_ended_qa",
+    "logical_and_quantitative_reasoning",
+    "causal_and_temporal_reasoning",
+    "cultural_reasoning",
+    "stylistic_analysis",
+    "interpretation"
   ],
-  "analytical_tasks_explanation": "Tasks test complex contextual reasoning, such as resolving language-specific morphological/syntactic quirks (e.g., French words changing gender in plural), decoding homophonic puns and literary idioms, performing temporal calculations using historical/religious calendars, and resolving word problems anchored in regional socio-economic or metrological history.",
+  "analytical_tasks_explanation": "The benchmark evaluates language-specific linguistic reasoning over grammatical structures and gender agreement; wordplay and riddles that require phonetic/homophonic interpretation; cultural/tradition reasoning requiring temporal calculation of regional holidays; and mathematical reasoning with culturally grounded units, currencies, and counting systems.",
   "inclusion_criteria": {
     "general_purpose_benchmark": {
       "met": false,
-      "note": "Specifically designed to evaluate multilingual reasoning capabilities under native linguistic and cultural contexts rather than general-purpose tasks."
+      "note": "MultiNRC is a specialized benchmark designed specifically for multilingual, linguistically, and culturally grounded reasoning tasks."
     },
     "evaluates_generative_llm": {
       "met": true,
-      "note": "Evaluates 14 SOTA models including OpenAI's o3/o4-mini, Google's Gemini-2.5-Pro, Anthropic's Claude 3.7/4, DeepSeek-R1, and Meta's Llama-4."
-    },
-    "llm_is_primary_system": {
-      "met": true,
-      "note": "The LLMs themselves are the primary systems being benchmarked across different languages and reasoning modes."
-    },
-    "arts_humanities_data": {
-      "met": true,
-      "note": "Covers 'Language and Linguistics' (grammatical conventions, linguistic constraints), 'History' (traditions, regional historical calendars, and cultural practices), and 'Literature and Literary Theory' (riddles, puns, wordplay, and idiomatic expressions)."
+      "note": "Evaluates 14 leading models including OpenAI's o3, o4-mini, and GPT-4.1, Google's Gemini-2.5-Pro, Anthropic's Claude 3.7 Sonnet and Claude 4 series, DeepSeek-R1, and Llama-4."
     },
     "quantitative_metrics": {
       "met": true,
-      "note": "Uses pass@1 accuracy evaluated via an LLM-as-a-judge (GPT-4.1) showing 95% agreement with human annotators."
+      "note": "Uses accuracy (pass@1), Mother Tongue Effect (MTE) delta, and model consistency metrics."
     },
     "published_after_march_2023": {
       "met": true,
-      "note": "Preprint published in July 2025."
-    },
-    "english_language": {
-      "met": true,
-      "note": "The paper is written in English and includes an English-translated equivalent evaluation subset."
+      "note": "The preprint was published in July 2025."
     }
   },
-  "summary": "MultiNRC is a native, multilingual reasoning benchmark consisting of 1,055 challenging questions designed by native speakers in French, Spanish, and Chinese to evaluate LLM reasoning within culturally and linguistically nuanced contexts. It avoids the translation bias of typical benchmarks by featuring questions that require deep linguistic, idiomatic, and cultural-historical domain knowledge. The benchmark demonstrates that even state-of-the-art reasoning models struggle heavily with native, non-translated reasoning tasks.",
-  "key_findings": "No evaluated LLM surpasses 50% average accuracy on MultiNRC, with the highest-performing model (o3-pro) reaching only 49%. While translating cultural-mathematical questions to English improves accuracy by an average of 10% (due to better knowledge retrieval in English), deep cultural reasoning scores remain stagnant, indicating that core cultural-historical nuances are poorly represented in model weights regardless of the language of interaction.",
+  "summary": "This paper introduces MultiNRC, a benchmark consisting of 1,055 native, challenging reasoning questions written by native speakers in French, Spanish, and Chinese to evaluate LLMs on linguistic and cultural nuances. The dataset comprises four categories\u2014linguistic reasoning, wordplay/riddles, cultural traditions, and math with cultural relevance\u2014alongside manual English translations of the cultural and mathematical items to analyze the reasoning gap between native languages and English.",
+  "key_findings": "State-of-the-art models struggle significantly on native multilingual reasoning, with the top model (o3-pro) scoring only 49.0% accuracy. Models perform roughly 10% better on math reasoning when questions are translated into English due to superior cultural context retrieval in English, whereas cultural tradition reasoning shows no such performance boost, indicating a fundamental lack of deep cultural knowledge regardless of the language used.",
   "relevant_asjc_areas": [
     "Language and Linguistics",
+    "Literature and Literary Theory",
     "History",
-    "Literature and Literary Theory"
+    "Religious Studies"
   ],
   "dataset_size": 1055,
-  "primary_evaluation_setting": "zero-shot"
+  "primary_evaluation_setting": "mix",
+  "gold_source": "crowd_annotation",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "not_stated",
+  "facets_explanation": "The reference answers were authored alongside the prompts by recruited native speakers of French, Spanish, and Chinese, followed by two subsequent layers of native-speaker reviews to verify accuracy, reasonableness, and difficulty. Answering the questions requires significant external linguistic and cultural knowledge (such as regional holidays, calendar systems, and grammatical properties) not present in the stimulus itself. The benchmark evaluates performance against an objective, short ground-truth final answer using an LLM-as-a-judge, but does not explicitly discuss or quantify annotator disagreement."
 }

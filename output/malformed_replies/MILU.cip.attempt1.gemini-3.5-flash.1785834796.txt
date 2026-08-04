@@ -1,0 +1,12 @@
+# JSONDecodeError: Expecting ',' delimiter: line 9 column 1 (char 848)
+
+{
+  "gold_source": "existing_metadata",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "not_addressed",
+  "facets_explanation": "The reference answers were obtained directly from official competitive exam keys scraped from Indian online portals, which is classified as existing_metadata. Answering the questions requires factual, historical, or domain recall not contained within any input stimulus (gold_beyond_stimulus is yes) because reading-comprehension-style questions were explicitly filtered out. Each question maps to a single correct multiple-choice option with no regional or community-based variation in correctness, and annotator divergence is not addressed as the dataset relies on pre-existing exam standards."
+standardized exam keys."
+}

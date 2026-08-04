@@ -1,0 +1,13 @@
+# JSONDecodeError: Expecting ',' delimiter: line 9 column 1 (char 755)
+
+{
+  "gold_source": "authored_answer_key",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "not_addressed",
+  "facets_explanation": "The reference answers for MILU are sourced directly from pre-existing answer keys of over 1500 state and national-level examinations in India. Because reading comprehension questions were filtered out, the benchmark consists of standalone multiple-choice questions that require external factual and domain knowledge beyond the stimulus. Disagreement handling is not addressed since the ground truth relies on the authority of official examination keys rather than a new subjective annotation process."
+annotation process of crowd or expert annotation."
+  ."
+}

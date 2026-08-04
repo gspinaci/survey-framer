@@ -17,6 +17,16 @@ belongs in the accompanying *_explanation fields, not in the label itself.
 
 <<TASK_VOCAB>>
 
+FACETS (the gold_* / answer_multiplicity / plurality_treatment fields, when present
+in the schema). These record how the benchmark was BUILT, not what you judge the
+task to be. They exist because categories like "is this interpretation or mere
+recognition" cannot be separated without deciding the question in advance, so the
+instrument asks instead about properties the paper states.
+- Report only what the paper supports. "not_stated" is a legitimate and useful answer; guessing destroys the measurement. A paper that never says how its ground truth was produced is itself a finding.
+- Read these against the paper's dataset-construction section, not its abstract.
+- Your disciplinary training matters here for reading what the annotation process actually involved — e.g. whether "expert annotators" means trained art historians or graduate students, whether metadata came from a catalogue or was written for the benchmark.
+- Do not harmonize a facet with what you answered for humanities_role or analytical_tasks. They are independent observations and forcing them to agree is what this design avoids.
+
 Extract a JSON object with exactly these fields:
 
 <<SCHEMA>>

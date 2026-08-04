@@ -9,9 +9,9 @@
 
 ## Humanities Role
 
-**Classification:** both
-**Explanation:** Evaluates LLMs on diplomatic transcription of 18th-century Russian Civil font books for Digital Humanities workflows. Treats historical texts as philological artifacts, introducing metrics to evaluate period-specific character preservation and temporal biases.
-**Relevant ASJC areas:** Language and Linguistics, History, Literature and Literary Theory, Religious Studies
+**Classification:** domain
+**Explanation:** Evaluates LLM domain-specific competence in diplomatic transcription and period-specific orthographic preservation of 18th-century Russian Civil font, assessing historical errors like temporal conflation and over-historicization.
+**Relevant ASJC areas:** Language and Linguistics, History
 **CSV Humanities?:** Yes
 **CSV ASJC code:** Language and Linguistics
 
@@ -19,40 +19,52 @@
 
 | Criterion | Met? | Note |
 |-----------|------|------|
-| General-purpose benchmark | NO | The paper presents a specialized domain-specific evaluation framework and dataset for historical Russian document OCR rather than a general-purpose benchmark. |
-| Evaluates generative LLM | YES | Evaluates 12 leading multimodal LLMs, including Claude 3.5/3.7 Sonnet, GPT-4o, GPT-4.1, o4-mini, Gemini 2.0/2.5 series, Qwen2.5-VL-72B, and Llama-4 models. |
-| LLM is primary evaluated system | YES | The primary focus is benchmarking LLMs as direct OCR engines and analyzing their transcription behaviors and biases. |
-| Arts & Humanities data/tasks | YES | Uses 1,029 scanned pages of 18th-century Russian Civil print books spanning fiction, religion, and history, mapping to Language and Linguistics, History, Literature, and Religious Studies. |
-| Quantitative performance metrics | YES | Employs standard OCR metrics (CER, WER, CaseER) alongside novel humanities-aligned metrics: Historical Character Preservation Rate (HCPR) and Archaic Insertion Rate (AIR). |
-| Published after Mar 2023 | YES | Published in September 2025 (RANLP 2025). |
-| English language | YES | The scientific paper and evaluation framework are written in English, though the source dataset is in historical Russian. |
+| General-purpose benchmark | NO | Scoped specifically to historical document OCR and diplomatic transcription of 18th-century Russian Civil font texts. |
+| Evaluates generative LLM | YES | Evaluates 12 generative multimodal LLMs, including GPT-4o, GPT-4.1, Claude 3.5/3.7, Gemini 2.0/2.5, and Qwen-2.5-VL. |
+| Quantitative performance metrics | YES | Uses standard OCR metrics (CER, WER, CaseER) alongside novel domain-specific metrics (Historical Character Preservation Rate, Archaic Insertion Rate). |
+| Published after Mar 2023 | YES | Published in September 2025. |
 
 ## Benchmark Modalities
 
 **Modality Types:** text, image
 
-**Description:** Multimodal OCR evaluation combining scanned images of historical pages with textual prompts to generate natural language transcriptions.
+**Description:** Evaluates multimodal LLMs by providing scanned images of historical pages or lines along with textual prompts to generate structured textual transcriptions.
 
 ## Analytical Tasks
 
-**Task Types:** optical character recognition, diplomatic transcription, orthographic fidelity analysis, temporal bias analysis
+**Task Types:** transcription and correction, visual recognition
 
-**Detailed Description:** Evaluates character-level transcription fidelity of 18th-century Russian Civil font, testing the preservation of period-specific characters and identifying systematic temporal errors, such as the 'over-historicization' insertion of archaic pre-Petrine characters.
+**Detailed Description:** Diplomatic transcription of historical 18th-century Russian Civil font, visual recognition of obsolete/period-specific Cyrillic characters and layouts from page scans, and post-OCR textual correction.
 
 ## Summary
 
-This paper presents a methodological framework and a novel 1,029-page dataset for evaluating LLM-based OCR on historical documents, specifically focusing on 18th-century Russian Civil print. It introduces novel philological metrics, such as Historical Character Preservation Rate (HCPR) and Archaic Insertion Rate (AIR), to measure period-specific temporal biases. The study evaluates 12 multimodal models, revealing that while top-performing LLMs outpace traditional OCR, they systematically suffer from 'over-historicization' by hallucinating and inserting obsolete, pre-reform characters.
+This paper establishes a comprehensive evaluation framework for LLM-based historical document OCR, utilizing a novel dataset of 18th-century Russian Civil font prints. The authors introduce domain-specific metrics (HCPR and AIR) to evaluate historical orthographic accuracy and reveal temporal biases in generative models.
 
 ## Key Findings
 
-Gemini 2.5 Pro and Qwen 2.5 VL achieved the highest transcription accuracy and output stability on the historical Russian OCR task. A critical finding is 'over-historicization': LLMs (especially OpenAI models) frequently inserted obsolete medieval Slavonic characters that had already been eliminated from the 18th-century Civil font. Additionally, providing historical text to LLMs for post-OCR correction was found to degrade performance compared to direct zero-shot transcription from the image.
+Gemini-2.5-Pro and Qwen-2.5-VL emerged as the most stable and accurate models, substantially outperforming traditional OCR tools. However, the study identifies a systematic 'over-historicization' bias where models inappropriately insert obsolete pre-Petrine characters. Additionally, post-OCR text correction using LLMs degraded rather than improved the transcription quality.
 
 ## Reviewer Notes
 
-- Minor differences were found in the analytical tasks and ASJC area mapping. The analytical tasks were merged to include both 'optical character recognition' (from Cip) and 'temporal bias analysis / orthographic fidelity' (from Ciop). The ASJC areas were expanded beyond History and Linguistics to include Literature and Religious Studies, as the paper text explicitly notes fiction (22.7%) and religion (15.7%) as major components of the dataset. Summaries and key findings were synthesized to capture both the raw accuracy metrics and the novel philological phenomena ('over-historicization').
+- No significant disagreements.
+- Ciop and Cip disagreed on plurality_treatment (Ciop: noise, Cip: not_addressed). Resolved to 'not_addressed' because while the paper reports inter-annotator agreement on an audit sample to validate accuracy, it does not explicitly discuss treating divergence as noise or filtering it out.
 
 ## Additional Fields
 
 **Dataset Size:** 1029
 
 **Primary Evaluation Setting:** zero-shot
+
+**Gold Source:** domain_expert
+
+**Gold Beyond Stimulus:** no
+
+**Gold Community Dependent:** no
+
+**Gold Concerns Genesis:** no
+
+**Answer Multiplicity:** single_answer
+
+**Plurality Treatment:** not_addressed
+
+**Facets Explanation:** The reference ground truth was created through a multi-stage process where initial OCR generated by a fine-tuned TrOCR model was subjected to 100% manual correction and a two-pass protocol by a single expert annotator to ensure diplomatic fidelity. The transcription task relies entirely on the provided document images without requiring external historical knowledge. Models are evaluated by comparing their outputs to this single gold-standard reference using distance metrics like CER and WER. While the authors report a high exact-match rate from an audit by a second verifier, the paper does not discuss how or whether divergences between annotators were resolved.

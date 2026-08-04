@@ -1,56 +1,52 @@
 {
   "benchmark_name": "MMLU",
   "publication_year": 2021,
-  "humanities_role": "content",
-  "humanities_role_explanation": "The benchmark utilizes humanities subjects (such as history, philosophy, and world religions) primarily as sources of factual, multiple-choice question-answering items, evaluating declarative knowledge retrieval rather than deep, hermeneutic, or open-ended interpretive analysis.",
+  "humanities_role": "domain",
+  "humanities_role_explanation": "MMLU's humanities subjects (including History, Philosophy, World Religions, Jurisprudence, and Ethics) are explicitly designed to test specialized disciplinary knowledge, factual accuracy, and subject-specific reasoning rather than using humanities materials as raw corpus data for general language modeling or linguistic tasks.",
   "benchmark_modalities": [
     "text"
   ],
-  "benchmark_modalities_explanation": "The benchmark is entirely text-based, consisting of multiple-choice questions with four options.",
+  "benchmark_modalities_explanation": "A text-only multiple-choice question-answering format utilizing LaTeX for mathematical expressions and text-encoded questions/choices.",
   "analytical_tasks": [
-    "factual recognition",
-    "multiple-choice question answering",
-    "formal logical deduction",
-    "normative moral evaluation"
+    "factual_recall",
+    "multiple_choice_qa",
+    "logical_and_quantitative_reasoning",
+    "causal_and_temporal_reasoning",
+    "normative_judgment"
   ],
-  "analytical_tasks_explanation": "Evaluates models on their ability to retrieve historical facts, identify logical fallacies, solve formal logic proofs, and recognize common moral intuitions within highly structured, closed-ended scenarios.",
+  "analytical_tasks_explanation": "Tasks include multiple-choice QA testing factual recall of historical events and religious concepts, logical and deductive reasoning in formal logic, causal and temporal reasoning in world and US history, and normative judgment regarding moral scenarios and jurisprudence.",
   "inclusion_criteria": {
     "general_purpose_benchmark": {
       "met": true,
-      "note": "Evaluates broad multitask language understanding across 57 diverse subjects spanning humanities, social sciences, STEM, and professional domains."
+      "note": "Evaluates LLMs across 57 distinct subjects spanning STEM, humanities, social sciences, and professional fields."
     },
     "evaluates_generative_llm": {
       "met": true,
-      "note": "Evaluates generative and text-to-text models including GPT-3 (up to 175B parameters) and UnifiedQA."
-    },
-    "llm_is_primary_system": {
-      "met": true,
-      "note": "Large language models are the central systems being benchmarked."
-    },
-    "arts_humanities_data": {
-      "met": true,
-      "note": "Features humanities subjects including History (US, European, World, and Prehistory), Philosophy (Formal Logic, Fallacies, and Ethics), and Religious Studies (World Religions)."
+      "note": "Evaluates GPT-3 (various sizes) and UnifiedQA (T5-based models) under zero-shot and few-shot paradigms."
     },
     "quantitative_metrics": {
       "met": true,
-      "note": "Evaluated using multi-class classification accuracy and Root Mean Squared (RMS) calibration error."
+      "note": "Evaluates models using multi-class classification accuracy (%) and root mean squared (RMS) calibration error."
     },
     "published_after_march_2023": {
       "met": false,
-      "note": "Published at ICLR 2021, with preprints emerging in early 2021."
-    },
-    "english_language": {
-      "met": true,
-      "note": "The paper and the benchmark dataset are written entirely in English."
+      "note": "The paper was published at ICLR 2021, which predates March 2023."
     }
   },
-  "summary": "This paper introduces a massive multitask language understanding benchmark designed to evaluate text models across 57 academic and professional subjects. By shifting from standard training/testing splits to zero-shot and few-shot evaluation of massive pre-trained corpora, it aims to test broader real-world knowledge. The authors demonstrate that while smaller models perform near random chance, the largest models show initial progress but remain highly lopsided and poorly calibrated.",
-  "key_findings": "The 175B parameter GPT-3 model achieved 43.9% average accuracy, moving significantly past the 25% random baseline, but fell far short of the estimated 89.8% human expert-level performance. Models performed poorest on highly procedural, calculation-heavy STEM tasks and socially sensitive subjects like law and moral scenarios, and demonstrated substantial miscalibration with confidence scores diverging from actual accuracy by up to 24%.",
+  "summary": "The paper introduces the Massive Multitask Language Understanding (MMLU) benchmark, composed of 15,908 multiple-choice questions across 57 academic and professional subjects. Evaluated primarily in zero-shot and few-shot settings, it shifts the focus of NLP benchmarking from basic commonsense or generic linguistic tasks to specialized, domain-specific academic knowledge. The authors demonstrate that while scale significantly improves performance, state-of-the-art models remain far below expert human levels and display highly lopsided domain capabilities.",
+  "key_findings": "The largest GPT-3 model (175B) achieves an average few-shot accuracy of 43.9% (and UnifiedQA 11B achieves 48.9%), substantially above random chance (25%) but far short of the estimated human expert baseline (89.8%). Models show distinct performance drops on highly procedural/calculation-heavy tasks and socially critical value-aligned domains (such as law and ethics), alongside severe miscalibration (up to 24% discrepancy between model confidence and actual accuracy).",
   "relevant_asjc_areas": [
     "History",
     "Philosophy",
     "Religious Studies"
   ],
   "dataset_size": 15908,
-  "primary_evaluation_setting": "few-shot"
+  "primary_evaluation_setting": "mix",
+  "gold_source": "authored_answer_key",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "not_stated",
+  "facets_explanation": "The dataset consists of 15,908 multiple-choice questions gathered from standardized test preparation materials, university exams, and textbook resources, establishing pre-authored answer keys as the ground truth. Because these questions evaluate factual and academic knowledge in a closed-book format, correct answers require external domain knowledge not found in the prompt. Annotator divergence or alternative interpretations of the source questions are not addressed, as the benchmark relies directly on the absolute correctness of the source keys."
 }

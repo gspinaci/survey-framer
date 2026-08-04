@@ -2,53 +2,49 @@
   "benchmark_name": null,
   "publication_year": 2025,
   "humanities_role": "domain",
-  "humanities_role_explanation": "Evaluates LLM performance on the identification of classical rhetorical sections in 18th-century Swedish and English petitions, designed directly for digital humanities workflows.",
+  "humanities_role_explanation": "The benchmark targets domain-specific competence in rhetorical analysis of historical documents, evaluating whether models can accurately distinguish and segment fine-grained components of classical rhetoric (Salutatio, Petitio, and Conclusio) inside 18th-century Swedish and English petitioning texts.",
   "benchmark_modalities": [
     "text"
   ],
-  "benchmark_modalities_explanation": "Monomodal historical Swedish and English text transcriptions.",
+  "benchmark_modalities_explanation": "The models process text transcriptions of 18th-century historical petitions.",
   "analytical_tasks": [
-    "rhetorical section segmentation",
-    "difficulty self-estimation"
+    "information_extraction",
+    "stylistic_analysis",
+    "calibration_and_uncertainty"
   ],
-  "analytical_tasks_explanation": "Models must identify the text spans of Salutatio, Petitio, and Conclusio in historical petitions, and rate the difficulty of the task on a scale from 0 to 2.",
+  "analytical_tasks_explanation": "The tasks require token-level span extraction and annotation of classical rhetorical structures (information extraction and stylistic analysis) as well as self-assessing task difficulty (calibration and uncertainty).",
   "inclusion_criteria": {
     "general_purpose_benchmark": {
       "met": false,
-      "note": "Specifically designed as a domain-specific digital humanities evaluation of 18th-century petitions, not a general-purpose benchmark."
+      "note": "The evaluation dataset is specifically tailored to the rhetorical segmentation of historical petitions rather than broad, multi-domain benchmarks."
     },
     "evaluates_generative_llm": {
       "met": true,
       "note": "Evaluates GPT-4, Gemini 1.5 Pro, Mixtral 8x22B, Mistral 7B, LLaMA-3 70B, and LLaMA-3 8B."
     },
-    "llm_is_primary_system": {
-      "met": true,
-      "note": "The LLMs themselves are the primary systems being evaluated on their accuracy in rhetorical section boundary identification."
-    },
-    "arts_humanities_data": {
-      "met": true,
-      "note": "Historical petitions from the 18th century mapping to Language and Linguistics, History, and Literature and Literary Theory."
-    },
     "quantitative_metrics": {
       "met": true,
-      "note": "Evaluated using token-level precision, recall, F1-score, normalized Levenshtein distance, Mean Error, and Spearman's rank correlation."
+      "note": "Employs token-level precision, recall, F1-score, mean token-level Levenshtein edit distance, Mean Error (ME) for difficulty ratings, and Spearman's rank correlation coefficient."
     },
     "published_after_march_2023": {
       "met": true,
-      "note": "Published in Varna, Bulgaria, September 11, 2025."
-    },
-    "english_language": {
-      "met": true,
-      "note": "The paper is written in English, though the evaluation spans Swedish and English historical documents."
+      "note": "Published in September 2025."
     }
   },
-  "summary": "This study introduces a dataset of 100 historical Swedish and 100 historical English 18th-century petitions to evaluate how effectively contemporary LLMs can perform fine-grained, content-aware rhetorical annotation. The authors test six commercial and open-weight models on identifying the Salutatio, Petitio, and Conclusio sections of these texts using few-shot prompting. It also explores how model confidence aligns with human-perceived difficulty, demonstrating the potential and limits of LLMs in historical text processing.",
-  "key_findings": "Larger models (especially GPT-4 and LLaMA-3 70B) perform very well, achieving F1 scores in the high 90s for the Salutatio section. However, identifying the boundaries of Petitio and Conclusio sections proves more difficult, particularly for smaller models and Swedish-language texts. Moreover, models systematically underestimate document difficulty compared to human annotators, showing weak or negative Spearman correlation scores.",
+  "summary": "The paper investigates the capability of LLMs to automatically annotate classical rhetorical structures in 18th-century Swedish and English petitions using few-shot prompting. The authors evaluate model accuracy against a human-annotated gold standard and analyze whether models can successfully calibrate their self-estimated difficulty scores with human annotations.",
+  "key_findings": "While models perform exceptionally well on the formulaic Salutatio (often scoring in the high 90s for F1), the Petitio and Conclusio segments are significantly more challenging, especially for smaller models and Swedish data. Additionally, models systematically underestimate the annotation difficulty of documents and show weak or negative correlation with human-perceived difficulty ratings.",
   "relevant_asjc_areas": [
     "History",
     "Language and Linguistics",
     "Literature and Literary Theory"
   ],
   "dataset_size": 200,
-  "primary_evaluation_setting": "few-shot"
+  "primary_evaluation_setting": "few-shot",
+  "gold_source": "domain_expert",
+  "gold_beyond_stimulus": "no",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "noise",
+  "facets_explanation": "The Swedish petitions were transcribed by a historian, while the English ones were sourced from a digitised archive. For rhetorical span annotation, each document was labeled by two of three project annotators, with disagreements systematically resolved through batch-wise discussions to establish consistent guidelines. A difficulty score (0-2) was also assigned to each document based on the degree of consensus and interpretive challenges experienced during annotation."
 }

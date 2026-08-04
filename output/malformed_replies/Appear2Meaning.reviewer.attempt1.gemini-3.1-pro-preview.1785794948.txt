@@ -1,0 +1,48 @@
+# JSONDecodeError: Expecting ',' delimiter: line 46 column 602 (char 4189)
+
+{
+  "benchmark_name": "Appear2Meaning",
+  "publication_year": 2026,
+  "humanities_role": "domain",
+  "humanities_role_explanation": "The benchmark explicitly evaluates disciplinary competence in art history and museum cataloging by requiring models to infer non-observable, context-dependent metadata (culture, historical period, geographic origin, and creator) from images, testing latent cultural and historical knowledge rather than simple visual description.",
+  "benchmark_modalities": [
+    "text",
+    "image"
+  ],
+  "benchmark_modalities_explanation": "The benchmark combines visual input (images of cultural heritage artifacts) with textual instructions to generate structured textual metadata predictions (JSON format), which are evaluated via an LLM-as-a-Judge.",
+  "analytical_tasks": [
+    "attribution",
+    "classification",
+    "cultural_reasoning",
+    "generation",
+    "interpretation",
+    "visual_recognition"
+  ],
+  "analytical_tasks_explanation": "The benchmark operationalizes structured metadata inference as: 'attribution' (inferring creator, historical period, and geographic origin), 'classification' (identifying culture and object type), 'cultural_reasoning' (connecting visual style to historical and cultural contexts), 'interpretation' (art-historical and iconographic interpretation required for object identification), 'visual_recognition' (identifying functional object categories and visual features), and 'generation' (producing structured JSON outputs representing the fields).",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "The benchmark is domain-specific, scoped exclusively to cultural heritage metadata inference across distinct object categories and cultural regions."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates 9 vision-language models: Qwen-VL-Max, Qwen3-VL-Plus, Qwen3-VL-Flash, Qwen3-VL-8B-Instruct, Qwen3-VL-32B-Instruct, Pixtral-12B, GPT-4.1-mini, GPT-5.4-mini, and Claude Haiku 4.5."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Reports exact-match accuracy, partial-match rate, and attribute-level accuracy measured via an LLM-as-a-Judge framework."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "The paper is published in 2026 (arXiv preprint dated April 2026)."
+    }
+  },
+  "summary": "Appear2Meaning is a cross-cultural multimodal benchmark designed to evaluate vision-language models on their ability to infer structured cultural metadata from images of heritage artifacts. By targeting non-observable attributes like historical period, origin, and creator rather than surface visual descriptions, it tests the models' latent art-historical and cultural reasoning. The evaluation leverages an LLM-as-a-Judge framework to assess semantic correctness across diverse object categories and cultural regions.",
+  "key_findings": "All evaluated models show extremely low exact-match accuracy (0.01 to 0.03), indicating that jointly predicting all metadata fields remains highly challenging. However, partial match rates are much higher (up to 0.658), showing models capture fragmented cultural signals. Performance is highly uneven across cultural regions, with East Asia yielding the highest accuracy, while Europe and the Americas show lower accuracy and are prone to cross-cultural misattribution and stylistic over-anchoring.",
+  "relevant_asjc_areas": [
+    "Visual Arts and Performing Arts",
+    "Museology"
+  ],
+  "dataset_size": 750,
+  "primary_evaluation_setting": "zero-shot",
+  "review_notes": "Ciop and Cip agreed on most fields. Ciop's inclusion of 'causal_and_temporal_reasoning' was dropped because 'attribution' explicitly covers inferring dates/periods. 'open_ended_qa' was removed as the task requires structured JSON generation rather than free-text QA. 'interpretation' was retained from Ciop's list because the paper explicitly discusses how identifying certain subjects (e.g., a Muse) requires art-historical and iconographic interpretation beyond purely visual cues. 'Conservation' was removed from ASJC areas to align with the paper's core focus and CSV metadata."

@@ -1,0 +1,13 @@
+# JSONDecodeError: Expecting ',' delimiter: line 9 column 1 (char 764)
+
+{
+  "gold_source": "existing_metadata",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "not_addressed",
+  "facets_explanation": "The ground truth for all three collections (ArtDL, ICONCLASS AI Test Set, and Wikidata) was extracted from pre-existing database metadata and cataloging codes. The models are evaluated on single-label classification of a single target iconographic class per image, validating accuracy against this single authoritative key. Annotator divergence or interpretive ambiguity is not addressed, as the authors systematically filtered out images with multiple labels or complex representations during dataset curation."
+preparation."
+pre-processing."
+}

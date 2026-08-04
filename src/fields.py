@@ -146,7 +146,36 @@ def render_schema(fields: dict[str, str]) -> str:
 ENUM_FIELDS: dict[str, set[str]] = {
     "humanities_role": {"content", "domain", "both", "none"},
     "primary_evaluation_setting": {"zero-shot", "few-shot", "fine-tuned", "mix"},
+    # Facets: observable properties of how the benchmark was built, standing in for
+    # the task categories that could not be separated non-arbitrarily. See
+    # METHODOLOGY_facets.md. "not_stated" is a measurement, not a missing value —
+    # it must stay distinguishable from "no".
+    "gold_source": {
+        "existing_metadata", "authored_answer_key", "crowd_annotation",
+        "domain_expert", "paper_authors", "model_generated", "not_stated",
+    },
+    "gold_beyond_stimulus": {"yes", "no", "not_stated"},
+    "gold_community_dependent": {"yes", "no", "not_stated"},
+    "gold_concerns_genesis": {"yes", "no", "not_stated"},
+    "answer_multiplicity": {
+        "single_answer", "answer_set", "graded_human_judgment", "not_stated",
+    },
+    # "not_stated" rather than a bespoke "not_addressed": five of six facets already
+    # used not_stated for the paper's silence, and the odd one out drew an
+    # off-vocabulary value on the first run. One token per meaning across all facets.
+    "plurality_treatment": {"noise", "signal", "not_stated"},
 }
+
+# The facets whose ciop/cip divergence is worth reporting (see FACET_FIELDS use in
+# scripts/facet_report.py); facets_explanation is prose and excluded.
+FACET_FIELDS: tuple[str, ...] = (
+    "gold_source",
+    "gold_beyond_stimulus",
+    "gold_community_dependent",
+    "gold_concerns_genesis",
+    "answer_multiplicity",
+    "plurality_treatment",
+)
 
 LIST_ENUM_FIELDS: dict[str, set[str]] = {
     "analytical_tasks": set(ANALYTICAL_TASK_VOCAB),

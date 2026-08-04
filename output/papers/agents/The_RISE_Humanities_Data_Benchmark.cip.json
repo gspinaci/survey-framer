@@ -1,60 +1,51 @@
 {
   "benchmark_name": "The RISE Humanities Data Benchmark",
   "publication_year": 2026,
-  "humanities_role": "both",
-  "humanities_role_explanation": "Evaluates LLMs on domain-specific research tasks (such as transcription, layout segmentation, and structured metadata extraction) using real, expert-annotated historical and archival source materials from humanities consulting projects.",
+  "humanities_role": "domain",
+  "humanities_role_explanation": "Designed to evaluate LLMs on specialized digital humanities research workflows, including historical document transcription, page/layout segmentation, and structured archival metadata extraction.",
   "benchmark_modalities": [
     "text",
     "image"
   ],
-  "benchmark_modalities_explanation": "Combines scanned document images (historical letters, index cards, print pages, and medieval manuscripts) with text-based instructions, alongside text-only tasks like XML error correction.",
+  "benchmark_modalities_explanation": "Evaluates both text-only tasks (such as correcting faulty XML schemas) and multimodal tasks combining document images (historical letters, registry cards, handwritten manuscripts) with structured text instruction.",
   "analytical_tasks": [
-    "transcription",
-    "layout segmentation",
-    "metadata extraction",
-    "named entity recognition",
-    "structural error correction"
+    "transcription_and_correction",
+    "information_extraction",
+    "visual_recognition"
   ],
-  "analytical_tasks_explanation": "Evaluates models on handwritten and printed (Fraktur) text recognition, document layout segmentation, multi-stage metadata extraction/NER from historical lists and library cards, and logical/structural correction of LLM-generated XML files.",
+  "analytical_tasks_explanation": "Operationalizes tasks like Fraktur/handwritten document transcription (HTR/OCR), layout/page segmentation, structured metadata and entity extraction, and structured markup error correction.",
   "inclusion_criteria": {
     "general_purpose_benchmark": {
       "met": false,
-      "note": "Specifically designed as a small, specialized, domain-specific digital humanities evaluation framework rather than a general-purpose benchmark."
+      "note": "Scoped specifically to document-centric digital humanities workflows and historical source materials, rather than broad, general-purpose capability testing."
     },
     "evaluates_generative_llm": {
       "met": true,
-      "note": "Evaluates models such as OpenAI's GPT-4, GPT-4o, GPT-4.1-mini, and GPT-5, Anthropic's Claude Sonnet 4.5, and Google's Gemini 2.0 Pro."
-    },
-    "llm_is_primary_system": {
-      "met": true,
-      "note": "The LLMs (and vision-language models) are the primary systems being evaluated on their processing and extraction performance."
-    },
-    "arts_humanities_data": {
-      "met": true,
-      "note": "Uses historical, literary, and archival sources corresponding to ASJC areas: History, Language and Linguistics, Philosophy, Literature and Literary Theory, and Classics."
+      "note": "Evaluates generative language and vision-language models including GPT-4, GPT-4.1-mini, GPT-4o, GPT-5, Claude Sonnet 4.5, and Gemini 2.0 Pro."
     },
     "quantitative_metrics": {
       "met": true,
-      "note": "Applies quantitative metrics including fuzzy string matching, F1 scores, and Character Error Rates (CER)."
+      "note": "Uses metrics such as Character Error Rate (CER), F1 score, fuzzy string matching, and JSON validation success rates."
     },
     "published_after_march_2023": {
       "met": true,
       "note": "Published on February 4, 2026."
-    },
-    "english_language": {
-      "met": true,
-      "note": "The paper is written in English, and the benchmark includes English tasks (along with multilingual items in German, French, Latin, and Greek)."
     }
   },
-  "summary": "The paper introduces the RISE Humanities Data Benchmark, a domain-specific evaluation framework designed to assess large language models on complex digital humanities workflows. The benchmark features eight curated, expert-verified datasets representing real-world challenges like transcription of historical scripts and structured metadata extraction. It provides a standardized execution pipeline and custom web interface to track and compare model performance over time.",
-  "key_findings": "OpenAI's GPT-5 achieved the highest scores on complex extraction tasks such as Business Letters (77.00%), Company Lists (58.40%), and Library Cards (89.51%). Anthropic's Claude Sonnet 4.5 excelled at structured XML correction (97.47%), while Google's Gemini 2.0 Pro achieved 95.70% on Fraktur newspaper page segmentation and transcription.",
+  "summary": "The paper introduces the RISE Humanities Data Benchmark, an evaluation framework and suite of eight expert-curated datasets representing real-world digital humanities workflows. It focuses on document-centric tasks like handwritten and print transcription, layout segmentation, and structured metadata extraction, allowing systematic tracking of model performance over time. The framework prioritizes realism, explicit interpretative schema constraints, and expert-verified ground truths over large-scale statistical representation.",
+  "key_findings": "Across the evaluated tasks, OpenAI's GPT-5 achieved the highest performance on several metadata extraction tasks (e.g., 89.51% on library cards, 77.00% on business letters), while Claude Sonnet 4.5 excelled at XML data correction (97.47%), and Gemini 2.0 Pro performed best at Fraktur layout segmentation and transcription (95.70%).",
   "relevant_asjc_areas": [
+    "Arts and Humanities (miscellaneous)",
     "History",
-    "Language and Linguistics",
-    "Literature and Literary Theory",
-    "Philosophy",
-    "Classics"
+    "Language and Linguistics"
   ],
   "dataset_size": 440,
-  "primary_evaluation_setting": "zero-shot"
+  "primary_evaluation_setting": "zero-shot",
+  "gold_source": "domain_expert",
+  "gold_beyond_stimulus": "no",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "not_stated",
+  "facets_explanation": "The reference answers were manually produced or verified by domain experts affiliated with the respective digital humanities projects. The tasks focus on transcription, structured metadata extraction, and segmentation directly from the provided images or text files, meaning answers do not require external knowledge beyond the stimulus. Scoring is automated, matching the LLM output against a single schema-based ground truth using metrics such as Character Error Rate, F1 score, or fuzzy string matching."
 }

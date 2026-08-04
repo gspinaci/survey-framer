@@ -1,62 +1,60 @@
 {
-  "benchmark_name": "CaLMQA",
+  "benchmark_name": "Cultural Long-form Multilingual Question Answering (CaLMQA)",
   "publication_year": 2025,
-  "humanities_role": "both",
-  "humanities_role_explanation": "Evaluates LLMs on domain-specific cultural knowledge (history, religion, literature, and customs) using culturally specific, long-form questions, serving both as a content repository and an evaluation domain of global cultural alignment.",
+  "humanities_role": "content",
+  "humanities_role_explanation": "The benchmark uses culturally specific topics (such as regional history, religious traditions, and local customs) as test items to evaluate general generative LLM competencies, including factuality, relevance, and language consistency in long-form generation, rather than assessing academic disciplinary methods.",
   "benchmark_modalities": [
     "text"
   ],
-  "benchmark_modalities_explanation": "A text-only long-form question answering dataset consisting of 51.7K questions across 23 languages, where questions are written in the native language of the target culture and require multi-sentence textual answers.",
+  "benchmark_modalities_explanation": "Monolingual textual questions requiring models to generate long-form textual answers in the corresponding language.",
   "analytical_tasks": [
-    "long-form question answering",
-    "factual reasoning",
-    "cultural reasoning",
-    "factuality verification"
+    "factual_recall",
+    "open_ended_qa",
+    "generation",
+    "cultural_reasoning"
   ],
-  "analytical_tasks_explanation": "The benchmark evaluates models on long-form question answering requiring complex narrative synthesis, contextual interpretation, and cultural reasoning (e.g., explaining localized social practices, historical naming traditions, and regional governance policies), alongside assessing factual precision, output relevance, and language adherence.",
+  "analytical_tasks_explanation": "Long-form open-ended question answering requiring factual recall of localized historical events and traditions, reasoning over culture-specific context and norms, and coherent multilingual text generation.",
   "inclusion_criteria": {
     "general_purpose_benchmark": {
       "met": false,
-      "note": "It is a specialized benchmark focusing specifically on culturally specific, multilingual, long-form question answering."
+      "note": "Scoped specifically to evaluating culturally specific, multilingual long-form question answering."
     },
     "evaluates_generative_llm": {
       "met": true,
-      "note": "Evaluates Claude-3-Opus, Gemini-1.5-Pro, GPT-4-Turbo, GPT-4o, Aya-Expanse-32B, Llama-3-70B, and Mixtral-8x22B."
-    },
-    "llm_is_primary_system": {
-      "met": true,
-      "note": "Generative LLMs are the primary systems being benchmarked on long-form generation quality and cultural knowledge."
-    },
-    "arts_humanities_data": {
-      "met": true,
-      "note": "Covers several ASJC humanities areas including History, Language and Linguistics, Literature and Literary Theory, Religious Studies, and Visual Arts and Performing Arts."
+      "note": "Evaluated state-of-the-art LLMs including GPT-4o, GPT-4-Turbo, Claude 3 Opus, Gemini 1.5 Pro, Llama 3 70B, Mixtral 8x22B, and Aya Expanse 32B."
     },
     "quantitative_metrics": {
       "met": true,
-      "note": "Uses language identification accuracy, token repetition rate, factual precision (via VeriScore/FactScore claim counts), relevance (LLM-as-a-judge), and human evaluation ratings."
+      "note": "Measures performance using surface-level accuracy (wrong language rate, repetitions), factuality (VeriScore/FACTSCORE), relevance (GPT-4o LLM-as-a-judge), and human preference rankings."
     },
     "published_after_march_2023": {
       "met": true,
-      "note": "Published at ACL 2025 (July 2025)."
-    },
-    "english_language": {
-      "met": true,
-      "note": "The paper is written in English and describes a multilingual benchmark."
+      "note": "Published at ACL 2025."
     }
   },
-  "summary": "This paper presents CaLMQA, a multilingual long-form question answering dataset designed to benchmark LLM knowledge of culturally specific and regionally localized concepts across 23 languages. It establishes a rigorous evaluation framework measuring surface-level output quality, factual precision, and semantic relevance, paired with human ratings from native speakers. The findings show a pronounced gap in LLM capability when dealing with localized cultural knowledge compared to culturally agnostic topics, particularly in low-resource languages.",
-  "key_findings": "Models show a major drop in factual precision (typically 45%-52%) when answering culturally specific questions compared to culturally agnostic ones (64%-71%). Open-weight models fail significantly on low-resource languages\u2014frequently outputting English or apologies rather than the prompt language\u2014while proprietary models like GPT-4o show higher language stability but still struggle with localized factual accuracy.",
+  "summary": "This paper introduces CaLMQA, a translation-free multilingual dataset of 51.7K culturally specific, long-form questions across 23 languages. The authors evaluate seven state-of-the-art LLMs using a multi-aspect protocol tracking linguistic surface quality, relevance, and factual precision, corroborated by human native speakers.",
+  "key_findings": "Models generate answers with significantly more factual errors for culturally specific questions (45%-52% factual precision) than for culturally agnostic questions (64%-71%). Open-weight models struggle severely on low-resource languages, often hallucinating or generating text in the wrong language, while closed-source models lead in both automatic and human evaluations.",
   "relevant_asjc_areas": [
+    "Cultural Studies",
     "History",
     "Language and Linguistics",
     "Literature and Literary Theory",
-    "Religious Studies",
-    "Visual Arts and Performing Arts"
+    "Religious Studies"
   ],
   "dataset_size": 51698,
   "primary_evaluation_setting": "zero-shot",
-  "review_notes": "No significant disagreements. Minor differences in how the analytical tasks and key findings were described were resolved by combining the insights from both reports. The inclusion of 'Visual Arts and Performing Arts' as an ASJC area was kept as the dataset includes questions on 'Language, Art and Literature'.",
+  "review_notes": "Ciop and Cip disagreed on humanities_role. Ciop suggested 'domain', but the benchmark tests general LLM competencies (long-form QA, multilinguality, factuality) using cultural knowledge merely as test material rather than assessing disciplinary academic methods, so 'content' was chosen. Cip's 'generation' was selected over Ciop's 'fact_verification' for analytical_tasks because the LLMs themselves perform long-form generation, while fact verification is used purely as an external automated metric (VeriScore/FACTSCORE) to judge the output.",
   "paper_id": "CaLMQA:_Exploring_culturally_specific_lo",
   "paper_name": "CaLMQA: Exploring culturally specific long-form question answering across 23 languages",
-  "csv_row": 39
+  "csv_row": 11,
+  "gold_source": "crowd_annotation",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "yes",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "graded_human_judgment",
+  "plurality_treatment": "not_stated",
+  "facets_explanation": "Reference answers are only collected for a small subset of the 51.7K questions, sourced primarily by crowdworkers hired to harvest community QA forums, with additional answers authored by hired freelancers for Kirundi. Evaluation relies on model-based scoring (VeriScore, GPT-4o) and multi-aspect human ratings on a 5-point scale rather than exact string matching against a static key. The questions require external cultural knowledge, and answers explicitly depend on the specific cultural community. Inter-annotator variance is controlled statistically, but the treatment of divergent defensible readings is not addressed.",
+  "review_notes_incremental": [
+    "Ciop and Cip diverged on gold_source. Ciop chose existing_metadata because the reference answers were scraped from pre-existing QA forums. Cip chose crowd_annotation because Prolific workers were hired to harvest them and Upwork freelancers authored the Kirundi answers; resolved to crowd_annotation as the hired workers were the mechanism of dataset curation and creation. Ciop's inclusion of fact_verification in analytical_tasks was dropped because fact verification is the metric used to evaluate the LLMs (FactScore), not the task the models perform. primary_evaluation_setting was added as 'zero-shot' based on the paper's explicit text."
+  ]
 }

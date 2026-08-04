@@ -1,0 +1,31 @@
+# JSONDecodeError: Expecting ',' delimiter: line 29 column 496 (char 2319)
+
+{
+  "benchmark_modalities": [
+    "text"
+  ],
+  "humanities_role": "content",
+  "humanities_role_explanation": "LongFact includes a dedicated 'Humanities' category spanning history, philosophy, world religions, and arts. However, it treats these subjects merely as informational 'content' consisting of flat, propositional statements to be verified via search engines, thereby bypassing interpretive, thematic, or hermeneutic reasoning.",
+  "asjc_humanities_areas": [
+    "History",
+    "Language and Linguistics",
+    "Philosophy",
+    "Religious Studies",
+    "Visual Arts and Performing Arts"
+  ],
+  "analytical_tasks": [
+    "factual_recall",
+    "open_ended_qa",
+    "fact_verification",
+    "generation"
+  ],
+  "analytical_tasks_explanation": "The benchmark tests models on 'generation' of long-form responses to 'open_ended_qa' queries. Factuality is evaluated via 'factual_recall' and 'fact_verification' using the SAFE pipeline, which dynamically checks generated claims against Google Search results.",
+  "primary_evaluation_setting": "zero-shot",
+  "gold_source": "model_generated",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "graded_human_judgment",
+  "plurality_treatment": "noise",
+  "facets_explanation": "LongFact evaluates models on GPT-4 generated prompts without predefined gold answers. Evaluation is conducted dynamically by SAFE, an LLM-based agent that decomposes responses into claims and verifies them using Google Search (model_generated). Responses are scored continuously using F1@K by the LLM judge (graded_human_judgment). When validating SAFE against crowdsourced human annotations, the authors treated disagreement as noise, resolving discrepancies via researcher-led manual analysis with internet access.",
+  "review_notes": "No significant disagreements between analysts. I dropped 'information_extraction' from analytical_tasks because, although the SAFE agent performs extraction to break responses into atomic facts, the benchmark itself does not evaluate the target models on their extraction capabilities. I normalized the ASJC areas by dropping 'Music' (which is subsumed under Visual Arts and Performing Arts) and added the mandatory benchmark_modalities and primary_evaluation_setting fields."

@@ -1,63 +1,59 @@
 {
   "benchmark_name": "EduArt",
   "publication_year": 2026,
-  "humanities_role": "both",
-  "humanities_role_explanation": "Utilizes human-authored educational questions and artwork images from secondary school tests and AP exams (content) to diagnose domain-specific art-historical knowledge, stylistic reasoning, and visual interpretation in LLMs (domain).",
+  "humanities_role": "domain",
+  "humanities_role_explanation": "Designed to assess core disciplinary competence in art history and visual reasoning, using curricular materials (Italian secondary-school and US Advanced Placement Art History) verified by professional educators.",
   "benchmark_modalities": [
     "text",
     "image"
   ],
-  "benchmark_modalities_explanation": "Visual question answering dataset that pairs natural language questions (English and Italian) with low-to-medium resolution artwork images to evaluate multimodal Visual Question Answering (VQA).",
+  "benchmark_modalities_explanation": "Combines text-based questions with multimodal Visual Question Answering (VQA) using low-to-medium resolution artwork images.",
   "analytical_tasks": [
-    "factual recognition",
-    "visual reasoning",
-    "stylistic reasoning",
-    "iconographic interpretation",
-    "error identification",
-    "text completion",
-    "word positioning"
+    "factual_recall",
+    "multiple_choice_qa",
+    "fact_verification",
+    "sequence_prediction",
+    "visual_recognition",
+    "visual_reasoning",
+    "interpretation",
+    "stylistic_analysis"
   ],
-  "analytical_tasks_explanation": "Evaluates a model's capacity for factual recall of art history, visual and stylistic reasoning (e.g., reading symbolic meaning from visual details), alongside structured text tasks like word positioning, filling in blanks, and identifying historical or factual errors in written texts.",
+  "analytical_tasks_explanation": "Evaluates art-historical capabilities including factual recall of artists and styles, stylistic analysis, iconographic interpretation, and visual reasoning. Tasks are structured as single and multiple-choice questions, true/false statement verification (fact_verification), in-text word positioning and open/closed fill-in-the-blanks (sequence_prediction), and error identification in art-historical prose.",
   "inclusion_criteria": {
     "general_purpose_benchmark": {
       "met": false,
-      "note": "Domain-specific benchmark focused specifically on Art History and visual reasoning."
+      "note": "The benchmark is explicitly scoped to evaluating Art History knowledge and visual reasoning."
     },
     "evaluates_generative_llm": {
       "met": true,
-      "note": "Evaluates 12 generative multimodal LLMs including GPT-5.5, GPT-5.4 Mini/Nano, Gemini 3.1 Pro/Flash, Claude Opus/Sonnet/Haiku, Qwen3-VL-235B, Mistral Large 3, and Pixtral Large."
-    },
-    "llm_is_primary_system": {
-      "met": true,
-      "note": "Generative multimodal large language models are the primary systems being benchmarked."
-    },
-    "arts_humanities_data": {
-      "met": true,
-      "note": "Visual Arts and Performing Arts, History (Art History and Renaissance paintings)."
+      "note": "Evaluates 12 models across 6 families, including GPT-5.5, Gemini 3.5 Flash, Claude 4.6 (Opus/Sonnet), Mistral Large 3, and Qwen3-VL."
     },
     "quantitative_metrics": {
       "met": true,
-      "note": "Exact match accuracy, F1 score, statement accuracy, element accuracy, blank-filling accuracy, and Classical Test Theory (CTT) item discrimination (point-biserial correlation)."
+      "note": "Uses exact match, F1-score, statement/element/blank accuracy, and Classical Test Theory parameters (item difficulty and point-biserial discrimination)."
     },
     "published_after_march_2023": {
       "met": true,
-      "note": "Preprint published in July 2026."
-    },
-    "english_language": {
-      "met": true,
-      "note": "The paper is written in English, and the benchmark evaluates datasets in both English (AP Art History) and Italian (Zanichelli)."
+      "note": "Preprint dated July 2026."
     }
   },
-  "summary": "EduArt is an educational-level benchmark containing 871 human-authored questions from AP Art History and MyZanichelli Italian textbook exercises to diagnose art-historical knowledge and visual reasoning in multimodal LLMs. The study applies Classical Test Theory to assess item-level difficulty and analyzes how different formats (such as multiple choice, open completion, and error identification) affect model accuracy.",
-  "key_findings": "While six frontier models scored over 90% accuracy on standard multiple-choice questions, performance dropped substantially on more complex formats like open completion (Claude Opus 4.6 fell to 23.9%) and error identification (Claude Sonnet 4.6 fell to 6.2%). Furthermore, requiring models to justify their answers (motivation condition) improved Claude models slightly but degraded performance for GPT and Gemini models, demonstrating that task format variation reveals significant vulnerabilities.",
+  "summary": "This paper introduces EduArt, an educational-level benchmark containing 871 human-authored questions in Italian and English drawn from secondary school and AP Art History exams. The benchmark uses Classical Test Theory to assess model capabilities across seven diverse formats, and introduces a motivation condition to examine how demanding a written justification (chain-of-thought) affects accuracy.",
+  "key_findings": "Top frontier models achieve near-ceiling performance on multiple-choice items (over 94% accuracy) but suffer severe performance drops on generative formats like open completion (falling to 23.9% for Claude Opus 4.6) and error identification. Controlling for other factors, the presence of images decreased the likelihood of a correct answer. Eliciting written justifications improved performance for Anthropic models but degraded it for Gemini and GPT families.",
   "relevant_asjc_areas": [
     "Visual Arts and Performing Arts",
     "History"
   ],
   "dataset_size": 871,
-  "primary_evaluation_setting": "zero-shot",
-  "review_notes": "Disagreements were minor and mostly related to the level of detail in the analytical tasks and relevant ASJC areas. Reconciled analytical tasks to include both high-level interpretive tasks (stylistic reasoning, iconographic interpretation) identified by Ciop and specific structural tasks (word positioning, closed/open completion) identified by Cip. Included both 'Visual Arts and Performing Arts' and 'History' for ASJC areas.",
+  "primary_evaluation_setting": "mix",
+  "review_notes": "Both analysts agreed on most fields. For analytical tasks, Cip's 'fact_verification' (true/false) and 'sequence_prediction' (fill-in-the-blanks) were retained, while Ciop's 'interpretation' was retained over 'classification' and 'open_ended_qa' based on the paper's descriptions of reading symbolic meaning and fill-in-the-blank formats. Cip's 'attribution' was dropped, as the paper actually contrasts the verifiable educational benchmark with contested attribution tasks. For ASJC areas, both 'History' and 'Visual Arts and Performing Arts' were kept to reflect Art History. 'primary_evaluation_setting' is 'mix' because the experiment compares a zero-shot answer-only condition with a zero-shot plus chain-of-thought (motivation) condition.",
   "paper_id": "2607.02007",
   "paper_name": "EduArt: An Educational-Level Benchmark for Evaluating Art History Knowledge in Large Language Models",
-  "csv_row": 46
+  "csv_row": 14,
+  "gold_source": "authored_answer_key",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "yes",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "not_stated",
+  "facets_explanation": "The benchmark derives its questions and reference answers directly from established educational assessments, specifically Italian secondary-school exercises (MyZanichelli) and US Advanced Placement (AP) Art History examinations. Correct answers are extracted from the official standardized answer keys of these pedagogical materials, which demand external domain-specific knowledge\u2014such as stylistic classification, provenance, and iconography\u2014not explicitly contained in the provided visual stimuli. Because the evaluation relies on high-school-level curricula with singular, verified ground truths (explicitly avoiding expert-level contested attributions), the paper does not address interpretive plurality or community-dependent variations."
 }

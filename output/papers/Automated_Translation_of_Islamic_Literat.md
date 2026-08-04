@@ -9,9 +9,9 @@
 
 ## Humanities Role
 
-**Classification:** domain
-**Explanation:** Evaluates LLM translation quality specifically on classical Islamic scholarly literature (including the Qur'an, Hadith, Tafseer, and Jurisprudence), emphasizing the preservation of sacred text accuracy.
-**Relevant ASJC areas:** Religious Studies, Language and Linguistics, Literature and Literary Theory
+**Classification:** content
+**Explanation:** The pipeline translates classical Islamic religious texts and performs OCR on historical documents. The humanities material serves as a challenging corpus to test general machine translation and OCR capabilities, evaluated using automated semantic similarity rather than domain-specific humanistic reasoning.
+**Relevant ASJC areas:** Religious Studies, Language and Linguistics
 **CSV Humanities?:** Yes
 **CSV ASJC code:** 
 
@@ -19,40 +19,52 @@
 
 | Criterion | Met? | Note |
 |-----------|------|------|
-| General-purpose benchmark | NO | The paper presents an application-specific translation pipeline and evaluation framework for Islamic texts rather than a general-purpose benchmark dataset. |
-| Evaluates generative LLM | YES | Evaluates proprietary LLMs (GPT-4o, GPT-4o-mini, Claude 3.5 Sonnet, Claude 3.5/3.0 Haiku) and open-source models (Llama 3.2, Qwen 2.5, Silma, Jais, Mistral). |
-| LLM is primary evaluated system | YES | Generative LLMs are the primary systems evaluated for OCR, forward translation, and back-translation verification. |
-| Arts & Humanities data/tasks | YES | Evaluates on historical Islamic literature spanning Religious Studies, Literature, and Philosophy. |
-| Quantitative performance metrics | YES | Uses vector embedding cosine similarity scores to quantitatively validate translation fidelity. |
+| General-purpose benchmark | NO | The paper does not present a general-purpose benchmark, but rather a specialized pipeline and evaluation for translating Islamic scholarly texts. |
+| Evaluates generative LLM | YES | Evaluates OpenAI's GPT-4o-mini and Anthropic's Claude 3 Haiku. |
+| Quantitative performance metrics | YES | Uses cosine similarity of vector embeddings to measure semantic equivalence between original and back-translated text. |
 | Published after Mar 2023 | YES | Published in January 2025. |
-| English language | YES | The paper is written in English and focuses on translating an Arabic corpus into English. |
 
 ## Benchmark Modalities
 
-**Modality Types:** text
+**Modality Types:** text, image
 
-**Description:** Processes Arabic text (including OCR from document images) from the Al-Shamela digital library and evaluates the generated English translation and Arabic back-translations strictly as text.
+**Description:** The translation and back-translation evaluation is text-to-text, with an auxiliary multimodal OCR step using GPT-4o to process image-based PDF pages of Arabic texts.
 
 ## Analytical Tasks
 
-**Task Types:** machine translation, semantic similarity, back-translation validation, optical character recognition
+**Task Types:** translation, transcription and correction
 
-**Detailed Description:** The primary task is translating classical, highly figurative Arabic religious literature into English. Semantic preservation is then quantitatively evaluated through an automated back-translation task followed by embedding-based cosine similarity analysis.
+**Detailed Description:** Automated machine translation of classical Arabic Islamic literature into English, alongside OCR-based document transcription from image-formatted PDFs.
 
 ## Summary
 
-This paper presents an automated pipeline using LLMs (primarily GPT-4o-mini) to translate over 250,000 pages of classical Islamic scholarly literature from the Al-Shamela library into English. It introduces a validation framework that uses LLMs to back-translate the English text into Arabic and evaluates meaning preservation via vector embedding cosine similarity.
+This paper presents an automated pipeline using LLMs to translate a massive corpus of classical Islamic literature (over 250,000 pages) from the Al-Shamela library from Arabic to English. The authors use a back-translation validation framework, applying vector embedding cosine similarity to assess the semantic fidelity of translations produced by models like GPT-4o-mini and Claude 3 Haiku.
 
 ## Key Findings
 
-GPT-4o-mini was identified as the most cost-effective and high-quality forward translation model. The validation method demonstrated that 71% of OpenAI-based back-translations and 86% of Anthropic-based back-translations achieved an acceptable semantic preservation score (cosine similarity >= 0.7) compared to the original Arabic source.
+Both evaluated LLMs demonstrated strong translation fidelity, with 71% of the OpenAI back-translation results and 86% of the Anthropic back-translation results achieving acceptable cosine similarity scores of 0.7 or higher.
 
 ## Reviewer Notes
 
-- No significant disagreements. Merged the analytical tasks to include MT, back-translation, semantic similarity, and OCR. Adopted Cip's dataset_size of 250000, which reflects the number of pages processed and evaluated in the application corpus.
+- Ciop included 'image' in modalities and 'retrieval_and_ranking' in tasks. Cip omitted them. The paper explicitly discusses using multimodal LLMs for image-based PDF OCR (Section 3.7), so 'image' was kept. 'retrieval_and_ranking' was dropped as it refers to a system-level RAG string-matching component to preserve specific verses, rather than an LLM evaluation task itself. Both analysts agreed on all other substantive fields.
+- Ciop and Cip disagreed on gold_beyond_stimulus. Resolved to 'no' because the translation task is entirely derived from the source text stimulus, requiring no external factual knowledge beyond language capability. Other fields were in agreement.
 
 ## Additional Fields
 
 **Dataset Size:** 250000
 
 **Primary Evaluation Setting:** zero-shot
+
+**Gold Source:** existing_metadata
+
+**Gold Beyond Stimulus:** no
+
+**Gold Community Dependent:** no
+
+**Gold Concerns Genesis:** no
+
+**Answer Multiplicity:** single_answer
+
+**Plurality Treatment:** noise
+
+**Facets Explanation:** The reference texts are the original classical Arabic pages lifted directly from the digital Al-Shamela Library database. For automated evaluation, the back-translated Arabic text is compared to this single original Arabic source page using cosine similarity of vector embeddings. For manual human-in-the-loop validation, translation corrections are treated as noise to be resolved, requiring a consensus of at least two separate reviewers to be accepted.

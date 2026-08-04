@@ -1,61 +1,57 @@
 {
   "benchmark_name": "VULCA-BENCH",
   "publication_year": 2026,
-  "humanities_role": "both",
-  "humanities_role_explanation": "Integrates art-historical objects (visual content) with rigorous humanist methodologies, specifically modeling tasks after Erwin Panofsky's iconological framework and native aesthetic theories (e.g., Chinese yijing, Japanese wabi-sabi, Indian rasa theory).",
+  "humanities_role": "domain",
+  "humanities_role_explanation": "Targets disciplinary competence in art history, iconography, and aesthetic theory. Rather than treating artworks as raw data for generic visual QA, it structures evaluations around a 5-layer framework representing the ascending levels of art-historical interpretation (derived from Panofsky's iconological method and culture-specific concepts like yijing and rasa).",
   "benchmark_modalities": [
     "text",
     "image"
   ],
-  "benchmark_modalities_explanation": "Multimodal dataset pairing high-resolution artwork images with expert-written bilingual (Chinese and English) art critiques.",
+  "benchmark_modalities_explanation": "Multimodal benchmark combining high-resolution images of cultural artworks with expert-annotated bilingual (English and Chinese) critiques.",
   "analytical_tasks": [
-    "generative art critique",
-    "multimodal reasoning",
-    "aesthetic interpretation",
-    "symbolic decoding",
-    "contextual attribution",
-    "historical context analysis",
-    "philosophical analysis"
+    "generation",
+    "interpretation",
+    "attribution",
+    "cultural_reasoning",
+    "stylistic_analysis",
+    "visual_recognition",
+    "visual_reasoning",
+    "factual_recall"
   ],
-  "analytical_tasks_explanation": "Evaluates generative, hierarchical cultural understanding across five tiers: Visual Perception (L1), Technical Analysis (L2), Cultural Symbolism (L3), Historical Context (L4), and Philosophical Aesthetics (L5), requiring models to construct coherent, expert-level domain critiques.",
+  "analytical_tasks_explanation": "Generative art-critique writing that spans five analytical layers: visual perception (L1), technical analysis of medium/brushwork (L2), decoding of cultural symbolism and iconography (L3), historical context and provenance/artist attribution (L4), and philosophical aesthetics/indigenous theory interpretation (L5).",
   "inclusion_criteria": {
     "general_purpose_benchmark": {
       "met": false,
-      "note": "Specifically designed as a specialized domain benchmark for multicultural art critique and cultural understanding."
+      "note": "Specifically scoped to multicultural art history, visual arts critique, and cultural-philosophical interpretation."
     },
     "evaluates_generative_llm": {
       "met": true,
-      "note": "Evaluates advanced vision-language models (VLMs) including GPT-4o, Claude-Sonnet-4.5, Claude-Opus-4.5, Gemini-2.5-Pro, Qwen3-VL-235B, GLM-4V-Flash, and DeepSeek-VL2."
-    },
-    "llm_is_primary_system": {
-      "met": true,
-      "note": "The primary focus is benchmarking and evaluating generative VLMs on cultural interpretation tasks."
-    },
-    "arts_humanities_data": {
-      "met": true,
-      "note": "Evaluates artifacts and concepts belonging to Visual Arts and Performing Arts, Philosophy, Religious Studies, and History."
+      "note": "Evaluates several generative vision-language models including GPT-4o, Claude-Sonnet-4.5, Gemini-2.5-Pro, Qwen3-VL-235B, GLM-4V-Flash, and DeepSeek-VL2."
     },
     "quantitative_metrics": {
       "met": true,
-      "note": "Uses Dimension Coverage Rate (DCR) validated by keyword matching, embedding similarity, and NLI entailment, alongside expert/human validation."
+      "note": "Uses Dimension Coverage Rate (DCR) evaluated via keyword-matching, backed up by human ratings, open-source embedding models (BGE-large-en-v1.5), and NLI entailment."
     },
     "published_after_march_2023": {
       "met": true,
-      "note": "Preprinted in February 2026."
-    },
-    "english_language": {
-      "met": true,
-      "note": "The paper is written in English, and the benchmark features bilingual Chinese-English critiques."
+      "note": "Preprint dated February 2026."
     }
   },
-  "summary": "VULCA-BENCH is a multicultural, bilingual art-critique benchmark comprising 7,410 image-critique pairs across eight cultural traditions, designed to evaluate the depth of Vision-Language Models' cultural understanding. Grounded in Panofsky's iconological method, it structures evaluation hierarchically across five levels, from surface perception to philosophical aesthetics. The dataset introduces the 'Cultural Symmetry Principle' to ensure equitable methodological representation of non-Western traditions.",
-  "key_findings": "State-of-the-art vision-language models suffer a dramatic performance drop (a 25 to 40 percentage-point deficit) when transitioning from visual perception (L1-L2) to cultural and philosophical interpretation (L3-L5). Error analysis reveals models rely on superficial buzzwords without explaining their visual application, make historical anachronisms, and conflate distinct cultural traditions. Furthermore, naive few-shot prompting actually degrades performance in models like DeepSeek-VL2 and GPT-4o.",
+  "summary": "VULCA-BENCH is a multicultural, bilingual (Chinese-English) vision-language benchmark containing 7,410 image-critique pairs across eight cultural traditions. It introduces a hierarchical five-layer framework based on Panofsky's iconological method to systematically evaluate how well vision-language models can move from basic visual perception to complex historical and philosophical aesthetic analysis. The benchmark enforces cultural symmetry, ensuring minority aesthetic traditions are methodologically evaluated alongside Western art.",
+  "key_findings": "Evaluated vision-language models show a steep performance drop of 31 to 40 percentage points when moving from lower-level visual perception (L1-L2) to higher-level cultural and philosophical interpretation (L3-L5). Furthermore, naive few-shot prompting actually degrades performance in several prominent models, emphasizing that simple in-context learning is insufficient to elicit deep cultural understanding.",
   "relevant_asjc_areas": [
     "Visual Arts and Performing Arts",
+    "History",
     "Philosophy",
-    "Religious Studies",
-    "History"
+    "Religious Studies"
   ],
   "dataset_size": 7410,
-  "primary_evaluation_setting": "mix"
+  "primary_evaluation_setting": "mix",
+  "gold_source": "domain_expert",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "not_stated",
+  "plurality_treatment": "noise",
+  "facets_explanation": "The reference critiques were written and reviewed by bilingual domain experts with PhDs or advanced training in art history and regional studies. Disagreements between annotators and reviewers were resolved through structured discussion and consensus to establish a singular gold-standard critique, thereby treating divergence as noise. Correctly evaluating the higher layers (L3\u2013L5) requires external historical, cultural, and philosophical knowledge that cannot be extracted from the image stimulus alone."
 }

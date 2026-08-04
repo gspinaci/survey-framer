@@ -1,0 +1,14 @@
+# JSONDecodeError: Expecting ',' delimiter: line 9 column 1 (char 771)
+
+{
+  "gold_source": "existing_metadata",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "yes",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "noise",
+  "facets_explanation": "The reference metadata is sourced directly from the collection records of the Getty and the Metropolitan Museum of Art. Because the benchmark requires predicting non-observable attributes (creator, period, origin, and culture) from an image-only input, answering correctly necessitates external historical knowledge. Any potential classification errors or disagreements during curation were minimized through a two-stage verification process where only mutually agreed and verified objects were retained in the final dataset."
+dataset."
+dataset."
+final dataset."
+}

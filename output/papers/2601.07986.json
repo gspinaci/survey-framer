@@ -1,64 +1,63 @@
 {
   "benchmark_name": "VULCA-BENCH",
   "publication_year": 2026,
-  "humanities_role": "both",
-  "humanities_role_explanation": "Evaluates models on the domain of art history, criticism, and aesthetics using expert-annotated critiques of historical, multicultural artworks across eight cultural traditions.",
+  "humanities_role": "domain",
+  "humanities_role_explanation": "Designed to evaluate disciplinary competence in art history and aesthetics, employing a five-layer cultural understanding framework grounded in Panofsky's iconological method and culture-specific indigenous theories.",
   "benchmark_modalities": [
     "text",
     "image"
   ],
-  "benchmark_modalities_explanation": "Multimodal dataset pairing high-resolution artwork images from diverse cultures with expert-written bilingual (Chinese and English) art critiques.",
+  "benchmark_modalities_explanation": "Multimodal evaluation pairing historical artwork images with free-text generative expert bilingual critiques across eight cultural traditions.",
   "analytical_tasks": [
-    "generative art critique",
-    "visual perception analysis",
-    "technical art analysis",
-    "cultural symbolism decoding",
-    "historical context attribution",
-    "philosophical aesthetics reasoning"
+    "generation",
+    "interpretation",
+    "attribution",
+    "cultural_reasoning",
+    "stylistic_analysis",
+    "visual_recognition",
+    "visual_reasoning"
   ],
-  "analytical_tasks_explanation": "Evaluates generative cultural understanding using a five-layer ascending framework: L1 (visual perception), L2 (technical analysis), L3 (cultural symbolism), L4 (historical context), and L5 (philosophical aesthetics).",
+  "analytical_tasks_explanation": "Evaluates generative art critique across five hierarchical layers: visual perception (L1), technical analysis of medium and brushwork (L2), decoding of cultural and iconographical symbolism (L3), historical attribution and context (L4), and culture-specific philosophical aesthetics (L5).",
   "inclusion_criteria": {
     "general_purpose_benchmark": {
       "met": false,
-      "note": "Specialized domain benchmark designed to evaluate multicultural art critique and deep cultural understanding."
+      "note": "Scoped specifically to art-historical visual understanding and cross-cultural art critique."
     },
     "evaluates_generative_llm": {
       "met": true,
-      "note": "Evaluates advanced vision-language models including GPT-4o, Claude 3.5 Sonnet, Claude 3.5 Opus, Gemini 2.5 Pro, Qwen3-VL-235B, GLM-4V-Flash, and DeepSeek-VL2."
-    },
-    "llm_is_primary_system": {
-      "met": true,
-      "note": "The primary focus is evaluating the generative reasoning capabilities of VLMs on structured cultural interpretation tasks."
-    },
-    "arts_humanities_data": {
-      "met": true,
-      "note": "Focuses on Visual Arts, with deep intersections in History, Philosophy (indigenous aesthetics), and Religious Studies (e.g., Buddhist iconography)."
+      "note": "Evaluates several generative vision-language models, including GPT-4o, Claude-Sonnet-4.5, Gemini-2.5-Pro, Qwen3-VL-235B, GLM-4V-Flash, and DeepSeek-VL2."
     },
     "quantitative_metrics": {
       "met": true,
-      "note": "Introduces Dimension Coverage Rate (DCR) via keyword matching, validated by embedding similarity and NLI entailment."
+      "note": "Evaluates model performance using Dimension Coverage Rate (DCR) via keyword-matching, backed up by semantic embedding alignment, NLI entailment, and human evaluation scores."
     },
     "published_after_march_2023": {
       "met": true,
       "note": "Published as a preprint in February 2026."
-    },
-    "english_language": {
-      "met": true,
-      "note": "The paper and critiques are in English, with bilingual Chinese text included."
     }
   },
-  "summary": "VULCA-BENCH is a multicultural art-critique benchmark containing 7,410 image-critique pairs across eight traditions, designed to evaluate the depth of cultural understanding in Vision-Language Models. By adopting a five-layer hierarchical framework (from basic visual perception to philosophical aesthetics) and enforcing a Cultural Symmetry Principle, it provides a rigorous basis for evaluating AI systems on complex, domain-expert analytical reasoning.",
-  "key_findings": "State-of-the-art VLMs suffer a dramatic 25-40 percentage-point performance drop when transitioning from visual/technical perception (L1-L2) to cultural/philosophical interpretation (L3-L5). Error analyses indicate models rely on superficial terminology, exhibit historical anachronisms, and conflate cultural traditions. Additionally, naive few-shot prompting degrades performance for most models.",
+  "summary": "VULCA-BENCH is a multicultural art-critique benchmark of 7,410 image-critique pairs across eight traditions, designed to test vision-language models' deep cultural and philosophical understanding beyond surface-level perception. Grounded in a five-layer framework mapping from visual features to philosophical aesthetics, it enforces a 'Cultural Symmetry' principle to balance structural depth and representation across Western and non-Western traditions.",
+  "key_findings": "All evaluated VLMs show a prominent 25-40 percentage-point decline (layer gap) from visual perception (L1-L2) to cultural and aesthetic interpretation (L3-L5). Naive few-shot prompting degrades performance across most models, indicating that simple in-context learning is insufficient to elicit deep cultural reasoning.",
   "relevant_asjc_areas": [
     "Visual Arts and Performing Arts",
+    "History",
     "Philosophy",
-    "Religious Studies",
-    "History"
+    "Religious Studies"
   ],
   "dataset_size": 7410,
   "primary_evaluation_setting": "mix",
-  "review_notes": "Resolved minor discrepancies. Adopted a merged list of analytical tasks utilizing the paper's L1-L5 schema naming. Kept History in the ASJC areas since art historical attribution and context analysis are core to L4. Set primary_evaluation_setting to 'mix' since both zero-shot and few-shot (1-shot, 3-shot) experiments are conducted and explicitly compared in the study.",
+  "review_notes": "Ciop and Cip mostly agreed. Ciop included 'factual_recall' in analytical_tasks, but the paper explicitly contrasts its generative critique approach with other benchmarks that test factual recall, so it was excluded following adjudication rules. Cip included 'Cultural Studies' in relevant_asjc_areas, which is not a valid ASJC code; replaced with Ciop's 'Religious Studies' based on the religious iconography and Buddhist art content mentioned in the text. Benchmark name standardized to 'VULCA-BENCH'.",
   "paper_id": "2601.07986",
   "paper_name": "Vulca-Bench",
-  "csv_row": 11
+  "csv_row": 13,
+  "gold_source": "domain_expert",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "not_stated",
+  "plurality_treatment": "noise",
+  "facets_explanation": "The reference critiques and dimension tags were generated by domain-expert annotators, with all annotator-reviewer disagreements resolved through consensus discussion to establish a single gold standard, thereby treating divergence as noise. Correctly interpreting the artworks at layers L3-L5 requires external historical, cultural, and philosophical knowledge not contained in the visual stimuli alone. The artworks span multiple traditions, but correctness for each item is universally tied to its specific cultural origin rather than varying by observer community. While the benchmark encompasses historical context, it targets comprehensive cultural and aesthetic interpretation rather than solely focusing on genesis. The generative task is evaluated in the pilot using a Dimension Coverage Rate (DCR) via keyword matching, but the paper delegates the comprehensive evaluation framework to a companion study, leaving the definitive answer multiplicity unspecified.",
+  "review_notes_incremental": [
+    "answer_multiplicity: Ciop chose 'not_stated' and Cip chose 'answer_set'. While the pilot evaluation uses a Dimension Coverage Rate matching generated text against a synonym dictionary for target dimensions, the paper explicitly notes this is just a diagnostic check and leaves the formal evaluation framework to a companion study. Because generative metrics do not cleanly map to an enumerated 'answer_set' and the final scoring is deferred, I resolved it to 'not_stated' following the rule to prefer 'not_stated' over a plausible reconstruction. All other facets had exact agreement."
+  ]
 }

@@ -1,0 +1,11 @@
+# JSONDecodeError: Expecting ',' delimiter: line 9 column 340 (char 1050)
+
+{
+  "gold_source": "existing_metadata",
+  "gold_beyond_stimulus": "no",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "noise",
+  "facets_explanation": "The reference texts used for validation are the original classical Arabic pages sourced directly from the Al-Shamela digital library. For automated evaluation, the back-translated Arabic text is compared to this single original Arabic source page using the cosine similarity of vector embeddings. For the manual validation portion, human annotator divergence is treated as noise, requiring a consensus of at least two reviewers to accept any translation corrections.",
+  "review_notes": "gold_beyond_stimulus: Ciop selected 'yes', while Cip selected 'no'. Resolved to 'no' because translation generally relies on the content within the stimulus text rather than requiring external historical or cultural knowledge beyond the linguistic competence to translate the source. No other significant disagreements."

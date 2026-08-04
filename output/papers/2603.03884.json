@@ -1,57 +1,52 @@
 {
   "benchmark_name": "CzechTopic",
   "publication_year": 2026,
-  "humanities_role": "both",
-  "humanities_role_explanation": "The benchmark uses historical Czech archival documents (content) and is specifically motivated to assist historians and digital humanities researchers in tracing social and political themes across archives (domain).",
+  "humanities_role": "content",
+  "humanities_role_explanation": "The benchmark uses digitized historical Czech archival documents as its text source, but the primary competence evaluated is general semantic topic localization and word-level span extraction, rather than disciplinary historical analysis or hermeneutic reasoning.",
   "benchmark_modalities": [
     "text"
   ],
-  "benchmark_modalities_explanation": "Text-only evaluations operating on monolingual transcribed Czech historical document segments obtained via PERO-OCR.",
+  "benchmark_modalities_explanation": "A text-only benchmark evaluating models on OCR-transcribed historical Czech texts paired with natural language topic names and descriptions.",
   "analytical_tasks": [
-    "topic presence detection",
-    "span localization"
+    "classification",
+    "information_extraction"
   ],
-  "analytical_tasks_explanation": "Evaluates document-level identification of semantic topic presence (whether a topic is discussed) and the precise word-level extraction/localization of text spans matching abstract, human-defined topic descriptions.",
+  "analytical_tasks_explanation": "Evaluates text-level topic presence detection (modeled as binary text classification) and word-level topic span localization (modeled as span extraction/information extraction).",
   "inclusion_criteria": {
     "general_purpose_benchmark": {
       "met": false,
-      "note": "Specifically designed as a domain-focused benchmark for topic localization in historical Czech archival documents rather than general-purpose NLP evaluation."
+      "note": "Specifically scoped to the task of topic localization and text-level topic classification in historical Czech documents."
     },
     "evaluates_generative_llm": {
       "met": true,
-      "note": "Evaluates several generative LLMs including GPT-5 variants (gpt-5-2, gpt-5-mini, gpt-5-nano), gpt-oss-20b, Llama 3, Llama 3.2, Gemma 3, and Gemini 3 Pro."
-    },
-    "llm_is_primary_system": {
-      "met": true,
-      "note": "Generative LLMs are evaluated as primary benchmark systems alongside auxiliary fine-tuned BERT baselines."
-    },
-    "arts_humanities_data": {
-      "met": true,
-      "note": "Utilizes Czech historical documents and periodicals, mapping to Language and Linguistics (Czech language parsing, OCR text) and History."
+      "note": "Evaluates generative models including GPT-5 variants, Llama 3 (70B, 3B), Gemma 3 (27B, 4B), Gemini 3 Pro, and gpt-oss-20b."
     },
     "quantitative_metrics": {
       "met": true,
-      "note": "Precision, Recall, F1 score, Intersection over Union (IoU), and Krippendorff's alpha for inter-annotator agreement."
+      "note": "Reports macro-averaged Precision, Recall, F1-score, and Intersection over Union (IoU) with bootstrap confidence intervals."
     },
     "published_after_march_2023": {
       "met": true,
-      "note": "Published as an arXiv preprint in March 2026."
-    },
-    "english_language": {
-      "met": true,
-      "note": "The paper is written in English, although the underlying evaluated text data is in Czech."
+      "note": "The paper is a preprint from March 2026."
     }
   },
-  "summary": "This paper presents CzechTopic, a novel human-annotated benchmark for topic localization in historical Czech documents. Grounded in inter-annotator agreement rather than a single gold reference, models are tasked with identifying and localizing word-level spans that correspond to human-defined, open-ended topic descriptions. The authors establish baselines for both state-of-the-art generative LLMs and specialized BERT-based cross-encoders fine-tuned on distilled data.",
-  "key_findings": "LLMs demonstrate substantial performance variability, with word-level F1 scores ranging from 13.2 to 61.1. The strongest model (GPT-5-2) achieves a word-level F1 of 61.1, which still lags significantly behind the human baseline (68.7 F1). Specialized BERT-based models fine-tuned on distilled data remain highly competitive, with RobeCzech achieving an F1 of 48.3. Methodologically, matching-based span extraction outperformed tagging by 10.4 F1 points, while prompt language (Czech vs. English) had no significant effect.",
+  "summary": "This paper presents CzechTopic, a human-annotated benchmark for zero-shot topic localization in OCR-processed historical Czech archival documents. The benchmark evaluates models at both the document level (presence detection) and the word level (fine-grained span localization) using an evaluation framework grounded in human inter-annotator agreement.",
+  "key_findings": "The best-performing LLM (GPT-5-2) achieved a word-level F1 of 61.1, which remains significantly below the human agreement baseline of 68.7, indicating precise span localization is a major challenge for current models. Specialized BERT-based models fine-tuned on distilled data (e.g., RobeCzech) achieved highly competitive performance, outperforming several open-source LLMs.",
   "relevant_asjc_areas": [
     "Language and Linguistics",
     "History"
   ],
   "dataset_size": 1820,
-  "primary_evaluation_setting": "a mix",
-  "review_notes": "Ciop labeled primary_evaluation_setting as 'zero-shot', while Cip labeled it 'a mix'. The paper explicitly mentions experiments were conducted in both zero-shot and few-shot settings, so 'a mix' was chosen. Minor phrasing differences in other fields were harmonized.",
+  "primary_evaluation_setting": "mix",
+  "review_notes": "No significant disagreements. Both analysts identified the same task scope, evaluation paradigms, and extracted metrics consistently. Wording was combined for clarity.",
   "paper_id": "2603.03884",
   "paper_name": "CzechTopic",
-  "csv_row": 24
+  "csv_row": 6,
+  "gold_source": "not_stated",
+  "gold_beyond_stimulus": "no",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "answer_set",
+  "plurality_treatment": "signal",
+  "facets_explanation": "The reference annotations were created by multiple human annotators whose specific academic or professional backgrounds are not explicitly stated. The task involves matching text spans to topic descriptions that are provided directly within the prompt, requiring no knowledge beyond the provided stimulus. Rather than collapsing individual annotations into a single consensus key, the benchmark preserves divergent human judgments as signal; models are evaluated against each individual annotator's spans, and the resulting agreement metrics are averaged."
 }

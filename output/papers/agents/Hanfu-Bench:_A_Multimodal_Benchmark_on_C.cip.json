@@ -1,57 +1,55 @@
 {
   "benchmark_name": "Hanfu-Bench",
   "publication_year": 2025,
-  "humanities_role": "both",
-  "humanities_role_explanation": "Evaluates domain knowledge of historical Chinese clothing (Hanfu) across dynasties through visual question answering and provides a task for creative transcreation of traditional designs into modern wearable clothing.",
+  "humanities_role": "domain",
+  "humanities_role_explanation": "Designed for historical and cultural fashion understanding, specifically targeting Hanfu dynasties, aesthetic styles, garment structures, and adaptation features.",
   "benchmark_modalities": [
     "text",
     "image"
   ],
-  "benchmark_modalities_explanation": "Combines images of Hanfu attire with natural language questions (for visual question answering) and text prompts (for transcreation/image translation).",
+  "benchmark_modalities_explanation": "VQA tasks combine Hanfu images with natural language multiple-choice questions; the transcreation task performs text-guided image translation of clothing from traditional styles to modern designs.",
   "analytical_tasks": [
-    "multiple-choice visual question answering",
-    "image translation",
-    "cultural adaptation",
-    "fine-grained visual recognition"
+    "multiple_choice_qa",
+    "visual_recognition",
+    "factual_recall",
+    "causal_and_temporal_reasoning",
+    "cultural_reasoning",
+    "attribution",
+    "generation"
   ],
-  "analytical_tasks_explanation": "Factual recognition of historical clothing features (sleeves, collar, jin, period, type) via multiple-choice VQA, and cross-temporal cultural adaptation (transforming traditional garments into modern, wearable designs while preserving cultural elements).",
+  "analytical_tasks_explanation": "Includes single-image and multi-image multiple-choice VQA for identifying garment details (collar, sleeve, lapel), chronological attribution to dynasties, cross-temporal reasoning, and generative text description editing for clothing design transcreation.",
   "inclusion_criteria": {
     "general_purpose_benchmark": {
       "met": false,
-      "note": "It is a domain-specific cultural benchmark focusing specifically on Chinese Hanfu clothing across dynasties."
+      "note": "Specifically scoped to Chinese Hanfu fashion history, cultural understanding, and creative transcreation."
     },
     "evaluates_generative_llm": {
       "met": true,
-      "note": "Evaluated MiniCPM-V 2.6, Qwen2.5-VL-7B-Instruct, InternVL2.5, GPT-4o, and Doubao-1.5-V."
-    },
-    "llm_is_primary_system": {
-      "met": true,
-      "note": "The primary systems being evaluated are Vision-Language Models (VLMs) on VQA and image transcreation tasks."
-    },
-    "arts_humanities_data": {
-      "met": true,
-      "note": "Focuses on Visual Arts and Performing Arts (costume/fashion design), History (dynastic styles), and Conservation (cultural heritage)."
+      "note": "Evaluates vision-language models (GPT-4o, Doubao-1.5-V, MiniCPM-V 2.6, Qwen2.5-VL-7B-Instruct, InternVL2.5) and image generators (Stable Diffusion, Instruct-Pix2Pix)."
     },
     "quantitative_metrics": {
       "met": true,
-      "note": "Uses Accuracy for VQA tasks, and 5-point human evaluation metrics for transcreation (visual-change, semantic-equivalence, naturalness, modern-adaptability, cultural-inheritance, attractiveness)."
+      "note": "Uses classification accuracy for SVQA/MVQA and a 5-point expert preference scale across six custom dimensions for image transcreation."
     },
     "published_after_march_2023": {
       "met": true,
-      "note": "Published in November 2025."
-    },
-    "english_language": {
-      "met": true,
-      "note": "The paper is written in English, though some dataset and prompt elements are bilingual (Chinese and English)."
+      "note": "Published at EMNLP in November 2025."
     }
   },
-  "summary": "Hanfu-Bench is a manually curated multimodal benchmark designed to evaluate vision-language models on cross-temporal Chinese cultural understanding and adaptation. It features two core tasks: cultural visual understanding via single- and multi-image VQA, and cultural image transcreation, which assesses the models' ability to transform traditional Hanfu designs into modern attire while preserving traditional cultural elements.",
-  "key_findings": "Closed VLMs perform comparably to non-expert humans on cultural visual understanding but lag by roughly 10% behind experts, while open VLMs perform worse than non-experts. On the image transcreation task, the best-performing model (Stable-Diffusion-2-1-base guided by GPT-4o) achieved a success rate of only 42% according to multi-faceted human evaluation.",
+  "summary": "Hanfu-Bench is an expert-curated multimodal benchmark designed to evaluate vision-language models on cross-temporal Chinese cultural understanding and design transcreation. It models cultural competence using traditional garments spanning multiple historical dynasties (Han, Wei/Jin, Tang, Song, Ming) through visual QA and image translation. The evaluation highlights significant model performance gaps in comparative cross-image reasoning and adaptive physical garment design compared to human experts.",
+  "key_findings": "Closed VLMs like Doubao-1.5-V achieve up to 82.28% on single-image VQA and 75.95% on multi-image VQA, matching non-experts but lagging behind experts by roughly 10%. On the generative image transcreation task, Stable Diffusion achieves the highest compliant translation rate of only 42% under multi-dimensional human expert evaluation, indicating that cross-temporal creative adaptation remains highly challenging.",
   "relevant_asjc_areas": [
     "Visual Arts and Performing Arts",
     "History",
     "Conservation"
   ],
   "dataset_size": 4186,
-  "primary_evaluation_setting": "zero-shot"
+  "primary_evaluation_setting": "mix",
+  "gold_source": "domain_expert",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "yes",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "noise",
+  "facets_explanation": "The ground truth features were annotated by nine experts (four paper authors and five Hanfu club members), requiring uniform agreement among three annotators and treating unresolved disagreements as noise. Task 1 (VQA) uses multiple-choice questions with exactly one correct option, making its scoring single_answer. Correctly identifying features like the historical dynasty or specific collar/sleeve styles requires external cultural and historical domain knowledge not present in the images themselves."
 }

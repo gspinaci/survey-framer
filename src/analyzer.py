@@ -46,7 +46,7 @@ def run_persona(persona: str, text: str, fields: dict[str, str],
                 title: str = "", metadata: dict | None = None) -> dict:
     """Run one persona agent ("ciop" or "cip") over the given fields."""
     prompt = _fill(llm.load_prompt(persona), render_schema(fields), text, title, metadata)
-    return llm.generate_json(prompt, GEMINI_PERSONA_MODEL)
+    return llm.generate_json(prompt, GEMINI_PERSONA_MODEL, label=f"{title[:40]}.{persona}")
 
 
 def run_reviewer(text: str, fields: dict[str, str], ciop: dict, cip: dict,
@@ -54,7 +54,7 @@ def run_reviewer(text: str, fields: dict[str, str], ciop: dict, cip: dict,
     prompt = _fill(llm.load_prompt("reviewer"), render_schema(fields), text, title, metadata)
     prompt = prompt.replace("<<CIOP_REPORT>>", json.dumps(ciop, indent=2))
     prompt = prompt.replace("<<CIP_REPORT>>", json.dumps(cip, indent=2))
-    return llm.generate_json(prompt, GEMINI_REVIEWER_MODEL)
+    return llm.generate_json(prompt, GEMINI_REVIEWER_MODEL, label=f"{title[:40]}.reviewer")
 
 
 def analyze_paper(text: str, fields: dict[str, str], title: str = "",

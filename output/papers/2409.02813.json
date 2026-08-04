@@ -50,5 +50,12 @@
   "review_notes": "Minor disagreements on analytical tasks and relevant ASJC areas. Included 'logical_and_quantitative_reasoning' from Cip as the benchmark heavily features math and engineering, and mapped Ciop's 'information_extraction' to 'transcription_and_correction' as OCR accuracy is an explicitly evaluated metric. Included 'Music' as a relevant ASJC area alongside 'Visual Arts and Performing Arts' since it is evaluated as a distinct subfield.",
   "paper_id": "2409.02813",
   "paper_name": "MMMU-Pro",
-  "csv_row": 2
+  "csv_row": 2,
+  "gold_source": "authored_answer_key",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "noise",
+  "facets_explanation": "The benchmark's core questions and ground-truth answers are sourced from college exams, quizzes, and textbooks, establishing them as pre-existing authored answer keys. Answering them correctly requires extensive disciplinary knowledge external to the stimulus, such as specialized historical, mathematical, or scientific concepts. Any discrepancies or potential errors during the option augmentation phase were resolved through multi-stage expert cross-validation, thereby treating divergent interpretations as noise to be eliminated."
 }

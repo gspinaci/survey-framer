@@ -1,0 +1,12 @@
+# JSONDecodeError: Expecting ',' delimiter: line 9 column 1 (char 837)
+
+{
+  "gold_source": "authored_answer_key",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "noise",
+  "facets_explanation": "SuperGPQA's reference answers are primarily lifted from existing textbook problems and academic exercise websites, qualifying as authored answer keys. The dataset construction utilizes a human-LLM collaborative pipeline where crowd annotators transcribe these sources, translate them to English, and convert them to a standardized multiple-choice format. A multi-stage quality control process involving rule-based checks, LLM-based verification, and manual expert review is deployed to filter out ambiguous questions, resolving any divergence to ensure a single, unambiguous correct option."
+ground truth per item."
+}

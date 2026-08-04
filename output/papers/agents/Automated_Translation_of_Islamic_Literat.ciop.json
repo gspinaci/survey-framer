@@ -1,55 +1,50 @@
 {
   "benchmark_name": null,
   "publication_year": 2025,
-  "humanities_role": "domain",
-  "humanities_role_explanation": "The paper focuses on translating classical Arabic Islamic literature (Qur'an, Hadith, Tafseer). The translation pipeline is tailored specifically to preserve sacred text accuracy using Retrieval-Augmented Generation (RAG) and domain-specific prompt constraints, though the ultimate validation relies on generic semantic vector similarity.",
+  "humanities_role": "content",
+  "humanities_role_explanation": "The humanities material (classical Islamic literature) acts as a highly challenging text corpus to test machine translation and OCR capabilities, rather than testing disciplinary humanistic reasoning. The performance is evaluated using automated linguistic metrics (semantic vector similarity) rather than expert domain-specific analysis.",
   "benchmark_modalities": [
-    "text"
+    "text",
+    "image"
   ],
-  "benchmark_modalities_explanation": "While the overall system utilizes multimodal models (GPT-4o) for OCR on document images and supports optional text-to-speech audio generation, the core translation and back-translation evaluation are executed and analyzed purely on text.",
+  "benchmark_modalities_explanation": "The primary task is Arabic-to-English text translation. However, the pipeline also evaluates image-to-text OCR of classical Arabic book pages using multi-modal LLMs.",
   "analytical_tasks": [
-    "machine translation",
-    "back-translation validation",
-    "optical character recognition"
+    "translation",
+    "transcription_and_correction",
+    "retrieval_and_ranking"
   ],
-  "analytical_tasks_explanation": "The primary task is the translation of classical, highly figurative, and theological Arabic prose into English. The quality of this translation is analyzed using an automated back-translation task followed by semantic similarity calculation, testing whether the LLM can preserve complex historical and religious meanings across languages.",
+  "analytical_tasks_explanation": "The pipeline performs forward and backward machine translation (translation), OCR transcription of image-based PDFs including diacritic preservation (transcription_and_correction), and vector-based RAG matching to align transcribed passages with authoritative databases of sacred texts (retrieval_and_ranking).",
   "inclusion_criteria": {
     "general_purpose_benchmark": {
       "met": false,
-      "note": "The paper outlines a localized application pipeline and its translation validation protocol rather than a general-purpose evaluation benchmark."
+      "note": "The paper does not present a general-purpose benchmark, but rather a specialized pipeline and evaluation for translating Islamic scholarly texts."
     },
     "evaluates_generative_llm": {
       "met": true,
-      "note": "Evaluates proprietary LLMs including OpenAI's GPT-4o-mini and Anthropic's Claude 3 Haiku, with preliminary testing of open-source models like Llama, Qwen, and Silma."
-    },
-    "llm_is_primary_system": {
-      "met": true,
-      "note": "LLMs serve as the primary systems for translation, OCR processing, and back-translation validation."
-    },
-    "arts_humanities_data": {
-      "met": true,
-      "note": "The target corpus is the Al-Shamela Library, representing historical Islamic literature, jurisprudence, and theological scriptures."
+      "note": "Evaluates generative LLMs including GPT-4o, GPT-4o-mini, and Claude 3 Haiku."
     },
     "quantitative_metrics": {
       "met": true,
-      "note": "Evaluates translation fidelity using vector embedding cosine similarity scores."
+      "note": "Uses cosine similarity of vector embeddings to measure semantic equivalence of back-translations, alongside human acceptance rates."
     },
     "published_after_march_2023": {
       "met": true,
       "note": "Published in January 2025."
-    },
-    "english_language": {
-      "met": true,
-      "note": "The paper is written in English."
     }
   },
-  "summary": "The paper introduces an automated translation pipeline designed to translate classical Islamic literature from the Al-Shamela library into English using LLMs. It addresses domain-specific challenges such as Arabic OCR diacritics and script accuracy preservation (using RAG), and implements a validation framework based on back-translation and embedding-based similarity.",
-  "key_findings": "GPT-4o-mini was chosen as the most cost-effective and high-quality forward translation model. Automated validation demonstrated that 71% of OpenAI back-translations and 86% of Anthropic back-translations achieved an acceptable semantic cosine similarity score of >= 0.7 compared to the original Arabic source.",
+  "summary": "This paper presents an automated pipeline designed to translate classical Arabic Islamic literature from the Al-Shamela Library into English and other languages. The authors address domain-specific challenges by utilizing multi-modal LLMs for Arabic OCR, applying RAG to maintain the textual integrity of Quranic and Hadith verses, and validating quality through automated back-translation semantic similarity and human crowd-sourced reviews.",
+  "key_findings": "Using embedding-based semantic similarity, 71% of translations validated via GPT-4o-mini back-translation and 86% of translations validated via Claude 3 Haiku back-translation achieved acceptable quality scores (cosine similarity >= 0.7).",
   "relevant_asjc_areas": [
     "Religious Studies",
-    "Language and Linguistics",
-    "Literature and Literary Theory"
+    "Language and Linguistics"
   ],
-  "dataset_size": null,
-  "primary_evaluation_setting": "zero-shot"
+  "dataset_size": 250000,
+  "primary_evaluation_setting": "zero-shot",
+  "gold_source": "existing_metadata",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "noise",
+  "facets_explanation": "The reference texts used for translation and back-translation validation are sourced from the pre-existing Al-Shamela digital library database. Automated evaluation compares the model's back-translation against a single original Arabic page reference using vector-embedding cosine similarity. For the manual validation portion, human annotator divergence is treated as noise, requiring a consensus of at least two reviewers to accept any translation errors."
 }

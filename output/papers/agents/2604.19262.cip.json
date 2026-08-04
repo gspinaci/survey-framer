@@ -1,58 +1,53 @@
 {
   "benchmark_name": "CulturALL",
   "publication_year": 2026,
-  "humanities_role": "both",
-  "humanities_role_explanation": "Evaluates cultural and linguistic dimensions of everyday human scenarios (domain) using concrete, localized scenario-based QA items spanning beliefs, heritage, and regional languages (content).",
+  "humanities_role": "content",
+  "humanities_role_explanation": "Evaluates general linguistic and reasoning abilities of LLMs using regional cultural knowledge, customs, and daily life scenarios as evaluation content rather than testing academic disciplinary competence.",
   "benchmark_modalities": [
     "text"
   ],
-  "benchmark_modalities_explanation": "The benchmark is text-only, composed of written scenarios and questions. The authors explicitly note the exclusion of multimodal inputs (such as images, video, or audio cues) as a current limitation of the study.",
+  "benchmark_modalities_explanation": "Text-only scenario-based questions and answers presented in the local language of 51 regions across 14 languages, alongside English translations.",
   "analytical_tasks": [
-    "multiple choice QA",
-    "open-ended QA",
-    "grounded reasoning",
-    "reading comprehension"
+    "factual_recall",
+    "multiple_choice_qa",
+    "open_ended_qa",
+    "logical_and_quantitative_reasoning",
+    "causal_and_temporal_reasoning",
+    "cultural_reasoning"
   ],
-  "analytical_tasks_explanation": "Operationalizes tasks requiring a combination of multilingual comprehension, retrieval of long-tail regional/cultural facts, and multi-step contextual reasoning to resolve realistic, grounded situational scenarios.",
+  "analytical_tasks_explanation": "Tests cultural reasoning over localized norms and practices, factual recall of regional regulations, multi-step logical reasoning to solve grounded scenarios, temporal reasoning for chronological order tasks, and evaluates using multiple-choice and short open-ended question-answering formats.",
   "inclusion_criteria": {
     "general_purpose_benchmark": {
       "met": false,
-      "note": "Specifically designed to target multilingual and multicultural competence on grounded daily tasks rather than general-purpose multi-task reasoning."
+      "note": "Specifically scoped to evaluating multilingual and multicultural competence across grounded everyday tasks."
     },
     "evaluates_generative_llm": {
       "met": true,
-      "note": "Evaluated multiple leading LLMs, including Gemini 2.5 Pro/Flash, GPT-5, Claude-4 (Opus/Sonnet), Qwen-Max, and Qwen3 series."
-    },
-    "llm_is_primary_system": {
-      "met": true,
-      "note": "Generative LLMs are the primary systems being evaluated across various reasoning and web-search configurations."
-    },
-    "arts_humanities_data": {
-      "met": true,
-      "note": "Includes topics such as Belief (religious traditions, wedding customs, trolley problem ethics), Heritage (historical events, public holidays), and Language (idioms, greetings, proverbs)."
+      "note": "Evaluates various generative models including Gemini 2.5 Pro/Flash, GPT-5, Claude-4 (Opus/Sonnet), Qwen-Max, and Qwen3 series."
     },
     "quantitative_metrics": {
       "met": true,
-      "note": "Uses accuracy (%) as the quantitative metric, verified via an LLM judge (gpt-4o-2024-11-20) comparing model output against objective reference keys."
+      "note": "Uses accuracy computed via a binary correctness judgment from a GPT-4o evaluator model."
     },
     "published_after_march_2023": {
       "met": true,
-      "note": "Published as a preprint in April 2026."
-    },
-    "english_language": {
-      "met": true,
-      "note": "The paper is written in English, and the dataset includes parallel English translations of all multilingual scenarios."
+      "note": "Preprint publication date is April 2026."
     }
   },
-  "summary": "CulturALL introduces a high-difficulty multilingual and multicultural benchmark comprising 2,610 text-based, scenario-grounded QA samples in 14 languages from 51 geographic regions. The benchmark was constructed using a collaborative human-LLM framework where native annotators elevated task difficulty through strategies like long-tail entity swaps and compositionality. A comprehensive evaluation of 15 LLM settings shows that even state-of-the-art models struggle significantly on culturally grounded reasoning, leaving a substantial gap for future development.",
-  "key_findings": "The top-performing configuration (Gemini 2.5 Pro with web-search enabled and auto-reasoning) achieved only 44.48% overall accuracy and only 18.47% on the hard subset. Open-source models significantly lagged behind proprietary ones (e.g., Qwen3-235B reached only 23.68% accuracy). Enabling web-search provided a 6.59% boost for Gemini 2.5 Pro but yielded negligible gains for Qwen models. Additionally, evaluating models using native-language prompts yielded an 8.08% absolute accuracy improvement over translated English prompts.",
+  "summary": "The paper introduces CulturALL, a benchmark featuring 2,610 evaluation items across 14 languages and 51 regions designed to evaluate LLMs on grounded multilingual and multicultural tasks. Developed using a hybrid human-AI collaboration framework, the benchmark avoids superficial trivia, focusing instead on context-rich scenarios that require cultural reasoning. Evaluations of state-of-the-art models show they struggle significantly on CulturALL, indicating a strong need to improve their reasoning and information retrieval capabilities.",
+  "key_findings": "The top-performing configuration (Gemini-2.5-Pro utilizing reasoning and web search) achieves only 44.48% accuracy. Open-source models lag significantly, with the best (Qwen3-235B) reaching only 23.68%. External web search provides a substantial boost for commercial models (+6.59% for Gemini-2.5-Pro) but fails to assist open-source models, while native-language prompting outperforms translated English prompts by an average of 8.08% in accuracy.",
   "relevant_asjc_areas": [
-    "Language and Linguistics",
-    "History",
-    "Philosophy",
-    "Religious Studies",
-    "Visual Arts and Performing Arts"
+    "Linguistics and Language",
+    "Cultural Studies",
+    "Anthropology"
   ],
   "dataset_size": 2610,
-  "primary_evaluation_setting": "zero-shot"
+  "primary_evaluation_setting": "zero-shot",
+  "gold_source": "domain_expert",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "yes",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "noise",
+  "facets_explanation": "The reference answers were reviewed, completed, and verified by 15 native or highly proficient language annotators (domain experts) who filtered and corrected LLM-drafted candidate items. Correctly resolving the grounded scenarios requires external, domain-specific cultural knowledge that is not provided within the prompt text. The items are structured around 51 distinct country/region codes with community-specific gold answers, and any annotator disagreements or quality issues were resolved or discarded during peer review."
 }

@@ -2,57 +2,52 @@
   "benchmark_name": "M3Exam",
   "publication_year": 2023,
   "humanities_role": "content",
-  "humanities_role_explanation": "The benchmark uses humanities material\u2014specifically history, geography, and language/linguistics questions from school examinations\u2014as testing content to gauge general intelligence and cultural alignment, rather than engaging with humanities as an active, domain-specific methodological inquiry.",
+  "humanities_role_explanation": "The benchmark utilizes humanities subjects (such as history, geography, and regional languages/scripts) as content to evaluate general LLM capabilities in multilingual understanding, factual question answering, and multimodal visual alignment, rather than targeting specialized humanistic scholarly methodologies or research workflows.",
   "benchmark_modalities": [
     "text",
     "image"
   ],
-  "benchmark_modalities_explanation": "Multimodal multiple-choice questions where text is paired with images of historical figures, diagrams, maps, or scripts.",
+  "benchmark_modalities_explanation": "Combines text questions with accompanying images (e.g., historical photographs, maps, diagrams, and options containing visual layouts) for multimodal multiple-choice QA.",
   "analytical_tasks": [
-    "reading comprehension",
-    "factual recognition",
-    "script conversion",
-    "visual question answering",
-    "idiomatic interpretation"
+    "multiple_choice_qa",
+    "factual_recall",
+    "translation",
+    "visual_reasoning",
+    "causal_and_temporal_reasoning",
+    "cultural_reasoning"
   ],
-  "analytical_tasks_explanation": "Tasks require parsing linguistic features (e.g., matching Swahili idioms or transliterating Javanese script), reading comprehension of literary/historical texts, factual historical QA (such as identifying Beijing's suburban reforms or Mahatma Gandhi's activities), and reasoning over visual representations (such as historical photos, maps, and diagrams).",
+  "analytical_tasks_explanation": "Tests factual recall of historical events, grammar/vocabulary rules, transliteration of regional scripts (such as Javanese script to Latin), causal/temporal reasoning over historical developments (e.g., Beijing suburb occupational shifts), cultural reasoning within native non-English country exams, and visual reasoning over diagrams and photographs.",
   "inclusion_criteria": {
     "general_purpose_benchmark": {
       "met": true,
-      "note": "Evaluates LLMs across broad domains, including science, mathematics, language, and social sciences."
+      "note": "Evaluates general-purpose LLM capabilities across multiple core subject domains (language, math, social science, natural science) using standard school-level human exams."
     },
     "evaluates_generative_llm": {
       "met": true,
-      "note": "Evaluates closed-source generative LLMs (GPT-4, ChatGPT, Claude) and open-source models (BLOOM, Vicuna, BLIP-2, InstructBLIP, Fromage, OpenFlamingo)."
-    },
-    "llm_is_primary_system": {
-      "met": true,
-      "note": "The LLMs are the primary systems being benchmarked."
-    },
-    "arts_humanities_data": {
-      "met": true,
-      "note": "Includes substantial materials relevant to History, Language and Linguistics, and Literature and Literary Theory."
+      "note": "Evaluates several generative LLMs including GPT-4, ChatGPT (GPT-3.5), Claude-instant, BLOOM, Vicuna, BLIP-2, and InstructBLIP."
     },
     "quantitative_metrics": {
       "met": true,
-      "note": "Uses accuracy as the quantitative evaluation metric."
+      "note": "Uses accuracy as the primary evaluation metric."
     },
     "published_after_march_2023": {
       "met": true,
-      "note": "Presented at NeurIPS 2023."
-    },
-    "english_language": {
-      "met": true,
-      "note": "The paper is written in English, and English is one of the benchmarked languages."
+      "note": "Published as a dataset/benchmark track paper at NeurIPS 2023 (December 2023)."
     }
   },
-  "summary": "M3Exam is a multilingual, multimodal, and multilevel benchmark derived from real-world human school exams across nine countries. It evaluates LLM capabilities on diverse linguistic scripts, visual exam questions, and varying educational difficulties (low, mid, high school levels).",
-  "key_findings": "GPT-4 outperforms other models with 72.92% average accuracy but struggles with low-resource (Javanese) and non-Latin script (Thai) languages. Multimodal models perform poorly on complex visual questions (BLIP-2 scores under 50% overall). Notably, LLMs do not exhibit a monotonic decrease in performance as exam levels increase, contrasting sharply with human cognitive development.",
+  "summary": "M3Exam is a multilingual, multimodal, and multilevel benchmark dataset designed to evaluate LLMs using official human graduation exams from primary, middle, and high school across nine diverse countries. Out of 12,317 multiple-choice questions collected, approximately 23% require cross-modal image processing, and all items are sourced directly from native educational contexts to retain local socio-cultural knowledge.",
+  "key_findings": "GPT-4 is the only model to exceed 60% accuracy, averaging 72.92%, but still struggles with low-resource languages like Javanese and non-Latin scripts like Thai. State-of-the-art multimodal models struggle to interpret complex exam images (failing to top 50% accuracy on visual questions), and models do not exhibit a monotonic performance decline from primary to high school levels, suggesting that machine intelligence development diverges from human educational progress.",
   "relevant_asjc_areas": [
-    "History",
     "Language and Linguistics",
-    "Literature and Literary Theory"
+    "History"
   ],
   "dataset_size": 12317,
-  "primary_evaluation_setting": "zero-shot"
+  "primary_evaluation_setting": "mix",
+  "gold_source": "authored_answer_key",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "not_stated",
+  "facets_explanation": "The reference answers are derived directly from the official answer keys of standardized school-graduation and entrance exams across various countries. Correctly answering these questions inherently requires retrieving external domain and cultural knowledge not contained in the exam questions themselves. Although the benchmark contains multilingual questions reflecting distinct national educational systems, each item has a single static correct answer, and the paper does not address annotator disagreement or alternative interpretations."
 }

@@ -9,9 +9,9 @@
 
 ## Humanities Role
 
-**Classification:** both
-**Explanation:** The benchmark relies on Indian cultural heritage, local art forms, historical monuments, and religious festivals as both the dataset content and the domain of evaluation to test deep, culturally grounded reasoning.
-**Relevant ASJC areas:** History, Language and Linguistics, Visual Arts and Performing Arts, Religious Studies
+**Classification:** content
+**Explanation:** The benchmark uses Indian cultural heritage materials (images of festivals, attire, cuisines, and art forms) as content to evaluate the multimodal reasoning and cultural understanding capabilities of general-purpose generative AI systems.
+**Relevant ASJC areas:** Cultural Studies, Visual Arts and Performing Arts, History, Language and Linguistics
 **CSV Humanities?:** 
 **CSV ASJC code:** 
 
@@ -19,40 +19,51 @@
 
 | Criterion | Met? | Note |
 |-----------|------|------|
-| General-purpose benchmark | NO | It is a domain-specific benchmark centered exclusively on Indian culture, arts, and heritage. |
-| Evaluates generative LLM | YES | Evaluates a wide range of vision-language models (VLMs), including open-source small and large models, proprietary systems, reasoning-specialized VLMs, and Indic-focused models. |
-| LLM is primary evaluated system | YES | The primary systems being benchmarked are generative vision-language models. |
-| Arts & Humanities data/tasks | YES | Covers History, Language and Linguistics, Visual Arts and Performing Arts, and Religious Studies. |
-| Quantitative performance metrics | YES | Evaluates performance quantitatively across models in zero-shot and chain-of-thought reasoning settings. |
-| Published after Mar 2023 | YES | Published in November 2025 at EMNLP. |
-| English language | YES | The scientific paper is written in English, though the benchmark's content is multilingual. |
+| General-purpose benchmark | NO | The benchmark is explicitly scoped to Indian cultural understanding and regional nuance, rather than general-purpose multi-task capabilities. |
+| Evaluates generative LLM | YES | Evaluates open-source small and large VLMs, proprietary systems, reasoning-specialized VLMs, and Indic-focused models. |
+| Quantitative performance metrics | YES | Exposes performance gaps for low-resource languages and specific traditions, indicating quantitative evaluation of model capabilities. |
+| Published after Mar 2023 | YES | Published at EMNLP in November 2025. |
 
 ## Benchmark Modalities
 
 **Modality Types:** text, image
 
-**Description:** Comprises over 64,000 aligned text-image pairs where visual materials depicting Indian culture are combined with multilingual textual queries and descriptions.
+**Description:** The benchmark consists of over 64,000 aligned text-image pairs.
 
 ## Analytical Tasks
 
-**Task Types:** visual question answering, cultural reasoning, factual recognition, multilingual comprehension
+**Task Types:** cultural reasoning, visual reasoning, visual recognition, factual recall, open ended qa
 
-**Detailed Description:** Evaluates models on factual recognition and reasoning over fine-grained cultural concepts, including historical contexts of heritage sites, ritual significance of festivals, and regional art forms, across 15 distinct languages.
+**Detailed Description:** The benchmark evaluates models on visually recognizing cultural artifacts (festivals, attire, art forms) and performing culturally grounded multimodal reasoning, assessed through zero-shot and chain-of-thought QA.
 
 ## Summary
 
-The paper introduces DRISHTIKON, a first-of-its-kind multimodal and multilingual benchmark containing over 64,000 aligned text-image pairs across 15 languages, dedicated exclusively to Indian culture. It spans diverse regional themes like historical heritage, festivals, cuisines, attire, and art forms to evaluate the cultural understanding of modern generative vision-language models.
+The paper introduces DRISHTIKON, a multimodal and multilingual benchmark featuring over 64,000 text-image pairs across 15 languages designed to evaluate generative AI models' understanding of Indian culture. Covering fine-grained regional topics like festivals, art forms, and heritage, the dataset reveals significant limitations in the cultural reasoning abilities of current vision-language models.
 
 ## Key Findings
 
-Current vision-language models show stark limitations in reasoning over culturally grounded, localized multimodal inputs, especially for low-resource Indian languages and less-documented regional traditions.
+Current state-of-the-art vision-language models struggle significantly with reasoning over culturally grounded, multimodal inputs, particularly when dealing with low-resource Indic languages and less-documented regional traditions.
 
 ## Reviewer Notes
 
-- Resolved disagreement on 'general_purpose_benchmark': marked false as the text explicitly states the benchmark is 'centered exclusively on Indian culture' (domain-specific). Cip missed 'chain-of-thought' in the primary evaluation setting, which was added back per the abstract. ASJC areas and analytical tasks were merged to include all accurate elements identified by both reviewers.
+- Ciop chose 'domain' for humanities_role, while Cip chose 'content'. Resolved to 'content' because the benchmark evaluates general-purpose vision-language models using cultural heritage items as data for multimodal reasoning, rather than testing specialized academic disciplinary competence. Both analysts' analytical_tasks were merged, dropping multiple_choice_qa due to lack of explicit mention in the abstract, while retaining open_ended_qa and cultural/visual reasoning given the use of chain-of-thought prompting on aligned text-image pairs.
 
 ## Additional Fields
 
 **Dataset Size:** 64000
 
-**Primary Evaluation Setting:** zero-shot and chain-of-thought
+**Primary Evaluation Setting:** mix
+
+**Gold Source:** not_stated
+
+**Gold Beyond Stimulus:** not_stated
+
+**Gold Community Dependent:** not_stated
+
+**Gold Concerns Genesis:** not_stated
+
+**Answer Multiplicity:** not_stated
+
+**Plurality Treatment:** not_stated
+
+**Facets Explanation:** The provided text consists solely of the ACL Anthology metadata and abstract for the DRISHTIKON benchmark, lacking the full paper text or a dataset-construction section. Consequently, specific procedural details regarding the generation of reference answers, requirement of external knowledge, answer multiplicity, and plurality treatment are not stated in the source text.

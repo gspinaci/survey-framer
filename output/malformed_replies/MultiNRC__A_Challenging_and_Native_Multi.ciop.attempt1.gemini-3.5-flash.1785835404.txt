@@ -1,0 +1,12 @@
+# JSONDecodeError: Expecting ',' delimiter: line 9 column 1 (char 805)
+
+{
+  "gold_source": "crowd_annotation",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "not_addressed",
+  "facets_explanation": "The benchmark was constructed by recruited native speakers who authored both the reasoning prompts and their corresponding short ground-truth final answers. Correctly solving these items requires specific external cultural knowledge not present in the stimulus, such as local holiday dates, historical events, or regional systems like 'viager' real estate. Each question has a single objective answer evaluated for correctness, and the paper does not discuss how annotator disagreements or differing interpretations were treated during dataset creation."
+construction."
+}

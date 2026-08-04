@@ -1,64 +1,60 @@
 {
   "benchmark_name": "Humanity's Last Exam",
-  "publication_year": 2025,
-  "humanities_role": "both",
-  "humanities_role_explanation": "The benchmark treats humanities subjects (such as Classics, Philosophy, Linguistics, and Art History) not just as sources of raw text, but as domains of specialized inquiry requiring graduate-level contextual, linguistic, and analytical reasoning.",
+  "publication_year": 2026,
+  "humanities_role": "domain",
+  "humanities_role_explanation": "The benchmark explicitly targets domain-specific, graduate-level academic expertise across several humanities disciplines (e.g., epigraphic translation in Classics, phonological analysis in Biblical Hebrew, and historical context in Art History) rather than using humanities text merely as raw data for generic language tasks.",
   "benchmark_modalities": [
     "text",
     "image"
   ],
-  "benchmark_modalities_explanation": "The benchmark includes text-only questions and multimodal questions that couple natural language with image references (e.g., visual reproductions of Roman tombstone inscriptions).",
+  "benchmark_modalities_explanation": "Multimodal questions comprising text-only items and items requiring the integration of text with an image reference (representing 14% of the benchmark, such as reading an inscription from an image of a tombstone).",
   "analytical_tasks": [
+    "factual_recall",
+    "multiple_choice_qa",
+    "open_ended_qa",
     "translation",
-    "transliteration",
-    "phonological analysis",
-    "philosophical reasoning",
-    "historical reasoning",
-    "aesthetic analysis"
+    "cultural_reasoning",
+    "visual_recognition",
+    "visual_reasoning"
   ],
-  "analytical_tasks_explanation": "Tasks involve high-level intellectual demands such as translating Palmyrene script from archaeological inscriptions, performing structural syllable analysis of Biblical Hebrew in its historical Tiberian pronunciation tradition, and solving advanced logical and philosophical problems.",
+  "analytical_tasks_explanation": "The benchmark includes multiple-choice and exact-match (short-answer) QA testing highly specific domain trivia, factual recall of historical details, epigraphic translation of Palmyrene script from archaeological images, linguistic syllable classification of historical Hebrew texts, and visual reasoning over multimodal source materials.",
   "inclusion_criteria": {
     "general_purpose_benchmark": {
-      "met": false,
-      "note": "It is designed specifically as an expert-level academic benchmark to test the frontier of human knowledge, rather than general-purpose multi-task understanding."
+      "met": true,
+      "note": "HLE is a broad, multi-subject academic benchmark covering over a hundred subjects across STEM, humanities, and social sciences."
     },
     "evaluates_generative_llm": {
       "met": true,
-      "note": "Evaluates several state-of-the-art LLMs, including GPT-4o, Claude 3.5 Sonnet, Gemini 1.5 Pro, Gemini 2.0 Flash Thinking, o1, o3-mini, and DeepSeek-R1."
-    },
-    "llm_is_primary_system": {
-      "met": true,
-      "note": "The primary objective is to evaluate the reasoning capabilities and calibration of frontier generative LLMs."
-    },
-    "arts_humanities_data": {
-      "met": true,
-      "note": "Includes domains such as Classics, Language and Linguistics, Philosophy, Literature and Literary Theory, Visual Arts and Performing Arts, Archaeology, Music, and History."
+      "note": "Evaluates several frontier LLMs including GPT-4o, Claude 3.5 Sonnet, Gemini 1.5 Pro, Gemini 2.0 Flash Thinking, o1, DeepSeek-R1, and o3-mini."
     },
     "quantitative_metrics": {
       "met": true,
-      "note": "Evaluates models using accuracy (%) and RMS calibration error (%)."
+      "note": "Evaluates models using accuracy and RMS calibration error."
     },
     "published_after_march_2023": {
       "met": true,
-      "note": "The paper is a preprint published in 2025/2026."
-    },
-    "english_language": {
-      "met": true,
-      "note": "The text of the paper and the overall benchmark interface are in English, although individual questions reference non-English historical scripts and texts."
+      "note": "The paper is a preprint from July 2026."
     }
   },
-  "summary": "This paper introduces Humanity's Last Exam (HLE), a multi-modal benchmark composed of 2,500 highly challenging, expert-designed questions spanning math, sciences, and the humanities. HLE is explicitly structured to prevent simple search-engine lookup, serving as a robust metric for assessing frontier LLM capabilities on academic tasks as older benchmarks saturate.",
-  "key_findings": "State-of-the-art LLMs achieve very low accuracy on the benchmark, with the highest-performing reasoning model (o3-mini high) reaching only 13.4% accuracy, and popular models like GPT-4o scoring as low as 2.7%. Additionally, models demonstrate high RMS calibration errors (above 70%), indicating a strong tendency to generate incorrect answers with high confidence.",
+  "summary": "This paper introduces Humanity's Last Exam (HLE), a highly challenging multimodal benchmark consisting of 2,500 expert-written questions designed to test the absolute frontier of human knowledge across dozens of disciplines. By filtering out questions that current LLMs can easily answer, the benchmark provides a highly resistant test of expert academic capabilities, bridging mathematics, humanities, and sciences.",
+  "key_findings": "Frontier models struggle significantly on HLE, with the highest-performing model (o3-mini) achieving only 13.4% accuracy. Furthermore, all evaluated models exhibit poor calibration, showing high calibration error (above 70% RMS calibration error) and frequently predicting incorrect answers with high confidence.",
   "relevant_asjc_areas": [
     "Classics",
     "Language and Linguistics",
+    "History",
     "Philosophy",
     "Literature and Literary Theory",
-    "Visual Arts and Performing Arts",
-    "Archaeology",
     "Music",
-    "History"
+    "Visual Arts and Performing Arts",
+    "Archaeology"
   ],
   "dataset_size": 2500,
-  "primary_evaluation_setting": "zero-shot"
+  "primary_evaluation_setting": "mix",
+  "gold_source": "domain_expert",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "noise",
+  "facets_explanation": "The benchmark questions and reference answers were authored by over a thousand recruited domain experts (primarily professors, researchers, and graduate degree holders) who were subsequently offered co-authorship. Answering the questions requires highly specialized external graduate-level knowledge that is not contained in the stimulus. Divergence and expert disagreements were resolved through an iterative peer-review and rebuttal process until consensus was reached, treating divergence as noise to be minimized."
 }

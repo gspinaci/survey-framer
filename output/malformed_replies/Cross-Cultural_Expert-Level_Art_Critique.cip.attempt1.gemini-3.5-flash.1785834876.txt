@@ -1,0 +1,13 @@
+# JSONDecodeError: Expecting ',' delimiter: line 9 column 1 (char 862)
+
+{
+  "gold_source": "domain_expert",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "yes",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "graded_human_judgment",
+  "plurality_treatment": "noise",
+  "facets_explanation": "The reference critiques are written by domain experts with specialized training in six distinct cultural traditions, requiring historical and philosophical knowledge not present in the artwork stimulus itself. An LLM judge evaluates model critiques against these reference critiques on a 1\u20135 rubric scale, which is then calibrated using sigmoid regression based on human expert scores. The paper treats inter-annotator and inter-judge disagreement as systematic noise or scale mismatch to be resolved through single-judge calibration, rather than keeping divergent annotations as parallel reference signals."
+valid references."
+valid reference keys."
+}

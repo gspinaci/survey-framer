@@ -1,0 +1,10 @@
+# JSONDecodeError: Expecting ',' delimiter: line 8 column 359 (char 575)
+
+{
+  "gold_source": "crowd_annotation",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "noise",
+  "facets_explanation": "SimpleQA consists of short-form questions created and verified by contract annotators to measure factual recall. Answering the questions requires external knowledge not provided in the prompt. Disagreements and ambiguous questions were filtered out during dataset development to ensure a highly accurate, single-answer ground truth."

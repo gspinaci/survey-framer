@@ -1,57 +1,53 @@
 {
   "benchmark_name": "DRISHTIKON",
   "publication_year": 2025,
-  "humanities_role": "both",
-  "humanities_role_explanation": "Evaluates cultural and heritage understanding of India, which serves as both the domain of evaluation and the primary humanities content (art forms, festivals, history, traditional attire).",
+  "humanities_role": "content",
+  "humanities_role_explanation": "Uses Indian cultural materials (such as festivals, attire, cuisines, art forms, and historical heritage) as multimodal content to evaluate cultural understanding and reasoning in general-purpose vision-language models.",
   "benchmark_modalities": [
     "text",
     "image"
   ],
-  "benchmark_modalities_explanation": "Comprises aligned text-image pairs where visual artifacts of Indian culture are paired with multilingual textual questions.",
+  "benchmark_modalities_explanation": "Features over 64,000 aligned text-image pairs covering various aspects of Indian culture.",
   "analytical_tasks": [
-    "visual question answering",
-    "cultural reasoning",
-    "factual recognition",
-    "multilingual comprehension"
+    "cultural_reasoning",
+    "visual_reasoning",
+    "factual_recall",
+    "open_ended_qa"
   ],
-  "analytical_tasks_explanation": "Requires VLMs to perform factual recognition and cultural reasoning over visually represented Indian traditions, attire, art forms, and historical heritage, answered in multiple languages.",
+  "analytical_tasks_explanation": "Evaluates culturally grounded multimodal reasoning, factual recognition of cultural artifacts/traditions, visual reasoning over Indian heritage images, and multilingual visual QA.",
   "inclusion_criteria": {
     "general_purpose_benchmark": {
       "met": false,
-      "note": "It is a domain-specific benchmark focused specifically on Indian culture, arts, and heritage."
+      "note": "Scoped specifically to Indian culture, language, and heritage rather than general-purpose multi-task capabilities."
     },
     "evaluates_generative_llm": {
       "met": true,
-      "note": "Evaluates a wide range of vision-language models (VLMs) including open-source, proprietary, reasoning-specialized, and Indic-focused systems."
-    },
-    "llm_is_primary_system": {
-      "met": true,
-      "note": "The primary systems being benchmarked are generative vision-language models."
-    },
-    "arts_humanities_data": {
-      "met": true,
-      "note": "Covers Visual Arts and Performing Arts, History, Language and Linguistics, and aspects of Religious Studies (festivals)."
+      "note": "Evaluates a wide range of vision-language models (VLMs) including open-source small and large models, proprietary systems, reasoning VLMs, and Indic-focused models."
     },
     "quantitative_metrics": {
       "met": true,
-      "note": "Model evaluation uses quantitative measures to assess performance across zero-shot and chain-of-thought settings."
+      "note": "Analyzes model performance and reveals limitations across different languages and cultural themes, indicating a quantitative scoring framework."
     },
     "published_after_march_2023": {
       "met": true,
-      "note": "Published in November 2025."
-    },
-    "english_language": {
-      "met": true,
-      "note": "The paper is written in English, though the dataset itself is multilingual."
+      "note": "Published in November 2025 at EMNLP."
     }
   },
-  "summary": "The paper introduces DRISHTIKON, a first-of-its-kind multimodal and multilingual benchmark designed to evaluate the cultural understanding of generative vision-language models across India's diverse regions. The dataset spans 15 languages, covers all Indian states and union territories, and contains over 64,000 text-image pairs depicting festivals, attire, cuisine, art, and historical heritage.",
-  "key_findings": "Evaluations expose major gaps in current vision-language models' ability to reason over culturally grounded inputs, particularly for low-resource languages and lesser-known regional traditions.",
+  "summary": "DRISHTIKON is a multimodal, multilingual benchmark containing over 64,000 aligned text-image pairs designed to evaluate the cultural understanding of vision-language models (VLMs) across India's diverse regions. Spanning 15 languages, it covers cultural themes such as festivals, attire, cuisines, art forms, and historical heritage. The benchmark serves as a robust testbed to advance culturally aware and multimodally competent language technologies.",
+  "key_findings": "Current VLMs exhibit significant limitations when reasoning over culturally grounded, multimodal inputs, with particularly low performance on low-resource languages and less-documented traditions.",
   "relevant_asjc_areas": [
+    "Cultural Studies",
     "Visual Arts and Performing Arts",
     "History",
     "Language and Linguistics"
   ],
   "dataset_size": 64000,
-  "primary_evaluation_setting": "zero-shot"
+  "primary_evaluation_setting": "mix",
+  "gold_source": "not_stated",
+  "gold_beyond_stimulus": "not_stated",
+  "gold_community_dependent": "not_stated",
+  "gold_concerns_genesis": "not_stated",
+  "answer_multiplicity": "not_stated",
+  "plurality_treatment": "not_stated",
+  "facets_explanation": "Because the provided text contains only the title, abstract, and publication metadata from the ACL Anthology, specific details about the dataset construction pipeline, reference answer sourcing, and evaluation formats are not stated. The abstract only specifies that DRISHTIKON is a multimodal, multilingual benchmark containing over 64,000 aligned text-image pairs across 15 languages."
 }

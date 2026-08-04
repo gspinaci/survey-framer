@@ -2,44 +2,50 @@
   "benchmark_name": "AdMIRe",
   "publication_year": 2025,
   "humanities_role": "domain",
-  "humanities_role_explanation": "The benchmark targets semantic and linguistic competence in the representation of idiomaticity (distinguishing between figurative and literal meanings of multi-word nominal compounds), which evaluates a specialized domain competence in linguistics and semantic theory rather than generic language processing.",
+  "humanities_role_explanation": "The benchmark explicitly targets disciplinary competence in linguistics, semantics, and philology, evaluating how computational models represent, interpret, and disambiguate figurative language (specifically idiomatic expressions) against literal meanings.",
   "benchmark_modalities": [
     "text",
     "image"
   ],
-  "benchmark_modalities_explanation": "Combines natural language context sentences with static images illustrating literal or idiomatic meanings (Subtask A), and three-frame narrative image sequences that depict temporal progressions of idioms (Subtask B).",
+  "benchmark_modalities_explanation": "Combines textual context sentences and descriptive captions with static images representing literal and figurative scenes (Subtask A), as well as multi-panel sequential images depicting chronological transitions (Subtask B).",
   "analytical_tasks": [
-    "multiple_choice_qa",
-    "classification",
+    "interpretation",
     "retrieval_and_ranking",
     "sequence_prediction",
-    "interpretation"
+    "classification",
+    "multiple_choice_qa"
   ],
-  "analytical_tasks_explanation": "Tasks include mapping a figurative context to relevant visual representations by ranking five candidates (retrieval and ranking, multiple-choice QA), predicting the correct narrative resolution in a sequence of frames (sequence prediction), and classifying expressions as literal or idiomatic (classification). These require the models to perform complex figurative and semantic interpretation.",
+  "analytical_tasks_explanation": "Evaluates figurative interpretation (distinguishing idiomatic vs. literal senses), ranking candidate images by semantic appropriateness, predicting narrative continuations in visual sequences, and sentence-level literal/idiomatic classification.",
   "inclusion_criteria": {
     "general_purpose_benchmark": {
       "met": false,
-      "note": "The benchmark is explicitly scoped to evaluate idiomaticity representation and figurative language understanding in multimodal contexts."
+      "note": "Specifically scoped to evaluating multimodal idiomaticity representation rather than a broad, multi-task general benchmark."
     },
     "evaluates_generative_llm": {
       "met": true,
-      "note": "Evaluated multiple frontier generative LLMs and VLMs, such as GPT-4, Qwen, DeepSeek, and LLaVA, alongside fine-tuned models like SBERT and CLIP."
+      "note": "Evaluates various systems using generative models including GPT-4, Qwen2.5, LLaVA, DeepSeek, and SBERT."
     },
     "quantitative_metrics": {
       "met": true,
-      "note": "Uses Top 1 Accuracy, Discounted Cumulative Gain (DCG), Image Completion Accuracy, and Sentence Type Accuracy."
+      "note": "Evaluated using Top 1 Accuracy, Discounted Cumulative Gain (DCG), Image Completion Accuracy, and Sentence Type Accuracy."
     },
     "published_after_march_2023": {
       "met": true,
-      "note": "The paper is a task description for SemEval-2025, published in June 2025."
+      "note": "Published as a SemEval-2025 task preprint in June 2025."
     }
   },
-  "summary": "AdMIRe (SemEval-2025 Task 1) introduces a novel multimodal benchmark for evaluating how large language and vision-language models represent and interpret the figurative and literal meanings of nominal compounds. It provides hand-curated datasets in English and Brazilian Portuguese containing static and sequential images generated via diffusion models alongside linguistic context. The benchmark challenges models to correctly rank images according to idiomatic meaning and predict narrative progressions over multi-frame sequences.",
-  "key_findings": "Top-performing systems approached human-level accuracy (achieving up to 0.93-1.00 Top 1 accuracy on Subtask A) by utilizing sophisticated prompting strategies, chain-of-thought reasoning, and mixture-of-experts (MoE) ensembles. However, human evaluation confirms that understanding these figurative depictions is challenging, and models heavily depend on complex architectural frameworks and prompt engineering to mitigate their innate bias toward treating nominal compounds as idiomatic regardless of context.",
+  "summary": "This paper introduces the AdMIRe benchmark for SemEval-2025 Task 1, designed to test and advance multimodal representations of idiomatic expressions in English and Brazilian Portuguese. The challenge features image ranking (Subtask A) and next-image prediction in narrative sequences (Subtask B) to analyze how well models capture non-compositional semantics. The task highlights the persistent difficulty of idiomaticity for LLMs and vision-language models, revealing that while ensemble methods can achieve human-level performance, they require complex engineering.",
+  "key_findings": "The top-performing system (PALI-NLP) achieved a Top 1 Accuracy of 0.93 on the English Subtask A test set and 0.80 on Subtask B, matching or exceeding human performance (average human Top 1 accuracy was 0.71, while a human 'pool of experts' reached 0.83). LLMs consistently exhibit a bias toward interpreting potentially idiomatic expressions as idiomatic regardless of context, which participants mitigated using mixture-of-experts pipelines, chain-of-thought, and negative/literal prompting.",
   "relevant_asjc_areas": [
-    "Language and Linguistics",
-    "Literature and Literary Theory"
+    "Language and Linguistics"
   ],
   "dataset_size": 185,
-  "primary_evaluation_setting": "mix"
+  "primary_evaluation_setting": "mix",
+  "gold_source": "crowd_annotation",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "not_stated",
+  "facets_explanation": "The target expressions were sourced from existing figurative datasets or selected by researchers, while native speakers designed visual scene descriptions representing literal and figurative contexts. Midjourney generated the images based on these prompts, and LLaVA generated captions which were subsequently verified by human evaluators. Correctly ranking the images requires external lexical and cultural knowledge of idiom meanings, as the definitions of these expressions are not provided within the evaluation stimulus itself."
 }

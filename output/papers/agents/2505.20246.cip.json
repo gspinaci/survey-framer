@@ -1,65 +1,60 @@
 {
   "benchmark_name": "HistBench",
   "publication_year": 2025,
-  "humanities_role": "both",
-  "humanities_role_explanation": "HistBench contains questions evaluating both factual historical knowledge (content) and specialized, domain-specific methodological workflows of historical research, such as paleography, interdisciplinary synthesis, and source processing (domain).",
+  "humanities_role": "domain",
+  "humanities_role_explanation": "Specifically designed to evaluate disciplinary competence in historical reasoning, including archival source processing, interdisciplinary synthesis, translation, and historical causal analysis.",
   "benchmark_modalities": [
     "text",
     "image",
     "audio",
     "video"
   ],
-  "benchmark_modalities_explanation": "A multimodal benchmark combining textual questions with visual sources (manuscripts, maps, illustrations, charts, inscriptions), audio recordings (oral history), and video clips.",
+  "benchmark_modalities_explanation": "Combines text with a wide array of historical sources including manuscript scans, maps, inscriptions, oral history audios, and video clips.",
   "analytical_tasks": [
-    "factual retrieval",
-    "source processing",
-    "historical analysis",
-    "interdisciplinary integration",
-    "cultural contextualization",
-    "temporal reasoning",
-    "translation"
+    "factual_recall",
+    "multiple_choice_qa",
+    "open_ended_qa",
+    "transcription_and_correction",
+    "translation",
+    "causal_and_temporal_reasoning",
+    "interpretation",
+    "visual_reasoning",
+    "cultural_reasoning"
   ],
-  "analytical_tasks_explanation": "The benchmark operationalizes historical inquiry through bibliographic retrieval, source identification from non-textual formats, causal inference on historical events, interdisciplinary synthesis (such as archaeology and linguistics), cultural context decoding, and translation of classical or rare scripts.",
+  "analytical_tasks_explanation": "Evaluates optical character recognition of historical manuscripts and ancient scripts, translation of ancient and low-resource languages, temporal/causal analysis, visual and iconographic interpretation of historical images, and factual recall of historical bibliography.",
   "inclusion_criteria": {
     "general_purpose_benchmark": {
       "met": false,
-      "note": "Specifically designed as a domain-specific evaluation suite targeting historical reasoning and historical research capabilities."
+      "note": "Specifically scoped to the domain of history and historical reasoning."
     },
     "evaluates_generative_llm": {
       "met": true,
-      "note": "Evaluates several LLMs including GPT-4o, DeepSeek-R1, o3, o4-mini-high, and Grok 3."
-    },
-    "llm_is_primary_system": {
-      "met": true,
-      "note": "Generative LLMs and LLM-based agent systems are the primary systems evaluated on the tasks."
-    },
-    "arts_humanities_data": {
-      "met": true,
-      "note": "Features data relevant to History, Language and Linguistics, Archaeology, Classics, Religious Studies, and Visual Arts."
+      "note": "Evaluates several leading LLMs and agent frameworks, including GPT-4o, DeepSeek-R1, Grok 3, o3, o4-mini-high, and open Deep Research."
     },
     "quantitative_metrics": {
       "met": true,
-      "note": "Evaluates models using accuracy (pass@1, pass@2, and pass@3)."
+      "note": "Uses pass@1 and pass@2 accuracy, verified via an LLM judge and human validation."
     },
     "published_after_march_2023": {
       "met": true,
-      "note": "Published on arXiv in June 2025."
-    },
-    "english_language": {
-      "met": true,
-      "note": "The paper is written in English, although the benchmark's primary sources span 29 different languages."
+      "note": "Published as a preprint in June 2025."
     }
   },
-  "summary": "This paper introduces HistBench, a comprehensive benchmark consisting of 414 expert-curated, multi-modal, and multi-lingual questions spanning 29 languages, designed to evaluate historical reasoning in AI. To address the poor performance of generalist LLMs on this benchmark, the authors introduce HistAgent, a domain-specialized agent framework equipped with targeted tools like historical OCR, translation, and literature search.",
-  "key_findings": "Generalist LLMs and search agents fail on historical reasoning due to OCR limits, poor translation of minor/dead languages, and lack of expert search tools. On HistBench, HistAgent based on GPT-4o achieves 27.54% pass@1 and 36.47% pass@2, outperforming general GPT-4o (18.60%), DeepSeek-R1 (14.49%), and Open Deep Research (25.12% pass@2). Furthermore, HistAgent maintains generalist reasoning with 60.00% pass@1 accuracy on GAIA.",
+  "summary": "The paper introduces HistBench, a dataset of 414 expert-crafted historical reasoning questions spanning 29 languages and multiple modalities, and HistAgent, a domain-specific agent designed for historical research. HistAgent integrates customized tools like historical OCR, translation, and scholarly literature search to overcome the limitations of general-purpose LLMs in humanities research.",
+  "key_findings": "HistAgent based on GPT-4o achieves 27.54% pass@1 and 36.47% pass@2 on HistBench, significantly outperforming generalist agents like open Deep Research (20.29% pass@1) and LLMs with web search like GPT-4o (18.60% pass@1) and DeepSeek-R1 (14.49% pass@1). On the HLE History Subset, HistAgent triples the pass@1 performance of standard GPT-4o with web search (28.57% vs 8.93%).",
   "relevant_asjc_areas": [
     "History",
+    "Archeology",
     "Language and Linguistics",
-    "Archaeology",
-    "Classics",
-    "Religious Studies",
-    "Visual Arts and Performing Arts"
+    "Philosophy"
   ],
   "dataset_size": 414,
-  "primary_evaluation_setting": "zero-shot"
+  "primary_evaluation_setting": "zero-shot",
+  "gold_source": "domain_expert",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "not_stated",
+  "facets_explanation": "HistBench's reference answers were authored by over 40 expert contributors (history professors, PhD students, and research assistants) using a standardized protocol and verified through a multi-stage review pipeline. Answering the questions requires substantial external historical knowledge not contained within the provided multimodal stimuli, such as ancient language translation and specialized historical context. The evaluation relies on a single gold standard (either multiple-choice or short-form exact match checked for semantic equivalence), and the paper does not discuss inter-annotator agreement or the handling of divergent historical interpretations."
 }

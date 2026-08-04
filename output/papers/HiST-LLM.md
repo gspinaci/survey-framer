@@ -10,49 +10,60 @@
 ## Humanities Role
 
 **Classification:** domain
-**Explanation:** Designed specifically for evaluating graduate-level historical knowledge and global history comprehension using structured historical data.
+**Explanation:** Designed to evaluate graduate-level and expert-level historical knowledge and comprehension, explicitly targeting disciplinary competence in global history.
 **Relevant ASJC areas:** History
 **CSV Humanities?:** Yes
-**CSV ASJC code:** 1202
+**CSV ASJC code:** History
 
 ## Inclusion Criteria
 
 | Criterion | Met? | Note |
 |-----------|------|------|
-| General-purpose benchmark | NO | Specifically targets history knowledge and comprehension, not general capabilities. |
-| Evaluates generative LLM | YES | Evaluates seven models from the Gemini, OpenAI, and Llama families, including Llama-3.1-8B and GPT-4-Turbo. |
-| LLM is primary evaluated system | YES | Generative LLMs are the primary systems evaluated on their historical knowledge. |
-| Arts & Humanities data/tasks | YES | History |
-| Quantitative performance metrics | YES | Balanced accuracy |
-| Published after Mar 2023 | YES | Published at NeurIPS in 2024. |
-| English language | YES | The paper and benchmark are in English. |
+| General-purpose benchmark | NO | Specifically scoped to the domain of global history rather than general-purpose multi-task evaluation. |
+| Evaluates generative LLM | YES | Evaluates seven models from the Gemini, OpenAI (GPT-4-Turbo), and Llama (Llama-3.1-8B) families. |
+| Quantitative performance metrics | YES | Evaluates model performance using balanced accuracy. |
+| Published after Mar 2023 | YES | Published at NeurIPS 2024. |
 
 ## Benchmark Modalities
 
 **Modality Types:** text
 
-**Description:** A text-only benchmark presenting multiple-choice historical questions formulated from the structured Seshat Global History Databank.
+**Description:** Textual questions and answers presented in a four-option multiple-choice format.
 
 ## Analytical Tasks
 
-**Task Types:** multiple-choice QA, historical knowledge retrieval, cross-regional factual recognition
+**Task Types:** factual recall, multiple choice qa
 
-**Detailed Description:** Evaluates factual recall and understanding of historical societies spanning different periods (Neolithic to Industrial Revolution) and geographical regions.
+**Detailed Description:** Testing factual recall of expert-level global history, specifically societal structures and temporal-regional facts, through a four-choice multiple-choice QA format.
 
 ## Summary
 
-This paper introduces HiST-LLM, a specialized benchmark for evaluating LLMs on expert-level global history knowledge, derived from the Seshat Global History Databank. Spanning from the Neolithic period to the Industrial Revolution, it tests LLM comprehension across 600 historical societies and evaluates seven major models, identifying substantial performance disparities depending on historical epochs and geographical regions.
+This paper introduces the History Seshat Test for LLMs (HiST-LLM), a benchmark derived from the Seshat Global History Databank to evaluate models on expert graduate-level historical knowledge. Spanning 36,000 data points across 600 historical societies, the benchmark reveals that current LLMs outperform random guessing but still fall significantly short of human expert comprehension.
 
 ## Key Findings
 
-LLMs achieved balanced accuracy scores ranging from 33.6% (Llama-3.1-8B) to 46% (GPT-4-Turbo) in a four-choice format, outperforming the random guessing baseline of 25% but falling short of human expert comprehension. Models performed better on earlier historical periods, with regional performance being highest in the Americas and lowest in Oceania and Sub-Saharan Africa for advanced models.
+The evaluated LLMs achieved balanced accuracies ranging from 33.6% (Llama-3.1-8B) to 46.0% (GPT-4-Turbo), outperforming the 25% random baseline. Models demonstrated better performance on earlier historical periods and exhibited regional imbalances, performing best on the Americas and worst on Oceania and Sub-Saharan Africa.
 
 ## Reviewer Notes
 
-- Ciop and Cip disagreed on the full benchmark name; used the full name from Cip. Cip successfully identified the dataset size (36,000) from the abstract, which Ciop missed. Cip assumed 'zero-shot' for the primary evaluation setting, but since it is not explicitly mentioned in the provided text, Ciop's 'not specified' (adapted) was preferred. Humanities role resolved to 'domain' as it tests subject-matter factual knowledge.
+- Cip's benchmark name was used as it includes the full expansion provided in the text. No other significant disagreements.
 
 ## Additional Fields
 
 **Dataset Size:** 36000
 
-**Primary Evaluation Setting:** not specified
+**Primary Evaluation Setting:** zero-shot
+
+**Gold Source:** existing_metadata
+
+**Gold Beyond Stimulus:** yes
+
+**Gold Community Dependent:** no
+
+**Gold Concerns Genesis:** no
+
+**Answer Multiplicity:** single_answer
+
+**Plurality Treatment:** not_addressed
+
+**Facets Explanation:** The HiST-LLM benchmark is constructed from a subset of the Seshat Global History Databank, a pre-existing structured database of historical data reviewed and assembled by history experts and graduate research assistants. Answering the questions requires domain-specific historical knowledge not present in the prompt stimulus. The evaluation uses a four-choice multiple-choice format, and the treatment of annotator disagreement is not addressed in the provided text.

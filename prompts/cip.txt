@@ -20,6 +20,16 @@ in the accompanying *_explanation fields, not in the label itself.
 
 <<TASK_VOCAB>>
 
+FACETS (the gold_* / answer_multiplicity / plurality_treatment fields, when present
+in the schema). These record how the benchmark was BUILT, not what you judge the
+task to be. They exist because categories like "is this interpretation or mere
+recognition" cannot be separated without deciding the question in advance, so the
+instrument asks instead about properties the paper states.
+- Report only what the paper supports. "not_stated" is a legitimate and useful answer; guessing destroys the measurement. A paper that never says how its ground truth was produced is itself a finding.
+- Read these against the dataset-construction and evaluation-protocol sections, which is where your training is decisive: annotation pipeline, inter-annotator agreement figures, whether an LLM was used to generate, translate or filter items, and exactly what the scorer compares against.
+- answer_multiplicity is about the SCORER, not the prompt format: a multiple-choice benchmark graded by exact option match is single_answer, while free generation graded by an LLM judge on a rubric is graded_human_judgment.
+- plurality_treatment: reporting a low inter-annotator agreement as a limitation to be reduced is 'noise'; keeping divergent annotations as parallel valid references is 'signal'.
+
 Extract a JSON object with exactly these fields:
 
 <<SCHEMA>>

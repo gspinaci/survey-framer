@@ -44,5 +44,12 @@
     "Music"
   ],
   "dataset_size": 3460,
-  "primary_evaluation_setting": "mix"
+  "primary_evaluation_setting": "mix",
+  "gold_source": "authored_answer_key",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "noise",
+  "facets_explanation": "The benchmark questions are sourced from college exams, quizzes, and textbooks, representing pre-existing reference material. Correctly answering them requires deep domain-specific knowledge beyond what is visible in the presented diagrams or images. Human experts and model filters were used to resolve ambiguities and eliminate low-quality or poorly aligned questions, treating annotator divergence as noise to be eliminated."
 }

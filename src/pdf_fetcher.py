@@ -7,7 +7,12 @@ import requests
 from config import UNPAYWALL_EMAIL
 
 
-def _safe_filename(paper_id: str) -> str:
+def pdf_filename(paper_id: str) -> str:
+    """Canonical on-disk name for a paper's PDF.
+
+    Public because the analyze step has to locate these files by the same rule;
+    any divergence silently drops papers from the run.
+    """
     return re.sub(r"[^\w\-.]", "_", paper_id) + ".pdf"
 
 
@@ -46,7 +51,7 @@ def _fetch_from_url(url: str) -> bytes | None:
 
 
 def fetch_pdf(paper: dict, output_dir: Path) -> Path | None:
-    filename = _safe_filename(paper["id"])
+    filename = pdf_filename(paper["id"])
     dest = output_dir / filename
     if dest.exists() and dest.stat().st_size > 1000:
         return dest

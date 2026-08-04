@@ -1,0 +1,25 @@
+# JSONDecodeError: Unterminated string starting at: line 23 column 3 (char 1632)
+
+{
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "MultiNRC is composed entirely of native-language textual reasoning prompts and short textual ground-truth answers in French, Spanish, Chinese, and English translations.",
+  "humanities_role": "both",
+  "humanities_role_explanation": "The benchmark treats the humanities as both content (evaluating cultural and historical knowledge) and domain (evaluating linguistic and philological reasoning through wordplay, puns, and grammatical conventions), reporting separate metrics for these distinct categories.",
+  "asjc_areas": [
+    "Language and Linguistics",
+    "History",
+    "Religious Studies",
+    "Literature and Literary Theory"
+  ],
+  "asjc_areas_explanation": "Language and Linguistics and Literature/Literary Theory are covered through grammatical and homophonic wordplay/riddles. History is represented by reasoning over historical dates, tenures (Qing Dynasty), and regional currencies. Religious Studies is touched upon via ecclesiastical calendar calculations (Good Friday, Día de la Candelaria, French saint days).",
+  "analytical_tasks": [
+    "open_ended_qa",
+    "logical_and_quantitative_reasoning",
+    "causal_and_temporal_reasoning",
+    "interpretation",
+    "cultural_reasoning"
+  ],
+  "analytical_tasks_explanation": "The benchmark tests 'open_ended_qa' with short-answer formats, 'logical_and_quantitative_reasoning' through math reasoning with cultural units, 'causal_and_temporal_reasoning' through timeline calculations, 'cultural_reasoning' via localized customs, and 'interpretation' through homophonic wordplay.",
+  "gold

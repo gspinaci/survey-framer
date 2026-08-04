@@ -1,0 +1,13 @@
+# JSONDecodeError: Expecting ',' delimiter: line 9 column 1 (char 795)
+
+{
+  "gold_source": "authored_answer_key",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "not_addressed",
+  "facets_explanation": "The reference answers are inherited directly from MMLU-Pro, which compiles questions from pre-existing academic and professional exams (standardized test keys). Answering these multiple-choice questions requires external domain knowledge not contained within the prompt. Although translations were verified by bilingual experts to ensure accuracy and fluency, the conceptual gold answers remain static and parallel across all 29 language versions, without community-relative alternatives or a mechanism for treating interpretive divergence."
+disagreements as signal."
+}
+}

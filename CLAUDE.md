@@ -108,7 +108,7 @@ All agent prompts live in `prompts/` and use literal placeholder tokens (`<<SCHE
 | `prompts/narrative.txt` | Corpus-level synthesis | `gemini-3.1-pro-preview` |
 | `prompts/extra_fields.json` | Declared optional extraction fields | — |
 
-The extraction schema itself is data: `CORE_FIELDS` in `src/fields.py` (fixed core fields, incl. the 7 inclusion criteria) plus whatever `prompts/extra_fields.json` declares.
+The extraction schema itself is data: `CORE_FIELDS` in `src/fields.py` (fixed core fields, incl. the 4 inclusion criteria) plus whatever `prompts/extra_fields.json` declares. `src/fields.py` also holds the closed vocabularies — `ANALYTICAL_TASK_VOCAB` (22 task types, rendered into every prompt as `<<TASK_VOCAB>>`) and the enums checked by `check_vocab()` after extraction. See [paper/CHANGES_extraction_schema.md](paper/CHANGES_extraction_schema.md).
 
 ---
 

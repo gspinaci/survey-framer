@@ -1,61 +1,57 @@
 {
-  "benchmark_name": "MMLU",
+  "benchmark_name": "Massive Multitask Language Understanding (MMLU)",
   "publication_year": 2021,
-  "humanities_role": "both",
-  "humanities_role_explanation": "MMLU includes specific academic humanities subjects (e.g., history, philosophy, world religions) as target evaluation domains to measure domain expertise, while using their textual questions to assess general multi-task language understanding.",
+  "humanities_role": "domain",
+  "humanities_role_explanation": "Evaluates disciplinary academic and professional competence across specialized humanities subjects including history, philosophy, world religions, jurisprudence, and professional law, designed to test domain-specific knowledge.",
   "benchmark_modalities": [
     "text"
   ],
-  "benchmark_modalities_explanation": "The benchmark is entirely text-based, consisting of multiple-choice questions with four options evaluated using zero-shot and few-shot text prompts.",
+  "benchmark_modalities_explanation": "The benchmark is text-only, consisting of text-encoded multiple-choice questions (with LaTeX for mathematical expressions) spanning 57 subjects.",
   "analytical_tasks": [
-    "multiple-choice question answering",
-    "factual recognition",
-    "logical deduction",
-    "moral reasoning",
-    "legal rule application"
+    "factual_recall",
+    "multiple_choice_qa",
+    "logical_and_quantitative_reasoning",
+    "causal_and_temporal_reasoning",
+    "normative_judgment"
   ],
-  "analytical_tasks_explanation": "Evaluates declarative knowledge retrieval in history and religion, logical deduction in formal logic, moral reasoning in everyday scenarios, and legal rule application in professional law cases.",
+  "analytical_tasks_explanation": "The benchmark utilizes multiple-choice questions to evaluate factual recall of declarative knowledge, logical and quantitative reasoning (e.g., formal logic, mathematics), causal and temporal reasoning (e.g., historical events), and normative judgment (e.g., moral scenarios, legal ethics).",
   "inclusion_criteria": {
     "general_purpose_benchmark": {
       "met": true,
-      "note": "Evaluates broad multitask language understanding across 57 diverse subjects spanning humanities, social sciences, STEM, and professional domains."
+      "note": "Evaluates LLM performance across 57 distinct academic and professional subjects spanning STEM, humanities, social sciences, and other areas."
     },
     "evaluates_generative_llm": {
       "met": true,
-      "note": "Evaluates GPT-3 (up to 175B parameters), GPT-2, and UnifiedQA."
-    },
-    "llm_is_primary_system": {
-      "met": true,
-      "note": "Generative LLMs and text-to-text models are the primary focus of the evaluation."
-    },
-    "arts_humanities_data": {
-      "met": true,
-      "note": "Includes subjects such as History (US, European, World, and Prehistory), Philosophy (Formal Logic, Fallacies, and Ethics), and Religious Studies (World Religions)."
+      "note": "Evaluates GPT-3 (various sizes including Ada, Babbage, Curie, Davinci) and UnifiedQA."
     },
     "quantitative_metrics": {
       "met": true,
-      "note": "Evaluated using multi-class classification accuracy and Root Mean Squared (RMS) calibration error."
+      "note": "Evaluates performance using multi-class classification accuracy (%) and root mean squared (RMS) calibration error."
     },
     "published_after_march_2023": {
       "met": false,
-      "note": "Published at ICLR 2021, with preprints emerging in late 2020."
-    },
-    "english_language": {
-      "met": true,
-      "note": "The paper and the benchmark dataset are written entirely in English."
+      "note": "Published at ICLR 2021, preprinted in January 2021."
     }
   },
-  "summary": "This paper introduces the Massive Multitask Language Understanding (MMLU) benchmark, a test spanning 57 subjects designed to measure LLM multitask knowledge and reasoning. By evaluating models in zero-shot and few-shot transfer settings across 15,908 multiple-choice questions, it aims to test the breadth and depth of real-world knowledge acquired during pretraining.",
-  "key_findings": "The 175B parameter GPT-3 model achieved 43.9% average accuracy, scoring well above the 25% random baseline but far below the 89.8% human expert-level estimate. The evaluation revealed that LLM capabilities were highly lopsided, showing particular weakness in calculation-heavy STEM tasks and socially sensitive subjects like morality and law, and exhibited poor calibration with confidence scores diverging from actual accuracy by up to 24%.",
+  "summary": "This paper introduces the Massive Multitask Language Understanding (MMLU) benchmark, designed to evaluate a model's academic and professional capabilities across 57 diverse subjects. The test is constructed to assess pretraining knowledge exclusively in zero-shot and few-shot settings, shifting the focus of NLP evaluation from basic commonsense to specialized, domain-specific academic knowledge.",
+  "key_findings": "The largest GPT-3 model (175B) achieved an average few-shot accuracy of 43.9%, substantially above random chance (25%) but far below the estimated human expert baseline (~89.8%). Highly procedural STEM subjects and value-aligned subjects like moral scenarios and professional law proved to be particularly difficult for LLMs, and models demonstrated poor calibration.",
   "relevant_asjc_areas": [
     "History",
     "Philosophy",
+    "Law",
     "Religious Studies"
   ],
   "dataset_size": 15908,
-  "primary_evaluation_setting": "zero-shot and few-shot",
-  "review_notes": "Ciop and Cip largely agreed. Ciop classified humanities_role as 'content', while Cip classified it as 'both'. I resolved this to 'both' because MMLU aims to measure domain-specific competence in humanities subjects alongside using them as content for general multitask understanding. I combined their analytical tasks to encompass factual, logical, moral, and legal reasoning.",
+  "primary_evaluation_setting": "mix",
+  "review_notes": "Minor disagreement on relevant_asjc_areas. Included 'Law' as it is explicitly covered by specific tasks (e.g., Professional Law, Jurisprudence, International Law), but dropped Cip's addition of 'Language and Linguistics' as it is not one of the 57 benchmark subjects. Adopted Cip's expanded benchmark name for completeness.",
   "paper_id": "2009.03300",
   "paper_name": "MMMLU",
-  "csv_row": 2
+  "csv_row": 2,
+  "gold_source": "authored_answer_key",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "not_stated",
+  "facets_explanation": "The reference answers were obtained directly from pre-existing answer keys of standardized practice exams (such as the GRE, AP exams, and USMLE), undergraduate course materials, and academic textbooks. Because these multiple-choice questions evaluate factual, procedural, and academic knowledge in a closed-book format, correct answers require external domain knowledge not found in the question stimulus itself. The paper does not address annotator disagreement or plurality of readings, relying instead on the absolute correctness of the authoritative source keys."
 }

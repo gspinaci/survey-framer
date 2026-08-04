@@ -1,45 +1,50 @@
 {
   "benchmark_name": "AdMIRe (Advancing Multimodal Idiomaticity Representation)",
   "publication_year": 2025,
-  "humanities_role": "domain",
-  "humanities_role_explanation": "Designed to evaluate models' understanding of idiomaticity and figurative language, which are core computational linguistics and philological domains.",
+  "humanities_role": "content",
+  "humanities_role_explanation": "The benchmark utilizes English and Brazilian Portuguese idiomatic expressions (linguistic content) to test models' semantic and multimodal representation capabilities, which measures general figurative language understanding rather than specialized linguistic disciplinary theory.",
   "benchmark_modalities": [
     "text",
     "image"
   ],
-  "benchmark_modalities_explanation": "Evaluates models in both multimodal setups (pairing context sentences with generated static images or sequential panels) and text-only setups (pairing context sentences with descriptive image captions).",
+  "benchmark_modalities_explanation": "Combines written context sentences with either static generated images and text captions (Subtask A) or sequential multi-panel images representing narratives over time (Subtask B).",
   "analytical_tasks": [
-    "multiple_choice_qa",
     "retrieval_and_ranking",
     "sequence_prediction",
     "classification",
     "interpretation"
   ],
-  "analytical_tasks_explanation": "Includes multiple-choice ranking of candidate images/captions by relevance (retrieval_and_ranking), predicting the next image in a cartoon narrative (sequence_prediction, multiple_choice_qa), distinguishing between literal and idiomatic meanings (classification), and interpreting figurative semantics (interpretation).",
+  "analytical_tasks_explanation": "Tasks include ranking candidate images by alignment to context (retrieval_and_ranking), predicting the next narrative frame in a sequence (sequence_prediction), classifying sentences/senses as literal vs figurative (classification), and general comprehension of figurative language (interpretation).",
   "inclusion_criteria": {
     "general_purpose_benchmark": {
       "met": false,
-      "note": "Specifically scoped to evaluating idiomatic and figurative language representations in multimodal context."
+      "note": "The benchmark is explicitly focused on the specific task of multimodal and multilingual idiomaticity representation and figurative language understanding."
     },
     "evaluates_generative_llm": {
       "met": true,
-      "note": "Evaluated a wide range of LLMs and VLMs including GPT-4, Qwen, DeepSeek, LLaVA, and CLIP-based models."
+      "note": "Evaluates a wide variety of generative LLMs and VLMs including GPT-4, Qwen, DeepSeek, and LLaVA."
     },
     "quantitative_metrics": {
       "met": true,
-      "note": "Uses Top 1 Accuracy, Discounted Cumulative Gain (DCG), Image Completion Accuracy, and Sentence Type Accuracy."
+      "note": "Uses Top-1 Accuracy, Discounted Cumulative Gain (DCG), Image Completion Accuracy, and Sentence Type Accuracy."
     },
     "published_after_march_2023": {
       "met": true,
-      "note": "Published in June 2025 for SemEval-2025 Task 1."
+      "note": "Published as part of SemEval-2025 (preprint dated June 2025)."
     }
   },
-  "summary": "This paper presents the AdMIRe benchmark for SemEval-2025 Task 1, which challenges models to interpret idiomatic nominal compounds in English and Brazilian Portuguese using visual and visual-temporal contexts. The benchmark includes static image ranking tasks and multi-panel next-image prediction tasks, providing both multimodal and text-only (caption-based) tracks. The shared-task results show that while ensembled large models can reach human-level performance, they suffer from significant biases toward literal interpretations.",
-  "key_findings": "The top-performing systems achieved human-level performance by using ensembling (mixture-of-experts), chain-of-thought prompting, and synthetic data augmentation. In English Subtask A, the best model achieved a Top 1 Accuracy of 0.93 (DCG of 3.52), outperforming the average human annotator (0.71 Top 1 Accuracy) and matching the human 'pool of experts' (0.83 Top 1 Accuracy).",
+  "summary": "This paper presents AdMIRe, a SemEval-2025 shared task designed to evaluate how well models represent and interpret idiomatic expressions in multilingual (English and Brazilian Portuguese) and multimodal settings. It challenges participating systems to rank images based on their alignment with idiomatic/literal meanings or predict the next image in a narrative sequence. The findings reveal that while top-performing models achieve human-level performance, they require intensive ensembling and prompting tricks to overcome standard VLM biases toward literal interpretation.",
+  "key_findings": "The best-performing system (PALI-NLP) achieved 0.93 Top 1 Accuracy in Subtask A (English) and 0.83 on the extended evaluation set, matching the pool of human experts (0.83 Top 1 Accuracy, 3.39 DCG). Many teams found that generative VLMs have a strong inherent bias toward literal interpretations of idioms, which they bypassed using mixtures of experts, advanced chain-of-thought prompting, and data augmentation.",
   "relevant_asjc_areas": [
-    "Language and Linguistics",
-    "Linguistics and Language"
+    "Language and Linguistics"
   ],
   "dataset_size": 185,
-  "primary_evaluation_setting": "mix"
+  "primary_evaluation_setting": "mix",
+  "gold_source": "crowd_annotation",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "yes",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "noise",
+  "facets_explanation": "The reference sentences and scene descriptions were authored by native speakers of English and Brazilian Portuguese, with candidates sourced from pre-existing datasets like NCTTI or identified by the researchers. Items where annotators struggled to depict the literal or figurative scenes were filtered out of the final dataset. The evaluation uses separate splits for English and Brazilian Portuguese to account for different linguistic and cultural idiomatic paradigms, scoring models against a single expected ranking or top-choice target."
 }

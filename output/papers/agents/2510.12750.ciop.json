@@ -1,57 +1,53 @@
 {
   "benchmark_name": "VQArt-Bench",
   "publication_year": 2025,
-  "humanities_role": "both",
-  "humanities_role_explanation": "Grounds questions in expert-curated descriptions of artwork and structures the benchmark to test fine-grained artistic comprehension, iconographic recognition, and high-level visual reasoning appropriate for visual art analysis.",
+  "humanities_role": "domain",
+  "humanities_role_explanation": "Designed specifically to evaluate domain-specific visual literacy and artistic visual analysis, moving beyond shallow metadata retrieval to test iconographic recognition, complex composition, and symbolic/cultural reasoning.",
   "benchmark_modalities": [
     "text",
     "image"
   ],
-  "benchmark_modalities_explanation": "A multi-modal Visual Question Answering (VQA) benchmark combining digital images of fine art and cultural heritage with multi-choice textual questions.",
+  "benchmark_modalities_explanation": "Multi-modal VQA combining visual artwork images with natural language multiple-choice questions.",
   "analytical_tasks": [
-    "visual question answering",
-    "instance identity recognition",
-    "attribute analysis",
-    "spatial relationship reasoning",
-    "interaction recognition",
-    "visual-inspired reasoning"
+    "multiple_choice_qa",
+    "logical_and_quantitative_reasoning",
+    "causal_and_temporal_reasoning",
+    "interpretation",
+    "cultural_reasoning",
+    "visual_recognition",
+    "visual_reasoning"
   ],
-  "analytical_tasks_explanation": "Evaluates MLLMs across seven cognitive dimensions of art historical interpretation: identifying subjects/classes, analyzing artistic attributes (style, material), locating elements, counting instances, parsing spatial relationships, interpreting interactions, and performing visual-inspired/causal reasoning.",
+  "analytical_tasks_explanation": "Tests multiple-choice visual question answering across seven structural dimensions: identifying objects (Instance Identity/Attribute), spatial relations (Instance Location, Spatial Relation, Instance Interaction), counting (Instance Counting), and contextual, causal, and symbolic interpretation (Visual-Inspired Reasoning).",
   "inclusion_criteria": {
     "general_purpose_benchmark": {
       "met": false,
-      "note": "Specifically designed for the specialized domain of visual art, art history, and cultural heritage, rather than general-purpose vision-language tasks."
+      "note": "The benchmark is explicitly scoped to the domain of fine arts, cultural heritage, and art history."
     },
     "evaluates_generative_llm": {
       "met": true,
-      "note": "Evaluates 14 multimodal models including proprietary systems like Gemini 2.5, GPT-4o, and open-source models like Gemma 3, Kimi-VL, Aria, Aya Vision, Pixtral, Phi-4, and LLaVA."
-    },
-    "llm_is_primary_system": {
-      "met": true,
-      "note": "The primary focus is benchmarking and evaluating the performance of Multimodal Large Language Models (MLLMs)."
-    },
-    "arts_humanities_data": {
-      "met": true,
-      "note": "Matched with Visual Arts and Performing Arts. It uses artistic paintings and cultural heritage images with questions reflecting historical, symbolic, and iconographic content."
+      "note": "Evaluates 14 state-of-the-art multimodal generative models including proprietary ones (Gemini 2.5, GPT-4o, GPT-4o mini) and open-source models (Aria, Aya Vision, Kimi-VL, Phi-4, Pixtral, LLaVA, and Gemma 3)."
     },
     "quantitative_metrics": {
       "met": true,
-      "note": "Evaluation is based on multiple-choice accuracy across overall performance and seven individual spatial-reasoning dimensions."
+      "note": "Evaluates performance using overall accuracy and accuracy subdivided by the seven structural reasoning dimensions."
     },
     "published_after_march_2023": {
       "met": true,
-      "note": "Published as a preprint in October 2025."
-    },
-    "english_language": {
-      "met": true,
-      "note": "The paper and the generated benchmark questions are written in English."
+      "note": "Preprinted in October 2025."
     }
   },
-  "summary": "VQArt-Bench is a semantically rich dataset of 14,463 high-quality multiple-choice questions designed to evaluate the visual literacy of Multimodal Large Language Models in the cultural heritage domain. To overcome the simplistic structures of rule-based datasets, the authors develop an agentic question generation pipeline (consisting of Topic Selector, Question Generator, Question Refiner, and Judge agents) to curate challenging visual interpretation tasks. The benchmark tests fine-grained visual understanding across seven dimensions, bridging basic perception with sophisticated context-aware artistic reasoning.",
-  "key_findings": "Proprietary models lead in artistic visual analysis, with Gemini 2.5 scoring the highest overall accuracy (71%). Kimi-VL is the best-performing open-source model (67% accuracy), even outperforming GPT-4o mini. Across all evaluated MLLMs, there is a surprising weakness in basic counting tasks (e.g., Gemini 2.5 scores 66% on instance counting vs 80% on visual-inspired reasoning), highlighting that localizing and enumerating instances in complex artistic compositions is highly challenging for current architectures.",
+  "summary": "VQArt-Bench is a semantically rich visual question answering benchmark of 14,463 questions designed to evaluate the visual literacy and interpretive reasoning of Multimodal Large Language Models (MLLMs) on fine art. To overcome the simplistic, template-based structures of prior benchmarks, it leverages an agentic pipeline that cleans descriptive metadata and progressively synthesizes, refines, and validates multiple-choice questions. Rigorous testing of 14 prominent models demonstrates that art analysis poses a severe domain shift, exposing dramatic limitations in counting and compositional understanding.",
+  "key_findings": "Closed-source models lead the benchmark, with Gemini 2.5 achieving the top overall score of 71%, followed by GPT-4o (64%). Kimi-VL is the best open-source model (67%), outperforming GPT-4o mini. Across the board, models struggle significantly with spatial enumeration (Instance Counting accuracy averages under 55% for most open-source models) but perform relatively better on Visual-Inspired Reasoning (up to 83% for Kimi-VL), which requires high-level semantic generalization. Performance scales clearly with model parameter size, and older baselines (such as InstructBLIP) perform near the random guess baseline (24%).",
   "relevant_asjc_areas": [
     "Visual Arts and Performing Arts"
   ],
   "dataset_size": 14463,
-  "primary_evaluation_setting": "zero-shot"
+  "primary_evaluation_setting": "zero-shot",
+  "gold_source": "model_generated",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "not_stated",
+  "facets_explanation": "The benchmark's questions and options were synthetically generated using a sequential multi-agent LLM pipeline based on Wikipedia art descriptions, classifying the gold source as model-generated. Answering the questions (e.g., identifying specific iconographic themes like 'The Adoration of the Shepherds') requires external domain knowledge that goes beyond the visual stimulus itself. The evaluation uses a standard multiple-choice format with a single correct answer, and the paper does not discuss annotator divergence or community-specific readings."
 }

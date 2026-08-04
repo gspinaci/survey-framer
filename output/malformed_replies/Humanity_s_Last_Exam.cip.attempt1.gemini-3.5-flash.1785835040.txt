@@ -1,0 +1,13 @@
+# JSONDecodeError: Expecting ',' delimiter: line 9 column 3 (char 776)
+
+{
+  "gold_source": "domain_expert",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "noise",
+  "facets_explanation": "The reference answers were authored by a global collaborative network of nearly 1,000 academic experts, including professors and graduate researchers, who provided structured answer keys and solutions. Correctly answering these expert-level questions requires external domain knowledge not contained within the prompt or stimulus. Any expert disagreements during the multi-stage review process and post-release audits were treated as noise to be resolved, aiming for single, unambiguous, and universally verifiable consensus answers."
+  answers."
+  ."
+}

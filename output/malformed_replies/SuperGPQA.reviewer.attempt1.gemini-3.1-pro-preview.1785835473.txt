@@ -1,0 +1,11 @@
+# JSONDecodeError: Expecting ',' delimiter: line 9 column 49 (char 801)
+
+{
+  "gold_source": "authored_answer_key",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "noise",
+  "facets_explanation": "The reference answers were compiled from pre-existing educational materials, such as textbook solutions and online exercises, which were sourced and verified by domain experts. Correctly answering these questions requires domain-specific academic knowledge beyond the provided stimulus. Ambiguous items or questions with multiple valid interpretations were treated as noise and filtered out during a multi-stage human-LLM quality inspection process to ensure a strict single-answer multiple-choice format.",
+  "review_notes": "No significant disagreements"

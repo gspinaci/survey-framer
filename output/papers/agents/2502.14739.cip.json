@@ -1,59 +1,52 @@
 {
-  "benchmark_name": "SuperGPQA",
+  "benchmark_name": "SuperGPQA: Scaling LLM Evaluation across 285 Graduate Disciplines",
   "publication_year": 2025,
-  "humanities_role": "content",
-  "humanities_role_explanation": "Uses graduate-level academic questions from arts and humanities disciplines (such as Art Studies, Musicology, Philosophy, History, and Literature) as test content to evaluate general LLM knowledge and reasoning capabilities.",
+  "humanities_role": "domain",
+  "humanities_role_explanation": "The benchmark explicitly targets graduate-level disciplinary competence and specialized reasoning across various humanities domains including History, Philosophy, Law, and Literature & Arts.",
   "benchmark_modalities": [
     "text"
   ],
-  "benchmark_modalities_explanation": "The benchmark is text-only. Multimodal inputs (like diagrams or images) are explicitly filtered out during the quality inspection phase to ensure a clean text-based QA format.",
+  "benchmark_modalities_explanation": "SuperGPQA is a text-only multiple-choice question benchmark; a multimodal exclusion step was explicitly run during the LLM-based quality inspection phase to remove visual dependencies.",
   "analytical_tasks": [
-    "factual recall",
-    "logical reasoning",
-    "domain-specific knowledge retrieval",
-    "multiple-choice QA"
+    "factual_recall",
+    "multiple_choice_qa",
+    "logical_and_quantitative_reasoning"
   ],
-  "analytical_tasks_explanation": "Graduate-level multiple-choice questions requiring domain-specific factual knowledge retrieval, text analysis, and complex reasoning across specialized academic disciplines.",
+  "analytical_tasks_explanation": "Evaluates advanced factual recall of domain-specific graduate knowledge, multiple-choice QA (featuring up to 10 choices to minimize guessing), and logical and quantitative reasoning (since over 42% of items involve calculation or formal reasoning).",
   "inclusion_criteria": {
     "general_purpose_benchmark": {
       "met": true,
-      "note": "SuperGPQA scales LLM evaluation across 285 graduate disciplines spanning STEM, social sciences, and humanities."
+      "note": "SuperGPQA is designed as a massive multi-task benchmark spanning 285 graduate-level disciplines."
     },
     "evaluates_generative_llm": {
       "met": true,
-      "note": "Evaluates various SOTA generative models including DeepSeek-R1, OpenAI o1/o3-mini, GPT-4o, Claude-3.5-Sonnet, Qwen2.5, Llama-3.1, and Gemini-2.0-flash."
-    },
-    "llm_is_primary_system": {
-      "met": true,
-      "note": "The primary objective of the paper is to benchmark and analyze the performance capabilities of frontier LLMs."
-    },
-    "arts_humanities_data": {
-      "met": true,
-      "note": "Includes substantial subsets for History (674 questions), Philosophy (347 questions), Literature and Arts (1,676 questions including Art Studies, Musicology, and Language/Literature)."
+      "note": "Evaluates prominent generative LLMs including DeepSeek-R1, o1, o3-mini, GPT-4o, Claude 3.5 Sonnet, Gemini 2.0 Flash, and Qwen2.5."
     },
     "quantitative_metrics": {
       "met": true,
-      "note": "Evaluated using accuracy (analyzed sample-wise, subfield-wise, field-wise, and discipline-wise)."
+      "note": "Uses accuracy calculated at different levels (sample-wise, subfield-wise, field-wise, and discipline-wise)."
     },
     "published_after_march_2023": {
       "met": true,
-      "note": "The paper is a preprint from March 2025."
-    },
-    "english_language": {
-      "met": true,
-      "note": "The paper is written in English, and all benchmark questions are curated in or translated into English."
+      "note": "Preprint published in early 2025."
     }
   },
-  "summary": "SuperGPQA is a massive, graduate-level multiple-choice benchmark evaluating LLM capabilities across 285 specialized disciplines, including several key arts and humanities domains. Using a human-LLM collaborative filtering framework, the authors curated a dataset of 26,529 highly difficult questions designed to challenge state-of-the-art reasoning models.",
-  "key_findings": "Reasoning models DeepSeek-R1 and OpenAI's o1 achieved the highest accuracies (~61.82% and ~60.24% respectively), demonstrating significant remaining climbing space. Instruction tuning provides a massive performance boost over base models, and incorporating subfield context into evaluation prompts systematically benefits larger models.",
+  "summary": "This paper introduces SuperGPQA, a highly challenging benchmark consisting of 26,529 graduate-level multiple-choice questions across 285 academic disciplines. Utilizing an iterative Human-LLM collaborative annotation and refinement process, it aims to establish a new evaluation frontier where current SOTA models still show significant room for improvement.",
+  "key_findings": "The reasoning-focused models DeepSeek-R1 and OpenAI's o1 lead performance, scoring 61.82% and 60.24% respectively. Humanities disciplines like History and Law demonstrate significantly higher discrimination power (greater variance and performance gaps) than STEM subjects.",
   "relevant_asjc_areas": [
     "History",
-    "Language and Linguistics",
-    "Literature and Literary Theory",
-    "Music",
     "Philosophy",
-    "Visual Arts and Performing Arts"
+    "Literature and Literary Theory",
+    "Visual Arts and Performing Arts",
+    "Music"
   ],
   "dataset_size": 26529,
-  "primary_evaluation_setting": "zero-shot and few-shot mix"
+  "primary_evaluation_setting": "mix",
+  "gold_source": "authored_answer_key",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "noise",
+  "facets_explanation": "The reference answers for SuperGPQA were compiled from pre-existing educational materials, such as textbook solutions, exam keys, and online exercises, which were sourced and verified by domain experts. Correctly answering the multiple-choice questions requires domain-specific academic knowledge not contained within the prompt itself. Any ambiguous questions or annotator disagreements were actively treated as noise and eliminated during the multi-stage quality control process to preserve a strict single-answer-key structure."
 }

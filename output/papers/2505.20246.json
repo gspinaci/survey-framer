@@ -1,68 +1,66 @@
 {
   "benchmark_name": "HistBench",
   "publication_year": 2025,
-  "humanities_role": "both",
-  "humanities_role_explanation": "Evaluates both domain-specific historical content knowledge and specialized methodological workflows of historical research, such as paleography, interdisciplinary synthesis, and primary source processing.",
+  "humanities_role": "domain",
+  "humanities_role_explanation": "The benchmark is designed by professional historians specifically to evaluate disciplinary historical reasoning and research methodologies (such as source criticism, paleography, epigraphy, and cultural contextualization) rather than using historical material as raw data for generic linguistic tasks.",
   "benchmark_modalities": [
     "text",
     "image",
     "audio",
     "video"
   ],
-  "benchmark_modalities_explanation": "A multimodal setup combining textual questions with visual sources (manuscripts, maps, illustrations, inscriptions), audio recordings (oral history), and historical video clips.",
+  "benchmark_modalities_explanation": "Combines text with a wide array of historical sources including printed texts, digitized manuscript scans, historical maps, inscriptions, oral history audio recordings, and documentary video clips.",
   "analytical_tasks": [
-    "Bibliographic Retrieval",
-    "Source Identification",
-    "Source Processing",
-    "Historical Analysis",
-    "Interdisciplinary Integration",
-    "Cultural Contextualization"
+    "factual_recall",
+    "multiple_choice_qa",
+    "transcription_and_correction",
+    "translation",
+    "causal_and_temporal_reasoning",
+    "interpretation",
+    "attribution",
+    "visual_recognition",
+    "visual_reasoning",
+    "cultural_reasoning"
   ],
-  "analytical_tasks_explanation": "Evaluates complex historical inquiry skills, including factual retrieval from primary sources, processing non-textual or damaged formats, causal reasoning, interdisciplinary synthesis (e.g., archaeology and linguistics), and decoding cultural contexts.",
+  "analytical_tasks_explanation": "Evaluates historical scholarship tasks including factual investigation, multi-step temporal/causal inference, optical character recognition/repair of historical manuscripts, translation of ancient and low-resource languages, iconographic interpretation, visual identification of figures/objects, cultural contextualization of sources, and the dating/attribution of epigraphic monuments.",
   "inclusion_criteria": {
     "general_purpose_benchmark": {
       "met": false,
-      "note": "Specifically designed as a domain-specific evaluation suite targeting historical reasoning and historical research workflows."
+      "note": "Specifically scoped to evaluating historical reasoning and research capabilities in the discipline of history."
     },
     "evaluates_generative_llm": {
       "met": true,
-      "note": "Evaluates LLMs including GPT-4o, DeepSeek-R1, Grok 3, o4-mini-high, and o3."
-    },
-    "llm_is_primary_system": {
-      "met": true,
-      "note": "Generative LLMs and LLM-based agent systems are the primary systems evaluated."
-    },
-    "arts_humanities_data": {
-      "met": true,
-      "note": "Includes data from History, Classics, Archaeology, Language and Linguistics, Religious Studies, and Visual Arts and Performing Arts."
+      "note": "Evaluates several state-of-the-art LLMs and agent frameworks, including GPT-4o, DeepSeek-R1, o3, o4-mini-high, Grok 3, and open Deep Research."
     },
     "quantitative_metrics": {
       "met": true,
-      "note": "Evaluates using pass@1 and pass@2 accuracy metrics."
+      "note": "Uses pass@1 and pass@2 accuracy, evaluated via an LLM judge and verified by human expert review."
     },
     "published_after_march_2023": {
       "met": true,
-      "note": "Preprint published on arXiv in June 2025."
-    },
-    "english_language": {
-      "met": true,
-      "note": "Paper and metadata are in English, with primary source benchmark materials spanning 29 languages."
+      "note": "Published as a preprint in June 2025."
     }
   },
-  "summary": "This paper introduces HistBench, a multimodal, multilingual benchmark of 414 expert-curated questions designed to assess historical reasoning. To overcome the limitations of generalist LLMs on these tasks, the authors propose HistAgent, a domain-specialized framework equipped with tools for historical OCR, translation, and academic literature search.",
-  "key_findings": "State-of-the-art models equipped with generic web search struggle on HistBench (e.g., GPT-4o achieves 18.60% pass@1). The custom HistAgent framework, built on GPT-4o, significantly outperforms these baselines, reaching 27.54% pass@1 and 36.47% pass@2, while maintaining strong performance on general benchmarks like GAIA.",
+  "summary": "This paper introduces HistBench, a comprehensive benchmark containing 414 high-quality, expert-reviewed questions across 29 languages designed to evaluate AI's historical reasoning capabilities under real-world research constraints. The authors also present HistAgent, a domain-specialized AI agent equipped with modular tools for manuscript OCR, multi-step literature retrieval, translation, and image provenance search designed to mirror the workflow of human historians.",
+  "key_findings": "HistAgent based on GPT-4o achieved 27.54% pass@1 and 36.47% pass@2 accuracy on HistBench, significantly outperforming GPT-4o with web search (18.60% pass@1) and open Deep Research agents (20.29% pass@1). HistAgent also demonstrated robust out-of-domain generalization, scoring 60.00% accuracy on the GAIA validation set and 28.57% on the HLE History subset.",
   "relevant_asjc_areas": [
     "History",
     "Classics",
-    "Archaeology",
     "Language and Linguistics",
-    "Religious Studies",
+    "Archeology",
     "Visual Arts and Performing Arts"
   ],
   "dataset_size": 414,
   "primary_evaluation_setting": "zero-shot",
-  "review_notes": "Minor disagreements regarding the exact lists of analytical tasks and ASJC areas. Resolved analytical tasks by strictly adopting the six formal evaluation dimensions defined in Table 1 of the paper. Resolved ASJC areas by including domains explicitly supported by the text (History, Classics, Archaeology, Linguistics, Religious Studies, Visual Arts) and omitting Philosophy, which was not explicitly highlighted as a core dataset domain despite some author affiliations.",
+  "review_notes": "Both analysts agreed on most fields. Ciop included 'attribution' and 'visual_recognition' under analytical_tasks, which were retained as they are supported by textual examples (e.g., dating a Roman milestone, identifying a person in an image). Both analysts initially included 'open_ended_qa', but this was dropped because the paper explicitly states in its Limitations section that 'all the questions are closed questions with an only exact answer' and excludes open-answer evaluation. For relevant_asjc_areas, the union of text-supported areas (History, Classics, Archeology, Linguistics, Visual Arts) was used. The primary evaluation setting was set to 'zero-shot' (favoring Cip) based on the test protocol, which evaluates standard models and agents without few-shot demonstrations or fine-tuning.",
   "paper_id": "2505.20246",
   "paper_name": "On Path to Multimodal Historical Reasoning: HistBench and HistAgent",
-  "csv_row": 42
+  "csv_row": 42,
+  "gold_source": "domain_expert",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "not_stated",
+  "facets_explanation": "HistBench's 414 reference answers were authored by over 40 expert contributors (including history professors, PhD students, and research assistants) using a standardized protocol and verified through a multi-stage review pipeline. Answering the questions requires substantial historical background knowledge external to the provided visual or textual stimuli, such as ancient language translation and specialized historical context. The evaluation relies on a single gold standard (either a single correct option for multiple-choice questions or a short-form exact match), and the paper does not discuss how inter-annotator disagreement or divergent historical interpretations were handled."
 }

@@ -10,8 +10,8 @@
 ## Humanities Role
 
 **Classification:** content
-**Explanation:** Uses real-world humanities material—specifically history, geography, and language/linguistics questions from school examinations—as testing content to gauge general intelligence, multimodal reasoning, and cultural alignment, rather than engaging with humanities as an active domain-specific methodology.
-**Relevant ASJC areas:** History, Language and Linguistics, Literature and Literary Theory
+**Explanation:** Humanities subjects (such as history, geography, and regional languages/scripts) provide a subset of the exam questions, but the core objective of the benchmark is evaluating general-purpose language understanding, factual question answering, and multimodal alignment, rather than targeting specific humanistic scholarly methodologies.
+**Relevant ASJC areas:** Language and Linguistics, History, Cultural Studies
 **CSV Humanities?:** 
 **CSV ASJC code:** 
 
@@ -19,40 +19,51 @@
 
 | Criterion | Met? | Note |
 |-----------|------|------|
-| General-purpose benchmark | YES | Evaluates LLMs across broad domains, including science, mathematics, language, and social sciences. |
-| Evaluates generative LLM | YES | Evaluates closed-source generative LLMs (GPT-4, ChatGPT, Claude) and open-source/multimodal models (BLOOM, Vicuna, BLIP-2, InstructBLIP, Fromage, OpenFlamingo). |
-| LLM is primary evaluated system | YES | The LLMs/MLLMs are the primary systems being benchmarked. |
-| Arts & Humanities data/tasks | YES | Includes substantial materials relevant to History, Language and Linguistics, and Literature and Literary Theory. |
-| Quantitative performance metrics | YES | Uses accuracy as the quantitative evaluation metric. |
-| Published after Mar 2023 | YES | Presented at NeurIPS 2023. |
-| English language | YES | The paper is written in English, and English is one of the nine languages featured in the benchmark. |
+| General-purpose benchmark | YES | Evaluates LLMs across multiple languages (9), levels of education (primary, middle, high school), and multiple subjects including language, social science, math, and natural science. |
+| Evaluates generative LLM | YES | Evaluates models including GPT-4, ChatGPT (GPT-3.5), Claude-instant, BLOOM (176B), Vicuna (13B), BLIP-2, InstructBLIP, Fromage, and OpenFlamingo. |
+| Quantitative performance metrics | YES | Uses accuracy as the primary evaluation metric. |
+| Published after Mar 2023 | YES | Published at NeurIPS 2023 (December 2023). |
 
 ## Benchmark Modalities
 
 **Modality Types:** text, image
 
-**Description:** Multimodal multiple-choice questions integrating text with images (e.g., historical figures, maps, diagrams) within the question text or candidate option sets.
+**Description:** Combines text questions with accompanying images (e.g., historical photographs, maps, diagrams, and options containing visual layouts) for multimodal multiple-choice QA.
 
 ## Analytical Tasks
 
-**Task Types:** reading comprehension, factual recognition, visual question answering, mathematical reasoning, causal reasoning
+**Task Types:** multiple choice qa, factual recall, translation, logical and quantitative reasoning, causal and temporal reasoning, cultural reasoning, visual reasoning
 
-**Detailed Description:** Tasks require factual recall and reading comprehension for history and language subjects, multi-step mathematical reasoning, visual question answering over maps and diagrams, and parsing specific linguistic features.
+**Detailed Description:** Operationalizes multiple-choice question answering testing factual recall in history, cultural reasoning using localized knowledge across 9 countries, transliteration of regional scripts (e.g., Javanese script to Latin), logical and quantitative reasoning in mathematics, causal and temporal reasoning over historical developments (e.g., Beijing suburb occupational shifts), and visual reasoning over complex diagrams, maps, and photographs.
 
 ## Summary
 
-M3Exam is a multilingual, multimodal, and multilevel benchmark derived from real-world human graduation exams across nine countries. It contains 12,317 multiple-choice questions spanning three educational levels to evaluate LLM capabilities on diverse linguistic scripts, visual exam questions, and general intelligence.
+M3Exam is a multilingual, multimodal, and multilevel benchmark dataset designed to evaluate LLMs using official human graduation exams from primary, middle, and high school across nine diverse countries. Out of 12,317 multiple-choice questions collected, approximately 23% require cross-modal image processing, and all items are sourced directly from native educational contexts to retain local socio-cultural knowledge.
 
 ## Key Findings
 
-GPT-4 outperforms other models with 72.92% average accuracy but struggles with low-resource (Javanese) and non-Latin script (Thai) languages. Multimodal models perform poorly on complex visual questions, with BLIP-2 scoring under 50% overall. Notably, LLMs do not exhibit a monotonic decrease in performance as exam levels increase, contrasting sharply with human cognitive development.
+GPT-4 achieves the highest average accuracy at 72.92%, but still struggles with low-resource languages (e.g., Javanese) and non-Latin scripts (e.g., Thai). Multimodal LLMs perform poorly on visual questions, failing to match simple text-only baselines due to struggles with complex image descriptions and cross-image reasoning. Additionally, LLM performance does not decrease monotonically with rising educational difficulty levels, highlighting a discrepancy between LLM capability scaling and human cognitive development.
 
 ## Reviewer Notes
 
-- Ciop and Cip disagreed on humanities_role ('content' vs 'both'). Resolved to 'content' because the benchmark is a general-purpose exam dataset where humanities subjects (history, languages) are used primarily to evaluate general LLM capabilities (multilingualism, multimodality) rather than advancing domain-specific humanities methodologies. Analytical tasks were merged to include visual question answering, reading comprehension, factual recognition, and mathematical/causal reasoning.
+- Both analysts agreed on the core metrics and humanities role (content). Cip's addition of 'logical_and_quantitative_reasoning' was retained as math questions are explicitly evaluated. Ciop's 'translation' was retained because transliteration (Javanese to Latin script) is explicitly tested and falls perfectly under the controlled vocabulary definition. Cip's 'interpretation' was dropped as the tasks represent standard school-level reading comprehension rather than hermeneutic interpretation.
 
 ## Additional Fields
 
 **Dataset Size:** 12317
 
-**Primary Evaluation Setting:** zero-shot
+**Primary Evaluation Setting:** mix
+
+**Gold Source:** authored_answer_key
+
+**Gold Beyond Stimulus:** yes
+
+**Gold Community Dependent:** no
+
+**Gold Concerns Genesis:** no
+
+**Answer Multiplicity:** single_answer
+
+**Plurality Treatment:** not_addressed
+
+**Facets Explanation:** The reference answers are sourced directly from the official answer keys of real, nationwide or regional graduation exams across nine countries. Answering these questions requires extensive prior domain and cultural knowledge that is not contained within the question stimulus itself. Because the benchmark consists entirely of standard multiple-choice questions, each question has a single static correct answer option, and the authors do not discuss or preserve divergent annotations or alternative valid interpretations.

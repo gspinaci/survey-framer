@@ -1,59 +1,54 @@
 {
-  "benchmark_name": "VULCA-Framework",
+  "benchmark_name": "VULCA-BENCH",
   "publication_year": 2026,
-  "humanities_role": "both",
-  "humanities_role_explanation": "Operates at the intersection of humanities data and humanities methodology, using historical artwork images as material while evaluating generative outputs through theoretical constructs derived from art history (Panofsky's iconology and Goodman's symbolic reference).",
+  "humanities_role": "domain",
+  "humanities_role_explanation": "The benchmark is explicitly designed to target expert disciplinary competence in art history and visual arts. Rather than treating artworks as mere targets for object-detection or basic image description, it structures evaluation around a 5-level theoretical hierarchy derived from Panofsky's iconology and Goodman's symbol theory, evaluating deep aesthetic, symbolic, historical, and philosophical interpretation.",
   "benchmark_modalities": [
     "text",
     "image"
   ],
-  "benchmark_modalities_explanation": "A multimodal setup pairing visual artwork images with bilingual (English and Chinese) textual prompts, expert critiques, and generated responses.",
+  "benchmark_modalities_explanation": "Models are evaluated in a multimodal setting where they receive artwork images and generate bilingual (Chinese/English) art critiques, which are then evaluated using automated linguistic indicators and a reference-guided LLM-as-a-judge system anchored to human expert critiques.",
   "analytical_tasks": [
-    "art critique generation",
-    "cultural interpretation",
-    "visual description",
-    "technical art analysis",
-    "factual verification"
+    "generation",
+    "interpretation",
+    "attribution",
+    "cultural_reasoning",
+    "stylistic_analysis",
+    "visual_recognition"
   ],
-  "analytical_tasks_explanation": "Evaluates models on a five-level hierarchy of interpretation: sensory/visual perception (L1), medium/technical analysis (L2), conventional cultural symbolism (L3), historical/biographical context (L4), and philosophical aesthetics (L5).",
+  "analytical_tasks_explanation": "The benchmark operationalizes five progressive levels of art critique: L1 (visual perception/recognition of pure forms), L2 (technical and stylistic analysis of brushwork, medium, and texture), L3 (cultural symbolism and iconographic analysis), L4 (historical context and art-historical attribution), and L5 (philosophical aesthetics and iconological interpretation). Evaluated models generate free-text critiques (generation) which are scored based on how accurately they tackle these domain-specific analytical tasks.",
   "inclusion_criteria": {
     "general_purpose_benchmark": {
       "met": false,
-      "note": "Specifically designed to measure domain-specific cultural competence and expert-level art historical critique, rather than general visual or linguistic tasks."
+      "note": "The benchmark is highly domain-specific, focusing exclusively on cross-cultural art critique and art-historical interpretation across six major artistic traditions."
     },
     "evaluates_generative_llm": {
       "met": true,
-      "note": "Evaluated 15 major Vision-Language Models including GPT-5, GPT-4o, Claude 4.5 (Sonnet and Opus), Gemini 3 Pro, and Qwen3-VL."
-    },
-    "llm_is_primary_system": {
-      "met": true,
-      "note": "The primary objective is benchmarking the generation capabilities and cultural biases of state-of-the-art vision-language models."
-    },
-    "arts_humanities_data": {
-      "met": true,
-      "note": "Focuses on Visual Arts and Performing Arts, History, Philosophy, and Literature and Literary Theory across six major global artistic traditions (Western, Chinese, Japanese, Korean, Islamic, and Indian)."
+      "note": "Evaluates 15 Vision-Language Models (VLMs), including frontier closed and open weights models such as GPT-5, GPT-4o, Claude 4.5 (Sonnet and Opus), Gemini, Qwen3-VL, and Llama 4."
     },
     "quantitative_metrics": {
       "met": true,
-      "note": "Employs lexical and semantic similarity (DCR, CSA, CDS, LQS), LLM-judge multidimensional rubrics, and Intraclass Correlation Coefficients (ICC) calibrated to human ratings using sigmoid regression."
+      "note": "Uses automated lexicosemantic metrics (Dimension Coverage Ratio, Cultural Semantic Alignment, Critique Depth Score, Linguistic Quality Score), raw judge rubric dimensions (Coverage, Alignment, Depth, Accuracy, Quality), and human-calibrated scores fitted using Mean Squared Error, Spearman's rank correlation, and Intraclass Correlation Coefficients (ICC)."
     },
     "published_after_march_2023": {
       "met": true,
-      "note": "The preprint was published in February 2026."
-    },
-    "english_language": {
-      "met": true,
-      "note": "The paper is written in English, and the evaluated benchmark supports bilingual Chinese-English critiques."
+      "note": "The preprint paper is dated February 2026."
     }
   },
-  "summary": "This paper presents VULCA-Framework, a tri-tier evaluation instrument designed to benchmark the cross-cultural competence of Vision-Language Models (VLMs) on expert-level art critique. Drawing from Panofsky's iconological levels, the framework measures five distinct layers of depth\u2014from basic visual description to deep philosophical aesthetics\u2014and calibrates LLM-judge scores against human expert annotations to resolve systemic evaluation disparities.",
-  "key_findings": "The evaluation of 15 VLMs reveals that while models excel at surface-level visual description (L1-L2), their performance significantly degrades on deeper interpretive tasks (L3-L5) requiring cultural alignment and historical context. Additionally, 13 out of 15 models consistently demonstrate a persistent bias favoring Western art over non-Western traditions, with a significant scoring gap (Cohen's d = -0.74, p < 0.001) that remains even when controlling for genre variables like landscape painting.",
+  "summary": "This paper introduces VULCA-BENCH, a tri-tier evaluation framework that systematically assesses the cultural competence of Vision-Language Models on expert-level art critique. By mapping evaluation constructs to an art-historical hierarchy (spanning visual perception, technical analysis, symbolism, historical context, and philosophical aesthetics), the authors calibrate LLM-as-a-judge outputs against expert human annotations. Applying this benchmark to 15 VLMs across six cultural traditions reveals that while models excel at surface-level visual descriptions, their performance degrades on deep cultural interpretation, alongside exhibiting a pronounced Western-centric scoring bias.",
+  "key_findings": "Automated metrics and dual-judge setups show poor alignment (ICC < 0.2 and ICC = -0.50 respectively) with human ratings, establishing single-judge sigmoid calibration as a highly robust alternative (reducing MAE to 0.446). While all models generate linguistically fluent text, 'Critique Depth' is the most discriminative dimension (standard deviation of 0.56) separating high- and low-performing models. Additionally, 13 of 15 models demonstrate a strong Western-centric bias, scoring Western art significantly higher than non-Western traditions (overall Cohen's d = -0.74, p < 0.001).",
   "relevant_asjc_areas": [
     "Visual Arts and Performing Arts",
     "History",
-    "Philosophy",
-    "Literature and Literary Theory"
+    "Philosophy"
   ],
-  "dataset_size": 6695,
-  "primary_evaluation_setting": "zero-shot"
+  "dataset_size": 6804,
+  "primary_evaluation_setting": "zero-shot",
+  "gold_source": "domain_expert",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "yes",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "graded_human_judgment",
+  "plurality_treatment": "noise",
+  "facets_explanation": "The reference critiques and the 450-sample evaluation subset were annotated by domain experts with training in art history. Answering correctly requires external socio-cultural and historical knowledge not present within the raw image. The benchmark explicitly splits evaluations across six distinct cultural traditions with community-specific aesthetic dimensions, and manages annotator/judge disagreement as measurement unreliability (noise) mitigated through single-judge sigmoid calibration."
 }

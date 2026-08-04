@@ -1,55 +1,51 @@
 {
   "benchmark_name": "CulturalBench",
   "publication_year": 2024,
-  "humanities_role": "both",
-  "humanities_role_explanation": "Evaluates cultural and anthropological knowledge as a distinct domain of intelligence, but treats this knowledge primarily as static, factual content tested via multiple-choice and binary True/False tasks rather than discursive, interpretive reasoning.",
+  "humanities_role": "content",
+  "humanities_role_explanation": "Socio-cultural details (such as religious rituals, regional foods, and linguistic quirks) provide the raw material for the questions. However, the benchmark evaluates the model's factual recall and pattern matching of these cultural concepts rather than testing academic or critical methodologies from humanities disciplines like anthropology, linguistics, or religious studies.",
   "benchmark_modalities": [
     "text"
   ],
-  "benchmark_modalities_explanation": "Text-only questions formatted as either multiple-choice options (Easy) or binary True/False statements (Hard).",
+  "benchmark_modalities_explanation": "The benchmark is entirely text-based, consisting of multiple-choice and binary True/False questions written in English (with a minor translated subset discussed in the appendix).",
   "analytical_tasks": [
-    "factual recognition of cultural norms",
-    "linguistic quirk identification",
-    "etiquette judgment"
+    "factual_recall",
+    "multiple_choice_qa",
+    "fact_verification",
+    "cultural_reasoning"
   ],
-  "analytical_tasks_explanation": "Measures factual recall of cultural etiquette, regional traditions, religious habits, and colloquial linguistic markers across 45 countries. It does not evaluate deeper hermeneutic, contextual, or historical-causal reasoning.",
+  "analytical_tasks_explanation": "The benchmark uses 'multiple_choice_qa' for CulturalBench-Easy and converts these into binary True/False questions ('fact_verification') for CulturalBench-Hard. It measures 'factual_recall' of regional customs and 'cultural_reasoning' to assess whether models can recognize culture-specific norms, social etiquettes, and linguistic habits.",
   "inclusion_criteria": {
     "general_purpose_benchmark": {
       "met": false,
-      "note": "It is a domain-specific evaluation suite targeting cultural and socio-behavioral knowledge."
+      "note": "The benchmark is specifically scoped to evaluating cultural knowledge and regional socio-cultural sensitivity."
     },
     "evaluates_generative_llm": {
       "met": true,
-      "note": "Evaluates 29 major models including OpenAI o1/GPT-4o, Claude 3.5 Sonnet, Llama-3.3, Gemma, Mistral, Qwen, and DeepSeek."
-    },
-    "llm_is_primary_system": {
-      "met": true,
-      "note": "The LLMs are the primary systems under evaluation to assess their cultural knowledge."
-    },
-    "arts_humanities_data": {
-      "met": true,
-      "note": "The dataset spans cultural anthropology, regional studies, and colloquial linguistics, which map to Language and Linguistics, Religious Studies, and History."
+      "note": "Evaluates 29 LLMs, including frontier models like GPT-4o, o1, Claude 3.5 Sonnet, Llama-3.1/3.3, Gemma 2, DeepSeek V3/R1, and Qwen-2.5."
     },
     "quantitative_metrics": {
       "met": true,
-      "note": "Evaluated using standard accuracy metrics, comparing model outputs against human-expert consensus benchmarks."
+      "note": "Evaluates models using Accuracy (on both the multiple-choice 'Easy' and the multi-label binary 'Hard' versions)."
     },
     "published_after_march_2023": {
       "met": true,
-      "note": "The preprint was first published in October 2024, with updates in 2025."
-    },
-    "english_language": {
-      "met": true,
-      "note": "The paper and the primary evaluation benchmark are written and evaluated in English, though minor translation studies are included as supplementary analysis."
+      "note": "The preprint was originally published in October 2024, with subsequent updates in June 2025."
     }
   },
-  "summary": "This paper presents CulturalBench, a text-based benchmark of 1,696 questions covering 45 regions and 17 cultural topics designed to evaluate the multicultural knowledge of LLMs. Developed via an interactive human-AI collaborative red-teaming pipeline, the benchmark features single-mode and multi-mode questions in both multiple-choice (Easy) and binary True/False (Hard) settings. The evaluation reveals significant performance gaps between LLMs and humans, particularly in questions with multiple valid answers and regions traditionally underrepresented in pre-training data.",
-  "key_findings": "While models perform near human levels on the multiple-choice format (Easy) due to semantic heuristics, they fail significantly on the binary format (Hard). The highest-performing model (OpenAI o1) achieves 61.5% accuracy on the Hard setting, compared to a human baseline of 92.4%. Additionally, LLMs show a substantial drop in performance on multi-mode questions (average 20.9% accuracy compared to 49.6% for single-mode) and underperform on questions relating to South America, Eastern Europe, and the Middle East.",
+  "summary": "CulturalBench is a human-verified dataset of 1,696 questions designed to evaluate the cultural knowledge of LLMs across 45 global regions and 17 distinct cultural topics. Curated via a collaborative human-AI red-teaming pipeline called 'CulturalTeaming', it includes two settings: an 'Easy' multiple-choice benchmark and a 'Hard' multi-label binary evaluation. The dataset highlights significant cultural blind spots and mode-seeking limitations in contemporary LLMs.",
+  "key_findings": "While models perform well on the multiple-choice version (up to 89.6%), they struggle on CulturalBench-Hard, with the best model (OpenAI o1) reaching only 61.4% accuracy compared to a 92.4% human baseline. Models show a significant performance drop (-28.7% on average) on questions with multiple valid answers due to their mode-seeking tendencies, and they consistently underperform on regions like South America, East Europe, and the Middle East, even when evaluated using local LLMs.",
   "relevant_asjc_areas": [
     "Language and Linguistics",
     "Religious Studies",
-    "History"
+    "Visual Arts and Performing Arts"
   ],
   "dataset_size": 1696,
-  "primary_evaluation_setting": "zero-shot"
+  "primary_evaluation_setting": "zero-shot",
+  "gold_source": "crowd_annotation",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "yes",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "answer_set",
+  "plurality_treatment": "signal",
+  "facets_explanation": "Annotators were recruited via Prolific based on region-specific criteria, such as nationality and primary residence before age 18, to ensure native cultural expertise. Answering the questions requires declarative cultural knowledge that is completely external to the zero-shot prompt. Multiple correct answers are explicitly preserved as multi-mode questions to test model over-convergence on cultural stereotypes, while items with high disagreement (failing to reach a 4/5 annotator consensus on any option) are filtered out."
 }

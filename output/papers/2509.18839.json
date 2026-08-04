@@ -1,59 +1,53 @@
 {
   "benchmark_name": null,
   "publication_year": 2025,
-  "humanities_role": "both",
-  "humanities_role_explanation": "Evaluates multimodal models on the domain-specific task of interpreting and classifying Christian iconography (subject matter and symbolic meaning), treating historical religious artwork as visual content.",
+  "humanities_role": "domain",
+  "humanities_role_explanation": "Designed to evaluate disciplinary competence in art history, specifically testing the iconographic interpretation and identification of Christian saints based on visual attributes and the specialized Iconclass taxonomy.",
   "benchmark_modalities": [
     "text",
     "image"
   ],
-  "benchmark_modalities_explanation": "Multi-modal classification combining images of Christian religious paintings with text prompts containing class labels or detailed Iconclass descriptions.",
+  "benchmark_modalities_explanation": "Multimodal classification task pairing historical religious painting images with text prompts containing class names, detailed iconographic descriptions, and few-shot exemplars.",
   "analytical_tasks": [
-    "single-label image classification",
-    "zero-shot classification",
-    "few-shot classification"
+    "classification",
+    "visual_recognition",
+    "interpretation"
   ],
-  "analytical_tasks_explanation": "Assesses fine-grained visual recognition of Christian saints by matching visual features in artwork to iconographic concepts. Tasks include zero-shot classification (using simple saint names or detailed descriptive texts) and few-shot in-context learning.",
+  "analytical_tasks_explanation": "Single-label image classification of religious paintings representing Christian saints. The task relies on the visual recognition of characters and symbols, combined with the iconographic interpretation of attributes mapped to the Iconclass system.",
   "inclusion_criteria": {
     "general_purpose_benchmark": {
       "met": false,
-      "note": "Specifically designed to evaluate domain-specific performance on Christian iconography, not a general-purpose vision-language benchmark."
+      "note": "The evaluation framework is highly domain-specific, focusing exclusively on the task of Christian iconography classification."
     },
     "evaluates_generative_llm": {
       "met": true,
-      "note": "Evaluates OpenAI GPT-4o, GPT-4o-mini, Google Gemini 2.5 Pro, and Gemini 2.5 Flash."
-    },
-    "llm_is_primary_system": {
-      "met": true,
-      "note": "Multimodal generative LLMs (GPT and Gemini models) and contrastive VLMs (CLIP, SigLIP) are the primary systems being benchmarked."
-    },
-    "arts_humanities_data": {
-      "met": true,
-      "note": "Focuses on Visual Arts and Performing Arts and Religious Studies, evaluating Christian religious paintings annotated with Iconclass codes."
+      "note": "Evaluates state-of-the-art multimodal LLMs including GPT-4o, GPT-4o-mini, Gemini 2.5 Pro, and Gemini 2.5 Flash."
     },
     "quantitative_metrics": {
       "met": true,
-      "note": "Uses classification Accuracy and cross-dataset consistency (prediction stability on near-duplicate images)."
+      "note": "Evaluates performance using Top-1 classification accuracy and cross-dataset prediction consistency."
     },
     "published_after_march_2023": {
       "met": true,
       "note": "The preprint was published in September 2025."
-    },
-    "english_language": {
-      "met": true,
-      "note": "The paper and prompt templates are written in English."
     }
   },
-  "summary": "This study benchmarks Vision-Language Models and Multimodal Large Language Models on single-label image classification of Christian iconography. Using subsets of ArtDL, ICONCLASS, and Wikidata, the authors evaluate models in zero-shot and few-shot settings to assess their potential for metadata curation in digital humanities. The findings show that advanced LLMs can outperform fine-tuned baselines, though performance is highly sensitive to dataset consistency and few-shot exemplar selection.",
-  "key_findings": "Gemini 2.5 Pro and GPT-4o achieved peak accuracies of 90.45% and 88.20% on the ArtDL dataset, respectively, outperforming fine-tuned ResNet50 baselines. However, performance dropped significantly on the Wikidata dataset, where the contrastive model SigLIP-SO400M-Patch14-384 performed best (66.29%). Adding rich iconographic descriptions generally improved zero-shot accuracy, while few-shot learning unexpectedly degraded or only minimally improved performance for most LLMs.",
+  "summary": "This study evaluates the capabilities of Multimodal Large Language Models (LLMs) and Vision-Language Models (VLMs) on the single-label image classification of Christian iconography. Using subsets of the ArtDL, ICONCLASS, and Wikidata datasets, the authors benchmark zero-shot and few-shot performance under various prompt configurations, including plain labels and rich iconographic descriptions.",
+  "key_findings": "General-purpose multimodal LLMs, particularly Gemini 2.5 Pro and GPT-4o, generally outperformed fine-tuned supervised ResNet50 baselines on curated datasets, peaking at over 90% accuracy on ArtDL. However, contrastive models like SigLIP-SO400M performed better on the less consistent Wikidata dataset. Enriching prompts with iconographic descriptions typically improved zero-shot accuracy, while few-shot prompting with five exemplars yielded inconsistent results and often degraded performance.",
   "relevant_asjc_areas": [
-    "Visual Arts and Performing Arts",
-    "Religious Studies"
+    "Visual Arts and Performing Arts"
   ],
   "dataset_size": 3445,
   "primary_evaluation_setting": "mix",
-  "review_notes": "No significant disagreements. Merged the analytical tasks list for clarity, and included Cip's addition of 'Religious Studies' to the ASJC areas since the dataset explicitly curates Christian saints and religious themes.",
+  "review_notes": "Analysts agreed on most fields. The disagreement on dataset_size (Ciop: 3445, Cip: 3447) was resolved in favor of Ciop by recalculating the dataset splits mentioned in the text (1864 + 863 + 718 = 3445). Disagreements on analytical_tasks and relevant_asjc_areas were resolved in favor of Cip's tighter lists, dropping 'multiple_choice_qa', 'cultural_reasoning', and 'Religious Studies' to avoid strained readings, as the paper formally structures the task as image classification within art history rather than a QA or reasoning task.",
   "paper_id": "2509.18839",
   "paper_name": "Christian Iconography",
-  "csv_row": 3
+  "csv_row": 17,
+  "gold_source": "existing_metadata",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "not_stated",
+  "facets_explanation": "The benchmark derives its reference answers from existing curated metadata natively mapped to Iconclass standards across ArtDL, the ICONCLASS AI Test Set, and Wikidata. Identifying the specific Christian saints depicted requires external knowledge of iconographic traditions and symbols that are not explicitly described in the image stimulus itself. The evaluation expects a single correct class label per image\u2014having explicitly filtered out multi-label entries featuring multiple saints\u2014and does not discuss the possibility of diverging annotator interpretations."
 }

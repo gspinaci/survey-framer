@@ -1,55 +1,49 @@
 {
   "benchmark_name": null,
   "publication_year": 2025,
-  "humanities_role": "both",
-  "humanities_role_explanation": "Evaluates LLMs on diplomatic transcription of 18th-century Russian prints. It treats historical texts not merely as raw data but as philological artifacts with strict temporal boundaries, introducing metrics to evaluate period-specific character preservation and temporal biases.",
+  "humanities_role": "domain",
+  "humanities_role_explanation": "Evaluates LLMs on their domain-specific philological competence in diplomatic transcription, requiring preservation of 18th-century orthography and using specialized metrics like HCPR and AIR to detect temporal/historical language biases.",
   "benchmark_modalities": [
     "text",
     "image"
   ],
-  "benchmark_modalities_explanation": "Visual document transcription evaluating multimodal LLMs by feeding them page images of historical books and assessing the accuracy of the generated text transcriptions.",
+  "benchmark_modalities_explanation": "Multimodal evaluation where models receive page images of scanned books along with textual transcription prompts, outputting structured textual transcriptions.",
   "analytical_tasks": [
-    "diplomatic transcription",
-    "historical character preservation",
-    "temporal bias analysis"
+    "transcription_and_correction",
+    "visual_recognition"
   ],
-  "analytical_tasks_explanation": "Evaluates character-level transcription fidelity of 18th-century Russian Civil font, specifically testing the preservation of period-specific characters (e.g., yat, decimal i) and analyzing whether models introduce incorrect, older archaic characters (over-historicization).",
+  "analytical_tasks_explanation": "Diplomatic transcription of historical 18th-century Russian Civil font, visual recognition of obsolete/period-specific Cyrillic characters from page scans, and post-OCR textual correction.",
   "inclusion_criteria": {
     "general_purpose_benchmark": {
       "met": false,
-      "note": "The paper presents a specialized domain-specific evaluation framework and dataset for historical Russian document OCR rather than a general-purpose benchmark."
+      "note": "The evaluation framework and dataset are highly specialized and scoped to historical document OCR, specifically 18th-century Russian Civil font texts."
     },
     "evaluates_generative_llm": {
       "met": true,
-      "note": "Evaluates 12 leading LLMs including Claude 3.5/3.7 Sonnet, GPT-4o, GPT-4.1, o4-mini, Gemini 2.0/2.5, Qwen2.5-VL, and Llama-4."
-    },
-    "llm_is_primary_system": {
-      "met": true,
-      "note": "The primary focus is benchmarking LLMs as direct OCR engines and analyzing their transcription behaviors."
-    },
-    "arts_humanities_data": {
-      "met": true,
-      "note": "Uses 1,029 scanned pages of 18th-century Russian Civil print books, mapping to Language and Linguistics and History."
+      "note": "Evaluates 12 leading LLMs including Claude 3.5/3.7, GPT-4o/4.1, Gemini 2.0/2.5, Qwen-2.5-VL, and Llama-4."
     },
     "quantitative_metrics": {
       "met": true,
-      "note": "Employs standard metrics (CER, WER) alongside novel humanities-aligned metrics: Historical Character Preservation Rate (HCPR), Archaic Insertion Rate (AIR), and Case Error Rate (CaseER)."
+      "note": "Uses standard OCR metrics (CER, WER, CaseER) alongside newly proposed domain-specific metrics (HCPR, AIR) and statistical stability measures (CV)."
     },
     "published_after_march_2023": {
       "met": true,
-      "note": "Published in September 2025."
-    },
-    "english_language": {
-      "met": true,
-      "note": "The paper and its evaluation framework are written in English, though the source dataset is in historical Russian."
+      "note": "Published in September 2025 at the RANLP Workshop on NLP and Language Models for Digital Humanities."
     }
   },
-  "summary": "This paper presents a robust methodological framework for evaluating LLM-based OCR on historical documents, using a newly created corpus of 18th-century Russian Civil print books. It introduces novel philological metrics, such as Historical Character Preservation Rate and Archaic Insertion Rate, to measure specific temporal biases in LLMs. The study evaluates 12 multimodal models, revealing that while LLMs outperform traditional OCR, they suffer from 'over-historicization' by inserting incorrect pre-Petrine characters.",
-  "key_findings": "Gemini 2.5 Pro and Qwen 2.5 VL achieved the highest accuracy and stability on historical Russian OCR. A critical finding is 'over-historicization': LLMs (especially OpenAI models) frequently insert obsolete medieval Slavonic characters (like omega and yus) that were already eliminated from the 18th-century Civil font. Additionally, post-OCR correction was found to degrade performance compared to direct, high-quality OCR.",
+  "summary": "This paper establishes a comprehensive evaluation framework for LLM-based historical document OCR, utilizing a novel dataset of 18th-century Russian Civil font prints. To address the limitations of standard metrics, the author introduces domain-specific metrics (HCPR and AIR) to evaluate historical orthographic accuracy and reveal temporal biases in generative models.",
+  "key_findings": "Gemini 2.5 Pro and Qwen 2.5-VL emerged as the most stable and accurate models, substantially outperforming traditional OCR tools. However, the study identifies a systematic 'over-historicization' bias where models incorrectly insert pre-Petrine archaic characters (e.g., big/little yus, omega) that were already obsolete. Furthermore, post-OCR text correction actually degraded transcription quality compared to direct image-based OCR.",
   "relevant_asjc_areas": [
-    "History",
-    "Language and Linguistics"
+    "Language and Linguistics",
+    "History"
   ],
   "dataset_size": 1029,
-  "primary_evaluation_setting": "zero-shot"
+  "primary_evaluation_setting": "zero-shot",
+  "gold_source": "domain_expert",
+  "gold_beyond_stimulus": "no",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "noise",
+  "facets_explanation": "The ground truth transcription was created by a single expert annotator who performed a 100% manual review and correction of the corpus using eScriptorium to ensure diplomatic fidelity. A second verifier audited a sample of 500 lines, showing high agreement (98.6% line-level exact-match), which was used to validate the dataset accuracy rather than to preserve interpretive divergence. The models are evaluated using character and word error rates against this single, definitive reference transcription."
 }

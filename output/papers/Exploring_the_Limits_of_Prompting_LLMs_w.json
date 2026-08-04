@@ -1,58 +1,51 @@
 {
-  "benchmark_name": "PSH v1.0",
+  "benchmark_name": "Parole Suitability Hearing Corpus (PSH v1.0)",
   "publication_year": 2025,
-  "humanities_role": "both",
-  "humanities_role_explanation": "Evaluates the linguistic, rhetorical, and stylistic mimicry capabilities of LLMs (humanities domain of Language and Linguistics) using a specially curated corpus of parole hearing transcripts compiled for digital humanities and linguistics analysis.",
+  "humanities_role": "domain",
+  "humanities_role_explanation": "The benchmark evaluates LLMs on disciplinary-level competence in computational stylistics and forensic linguistics, analyzing whether they can replicate fine-grained rhetorical profiles and stylistic human signatures.",
   "benchmark_modalities": [
     "text"
   ],
-  "benchmark_modalities_explanation": "Text-only evaluation using verbatim transcripts of parole suitability hearings.",
+  "benchmark_modalities_explanation": "Text-only corpus consisting of verbatim hearing transcript dialogues and generated spoken decision statements.",
   "analytical_tasks": [
-    "stylistic mimicry",
-    "rhetorical style replication",
-    "controlled text generation",
-    "linguistic profiling"
+    "generation",
+    "stylistic_analysis"
   ],
-  "analytical_tasks_explanation": "Evaluates the capacity of LLMs to replicate speaker-specific rhetorical fingerprints across multiple dimensions including sentence complexity, lexical diversity, discourse markers, nominalizations, modal verbs, and pronoun usage profiles.",
+  "analytical_tasks_explanation": "Generation of spoken legal decision statements and systematic stylistic profiling based on eight linguistic dimensions: sentence complexity, lexical diversity, discourse markers, nominalizations, modals, pronoun usage, and legal jargon.",
   "inclusion_criteria": {
     "general_purpose_benchmark": {
       "met": false,
-      "note": "It is a domain-specific evaluation dataset and study focusing on rhetorical and stylistic impersonation in legal hearings, rather than a general-purpose benchmark."
+      "note": "Scoped strictly to speaker-specific rhetorical impersonation and style mimicry within legal transcripts (parole suitability hearings)."
     },
     "evaluates_generative_llm": {
       "met": true,
       "note": "Evaluates GPT-4o, GPT-4.1, and DeepSeek R1."
     },
-    "llm_is_primary_system": {
-      "met": true,
-      "note": "LLMs are the primary systems being tested on their stylistic generation limits."
-    },
-    "arts_humanities_data": {
-      "met": true,
-      "note": "Mapped to Language and Linguistics (focusing on forensic linguistics, rhetoric, stylistics, and spoken discourse analysis)."
-    },
     "quantitative_metrics": {
       "met": true,
-      "note": "Evaluates using standardized z-scores of linguistic features, Measure of Textual Lexical Diversity (MTLD), and syntactic/dependency-based complexity measurements."
+      "note": "Uses z-scores over normalized linguistic feature counts (sentence complexity, lexical diversity, and frequency-based features) compared against original human baselines."
     },
     "published_after_march_2023": {
       "met": true,
-      "note": "Published in September 2025 (RANLP 2025 workshop)."
-    },
-    "english_language": {
-      "met": true,
-      "note": "The paper and the evaluated PSH v1.0 corpus are in English."
+      "note": "Published in September 2025."
     }
   },
-  "summary": "This paper evaluates the capacity of state-of-the-art LLMs to impersonate specific human speakers' rhetorical styles in a high-stakes legal context using PSH v1.0, a corpus of 100 anonymized parole hearing transcripts. By extracting multi-dimensional linguistic fingerprints of presiding commissioners, the authors test whether explicit rhetorical guidance in prompts improves stylistic alignment compared to corpus-based priming.",
-  "key_findings": "All tested LLMs show clear limitations in replicating human rhetorical fingerprints, failing to align with individual human stylistic profiles. Regardless of prompting conditions, models revert to their own inherent, writing-biased stylistic footprints, demonstrating massive overuses of nominalizations, excessively complex sentences, and significantly higher lexical diversity than natural human speech.",
+  "summary": "The paper explores the capacity of LLMs to mimic human conversational monologue in a high-stakes legal setting by prompting them with speaker-specific rhetorical fingerprints. Using the PSH v1.0 corpus of parole hearings, the authors extract stylistic signatures of human commissioners to guide generative LLMs, finding that LLMs possess strong, immutable model-specific fingerprints that dominate over the prompted styles.",
+  "key_findings": "All tested LLMs show a strong resistance to adapting to human spoken norms: they exhibit massive inflation in lexical diversity and syntactic complexity, alongside an immutable bias toward formal written syntax and nominalizations. GPT and DeepSeek models reveal strong, persistent model-specific linguistic fingerprints that limit their capacity for stylistic alignment and persona adoption.",
   "relevant_asjc_areas": [
     "Language and Linguistics"
   ],
   "dataset_size": 100,
   "primary_evaluation_setting": "zero-shot",
-  "review_notes": "Resolved minor disagreement on humanities_role by assigning 'both', as the text constitutes a specially curated corpus for linguistic study (presented at a Digital Humanities workshop) and tests a core linguistics domain (rhetorical and stylistic replication). Merged analytical tasks from both reviewers for completeness.",
+  "review_notes": "No significant disagreements. Cip's more complete benchmark name was chosen. Analyst summaries and key findings were merged for clarity.",
   "paper_id": "Exploring_the_Limits_of_Prompting_LLMs_w",
   "paper_name": "Exploring the Limits of Prompting LLMs with Speaker-Specific Rhetorical Fingerprints",
-  "csv_row": 27
+  "csv_row": 27,
+  "gold_source": "existing_metadata",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "not_stated",
+  "facets_explanation": "The reference corpus (PSH v1.0) consists of 100 official parole suitability hearing transcripts obtained from the California Department of Corrections and Rehabilitation. The single ground truth for each case is the unique decision statement given by the presiding commissioner, which serves as a pre-existing administrative record. Generating the correct decision and rationale requires external knowledge of California state laws and parole guidelines not explicitly present in the provided interview transcript stimulus. As there is only one reference text per case, plurality and annotator consensus are not addressed."
 }

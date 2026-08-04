@@ -1,56 +1,48 @@
 {
-  "benchmark_name": "SemEval-2025 Task 5: LLMs4Subjects",
+  "benchmark_name": "LLMs4Subjects",
   "publication_year": 2025,
-  "humanities_role": "both",
-  "humanities_role_explanation": "Evaluates LLMs on the library metadata science task of automated subject cataloging (Museology/Information Science) using records that span both scientific and humanities domains like Architecture, History, Linguistics, and Literature.",
+  "humanities_role": "domain",
+  "humanities_role_explanation": "Evaluates automated subject indexing and library cataloging, which is a disciplinary competency within Library Science and Museology, utilizing the German Integrated Authority File (GND) taxonomy.",
   "benchmark_modalities": [
     "text"
   ],
-  "benchmark_modalities_explanation": "Bilingual evaluation using text-only inputs consisting of bibliographic titles and abstracts in English and German to assign taxonomic labels.",
+  "benchmark_modalities_explanation": "Evaluates using text-only bibliographic metadata consisting of record titles and abstracts in English and German.",
   "analytical_tasks": [
-    "extreme multi-label classification",
-    "subject indexing",
-    "ranking"
+    "classification",
+    "retrieval_and_ranking"
   ],
-  "analytical_tasks_explanation": "Predicting and ranking a customized top-k list of relevant GND subject headings from a massive vocabulary of topical terms based on record text.",
+  "analytical_tasks_explanation": "Extreme multi-label text classification (XMTC) to assign and rank relevant subject headings from a large-scale controlled vocabulary taxonomy (GND) for library records.",
   "inclusion_criteria": {
     "general_purpose_benchmark": {
       "met": false,
-      "note": "It is a specialized domain-specific benchmark focused on automated subject tagging for library catalog systems."
+      "note": "Scoped specifically to the task of automated subject tagging and cataloging in libraries."
     },
     "evaluates_generative_llm": {
       "met": true,
-      "note": "Evaluated multiple generative LLMs including GPT-4o, Llama-3/3.1/3.2, Qwen2.5, ChatGLM 4, and Mistral-7B."
-    },
-    "llm_is_primary_system": {
-      "met": true,
-      "note": "The primary objective is evaluating the viability and effectiveness of LLMs compared to traditional classification systems for library indexing."
-    },
-    "arts_humanities_data": {
-      "met": true,
-      "note": "Includes record indexing from humanities disciplines including Architecture, Linguistics, Literature Studies, and History, utilizing the GND authority file."
+      "note": "Evaluates various generative models such as GPT-4o, Llama-3.1, Llama-3.2, Qwen2.5, ChatGLM 4, and Mistral."
     },
     "quantitative_metrics": {
       "met": true,
-      "note": "Evaluated quantitatively using Precision@k, Recall@k, and F1-score@k, supplemented by qualitative expert manual evaluation."
+      "note": "Evaluated using Precision@k, Recall@k, and F1-score@k, complemented by qualitative expert evaluation from subject specialists."
     },
     "published_after_march_2023": {
       "met": true,
-      "note": "Published in SemEval 2025."
-    },
-    "english_language": {
-      "met": true,
-      "note": "The paper is written in English and the benchmark includes English along with German records."
+      "note": "Published as a SemEval-2025 task preprint in May 2025."
     }
   },
-  "summary": "This paper presents SemEval-2025 Task 5: LLMs4Subjects, a shared task designed to benchmark LLM-based automated subject indexing systems using the German National Library's GND taxonomy. The benchmark utilizes over 123,000 bilingual (English/German) records from the German National Library for Science and Technology (TIB). The task compares generative LLMs, dense retrieval/embedding methods, and traditional extreme multi-label classification techniques using both quantitative metrics and professional qualitative evaluations.",
-  "key_findings": "In the quantitative evaluations, the Annif toolkit ensemble achieved the highest overall Recall@k of 0.63 on the all-subjects dataset, while the RUC Team's embedding matching approach led the tib-core dataset with an overall Recall@k of 0.66. In the qualitative evaluations conducted by library specialists, the DNB-AI-Project system, which used few-shot LLM prompting with an ensemble of Llama models and no fine-tuning, achieved the top performance with an average Recall@k of 0.51, showcasing the strong zero-shot generalization capabilities of LLMs over heavily fine-tuned systems.",
+  "summary": "This paper introduces SemEval-2025 Task 5: LLMs4Subjects, a shared task evaluating large language models for automated bilingual subject tagging of scientific and technical library records using the GND taxonomy. It establishes a benchmark on German and English catalog records and presents both quantitative metrics and professional human evaluations of participating systems.",
+  "key_findings": "The top-performing systems quantitatively combined traditional extreme multi-label classification tools with LLM-assisted translation, synthetic data generation, or cross-lingual embeddings (Annif, RUC Team, and DUTIR831). In qualitative evaluations by subject librarians, a zero-shot/few-shot prompted LLM ensemble (DNB-AI-Project) achieved the highest precision and recall scores without fine-tuning, demonstrating the strong generalization capabilities of LLMs.",
   "relevant_asjc_areas": [
     "Museology",
-    "Language and Linguistics",
-    "Literature and Literary Theory",
-    "History"
+    "Library and Information Sciences"
   ],
   "dataset_size": 123589,
-  "primary_evaluation_setting": "mix"
+  "primary_evaluation_setting": "mix",
+  "gold_source": "existing_metadata",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "answer_set",
+  "plurality_treatment": "not_stated",
+  "facets_explanation": "The reference subject tags were extracted from existing library metadata in the TIBKAT catalog, which are assigned by specialized librarians using the German National Library's GND taxonomy. Correctly identifying these subjects requires knowledge of this taxonomy and its conceptual linkages, which are external to the provided title and abstract. Performance is evaluated quantitatively against a set of multiple pre-existing subject tags using precision and recall at k, and the paper does not address annotator divergence in the gold standard creation."
 }

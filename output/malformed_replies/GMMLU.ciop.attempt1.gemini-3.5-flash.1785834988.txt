@@ -1,0 +1,13 @@
+# JSONDecodeError: Expecting ',' delimiter: line 9 column 1 (char 757)
+
+{
+  "gold_source": "authored_answer_key",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "noise",
+  "facets_explanation": "The reference answers are derived from the pre-existing MMLU dataset, which consists of authored answer keys from standardized exams and academic quizzes. Correctly responding requires external domain knowledge not provided within the question text itself. While the study explores cultural bias and translates questions across 42 languages, it retains a single universal answer key for each item, and any annotator disagreements regarding cultural sensitivity categorization were resolved via majority voting."
+voting."
+majority voting."
+}

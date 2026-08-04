@@ -1,51 +1,38 @@
 {
   "benchmark_name": "Global-MMLU",
   "publication_year": 2025,
-  "humanities_role": "both",
-  "humanities_role_explanation": "The benchmark uses humanities subjects (e.g., History, Philosophy, World Religions) as primary domains to investigate cultural bias, while also analyzing the philological and linguistic aspects of translation (translationese vs. human translation) across 42 languages.",
+  "humanities_role": "content",
+  "humanities_role_explanation": "Humanities subjects (e.g., History, Philosophy, World Religions) provide the raw question items, but the benchmark primarily tests generic multiple-choice question answering and factual recall under translation, rather than domain-specific hermeneutic, interpretive, or methodological inquiry.",
   "benchmark_modalities": [
     "text"
   ],
-  "benchmark_modalities_explanation": "A mono-modal text benchmark featuring multiple-choice questions and answers translated or post-edited across multiple languages.",
+  "benchmark_modalities_explanation": "Text-only multiple-choice questions across 57 subjects translated into 42 languages, supplemented with human-annotated cultural sensitivity metadata.",
   "analytical_tasks": [
-    "multiple-choice question answering",
-    "cultural sensitivity classification",
-    "dialect awareness evaluation",
-    "factual and contextual reasoning"
+    "factual_recall",
+    "multiple_choice_qa",
+    "cultural_reasoning"
   ],
-  "analytical_tasks_explanation": "Evaluates factual recognition and contextual reasoning in specific humanities and social science disciplines. By categorizing questions into Culturally-Sensitive (requiring localized historical, geographic, or cultural frames) and Culturally-Agnostic subsets, it assesses whether models can reason within non-Western epistemic frameworks.",
+  "analytical_tasks_explanation": "Tests multiple-choice question answering demanding factual recall of historical, philosophical, and religious knowledge, alongside cultural reasoning to evaluate the impact of Western-centric geographical and cultural biases.",
   "inclusion_criteria": {
     "general_purpose_benchmark": {
       "met": true,
-      "note": "Global-MMLU is a multilingual and culturally-annotated adaptation of MMLU, a standard general-purpose LLM benchmark covering 57 subject areas."
+      "note": "Evaluates models across 57 diverse subjects, spanning STEM, Humanities, Social Sciences, and other domains."
     },
     "evaluates_generative_llm": {
       "met": true,
-      "note": "Evaluates 14 open-weight and proprietary models, including Aya Expanse, Command R/R+, Gemma 2, Llama 3.1, Mistral Nemo, Qwen 2.5, GPT-4o, and Claude 3.5 Sonnet."
-    },
-    "llm_is_primary_system": {
-      "met": true,
-      "note": "The LLMs are the primary systems being benchmarked for their multilingual and cross-cultural knowledge capabilities."
-    },
-    "arts_humanities_data": {
-      "met": true,
-      "note": "Includes substantial humanities data in ASJC areas: History (US History, European History, World History), Philosophy, Religious Studies (World Religions), and Language and Linguistics (translation quality and dialect analysis)."
+      "note": "Evaluates 14 open and closed models including GPT-4o, Claude 3.5 Sonnet, Llama 3.1, Qwen 2.5, Aya Expanse, and Command R+."
     },
     "quantitative_metrics": {
       "met": true,
-      "note": "Utilizes accuracy (%), model rank changes, and position shifts to measure performance."
+      "note": "Uses multiple-choice accuracy, ChrF++ for translation quality, and measures rank/position shifts across different subsets."
     },
     "published_after_march_2023": {
       "met": true,
-      "note": "Released as an arXiv preprint on February 20, 2025."
-    },
-    "english_language": {
-      "met": true,
-      "note": "The paper is written in English, and the benchmark evaluates English alongside 41 other languages."
+      "note": "Published as a preprint in February 2025."
     }
   },
-  "summary": "This paper presents Global-MMLU, an improved multilingual and culturally annotated version of the MMLU dataset spanning 42 languages. The authors audit the original English MMLU for cultural biases, showing that the majority of culturally sensitive questions are heavily skewed toward Western-centric concepts. By splitting the benchmark into Culturally-Sensitive and Culturally-Agnostic subsets, the paper provides a more nuanced framework for evaluating how generative models perform when stripped of Western cultural baselines.",
-  "key_findings": "The authors find that 28% of MMLU questions require culturally sensitive knowledge, with 86.5% of those being Western-specific and 84.9% of geographic questions focusing on North America or Europe. Evaluating 14 state-of-the-art models reveals that their rankings are highly volatile when evaluated on Culturally-Sensitive versus Culturally-Agnostic subsets (showing an average of 5.7 rank changes for the CS subset compared to 3.4 for the CA subset), particularly for smaller models and lower-resource languages.",
+  "summary": "This paper introduces Global-MMLU, an enhanced version of the MMLU benchmark translated into 42 languages with professional and community annotations to address linguistic and cultural biases. The authors categorize questions into culturally-sensitive and culturally-agnostic subsets, revealing that 28% of MMLU questions require Western-centric cultural or regional knowledge. They evaluate leading LLMs on these subsets, demonstrating that cultural bias significantly distorts model performance rankings across different languages.",
+  "key_findings": "28% of MMLU questions require culturally-sensitive knowledge, with 86.5% of those tagged as Western-specific and 84.9% of geographic questions focusing on North America or Europe. Evaluating models on culturally-sensitive vs. culturally-agnostic subsets leads to an average of 5.7 rank changes and 7.3 position shifts across evaluated languages. Furthermore, models perform better on machine-translated data for low-resource languages but human-translated data for high-resource languages.",
   "relevant_asjc_areas": [
     "History",
     "Philosophy",
@@ -53,5 +40,12 @@
     "Language and Linguistics"
   ],
   "dataset_size": 589764,
-  "primary_evaluation_setting": "few-shot"
+  "primary_evaluation_setting": "few-shot",
+  "gold_source": "authored_answer_key",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "noise",
+  "facets_explanation": "Global-MMLU adapts the pre-existing MMLU dataset, which derives its ground truth from academic exam answer keys, requiring substantial external domain knowledge to answer correctly. Although the benchmark categorizes items into culturally sensitive and agnostic subsets, it maintains a single universal correct answer per item across its multilingual translations. Disagreements among the human annotators who labeled the cultural sensitivity of the questions were resolved using a majority voting scheme, filtering out minority interpretations."
 }

@@ -1,0 +1,12 @@
+# JSONDecodeError: Expecting ',' delimiter: line 9 column 1 (char 787)
+
+{
+  "gold_source": "crowd_annotation",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "not_addressed",
+  "facets_explanation": "The gold standard was created by native speakers who authored context sentences and scene descriptions, which were then transformed into images via Midjourney and reviewed by human evaluators. Disambiguating and ranking literal vs. figurative meanings requires external lexical and cultural knowledge of idioms not present in the literal stimulus. Scoring relies on a single expected ranking sequence per item, and the paper does not explicitly address how annotator divergence or disagreement was resolved during dataset construction."
+construction."
+}

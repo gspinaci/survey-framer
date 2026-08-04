@@ -2,55 +2,50 @@
   "benchmark_name": null,
   "publication_year": 2025,
   "humanities_role": "domain",
-  "humanities_role_explanation": "Evaluates LLM comprehension of computational humor and puns, focusing on phonetic and semantic wordplay.",
+  "humanities_role_explanation": "The benchmark evaluates the models' domain-specific linguistic and literary competence in analyzing humor, wordplay, and puns, specifically requiring the decoding of phonetic and semantic double meanings (homographs and heterographs).",
   "benchmark_modalities": [
     "text",
     "audio"
   ],
-  "benchmark_modalities_explanation": "Combines text and generated audio of puns/jokes to provide multimodal context for humor explanation and detection.",
+  "benchmark_modalities_explanation": "The evaluation combines textual joke prompts with synthetically generated spoken-word audio (via OpenAI's text-to-speech) to investigate whether auditory cues aid in resolving phonetic ambiguity.",
   "analytical_tasks": [
-    "humor detection",
-    "humor explanation",
-    "phonetic transcription evaluation"
+    "classification",
+    "generation",
+    "interpretation",
+    "stylistic_analysis"
   ],
-  "analytical_tasks_explanation": "Factual and reasoning-based tasks such as identifying puns (humor detection) and explaining the linguistic/phonetic mechanics of jokes (humor explanation).",
+  "analytical_tasks_explanation": "Pun detection (classification of texts as pun/non-pun), humor explanation (generating free-text explanations of jokes), interpretation (hermeneutic decoding of semantic double meanings and homophones), and stylistic analysis (profiling of comedic linguistic devices).",
   "inclusion_criteria": {
     "general_purpose_benchmark": {
       "met": false,
-      "note": "Focuses specifically on humor and pun understanding, not a general-purpose capability suite."
+      "note": "The study does not propose a general-purpose benchmark; it is a specialized evaluation of computational humor across three specific datasets."
     },
     "evaluates_generative_llm": {
       "met": true,
-      "note": "Evaluates Gemini-1.5-Flash (generation), GPT-4o (evaluator/judge), and Gazelle v0.2 (for transcription logit analysis)."
-    },
-    "llm_is_primary_system": {
-      "met": true,
-      "note": "The primary systems being evaluated are generative LLMs (Gemini-1.5-Flash)."
-    },
-    "arts_humanities_data": {
-      "met": true,
-      "note": "Uses datasets on humor, puns, and jokes, mapping to Language and Linguistics, Literature and Literary Theory, and Performing Arts."
+      "note": "Evaluates Gemini-1.5-Flash for humor explanation generation and GPT-4o as the evaluator judge."
     },
     "quantitative_metrics": {
       "met": true,
-      "note": "Uses pairwise win rates, tie rates, and token probabilities (logits) to evaluate performance."
+      "note": "Uses pairwise win/tie rates calculated via LLM-as-a-judge comparison with human explanations."
     },
     "published_after_march_2023": {
       "met": true,
       "note": "Published in January 2025."
-    },
-    "english_language": {
-      "met": true,
-      "note": "The paper and evaluated datasets are in English."
     }
   },
-  "summary": "The paper proposes a multimodal prompting approach combining text with TTS-generated audio to enhance Large Language Models' understanding and explanation of humor and puns. By evaluating on three datasets, the study shows that auditory cues significantly improve the generation of accurate humor explanations by capturing phonetic ambiguities. It also investigates the impact of voice styles and analyzes the models' internal logit representations of homophones.",
-  "key_findings": "Providing multimodal (text + audio) input improves Gemini-1.5-Flash's humor explanation performance over a text-only baseline across all datasets, increasing win rates against human explanations on SemEval by approximately 4% for both homographs (from 68.89% to 72.59%) and heterographs (from 47.76% to 51.74%). Direct pairwise LLM-as-a-judge evaluations also favored the multimodal approach on Context-Situated Puns and ExplainTheJoke datasets.",
+  "summary": "This paper presents a multimodal prompting methodology to improve LLMs' understanding and explanation of computational humor. By combining textual jokes with synthetic TTS audio, the authors provide models with phonetic cues that resolve homophonic and heterographic ambiguities, leading to higher-quality generated explanations.",
+  "key_findings": "Providing models with both text and audio improves humor explanations compared to text-only baselines. On the SemEval 2017 Task 7 dataset, the win rate of Gemini-1.5-Flash explanations against human-written ones increased by approximately 4% for both homographs (reaching 72.59% win rate) and heterographs (reaching 51.74% win rate).",
   "relevant_asjc_areas": [
-    "Language and Linguistics",
-    "Literature and Literary Theory",
-    "Visual Arts and Performing Arts"
+    "Linguistics and Language",
+    "Literature and Literary Theory"
   ],
-  "dataset_size": null,
-  "primary_evaluation_setting": "few-shot"
+  "dataset_size": 5444,
+  "primary_evaluation_setting": "few-shot",
+  "gold_source": "not_stated",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "graded_human_judgment",
+  "plurality_treatment": "not_stated",
+  "facets_explanation": "The paper leverages pre-existing human explanations and annotations from SemEval 2017 Task 7, Context-Situated Puns, and ExplainTheJoke, but does not specify the original annotation protocols, leading to a 'not_stated' gold source. The evaluation relies on GPT-4o as an LLM judge performing pairwise quality assessments of free-text explanations, which represents 'graded_human_judgment'. Explaining puns requires external linguistic knowledge of homophones and double meanings not present in the stimulus, though the dataset does not model community-dependent variations in correctness."
 }

@@ -9,9 +9,9 @@
 
 ## Humanities Role
 
-**Classification:** both
-**Explanation:** Evaluates historical Chinese clothing (Hanfu) as both visual content and a structured domain of material culture, requiring models to understand cross-temporal dynastic evolution and apply traditional aesthetic elements to modern transcreation.
-**Relevant ASJC areas:** History, Visual Arts and Performing Arts, Archaeology, Conservation
+**Classification:** domain
+**Explanation:** Designed to assess domain-specific competence in Chinese costume history and material culture, requiring models to classify garment features, identify historical styles, and attribute garments to specific historical dynasties (e.g., Qin-Han, Tang, Ming).
+**Relevant ASJC areas:** Visual Arts and Performing Arts, History, Conservation
 **CSV Humanities?:** 
 **CSV ASJC code:** 
 
@@ -19,40 +19,51 @@
 
 | Criterion | Met? | Note |
 |-----------|------|------|
-| General-purpose benchmark | NO | Hanfu-Bench is a domain-specific cultural benchmark focusing on Chinese Hanfu clothing and material culture across dynasties. |
-| Evaluates generative LLM | YES | Evaluated Vision-Language Models including GPT-4o, Doubao-1.5-V, InternVL2.5, Qwen2.5-VL-7B-Instruct, and MiniCPM-V 2.6, alongside diffusion models. |
-| LLM is primary evaluated system | YES | The primary objective is to evaluate the zero-shot performance and reasoning capacities of large vision-language models on cultural VQA and transcreation tasks. |
-| Arts & Humanities data/tasks | YES | Aligned with Visual Arts and Performing Arts (fashion/design), History (dynastic periods), Archaeology, and Conservation. |
-| Quantitative performance metrics | YES | Uses Accuracy for VQA tasks, and 5-point expert human evaluation metrics for transcreation (visual-change, semantic-equivalence, naturalness, modern-adaptability, cultural-inheritance, attractiveness). |
-| Published after Mar 2023 | YES | Published in the EMNLP 2025 proceedings (November 2025). |
-| English language | YES | The paper is written in English, although dataset prompts and tasks leverage bilingual structures (Chinese and English). |
+| General-purpose benchmark | NO | Scoped exclusively to Chinese traditional clothing (Hanfu), its historical evolution, and modern design transcreation. |
+| Evaluates generative LLM | YES | Evaluates vision-language models (e.g., GPT-4o, Doubao-1.5-V, MiniCPM-V 2.6, Qwen2.5-VL-7B-Instruct, InternVL2.5) and image generators using LLM-generated captions. |
+| Quantitative performance metrics | YES | Classification accuracy for VQA tasks and human evaluation scores on a 5-point Likert scale across six criteria for image transcreation. |
+| Published after Mar 2023 | YES | Published at EMNLP 2025. |
 
 ## Benchmark Modalities
 
 **Modality Types:** text, image
 
-**Description:** Combines images of traditional Hanfu attire with natural language questions for single and multi-image VQA, and text prompts for cultural image transcreation.
+**Description:** Combines curated datasets of historical Hanfu clothing images with natural language questions for single and multi-image VQA, as well as descriptive transcreation tasks using text-guided image translation.
 
 ## Analytical Tasks
 
-**Task Types:** visual question answering, fine-grained visual recognition, cross-temporal reasoning, cultural image transcreation
+**Task Types:** multiple choice qa, classification, generation, visual recognition, attribution, causal and temporal reasoning, cultural reasoning, stylistic analysis
 
-**Detailed Description:** Tasks include fine-grained visual recognition of historical clothing components (e.g., collars, sleeves), cross-temporal comparative reasoning across dynasties using multiple images, and cultural image transcreation (adapting traditional garments into modern designs while preserving cultural elements).
+**Detailed Description:** Includes single-image and multi-image multiple-choice VQA for visual recognition and classification of garment components (e.g., sleeves, collars, lapels), chronological attribution to historical dynasties, cross-temporal reasoning across different periods, stylistic analysis of Hanfu variations, and creative text generation for describing modern transcreations of traditional styles.
 
 ## Summary
 
-Hanfu-Bench is an expert-curated multimodal benchmark designed to evaluate vision-language models on traditional Chinese Hanfu across multiple historical dynasties. It introduces two tasks: cultural visual understanding (via single- and multi-image VQA) and cultural image transcreation (assessing the ability to transform traditional designs into modern attire while preserving cultural heritage).
+Hanfu-Bench is an expert-curated multimodal benchmark designed to evaluate vision-language models on the cross-temporal understanding and creative transcreation of traditional Chinese garments. It challenges models with fine-grained visual attribute recognition across historical dynasties and evaluates their capacity to adapt traditional designs into modern contexts. The evaluation highlights significant model performance gaps in comparative cross-image reasoning and adaptive design when compared to human domain experts.
 
 ## Key Findings
 
-Closed-source VLMs perform comparably to non-expert humans on cultural visual understanding but lag by roughly 10% behind experts, while open-source models fall significantly short. Notably, VLMs struggle with multi-image reasoning compared to single-image tasks, in stark contrast to humans. On the image transcreation task, the best-performing model achieved a success rate of only 42% under expert human evaluation, highlighting major gaps in AI's capacity for culturally grounded creative synthesis.
+Closed-source VLMs like Doubao-1.5-V achieve up to 82.28% on single-image VQA and 75.95% on multi-image VQA, matching non-experts but lagging behind human costume experts by roughly 10%. VLMs perform particularly poorly on multi-image tasks where humans excel at cross-image comparative reasoning. For the generative image transcreation task, the best-performing model (Stable Diffusion) achieves a compliance success rate of only 42% under multi-dimensional human expert evaluation.
 
 ## Reviewer Notes
 
-- Ciop reported dataset_size as 1192 (total images), while Cip reported 4186 (total VQA questions: 1721 SVQA + 2465 MVQA); resolved to 4186 as it represents the number of evaluation items in the benchmark. Disagreements on relevant ASJC areas (Archaeology vs. Conservation) were resolved by keeping both, as the paper touches on cultural restoration and historical material culture. Minor wording differences in analytical tasks were consolidated.
+- Minor disagreements on analytical_tasks: Ciop included 'classification' and 'stylistic_analysis', while Cip included 'factual_recall'. I retained 'classification' and 'stylistic_analysis' because the benchmark tests visual classification of garment components and styles rather than declarative text-based retrieval, making 'factual_recall' less precise here. Dataset size of 4186 was agreed upon (corresponding to the total sum of SVQA and MVQA test items).
 
 ## Additional Fields
 
 **Dataset Size:** 4186
 
-**Primary Evaluation Setting:** zero-shot
+**Primary Evaluation Setting:** mix
+
+**Gold Source:** domain_expert
+
+**Gold Beyond Stimulus:** yes
+
+**Gold Community Dependent:** no
+
+**Gold Concerns Genesis:** yes
+
+**Answer Multiplicity:** single_answer
+
+**Plurality Treatment:** noise
+
+**Facets Explanation:** The dataset was annotated by nine domain experts (four paper authors and five university Hanfu club members). Features like historical dynasty and specific clothing styles (e.g., collar or sleeve types) were labeled, requiring external historical and cultural knowledge not visually present in the image itself. During annotation, disagreement was treated as noise: features were only retained if all three assigned annotators reached uniform agreement, while unresolved disagreements were marked 'unsure'. The primary visual question answering (VQA) task utilizes multiple-choice questions with exactly one correct option, making the evaluation single_answer.

@@ -1,0 +1,12 @@
+# JSONDecodeError: Expecting ',' delimiter: line 9 column 3 (char 730)
+
+{
+  "gold_source": "paper_authors",
+  "gold_beyond_stimulus": "no",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "noise",
+  "facets_explanation": "The reference annotations were produced by three project researchers who annotated the Swedish and English historical petitions in pairs. Disagreements were systematically resolved through consensus meetings after each batch to establish a single authoritative gold standard, treating annotator variance as noise to be minimized. The task is to identify and tag rhetorical boundaries within the provided text, requiring no external knowledge beyond the stimulus itself-contained stimulus."
+  stimulus."
+}

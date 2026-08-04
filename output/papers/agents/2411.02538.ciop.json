@@ -1,57 +1,53 @@
 {
   "benchmark_name": "MILU",
   "publication_year": 2024,
-  "humanities_role": "content",
-  "humanities_role_explanation": "The benchmark utilizes humanities subjects (such as Indian art, literature, history, dance, and festivals) as content for factual multiple-choice questions to evaluate the general capabilities and cultural knowledge of LLMs.",
+  "humanities_role": "domain",
+  "humanities_role_explanation": "Evaluates domain-specific knowledge in Indian history, regional literature, arts, festivals, and religious traditions sourced from professional and competitive state-level examinations, targeting actual cultural competence rather than treating text as generic linguistic data.",
   "benchmark_modalities": [
     "text"
   ],
-  "benchmark_modalities_explanation": "A text-only benchmark consisting of multiple-choice questions written in 11 Indic languages and English.",
+  "benchmark_modalities_explanation": "Text-only multiple-choice questions in native scripts across 11 Indic languages and English, following the filtering out of all image-based items.",
   "analytical_tasks": [
-    "multiple-choice question answering",
-    "factual recognition"
+    "factual_recall",
+    "multiple_choice_qa",
+    "logical_and_quantitative_reasoning",
+    "cultural_reasoning"
   ],
-  "analytical_tasks_explanation": "The tasks primarily evaluate factual recognition and retrieval of historical, cultural, and linguistic details. They do not test deep hermeneutic, interpretive, or causal-reasoning capabilities, reflecting a standard limitation of MMLU-style evaluation frameworks.",
+  "analytical_tasks_explanation": "Sourced as multi-subject multiple-choice questions testing factual recall of regional Indian history, arts, and religious practices, alongside logical reasoning and cultural reasoning concerning local governance, traditions, and culture-specific concepts.",
   "inclusion_criteria": {
     "general_purpose_benchmark": {
       "met": true,
-      "note": "Spans 8 diverse domains and 41 subjects, including both STEM and Arts & Humanities."
+      "note": "Spans 8 broad domains and 41 distinct subjects including both humanities (Arts, History, Literature) and STEM fields."
     },
     "evaluates_generative_llm": {
       "met": true,
-      "note": "Evaluates 42 generative models including GPT-4o, Gemini-1.5, Llama-3.1, Gemma-2, and various Indic-specialized models."
-    },
-    "llm_is_primary_system": {
-      "met": true,
-      "note": "LLMs are the primary systems being benchmarked."
-    },
-    "arts_humanities_data": {
-      "met": true,
-      "note": "Covers several ASJC-aligned topics including History, Language and Linguistics, Literature and Literary Theory, Visual Arts and Performing Arts, Philosophy, and Religious Studies."
+      "note": "Evaluated over 42 generative models including proprietary systems (GPT-4o, Gemini-1.5-Pro) and open models (Llama-3.1, Gemma-2, Sarvam)."
     },
     "quantitative_metrics": {
       "met": true,
-      "note": "The primary evaluation metric is multiple-choice accuracy."
+      "note": "Evaluated using standard multiple-choice accuracy metrics under zero-shot, 1-shot, and 5-shot conditions."
     },
     "published_after_march_2023": {
       "met": true,
-      "note": "First published as a preprint in November 2024."
-    },
-    "english_language": {
-      "met": true,
-      "note": "The scientific paper introducing the benchmark is written in English."
+      "note": "Preprinted on arXiv in November 2024 (updated to v3 in February 2025)."
     }
   },
-  "summary": "This paper introduces MILU, a multi-task language understanding benchmark tailored for 11 Indic languages and English across 41 subjects. Sourced from regional, state-level, and national competitive exams in India, MILU aims to capture local culture, history, laws, and traditions. The authors evaluate 42 LLMs, establishing a comprehensive baseline for multilingual and culturally-aware evaluation in Indic scripts.",
-  "key_findings": "GPT-4o achieves the highest overall accuracy of 74.74%. Open multilingual models perform significantly better than specialized Indic fine-tuned models (which perform near random baselines). Crucially, models perform worse in culturally specific domains like Arts & Humanities compared to general domains like STEM, pointing to a lack of local cultural representation in current pretraining data.",
+  "summary": "MILU is a comprehensive multi-task benchmark designed to evaluate Indic language understanding and cultural reasoning across 11 Indic languages and English. It utilizes a curated set of multiple-choice questions sourced from Indian competitive examinations to test both academic subjects and region-specific cultural knowledge. The evaluation of over 42 LLMs reveals that current models struggle with culturally grounded Indic content and low-resource scripts.",
+  "key_findings": "GPT-4o achieved the highest overall performance with a 74.74% average accuracy, while open-source multilingual models consistently outperformed language-adapted fine-tuned models. Models performed notably worse in culturally grounded areas like Arts & Humanities and Law & Governance compared to standard STEM fields.",
   "relevant_asjc_areas": [
     "History",
     "Language and Linguistics",
     "Literature and Literary Theory",
-    "Visual Arts and Performing Arts",
-    "Philosophy",
-    "Religious Studies"
+    "Religious Studies",
+    "Visual Arts and Performing Arts"
   ],
   "dataset_size": 79617,
-  "primary_evaluation_setting": "mix"
+  "primary_evaluation_setting": "mix",
+  "gold_source": "authored_answer_key",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "not_stated",
+  "facets_explanation": "The reference answers for MILU were sourced directly from pre-existing official answer keys of over 1,500 competitive and civil service exams across India. Because these are multiple-choice questions testing domain knowledge, answering them successfully requires retrieval of external factual and cultural information not contained within the question prompt itself. The paper does not address annotator or key disagreement, treating each exam question as having a single, definitive correct answer."
 }

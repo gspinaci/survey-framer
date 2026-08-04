@@ -1,59 +1,54 @@
 {
   "benchmark_name": null,
   "publication_year": 2024,
-  "humanities_role": "both",
-  "humanities_role_explanation": "Evaluates LLMs on repairing OCR errors in 19th-century British newspaper articles, requiring the preservation of historical vocabulary, archaic currency formats, and old spelling conventions.",
+  "humanities_role": "content",
+  "humanities_role_explanation": "Uses 19th-century British newspaper articles as content for post-OCR correction, evaluating a general NLP capability of text reconstruction and error correction rather than domain-specific historical analysis.",
   "benchmark_modalities": [
     "text"
   ],
-  "benchmark_modalities_explanation": "Text-only post-OCR correction task mapping corrupted historical text to human-transcribed ground truth segments.",
+  "benchmark_modalities_explanation": "Text-only parallel corpus consisting of OCR-generated text as source inputs and manually re-keyed human transcriptions as target outputs.",
   "analytical_tasks": [
-    "post-OCR correction",
-    "text denoising",
-    "spelling normalization",
-    "named entity correction"
+    "transcription_and_correction"
   ],
-  "analytical_tasks_explanation": "Denoising textual sequences to correct OCR-induced character errors (substitutions, insertions, deletions) while maintaining historical linguistic context and preserving named entities.",
+  "analytical_tasks_explanation": "Post-OCR correction and error repair on historical newspapers, mapping erroneous OCR character sequences to accurate reference texts, including handling substitutions, insertions, deletions, and misnamed entities.",
   "inclusion_criteria": {
     "general_purpose_benchmark": {
       "met": false,
-      "note": "The evaluation is restricted to the specific task of post-OCR correction on historical newspaper texts rather than general-purpose multi-task LLM evaluation."
+      "note": "Strictly scoped to the task of post-OCR correction on a dataset of historical newspapers."
     },
     "evaluates_generative_llm": {
       "met": true,
-      "note": "Evaluates generative models Llama 2 (7B and 13B)."
-    },
-    "llm_is_primary_system": {
-      "met": true,
-      "note": "The primary objective is evaluating instruction-tuned Llama 2 against a traditionally fine-tuned BART model."
-    },
-    "arts_humanities_data": {
-      "met": true,
-      "note": "Uses BLN600, a dataset of 19th-century British newspaper articles (History, Language and Linguistics)."
+      "note": "Evaluates Llama 2 (7B and 13B models) alongside BART."
     },
     "quantitative_metrics": {
       "met": true,
-      "note": "Character Error Rate (CER) reduction percentage based on Levenshtein distance."
+      "note": "Evaluates using percentage reduction in Character Error Rate (CER), computed using Levenshtein distance."
     },
     "published_after_march_2023": {
       "met": true,
-      "note": "Published May 2024."
-    },
-    "english_language": {
-      "met": true,
-      "note": "The paper and dataset are in English."
+      "note": "Published in May 2024 at LT4HALA."
     }
   },
-  "summary": "This paper investigates the adaptation of generative large language models for post-OCR correction of historical documents, using the BLN600 corpus of 19th-century British newspapers. By instruction-tuning Llama 2 and comparing it to fine-tuned BART, the authors demonstrate that a prompt-based generative approach significantly improves OCR quality and adapts well to low-data environments.",
-  "key_findings": "Instruction-tuned Llama 2 13B achieved a 54.51% average reduction in Character Error Rate (CER) on the test set, substantially outperforming the fine-tuned BART Large model (23.30% reduction). Furthermore, Llama 2 demonstrated strong and robust performance even when trained on extremely small subsets of data (down to 80 samples).",
+  "summary": "This paper evaluates the performance of generative Large Language Models, specifically Llama 2, on the task of post-OCR correction for historical newspapers. Comparing an instruction-tuned Llama 2 against a fine-tuned sequence-to-sequence BART baseline on the BLN600 dataset, the authors demonstrate that LLMs can effectively reconstruct noisy OCR text and achieve superior error reduction even with limited training data.",
+  "key_findings": "The instruction-tuned Llama 2 13B model significantly outperformed the fine-tuned BART baseline, achieving a 54.51% reduction in Character Error Rate (CER) compared to BART's 23.30% reduction. Furthermore, Llama 2 demonstrated strong correction capabilities even when trained on very small data subsets, highlighting its data efficiency.",
   "relevant_asjc_areas": [
     "History",
     "Language and Linguistics"
   ],
   "dataset_size": 13192,
   "primary_evaluation_setting": "fine-tuned",
-  "review_notes": "No significant disagreements. Minor differences in the phrasing of analytical tasks ('spelling normalization' vs 'spelling correction' and the inclusion of 'text denoising') were merged for completeness.",
+  "review_notes": "Ciop correctly set benchmark_name to null because the BLN600 dataset was introduced by a different paper (Booth et al., 2024), which is cited in the text; Cip's extraction of 'BLN600' was therefore rejected in favor of the null instruction. Both analysts were otherwise in complete agreement on all fields, including the choice of 'fine-tuned' for LoRA instruction tuning.",
   "paper_id": "Leveraging_LLMs_for_Post-OCR_Correction_",
   "paper_name": "Leveraging LLMs for Post-OCR Correction of Historical Newspapers",
-  "csv_row": 20
+  "csv_row": 20,
+  "gold_source": "not_stated",
+  "gold_beyond_stimulus": "no",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "not_stated",
+  "facets_explanation": "The reference answers are sourced from the BLN600 corpus, which pairs OCR excerpts with 'manually re-keyed human transcriptions' from the source images, though the paper does not specify who authored these transcriptions or under what conditions (hence 'not_stated'). Post-OCR correction relies on reconstructing the text segment itself, requiring no external knowledge beyond the stimulus. Model performance is evaluated quantitatively by calculating Character Error Rate against a single ground-truth target sequence per item. The paper does not address annotator disagreement or the possibility of alternative valid transcriptions.",
+  "review_notes_incremental": [
+    "gold_source: Cip inferred 'existing_metadata' under the assumption that the manual transcriptions were a product of the British Library Newspapers digitisation project itself. However, the text only states that the OCR is from that project and the ground truth consists of 'manually re-keyed human transcriptions' from the BLN600 corpus, without detailing their origin. Resolved to 'not_stated' as per Ciop's reading. All other fields were in agreement."
+  ]
 }

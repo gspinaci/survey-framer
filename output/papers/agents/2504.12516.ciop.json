@@ -2,55 +2,50 @@
   "benchmark_name": "BrowseComp",
   "publication_year": 2025,
   "humanities_role": "content",
-  "humanities_role_explanation": "Humanities topics (such as art, history, TV shows, and movies) are treated purely as a source of complex, multi-constraint factual data. The benchmark leverages these domains to construct highly obscure, reverse-engineered trivia questions to test agentic search capabilities, rather than evaluating interpretive, aesthetic, or critical humanistic methodology.",
+  "humanities_role_explanation": "While approximately half of the dataset covers cultural domains like Art, History, Music, and TV/Movies, the benchmark treats these topics as factual entities and constraints for web search rather than subjects of disciplinary hermeneutics, aesthetic judgment, or historical reasoning.",
   "benchmark_modalities": [
     "text"
   ],
-  "benchmark_modalities_explanation": "The benchmark currently consists entirely of natural language questions and short textual reference answers.",
+  "benchmark_modalities_explanation": "Text-based questions and short-string answers, requiring text-based web browsing and search.",
   "analytical_tasks": [
-    "fact retrieval",
-    "multi-constraint search",
-    "fact verification"
+    "factual_recall",
+    "open_ended_qa",
+    "agentic_tool_use",
+    "logical_and_quantitative_reasoning"
   ],
-  "analytical_tasks_explanation": "Tasks require the agent to parse complex, multi-hop factual constraints (e.g., matching a fictional character to specific backstory, television, and episode-count criteria) and locate a single, verifiable, short-string answer across the open web.",
+  "analytical_tasks_explanation": "Requires multi-hop fact retrieval and constraint-satisfaction (e.g., finding historical soccer matches or TV shows matching specific chronological and quantitative criteria) using persistent web-browsing agent actions.",
   "inclusion_criteria": {
     "general_purpose_benchmark": {
-      "met": true,
-      "note": "It is designed as a general-purpose capability benchmark for web-browsing agents across multiple knowledge domains."
+      "met": false,
+      "note": "The benchmark is explicitly focused on evaluating web-browsing agents on persistent, hard-to-find information retrieval tasks."
     },
     "evaluates_generative_llm": {
       "met": true,
-      "note": "Evaluates frontier generative and reasoning models including GPT-4o, GPT-4.5, OpenAI o1, and OpenAI Deep Research."
-    },
-    "llm_is_primary_system": {
-      "met": true,
-      "note": "The primary systems being benchmarked are LLM-based web-browsing agents."
-    },
-    "arts_humanities_data": {
-      "met": true,
-      "note": "Includes substantial factual content from History, Visual Arts and Performing Arts (TV, movies, art), Music, and Literature (fictional characters)."
+      "note": "Evaluates OpenAI models including GPT-4o, GPT-4.5, OpenAI o1, and OpenAI Deep Research."
     },
     "quantitative_metrics": {
       "met": true,
-      "note": "Evaluates models using accuracy (percentage of matches verified by an LLM-as-a-judge) and calibration error."
+      "note": "Evaluates accuracy, calibration error, and pass rates."
     },
     "published_after_march_2023": {
       "met": true,
-      "note": "The preprint was published in April 2025."
-    },
-    "english_language": {
-      "met": true,
-      "note": "The paper and the benchmark dataset are in English."
+      "note": "Published as a preprint in April 2025."
     }
   },
-  "summary": "BrowseComp is a benchmark designed to evaluate the capability of AI agents to persistently browse the web to resolve complex, hard-to-find questions. It features 1,266 human-curated, multi-constraint queries that are difficult to solve but simple to verify. The evaluation demonstrates that while standard LLMs fail, agentic systems with test-time compute can achieve over 50% accuracy through strategic browsing.",
-  "key_findings": "Standard models without browsing (GPT-4o, GPT-4.5) achieve less than 1% accuracy, while OpenAI o1 (using internal reasoning without search) reaches 9.9%. The agentic 'Deep Research' model achieves 51.5% accuracy, which scales smoothly with increased test-time compute and can be further boosted by 15% to 25% using best-of-N voting strategies. Human trainers only solved 29.2% of the tasks within a two-hour limit, illustrating the dataset's high difficulty.",
+  "summary": "BrowseComp is an agentic benchmark comprising 1,266 challenging, fact-seeking questions that require persistent and creative web browsing to solve. The questions are structured as inverted constraint-satisfaction problems, making them extremely difficult for standard search engines and models to answer directly, but easy to verify via short, factual reference answers.",
+  "key_findings": "Standard LLMs like GPT-4o and GPT-4.5 fail completely without browsing (under 1% accuracy), and enabling basic browsing only raises GPT-4o to 1.9%. OpenAI o1 reaches 9.9% via reasoning alone. OpenAI Deep Research achieves 51.5% accuracy, with performance scaling smoothly with test-time compute, and parallel voting strategies (e.g., Best-of-N) further boosting accuracy by up to 25%.",
   "relevant_asjc_areas": [
     "History",
     "Visual Arts and Performing Arts",
-    "Music",
-    "Literature and Literary Theory"
+    "Music"
   ],
   "dataset_size": 1266,
-  "primary_evaluation_setting": "zero-shot agentic browsing"
+  "primary_evaluation_setting": "mix",
+  "gold_source": "crowd_annotation",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "noise",
+  "facets_explanation": "The reference answers were authored by contracted human trainers who constructed highly specific, multi-constraint questions around a target 'seed' fact to ensure a single, indisputable answer. Solving these questions inherently requires retrieving information from the open web, as the necessary knowledge is not contained within the prompt stimulus. Potential ambiguities or secondary valid answers discovered during cross-checking or post-hoc evaluation were treated as noise, resulting in either question revision or item exclusion to maintain a clean, single-answer key."
 }

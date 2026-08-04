@@ -1,53 +1,48 @@
 {
   "benchmark_name": "CzechTopic",
   "publication_year": 2026,
-  "humanities_role": "both",
-  "humanities_role_explanation": "The benchmark uses historical Czech archival documents (content) and is designed specifically to trace social, political, and historical themes in digital humanities and archival research (domain).",
+  "humanities_role": "content",
+  "humanities_role_explanation": "The benchmark uses digitized historical Czech archival documents (OCR-processed) as its text source, but the primary competence evaluated is general language understanding and semantic boundary precision (topic localization and text classification), rather than disciplinary historical analysis or hermeneutic historical reasoning.",
   "benchmark_modalities": [
     "text"
   ],
-  "benchmark_modalities_explanation": "Monolingual historical Czech texts extracted via PERO-OCR from digitized historical books and periodicals.",
+  "benchmark_modalities_explanation": "Evaluates models on historical Czech texts paired with textual topic names and descriptions.",
   "analytical_tasks": [
-    "topic presence detection",
-    "word-level topic span localization"
+    "classification",
+    "information_extraction"
   ],
-  "analytical_tasks_explanation": "Evaluates document-level identification of semantic topic presence and the precise word-level extraction/localization of text spans matching abstract, human-defined topic descriptions, requiring nuanced semantic understanding and context interpretation.",
+  "analytical_tasks_explanation": "Evaluates document-level topic presence (binary classification) and word-level span extraction/localization of topics (information extraction).",
   "inclusion_criteria": {
     "general_purpose_benchmark": {
       "met": false,
-      "note": "Specifically designed as a domain-focused benchmark for topic localization in historical Czech archival documents rather than general-purpose NLP evaluation."
+      "note": "Specifically scoped to the task of topic localization and text-level topic classification in historical Czech documents."
     },
     "evaluates_generative_llm": {
       "met": true,
-      "note": "Evaluates GPT-5 variants, GPT-OSS, Llama 3, Gemma 3, and Gemini 3 Pro."
-    },
-    "llm_is_primary_system": {
-      "met": true,
-      "note": "Generative LLMs are the primary systems evaluated and compared against human annotators and fine-tuned BERT baselines."
-    },
-    "arts_humanities_data": {
-      "met": true,
-      "note": "Focuses on Language and Linguistics (Czech language parsing, OCR text) and History (historical archives, social and political historical themes)."
+      "note": "Evaluates various generative models including GPT-5 (2, mini, nano), Llama 3 (70B, 3B), Gemma 3 (27B, 4B), and Gemini 3 Pro."
     },
     "quantitative_metrics": {
       "met": true,
-      "note": "Precision, Recall, F1 score, Intersection over Union (IoU), and Krippendorff's alpha for inter-annotator agreement."
+      "note": "Reports macro-averaged Precision, Recall, F1-score, and Intersection over Union (IoU) with bootstrap confidence intervals."
     },
     "published_after_march_2023": {
       "met": true,
-      "note": "Preprint dated March 2026."
-    },
-    "english_language": {
-      "met": true,
-      "note": "The paper is written in English, though the evaluated dataset consists of historical Czech texts."
+      "note": "The paper is a preprint from March 2026."
     }
   },
-  "summary": "This paper introduces CzechTopic, a human-annotated benchmark for topic localization in historical Czech texts. Models must identify and localize word-level spans corresponding to human-defined, open-ended topic descriptions, evaluating semantic mapping capabilities on fuzzy and subjective thematic boundaries. The study establishes human baselines through inter-annotator agreement and benchmarks diverse LLMs alongside specialized BERT-based cross-encoders.",
-  "key_findings": "Large language models show a large performance gap, with word-level F1 scores spanning from 13.2 to 61.1. The best model (GPT-5-2) approaches but does not surpass human agreement (61.1 vs. 68.7 F1). Specialized fine-tuned BERT models (e.g., RobeCzech) remain highly competitive with larger LLMs, achieving an F1 of 48.3. Methodologically, matching-based span extraction outperforms tagging-based extraction by 10.4 F1 points, while prompt translation (Czech vs. English) has no significant effect.",
+  "summary": "This paper presents CzechTopic, a human-annotated benchmark for the task of topic localization in OCR-processed historical Czech archival documents. The benchmark evaluates models at both the text level (presence detection) and the word level (fine-grained span localization) using an evaluation framework grounded in human inter-annotator agreement.",
+  "key_findings": "The strongest LLM evaluated (GPT-5-2) achieved a word-level F1 score of 61.1, remaining significantly below the human agreement baseline of 68.7, indicating that precise span localization remains a major challenge. Fine-tuned BERT-based models (such as RobeCzech) trained on distilled data from GPT-5-mini achieved competitive performance (up to 48.3 word-level F1), outperforming several smaller open-source LLMs.",
   "relevant_asjc_areas": [
-    "Language and Linguistics",
-    "History"
+    "History",
+    "Language and Linguistics"
   ],
   "dataset_size": 1820,
-  "primary_evaluation_setting": "zero-shot"
+  "primary_evaluation_setting": "mix",
+  "gold_source": "not_stated",
+  "gold_beyond_stimulus": "no",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "answer_set",
+  "plurality_treatment": "signal",
+  "facets_explanation": "The reference answers were created by a group of human annotators in a two-phase process (topic definition and localization), but their academic or professional background is not explicitly stated. Rather than resolving disagreements into a single gold standard, the evaluation preserves each annotator's spans, computing pairwise agreement scores to evaluate models against the full distribution of human judgments (signal). The localization tasks require identifying spans within the provided historical documents based on the provided topic names and descriptions, requiring no external knowledge."
 }

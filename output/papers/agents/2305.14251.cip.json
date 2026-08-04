@@ -1,53 +1,48 @@
 {
-  "benchmark_name": "FActScore",
+  "benchmark_name": "FActScore (Factual precision in Atomicity Score)",
   "publication_year": 2023,
   "humanities_role": "content",
-  "humanities_role_explanation": "Evaluates LLMs using human biographies as content, which maps to History and Language and Linguistics, comparing model output facts against Wikipedia.",
+  "humanities_role_explanation": "The benchmark uses biographies of diverse people and historical figures as content to test the general factual precision of language models, rather than testing specialized disciplinary knowledge or historical research methodologies.",
   "benchmark_modalities": [
     "text"
   ],
-  "benchmark_modalities_explanation": "Text-only evaluation that analyzes the factual accuracy of generated biographical text using textual search and Wikipedia documents.",
+  "benchmark_modalities_explanation": "Text-only evaluation that analyzes generated biographies and verifies them against Wikipedia as a reference corpus.",
   "analytical_tasks": [
     "generation",
-    "factual recognition"
+    "fact_verification"
   ],
-  "analytical_tasks_explanation": "Evaluating the generation of long-form biographies and identifying the factual precision of fine-grained atomic facts extracted from the generated text.",
+  "analytical_tasks_explanation": "The benchmark evaluates long-form biography generation ('generation') by decomposing the text into short, single-assertion statements and performing fine-grained factual checking against a knowledge source ('fact_verification').",
   "inclusion_criteria": {
     "general_purpose_benchmark": {
       "met": false,
-      "note": "FActScore is a specific evaluation framework for long-form factual precision (specifically evaluated on biographies), rather than a multi-task general-purpose benchmark."
+      "note": "The benchmark is specifically designed to evaluate the factual precision of long-form text generation using biography generation as its sole target task."
     },
     "evaluates_generative_llm": {
       "met": true,
-      "note": "Evaluates a large variety of generative models including InstructGPT, ChatGPT, PerplexityAI, GPT-4, Llama, Alpaca, Vicuna, Dolly, MPT Chat, and StableLM."
-    },
-    "llm_is_primary_system": {
-      "met": true,
-      "note": "Generative language models are the primary systems being evaluated on their capability to generate factually accurate text."
-    },
-    "arts_humanities_data": {
-      "met": true,
-      "note": "Uses biographies of people, aligning with History, Language and Linguistics."
+      "note": "Evaluates several models including GPT-4, ChatGPT, InstructGPT, PerplexityAI, Alpaca, Vicuna, Dolly, Oasst-pythia, MPT-Chat, and StableLM."
     },
     "quantitative_metrics": {
       "met": true,
-      "note": "Uses precision of atomic facts (FActScore), micro F1, Error Rate (ER), Edit Correctness, and Semantic Similarity (SimAl)."
+      "note": "Uses FACTSCORE (atomic-fact precision), F1-micro for individual judgments, and automated estimation error rates."
     },
     "published_after_march_2023": {
       "met": true,
-      "note": "Preprint first published in May 2023."
-    },
-    "english_language": {
-      "met": true,
-      "note": "The paper and dataset generations are in English."
+      "note": "The preprint was published in May 2023 (updated in October 2023)."
     }
   },
-  "summary": "This paper presents FActScore, a fine-grained evaluation framework designed to quantify the factual precision of long-form text generation by decomposing text into individual atomic facts and verifying them. Additionally, the authors introduce a highly accurate, retrieval-augmented automated evaluation system that significantly reduces the cost of factuality benchmarking.",
-  "key_findings": "Even state-of-the-art LLMs struggle with factual precision in long-form biographies (ChatGPT scored 58.3% and PerplexityAI scored 71.5%), with performance dropping sharply for rarer entities. The automated FActScore estimator achieves under a 2% error rate compared to human annotation.",
+  "summary": "This paper introduces FACTSCORE, a fine-grained evaluation framework that breaks long-form text generation into distinct atomic facts and verifies each against a reliable knowledge source. The authors demonstrate its utility by evaluating various commercial and open-source LLMs on biography generation, presenting both a robust human evaluation setup and an accurate, cost-effective automated estimation model.",
+  "key_findings": "State-of-the-art LLMs struggle with long-form factuality; ChatGPT only achieves a 58.3% FACTSCORE, which drops dramatically for rare entities. GPT-4 and ChatGPT are significantly more factual than public open-source models, although open models like Vicuna and Alpaca are the best within their size class.",
   "relevant_asjc_areas": [
     "Language and Linguistics",
     "History"
   ],
-  "dataset_size": 183,
-  "primary_evaluation_setting": "zero-shot"
+  "dataset_size": 500,
+  "primary_evaluation_setting": "zero-shot",
+  "gold_source": "crowd_annotation",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "noise",
+  "facets_explanation": "The reference factuality labels were produced by Upwork freelancers who checked whether atomic facts were supported by English Wikipedia. The atomic facts were initially generated by InstructGPT and then manually revised by the annotators. Inter-annotator disagreement was evaluated on a 10% sample and analyzed to understand error sources, treating divergence as noise rather than preserving multiple parallel valid interpretations."
 }

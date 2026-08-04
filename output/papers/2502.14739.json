@@ -1,64 +1,59 @@
 {
   "benchmark_name": "SuperGPQA",
   "publication_year": 2025,
-  "humanities_role": "content",
-  "humanities_role_explanation": "Uses graduate-level academic questions from arts and humanities disciplines (such as Art Studies, Musicology, Philosophy, History, and Literature) as test content to evaluate general LLM knowledge and reasoning capabilities.",
+  "humanities_role": "domain",
+  "humanities_role_explanation": "The benchmark explicitly targets graduate-level disciplinary competence across various humanities domains including History, Philosophy, Law, and Literature & Arts, testing specialized reasoning and domain-specific knowledge.",
   "benchmark_modalities": [
     "text"
   ],
-  "benchmark_modalities_explanation": "Text-only multiple-choice questions with up to 10 options, translated to English where necessary. Multimodal inputs (like diagrams or images) are explicitly filtered out during the quality inspection phase to ensure a clean text-based QA format.",
+  "benchmark_modalities_explanation": "SuperGPQA is a text-only multiple-choice question benchmark; a multimodal exclusion step was explicitly run during the quality inspection phase to remove visual dependencies.",
   "analytical_tasks": [
-    "multiple-choice question answering",
-    "factual recall",
-    "logical reasoning",
-    "domain-specific knowledge retrieval",
-    "statement verification"
+    "factual_recall",
+    "multiple_choice_qa",
+    "logical_and_quantitative_reasoning"
   ],
-  "analytical_tasks_explanation": "Graduate-level multiple-choice question answering (MCQA) involving factual recall, conceptual understanding, historical and aesthetic statement verification, and complex reasoning across specialized academic disciplines.",
+  "analytical_tasks_explanation": "Evaluates models on advanced factual recall of domain-specific graduate knowledge, multiple-choice QA (featuring up to 10 choices to minimize guessing), and logical and quantitative reasoning (over 42% of items involve calculation or formal reasoning).",
   "inclusion_criteria": {
     "general_purpose_benchmark": {
       "met": true,
-      "note": "Evaluates LLMs across 285 diverse disciplines spanning STEM, social sciences, and humanities."
+      "note": "SuperGPQA is a massive multi-task benchmark spanning 285 graduate-level disciplines."
     },
     "evaluates_generative_llm": {
       "met": true,
-      "note": "Evaluates SOTA generative models including DeepSeek-R1, OpenAI o1/o3-mini, GPT-4o, Claude-3.5-Sonnet, Gemini-2.0, and Qwen/Llama series."
-    },
-    "llm_is_primary_system": {
-      "met": true,
-      "note": "The primary objective of the paper is to benchmark and analyze the performance capabilities of frontier LLMs."
-    },
-    "arts_humanities_data": {
-      "met": true,
-      "note": "Includes questions from several ASJC areas: History, Philosophy, and Literature and Arts (which includes Musicology, Art Studies, and Language/Literature)."
+      "note": "Evaluates a wide range of SOTA generative LLMs including DeepSeek-R1, o1, GPT-4o, Claude 3.5 Sonnet, Gemini 2.0 Flash, and Qwen2.5."
     },
     "quantitative_metrics": {
       "met": true,
-      "note": "Evaluated using accuracy (analyzed sample-wise, subfield-wise, field-wise, and discipline-wise)."
+      "note": "Uses accuracy calculated at different taxonomic levels (sample-wise, subfield-wise, field-wise, and discipline-wise)."
     },
     "published_after_march_2023": {
       "met": true,
-      "note": "Published as an arXiv preprint in February/March 2025."
-    },
-    "english_language": {
-      "met": true,
-      "note": "The paper is written in English, and all benchmark questions are curated in or translated into English."
+      "note": "Preprint published in early 2025."
     }
   },
-  "summary": "SuperGPQA is a comprehensive evaluation benchmark designed to probe the limits of LLM capabilities across 285 graduate-level disciplines, including key arts and humanities domains. Using a collaborative human-LLM filtering framework, it curates a dataset of 26,529 highly difficult multiple-choice questions to challenge state-of-the-art reasoning models.",
-  "key_findings": "Reasoning models like DeepSeek-R1 and OpenAI o1 achieved the highest overall accuracies (~61.8% and ~60.2% respectively), demonstrating significant remaining climbing space. Instruction tuning provides a massive performance boost over base models. Interestingly, humanities disciplines like History and Law demonstrated the highest discrimination power among top-performing models.",
+  "summary": "SuperGPQA is a highly challenging, comprehensive evaluation benchmark designed to test the upper limits of LLM capabilities across 285 graduate-level disciplines using 26,529 multiple-choice questions. Developed via a human-LLM collaborative system and stringent filtering, it establishes a new evaluation frontier where current SOTA models still show significant room for improvement.",
+  "key_findings": "Reasoning-focused models like DeepSeek-R1 and OpenAI's o1 lead performance, scoring around 60-61%, indicating a substantial gap remains in master-to-graduate-level knowledge. Instruction-tuned models significantly outperformed base models. Humanities disciplines like History and Law demonstrated the highest discrimination power, effectively identifying model capability variance due to their demand for context-dependent reasoning.",
   "relevant_asjc_areas": [
     "History",
-    "Language and Linguistics",
-    "Literature and Literary Theory",
-    "Music",
     "Philosophy",
-    "Visual Arts and Performing Arts"
+    "Literature and Literary Theory",
+    "Language and Linguistics",
+    "Visual Arts and Performing Arts",
+    "Music",
+    "Archaeology",
+    "Religious Studies"
   ],
   "dataset_size": 26529,
-  "primary_evaluation_setting": "mix of zero-shot and five-shot",
-  "review_notes": "Disagreement on 'humanities_role' (Ciop: both, Cip: content) was resolved to 'content' because the humanities questions primarily act as test content for evaluating general LLM reasoning capabilities rather than the system being designed solely for humanities research. Removed 'Classics' from ASJC areas as it referred specifically to 'Classical Chinese Literature' rather than Western Classics. Merged task lists and modality explanations for completeness.",
+  "primary_evaluation_setting": "mix",
+  "review_notes": "Ciop's inclusion of 'interpretation' and 'cultural_reasoning' in analytical_tasks was rejected in favor of Cip's stricter list; the benchmark uses multiple-choice questions for factual and logical assessment rather than true hermeneutic interpretation. Adopted Ciop's exact benchmark name ('SuperGPQA') rather than Cip's inclusion of the subtitle. Harmonized relevant_asjc_areas by cross-referencing Ciop's expansive list with the explicitly listed humanities subfields in the paper (Tables 2 and 3).",
   "paper_id": "2502.14739",
   "paper_name": "SuperGPQA",
-  "csv_row": 32
+  "csv_row": 32,
+  "gold_source": "authored_answer_key",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "noise",
+  "facets_explanation": "The reference answers for SuperGPQA were compiled from pre-existing educational materials, such as textbook solutions, exam keys, and online exercises, which were sourced and verified by domain experts. Correctly answering the multiple-choice questions requires domain-specific academic knowledge not contained within the prompt itself. Any ambiguous questions or annotator disagreements were actively treated as noise and eliminated during the multi-stage quality control process to preserve a strict single-answer-key structure."
 }

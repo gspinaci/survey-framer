@@ -1,0 +1,13 @@
+# JSONDecodeError: Expecting ',' delimiter: line 10 column 1 (char 1534)
+
+{
+  "gold_source": "crowd_annotation",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "yes",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "noise",
+  "facets_explanation": "CulturALL's ground truth was constructed through a mixed human-AI framework where GPT-4o drafted candidate items from online resources and existing datasets, while native-speaker volunteers also authored items from personal experience. The gold source is classified as crowd_annotation because the 15 volunteer annotators, who lack stated disciplinary humanities training, verified, revised, and finalized all reference answers. Answering the scenarios correctly requires external cultural knowledge that is explicitly withheld from the stimulus. The benchmark treats correctness as community-dependent, structuring items around 51 distinct country and region codes. Annotator disagreements or quality issues were treated as noise and resolved by revising or rejecting candidate items during peer review, ensuring a single objective answer per question.",
+  "review_notes": "gold_source: Ciop selected 'model_generated' (focusing on the LLM drafting process) and Cip selected 'domain_expert' (as the paper refers to the native speakers as 'expert annotators'). Resolved to 'crowd_annotation' because the benchmark relies on 15 recruited volunteer native speakers who, while culturally knowledgeable, do not have stated disciplinary training in the humanities, and they finalized all items."
+"
+}

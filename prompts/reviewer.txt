@@ -20,6 +20,14 @@ CONTROLLED VOCABULARIES — enforce these in the final report even if neither an
 
 <<TASK_VOCAB>>
 
+FACETS (the gold_* / answer_multiplicity / plurality_treatment fields, when present
+in the schema). These record how the benchmark was BUILT — properties the paper
+states — rather than a judgement about the nature of the task. Adjudicate them
+strictly against the paper's dataset-construction and evaluation sections.
+- Prefer "not_stated" over a plausible reconstruction. If the analysts disagree because one inferred a value the paper never gives, resolve to "not_stated" and say so in review_notes.
+- Never split the difference and never let a facet be influenced by the other fields: these are independent observations, and their divergence from humanities_role or analytical_tasks is informative rather than an inconsistency to iron out.
+- Record every facet disagreement explicitly in review_notes, naming the facet and both readings, even when the resolution is obvious.
+
 Return a JSON object with exactly these fields:
 
 <<SCHEMA>>

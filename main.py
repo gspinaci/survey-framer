@@ -18,7 +18,10 @@ from pathlib import Path
 
 from tqdm import tqdm
 
-MAX_ANALYZE_WORKERS = 8
+# 8 workers x 3 agents saturated the account's spend-rate limit partway through a
+# 42-paper run. Lowered to stay under it; llm.py backs off on 429 as well, but
+# throttling here is cheaper than waiting there.
+MAX_ANALYZE_WORKERS = 4
 
 _NOOP_NOTE_PREFIXES = ("no significant disagreement", "no disagreement")
 
@@ -28,7 +31,7 @@ def _is_noop_note(note: str) -> bool:
 
 from config import PAPERS_DIR, PDFS_DIR, OUTPUT_DIR, AGENTS_DIR, GEMINI_API_KEY
 from src.csv_reader import read_papers_csv
-from src.pdf_fetcher import fetch_pdf
+from src.pdf_fetcher import fetch_pdf, pdf_filename
 from src.pdf_extractor import extract_text
 from src.analyzer import analyze_paper
 from src.fields import check_vocab, declared_fields, missing_fields
@@ -162,9 +165,19 @@ def step_validate(papers: list[dict] | None = None) -> set[str]:
                 or p.get("accept_rg", "").upper() == "TRUE"
             )
 
+    # PAPERS_DIR accumulates results from every CSV ever run, so restrict the
+    # corpus to the input actually requested — otherwise a leftover analysis from
+    # an earlier run (e.g. test_papers.csv) silently joins the narrative.
+    csv_ids = None
+    if papers:
+        csv_ids = {p["id"] for p in papers} | {p["id"].replace("/", "_") for p in papers}
+
     for jf in json_files:
         analysis = json.loads(jf.read_text(encoding="utf-8"))
         paper_id = analysis.get("paper_id", jf.stem)
+        if csv_ids is not None and paper_id not in csv_ids and jf.stem not in csv_ids:
+            print(f"  STALE: {paper_id} — not in input CSV, excluded")
+            continue
         print(f"  INCLUDED: {paper_id}")
         passing.append(paper_id)
 
@@ -196,13 +209,18 @@ def step_narrative(passing_ids: set[str] | None = None) -> None:
 
 
 def find_pdfs(papers: list[dict]) -> dict[str, Path]:
+    """Locate already-fetched PDFs for an analyze-only run.
+
+    Resolves the exact name the fetcher wrote rather than substring-matching a
+    partially sanitized id: ids derived from titles contain characters like ':'
+    that become '_' on disk, so the looser match silently dropped 8 of 42
+    fetched papers from the analyze step.
+    """
     results = {}
     for paper in papers:
-        pid = paper["id"]
-        for pdf in PDFS_DIR.glob("*.pdf"):
-            if pid.replace("/", "_") in pdf.stem:
-                results[pid] = pdf
-                break
+        candidate = PDFS_DIR / pdf_filename(paper["id"])
+        if candidate.exists():
+            results[paper["id"]] = candidate
     return results
 
 

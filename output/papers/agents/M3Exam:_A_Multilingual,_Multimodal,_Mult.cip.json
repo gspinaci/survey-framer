@@ -1,58 +1,55 @@
 {
-  "benchmark_name": "M3Exam",
+  "benchmark_name": "M3Exam: A Multilingual, Multimodal, Multilevel Benchmark for Examining Large Language Models",
   "publication_year": 2023,
-  "humanities_role": "both",
-  "humanities_role_explanation": "Features school graduation exam questions on history and language/literature (content) to evaluate linguistic proficiency and socio-cultural/historical domain knowledge across multiple countries.",
+  "humanities_role": "content",
+  "humanities_role_explanation": "Humanities subjects (such as history, language, and social studies) provide a subset of the exam questions, but the core objective of the benchmark is evaluating general-purpose language understanding, reasoning, and multimodal capabilities of LLMs rather than specific digital humanities methods.",
   "benchmark_modalities": [
     "text",
     "image"
   ],
-  "benchmark_modalities_explanation": "Integrates monolingual multiple-choice text with visual components, utilizing image placeholders within questions or option sets for multimodal evaluation.",
+  "benchmark_modalities_explanation": "Combines text-only questions with multimodal questions (approximately 23% of the dataset) where images (such as maps, charts, and diagrams) are required as part of the question context or answer options.",
   "analytical_tasks": [
-    "multiple-choice question answering",
-    "factual recognition",
-    "reading comprehension",
-    "causal reasoning",
-    "mathematical reasoning"
+    "factual_recall",
+    "multiple_choice_qa",
+    "logical_and_quantitative_reasoning",
+    "causal_and_temporal_reasoning",
+    "interpretation",
+    "cultural_reasoning",
+    "visual_reasoning"
   ],
-  "analytical_tasks_explanation": "Operationalizes factual recall in history and social sciences, reading comprehension in language subjects, causal inference on historical shifts, and multi-step reasoning for science and math problems.",
+  "analytical_tasks_explanation": "Operationalizes multiple-choice question answering testing factual recall in history, cultural reasoning using localized knowledge across 9 countries, reading comprehension and script translation/interpretation (e.g., Javanese script), quantitative and logical reasoning in mathematics, causal/temporal reasoning over historical events, and visual reasoning over complex diagrams and maps.",
   "inclusion_criteria": {
     "general_purpose_benchmark": {
       "met": true,
-      "note": "Constructed from human academic exams across diverse subjects including history, social science, math, natural science, and language."
+      "note": "Evaluates LLMs across multiple languages (9), levels of education (primary, middle, high school), and multiple subjects including language, social science, math, and natural science."
     },
     "evaluates_generative_llm": {
       "met": true,
-      "note": "Evaluates closed-source models (GPT-4, ChatGPT, Claude) and open-source models (BLOOM, Vicuna) alongside multimodal LLMs (BLIP-2, InstructBLIP, Fromage, OpenFlamingo)."
-    },
-    "llm_is_primary_system": {
-      "met": true,
-      "note": "The LLMs/MLLMs are the primary systems being benchmarked."
-    },
-    "arts_humanities_data": {
-      "met": true,
-      "note": "Includes subjects directly mapped to History, Language and Linguistics, and Literature and Literary Theory."
+      "note": "Evaluates LLMs such as GPT-4, ChatGPT (gpt-3.5-turbo), Claude-instant, BLOOM (176B), Vicuna (13B), and multimodal models including BLIP-2, InstructBLIP, Fromage, and OpenFlamingo."
     },
     "quantitative_metrics": {
       "met": true,
-      "note": "Evaluates model performance using accuracy."
+      "note": "Evaluated using accuracy on multiple-choice questions."
     },
     "published_after_march_2023": {
       "met": true,
-      "note": "Published in NeurIPS 2023 (December 2023)."
-    },
-    "english_language": {
-      "met": true,
-      "note": "The paper is written in English, and English is one of the nine languages featured in the benchmark."
+      "note": "Published/Presented at NeurIPS 2023 (Datasets and Benchmarks Track) in December 2023."
     }
   },
-  "summary": "M3Exam is a multilingual, multimodal, and multilevel benchmark constructed from real-world human graduation exams across nine countries. It contains 12,317 multiple-choice questions spanning three educational levels (primary, middle, and high school), with 23% of questions requiring visual understanding. The benchmark evaluates LLMs on their general intelligence, multilingual capabilities, and multimodal reasoning.",
-  "key_findings": "GPT-4 is the only model to achieve over 60% average accuracy (scoring 72.92%), outperforming all other models but still struggling with low-resource languages like Javanese and non-Latin scripts like Thai. Multimodal LLMs performed poorly on complex visual questions, with BLIP-2 achieving only 49.06% accuracy. Surprisingly, LLMs do not exhibit a monotonic performance decrease as educational levels increase, indicating their intelligence development differs from humans.",
+  "summary": "The paper introduces M3Exam, a multilingual, multimodal, and multilevel benchmark sourced from real-world, official school graduation and entrance examinations across 9 countries. Featuring 12,317 multiple-choice questions (with 23% requiring visual inputs), the benchmark evaluates the ability of LLMs to process diverse linguistic scripts, local socio-cultural contexts, multiple educational levels, and complex visual information.",
+  "key_findings": "GPT-4 achieves the highest average accuracy at 72.92%, but still struggles with low-resource languages (e.g., Javanese) and non-Latin scripts (e.g., Thai). Multimodal LLMs perform poorly on visual questions, failing to match simple text-only baselines due to struggles with complex image descriptions, details, and cross-image reasoning. Additionally, LLM performance does not decrease monotonically with rising educational difficulty levels, highlighting a discrepancy between LLM capability scaling and human cognitive development.",
   "relevant_asjc_areas": [
-    "History",
     "Language and Linguistics",
-    "Literature and Literary Theory"
+    "History",
+    "Cultural Studies"
   ],
   "dataset_size": 12317,
-  "primary_evaluation_setting": "zero-shot"
+  "primary_evaluation_setting": "mix",
+  "gold_source": "authored_answer_key",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "not_stated",
+  "facets_explanation": "The reference answers for M3Exam are sourced directly from the official answer keys of real, nationwide or regional human graduation exams across nine countries. Answering these questions requires extensive prior domain and cultural knowledge that is not contained within the question stimulus itself. Because the benchmark consists entirely of standard multiple-choice questions, each question has a single correct answer option, and the authors do not discuss or preserve divergent annotations or multiple valid interpretations."
 }

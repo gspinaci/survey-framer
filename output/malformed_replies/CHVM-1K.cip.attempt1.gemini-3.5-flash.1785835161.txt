@@ -1,0 +1,11 @@
+# JSONDecodeError: Expecting ',' delimiter: line 9 column 1 (char 744)
+
+{
+  "gold_source": "not_stated",
+  "gold_beyond_stimulus": "not_stated",
+  "gold_community_dependent": "not_stated",
+  "gold_concerns_genesis": "not_stated",
+  "answer_multiplicity": "not_stated",
+  "plurality_treatment": "not_addressed",
+  "facets_explanation": "The provided text contains only the metadata and title of the paper ('An Investigation Into Value Misalignment in LLM-Generated Texts for Cultural Heritage') representing the CHVM-1K benchmark. Because the actual content of the scientific paper is missing from the provided text, specific details on dataset construction, annotator background, and evaluation gold standards are not stated. All corresponding facet values have been set to not_stated or not_addressed accordingly."
+"

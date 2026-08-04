@@ -1,58 +1,52 @@
 {
   "benchmark_name": "CaLMQA",
   "publication_year": 2025,
-  "humanities_role": "both",
-  "humanities_role_explanation": "CaLMQA uses cultural heritage, religious traditions, regional histories, and local customs as the core substance of its question-answering evaluation (content). Concurrently, it addresses the broader digital humanities question of how global AI systems align with and represent regional, multilingual, and socio-cultural human knowledge systems (domain).",
+  "humanities_role": "domain",
+  "humanities_role_explanation": "The benchmark is explicitly designed to assess LLMs on deep cultural and regional domain knowledge\u2014encompassing local history, religious rituals, and traditional practices\u2014rather than treating the humanities texts merely as generic data for linguistic processing.",
   "benchmark_modalities": [
     "text"
   ],
-  "benchmark_modalities_explanation": "A monomodal text-only benchmark consisting of 51.7K long-form questions, contextual translations, and reference answers across 23 diverse languages.",
+  "benchmark_modalities_explanation": "Monolingual textual questions that require models to generate long-form textual answers in the corresponding language.",
   "analytical_tasks": [
-    "long-form question answering",
-    "factuality verification",
-    "relevance evaluation",
-    "language alignment assessment"
+    "factual_recall",
+    "open_ended_qa",
+    "fact_verification",
+    "cultural_reasoning"
   ],
-  "analytical_tasks_explanation": "The benchmark moves beyond simple retrieval to evaluate complex narrative synthesis, contextual interpretation, and causal historical reasoning (e.g., explaining localized social practices, historical naming traditions, and regional governance policies).",
+  "analytical_tasks_explanation": "The benchmark evaluates models on long-form question answering requiring recall of localized historical events and traditions, cultural reasoning over context-dependent norms, and automatic/human verification of factual precision in generated claims.",
   "inclusion_criteria": {
     "general_purpose_benchmark": {
       "met": false,
-      "note": "It is a specialized benchmark focusing specifically on culturally specific, multilingual, long-form question answering."
+      "note": "Scoped specifically to the task of culturally specific long-form question answering across 23 languages."
     },
     "evaluates_generative_llm": {
       "met": true,
-      "note": "Evaluates several leading generative models: GPT-4o, GPT-4-Turbo, Gemini 1.5 Pro, Claude 3 Opus, Llama 3 (70B), Mixtral 8x22B, and Aya Expanse (32B)."
-    },
-    "llm_is_primary_system": {
-      "met": true,
-      "note": "LLMs are the primary systems whose cultural knowledge and text-generation quality are evaluated."
-    },
-    "arts_humanities_data": {
-      "met": true,
-      "note": "Covers several ASJC humanities fields including History, Religious Studies, Language and Linguistics, Literature and Literary Theory, and Visual Arts and Performing Arts."
+      "note": "Evaluated state-of-the-art LLMs including GPT-4o, GPT-4-Turbo, Claude 3 Opus, Gemini 1.5 Pro, Llama 3 70B, Mixtral 8x22B, and Aya Expanse 32B."
     },
     "quantitative_metrics": {
       "met": true,
-      "note": "Utilizes quantitative metrics including language identification rates, repetition percentages, factual precision (VeriScore/FactScore claim counts), LLM-as-a-judge relevance scores, and human Likert-scale quality ratings."
+      "note": "Measures performance using surface-level accuracy (language identification, repetition rates), GPT-4o relevance, VeriScore/FACTSCORE factual precision, and human preference rankings."
     },
     "published_after_march_2023": {
       "met": true,
-      "note": "Published at ACL in 2025."
-    },
-    "english_language": {
-      "met": true,
-      "note": "The paper is written in English, and the benchmark incorporates parallel English translations and evaluations."
+      "note": "Published at ACL in July/August 2025."
     }
   },
-  "summary": "This paper presents CaLMQA, a multilingual long-form question answering dataset designed to benchmark LLM knowledge of culturally specific and regionally localized concepts across 23 languages. Using a combination of community forum scraping for high-resource languages and native-speaker freelance generation for low-resource languages, the authors establish a robust pipeline to evaluate the factuality, relevance, and surface fluency of LLM outputs. Their findings show a pronounced gap in LLM capability when dealing with localized cultural knowledge compared to globally uniform, culturally agnostic topics.",
-  "key_findings": "Models show a major drop in factual precision (typically 12-19%) when answering culturally specific questions compared to culturally agnostic ones. Open-weight models fail significantly on low-resource languages\u2014frequently outputting English or apologies rather than the target language\u2014while proprietary models like GPT-4o show higher language stability but still struggle with localized factual accuracy.",
+  "summary": "This paper introduces CaLMQA, a translation-free multilingual dataset of 51.7K culturally specific, long-form questions across 23 languages, spanning high- and low-resource settings. The authors develop a multi-aspect evaluation protocol tracking linguistic surface quality, relevance, and factual precision, supplemented by native-speaker human evaluations. Their experiments reveal that evaluating models on regional and cultural concepts exposes severe drop-offs in factuality and linguistic reliability compared to standard culturally agnostic benchmarks.",
+  "key_findings": "Models generate significantly less factual answers for culturally specific questions (45%-52% factual precision) than for culturally agnostic questions (64%-71%). Open-weight models perform poorly on low-resource languages, often hallucinating, repeating text, refusing to answer, or defaulting to English. Closed-source models (primarily GPT-4-Turbo and GPT-4o) lead in both automatic and human evaluations, though human annotators find that content omissions and factual errors strongly penalize overall quality ratings across all models.",
   "relevant_asjc_areas": [
     "History",
-    "Language and Linguistics",
-    "Literature and Literary Theory",
     "Religious Studies",
-    "Visual Arts and Performing Arts"
+    "Language and Linguistics",
+    "Literature and Literary Theory"
   ],
   "dataset_size": 51698,
-  "primary_evaluation_setting": "zero-shot"
+  "primary_evaluation_setting": "zero-shot",
+  "gold_source": "existing_metadata",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "yes",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "graded_human_judgment",
+  "plurality_treatment": "not_stated",
+  "facets_explanation": "Reference answers are only present for a small subset of the 51.7K questions, consisting of Q&A forum answers (existing_metadata) and freelance-authored answers for Kirundi. Evaluating the open-ended responses relies on Google Search verification and LLM/human grading (graded_human_judgment) rather than an exact-match gold key."
 }

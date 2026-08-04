@@ -1,54 +1,49 @@
 {
   "benchmark_name": null,
   "publication_year": 2025,
-  "humanities_role": "both",
-  "humanities_role_explanation": "Uses historical 18th-century Swedish and English petitions as the data source to benchmark LLMs on rhetorical structure annotation, a task specifically designed to support digital humanities and historical research.",
+  "humanities_role": "domain",
+  "humanities_role_explanation": "Evaluates models on their ability to perform fine-grained classical rhetorical structure analysis (annotating Salutatio, Petitio, and Conclusio) in historical texts, which is a specialized competence in historical and literary scholarship.",
   "benchmark_modalities": [
     "text"
   ],
-  "benchmark_modalities_explanation": "Text-only dataset consisting of historical transcriptions of 18th-century petitions written in Swedish and English.",
+  "benchmark_modalities_explanation": "The benchmark uses transcribed text-only 18th-century historical petitions in Swedish and English.",
   "analytical_tasks": [
-    "sequence labeling",
-    "rhetorical structure identification",
-    "uncertainty estimation"
+    "information_extraction",
+    "stylistic_analysis",
+    "calibration_and_uncertainty"
   ],
-  "analytical_tasks_explanation": "Annotation and segmentation of fine-grained rhetorical sections (Salutatio, Petitio, and Conclusio) in historical documents, as well as self-rating of document annotation difficulty (metacognitive/uncertainty estimation).",
+  "analytical_tasks_explanation": "The task requires models to recognize and tag rhetorical structural elements (stylistic analysis, operationalized as information extraction of specific spans), and self-estimate annotation difficulty which is evaluated against human ratings (calibration and uncertainty).",
   "inclusion_criteria": {
     "general_purpose_benchmark": {
       "met": false,
-      "note": "Designed specifically for historical petition rhetorical structure analysis rather than being a broad, general-purpose benchmark."
+      "note": "Specifically scoped to rhetorical span annotation within 18th-century Swedish and English petitions."
     },
     "evaluates_generative_llm": {
       "met": true,
-      "note": "Evaluates commercial and open-source models: GPT-4, Gemini 1.5 Pro, Mixtral 8x22B, Mistral 7B, LLaMA 3 70B, and LLaMA 3 8B."
-    },
-    "llm_is_primary_system": {
-      "met": true,
-      "note": "The primary objective is evaluating the performance of various LLMs on the historical text annotation task."
-    },
-    "arts_humanities_data": {
-      "met": true,
-      "note": "Focuses on Language and Linguistics (rhetorical analysis of historical dialects) and History (18th-century administrative and legal petitions)."
+      "note": "Evaluates GPT-4, Gemini 1.5 Pro, Mixtral 8x22B, Mistral 7B, LLaMA-3 8B, and LLaMA-3 70B."
     },
     "quantitative_metrics": {
       "met": true,
-      "note": "Uses token-level precision, recall, F1-score, mean token-level edit distance, Mean Error (ME) for difficulty ratings, and Spearman's rank correlation coefficient (\u03c1)."
+      "note": "Uses token-level Precision, Recall, F1, mean token-level edit distance, Mean Error for difficulty scores, and Spearman's rank correlation."
     },
     "published_after_march_2023": {
       "met": true,
-      "note": "Published as part of the RANLP 2025 workshop in September 2025."
-    },
-    "english_language": {
-      "met": true,
-      "note": "The paper is written in English, and the benchmark evaluates both English and Swedish language datasets."
+      "note": "Published at the RANLP Workshop on NLP and Language Models for Digital Humanities in September 2025."
     }
   },
-  "summary": "This paper presents a study evaluating the ability of several LLMs to identify and annotate key rhetorical structures (Salutatio, Petitio, and Conclusio) in 18th-century Swedish and English historical petitions. The authors construct a dataset of 200 annotated petitions and assess LLM performance using few-shot prompting across variations in prompt complexity, prompting languages, and model sizes. Additionally, the study contrasts human-assessed text difficulty with model-assigned difficulty ratings to analyze model confidence alignment.",
-  "key_findings": "Most models perform exceptionally well on identifying the opening greeting (Salutatio), achieving F1 scores in the high 90s. Identifying the request (Petitio) and conclusion (Conclusio) proves more challenging, especially for smaller models (such as LLaMA-3 8B and Mistral 7B) and Swedish-language texts. Furthermore, models consistently underestimate document difficulty compared to human annotators (showing negative Mean Errors) and demonstrate weak, often negative correlation with human difficulty rankings.",
+  "summary": "This paper evaluates the performance of several commercial and open-source LLMs on annotating the rhetorical structure of 18th-century Swedish and English petitions using few-shot prompting. The authors investigate how prompt detail, prompt language, and model scale affect performance, while also comparing model-estimated difficulty ratings to human gold labels.",
+  "key_findings": "Most models excel at identifying Salutatio (F1 scores in the high 90s), but finding the Petitio and Conclusio is significantly harder, particularly for Swedish documents and smaller models. Additionally, models systematically underestimate document difficulty and show very poor alignment with human difficulty rankings (frequently producing negative Spearman correlations).",
   "relevant_asjc_areas": [
     "Language and Linguistics",
     "History"
   ],
   "dataset_size": 200,
-  "primary_evaluation_setting": "few-shot"
+  "primary_evaluation_setting": "few-shot",
+  "gold_source": "domain_expert",
+  "gold_beyond_stimulus": "no",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "noise",
+  "facets_explanation": "The reference annotations were produced by three annotators from the research project team who manually inserted rhetorical tags into Swedish and English historical petitions. Inter-annotator disagreements were systematically resolved through discussion to establish a unified consensus, treating divergent readings as noise to be eliminated for consistency. The resulting task is a self-contained span-identification problem evaluated by matching model outputs directly against this single-reference key."
 }

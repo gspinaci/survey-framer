@@ -10,8 +10,8 @@
 ## Humanities Role
 
 **Classification:** content
-**Explanation:** Humanities subjects (such as history, philosophy, and literature) inherited from MMLU-Pro are utilized as static factual and reasoning-focused question-answering data to evaluate large language models' capabilities across 29 languages.
-**Relevant ASJC areas:** History, Philosophy, Literature and Literary Theory, Language and Linguistics
+**Explanation:** The benchmark uses various academic subjects as the thematic content of its questions to evaluate the general multi-task language understanding and advanced reasoning capabilities of LLMs across languages, rather than measuring specialized disciplinary research methods.
+**Relevant ASJC areas:** Language and Linguistics, Law
 **CSV Humanities?:** 
 **CSV ASJC code:** 
 
@@ -19,40 +19,51 @@
 
 | Criterion | Met? | Note |
 |-----------|------|------|
-| General-purpose benchmark | YES | Evaluates LLM capabilities across 57 subjects (grouped into 14 disciplines) in 29 different languages. |
-| Evaluates generative LLM | YES | Evaluates 36 generative large language models, including GPT-4, Llama, Gemini, Qwen, DeepSeek, Mistral, and Aya. |
-| LLM is primary evaluated system | YES | Generative LLMs are the primary systems being benchmarked. |
-| Arts & Humanities data/tasks | YES | Includes questions categorized under History, Philosophy, Literature, and other humanities-related subjects inherited from MMLU-Pro. |
-| Quantitative performance metrics | YES | Uses accuracy (percentage of correct multiple-choice selections) under zero-shot and 5-shot CoT settings. |
+| General-purpose benchmark | YES | It is a broad multi-task benchmark covering 57 subjects across humanities, social sciences, STEM, and professional fields. |
+| Evaluates generative LLM | YES | Evaluates 36 generative LLMs, including DeepSeek-R1, GPT-4.1, GPT-4o, Qwen3, and Llama 3.3. |
+| Quantitative performance metrics | YES | Uses accuracy (%) as the primary metric under zero-shot and 5-shot CoT evaluation settings. |
 | Published after Mar 2023 | YES | Published in the EMNLP 2025 proceedings (November 2025). |
-| English language | YES | The paper is written in English, and the English source questions are translated into 28 other target languages. |
 
 ## Benchmark Modalities
 
 **Modality Types:** text
 
-**Description:** The benchmark consists entirely of written text questions and multi-choice options, lacking multimodal content.
+**Description:** The benchmark is entirely text-based, consisting of multiple-choice questions across 29 target languages.
 
 ## Analytical Tasks
 
-**Task Types:** multiple-choice question answering, cross-lingual reasoning, factual recognition, chain-of-thought reasoning
+**Task Types:** multiple choice qa, factual recall, logical and quantitative reasoning
 
-**Detailed Description:** Evaluates complex academic knowledge retrieval, cross-lingual reasoning, and multi-step deduction across disciplines using 10-choice questions and Chain-of-Thought prompting.
+**Detailed Description:** The benchmark primarily consists of complex 10-option multiple-choice questions requiring massive multi-task language understanding, factual retrieval, and multi-step logical inference across 57 academic subjects.
 
 ## Summary
 
-The paper introduces MMLU-ProX, a comprehensive multilingual benchmark spanning 29 typologically diverse languages to evaluate the advanced reasoning capabilities of LLMs. Developed via a semi-automated translation pipeline combined with extensive expert native-speaker verification, it scales the reasoning-focused design of MMLU-Pro to 11,829 parallel questions per language. Extensive evaluations of 36 state-of-the-art models demonstrate significant performance disparities, serving as a high-difficulty diagnostic tool for global LLM evaluation.
+MMLU-ProX is a multilingual extension of the highly challenging English MMLU-Pro benchmark, featuring 11,829 identical questions parallelized across 29 typologically diverse languages. To ensure high translation quality and cultural relevance, the authors developed a semi-automated translation pipeline combining Claude 3.7 Sonnet with rigorous expert human verification.
 
 ## Key Findings
 
-DeepSeek-R1 achieved the highest overall average accuracy of 75.5% across all 29 languages, followed by GPT-4.1 (72.7%). Reasoning-focused models (e.g., DeepSeek-R1, Qwen3-Think) showed significant accuracy boosts over standard base models, especially in low-resource settings. A massive performance disparity remains across linguistic groups: high-resource European and East Asian languages show strong performance (often over 75%), while low-resource African languages like Wolof drop heavily.
+DeepSeek-R1 achieved the highest overall multilingual average of 75.5%, followed closely by GPT-4.1 (72.7%) and DeepSeek-V3 (70.5%). There is a massive performance gap between high-resource languages (where top models exceed 75% accuracy) and low-resource African languages such as Wolof, where performance dramatically degrades (ranging from 0.6% to 58.6%). Enabling thinking/reasoning modes consistently improves multilingual performance, particularly in low-resource contexts.
 
 ## Reviewer Notes
 
-- Minor differences in task naming and ASJC areas (CIP included Literature, which is supported as part of MMLU subjects). Ciop noted 14 disciplines while Cip noted 57 subjects; both are mentioned in the paper, so the inclusion note was merged to reflect 57 subjects grouped into 14 disciplines. Otherwise, no significant disagreements.
+- Disagreements on `analytical_tasks`: Ciop included `causal_and_temporal_reasoning`, but this is only mentioned in the text with respect to a different benchmark (XCOPA), not MMLU-ProX itself, so it was dropped. `relevant_asjc_areas` were reduced to those explicitly supported by the text (Law) or broadly applicable to cross-lingual evaluation (Language and Linguistics), removing specific subjects like History and Philosophy which were hallucinated by both analysts based on external knowledge of the original MMLU benchmark.
 
 ## Additional Fields
 
 **Dataset Size:** 343041
 
-**Primary Evaluation Setting:** few-shot
+**Primary Evaluation Setting:** mix
+
+**Gold Source:** authored_answer_key
+
+**Gold Beyond Stimulus:** yes
+
+**Gold Community Dependent:** no
+
+**Gold Concerns Genesis:** no
+
+**Answer Multiplicity:** single_answer
+
+**Plurality Treatment:** not_addressed
+
+**Facets Explanation:** MMLU-ProX translates the MMLU-Pro benchmark, which draws its multiple-choice questions and ground-truth options from pre-existing standardized exams and academic curricula (authored_answer_key). Answering these questions requires extensive background domain knowledge not present in the brief query (gold_beyond_stimulus: yes). The benchmark assumes a single, universally correct choice across all 29 translated versions without adjusting keys for cultural context (gold_community_dependent: no). Disagreements among the human translators verifying the translations were treated as quality flags for the translation rather than conceptual plurality, and plurality of interpretations of the answers themselves is not addressed.

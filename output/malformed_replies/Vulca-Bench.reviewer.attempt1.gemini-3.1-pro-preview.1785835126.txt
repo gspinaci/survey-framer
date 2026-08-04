@@ -1,0 +1,28 @@
+# JSONDecodeError: Expecting ',' delimiter: line 25 column 1 (char 2240)
+
+{
+  "benchmark_modalities": [
+    "text",
+    "image"
+  ],
+  "humanities_role": "domain",
+  "analytical_tasks": [
+    "generation",
+    "interpretation",
+    "attribution",
+    "cultural_reasoning",
+    "stylistic_analysis",
+    "visual_recognition",
+    "visual_reasoning"
+  ],
+  "analytical_tasks_explanation": "The benchmark requires models to generate comprehensive bilingual art critiques that progress through five layers: visual perception (identifying objects and layout), technical analysis (medium, brushwork), cultural symbolism (iconography), historical context (attribution, provenance, and lineage), and philosophical aesthetics (culture-specific theories like yijing or wabi-sabi).",
+  "gold_source": "domain_expert",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "not_stated",
+  "plurality_treatment": "noise",
+  "facets_explanation": "The dataset provides gold-standard art critiques and dimension tags authored and reviewed by domain experts (PhDs and MAs in art history). Divergences between annotators and reviewers were resolved via consensus to produce a single authoritative critique, treating disagreement as noise. Correctly addressing the higher analytical layers (L3-L5) inherently requires historical, cultural, and philosophical knowledge absent from the image itself. The exact multiplicity of acceptable answers is not stated, as the paper uses its keyword-based dimension coverage metric (DCR) only as a preliminary diagnostic and defers the formal evaluation framework to a companion study.",
+  "review_notes": "Cip omitted the modalities, humanities_role, and analytical_tasks fields, so Ciop's readings were adopted as they align closely with the text (which explicitly describes a multimodal generative task involving visual, stylistic, historical, cultural, and interpretive analysis). Regarding answer_multiplicity, Cip inferred 'answer_set' based on the pilot Dimension Coverage Rate (DCR) synonym dictionary, but Ciop's 'not_stated' was preferred. The paper explicitly states that DCR is only a dataset-level diagnostic check, and defers the actual leaderboard scoring and multiplicity mechanics to a companion paper."
+"
+}

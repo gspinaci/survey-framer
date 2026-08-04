@@ -1,1 +1,38 @@
-{"dataset_size": {"description": "Number of examples/items in the benchmark, as an integer; null if not stated. Count the full evaluation set, not a single subset or split", "type": "integer|null"}, "primary_evaluation_setting": {"description": "How models are primarily evaluated. Use EXACTLY one of these four lowercase values and nothing else: zero-shot, few-shot, fine-tuned, mix. Use 'mix' whenever more than one setting is used (including zero-shot plus few-shot, or zero-shot plus chain-of-thought). Do not add qualifiers, articles or explanations", "type": "string"}}
+{
+  "dataset_size": {
+    "description": "Number of examples/items in the benchmark, as an integer; null if not stated. Count the full evaluation set, not a single subset or split",
+    "type": "integer|null"
+  },
+  "primary_evaluation_setting": {
+    "description": "How models are primarily evaluated. Use EXACTLY one of these four lowercase values and nothing else: zero-shot, few-shot, fine-tuned, mix. Use 'mix' whenever more than one setting is used (including zero-shot plus few-shot, or zero-shot plus chain-of-thought). Do not add qualifiers, articles or explanations",
+    "type": "string"
+  },
+  "gold_source": {
+    "description": "How the reference answers (ground truth) were produced. EXACTLY one lowercase value: existing_metadata (lifted from a documentary process that already described the object — catalogue records, library or museum metadata, archival finding aids, structured databases), authored_answer_key (lifted from pre-existing material authored as assessment or reference: exam and quiz answer keys, textbook solutions, standardized tests, encyclopedia entries), crowd_annotation (annotators without disciplinary training, hired or recruited for this benchmark), domain_expert (annotators with training in the relevant humanities discipline), paper_authors (the authors wrote the items and answers themselves), model_generated (an LLM or other model produced, translated or filtered the reference answers), not_stated (the paper does not say). The distinction between existing_metadata and authored_answer_key matters: a curatorial record and a GRE answer key carry different kinds of authority. If the benchmark mixes sources, report the one covering the majority of items and describe the mix in facets_explanation",
+    "type": "string"
+  },
+  "gold_beyond_stimulus": {
+    "description": "Does answering correctly require knowledge NOT present in the stimulus given to the model (image, passage, document)? EXACTLY one of: yes, no, not_stated. Judge the reference answer, not the difficulty: identifying a figure from a caption already in the input is 'no'; identifying it from iconographic attributes that must be matched against an external tradition is 'yes'",
+    "type": "string"
+  },
+  "gold_community_dependent": {
+    "description": "Does the benchmark treat the correct answer as varying by cultural or linguistic community? EXACTLY one of: yes, no, not_stated. 'yes' requires positive evidence — per-region or per-language gold answers, locale-specific splits, or explicitly community-relative correctness. A benchmark that is merely multilingual while keeping one universal answer key is 'no'",
+    "type": "string"
+  },
+  "gold_concerns_genesis": {
+    "description": "Is the target of the task a property of how the artefact came to be — date, author, place of origin, provenance, material history — rather than a property of its content? EXACTLY one of: yes, no, not_stated. Report 'yes' only if such items form a substantial part of the benchmark, not if one minor subtask happens to include dating",
+    "type": "string"
+  },
+  "answer_multiplicity": {
+    "description": "How many answers does the scoring accept per item? EXACTLY one of: single_answer (one key, exact match or one correct option), answer_set (several enumerated answers accepted), graded_human_judgment (scored by human or LLM judges on a scale rather than matched against a key), not_stated",
+    "type": "string"
+  },
+  "plurality_treatment": {
+    "description": "How does the paper treat divergence between annotators, or between defensible readings of the same material? EXACTLY one of: noise (disagreement is filtered out, resolved by majority vote, or reported as low inter-annotator agreement to be minimized), signal (disagreement is preserved and treated as informative about the material itself), not_stated (the paper does not discuss it). Report the paper's stated stance, not your own view",
+    "type": "string"
+  },
+  "facets_explanation": {
+    "description": "2-4 sentences giving the evidence in the paper for the facet values above, especially where sources are mixed or the paper is ambiguous. Paraphrase the paper's own description of how the dataset and its reference answers were built",
+    "type": "string"
+  }
+}

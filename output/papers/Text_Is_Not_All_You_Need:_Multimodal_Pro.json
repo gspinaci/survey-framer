@@ -1,59 +1,58 @@
 {
   "benchmark_name": null,
   "publication_year": 2025,
-  "humanities_role": "both",
-  "humanities_role_explanation": "Uses puns and jokes as core material (content) and evaluates the linguistic and rhetorical mechanics of verbal humor, wordplay, and phonetic ambiguity (domain).",
+  "humanities_role": "domain",
+  "humanities_role_explanation": "The evaluation targets specific linguistic and literary competencies, measuring the models' ability to analyze verbal humor, decode wordplay, and interpret semantic and phonetic ambiguities such as homographs and heterographs.",
   "benchmark_modalities": [
     "text",
     "audio"
   ],
-  "benchmark_modalities_explanation": "Multimodal prompting that pairs the text of a joke or pun with its synthesized audio counterpart generated via text-to-speech (TTS) to capture phonetic nuances.",
+  "benchmark_modalities_explanation": "Combines textual jokes with synthetically generated spoken-word audio (via Text-to-Speech) to provide phonetic cues for a multimodal model.",
   "analytical_tasks": [
-    "humor detection",
-    "humor explanation",
-    "phonetic transcription evaluation"
+    "classification",
+    "generation",
+    "interpretation",
+    "stylistic_analysis"
   ],
-  "analytical_tasks_explanation": "Factual and reasoning-based tasks identifying puns (humor detection), generating natural language explanations of linguistic and phonetic mechanics (humor explanation), and evaluating internal logit representations for homophones (phonetic transcription evaluation).",
+  "analytical_tasks_explanation": "Tasks include pun detection (binary classification of text as pun or non-pun), humor explanation (generating free-text explanations of jokes), interpretation (hermeneutic decoding of semantic double meanings and homophones), and stylistic analysis (recognizing rhetorical structures and wordplay mechanisms).",
   "inclusion_criteria": {
     "general_purpose_benchmark": {
       "met": false,
-      "note": "The paper does not introduce a new general-purpose benchmark; it evaluates a multimodal prompting methodology on existing humor datasets."
+      "note": "The study does not propose a general-purpose benchmark; it evaluates a specific multimodal prompting method on three specialized humor datasets."
     },
     "evaluates_generative_llm": {
       "met": true,
-      "note": "Evaluates Gemini-1.5-Flash (generation), GPT-4o (evaluator/judge), and Gazelle v0.2 (for transcription logit analysis)."
-    },
-    "llm_is_primary_system": {
-      "met": true,
-      "note": "The primary system being evaluated is the generative LLM (Gemini-1.5-Flash) for its capacity to interpret humor."
-    },
-    "arts_humanities_data": {
-      "met": true,
-      "note": "Focuses on Language and Linguistics, as well as Literature and Literary Theory (wordplay, punning, and humor theory)."
+      "note": "Evaluates Gemini-1.5-Flash for humor explanation and uses GPT-4o as an LLM-as-a-judge."
     },
     "quantitative_metrics": {
       "met": true,
-      "note": "Uses pairwise win rates, tie rates, and token probabilities (logits) to evaluate performance."
+      "note": "Pairwise comparison win rates (assessed by LLM-as-a-judge against human explanations) and logit probability analysis."
     },
     "published_after_march_2023": {
       "met": true,
       "note": "Published in January 2025."
-    },
-    "english_language": {
-      "met": true,
-      "note": "The paper and evaluated datasets (SemEval 2017, Context-Situated Puns, ExplainTheJoke) are in English."
     }
   },
-  "summary": "This paper investigates whether incorporating an auditory modality helps LLMs better grasp the phonetic ambiguity inherent in verbal humor, such as puns. By presenting models with combined text and TTS-generated audio, the study demonstrates that multimodal cues significantly improve the accuracy and quality of generated humor explanations compared to text-only prompts.",
-  "key_findings": "Adding audio cues to prompts improved Gemini-1.5-Flash's humor explanation quality across all tested datasets. For the SemEval 2017 dataset, it yielded a win-rate increase over the baseline text-only prompts of approximately 4% for both homographic and heterographic puns. Direct logit analysis of phonetic transcription tasks confirmed that models maintain high probabilities for homophones (e.g., 'weight' vs 'wait') when exposed to audio.",
+  "summary": "This paper investigates whether incorporating auditory cues via multimodal prompting helps Large Language Models overcome token-based limitations to better understand and explain verbal humor, specifically puns. By converting textual jokes into audio using a Text-to-Speech system and prompting a multimodal model with both modalities, the authors demonstrate improved performance in humor explanation across three datasets.",
+  "key_findings": "Providing synthetic audio alongside text improves the model's humor explanation performance over a text-only baseline across all tested datasets. On the SemEval dataset, incorporating audio increased the model's explanation win rate against human baselines by approximately 4% for both homographic and heterographic puns. Analysis of the model's logits confirmed that auditory inputs successfully preserved phonetic ambiguities.",
   "relevant_asjc_areas": [
     "Language and Linguistics",
     "Literature and Literary Theory"
   ],
-  "dataset_size": null,
+  "dataset_size": 5444,
   "primary_evaluation_setting": "few-shot",
-  "review_notes": "Ciop and Cip disagreed slightly on humanities_role (Ciop said 'both', Cip said 'domain'); resolved to 'both' because the methodology evaluates specific linguistic features (domain) using datasets of jokes and puns (content). Cip included 'phonetic transcription evaluation' under analytical_tasks, which was retained as it accurately reflects the logit analysis explicitly evaluated in the paper. Cip's inclusion of 'Visual Arts and Performing Arts' as an ASJC area was excluded to maintain a strict focus on the paper's primary disciplines of 'Language and Linguistics' and 'Literature and Literary Theory'.",
+  "review_notes": "Resolved disagreement on primary_evaluation_setting in favor of Cip ('few-shot'), as the text explicitly notes 'each prompt included six examples' under prompt configuration. For analytical_tasks, replaced Ciop's 'open_ended_qa' with Cip's 'generation', as the primary task evaluated by the LLM-as-a-judge is the quality of the generated free-text humor explanations.",
   "paper_id": "Text_Is_Not_All_You_Need:_Multimodal_Pro",
   "paper_name": "Text Is Not All You Need: Multimodal Prompting Helps LLMs Understand Humor",
-  "csv_row": 22
+  "csv_row": 5,
+  "gold_source": "not_stated",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "graded_human_judgment",
+  "plurality_treatment": "not_stated",
+  "facets_explanation": "The paper evaluates humor explanation on the SemEval 2017 Task 7, Context-Situated Puns, and ExplainTheJoke datasets. While the paper notes that these datasets provide pre-existing human annotations and explanations (with ExplainTheJoke explicitly scraped from a website), it does not describe the specific annotation processes or annotator backgrounds for the majority of the data, resulting in a 'not_stated' gold source. Evaluation is performed by GPT-4o acting as an LLM judge to perform pairwise comparisons between generated and reference explanations ('graded_human_judgment'). Recognizing and explaining puns requires external linguistic knowledge (e.g., of homophones) beyond the stimulus text itself.",
+  "review_notes_incremental": [
+    "Disagreement on gold_source: Ciop inferred 'authored_answer_key' based on the reference datasets, but Cip correctly noted that the paper text itself does not detail the annotation protocols for the SemEval or Context-Situated Puns datasets (which constitute the majority of the benchmark). Following the rule to adjudicate strictly against the paper's own text and prefer 'not_stated' over plausible reconstructions, the value was resolved to 'not_stated'."
+  ]
 }

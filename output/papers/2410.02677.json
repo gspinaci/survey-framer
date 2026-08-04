@@ -1,60 +1,59 @@
 {
   "benchmark_name": "CulturalBench",
   "publication_year": 2024,
-  "humanities_role": "domain",
-  "humanities_role_explanation": "Evaluates LLMs on multicultural knowledge across 45 countries, using cultural concepts (e.g., social etiquette, celebrations, religion, language) as a distinct evaluation domain.",
+  "humanities_role": "content",
+  "humanities_role_explanation": "Socio-cultural details (such as religious rituals, regional foods, and linguistic quirks) provide the raw material for the questions. However, the benchmark evaluates the model's factual recall and pattern matching of these cultural concepts rather than testing academic or critical methodologies from humanities disciplines like anthropology or cultural studies.",
   "benchmark_modalities": [
     "text"
   ],
-  "benchmark_modalities_explanation": "Text-only QA formatted as multiple-choice questions (CulturalBench-Easy) and binary True/False judgments for all options (CulturalBench-Hard).",
+  "benchmark_modalities_explanation": "The benchmark is entirely text-based, consisting of multiple-choice questions (CulturalBench-Easy) and binary True/False judgment questions for each option (CulturalBench-Hard) written in English.",
   "analytical_tasks": [
-    "factual recognition",
-    "multiple-choice question answering",
-    "binary classification"
+    "factual_recall",
+    "multiple_choice_qa",
+    "fact_verification",
+    "cultural_reasoning"
   ],
-  "analytical_tasks_explanation": "Evaluates factual recognition of regional customs, social etiquette, and language markers; assesses models' ability to recognize scenarios with multiple valid cultural answers (multi-mode behavior) rather than over-converging on a single mode.",
+  "analytical_tasks_explanation": "Evaluates LLMs on factual recall of cultural norms (e.g., eating habits, traditional attire) via multiple-choice QA (CulturalBench-Easy) and binary fact verification (CulturalBench-Hard) to assess reasoning over culture-specific contexts, linguistic habits, and social etiquette.",
   "inclusion_criteria": {
     "general_purpose_benchmark": {
       "met": false,
-      "note": "It is a domain-specific evaluation suite targeting global cultural and socio-behavioral knowledge."
+      "note": "Specifically scoped to evaluating cultural knowledge and regional socio-cultural customs, rather than general academic capabilities."
     },
     "evaluates_generative_llm": {
       "met": true,
-      "note": "Evaluates 29 major models including OpenAI o1, GPT-4o, Claude 3.5 Sonnet, Llama-3.3, Gemma, Mistral, Qwen, and DeepSeek."
-    },
-    "llm_is_primary_system": {
-      "met": true,
-      "note": "Generative LLMs are the primary systems being benchmarked for their cultural intelligence."
-    },
-    "arts_humanities_data": {
-      "met": true,
-      "note": "The dataset spans cultural anthropology, regional studies, religion, and colloquial linguistics, mapping to Language and Linguistics, Religious Studies, History, and Performing Arts."
+      "note": "Evaluates 29 LLMs, including GPT-4o, o1, Claude 3.5 Sonnet, Llama-3.1/3.3, Mistral, Gemma 2, DeepSeek V3/R1, and Qwen-2.5."
     },
     "quantitative_metrics": {
       "met": true,
-      "note": "Evaluated using standard accuracy metrics for multiple-choice and binary True/False tasks, comparing against human baselines."
+      "note": "Evaluated using Accuracy on both the multiple-choice 'Easy' and the multi-label binary 'Hard' versions."
     },
     "published_after_march_2023": {
       "met": true,
-      "note": "First published to arXiv in October 2024, with updates in 2025."
-    },
-    "english_language": {
-      "met": true,
-      "note": "The paper and the primary evaluation benchmark are in English, with an auxiliary translation study included."
+      "note": "The preprint was originally published on arXiv in October 2024, with subsequent revisions."
     }
   },
-  "summary": "This paper introduces CulturalBench, a text-based benchmark of 1,696 questions spanning 45 global regions and 17 cultural topics to evaluate the multicultural knowledge of LLMs. Developed through a human-AI collaborative red-teaming pipeline, the dataset includes multiple-choice (Easy) and multi-label binary True/False (Hard) evaluation formats to test model understanding of both single-answer and multi-answer cultural nuances.",
-  "key_findings": "While frontier LLMs achieve near-human performance on the Easy multiple-choice version (up to 89.6%), they struggle significantly on the Hard binary format, with the best model (OpenAI o1) reaching only 61.5% compared to humans' 92.4%. Models exhibit substantial mode-seeking biases, failing heavily on multi-mode questions (average 20.9% accuracy compared to 49.6% for single-mode), and systematically underperform on questions related to less-represented regions like South America, Eastern Europe, and the Middle East.",
+  "summary": "CulturalBench is a human-verified dataset of 1,696 questions designed to evaluate the cultural knowledge of LLMs across 45 global regions and 17 distinct cultural topics. Curated via a collaborative human-AI red-teaming pipeline called 'CulturalTeaming', it includes two settings: a multiple-choice 'Easy' benchmark and a 'Hard' multi-label binary evaluation. The dataset exposes significant cultural blind spots and mode-seeking limitations in contemporary LLMs.",
+  "key_findings": "While models perform well on the multiple-choice version (up to 89.6%), they struggle significantly on CulturalBench-Hard, with the best model (OpenAI o1) reaching only 61.4% accuracy compared to a 92.4% human baseline. Models exhibit an average performance drop of 28.7% on questions with multiple valid answers due to their mode-seeking tendencies, and they consistently underperform on regions like South America, East Europe, and the Middle East.",
   "relevant_asjc_areas": [
+    "Cultural Studies",
     "Language and Linguistics",
     "Religious Studies",
-    "History",
-    "Visual Arts and Performing Arts"
+    "Arts and Humanities (miscellaneous)"
   ],
   "dataset_size": 1696,
   "primary_evaluation_setting": "zero-shot",
-  "review_notes": "Ciop categorized humanities_role as 'both', while Cip chose 'domain'; resolved to 'domain' as the benchmark explicitly tests multicultural understanding as the target capability. Reconciled analytical_tasks to include both Ciop's domain-specific tasks and Cip's technical task formats. Kept Cip's addition of 'Visual Arts and Performing Arts' in ASJC areas to cover the entertainment and attire cultural topics.",
+  "review_notes": "No significant disagreements between analysts; both extracted identical analytical tasks and agreed on inclusion criteria. Merged ASJC areas to reflect the overarching subject (Cultural Studies) as well as the specific topic domains explicitly represented in the paper's categories (Language, Religion).",
   "paper_id": "2410.02677",
   "paper_name": "CulturalBench",
-  "csv_row": 30
+  "csv_row": 8,
+  "gold_source": "crowd_annotation",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "yes",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "answer_set",
+  "plurality_treatment": "noise",
+  "facets_explanation": "Reference answers were verified by crowd annotators on Prolific, who were selected based on demographic criteria (nationality and childhood residence) to match each of the targeted regional cultures. Answering the questions requires declarative cultural knowledge not contained within the question prompt. The benchmark includes 'multi-mode' questions where multiple valid cultural answers are accepted; however, any option failing to reach a strict consensus of at least 4 out of 5 annotators is filtered out.",
+  "review_notes_incremental": [
+    "answer_multiplicity: Ciop selected answer_set, Cip selected single_answer. Resolved to answer_set because the benchmark explicitly features 'multi-mode' questions where multiple valid answers are accepted for a single item. plurality_treatment: Ciop selected signal (focusing on the preservation of multiple valid cultural realities), Cip selected noise (focusing on the filtering of items lacking annotator consensus). Resolved to noise, as divergence between annotators on any given option is explicitly filtered out via a strict 4/5 majority vote threshold."
+  ]
 }
