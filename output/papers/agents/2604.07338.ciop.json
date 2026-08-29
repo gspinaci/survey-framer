@@ -52,5 +52,13 @@
   "gold_concerns_genesis": "yes",
   "answer_multiplicity": "single_answer",
   "plurality_treatment": "noise",
-  "facets_explanation": "The reference answers consist of existing museum metadata sourced from the Getty and Metropolitan Museum collections, which concern the genesis of the objects (creator, period, origin, and culture) and require external historical knowledge not visible in the image itself. During curation, the dataset utilized a two-stage human verification pipeline where only objects with consensus on cultural region and object type were retained, treating disagreement as noise. Evaluation is performed by comparing VLM outputs to the single reference answer key using an LLM-as-a-Judge to determine semantic alignment."
+  "facets_explanation": "The reference answers consist of existing museum metadata sourced from the Getty and Metropolitan Museum collections, which concern the genesis of the objects (creator, period, origin, and culture) and require external historical knowledge not visible in the image itself. During curation, the dataset utilized a two-stage human verification pipeline where only objects with consensus on cultural region and object type were retained, treating disagreement as noise. Evaluation is performed by comparing VLM outputs to the single reference answer key using an LLM-as-a-Judge to determine semantic alignment.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 74,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 0.029,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "yes",
+  "results_explanation": "The paper reports a performance gap between exact-match accuracy and partial match rate; on the overall dataset, Qwen3-VL-Flash scores '0.014' on exact match vs '0.658' on partial match, while GPT-5.4-mini on the Ancient Mediterranean split reports '0.000' exact match vs '0.735' partial match (representing a 73.5 percentage point gap, rounded to 74). The best reported exact-match score on the overall dataset is '0.029' accuracy by 'Qwen3-VL-32B-Instruct'. No quantified human baseline is reported, and systematic cultural asymmetry is noted, showing that 'East Asia consistently yields the strongest performance across models' (e.g., partial match of '0.740' for Qwen3-VL-Flash) while other regions like Europe or the Americas perform lower."
 }

@@ -50,5 +50,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "single_answer",
   "plurality_treatment": "not_stated",
-  "facets_explanation": "The reference answers were authored alongside the prompts by recruited native speakers of French, Spanish, and Chinese, followed by two subsequent layers of native-speaker reviews to verify accuracy, reasonableness, and difficulty. Answering the questions requires significant external linguistic and cultural knowledge (such as regional holidays, calendar systems, and grammatical properties) not present in the stimulus itself. The benchmark evaluates performance against an objective, short ground-truth final answer using an LLM-as-a-judge, but does not explicitly discuss or quantify annotator disagreement."
+  "facets_explanation": "The reference answers were authored alongside the prompts by recruited native speakers of French, Spanish, and Chinese, followed by two subsequent layers of native-speaker reviews to verify accuracy, reasonableness, and difficulty. Answering the questions requires significant external linguistic and cultural knowledge (such as regional holidays, calendar systems, and grammatical properties) not present in the stimulus itself. The benchmark evaluates performance against an objective, short ground-truth final answer using an LLM-as-a-judge, but does not explicitly discuss or quantify annotator disagreement.",
+  "reported_format_gap": "no",
+  "reported_format_gap_points": null,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 49.0,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "yes",
+  "results_explanation": "The paper reports that the best performing model is 'o3-pro-2025-06-10-high' with an accuracy score of '49.00' (Table 3), meaning 'reported_best_score' is 49.0 and 'reported_best_metric' is 'accuracy'. No human baseline is quantified on the benchmark tasks, so 'human_baseline_reported' is 'no'. Systematic cultural asymmetry is found, noting that 'Most models perform substantially better in math reasoning in English compared to in original languages (+10%)' and demonstrating an average language performance gap of '13.90 points' across models (Table 10). No comparison of different task formats on the same material is reported, so 'reported_format_gap' is 'no'."
 }

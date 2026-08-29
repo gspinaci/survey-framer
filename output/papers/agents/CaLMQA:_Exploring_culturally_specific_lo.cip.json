@@ -49,5 +49,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "graded_human_judgment",
   "plurality_treatment": "not_stated",
-  "facets_explanation": "CALMQA's reference answers are either harvested from community QA forums by Prolific workers or manually authored by hired Upwork freelancers, making crowd annotation the primary source. Answering these questions requires external cultural and regional knowledge not present in the prompt, and the answers are explicitly dependent on the specific language and cultural community. Evaluation relies on model-based scores (VeriScore, GPT-4O relevance) and multi-aspect human ratings on a 5-point scale rather than exact string matching against a static key. While annotator variance is statistically controlled via random effects in cumulative link mixed models, the paper does not explicitly report inter-annotator agreement or discuss the treatment of divergent annotator divergence."
+  "facets_explanation": "CALMQA's reference answers are either harvested from community QA forums by Prolific workers or manually authored by hired Upwork freelancers, making crowd annotation the primary source. Answering these questions requires external cultural and regional knowledge not present in the prompt, and the answers are explicitly dependent on the specific language and cultural community. Evaluation relies on model-based scores (VeriScore, GPT-4O relevance) and multi-aspect human ratings on a 5-point scale rather than exact string matching against a static key. While annotator variance is statistically controlled via random effects in cumulative link mixed models, the paper does not explicitly report inter-annotator agreement or discuss the treatment of divergent annotator divergence.",
+  "reported_format_gap": "no",
+  "reported_format_gap_points": null,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 49.2,
+  "reported_best_metric": "other",
+  "reported_cultural_asymmetry": "yes",
+  "results_explanation": "The paper does not compare different answer formats or difficulty regimes on the same items, so reported_format_gap is 'no'. It does not report a quantified human baseline score or inter-annotator agreement ceiling, making human_baseline_reported 'no'. The highest overall score S on the culturally specific split is 49.2 achieved by GPT-4O (Table 2); the metric is 'other' as S is a custom combined index defined as S = Ssurf * Sfact * Srel. A systematic cultural asymmetry is reported, with the authors finding that 'answers to culturally specific questions contain more factual errors than answers to culturally agnostic questions' and that performance drops 'considerably on low-resource languages'."
 }

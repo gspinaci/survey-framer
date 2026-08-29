@@ -49,5 +49,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "single_answer",
   "plurality_treatment": "noise",
-  "facets_explanation": "The reference factuality labels (Supported, Not-supported, Irrelevant) were produced by professional freelancers hired through Upwork. Answering the prompt 'Tell me a bio of <entity>' inherently requires external biographical knowledge not present in the stimulus, and annotators verified generated claims against English Wikipedia. Annotator disagreements were analyzed qualitatively on a 10% sample to understand edge cases and inherent debatability, but divergence was ultimately treated as noise, as the evaluation metric relies on a single, unified binary decision per atomic fact."
+  "facets_explanation": "The reference factuality labels (Supported, Not-supported, Irrelevant) were produced by professional freelancers hired through Upwork. Answering the prompt 'Tell me a bio of <entity>' inherently requires external biographical knowledge not present in the stimulus, and annotators verified generated claims against English Wikipedia. Annotator disagreements were analyzed qualitatively on a 10% sample to understand edge cases and inherent debatability, but divergence was ultimately treated as noise, as the evaluation metric relies on a single, unified binary decision per atomic fact.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 64,
+  "human_baseline_reported": "yes",
+  "human_gap_points": null,
+  "reported_best_score": 71.5,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "no",
+  "results_explanation": "The best model evaluated by humans is PerplexityAI, achieving a 'FACTSCORE' of '71.5' (Table 1). The paper reports a performance drop across difficulty regimes based on entity rarity, noting that ChatGPT's score 'significantly drops as the rarity of the entities increases, e.g., 80% \u2192 16%' (a 64-point gap). While a human baseline is evaluated and visually plotted in Figure 3 ('Ranking between 13 subjects (human and 12 LMs)'), its exact numerical value is not provided in the text, leaving the human gap points as null."
 }

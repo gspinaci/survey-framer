@@ -52,5 +52,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "single_answer",
   "plurality_treatment": "not_stated",
-  "facets_explanation": "The reference answers were authored alongside the prompts by recruited native speakers of French, Spanish, and Chinese, followed by native-speaker reviews. Answering the questions correctly requires significant external linguistic and cultural knowledge (such as regional holidays, calendar systems, and grammatical properties) not present in the stimulus itself. The evaluation relies on an LLM-as-a-judge to assess whether a generated response matches the single, objective short ground-truth final answer. The paper does not explicitly discuss or quantify annotator disagreement."
+  "facets_explanation": "The reference answers were authored alongside the prompts by recruited native speakers of French, Spanish, and Chinese, followed by native-speaker reviews. Answering the questions correctly requires significant external linguistic and cultural knowledge (such as regional holidays, calendar systems, and grammatical properties) not present in the stimulus itself. The evaluation relies on an LLM-as-a-judge to assess whether a generated response matches the single, objective short ground-truth final answer. The paper does not explicitly discuss or quantify annotator disagreement.",
+  "reported_format_gap": "no",
+  "reported_format_gap_points": null,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 49.0,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "yes",
+  "results_explanation": "The highest score on MultiNRC is achieved by 'o3-pro-2025-06-10-high' with an accuracy of '49.00' in the 'Original' setting (Table 3). No human baseline is quantified on the benchmark tasks. The paper reports a systematic cultural asymmetry, noting 'especially pronounced gains for Spanish (+19.1) and Chinese (+12.5)' on math reasoning when evaluated on English equivalents compared to the original languages (Table 5). No comparison of different task formats is reported."
 }

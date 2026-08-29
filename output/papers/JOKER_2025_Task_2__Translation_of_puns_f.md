@@ -65,6 +65,22 @@ Multi-agent pipelines incorporating LLMs, contrastive learning, and phonetic-sem
 
 **Answer Multiplicity:** answer_set
 
-**Plurality Treatment:** not_addressed
+**Plurality Treatment:** not_stated
 
 **Facets Explanation:** Reference translations and pun location annotations were produced by professional translators, who serve as domain experts. A significant portion of the English puns is provided with multiple valid French translations, yielding an answer set that captures different creative strategies for rendering the wordplay. The paper does not explicitly analyze annotator disagreement or divergence as signal or noise, instead treating the multiple references as standard variations to allow robust machine translation evaluation. Successfully translating these puns requires deep linguistic, phonetic, and semantic knowledge of both languages that is not present in the source stimulus.
+
+**Reported Format Gap:** no
+
+**Reported Format Gap Points:** None
+
+**Human Baseline Reported:** no
+
+**Human Gap Points:** None
+
+**Reported Best Score:** 43.33
+
+**Reported Best Metric:** bleu
+
+**Reported Cultural Asymmetry:** not_stated
+
+**Results Explanation:** The highest score on the primary metric of BLEU is 43.33, achieved by the 'Skommarkhos_Lucie_SFT' run on the test data (Table 4). No standard human baseline score is reported for comparison on this task, though a manual evaluation by a native French speaker shows the best run achieved a 74% success rate (37 of 50 puns) in preserving both meaning and wordplay (Table 7). The paper does not evaluate alternative answer formats or report a format gap for the same models, and cross-cultural asymmetry is 'not_stated' as the task is restricted to English-to-French translation.

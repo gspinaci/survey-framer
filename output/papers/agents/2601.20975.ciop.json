@@ -49,5 +49,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "answer_set",
   "plurality_treatment": "noise",
-  "facets_explanation": "The reference answers were produced by expert data annotators and verified through a rigorous three-phase protocol involving independent research by three reviewers, comparison, and a conflict resolution phase where any ambiguous prompts were filtered. Because the benchmark tasks are grounded in the open web, answering requires retrieving external information not present in the prompt stimulus. The ground truth for set-based queries consists of enumerated lists, and any divergence between annotators is resolved or filtered out, treating disagreement as noise."
+  "facets_explanation": "The reference answers were produced by expert data annotators and verified through a rigorous three-phase protocol involving independent research by three reviewers, comparison, and a conflict resolution phase where any ambiguous prompts were filtered. Because the benchmark tasks are grounded in the open web, answering requires retrieving external information not present in the prompt stimulus. The ground truth for set-based queries consists of enumerated lists, and any divergence between annotators is resolved or filtered out, treating disagreement as noise.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 22,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 81.9,
+  "reported_best_metric": "f1",
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "The benchmark's primary ranking metric is the 'F1-Score', with 'Gemini Deep Research Agent' achieving the top headline score of '81.90' (Table 4). The paper reports a format gap comparing the partial-match 'F1' metric to the strict exact-match 'Fully correct' metric on the same tasks, with the largest gap of 22 points (22.21 rounded) occurring for 'o3 Deep Research' ('66.45' F1 vs '44.24' Fully correct). No quantified human baseline is evaluated or compared against the models, and potential cultural asymmetries are not analysed or reported."
 }

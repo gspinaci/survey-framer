@@ -51,5 +51,13 @@
   "gold_concerns_genesis": "yes",
   "answer_multiplicity": "single_answer",
   "plurality_treatment": "not_stated",
-  "facets_explanation": "The reference answers are directly extracted from official, pre-existing keys for secondary-school textbooks and standardized AP Art History exams. Answering the questions requires retrieving external domain-specific facts, stylistic classifications, and iconographic knowledge not explicitly contained in the visual stimuli or question texts. Because the benchmark uses established educational answer keys graded through programmatic exact or fuzzy string matching, the paper does not address annotator plurality or divergent interpretations."
+  "facets_explanation": "The reference answers are directly extracted from official, pre-existing keys for secondary-school textbooks and standardized AP Art History exams. Answering the questions requires retrieving external domain-specific facts, stylistic classifications, and iconographic knowledge not explicitly contained in the visual stimuli or question texts. Because the benchmark uses established educational answer keys graded through programmatic exact or fuzzy string matching, the paper does not address annotator plurality or divergent interpretations.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 88,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 82.8,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "yes",
+  "results_explanation": "Gemini 3.1 Pro Preview achieved the highest macro-average score of 82.8% on the 'accuracy' metric under the default answer-only condition (Table 5). The paper reports a large format gap: 'models exceeding 94 percent on multiple choice can fall to 23.9 percent on open completion (Claude Opus 4.6) and 6.2 percent on error identification (Claude Sonnet 4.6)', representing a gap of 88 points (94.3% MCQ minus 6.2% for Claude Sonnet 4.6). A language asymmetry was also reported via logistic regression, with Italian items having significantly lower odds of correct answers ('Language: Italian' OR = 0.459, p < .001, Table 8)."
 }

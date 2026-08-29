@@ -51,5 +51,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "single_answer",
   "plurality_treatment": "noise",
-  "facets_explanation": "The benchmark questions are sourced from college exams, quizzes, and textbooks, representing pre-existing reference material. Correctly answering them requires deep domain-specific knowledge beyond what is visible in the presented diagrams or images. Human experts and model filters were used to resolve ambiguities and eliminate low-quality or poorly aligned questions, treating annotator divergence as noise to be eliminated."
+  "facets_explanation": "The benchmark questions are sourced from college exams, quizzes, and textbooks, representing pre-existing reference material. Correctly answering them requires deep domain-specific knowledge beyond what is visible in the presented diagrams or images. Human experts and model filters were used to resolve ambiguities and eliminate low-quality or poorly aligned questions, treating annotator divergence as noise to be eliminated.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 27,
+  "human_baseline_reported": "yes",
+  "human_gap_points": 30,
+  "reported_best_score": 55.0,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "The paper reports that model performance drops significantly on the more difficult MMMU-Pro compared to MMMU (Val), with the largest overall degradation of 26.9 percentage points (rounded to 27) reported for 'VILA-1.5-40B', which falls from '51.9' on 'MMMU (Val)' to an overall average of 25.0% on MMMU-Pro. On the 'Standard (10 Opts)' split, 'Claude 3.5 Sonnet' achieves the highest model accuracy of '55.0%' compared to the 'Human Expert (High)' baseline of '85.4%', resulting in a human-model gap of 30.4 percentage points (rounded to 30). On the 'Vision' split, 'GPT-4o (0513)' is the best performing model with '49.7%' accuracy compared to the 'Human Expert (High)' baseline of '85.4%'."
 }

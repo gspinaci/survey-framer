@@ -65,6 +65,22 @@ State-of-the-art frontier models historically struggle with highly specific fact
 
 **Answer Multiplicity:** not_stated
 
-**Plurality Treatment:** not_addressed
+**Plurality Treatment:** not_stated
 
 **Facets Explanation:** The provided text is a GitHub repository README that introduces SimpleQA as an evaluation for 'short-form factuality' but does not contain details about its construction. Because it tests factuality in a zero-shot setting without providing retrieved context passages, answering correctly requires knowledge beyond the prompt stimulus. All other dataset construction and scoring details (such as the gold source, answer multiplicity, and treatment of annotator plurality) are omitted from this document.
+
+**Reported Format Gap:** not_stated
+
+**Reported Format Gap Points:** None
+
+**Human Baseline Reported:** no
+
+**Human Gap Points:** None
+
+**Reported Best Score:** None
+
+**Reported Best Metric:** None
+
+**Reported Cultural Asymmetry:** not_stated
+
+**Results Explanation:** The provided text is the GitHub README for the `openai/simple-evals` repository, which lists SimpleQA as one of its supported evaluations ("SimpleQA: Measuring short-form factuality in large language models") but does not contain any of its actual evaluation results. The "Benchmark Results" table only reports scores for other datasets like "MMLU", "GPQA", "MATH", "HumanEval", and "MGSM". Consequently, because the document contains no numeric results or data for SimpleQA, all specific metrics, headline scores, format gaps, and human baselines are omitted or not stated.

@@ -44,5 +44,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "single_answer",
   "plurality_treatment": "noise",
-  "facets_explanation": "The reference texts are the original classical Arabic pages lifted directly from the digital Al-Shamela Library database. For automated evaluation, the back-translated Arabic text is compared to this single original Arabic source page using cosine similarity of vector embeddings. For manual human-in-the-loop validation, translation corrections are treated as noise/disagreements to be resolved, requiring a consensus of at least two separate reviewers to be accepted."
+  "facets_explanation": "The reference texts are the original classical Arabic pages lifted directly from the digital Al-Shamela Library database. For automated evaluation, the back-translated Arabic text is compared to this single original Arabic source page using cosine similarity of vector embeddings. For manual human-in-the-loop validation, translation corrections are treated as noise/disagreements to be resolved, requiring a consensus of at least two separate reviewers to be accepted.",
+  "reported_format_gap": "no",
+  "reported_format_gap_points": null,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 86,
+  "reported_best_metric": "other",
+  "reported_cultural_asymmetry": "no",
+  "results_explanation": "The paper measures translation fidelity by back-translating English text back to Arabic and computing embedding cosine similarity, reporting that '86% of the Anthropic model results' (using claude-3-haiku-20240307) achieved 'cosine similarity scores >= 0.7' compared to '71% of the OpenAI model results' (using gpt-4o-mini). No numerical human baseline or format/difficulty gap comparisons are provided. While language bias is discussed, the authors explicitly state that the tested commercial LLMs 'did not display detectable language bias between Arabic and English'."
 }

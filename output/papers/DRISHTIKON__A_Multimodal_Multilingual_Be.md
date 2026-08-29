@@ -67,3 +67,19 @@ Current state-of-the-art vision-language models struggle significantly with reas
 **Plurality Treatment:** not_stated
 
 **Facets Explanation:** The provided text consists solely of the ACL Anthology metadata and abstract for the DRISHTIKON benchmark, lacking the full paper text or a dataset-construction section. Consequently, specific procedural details regarding the generation of reference answers, requirement of external knowledge, answer multiplicity, and plurality treatment are not stated in the source text.
+
+**Reported Format Gap:** not_stated
+
+**Reported Format Gap Points:** None
+
+**Human Baseline Reported:** no
+
+**Human Gap Points:** None
+
+**Reported Best Score:** None
+
+**Reported Best Metric:** None
+
+**Reported Cultural Asymmetry:** yes
+
+**Results Explanation:** Because the provided text contains only the ACL Anthology metadata and abstract, no numeric results, format gaps, or human baselines are reported. However, the abstract explicitly identifies a systematic performance asymmetry, noting that evaluation results expose limitations in models' cultural reasoning, 'particularly for low-resource languages and less-documented traditions.'

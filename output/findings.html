@@ -1,0 +1,1456 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Benchmark LLM e Humanities: che cosa misurano davvero</title>
+<style>
+:root{
+  color-scheme: light;
+  --plane:#f9f9f7; --surface:#fcfcfb;
+  --ink:#0b0b0b; --ink-2:#52514e; --muted:#898781;
+  --grid:#e1e0d9; --rule:#c3c2b7; --ring:rgba(11,11,11,.10);
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a;
+  --track:#eceae4; --dim:#b9b7ae;
+  --seq-1:#cde2fb; --seq-2:#9ec5f4; --seq-3:#5598e7; --seq-4:#2a78d6;
+  --on-c1:#0b0b0b; --on-c2:#0b0b0b; --on-c3:#ffffff; --on-c4:#ffffff;
+  --div-pos:#2a78d6; --div-neg:#eb6834;
+}
+@media (prefers-color-scheme: dark){
+  :root:where(:not([data-theme="light"])){
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19;
+    --ink:#ffffff; --ink-2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --rule:#383835; --ring:rgba(255,255,255,.10);
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70;
+    --track:#2c2c2a; --dim:#5a5954;
+    --seq-1:#104281; --seq-2:#184f95; --seq-3:#256abf; --seq-4:#3987e5;
+    --on-c1:#ffffff; --on-c2:#ffffff; --on-c3:#ffffff; --on-c4:#ffffff;
+    --div-pos:#3987e5; --div-neg:#d95926;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --plane:#0d0d0d; --surface:#1a1a19;
+  --ink:#ffffff; --ink-2:#c3c2b7; --muted:#898781;
+  --grid:#2c2c2a; --rule:#383835; --ring:rgba(255,255,255,.10);
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70;
+  --track:#2c2c2a; --dim:#5a5954;
+  --seq-1:#104281; --seq-2:#184f95; --seq-3:#256abf; --seq-4:#3987e5;
+  --on-c1:#ffffff; --on-c2:#ffffff; --on-c3:#ffffff; --on-c4:#ffffff;
+  --div-pos:#3987e5; --div-neg:#d95926;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--plane); color:var(--ink);
+  font:16px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+main{max-width:1000px;margin:0 auto;padding:56px 24px 96px}
+
+/* ---------- header ---------- */
+.eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+h1{font:700 clamp(30px,5.2vw,50px)/1.08 Georgia,"Iowan Old Style",serif;letter-spacing:-.02em;margin:14px 0 20px;max-width:19ch}
+.lede{font-size:19px;line-height:1.55;color:var(--ink-2);max-width:64ch;margin:0}
+.lede + .lede{margin-top:14px}
+header{border-bottom:1px solid var(--rule);padding-bottom:38px}
+
+/* ---------- kpi row ---------- */
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:34px}
+.kpi{background:var(--surface);border:1px solid var(--ring);border-radius:12px;padding:18px 18px 16px}
+.kpi b{display:block;font-size:38px;line-height:1;font-weight:700;letter-spacing:-.02em}
+.kpi span{display:block;margin-top:9px;font-size:13px;line-height:1.45;color:var(--ink-2)}
+
+/* ---------- nav ---------- */
+nav{display:flex;flex-wrap:wrap;gap:7px;margin:26px 0 52px}
+nav a{
+  font-size:12.5px;color:var(--ink-2);text-decoration:none;
+  border:1px solid var(--ring);background:var(--surface);
+  padding:6px 11px;border-radius:99px;
+}
+nav a:hover{color:var(--ink);border-color:var(--rule)}
+
+/* ---------- sections ---------- */
+section{margin:0 0 68px;scroll-margin-top:24px}
+.head{display:grid;grid-template-columns:44px 1fr;gap:16px;align-items:start;margin-bottom:22px}
+.n{font-size:13px;font-weight:700;color:var(--s1);padding-top:10px;font-variant-numeric:tabular-nums}
+h2{font:700 clamp(23px,3.4vw,33px)/1.18 Georgia,"Iowan Old Style",serif;letter-spacing:-.015em;margin:0 0 10px}
+.claim{font-size:17px;line-height:1.6;color:var(--ink-2);max-width:70ch;margin:0}
+h3{font-size:14.5px;margin:0 0 3px;font-weight:650}
+.sub{font-size:13px;color:var(--muted);margin:0 0 16px;max-width:70ch;line-height:1.5}
+
+.card{background:var(--surface);border:1px solid var(--ring);border-radius:12px;padding:22px;min-width:0}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.card + .card{margin-top:14px}
+
+/* ---------- bars ---------- */
+.legend{display:flex;flex-wrap:wrap;gap:16px;margin:0 0 18px;font-size:12.5px;color:var(--ink-2)}
+.legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.row{display:grid;grid-template-columns:minmax(96px,1.35fr) minmax(0,2.4fr) 62px;gap:12px;align-items:center;margin:9px 0;font-size:13px}
+.row .lbl{color:var(--ink-2);line-height:1.35}
+.track{height:19px;background:var(--track);border-radius:4px;overflow:hidden}
+.bar{height:100%;border-radius:0 4px 4px 0;background:var(--s1);transition:filter .12s}
+.bar.k2{background:var(--s2)} .bar.k3{background:var(--s3)} .bar.dim{background:var(--dim)}
+.row:hover .bar{filter:brightness(1.08)}
+.val{text-align:right;font-variant-numeric:tabular-nums;font-weight:650;font-size:13px}
+.val small{font-weight:400;color:var(--muted)}
+
+/* diverging: bars grow left/right from a shared zero rule */
+.drow{display:grid;grid-template-columns:minmax(84px,1fr) minmax(0,2.2fr) 46px;gap:12px;align-items:center;margin:8px 0;font-size:13px}
+.dtrack{position:relative;height:19px;background:var(--track);border-radius:4px}
+.dtrack:before{content:"";position:absolute;left:50%;top:-3px;bottom:-3px;width:1px;background:var(--rule)}
+.dbar{position:absolute;top:0;height:100%}
+.dbar.pos{left:50%;background:var(--div-pos);border-radius:0 4px 4px 0}
+.dbar.neg{right:50%;background:var(--div-neg);border-radius:4px 0 0 4px}
+.zero{display:grid;grid-template-columns:minmax(84px,1fr) minmax(0,2.2fr) 46px;gap:12px;font-size:11px;color:var(--muted);margin-top:4px}
+.zero span:nth-child(2){display:flex;justify-content:space-between}
+
+/* ---------- heatmap ---------- */
+.hm{display:grid;grid-template-columns:150px repeat(3,minmax(0,1fr)) 62px;gap:3px;font-size:12.5px}
+.hm div{padding:11px 8px;text-align:center;border-radius:4px;font-variant-numeric:tabular-nums}
+.hm .h{background:transparent;color:var(--muted);font-size:11.5px;padding-bottom:6px}
+.hm .rl{background:transparent;color:var(--ink-2);text-align:left;font-size:12.5px}
+.hm .tot{background:transparent;color:var(--muted);font-weight:600}
+.c0{background:var(--track);color:var(--muted)}
+.c1{background:var(--seq-1);color:var(--on-c1)}
+.c2{background:var(--seq-2);color:var(--on-c2)}
+.c3{background:var(--seq-3);color:var(--on-c3)}
+.c4{background:var(--seq-4);color:var(--on-c4);font-weight:700}
+
+/* ---------- hero ---------- */
+.hero{font-size:clamp(46px,8vw,64px);line-height:1;font-weight:700;letter-spacing:-.03em;color:var(--s1);margin:6px 0 8px}
+.hero.warn{color:var(--s2)}
+
+/* ---------- misc ---------- */
+.note{font-size:12.5px;line-height:1.55;color:var(--muted);margin:16px 0 0;max-width:72ch}
+.stat{border-left:3px solid var(--s1);padding:2px 0 2px 15px;margin:20px 0 0;font-size:14px;line-height:1.6;color:var(--ink-2);max-width:72ch}
+.stat b{color:var(--ink);font-weight:650}
+.stat.warn{border-left-color:var(--s2)}
+table{border-collapse:collapse;width:100%;font-size:12.5px;margin-top:6px}
+th,td{text-align:left;padding:7px 10px 7px 0;border-bottom:1px solid var(--grid);vertical-align:top}
+th{color:var(--muted);font-weight:600;font-size:11.5px;letter-spacing:.03em;text-transform:uppercase}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+code{font:12.5px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--track);padding:1.5px 5px;border-radius:4px;color:var(--ink-2);overflow-wrap:anywhere}
+details{margin-top:18px;border-top:1px solid var(--grid);padding-top:12px}
+summary{cursor:pointer;font-size:12.5px;color:var(--ink-2)}
+summary:hover{color:var(--ink)}
+.p{font-variant-numeric:tabular-nums;font-size:12px;color:var(--muted);white-space:nowrap}
+.tag{display:inline-block;font-size:11px;letter-spacing:.05em;text-transform:uppercase;font-weight:650;
+     color:var(--ink-2);background:var(--track);padding:4px 8px;border-radius:4px;margin-bottom:12px}
+.names{font-size:13px;line-height:1.7;color:var(--ink-2);margin:8px 0 0}
+.names b{color:var(--ink);font-weight:600}
+
+/* ---------- caveats ---------- */
+.caveats{border-top:2px solid var(--rule);padding-top:44px;margin-top:20px}
+.cav{margin:0 0 34px}
+.cav h3{font-size:16px;margin-bottom:8px;font-weight:650}
+.cav p{font-size:14.5px;line-height:1.65;color:var(--ink-2);margin:0 0 10px;max-width:74ch}
+.cav p b{color:var(--ink);font-weight:650}
+
+footer{border-top:1px solid var(--rule);margin-top:56px;padding-top:24px;font-size:13px;line-height:1.65;color:var(--muted);max-width:74ch}
+footer b{color:var(--ink-2)}
+footer p{margin:0 0 12px}
+
+
+/* ---------- switcher fra le due viste ---------- */
+.viewswitch{display:flex;gap:4px;background:var(--track);border-radius:99px;padding:4px;margin:0 0 30px;width:fit-content}
+.viewswitch button{appearance:none;border:0;background:transparent;color:var(--ink-2);cursor:pointer;
+  font:600 13px/1 system-ui,-apple-system,"Segoe UI",sans-serif;padding:9px 18px;border-radius:99px}
+.viewswitch button[aria-selected="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 2px var(--ring)}
+.viewswitch button:hover{color:var(--ink)}
+[hidden]{display:none!important}
+
+/* ---------- l'articolo ----------
+   Il pannello ridefinisce i token chiari su di sé: le proprietà custom si
+   ereditano, quindi questo vince sui valori scuri dichiarati su :root senza
+   toccare la vista findings, che continua a seguire il tema del lettore. */
+#view-article{
+  --measure:660px;            /* ~72 caratteri a 16.5px: 70ch qui si risolverebbe
+                                 contro il font della griglia, non dell'articolo */
+  --plane:#f9f9f7; --surface:#fcfcfb;
+  --ink:#0b0b0b; --ink-2:#52514e; --muted:#898781;
+  --grid:#e1e0d9; --rule:#c3c2b7; --ring:rgba(11,11,11,.10);
+  --s1:#2a78d6; --track:#eceae4; --dim:#b9b7ae;
+  background:var(--plane);color:var(--ink);
+  margin:0 -24px;padding:0 24px 8px;border-radius:14px;
+}
+#view-article[data-art-theme="dark"]{
+  --plane:#0d0d0d; --surface:#1a1a19;
+  --ink:#ffffff; --ink-2:#c3c2b7; --muted:#898781;
+  --grid:#2c2c2a; --rule:#383835; --ring:rgba(255,255,255,.10);
+  --s1:#3987e5; --track:#2c2c2a; --dim:#5a5954;
+}
+.art-head{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:26px}
+.art-mode{appearance:none;border:1px solid var(--ring);background:var(--surface);color:var(--ink-2);
+  cursor:pointer;font:600 12px/1 system-ui,-apple-system,"Segoe UI",sans-serif;
+  padding:8px 13px;border-radius:99px;white-space:nowrap}
+.art-mode:hover{color:var(--ink);border-color:var(--rule)}
+
+/* indice, ricavato dai titoli del markdown al caricamento */
+/* Below the sidebar breakpoint the index sits above the text as a card; from
+   1080px up it moves into a sticky left column (see the media query below). */
+.art-layout{display:block}
+/* .art-toc is a <nav>, so the page-level nav rules would otherwise turn every
+   entry into a pill and lay the list out as a flex row. Reset both here. */
+.art-toc{display:block;background:var(--surface);border:1px solid var(--ring);border-radius:12px;
+  padding:22px 24px;margin:0 0 46px;max-width:var(--measure)}
+.art-toc h2{font:650 12px/1 system-ui,-apple-system,"Segoe UI",sans-serif;
+  letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:0 0 14px;border:0;padding:0}
+.art-toc ol{list-style:none;margin:0;padding:0}
+.art-toc li{margin:0;break-inside:avoid}
+@media(min-width:900px) and (max-width:1079px){.art-toc ol{columns:2;column-gap:34px}}
+.art-toc a{display:block;text-decoration:none;color:var(--ink-2);font-size:14px;line-height:1.45;
+  padding:5px 0 5px 12px;border:0;border-left:2px solid transparent;border-radius:0;
+  background:transparent}
+.art-toc a:hover{color:var(--ink)}
+.art-toc a.is-current{color:var(--ink);border-left-color:var(--s1);font-weight:600}
+.art-toc .lvl3 a{font-size:13px;padding-left:28px;color:var(--muted)}
+.art-toc .lvl3 a:hover,.art-toc .lvl3 a.is-current{color:var(--ink-2)}
+
+/* il testo lungo */
+.art{max-width:var(--measure);font-size:16.5px;line-height:1.72}
+.art .art-title{font:700 clamp(27px,4.4vw,40px)/1.16 Georgia,"Iowan Old Style",serif;
+  letter-spacing:-.02em;margin:0 0 30px;max-width:26ch;color:var(--ink)}
+.art h2{font:700 clamp(20px,2.8vw,27px)/1.24 Georgia,"Iowan Old Style",serif;letter-spacing:-.012em;
+  margin:52px 0 16px;padding-top:22px;border-top:1px solid var(--grid);scroll-margin-top:20px;color:var(--ink)}
+.art h2:first-of-type{border-top:0;padding-top:0;margin-top:0}
+.art h3{font:650 17px/1.35 system-ui,-apple-system,"Segoe UI",sans-serif;margin:34px 0 10px;
+  scroll-margin-top:20px;color:var(--ink)}
+.art p{margin:0 0 17px;color:var(--ink-2)}
+.art strong{color:var(--ink);font-weight:650}
+.art hr{border:0;border-top:1px solid var(--grid);margin:44px 0}
+.art hr + h2{border-top:0;padding-top:0;margin-top:0}
+.art code{font-size:13px}
+.art a{color:var(--s1);text-decoration:none;border-bottom:1px solid var(--ring);overflow-wrap:anywhere}
+.art a:hover{border-bottom-color:var(--s1)}
+.art .ref{padding-left:26px;text-indent:-26px;font-size:14.5px;line-height:1.6;margin:0 0 13px}
+/* Sidebar: the index stays in view while the article scrolls, and the text
+   keeps its 70ch measure rather than stretching to fill the extra width. The
+   pair is centred as a unit, so the reading column does not drift left. */
+@media(min-width:1080px){
+  body.reading-article main{max-width:1120px}
+  .art-layout{display:grid;grid-template-columns:222px minmax(0,var(--measure));
+    gap:54px;justify-content:center;align-items:start}
+  .art-toc{position:sticky;top:22px;max-height:calc(100vh - 44px);overflow-y:auto;
+    overscroll-behavior:contain;background:transparent;border:0;border-radius:0;
+    padding:0 4px 0 0;margin:0;max-width:none}
+  .art-toc ol{columns:1}
+  .art-toc a{font-size:13.5px;padding:5px 0 5px 11px}
+  .art-toc .lvl3 a{font-size:12.5px;padding-left:24px}
+  .art{max-width:none}   /* la colonna della griglia impone già la misura */
+  /* Constrain the header to the grid's own width so the label lines up with the
+     sidebar and the toggle with the right edge of the text column. */
+  .art-head{max-width:calc(222px + 54px + var(--measure));margin:0 auto;padding-bottom:4px}
+}
+
+@media(max-width:760px){
+  #view-article{margin:0 -16px;padding:0 16px 8px}
+  .art{font-size:16px}.art h2{margin-top:40px}.art-toc{padding:18px}
+}
+
+@media(max-width:760px){
+  main{padding:32px 16px 64px}
+  .kpis,.grid2{grid-template-columns:1fr}
+  .head{grid-template-columns:30px 1fr;gap:10px}
+  .row{grid-template-columns:minmax(84px,1fr) minmax(0,1.6fr) 54px;gap:8px;font-size:12.5px}
+  .hm{grid-template-columns:104px repeat(3,minmax(0,1fr)) 46px;font-size:11px;min-width:340px}
+  .hm div{padding:9px 3px}
+}
+@media print{ body{background:#fff} .card,.kpi{break-inside:avoid} nav{display:none} }
+</style>
+<style>
+/* aggiunte per la sezione mappa */
+.mapgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:14px}
+.mini{display:grid;grid-template-columns:minmax(58px,auto) minmax(0,1fr) 34px;gap:10px;align-items:center;margin:7px 0;font-size:12.5px}
+.mini .lbl{color:var(--ink-2)}
+.mini .track{height:15px}
+.scores{display:grid;grid-template-columns:minmax(140px,1.5fr) minmax(0,3fr) 46px;gap:12px;align-items:center;margin:6px 0;font-size:12.5px}
+.scores .lbl{color:var(--ink-2);line-height:1.3}
+.axis{display:grid;grid-template-columns:minmax(140px,1.5fr) minmax(0,3fr) 46px;gap:12px;font-size:11px;color:var(--muted);margin-top:6px}
+.axis span:nth-child(2){display:flex;justify-content:space-between}
+.med{position:absolute;top:-4px;bottom:-4px;width:1px;background:var(--rule)}
+.fam{display:grid;grid-template-columns:minmax(120px,1.2fr) minmax(0,2.6fr) 84px;gap:12px;align-items:center;margin:9px 0;font-size:13px}
+.fam .lbl{color:var(--ink-2)}
+.stack{display:flex;height:19px;background:var(--track);border-radius:4px;overflow:hidden}
+.seg{height:100%}
+.seg.txt{background:var(--s1)}
+.seg.mm{background:var(--s3);box-shadow:-2px 0 0 var(--surface)}
+.fam .val{font-size:12.5px}
+@media(max-width:760px){.fam{grid-template-columns:minmax(90px,1fr) minmax(0,1.8fr) 72px;gap:8px;font-size:12px}}
+.sctrack{position:relative;height:16px;background:var(--track);border-radius:4px}
+@media(max-width:760px){
+  .mapgrid{grid-template-columns:1fr}
+  .scores,.axis{grid-template-columns:minmax(96px,1.2fr) minmax(0,2fr) 40px;gap:8px;font-size:11.5px}
+}
+</style>
+</head>
+<body>
+<main>
+
+<div class="viewswitch" role="tablist" aria-label="Vista">
+  <button role="tab" id="tab-findings" aria-controls="view-findings" aria-selected="true">Findings</button>
+  <button role="tab" id="tab-article"  aria-controls="view-article"  aria-selected="false">Articolo</button>
+</div>
+
+<div id="view-findings" role="tabpanel" aria-labelledby="tab-findings">
+
+<header>
+  <div class="eyebrow">42 benchmark · valutazione di LLM su materiale umanistico · 2021–2026</div>
+  <h1>Che cosa misurano davvero i benchmark per le Humanities</h1>
+  <p class="lede">Valutare un modello linguistico significa dichiarare in anticipo qual è la
+  risposta giusta. Su un problema di aritmetica è una richiesta innocua. Su un'iconografia, una
+  datazione, la traduzione di un gioco di parole o la lettura di un documento d'archivio, decidere
+  qual è la risposta giusta <em>è già</em> l'atto disciplinare — quello su cui gli specialisti
+  discutono, e a volte continuano a discutere.</p>
+  <p class="lede">Questo documento descrive 42 benchmark che fanno esattamente questo: prendono
+  materiale umanistico e ne ricavano una ground truth. Racconta com'è fatto quel materiale, chi
+  produce le risposte di riferimento, quante risposte lo scoring accetta, e che cosa succede al
+  punteggio quando un benchmark prova a misurare la stessa cosa in due modi diversi.</p>
+
+  <div class="kpis">
+    <div class="kpi"><b>21 su 42</b><span>pongono domande la cui risposta non è nello stimolo
+      mostrato al modello, e la valutano contro un'unica chiave</span></div>
+    <div class="kpi"><b>9 su 9</b><span>i benchmark che hanno misurato lo stesso materiale in due
+      modi trovano due punteggi diversi — mediana 31 punti di scarto</span></div>
+    <div class="kpi"><b>38 su 42</b><span>valutano almeno un modello OpenAI: il campo verifica quasi
+      sempre lo stesso fornitore</span></div>
+  </div>
+</header>
+
+<nav aria-label="Indice">
+  <a href="#mappa">01 · La mappa</a>
+  <a href="#verita">02 · Chi decide la risposta giusta</a>
+  <a href="#quante">03 · Quante risposte sono ammesse</a>
+  <a href="#metro">04 · Se cambi il metro</a>
+  <a href="#attenzione">05 · Dove si concentra l'attenzione</a>
+  <a href="#vuoti">06 · Cosa il campo non chiede</a>
+  <a href="#limiti">07 · Fin dove reggono questi numeri</a>
+</nav>
+
+<section id="mappa">
+  <div class="head"><div class="n">01</div><div>
+    <h2>La mappa</h2>
+    <p class="claim">Prima di qualsiasi tesi: di che cosa stiamo parlando. Quarantadue benchmark
+    pubblicati fra il 2021 e il 2026, quasi tutti negli ultimi due anni, che usano materiale
+    umanistico per valutare modelli generativi con metriche quantitative.</p>
+  </div></div>
+
+  <div class="mapgrid">
+    <div class="card">
+      <h3>Quando</h3>
+      <p class="sub">Anno di pubblicazione o preprint.</p>
+      <div class="mini"><span class="lbl">2021</span><div class="track"><div class="bar" style="width:5.3%"></div></div><span class="val">1</span></div>
+      <div class="mini"><span class="lbl">2023</span><div class="track"><div class="bar" style="width:10.5%"></div></div><span class="val">2</span></div>
+      <div class="mini"><span class="lbl">2024</span><div class="track"><div class="bar" style="width:47.4%"></div></div><span class="val">9</span></div>
+      <div class="mini"><span class="lbl">2025</span><div class="track"><div class="bar" style="width:100%"></div></div><span class="val">19</span></div>
+      <div class="mini"><span class="lbl">2026</span><div class="track"><div class="bar" style="width:57.9%"></div></div><span class="val">11</span></div>
+      <p class="note">Trenta dei quarantadue sono del 2025 o del 2026. È un campo che si è formato
+      quasi tutto in ventiquattro mesi, e questo va tenuto presente ogni volta che si legge un
+      confronto fra anni: le annate più vecchie sono sottili.</p>
+    </div>
+
+    <div class="card">
+      <h3>Che cosa viene mostrato al modello</h3>
+      <p class="sub">Modalità presenti nel benchmark.</p>
+      <div class="mini"><span class="lbl">solo testo</span><div class="track"><div class="bar" style="width:100%"></div></div><span class="val">23</span></div>
+      <div class="mini"><span class="lbl">immagine + testo</span><div class="track"><div class="bar" style="width:73.9%"></div></div><span class="val">17</span></div>
+      <div class="mini"><span class="lbl">audio + testo</span><div class="track"><div class="bar" style="width:4.3%"></div></div><span class="val">1</span></div>
+      <div class="mini"><span class="lbl">audio+video+img+testo</span><div class="track"><div class="bar" style="width:4.3%"></div></div><span class="val">1</span></div>
+      <p class="note">Il multimodale è arrivato, ma è quasi interamente immagine ferma. Un solo
+      benchmark del corpus contiene video, e due contengono audio.</p>
+    </div>
+
+    <div class="card">
+      <h3>Quanto sono grandi</h3>
+      <p class="sub">Item dichiarati; 40 benchmark su 42 dichiarano una dimensione.</p>
+      <div class="mini"><span class="lbl">sotto 1.000</span><div class="track"><div class="bar" style="width:62.5%"></div></div><span class="val">10</span></div>
+      <div class="mini"><span class="lbl">1.000 – 10.000</span><div class="track"><div class="bar" style="width:100%"></div></div><span class="val">16</span></div>
+      <div class="mini"><span class="lbl">10.000 – 100.000</span><div class="track"><div class="bar" style="width:62.5%"></div></div><span class="val">10</span></div>
+      <div class="mini"><span class="lbl">oltre 100.000</span><div class="track"><div class="bar" style="width:25%"></div></div><span class="val">4</span></div>
+      <p class="note">Mediana <b>3.028</b> item; il più piccolo ne ha 100, il più grande 589.764.
+      Quasi tutti sono oggetti artigianali, costruiti a mano da un gruppo di ricerca; una manciata
+      sono infrastrutture.</p>
+    </div>
+
+    <div class="card">
+      <h3>Come si assegna il punteggio</h3>
+      <p class="sub">Metrica su cui il paper riporta il risultato principale.</p>
+      <div class="mini"><span class="lbl">accuracy</span><div class="track"><div class="bar" style="width:100%"></div></div><span class="val">21</span></div>
+      <div class="mini"><span class="lbl">metrica su misura</span><div class="track"><div class="bar" style="width:28.6%"></div></div><span class="val">6</span></div>
+      <div class="mini"><span class="lbl">F1</span><div class="track"><div class="bar" style="width:14.3%"></div></div><span class="val">3</span></div>
+      <div class="mini"><span class="lbl">BLEU</span><div class="track"><div class="bar" style="width:9.5%"></div></div><span class="val">2</span></div>
+      <div class="mini"><span class="lbl">altre (CER, exact, win rate)</span><div class="track"><div class="bar" style="width:14.3%"></div></div><span class="val">3</span></div>
+      <div class="mini"><span class="lbl">nessuna cifra unica</span><div class="track"><div class="bar dim" style="width:33.3%"></div></div><span class="val">7</span></div>
+      <p class="note">Metà del corpus riduce l'esito a una percentuale di risposte esatte. È il
+      punto da cui parte tutto il resto di questo documento.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Che cosa chiedono di fare</h3>
+    <p class="sub">Sette famiglie ricavate dal vocabolario chiuso di 22 task usato in estrazione. Le
+    famiglie si sovrappongono — un benchmark che chiede sia trascrizione sia interpretazione appartiene
+    a entrambe — quindi i numeri non sommano a 42. Mediana di 4 task per benchmark, da 1 a 10.</p>
+    <div class="legend">
+      <span><i style="background:var(--s1)"></i>benchmark solo testuali</span>
+      <span><i style="background:var(--s3)"></i>benchmark multimodali</span>
+    </div>
+    <div class="fam" title="Conoscenza dichiarativa: 25 benchmark, di cui 10 multimodali"><span class="lbl">Conoscenza dichiarativa</span><div class="stack"><div class="seg txt" style="width:60.0%"></div><div class="seg mm" style="width:40.0%"></div></div><span class="val">25<small> · 10 mm</small></span></div>
+    <div class="fam" title="Lettura culturale: 25 benchmark, di cui 14 multimodali"><span class="lbl">Lettura culturale</span><div class="stack"><div class="seg txt" style="width:44.0%"></div><div class="seg mm" style="width:56.0%"></div></div><span class="val">25<small> · 14 mm</small></span></div>
+    <div class="fam" title="Lingua: 19 benchmark, di cui 11 multimodali"><span class="lbl">Lingua</span><div class="stack"><div class="seg txt" style="width:32.0%"></div><div class="seg mm" style="width:44.0%"></div></div><span class="val">19<small> · 11 mm</small></span></div>
+    <div class="fam" title="Ragionamento: 18 benchmark, di cui 7 multimodali"><span class="lbl">Ragionamento</span><div class="stack"><div class="seg txt" style="width:44.0%"></div><div class="seg mm" style="width:28.0%"></div></div><span class="val">18<small> · 7 mm</small></span></div>
+    <div class="fam" title="Lavoro sul documento: 18 benchmark, di cui 12 multimodali"><span class="lbl">Lavoro sul documento</span><div class="stack"><div class="seg txt" style="width:24.0%"></div><div class="seg mm" style="width:48.0%"></div></div><span class="val">18<small> · 12 mm</small></span></div>
+    <div class="fam" title="Visione: 16 benchmark, di cui 16 multimodali"><span class="lbl">Visione</span><div class="stack"><div class="seg txt" style="width:0.0%"></div><div class="seg mm" style="width:64.0%"></div></div><span class="val">16<small> · 16 mm</small></span></div>
+    <div class="fam" title="Agentico: 3 benchmark, di cui 1 multimodali"><span class="lbl">Agentico</span><div class="stack"><div class="seg txt" style="width:8.0%"></div><div class="seg mm" style="width:4.0%"></div></div><span class="val">3<small> · 1 mm</small></span></div>
+    <p class="note"><b>Come leggerlo.</b> «Conoscenza dichiarativa» sono i benchmark che chiedono di
+    sapere qualcosa (richiamo di fatti, scelta multipla, verifica di affermazioni); «Lettura culturale»
+    quelli che chiedono di interpretare (ragionamento su norme culturali, iconografia, stile, giudizio
+    normativo); «Lavoro sul documento» il mestiere quotidiano della ricerca digitale — OCR e
+    trascrizione, estrazione di entità, catalogazione, attribuzione. Il raggruppamento in sette
+    famiglie è una lettura: i 22 termini sottostanti sono estratti e validati, il modo di
+    raccoglierli no, ed è ispezionabile in <code>TASK_FAMILIES</code>.</p>
+  </div>
+
+  <div class="mapgrid">
+    <div class="card">
+      <h3>Chi viene valutato</h3>
+      <p class="sub">Benchmark che valutano almeno un modello del fornitore.</p>
+      <div class="mini"><span class="lbl">OpenAI</span><div class="track"><div class="bar" style="width:100%"></div></div><span class="val">38</span></div>
+      <div class="mini"><span class="lbl">Google</span><div class="track"><div class="bar" style="width:60.5%"></div></div><span class="val">23</span></div>
+      <div class="mini"><span class="lbl">Anthropic</span><div class="track"><div class="bar" style="width:52.6%"></div></div><span class="val">20</span></div>
+      <div class="mini"><span class="lbl">Alibaba (Qwen)</span><div class="track"><div class="bar" style="width:39.5%"></div></div><span class="val">15</span></div>
+      <div class="mini"><span class="lbl">Meta (Llama)</span><div class="track"><div class="bar" style="width:34.2%"></div></div><span class="val">13</span></div>
+      <div class="mini"><span class="lbl">DeepSeek</span><div class="track"><div class="bar" style="width:23.7%"></div></div><span class="val">9</span></div>
+      <div class="mini"><span class="lbl">Mistral</span><div class="track"><div class="bar" style="width:21.1%"></div></div><span class="val">8</span></div>
+      <p class="note">Il 90% del corpus misura un modello OpenAI. Ciò che sappiamo sulle capacità
+      umanistiche degli LLM è in larga parte ciò che sappiamo di una famiglia di modelli — e i
+      confronti fra benchmark ereditano questa dipendenza.</p>
+    </div>
+
+    <div class="card">
+      <h3>Come vengono interrogati</h3>
+      <p class="sub">Regime di valutazione principale.</p>
+      <div class="mini"><span class="lbl">zero-shot</span><div class="track"><div class="bar" style="width:100%"></div></div><span class="val">19</span></div>
+      <div class="mini"><span class="lbl">più regimi</span><div class="track"><div class="bar" style="width:100%"></div></div><span class="val">19</span></div>
+      <div class="mini"><span class="lbl">few-shot</span><div class="track"><div class="bar" style="width:15.8%"></div></div><span class="val">3</span></div>
+      <div class="mini"><span class="lbl">fine-tuning</span><div class="track"><div class="bar" style="width:5.3%"></div></div><span class="val">1</span></div>
+      <p class="note">Un solo benchmark valuta principalmente modelli addestrati sul compito. Il
+      campo misura quasi ovunque il modello così com'è, senza adattamento al dominio — il che rende
+      i punteggi più confrontabili fra loro e meno informativi su ciò che uno strumento costruito
+      per un archivio specifico potrebbe fare.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Quanto ci riescono i modelli</h3>
+    <p class="sub">Punteggio del miglior modello riportato da ciascun paper, sui 21 benchmark che
+    usano accuracy come metrica principale — gli unici direttamente confrontabili fra loro. Gli
+    altri 21 riportano F1, BLEU, CER, una metrica su misura, o nessuna cifra unica.</p>
+    <div class="legend"><span>Mediana <b>61,8</b> · minimo 13,4 · massimo 93,0</span></div>
+    <div class="scores"><span class="lbl">AdMIRe</span><div class="sctrack"><div class="bar" style="width:93.0%"></div><div class="med" style="left:61.8%"></div></div><span class="val">93,0</span></div>
+    <div class="scores"><span class="lbl">Christian Iconography</span><div class="sctrack"><div class="bar" style="width:90.5%"></div><div class="med" style="left:61.8%"></div></div><span class="val">90,5</span></div>
+    <div class="scores"><span class="lbl">EduArt</span><div class="sctrack"><div class="bar" style="width:82.8%"></div><div class="med" style="left:61.8%"></div></div><span class="val">82,8</span></div>
+    <div class="scores"><span class="lbl">Hanfu-Bench</span><div class="sctrack"><div class="bar" style="width:82.3%"></div><div class="med" style="left:61.8%"></div></div><span class="val">82,3</span></div>
+    <div class="scores"><span class="lbl">MMLU-ProX</span><div class="sctrack"><div class="bar" style="width:75.5%"></div><div class="med" style="left:61.8%"></div></div><span class="val">75,5</span></div>
+    <div class="scores"><span class="lbl">MILU (lingue indiane)</span><div class="sctrack"><div class="bar" style="width:74.7%"></div><div class="med" style="left:61.8%"></div></div><span class="val">74,7</span></div>
+    <div class="scores"><span class="lbl">M3Exam</span><div class="sctrack"><div class="bar" style="width:72.9%"></div><div class="med" style="left:61.8%"></div></div><span class="val">72,9</span></div>
+    <div class="scores"><span class="lbl">FActScore</span><div class="sctrack"><div class="bar" style="width:71.5%"></div><div class="med" style="left:61.8%"></div></div><span class="val">71,5</span></div>
+    <div class="scores"><span class="lbl">VQArt-Bench</span><div class="sctrack"><div class="bar" style="width:71.0%"></div><div class="med" style="left:61.8%"></div></div><span class="val">71,0</span></div>
+    <div class="scores"><span class="lbl">OfficeQA Pro</span><div class="sctrack"><div class="bar" style="width:66.9%"></div><div class="med" style="left:61.8%"></div></div><span class="val">66,9</span></div>
+    <div class="scores"><span class="lbl">SuperGPQA</span><div class="sctrack"><div class="bar" style="width:61.8%"></div><div class="med" style="left:61.8%"></div></div><span class="val">61,8</span></div>
+    <div class="scores"><span class="lbl">CulturalBench</span><div class="sctrack"><div class="bar" style="width:61.4%"></div><div class="med" style="left:61.8%"></div></div><span class="val">61,4</span></div>
+    <div class="scores"><span class="lbl">MMMU-Pro</span><div class="sctrack"><div class="bar" style="width:55.0%"></div><div class="med" style="left:61.8%"></div></div><span class="val">55,0</span></div>
+    <div class="scores"><span class="lbl">BrowseComp</span><div class="sctrack"><div class="bar" style="width:51.5%"></div><div class="med" style="left:61.8%"></div></div><span class="val">51,5</span></div>
+    <div class="scores"><span class="lbl">MultiNRC</span><div class="sctrack"><div class="bar" style="width:49.0%"></div><div class="med" style="left:61.8%"></div></div><span class="val">49,0</span></div>
+    <div class="scores"><span class="lbl">MMLU</span><div class="sctrack"><div class="bar" style="width:48.9%"></div><div class="med" style="left:61.8%"></div></div><span class="val">48,9</span></div>
+    <div class="scores"><span class="lbl">HiST-LLM</span><div class="sctrack"><div class="bar" style="width:46.0%"></div><div class="med" style="left:61.8%"></div></div><span class="val">46,0</span></div>
+    <div class="scores"><span class="lbl">CulturALL</span><div class="sctrack"><div class="bar" style="width:44.5%"></div><div class="med" style="left:61.8%"></div></div><span class="val">44,5</span></div>
+    <div class="scores"><span class="lbl">HistBench</span><div class="sctrack"><div class="bar" style="width:36.5%"></div><div class="med" style="left:61.8%"></div></div><span class="val">36,5</span></div>
+    <div class="scores"><span class="lbl">C3B</span><div class="sctrack"><div class="bar" style="width:34.2%"></div><div class="med" style="left:61.8%"></div></div><span class="val">34,2</span></div>
+    <div class="scores"><span class="lbl">Humanity&#x27;s Last Exam</span><div class="sctrack"><div class="bar" style="width:13.4%"></div><div class="med" style="left:61.8%"></div></div><span class="val">13,4</span></div>
+    <div class="axis"><span></span><span><small>0</small><small>50</small><small>100</small></span><span></span></div>
+    <p class="note"><b>Come leggerlo, e come non leggerlo.</b> Questi ventuno numeri non sono una
+    classifica: ogni benchmark definisce il proprio compito, e un 90% sull'iconografia cristiana e un
+    13% su Humanity's Last Exam misurano cose incommensurabili. Il valore della figura è la
+    <em>dispersione</em>. Il campo produce simultaneamente prove che i modelli quasi saturano e prove
+    che li lasciano al 13%, e ciò che separa i due estremi non è la difficoltà del materiale
+    umanistico: è quanto stretta sia la domanda. La sezione 04 mostra questa dipendenza dentro un
+    singolo benchmark, a materiale costante.</p>
+  </div>
+</section>
+
+<section id="verita">
+  <div class="head"><div class="n">02</div><div>
+    <h2>Chi decide qual è la risposta giusta</h2>
+    <p class="claim">Ogni benchmark deve procurarsi delle risposte di riferimento, e può farlo in
+    modi che portano autorità molto diverse: una scheda catalografica museale, la chiave di un esame
+    standardizzato, un annotatore reclutato online, uno specialista della disciplina. La scelta non è
+    logistica: decide di chi è la voce che stabilisce cosa è corretto.</p>
+  </div></div>
+
+  <div class="card">
+    <h3>Provenienza della ground truth</h3>
+    <p class="sub">Su tutti i 42 benchmark.</p>
+    <div class="row"><span class="lbl">annotatori crowd</span><div class="track"><div class="bar" style="width:100%"></div></div><span class="val">9</span></div>
+    <div class="row"><span class="lbl">esperti della disciplina</span><div class="track"><div class="bar" style="width:100%"></div></div><span class="val">9</span></div>
+    <div class="row"><span class="lbl">chiavi d'esame preesistenti</span><div class="track"><div class="bar" style="width:88.9%"></div></div><span class="val">8</span></div>
+    <div class="row"><span class="lbl">metadati curatoriali</span><div class="track"><div class="bar" style="width:66.7%"></div></div><span class="val">6</span></div>
+    <div class="row"><span class="lbl">non dichiarata</span><div class="track"><div class="bar dim" style="width:66.7%"></div></div><span class="val">6</span></div>
+    <div class="row"><span class="lbl">generata da un modello</span><div class="track"><div class="bar" style="width:33.3%"></div></div><span class="val">3</span></div>
+    <div class="row"><span class="lbl">scritta dagli autori</span><div class="track"><div class="bar" style="width:11.1%"></div></div><span class="val">1</span></div>
+    <p class="note">Sei paper su 42 non dichiarano da dove venga la loro verità di riferimento. Su
+    materiale umanistico, dove la provenienza dell'autorità interpretativa è precisamente la
+    questione, è un'omissione sostanziale — e tre di questi sei sono anche i più reticenti del
+    corpus su tutto il resto (sezione 07).</p>
+  </div>
+
+  <div class="card">
+    <h3>E la scelta segue quello che il benchmark dichiara di misurare</h3>
+    <p class="sub">Quota di benchmark che ricorre a esperti disciplinari o metadati curatoriali —
+    le due fonti che costano di più.</p>
+    <div class="legend">
+      <span><i style="background:var(--s1)"></i><code>domain</code> — il benchmark valuta competenza disciplinare</span>
+      <span><i style="background:var(--s2)"></i><code>content</code> — le humanities sono il materiale</span>
+    </div>
+    <p class="sub" style="margin:20px 0 4px;color:var(--ink-2);font-weight:600">Tutti i 40 benchmark a ruolo singolo</p>
+    <div class="row"><span class="lbl">ruolo <code>domain</code></span><div class="track"><div class="bar" style="width:57%"></div></div><span class="val">13/23</span></div>
+    <div class="row"><span class="lbl">ruolo <code>content</code></span><div class="track"><div class="bar k2" style="width:12%"></div></div><span class="val">2/17</span></div>
+    <p class="note" style="margin:6px 0 24px">57% contro 12% · differenza 45 punti · <span class="p">Fisher, p = 0,004</span></p>
+
+    <p class="sub" style="margin:0 0 4px;color:var(--ink-2);font-weight:600">Solo i 32 costruiti su misura, esclusi i generalisti</p>
+    <div class="row"><span class="lbl">ruolo <code>domain</code></span><div class="track"><div class="bar" style="width:67%"></div></div><span class="val">12/18</span></div>
+    <div class="row"><span class="lbl">ruolo <code>content</code></span><div class="track"><div class="bar k2" style="width:14%"></div></div><span class="val">2/14</span></div>
+    <p class="note" style="margin:6px 0 0">67% contro 14% · differenza 52 punti · <span class="p">Fisher, p = 0,004</span> — l'effetto non dipende dai benchmark generalisti: togliendoli si rafforza.</p>
+
+    <p class="stat"><b>Due economie della verità.</b> Chi dichiara di valutare competenza
+    disciplinare paga per l'expertise. Chi usa le humanities come materiale ricorre al crowd e alle
+    chiavi d'esame: 10 su 17, contro 6 su 23 <span class="p">(p = 0,032)</span>. Sono due modi
+    diversi di procurarsi una risposta corretta, e producono oggetti che si somigliano solo in
+    superficie.</p>
+
+    <p class="note">Vale la pena notare come questo risultato sia costruito. Il ruolo delle
+    humanities è un giudizio interpretativo di chi codifica; la provenienza del gold è una proprietà
+    osservabile, dichiarata nel paper. Le due sono state estratte in passate separate, con schemi
+    diversi. Che convergano è l'unico indizio interno che la prima non fosse arbitraria.</p>
+
+    <details><summary>Tabella completa: ruolo × provenienza del gold</summary>
+    <div class="scroll"><table>
+      <thead><tr><th>ruolo</th><th class="num">esperti</th><th class="num">metadati</th><th class="num">chiavi d'esame</th><th class="num">crowd</th><th class="num">modello</th><th class="num">autori</th><th class="num">non dich.</th><th class="num">n</th></tr></thead>
+      <tbody>
+        <tr><td>domain</td><td class="num">8</td><td class="num">5</td><td class="num">5</td><td class="num">1</td><td class="num">1</td><td class="num">1</td><td class="num">2</td><td class="num">23</td></tr>
+        <tr><td>content</td><td class="num">1</td><td class="num">1</td><td class="num">3</td><td class="num">7</td><td class="num">1</td><td class="num">0</td><td class="num">4</td><td class="num">17</td></tr>
+        <tr><td>both</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">1</td><td class="num">1</td><td class="num">0</td><td class="num">0</td><td class="num">2</td></tr>
+      </tbody>
+    </table></div>
+    <p class="note">I due benchmark a ruolo <code>both</code> restano fuori dal test, che confronta due gruppi.</p>
+    </details>
+  </div>
+</section>
+
+<section id="quante">
+  <div class="head"><div class="n">03</div><div>
+    <h2>Quante risposte sono ammesse</h2>
+    <p class="claim">Procurata la verità di riferimento, resta da decidere quante versioni di essa
+    lo scoring accetta. Ventotto benchmark su 42 ne accettano una sola. È la scelta che rende
+    possibile misurare accuracy — e, come si vede nella sezione seguente, è anche la scelta che
+    decide quanto alto sarà il punteggio.</p>
+  </div></div>
+
+  <div class="card">
+    <h3>Formato dello scoring × conoscenza richiesta oltre lo stimolo</h3>
+    <p class="sub">Numero di benchmark per cella; l'intensità del colore cresce con il conteggio.
+    «Conoscenza esterna» significa che la risposta corretta non è ricavabile da ciò che il modello
+    ha davanti — va cercata in una tradizione, un canone, un archivio.</p>
+    <div class="scroll"><div class="hm">
+      <div class="h"></div><div class="h">richiede conoscenza esterna</div><div class="h">non la richiede</div><div class="h">non dichiarato</div><div class="h">tot</div>
+      <div class="rl">una sola risposta</div>
+      <div class="c4" title="21 benchmark: chiedono inferenza esterna e accettano una sola risposta">21</div>
+      <div class="c3" title="7 benchmark">7</div><div class="c0">0</div><div class="tot">28</div>
+      <div class="rl">insieme di risposte</div>
+      <div class="c1" title="4 benchmark">4</div><div class="c1" title="1 benchmark">1</div><div class="c0">0</div><div class="tot">5</div>
+      <div class="rl">giudizio umano graduato</div>
+      <div class="c2" title="5 benchmark">5</div><div class="c0">0</div><div class="c0">0</div><div class="tot">5</div>
+      <div class="rl">non dichiarato</div>
+      <div class="c1" title="2 benchmark">2</div><div class="c0">0</div><div class="c1" title="2 benchmark">2</div><div class="tot">4</div>
+      <div class="tot rl">tot</div><div class="tot">32</div><div class="tot">8</div><div class="tot">2</div><div class="tot">42</div>
+    </div></div>
+
+    <p class="stat"><b>La cella in alto a sinistra è il cuore del problema.</b> Ventuno benchmark —
+    esattamente metà del corpus — pongono domande che richiedono di inferire qualcosa che non è
+    davanti al modello, e poi confrontano l'esito con un'unica chiave. Chiedono di interpretare e
+    accettano una sola interpretazione.</p>
+
+    <p class="note">Quei 21 non sono distribuiti uniformemente: sono <b>8 su 8</b> fra i benchmark
+    generalisti e <b>13 su 34</b> (38%) fra quelli costruiti su misura. Non è una proprietà del campo
+    nel suo insieme, ma dei benchmark grandi — la sezione 05 mostra perché.</p>
+
+    <p class="note">Le due proprietà incrociate qui sono entrambe verificabili nel protocollo
+    dichiarato: la prima guarda la risposta di riferimento, la seconda la regola di scoring. Nessuna
+    delle due chiede a chi codifica di giudicare se un compito sia «davvero» interpretativo — una
+    domanda che avrebbe iscritto nella misura la risposta che si voleva ottenere.</p>
+  </div>
+</section>
+<section id="metro">
+  <div class="head"><div class="n">04</div><div>
+    <h2>Che cosa succede se cambi il metro</h2>
+    <p class="claim">Nove benchmark del corpus hanno fatto un esperimento che vale più di qualsiasi
+    argomento teorico: hanno valutato gli stessi modelli sullo stesso materiale, cambiando soltanto
+    il modo di assegnare il punteggio. Tutti e nove hanno ottenuto due risultati diversi. La mediana
+    dello scarto è di 31 punti percentuali; il massimo è 88.</p>
+  </div></div>
+
+  <div class="card">
+    <h3>Scarto riportato quando cambia lo strumento, non il compito</h3>
+    <p class="sub">Punti percentuali fra le due misurazioni, come li riporta il paper stesso. Il
+    colore dice che cosa è stato cambiato; il compito, il materiale e gli item restano identici in
+    tutti e nove i casi.</p>
+    <div class="legend">
+      <span><i style="background:var(--s1)"></i>formato della risposta — chiusa vs aperta</span>
+      <span><i style="background:var(--s2)"></i>severità dello scoring — stesso output, regola più stretta</span>
+      <span><i style="background:var(--s3)"></i>livello di profondità — superficie vs interpretazione</span>
+    </div>
+    <div class="row" title="EduArt: modelli sopra il 94% su multiple choice scendono al 6,2% su error identification (Claude Sonnet 4.6) e al 23,9% su open completion (Claude Opus 4.6). La barra riporta lo scarto maggiore, 88 punti.">
+      <span class="lbl">EduArt</span><div class="track"><div class="bar" style="width:100%"></div></div><span class="val">88</span></div>
+    <div class="row" title="Appear2Meaning: partial match 0,735 contro exact match 0,000 sullo split Ancient Mediterranean (GPT-5.4-mini)">
+      <span class="lbl">Appear2Meaning</span><div class="track"><div class="bar k2" style="width:84.1%"></div></div><span class="val">74</span></div>
+    <div class="row" title="CulturalBench: multiple choice 73,92% contro binario vero/falso 21,16% sulle stesse 1.696 domande (Mixtral-8x7b)">
+      <span class="lbl">CulturalBench</span><div class="track"><div class="bar" style="width:60.2%"></div></div><span class="val">53</span></div>
+    <div class="row" title="VULCA-BENCH: da 87,1 sui livelli L1–L2 (percezione visiva) a 46,8 su L3–L5 (interpretazione culturale), GPT-4o">
+      <span class="lbl">VULCA-BENCH <small style="color:var(--muted)">(2601.07986)</small></span><div class="track"><div class="bar k3" style="width:45.5%"></div></div><span class="val">40</span></div>
+    <div class="row" title="C3B: exact match 3,20 contro partial credit 34,2 sullo stesso task (Qwen2.5-VL)">
+      <span class="lbl">C3B</span><div class="track"><div class="bar k2" style="width:35.2%"></div></div><span class="val">31</span></div>
+    <div class="row" title="LLMs4Subjects: P@10 0,65 con matching rilassato contro 0,41 con matching stretto (DNB-AI)">
+      <span class="lbl">LLMs4Subjects</span><div class="track"><div class="bar k2" style="width:27.3%"></div></div><span class="val">24</span></div>
+    <div class="row" title="DeepSearchQA: F1 a match parziale contro «fully correct» a match esatto, sugli stessi task">
+      <span class="lbl">DeepSearchQA</span><div class="track"><div class="bar k2" style="width:25%"></div></div><span class="val">22</span></div>
+    <div class="row" title="VULCA-BENCH: da 3,50 sulla dimensione Coverage a 2,64 sulla dimensione Depth, scala 1–5 (DeepSeek-VL2)">
+      <span class="lbl">VULCA-BENCH <small style="color:var(--muted)">(2601.07984)</small></span><div class="track"><div class="bar k3" style="width:25%"></div></div><span class="val">22</span></div>
+    <div class="row" title="CzechTopic: span-level F1 con approccio matching contro approccio tagging, +0,104">
+      <span class="lbl">CzechTopic</span><div class="track"><div class="bar" style="width:11.4%"></div></div><span class="val">10</span></div>
+
+    <p class="stat"><b>Il caso più netto.</b> EduArt valuta modelli su esercizi di storia dell'arte
+    tratti da esami italiani e statunitensi. Gli stessi modelli superano il 94% quando devono
+    scegliere fra opzioni, scendono al 23,9% quando devono completare liberamente e al 6,2% quando
+    devono individuare un errore. Il materiale non è cambiato: è cambiata la forma della domanda.
+    Quel 94% non misura una competenza che poi svanisce — misura il riconoscimento fra alternative,
+    che è una cosa più facile e diversa.</p>
+
+    <p class="stat"><b>E chi fa questa verifica non è a caso.</b> Fra i 28 benchmark che accettano
+    una sola risposta, <b>2</b> hanno confrontato il proprio strumento con un altro. Fra i 14 che
+    ammettono già più di una risposta, <b>7</b>
+    <span class="p">(Fisher, p&nbsp;=&nbsp;0,003)</span>. I benchmark il cui formato è più chiuso sono
+    anche quelli che meno spesso controllano se sia il formato a produrre il risultato.</p>
+
+    <p class="note"><b>Che cosa autorizza a dire «nove su nove».</b> Diciotto benchmark del corpus
+    non hanno fatto alcun confronto di questo tipo — non hanno confrontato due strumenti trovandoli
+    equivalenti. Un risultato nullo, del resto, difficilmente verrebbe pubblicato. Quindi «nove su
+    nove» significa <em>nove su nove fra quelli che hanno guardato</em>, ed è un limite inferiore.
+    Ciò che regge è la direzione, non la proporzione.</p>
+  </div>
+
+  <div class="card">
+    <h3>Una seconda famiglia di scarti, che parla dei modelli</h3>
+    <p class="sub">Altri dodici benchmark riportano cali di performance altrettanto grandi, ma
+    variando gli item o l'input invece dello strumento. Non appartengono all'argomento sopra, e sono
+    interessanti per una ragione diversa: mostrano quanto sia fragile ciò che i modelli sanno fare.</p>
+    <div class="legend">
+      <span><i style="background:var(--dim)"></i>difficoltà degli item — un sottoinsieme più difficile</span>
+      <span><i style="background:var(--s3)"></i>rappresentazione dell'input — che cosa viene mostrato</span>
+    </div>
+    <div class="row"><span class="lbl">CulturALL</span><div class="track"><div class="bar dim" style="width:93.2%"></div></div><span class="val">82</span></div>
+    <div class="row"><span class="lbl">FActScore</span><div class="track"><div class="bar dim" style="width:72.7%"></div></div><span class="val">64</span></div>
+    <div class="row"><span class="lbl">Hanfu-Bench</span><div class="track"><div class="bar k3" style="width:55.7%"></div></div><span class="val">49</span></div>
+    <div class="row"><span class="lbl">AdMIRe</span><div class="track"><div class="bar k3" style="width:54.5%"></div></div><span class="val">48</span></div>
+    <div class="row"><span class="lbl">HistBench</span><div class="track"><div class="bar dim" style="width:39.8%"></div></div><span class="val">35</span></div>
+    <div class="row"><span class="lbl">SuperGPQA</span><div class="track"><div class="bar dim" style="width:38.6%"></div></div><span class="val">34</span></div>
+    <div class="row"><span class="lbl">MMMU-Pro</span><div class="track"><div class="bar k3" style="width:37.5%"></div></div><span class="val">33</span></div>
+    <div class="row"><span class="lbl">Text Is Not All You Need</span><div class="track"><div class="bar k3" style="width:29.5%"></div></div><span class="val">26</span></div>
+    <div class="row"><span class="lbl">OCR di documenti storici</span><div class="track"><div class="bar k3" style="width:27.3%"></div></div><span class="val">24</span></div>
+    <div class="row"><span class="lbl">Finding the Plea</span><div class="track"><div class="bar dim" style="width:25%"></div></div><span class="val">22</span></div>
+    <div class="row"><span class="lbl">OfficeQA Pro</span><div class="track"><div class="bar k3" style="width:23.9%"></div></div><span class="val">21</span></div>
+    <div class="row"><span class="lbl">Christian Iconography</span><div class="track"><div class="bar k3" style="width:21.6%"></div></div><span class="val">19</span></div>
+    <p class="note">Mediana 34 punti, comparabile a quella della prima famiglia — ed è precisamente
+    per questo che le due vanno tenute separate. Un calo di 30 punti perché gli item sono più
+    difficili dice qualcosa sui modelli; un calo di 30 punti perché la regola di correzione è più
+    stretta dice qualcosa sulla misura. La distinzione fra le due famiglie è una lettura a
+    posteriori delle spiegazioni estratte, dichiarata come tale e ispezionabile riga per riga in
+    <code>GAP_KIND</code>.</p>
+  </div>
+
+  <div class="grid2" style="margin-top:14px">
+    <div class="card">
+      <span class="tag">Baseline umano</span>
+      <h3>Tredici paper su 42 misurano anche gli umani</h3>
+      <p class="sub">Nove quantificano lo scarto. E il verdetto non è uniforme: in due casi il
+      modello vince.</p>
+      <div class="legend" style="margin-bottom:14px">
+        <span><i style="background:var(--div-pos)"></i>vince l'umano</span>
+        <span><i style="background:var(--div-neg)"></i>vince il modello</span>
+      </div>
+      <div class="drow"><span class="lbl">MMLU</span><div class="dtrack"><div class="dbar pos" style="width:47.7%"></div></div><span class="val">+41</span></div>
+      <div class="drow"><span class="lbl">CulturalBench</span><div class="dtrack"><div class="dbar pos" style="width:36%"></div></div><span class="val">+31</span></div>
+      <div class="drow"><span class="lbl">MMMU-Pro</span><div class="dtrack"><div class="dbar pos" style="width:34.9%"></div></div><span class="val">+30</span></div>
+      <div class="drow"><span class="lbl">Hanfu-Bench</span><div class="dtrack"><div class="dbar pos" style="width:10.5%"></div></div><span class="val">+9</span></div>
+      <div class="drow"><span class="lbl">CzechTopic</span><div class="dtrack"><div class="dbar pos" style="width:9.3%"></div></div><span class="val">+8</span></div>
+      <div class="drow"><span class="lbl">AdMIRe</span><div class="dtrack"><div class="dbar pos" style="width:3.5%"></div></div><span class="val">+3</span></div>
+      <div class="drow"><span class="lbl">OCR storico</span><div class="dtrack"><div class="dbar pos" style="width:3.5%"></div></div><span class="val">+3</span></div>
+      <div class="drow"><span class="lbl">OfficeQA Pro</span><div class="dtrack"><div class="dbar neg" style="width:24.4%"></div></div><span class="val">−21</span></div>
+      <div class="drow"><span class="lbl">BrowseComp</span><div class="dtrack"><div class="dbar neg" style="width:25.6%"></div></div><span class="val">−22</span></div>
+      <div class="zero"><span></span><span><small>−43</small><small>0</small><small>+43</small></span><span></span></div>
+      <p class="note">I due casi in cui il modello vince — ricerca agentica su archivi e su documenti
+      finanziari — sono compiti in cui l'umano di riferimento è vincolato dal tempo, non dalla
+      competenza. Il confronto misura la pazienza, non il giudizio.</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">Asimmetria culturale</span>
+      <h3>Diciassette benchmark su 24 la rilevano</h3>
+      <p class="hero">71%</p>
+      <p class="sub">Fra i 24 benchmark in cui la domanda si pone — quelli che coprono più di una
+      cultura o lingua — 17 riportano come proprio risultato una differenza sistematica di
+      performance: bias occidentale, degrado sulle lingue a bassa risorsa, punteggi peggiori su una
+      regione specifica. Sette non la trovano; per i restanti 18 la domanda non si pone.</p>
+      <p class="note">È il punto in cui il campo misura la propria asimmetria e la dichiara. Vale la
+      pena notare che cosa <em>non</em> segue: rilevare che un modello va peggio su una cultura non
+      equivale ad ammettere che la risposta corretta possa cambiare con la cultura. Su quest'ultimo
+      punto il corpus resta fermo a quattro casi su 42 — sezione 06.</p>
+    </div>
+  </div>
+</section>
+
+<section id="attenzione">
+  <div class="head"><div class="n">05</div><div>
+    <h2>Dove si concentra l'attenzione</h2>
+    <p class="claim">Otto benchmark del corpus sono generalisti: MMLU e la sua discendenza. Sono i
+    più grandi, i più citati, quelli che compaiono nelle schede tecniche dei modelli e fissano le
+    classifiche. E hanno un'unica forma, senza varianza.</p>
+  </div></div>
+
+  <div class="grid2">
+    <div class="card">
+      <span class="tag">La differenza più netta del corpus</span>
+      <h3>Gold da chiavi d'esame preesistenti</h3>
+      <p class="hero">+85</p>
+      <p class="sub">punti di differenza: <b>7 su 8</b> fra i generalisti (88%) contro <b>1 su 34</b>
+      fra tutti gli altri (3%). <span class="p">Fisher, p &lt; 0,001</span></p>
+      <div class="row"><span class="lbl">generalisti</span><div class="track"><div class="bar" style="width:88%"></div></div><span class="val">7/8</span></div>
+      <div class="row"><span class="lbl">su misura</span><div class="track"><div class="bar dim" style="width:3%"></div></div><span class="val">1/34</span></div>
+      <p class="note">Il materiale umanistico vi entra come contenuto incidentale — una materia fra
+      cinquantasette — e la verità di riferimento viene da un processo autorato per valutare
+      studenti, non per descrivere oggetti culturali. Una chiave d'esame e una scheda catalografica
+      museale non hanno lo stesso statuto epistemico.</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">Scala</span>
+      <h3>Dodici volte più grandi</h3>
+      <p class="hero">21.218</p>
+      <p class="sub">item, la mediana dei generalisti, contro <b>1.758</b> dei 32 costruiti su misura
+      che dichiarano una dimensione.</p>
+      <p class="note" style="margin-top:18px">La dimensione da sola, però, non predice il formato:
+      fra i benchmark con almeno 20.000 item il 67% accetta una sola risposta, contro il 68% di
+      tutti gli altri <span class="p">(p = 0,31)</span>. Ciò che è grande è chiuso perché è
+      generalista, non perché è grande — e la differenza conta, perché indica dove intervenire.</p>
+      <p class="note">La visibilità comparativa si concentra dove il gold viene da chiavi d'esame e
+      la valutazione è a risposta singola. La sperimentazione sui formati sta in benchmark piccoli e
+      recenti che nessuno usa come riferimento. L'asimmetria fra prestigio e adeguatezza
+      disciplinare è strutturale, non accidentale.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Gli otto benchmark generalisti</h3>
+    <div class="scroll"><table>
+      <thead><tr><th>benchmark</th><th class="num">anno</th><th>provenienza del gold</th><th>formato</th></tr></thead>
+      <tbody>
+        <tr><td>MMLU</td><td class="num">2021</td><td>chiave d'esame</td><td>risposta singola</td></tr>
+        <tr><td>M3Exam</td><td class="num">2023</td><td>chiave d'esame</td><td>risposta singola</td></tr>
+        <tr><td>MMMU-Pro</td><td class="num">2024</td><td>chiave d'esame</td><td>risposta singola</td></tr>
+        <tr><td>MILU (lingue indiane)</td><td class="num">2024</td><td>chiave d'esame</td><td>risposta singola</td></tr>
+        <tr><td>Global-MMLU</td><td class="num">2025</td><td>chiave d'esame</td><td>risposta singola</td></tr>
+        <tr><td>SuperGPQA</td><td class="num">2025</td><td>chiave d'esame</td><td>risposta singola</td></tr>
+        <tr><td>MMLU-ProX</td><td class="num">2025</td><td>chiave d'esame</td><td>risposta singola</td></tr>
+        <tr><td>Humanity's Last Exam</td><td class="num">2026</td><td>esperti disciplinari</td><td>risposta singola</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</section>
+
+<section id="vuoti">
+  <div class="head"><div class="n">06</div><div>
+    <h2>Che cosa il campo non chiede</h2>
+    <p class="claim">Le sezioni precedenti riguardano <em>come</em> i benchmark misurano. Questa
+    riguarda <em>che cosa</em> chiedono, e si legge nei vuoti. Sono conteggi, non associazioni:
+    nessun test statistico, i nomi per esteso, la lista è la prova.</p>
+  </div></div>
+
+  <div class="card">
+    <div class="row"><span class="lbl">genesi dell'oggetto</span><div class="track"><div class="bar dim" style="width:7.1%"></div></div><span class="val">3<small>/42</small></span></div>
+    <p class="names"><b>Appear2Meaning · EduArt · Hanfu-Bench.</b> Data, autore, luogo d'origine,
+    provenienza, storia materiale — il nucleo operativo di filologia, storia dell'arte, archeologia,
+    codicologia — sono il bersaglio di tre benchmark. Tutti gli altri valutano il <em>contenuto</em>
+    degli oggetti, non la loro storia. È il vuoto più grande del corpus, ed è anche il più facile da
+    colmare: sono compiti in cui l'evidenza è per natura incompleta e le ipotesi concorrenti sono la
+    norma, cioè esattamente il terreno su cui i formati a risposta singola non funzionano.</p>
+
+    <div class="row" style="margin-top:26px"><span class="lbl">risposta relativa alla comunità</span><div class="track"><div class="bar dim" style="width:9.5%"></div></div><span class="val">4<small>/42</small></span></div>
+    <p class="names"><b>CulturalBench · VULCA-BENCH · CulturALL · Cultural Long-form Multilingual QA.</b>
+    Il corpus è pieno di benchmark dichiaratamente multilingui e cross-culturali, ma essere
+    multilingue e mantenere una chiave universale è la norma: si traduce la domanda, non si ammette
+    che la risposta cambi. Il cross-culturale del campo è prevalentemente <em>traduttivo</em>, non
+    relativista. Letto accanto al 71% di asimmetrie <em>rilevate</em> della sezione 04, il quadro è
+    netto: il campo sa misurare la differenza culturale, non ha ancora deciso di riconoscerla come
+    legittima.</p>
+
+    <div class="row" style="margin-top:26px"><span class="lbl">audio o video</span><div class="track"><div class="bar dim" style="width:4.8%"></div></div><span class="val">2<small>/42</small></span></div>
+    <p class="names"><b>HistBench · Text Is Not All You Need.</b> Ventitré benchmark solo testo,
+    diciassette immagine e testo, due con audio, uno solo con video. Etnomusicologia, studi
+    cinematografici, arti performative, storia orale sono fuori dal quadro.</p>
+
+    <div class="row" style="margin-top:26px"><span class="lbl">scoring che ammette gradazione</span><div class="track"><div class="bar dim" style="width:11.9%"></div></div><span class="val">5<small>/42</small></span></div>
+    <p class="names"><b>LongFact · VULCA-BENCH · Appear2Meaning · Cultural Long-form Multilingual QA ·
+    Text Is Not All You Need.</b> Il giudizio umano graduato è l'unico formato che ammette
+    strutturalmente gradi di correttezza. Copre un ottavo del corpus, e i cinque casi sono tutti su
+    compiti generativi o di critica.</p>
+
+    <p class="stat"><b>Come leggere questi quattro numeri.</b> Non sono un difetto dei singoli
+    benchmark: nessuno di loro prometteva di coprire l'attribuzione o l'etnomusicologia. Sono la
+    forma del campo vista in negativo, ed è l'unica parte di questa analisi che indica direttamente
+    che cosa costruire, invece di descrivere che cosa esiste.</p>
+  </div>
+</section>
+<section id="limiti" class="caveats">
+  <div class="head"><div class="n">07</div><div>
+  <h2 style="margin-bottom:14px">Fin dove reggono questi numeri</h2>
+  <p class="claim" style="margin-bottom:0">Cinque limiti che decidono che cosa si può affermare e
+  che cosa no. Il primo spiega perché in questo documento non compare una sola cifra per disciplina —
+  la domanda che un lettore di Digital Humanities si pone per prima, e a cui questi dati non possono
+  rispondere.</p>
+  </div></div>
+
+  <div class="cav">
+    <h3>A · Le discipline non sono contabili</h3>
+    <p>Sarebbe naturale chiedersi quanti benchmark coprano la storia dell'arte, quanti la filosofia,
+    quanti l'archeologia. L'estrazione registra le aree disciplinari di ciascun paper, ma quel campo
+    <b>non regge un conteggio</b>, per due ragioni indipendenti.</p>
+    <p>La prima è che le etichette non sono commensurabili. Un benchmark generalista dichiara le
+    decine di materie d'esame che contiene; un benchmark monotematico dichiara la sua unica
+    disciplina. Sommarle mette sullo stesso piano «contiene domande di musica fra cinquantasette
+    materie» e «è un benchmark musicale». Concretamente: le cinque occorrenze di «Music» nel corpus
+    appartengono a <b>LongFact, MMMU-Pro, Humanity's Last Exam, SuperGPQA e BrowseComp</b>. Nessuno
+    è un benchmark musicale, e tre sono generalisti. Qualsiasi statistica «per disciplina» costruita
+    così misura la lunghezza degli elenchi di materie, non la copertura del campo.</p>
+    <p>La seconda è che il campo è l'unico rimasto fuori dal controllo di vocabolario della pipeline:
+    contiene «Archaeology» e «Archeology» come voci distinte per un refuso, più valori estranei alla
+    lista dichiarata. E i due paper che descrivono lo stesso benchmark (punto D) hanno ricevuto
+    <b>1 area contro 4</b>.</p>
+    <p>Per questo la sezione 01 descrive che cosa i benchmark <em>fanno</em> — famiglie di task,
+    modalità — e non a quale disciplina appartengano: le prime vengono da un vocabolario chiuso e
+    validato, la seconda no.</p>
+  </div>
+
+  <div class="cav">
+    <h3>B · Metà del corpus tace sul disaccordo</h3>
+    <p>La domanda teoricamente più carica dell'estrazione è come un paper tratti la divergenza fra
+    annotatori, o fra letture difendibili dello stesso materiale. La risposta: <b>ne parlano 20 su
+    42</b>. Diciannove la trattano come rumore da ridurre — filtrata, risolta a maggioranza,
+    riportata come accordo inter-annotatore da massimizzare. Uno solo la tratta come informazione sul
+    materiale. Ventidue non la menzionano — un conteggio da leggere insieme al punto C, perché tre
+    di quei ventidue silenzi non sono silenzi del paper.</p>
+    <p>Questo ha una conseguenza tecnica che vale per ogni cifra che coinvolga quella variabile:
+    l'incrocio non gira su 42 casi ma su una ventina, senza che il denominatore lo dica. Per questo
+    in questo documento non compaiono percentuali che la riguardino.</p>
+    <p>Ciò che regge, e che vale la pena riportare, è che <b>il silenzio sta sparendo</b>: nel 2026
+    dichiarano qualcosa 9 paper su 11, contro 11 su 31 negli anni precedenti
+    <span class="p">(Fisher, p = 0,009)</span>. Che venga sostituito soprattutto dalla minimizzazione
+    esplicita è quello che i dati mostrano, ma su undici casi va detto come osservazione, non come
+    tendenza.</p>
+  </div>
+
+  <div class="cav">
+    <h3>C · Cinque paper non sono mai stati letti, e tre di essi fabbricano correlazioni</h3>
+    <p>Per cinque dei 42 paper il file scaricato non è l'articolo ma una <b>pagina di
+    destinazione</b>: una scheda IEEE Xplore per <b>CHVM-1K</b> (892 caratteri di testo estraibile),
+    una pagina di abstract NeurIPS per <b>HiST-LLM</b> (3.225), una pagina GitHub per <b>SimpleQA</b>
+    (10.913), una scheda ACL Anthology per <b>DRISHTIKON</b> (11.753) e una pagina di progetto per
+    <b>RISE</b> (28.186). La mediana degli altri 37 è 59.571 caratteri. Questi cinque sono stati
+    descritti a partire da ciò che la pagina conteneva.</p>
+    <p>La conseguenza va detta per intero. CHVM-1K e DRISHTIKON risultano «non dichiarato» su tutte
+    e sei le proprietà di costruzione, SimpleQA su cinque — e su quella base sembrerebbero paper
+    insolitamente reticenti. <b>Non lo sono: non sono stati letti.</b> Leggere quei tre come prova
+    sulle pratiche di dichiarazione è un artefatto del nostro passo di recupero, non un dato sul
+    campo.</p>
+    <p>Poiché condividono lo stesso valore ovunque, quei tre producono anche associazione ovunque.
+    Con loro nel conteggio, la relazione fra «risposta relativa alla comunità» e «genesi
+    dell'oggetto» dà Cramér's V = 0,71 e sembra una struttura del campo. Escludendo i non
+    dichiarati, V = 0,10: non c'è niente. L'estrazione per questi cinque non è stata rifatta, e i
+    conteggi che ne dipendono vanno ricalcolati prima di essere usati oltre.</p>
+    <div class="card" style="margin-top:16px">
+      <h3>Associazione fra proprietà, con e senza i valori «non dichiarato»</h3>
+      <p class="sub">Cramér's V. Dove il valore crolla, l'associazione era prodotta dal silenzio.</p>
+      <div class="legend"><span><i style="background:var(--s1)"></i>tutti i 42 paper</span><span><i style="background:var(--dim)"></i>esclusi i non dichiarati</span></div>
+      <div class="row"><span class="lbl">comunità × genesi</span><div class="track"><div class="bar" style="width:71%"></div></div><span class="val">0,71</span></div>
+      <div class="row"><span class="lbl"></span><div class="track"><div class="bar dim" style="width:10%"></div></div><span class="val">0,10</span></div>
+      <div class="row" style="margin-top:18px"><span class="lbl">genesi × formato</span><div class="track"><div class="bar" style="width:62%"></div></div><span class="val">0,62</span></div>
+      <div class="row"><span class="lbl"></span><div class="track"><div class="bar dim" style="width:20%"></div></div><span class="val">0,20</span></div>
+      <div class="row" style="margin-top:18px"><span class="lbl">oltre lo stimolo × genesi</span><div class="track"><div class="bar" style="width:58%"></div></div><span class="val">0,58</span></div>
+      <div class="row"><span class="lbl"></span><div class="track"><div class="bar dim" style="width:15%"></div></div><span class="val">0,15</span></div>
+      <div class="row" style="margin-top:18px"><span class="lbl">oltre lo stimolo × comunità</span><div class="track"><div class="bar" style="width:58%"></div></div><span class="val">0,58</span></div>
+      <div class="row"><span class="lbl"></span><div class="track"><div class="bar dim" style="width:17%"></div></div><span class="val">0,17</span></div>
+      <p class="note">La notizia è mista. Cattiva: chi legge quelle correlazioni come struttura del
+      campo sta leggendo tre pagine web. Buona: al netto di quell'artefatto le proprietà sono in
+      larga parte indipendenti fra loro — che è ciò che uno strumento a più assi deve essere, e significa
+      che le sezioni di questo documento non stanno raccontando lo stesso fatto in modi diversi.</p>
+    </div>
+  </div>
+
+  <div class="cav">
+    <h3>D · L'unica stima di affidabilità disponibile vale 4 su 6</h3>
+    <p>Il corpus contiene <b>due paper distinti che descrivono lo stesso benchmark</b>, VULCA-BENCH
+    (<code>2601.07984</code> e <code>2601.07986</code>). La pipeline li ha letti come oggetti
+    separati, e ne è risultato un test di ripetibilità non intenzionale.</p>
+    <p>Divergono su <b>2 delle 6 proprietà di costruzione</b> — se la correttezza sia relativa alla
+    comunità (sì / no) e quante risposte lo scoring accetti (giudizio graduato / non dichiarato) —
+    più il regime di valutazione, la dimensione dichiarata (6.804 contro 7.410 item) e le aree
+    disciplinari (1 contro 4). Accordo: <b>4 su 6</b>.</p>
+    <p>Questa cifra va confrontata con l'accordo fra i due agenti estrattori del sistema, che è di
+    36–41 su 42 — ma le due misurano cose diverse, ed è il punto. I due agenti leggono <em>lo stesso
+    testo</em>: il loro accordo misura quanto due prompt convergano, e un vocabolario chiuso li
+    obbliga a convergere. I due paper VULCA sono <em>testi diversi sullo stesso oggetto</em>: il loro
+    disaccordo misura quanto la codifica dipenda da come il paper è scritto. È un caso singolo, ed è
+    un aneddoto — ma è l'unica stima di affidabilità esterna disponibile, e suggerisce che il valore
+    reale sia più vicino a 4/6 che a 40/42.</p>
+  </div>
+
+  <div class="cav">
+    <h3>E · Che cosa c'è dentro il corpus, e che cosa manca</h3>
+    <p>Quarantadue file per <b>al massimo 41 benchmark distinti</b>, per via del doppione appena
+    descritto. Sette paper non danno un nome al proprio benchmark e compaiono qui con il titolo
+    assegnato in fase di raccolta. <b>MMLU è incluso benché sia del 2021</b>, e non soddisfi quindi
+    il criterio temporale dichiarato: contribuisce a tutti i conteggi. Tre paper selezionati non sono
+    entrati perché il PDF non è stato reperito (EXAMS-V, IRLBench, MultiBLiMP 1.0) e sono
+    <em>tutti e tre multilingui</em>, il che tocca proprio i conteggi della sezione 06 sulla
+    dipendenza dalla comunità.</p>
+    <p>Due limiti più grandi li contengono tutti. <b>Non è documentata la strategia di ricerca</b>
+    che ha prodotto i 45 paper di partenza: qualsiasi affermazione della forma «il campo fa X»
+    dipende dalla completezza di quella ricerca, non dalla qualità di questa estrazione. E
+    <b>non c'è validazione contro codifica umana</b>: due agenti che concordano fra loro non sono
+    due agenti che hanno ragione, e un vocabolario chiuso può farli convergere anche su un errore.
+    Un sottoinsieme codificato a mano e confrontato con l'output è il passo che manca prima che una
+    qualsiasi di queste percentuali entri in un articolo.</p>
+    <p>Infine la statistica. Con 42 casi non si fa inferenza: i test riportati qui dicono se una
+    differenza si distingue dal caso <em>in questo corpus</em>, non se vale per il campo. Dove il
+    denominatore scende sotto la decina non c'è test e non ci sono barre proporzionali, solo i nomi.</p>
+  </div>
+</section>
+
+<footer>
+  <p><b>Come sono stati prodotti questi dati.</b> Ogni paper è stato letto da due agenti con
+  retroterra diverso — uno di formazione umanistica, uno di formazione ML/NLP — che estraggono
+  indipendentemente gli stessi campi; un terzo agente adjudica le divergenze contro il testo del
+  paper e scrive il report finale. Le proprietà di costruzione (provenienza del gold, formato dello
+  scoring, conoscenza richiesta oltre lo stimolo, trattamento del disaccordo) sono state disegnate
+  secondo un criterio unico: <b>ogni campo deve essere qualcosa che il paper dichiara</b>, non
+  qualcosa che chi codifica deve giudicare. È il motivo per cui non esiste un campo «questo compito
+  è interpretativo»: sarebbe stato iscrivere nella misura la risposta che l'analisi doveva cercare.</p>
+  <p><b>Riproducibilità.</b> Tutte le cifre di questa pagina, mappa inclusa, escono da
+  <code>python scripts/findings_report.py</code>, che non effettua chiamate API e legge soltanto i
+  report già prodotti. Le tre letture a posteriori — le sette famiglie di task, la distinzione fra i
+  due tipi di scarto, la normalizzazione dei due punteggi riportati su scala 0–1 — sono dichiarate
+  nel testo e nel codice, così che chi non le condivide possa rifarle senza rieseguire nulla.</p>
+  <p><b>Statistica.</b> I test sono di Fisher, esatti e a due code, su tabelle 2×2; i conteggi
+  assoluti accompagnano sempre le percentuali.</p>
+</footer>
+
+</div><!-- /view-findings -->
+
+<div id="view-article" role="tabpanel" aria-labelledby="tab-article" hidden>
+  <div class="art-head">
+    <span class="eyebrow">Articolo</span>
+    <button class="art-mode" id="art-mode" type="button">Tema scuro</button>
+  </div>
+  <div class="art-layout">
+    <nav class="art-toc" id="art-toc" aria-label="Indice dell'articolo"></nav>
+    <article class="art" id="art-body"></article>
+  </div>
+<!-- ARTICLE:START -->
+<script type="text/markdown" id="article-source">
+# What Counts as Correct: A Census of Digital Humanities Benchmarks for Large Language Models
+
+## Abstract
+
+Evaluating a language model requires declaring, in advance, which answer is correct. On an arithmetic problem this is an innocuous requirement. On an iconographic attribution, a manuscript dating, the translation of a pun, or the reading of a damaged archival document, deciding which answer is correct *is already* the disciplinary act — the one specialists argue about, and sometimes continue to argue about productively. This paper reports a census of 42 benchmarks that make that decision: benchmarks published between 2021 and 2026 that evaluate generative language models on digital humanities material with quantitative metrics.
+
+We describe each benchmark along two axes. The first records how the benchmark was *built*: where its reference answers came from, whether answering requires knowledge absent from the stimulus, whether correctness is treated as varying by cultural community, whether the target is a property of an artefact's genesis, how many answers the scoring accepts, and how the paper treats disagreement between defensible readings. The second records what the benchmark *found*: the headline score, whether a human baseline was measured, whether a systematic cross-cultural asymmetry was reported, and whether the paper measured the same material under two different scoring regimes.
+
+Three results follow. First, twenty-one of the 42 benchmarks — exactly half — ask questions whose correct answer is not present in the stimulus shown to the model, and score the outcome against a single key. Second, nine benchmarks measured the same material two ways, changing only how the score was assigned; all nine obtained two different scores, with a median gap of 31 percentage points and a maximum of 88. Third, the benchmarks least likely to run that check are precisely those whose format is most closed: two of 28 single-answer benchmarks tested their own instrument, against seven of 14 among the rest (Fisher's exact, *p* = 0.003). Alongside these we report what the corpus does not ask: the genesis of artefacts — date, author, place of origin, provenance — is the target of three benchmarks out of 42.
+
+We report the census with its limits stated as results rather than caveats, including a documented failure of our own pipeline that we did not correct before writing, and we describe the maintenance procedure by which the census can be kept current.
+
+---
+
+## 1. Introduction
+
+The evaluation of large language models has converged on a particular epistemic form. A benchmark presents a stimulus, elicits a response, and compares that response to a reference answer that was fixed before the model was run. The comparison yields a number, numbers are averaged, and averages are compared across models. This form has been enormously productive, and its productivity depends on a condition that is rarely examined: that a single correct answer exists, is knowable in advance, and can be written down.
+
+For a substantial part of the material the humanities work on, that condition is contestable. A benchmark that asks a model to date a manuscript, identify a saint from iconographic attributes, or determine the rhetorical structure of a petition is not merely posing a hard question; it is asserting that the question has one answer. Sometimes it does. Often the discipline that studies the object treats the disagreement between specialists not as a failure of measurement but as information about the object — the reason critical editions record variants, and catalogue records carry attributions with qualifiers.
+
+This paper does not argue that benchmarks are wrong to fix reference answers. It asks a prior, empirical question: **when humanities material enters a benchmark, what happens to it?** Who produces the reference answers, how many answers does the scoring accept, what does the benchmark ask about, and — where the papers themselves provide the evidence — how much does the reported score depend on those choices rather than on the model?
+
+Our contribution is threefold.
+
+**A census.** We identify, screen and describe 42 benchmarks that evaluate generative language models on digital humanities material with quantitative metrics, published between 2021 and 2026. For each we record a fixed set of properties, chosen so that every one is something the paper *states* rather than something a coder must judge (Section 3.3).
+
+**An empirical link between construction and result.** Existing critiques of benchmarking argue that benchmarks measure less than they claim (Raji et al., 2021; Bowman & Dahl, 2021), a maturing methodological literature works out when benchmark measurements are and are not valid (Hardt, 2026), and a parallel literature argues that annotator disagreement carries signal rather than noise (Uma et al., 2021; Plank, 2022). We connect the two using the benchmark papers' own experiments: nine of the 42 report what happens when the same models are scored on the same material under a different regime, and in all nine the score moves substantially (Section 4.3). The papers that never run this check are disproportionately the ones whose format is most closed.
+
+**A declared method and a maintainable artefact.** The search strategy, the inclusion criteria and the extraction schema are reported in full, including the points at which they failed. Every figure in Section 4 is recomputable offline from the released records by a single script, and Section 6 describes how the census is updated as new benchmarks appear.
+
+The paper proceeds as follows. Section 2 situates the work in the existing literature. Section 3 states the operational definitions and inclusion criteria (3.1), the search and screening procedure (3.2), and the extraction schema (3.3). Section 4 reports the findings, and Section 4.7 states what the data does not license. Section 5 concludes, and Section 6 describes maintenance.
+
+---
+
+## 2. State of the art
+
+*[This section is intentionally left to be written. It should survey existing reviews and position papers on the evaluation of large language models for digital humanities, humanities and cultural heritage, and position the present census against them.*
+
+*Two anchors are already identified. Hutchinson (2026) is the closest prior work: a discussion paper examining LLM performance on historical reasoning across five benchmarks, which proposes a four-dimensional framework — contamination resistance, content diversity, format diversity, epistemological sophistication — and reports a collapse from over 90% accuracy on multiple-choice items to 16% reliability on interpretive synthesis. Its "format diversity" dimension anticipates the finding we report in Section 4.3 from a different corpus and a different method, and the relationship between the two should be stated explicitly here. Kang et al. (2025) illustrates the second anchor: a humanities-and-social-sciences benchmark that our own search did not retrieve, and therefore evidence about the recall of the procedure in Section 3.2 rather than about the field.*
+
+*The section should also address why a census of this kind has not previously been assembled, and whether the general benchmark-critique literature (Raji et al., 2021; Bowman & Dahl, 2021) has been taken up in digital humanities venues.]*
+
+---
+
+## 3. Methodology
+
+### 3.1 Operational definitions and inclusion criteria
+
+The census is delimited by four criteria. Each is stated here as it was applied, together with the decisions that the criterion left open and how those were resolved.
+
+**Benchmark.** We include a resource only if it defines a fixed evaluation set together with a scoring procedure that yields quantitative metrics. This excludes qualitative probes, demonstrations, and datasets released without an evaluation protocol; it includes shared tasks, where the task definition and the scoring script constitute the benchmark. A resource qualifies whether or not its authors use the word "benchmark". The operative test is whether an independent party could re-run the evaluation and obtain a comparable number.
+
+**Large language model.** We include a benchmark only if it evaluates at least one generative language model — a model that produces text (or text conditioned on other modalities) rather than assigning labels from a fixed head. Vision-language models are included on the same basis. Encoder-only classifiers appear in several of the included papers as baselines, which is not sufficient on its own: the generative model must be among the systems the benchmark is designed to assess.
+
+**Digital humanities scope.** This is the criterion that required the most deliberation, because "digital humanities" can mean two different things, and the two select different corpora.
+
+Read as a set of *methods*, DH names computational approaches to humanistic material — the sense in which humanities computing has historically been bound together by "a common interest in methods, methodology, tools and technology" rather than by shared subject matter (Svensson, 2009). Read as a *domain*, DH names the subject areas themselves: history, literature, philosophy, art history, classics, religious studies. The distinction is not merely terminological, and the tension between the two readings is long-standing in the field's self-definition (Terras et al., 2013).
+
+We adopt the **domain** reading, for a reason internal to the object of study. A methods reading would have selected benchmarks by the techniques they employ, which for language-model evaluation is nearly constant across the corpus — the technique is prompting a model and scoring its output. It would have discriminated almost nothing. The domain reading asks instead whether the *material* being reasoned over belongs to the humanities, which is the property that the questions of this paper actually concern.
+
+Operationally, a benchmark is in scope if its material falls in one or more of the subject areas that constitute the humanities. We took the reference vocabulary from the Scopus All Science Journal Classification (ASJC), a scheme of four broad areas subdivided into roughly 334 minor fields, assigned to serials by in-house experts on the basis of aims, scope and published content (Elsevier, 2025). Its relevant top-level area is named *Arts and Humanities*; we keep that label when naming the scheme, and use *digital humanities* for the field whose material and questions this census is about. The areas represented in the resulting corpus are History, Language and Linguistics, Visual and Performing Arts, Religious Studies, Cultural Studies, Philosophy, Literature and Literary Theory, Music, Classics, Museology, Archaeology and Conservation.
+
+Two consequences of this choice must be stated. First, the domain reading admits general-purpose benchmarks that contain humanities material among much else — MMLU and its descendants (Hendrycks et al., 2020; Zhang et al., 2023; Singh et al., 2024) — and those turn out to behave as a distinct block (Section 4.4). Second, the subject labels recorded per paper are *not* usable as a count of disciplinary coverage, for reasons we set out in Section 4.7; they delimit the corpus but do not measure it.
+
+**English language.** We include benchmarks that evaluate in English, whether monolingual or as one language among many. Multilingual and non-English-centred benchmarks are included when English is among the evaluated languages. This criterion was applied at screening and, having proved constant across every candidate that passed the other three, does not discriminate within the final corpus.
+
+**Recency.** A fifth condition was applied with deliberate laxity. The census targets benchmarks published after March 2023, the point from which general-purpose generative models became the standard system under evaluation. One earlier benchmark, MMLU (Hendrycks et al., 2020), is retained despite failing this criterion because the corpus cannot be described without it: seven of the eight general-purpose benchmarks are its descendants. Its inclusion is a documented exception, not an oversight, and it contributes to all counts reported below.
+
+### 3.2 Search and census
+
+The corpus was assembled in three stages: source identification, machine-assisted screening, and independent double verification.
+
+**Stage 1 — source identification.** Candidate records were drawn from three kinds of source, chosen to be complementary rather than exhaustive.
+
+*Model system cards.* The evaluation suites reported in the system cards of frontier model providers were mined for benchmarks with humanities content. This source captures precisely the benchmarks that carry comparative weight — those a provider chooses to report — and it is the reason the general-purpose block is well represented.
+
+*Digital humanities venues.* Programmes and proceedings of DH and computational-linguistics venues publishing humanities work were searched directly, including LT4HALA, the workshop on NLP and Language Models for Digital Humanities, CLEF/JOKER, SemEval, and CLRel. This source captures small, purpose-built benchmarks that provider system cards never mention.
+
+*Keyword search.* Topic queries combining benchmark and evaluation terms with humanities and cultural-heritage terms were run against bibliographic indices, with records exported from OpenAlex — a fully open index of scholarly works whose coverage at the time of its release stood at 209 million works, and which was created as a replacement for the discontinued Microsoft Academic Graph (Priem et al., 2022). OpenAlex was chosen for its openness and its inclusion of book-form outputs, which matter disproportionately in the humanities. Its subject labelling is an automated hierarchical classifier over roughly 65,000 Wikidata concepts rather than a curated scheme like ASJC (Priem et al., 2022), so it was used to retrieve records, not to delimit them; the subject-area judgement was made by the reviewers.
+
+**Stage 2 — machine-assisted screening.** The exported records were screened with ASReview, an open-source framework for active-learning-assisted systematic review (van de Schoot et al., 2021). ASReview implements a researcher-in-the-loop cycle: the reviewer labels one record as relevant or irrelevant, that label retrains a classifier, and the classifier re-ranks the remaining unlabelled records so that the next record presented is the one the model considers most likely to be relevant. Screening proceeds until the reviewer applies a stopping criterion; the software supplies no automatic stopping rule, so the criterion is a methodological choice that must be reported. In the simulations reported with the tool, this procedure retrieved 95% of eligible studies after screening between 8% and 33% of records (van de Schoot et al., 2021).
+
+Two properties of this arrangement matter for the validity of what follows. Inclusion and exclusion decisions were made **manually** throughout: the classifier determines the *order* in which records are presented, never the outcome. No record was excluded on a machine assessment alone. This is the distinction that PRISMA 2020 item 8 requires reviewers to report — whether records were excluded on machine assessment alone, or whether machine output only prioritised human decisions (Page et al., 2021). Ours is the latter.
+
+The cost of the arrangement is equally specific. Because screening stops before the pool is exhausted, ML-assisted screening trades recall for effort, and the recall achieved depends on a stopping decision. We did not pre-register a stopping rule, and this is a genuine limitation of the census rather than a formality: HSSBench (Kang et al., 2025), a humanities and social sciences benchmark for multimodal models, satisfies every inclusion criterion above and is absent from the corpus. It is direct evidence that the search has imperfect recall, and it is reported here rather than in a limitations paragraph because any claim of the form "the field does X" inherits that imperfection.
+
+**Stage 3 — independent double verification.** Every record surviving screening was then read in full by two reviewers working independently, each recording an accept/reject decision and a free-text note against the criteria in Section 3.1. Disagreements were resolved by discussion against the paper text. This stage is the reason the corpus is small: it is bounded by reading capacity, not by search.
+
+**Initial cataloguing metadata.** Each accepted record was catalogued with a fixed schema before any automated extraction, comprising: the benchmark name; the article URL; the publication year; the resource URL for the benchmark or dataset itself, where released; the modalities; a free-text description of the domain; the evaluation metrics as stated by the paper; a yes/no humanities judgement; the ASJC area or areas; the source through which the record was found; the identifier of the reviewer who found it; and the two independent accept decisions with their notes. This schema is deliberately thin. It records what a reader can establish from the paper's front matter and what the screening process itself produced — provenance and decisions — leaving every substantive property of the benchmark to the extraction stage, where it is recorded with a controlled vocabulary and an evidence field.
+
+**Outcome.** Forty-five records passed double verification. Three could not be retrieved as full text (EXAMS-V, IRLBench, MultiBLiMP 1.0) and were excluded; all three are multilingual benchmarks, so their absence bears specifically on the community-dependence counts of Section 4.6. The census therefore describes **42 benchmarks**, of which at most 41 are distinct: VULCA-BENCH is represented by two separate papers, a duplication we retain deliberately and exploit in Section 4.7.
+
+### 3.3 Information extraction
+
+Descriptions were extracted from the full text of each paper by a three-agent procedure, then aggregated offline.
+
+**Two readers and an adjudicator.** Each paper is read independently by two extraction agents given different backgrounds — one framed as a humanities scholar, one as a machine-learning researcher — which produce the same fields without seeing each other's output. A third agent adjudicates the two reports against the paper text and writes the final record, noting the disagreements it resolved. The two independent readings are retained alongside the adjudicated record, so inter-reader disagreement can be measured after the fact rather than being erased by adjudication.
+
+**Properties, not categories.** The schema's central design decision was to stop asking for the judgement the survey exists to investigate. An early version asked the readers to assign each benchmark one or more *analytical task types*. Three pairs of terms proved impossible to separate non-arbitrarily — visual recognition against visual reasoning, interpretation against cultural reasoning, attribution against classification. Recognising Saint Jerome from the lion and the cardinal's hat is either visual recognition or iconographic inference depending on a theoretical position about where perception ends and interpretation begins.
+
+Coding that boundary by stipulation would have been circular. If the instrument decides in advance that iconographic recognition is not interpretation, then finding that benchmarks test little interpretation is not a result: it is the definition, returned as a finding. There is also a performative problem specific to this paper. Its argument is that benchmarks reduce hermeneutic operations to closed categories and single-answer formats; measuring that with an instrument performing the same reduction weakens the form of the argument, not merely the data.
+
+The schema therefore asks for **observable properties of construction** in place of contested categories. Rather than "is this task interpretation?", it asks where the reference answer came from; whether answering requires knowledge absent from the stimulus; whether the target is a property of the artefact's genesis rather than its content; whether correctness is treated as varying by community; how many answers the scoring accepts; and how the paper treats disagreement. Each is a fact the paper states. The contested boundaries are then recovered *a posteriori* by grouping benchmarks in the space of these properties, which makes the grouping revisable at no cost and inspectable by a reader who does not share it.
+
+**Closed vocabularies with free-text evidence.** Fields that must aggregate use closed vocabularies; each is accompanied by a free-text field carrying the paper's own wording and the evidence for the values assigned. Task labels use a controlled list of 22 identifiers derived by clustering the 235 free-text labels an earlier ungoverned run produced, not specified a priori. All extracted values are checked against the closed vocabularies after extraction; the final corpus contains no vocabulary violations, and all 22 task identifiers are used.
+
+The free-text evidence field is not ornamental. On one paper the readers selected `existing_metadata` for the source of the reference answers — the closest available value — while the evidence field correctly reported that the items came from practice exams and textbooks. A GRE answer key and a museum catalogue record do not carry the same kind of authority, and conflating them would have silently weakened the schema's most load-bearing variable. The distinction between `existing_metadata` and `authored_answer_key` was added in response, and the corpus re-extracted.
+
+**`not_stated` is a measurement.** Every closed vocabulary distinguishes "the paper does not say" from "no". A benchmark that does not report how its ground truth was produced is itself a finding, and the rate of `not_stated` per property is a reportable result rather than missing data.
+
+**Incremental extension.** New fields can be declared between runs; cached papers extract only the fields they lack and merge them, leaving established values untouched. The results axis reported in Section 4.3 was added this way, after the construction axis was complete, without re-extracting anything else.
+
+**A failure of this procedure, uncorrected.** The extraction reads the full text of a retrieved PDF. For five of the 42 papers, the retrieved file is not the paper but a landing page: an IEEE Xplore record for CHVM-1K (892 characters of extractable text), a NeurIPS abstract page for HiST-LLM (3,225), a GitHub page for SimpleQA (10,913), an ACL Anthology record for DRISHTIKON (11,753), and a project page for the RISE benchmark (28,186). The median for the other 37 papers is 59,571 characters. These five were described from whatever the landing page contained. The consequences are traced in Section 4.7; we report the failure here, in the methods, because it is a property of the procedure and not of the field.
+
+---
+
+## 4. Findings
+
+All figures below are recomputable from the released records without further model calls. Statistical tests are two-sided Fisher exact tests on 2×2 tables, with absolute counts always reported. With *n* = 42 these do not support inference to the field: a *p*-value here indicates whether a difference is distinguishable from chance within this corpus, not whether it generalises.
+
+### 4.1 What the corpus contains
+
+The 42 benchmarks are recent: one from 2021, two from 2023, nine from 2024, nineteen from 2025 and eleven from 2026. Thirty of the 42 appeared in the last two years.
+
+Twenty-three are text-only and seventeen combine image and text. Audio appears in two and video in one. Multimodality has arrived, but almost entirely as still images.
+
+Sizes span four orders of magnitude: the median benchmark has 3,028 items, the smallest 100 and the largest 589,764. Ten have fewer than a thousand items and four have more than a hundred thousand. Most are artisanal objects built by a single research group; a handful are infrastructure.
+
+Grouping the 22 controlled task identifiers into seven families — a grouping we impose and report as such — declarative knowledge and cultural reading cover 25 benchmarks each, language 19, reasoning and document work 18 each, vision 16, and agentic tool use 3. The median benchmark exercises four of the 22 identifiers.
+
+Accuracy is the headline metric in 21 of the 42, with F1 in three, BLEU in two, and a bespoke or composite metric in six; seven report no single headline figure. This matters for what follows: half the corpus reduces its outcome to a proportion of exactly-correct responses.
+
+Evaluation is overwhelmingly of the model as it comes: nineteen benchmarks evaluate zero-shot, nineteen across multiple regimes, three few-shot, and exactly one principally evaluates models fine-tuned on the task.
+
+Size is not merely a matter of cost, because it sets a floor on what a benchmark can detect at all. Distinguishing two models that differ by ε requires on the order of 1/ε² items, so a benchmark of *n* items resolves differences of roughly 1/√n and no finer (Hardt, 2026). Applied to this corpus: of the 40 benchmarks declaring a size, **14 are large enough to resolve a one-point difference** (10,000 items or more), 22 can resolve two points, and ten fall below a thousand items and therefore cannot distinguish differences smaller than about three points. The smallest, a 100-item corpus of parole hearings, resolves nothing finer than ten. This does not invalidate those benchmarks — a 100-item expert-annotated corpus can be exactly the right instrument for a question — but it does mean that model comparisons reported to one decimal place on small benchmarks are reporting noise, and it bears directly on how the score dispersion above should be read.
+
+The systems evaluated are concentrated. **Thirty-eight of the 42 benchmarks (90%) evaluate at least one OpenAI model**, against 23 for Google, 20 for Anthropic, 15 for Alibaba's Qwen family and 13 for Meta's Llama. What is known about the humanities capabilities of language models is largely what is known about one provider's models.
+
+Across the 21 benchmarks reporting accuracy — the only directly comparable subset — the best model scores range from 13.4 (Humanity's Last Exam; Phan et al., 2025) to 93.0 (AdMIRe; Pickard et al., 2025), with a median of 61.8. The dispersion, not the ranking, is the finding: the field simultaneously produces evidence that models nearly saturate humanities tasks and evidence that they fail them, and what separates the extremes is not the difficulty of the material but how tightly the question is drawn.
+
+### 4.2 Where reference answers come from, and how many are accepted
+
+Reference answers come from crowd annotators in nine benchmarks, from disciplinary experts in nine, from pre-existing exam or textbook answer keys in eight, and from curatorial or catalogue metadata in six. Three derive them from a model and one from the authors. **Six of the 42 do not state where their ground truth came from** — a substantial omission on material where the provenance of interpretive authority is the question at issue.
+
+The choice tracks what the benchmark claims to measure. Where the benchmark is designed to assess disciplinary competence, 13 of 23 draw on experts or curatorial metadata; where humanities material serves as content for a general capability, 2 of 17 do (57% against 12%; *p* = 0.004). Restricting to the 32 purpose-built benchmarks, excluding the general-purpose block, strengthens the association rather than weakening it (12 of 18 against 2 of 14; 67% against 14%; *p* = 0.004). Conversely, content-role benchmarks fall back on crowd annotation and answer keys in 10 of 17 cases against 6 of 23 (*p* = 0.032). Two economies of truth operate side by side, and they produce objects that resemble one another only superficially.
+
+This convergence is also the only internal evidence that the disciplinary-role judgement was not arbitrary: the role is an interpretive judgement made by the readers, the source of the gold is an observable property of dataset construction, and the two were extracted in independent passes under different schemas.
+
+Turning to scoring: 28 of the 42 accept a single answer per item, five accept an enumerated set, five use graded human or model judgement, and four do not state. Crossing this with whether answering requires knowledge absent from the stimulus yields the central count of the census. **Twenty-one benchmarks — exactly half the corpus — pose questions whose correct answer must be inferred from outside the stimulus, and score the result against a single key.** They require interpretation and accept one interpretation.
+
+Those 21 are not evenly distributed: they are 8 of the 8 general-purpose benchmarks and 13 of the 34 purpose-built ones (38%). This is a property of the large benchmarks rather than of the field as a whole, for reasons Section 4.4 makes explicit.
+
+### 4.3 When the instrument changes, the score changes
+
+Nine benchmarks in the corpus ran an experiment more decisive than any argument: they evaluated the same models on the same material while changing only how the score was assigned. **All nine obtained two different scores.** The median gap is 31 percentage points; the largest is 88.
+
+The clearest case is EduArt (Spinaci et al., 2026), which evaluates models on art-history exercises drawn from Italian and United States secondary examinations. The same models exceed 94% when choosing among options, fall to 23.9% on open completion, and to 6.2% on error identification. The material did not change; the shape of the question did. That 94% does not measure a competence that subsequently evaporates — it measures recognition among alternatives, which is an easier and different thing. CulturalBench (Chiu et al., 2024) reports a 53-point drop between multiple-choice and binary formats on the same 1,696 questions; Appear2Meaning (Jiang et al., 2026) reports partial-match rates of 0.735 against exact-match rates of 0.000 on the same items; VULCA-BENCH (Yu et al., 2026a) reports a 40-point decline between surface perception and cultural interpretation tiers of its own taxonomy.
+
+The result bears directly on the construction axis. **Among the 28 benchmarks that accept a single answer, two ran this check; among the 14 that already admit more than one answer, seven did** (7% against 50%; *p* = 0.003). The benchmarks whose format is most closed are also those least likely to test whether the format is doing the work.
+
+Two qualifications constrain the claim. First, the 18 benchmarks that report no such comparison did not compare two instruments and find them equivalent; they did not compare. A null result would rarely be published, so "nine of nine" means nine of nine among those that looked, and is a lower bound in both directions. Second, a further twelve benchmarks report gaps of comparable magnitude (median 34 points) by varying the *items* — a harder subset — or the *input representation*, rather than the instrument. Those are findings about model fragility, not about measurement, and we keep them separate; the separation is our reading of the papers' own reported evidence and is documented as such.
+
+**This is not a humanities peculiarity, and that matters.** The same sensitivity is documented in mainstream machine-learning evaluation, where changing a single delimiter in a prompt template has been reported to swing MMLU accuracy by 23 points, and where measured performance is held to depend substantially on evaluation design — prompt formatting, answer presentation, adaptation budget — rather than on a stable underlying capability (Hardt, 2026). Our contribution is not to discover the phenomenon but to locate it: on humanities material the choice that moves the score is not a formatting detail, it is a decision about how many readings of an object count as correct.
+
+**A robustness check the previous paragraph requires.** If a benchmark is too small, a reported gap could be sampling noise rather than a property of the instrument. Taking each benchmark's own resolution floor from Section 4.1, all nine gaps exceed three times the smallest difference their benchmark can detect — the tightest case being CzechTopic, whose 10-point gap sits against a 2.3-point floor on 1,820 items. None of the nine is an artefact of a small test set.
+
+A third observation belongs here. Only 13 of the 42 benchmarks measure a human baseline at all, and nine quantify the gap. In two of those nine the model exceeds the human — both agentic search tasks, where the human is constrained by time rather than by competence.
+
+### 4.4 The general-purpose block
+
+Eight benchmarks in the corpus are general-purpose: MMLU (Hendrycks et al., 2020) and its descendants. They are the largest, the most cited, and the ones that appear in provider system cards and fix comparative rankings. They have one shape, with no variance.
+
+Seven of the eight take their reference answers from pre-existing exam or textbook answer keys, against 1 of the other 34 — a difference of 85 percentage points and the largest effect in the corpus (*p* < 0.001). All eight accept a single answer, against 20 of 34 (*p* = 0.027). Their median size is 21,218 items against 1,758 for the purpose-built benchmarks that declare one.
+
+Size alone, however, does not predict format: among benchmarks with at least 20,000 items, 67% accept a single answer, against 68% of the rest (*p* = 0.31). What is large is closed because it is general-purpose, not because it is large — a distinction that matters because it locates where intervention would be effective.
+
+There is also a formal reason to distrust what these eight report. Aggregating many subject areas into one number is a voting problem — tasks are voters, models are candidates — and Arrow's impossibility theorem applies: a multi-task benchmark that satisfies unanimity and independence of irrelevant alternatives must be a single-task benchmark in disguise (Hardt, 2026). Empirically, the matrix of benchmark scores by model turns out to be close to low rank, with its first principal component tracking pretraining compute. A general-purpose benchmark that reports a humanities subscore is therefore doing something more fragile than it appears: the subscore is one voter in an aggregation with no non-arbitrary rule, over a corpus whose dominant axis of variation may not be subject competence at all.
+
+The asymmetry this produces is structural. Comparative visibility concentrates where the reference answers come from assessment keys and the scoring accepts one response; experimentation with formats sits in small, recent benchmarks that nothing uses as a comparative reference.
+
+### 4.5 What the corpus reports about models
+
+Beyond individual scores, one pattern recurs across independent benchmarks. Among the 24 benchmarks covering more than one culture or language — those for which the question arises — **17 report a systematic performance asymmetry as a finding**: Western-centric bias, degradation on low-resource languages, or worse scores on a named region. Seven report no such difference.
+
+The field, in other words, is capable of measuring cultural asymmetry and does so routinely. What does not follow is the further step: observing that a model performs worse on one culture is not the same as allowing that the correct answer might vary with culture. On that question the corpus stands at four benchmarks out of 42.
+
+### 4.6 What the corpus does not ask
+
+The preceding sections concern how benchmarks measure. This one concerns what they ask about, and it is read in the absences. These are counts, not associations: no tests, and the list is the evidence.
+
+**The genesis of artefacts: 3 of 42.** Date, author, place of origin, provenance, material history — the operative core of philology, art history, archaeology and codicology — are the target of Appear2Meaning, EduArt and Hanfu-Bench. Every other benchmark evaluates the *content* of objects rather than their history. This is the largest gap in the corpus and also the most tractable: these are tasks where evidence is incomplete by nature and competing hypotheses are the norm, which is precisely the terrain on which single-answer formats do not function.
+
+**Community-relative correctness: 4 of 42.** The corpus is full of avowedly multilingual and cross-cultural benchmarks, but being multilingual while maintaining a universal answer key is the norm: the question is translated, the answer is not permitted to change. The field's cross-cultural work is predominantly *translational* rather than relativist. Read alongside the 71% of benchmarks that *detect* cultural asymmetry (Section 4.5), the picture is sharp.
+
+**Audio or video: 2 of 42.** Ethnomusicology, film studies, performance studies and oral history are outside the frame.
+
+**Graded scoring: 5 of 42.** Graded human or model judgement is the only format that structurally admits degrees of correctness. It covers an eighth of the corpus, and all five cases are generative or critical tasks.
+
+These are not defects of the individual benchmarks, none of which promised to cover attribution or ethnomusicology. They are the shape of the field seen in negative, and they indicate what to build rather than diagnosing what exists.
+
+### 4.7 How far these numbers reach
+
+**Disciplines are not countable from this data.** It would be natural to ask how many benchmarks cover art history, how many philosophy, how many archaeology. The recorded ASJC areas do not support that count, for two independent reasons. First, the labels are not commensurable: a general-purpose benchmark declares the dozens of examination subjects it contains, while a monothematic benchmark declares its single discipline. Summing them equates "contains music questions among 57 subjects" with "is a music benchmark". Concretely, the five occurrences of "Music" in the corpus belong to LongFact, MMMU-Pro, Humanity's Last Exam, SuperGPQA and BrowseComp; none is a music benchmark and three are general-purpose. Second, this is the one list field left outside the vocabulary check: it contains "Archaeology" and "Archeology" as distinct entries through a typographical error, alongside values outside the declared ASJC list. The two papers describing the same benchmark received one area and four respectively. Section 4.1 therefore describes what benchmarks *do* — task families, modalities, both drawn from validated closed vocabularies — and not which discipline they belong to.
+
+**Half the corpus is silent on disagreement.** The most theoretically loaded property in the schema records how a paper treats divergence between annotators or between defensible readings. Twenty of the 42 address it: nineteen treat it as noise to be reduced, one as information about the material, and 22 do not mention it. Every crosstab involving this variable therefore runs on roughly twenty cases rather than 42, without the denominator saying so, which is why no percentage involving it appears in Sections 4.1–4.6. What does hold is that the silence is disappearing: in 2026, nine of eleven papers say something, against 11 of 31 in earlier years (*p* = 0.009). That it is being replaced principally by explicit minimisation is what the data show, but on eleven cases this is an observation rather than a trend.
+
+**Five papers were described from landing pages, not papers.** As reported in Section 3.3, the extraction for CHVM-1K, DRISHTIKON, SimpleQA, HiST-LLM and the RISE benchmark ran over a retrieved landing page rather than the article. The effect is visible and consequential. CHVM-1K and DRISHTIKON are `not_stated` on all six construction properties and SimpleQA on five — and on the basis of that pattern they would appear to be unusually reticent papers. They are not; they were not read. Any reading of those three as evidence about disclosure practice is an artefact of our retrieval step. Because these three share the same value across every property, they also manufacture association: the relation between community-relative correctness and artefact genesis measures Cramér's *V* = 0.71 with them included and 0.10 with `not_stated` excluded. Net of that artefact the construction properties are largely independent of one another, which is what a multi-axis instrument should be. We have not re-run the extraction for these five, and the corrected values should be obtained before any of the affected counts are used further.
+
+**The only external reliability estimate available is 4 of 6.** The corpus contains two distinct papers describing VULCA-BENCH (Yu et al., 2026a, 2026b). The pipeline read them as separate objects, producing an unintended test-retest. They diverge on two of the six construction properties — whether correctness is community-relative, and how many answers the scoring accepts — as well as on the evaluation regime, the declared size (6,804 against 7,410 items) and the disciplinary areas (one against four). Agreement: four of six. This should be read against the agreement between the two extraction readers, which runs at 36 to 41 of 42 depending on the property — but the two figures measure different things. The two readers process the *same text*, so their agreement measures how far two prompts converge, and a closed vocabulary obliges them to converge. The two VULCA papers are *different texts about the same object*, so their divergence measures how far the coding depends on how a paper is written. It is a single case and an anecdote, but it is the only external reliability estimate the project has, and it suggests the true figure is nearer 4 of 6 than 40 of 42.
+
+**Corpus integrity and upstream limits.** Forty-two files describe at most 41 distinct benchmarks. Seven papers name no benchmark and are recorded under the title assigned at cataloguing. MMLU is included although it predates the recency criterion (Section 3.1). Three verified records were excluded for want of full text, all three multilingual, which bears specifically on Section 4.6. Above all, the search has documented imperfect recall (Section 3.2), and the extraction has **not** been validated against human coding: two readers agreeing with each other is not two readers being right, and a closed vocabulary can make them converge on an error. A hand-coded subset compared against the pipeline output is the step that remains before any percentage here is used as an established figure.
+
+---
+
+## 5. Conclusions
+
+The census supports three claims and one recommendation.
+
+**The measured competence of a model on humanities material is a joint property of the model and the format that interrogates it.** This is not an inference from theory but a report of experiments the benchmark papers ran themselves: nine benchmarks measured the same material under two scoring regimes and all nine obtained different results, by a median of 31 points. Where the field reports that models perform well on humanities tasks, the format is doing part of that work, and the amount is measurable — but only where someone measures it. The benchmarks least likely to measure it are those whose format is most closed (*p* = 0.003). Reporting a single headline number without a second regime is, on this evidence, reporting an unknown quantity.
+
+**The strongest objection to the first claim, and our answer to it.** There is a principled defence of benchmarking that our result appears to threaten and does not. Absolute benchmark numbers are known not to replicate; what replicates is the *ordering* of models, and that ordering is enough to run competitive empirical testing, which is what benchmarks are for (Hardt, 2026). On this view a 31-point swing in a reported score is unsurprising and largely harmless, because nobody should have believed the cardinal number in the first place.
+
+We accept the distinction and think it fails to rescue this corpus, for three reasons. The first is empirical: ordinal stability is itself conditional on equalising what each model brought to the test, and none of the 42 benchmarks does this — the same source identifies the large-language-model era, where preparation differs wildly across competitors, as precisely where ranking stability broke down. The second is about use: these benchmarks do not circulate as rankings. Twenty-one of the 42 report a headline accuracy, and those cardinal numbers are what gets quoted as evidence of what models can do with humanities material. A defence that concedes the absolute numbers while the field reports and cites them is a defence of a practice nobody is following. The third is the one we care about. The ordinal defence is *metrological*: it concerns whether a measurement is stable. Our claim is *epistemic*. A perfectly stable ranking computed against a gold standard that fixed one reading of an iconographic attribution as correct is stable and is still not a measurement of disciplinary competence — it measures agreement with whoever wrote the key. That same source draws the line in the same place, warning that benchmarks should not be used to measure latent constructs such as ability or skill (Hardt, 2026). A benchmark claiming to assess disciplinary competence is doing exactly that.
+
+Two further points of contact are worth recording, one supporting and one limiting. The formal framework underlying benchmark evaluation assumes a single label per item — the target *y* determined jointly with the features *x* — an assumption its own author grants is met by almost no real dataset. Our plurality facet is a survey of how often that assumption is defensible on humanities material, and half the corpus does not discuss it. Against that, the chapter of that book devoted to labelling and annotation is not available in the open edition we consulted; it is the chapter closest to the question we raise, and we cannot report whether it anticipates or contradicts us.
+
+**Two economies of truth are operating, and prestige is attached to the wrong one.** Benchmarks that set out to assess disciplinary competence pay for disciplinary expertise; those that use humanities material as content for a general capability fall back on crowd annotation and examination keys. The association is robust and survives every stratification we applied. But comparative visibility sits almost entirely with the second economy: the eight general-purpose benchmarks are twelve times larger by median, take their answers from assessment keys in seven cases of eight, and accept a single answer in all eight. Experimentation with evaluation formats is happening in small, recent, purpose-built benchmarks that nothing uses as a comparative reference.
+
+**The operations that define the historical disciplines are almost absent.** Dating, attribution, provenance and material history — what philology, art history, archaeology and codicology actually do — are the target of three benchmarks out of 42. The field has imported from the humanities those questions that resemble reading comprehension and visual recognition, and left out those requiring inference about how an object came to be.
+
+The recommendation follows from the conjunction of the first and third claims. The gap is not merely a matter of coverage. Attribution and dating are tasks where the evidence is incomplete by construction and where competing hypotheses are the normal state of knowledge — exactly the conditions under which a single-answer format misdescribes the task. A benchmark for artefact genesis that scored against one key would reproduce, on the most epistemically delicate material available, the reduction this paper documents. Building in this space therefore requires the two moves together: taking on the operations the field has avoided, *and* adopting scoring that admits enumerated answer sets, graded judgement, or explicitly plural gold — the arrangements that a substantial literature on annotator disagreement has already worked out (Uma et al., 2021; Plank, 2022), and that five benchmarks in this corpus already use.
+
+We add one methodological conclusion drawn from our own procedure. The most useful thing the schema did was to stop asking whether a task is "interpretive" and start asking where its reference answers came from. The first question is the one the survey exists to investigate, and coding it directly would have returned the definition as a finding. The second is a fact the paper states. That substitution — closed vocabularies for what must aggregate, free-text evidence beside it for what must not be lost, and contested boundaries recovered afterwards by grouping — is transferable to other surveys whose object is contested in the same way.
+
+---
+
+## 6. Maintenance
+
+This census is designed to be a living resource rather than a snapshot, because its object is moving: thirty of the 42 benchmarks appeared in the two years before writing. Maintenance has four components.
+
+**Adding a benchmark.** A new record is appended to the input catalogue with the Stage 3 metadata of Section 3.2 — name, article URL, year, resource URL, modalities, domain, metrics, humanities judgement, ASJC areas, source, finder, and the two independent accept decisions. Running the pipeline then fetches, extracts and describes only the new record: existing descriptions are cached and untouched. The reporting script recomputes every figure in Section 4 from the full corpus without further model calls.
+
+**Adding a property.** New extraction fields are declared in the schema file and take effect on the next run. Cached papers extract *only* the fields they lack and merge them into their existing records; established values are never recomputed. This is how the results axis of Section 4.3 was added after the construction axis was complete. The exception is a change to the *value set* of an existing field: a distinction absent from a vocabulary cannot be recovered from values already assigned under it, so redefining a vocabulary requires re-extracting the corpus. This happened once, for the distinction between curatorial metadata and authored answer keys (Section 3.3), and it is the only kind of change that carries that cost.
+
+**Re-verification.** Three checks should run on every update. The vocabulary check must report no violations. The retrieved full text of each new paper must be confirmed to be the paper — the failure documented in Section 3.3 was silent, and a simple length and content check catches it. Bibliographic records must be verified against the paper itself rather than accepted from a title match; in assembling this article, four of 38 automatically resolved records were matched to the wrong work, and were caught only by comparing the resolved author and title against the paper's own first page.
+
+**Outstanding maintenance.** Three items are known and open at the time of writing. The five landing-page extractions (Section 3.3) should be re-fetched and re-described, and the counts they affect recomputed. The ASJC area field should be brought under vocabulary control, at which point disciplinary coverage becomes reportable. And a hand-coded subset should be compared against the pipeline output to give the extraction an external validity estimate, which it currently lacks.
+
+---
+
+## References
+
+Bowman, S. R., & Dahl, G. E. (2021). What will it take to fix benchmarking in natural language understanding? *Proceedings of the 2021 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies* (2021.naacl-main.385). https://aclanthology.org/2021.naacl-main.385/
+
+Chiu, Y. Y., Jiang, L., Lin, B. Y., et al. (2024). CulturalBench: A robust, diverse, and challenging cultural benchmark by human-AI CulturalTeaming. *arXiv preprint* arXiv:2410.02677. https://arxiv.org/abs/2410.02677
+
+Elsevier. (2025). *Scopus subject areas and All Science Journal Classification (ASJC) codes*. Elsevier Support Center. https://service.elsevier.com/app/answers/detail/a_id/15181/
+
+Hardt, M. (2026). *The emerging science of machine learning benchmarks*. Princeton University Press. https://mlbenchmarks.org/
+
+Hendrycks, D., Burns, C., Basart, S., et al. (2020). Measuring massive multitask language understanding. *arXiv preprint* arXiv:2009.03300. https://arxiv.org/abs/2009.03300
+
+Hutchinson, D. (2026). Benchmarking as source criticism: From recognition to reasoning in LLM assessment. *Journal of Open Humanities Data*. https://doi.org/10.5334/johd.489
+
+Jiang, X., et al. (2026). Appear2Meaning. *arXiv preprint* arXiv:2604.07338. https://arxiv.org/abs/2604.07338
+
+Kang, Z., Gong, J., Yan, J., et al. (2025). HSSBench: Benchmarking humanities and social sciences ability for multimodal large language models. *arXiv preprint* arXiv:2506.03922. https://arxiv.org/abs/2506.03922
+
+Page, M. J., Moher, D., Bossuyt, P. M., Boutron, I., Hoffmann, T. C., Mulrow, C. D., et al. (2021). PRISMA 2020 explanation and elaboration: Updated guidance and exemplars for reporting systematic reviews. *BMJ*, 372, n160. https://doi.org/10.1136/bmj.n160
+
+Phan, L., Gatti, A., Han, Z., Li, N., Hu, J., et al. (2025). Humanity's Last Exam. *arXiv preprint* arXiv:2501.14249. https://arxiv.org/abs/2501.14249
+
+Pickard, T., et al. (2025). AdMIRe: Advancing multimodal idiomaticity representation. *arXiv preprint* arXiv:2503.15358. https://arxiv.org/abs/2503.15358
+
+Plank, B. (2022). The "problem" of human label variation: On ground truth in data, modeling and evaluation. *Proceedings of the 2022 Conference on Empirical Methods in Natural Language Processing*, 10671–10682. https://doi.org/10.18653/v1/2022.emnlp-main.731
+
+Priem, J., Piwowar, H., & Orr, R. (2022). OpenAlex: A fully-open index of scholarly works, authors, venues, institutions, and concepts. *arXiv preprint* arXiv:2205.01833. https://arxiv.org/abs/2205.01833
+
+Raji, I. D., Denton, E., Bender, E. M., Hanna, A., & Paullada, A. (2021). AI and the everything in the whole wide world benchmark. *Proceedings of the Neural Information Processing Systems Track on Datasets and Benchmarks 1*. https://datasets-benchmarks-proceedings.neurips.cc/paper/2021/hash/084b6fbb10729ed4da8c3d3f5a3ae7c9-Abstract-round2.html
+
+Singh, S., et al. (2024). Global-MMLU. *arXiv preprint* arXiv:2412.03304. https://arxiv.org/abs/2412.03304
+
+Spinaci, G., et al. (2026). EduArt. *arXiv preprint* arXiv:2607.02007. https://arxiv.org/abs/2607.02007
+
+Svensson, P. (2009). Humanities computing as digital humanities. *Digital Humanities Quarterly*, 3(3). https://dhq.digitalhumanities.org/vol/3/3/000065/000065.html
+
+Terras, M., Nyhan, J., & Vanhoutte, E. (Eds.). (2013). *Defining digital humanities: A reader*. Ashgate.
+
+Uma, A. N., Fornaciari, T., Hovy, D., Paun, S., Plank, B., & Poesio, M. (2021). Learning from disagreement: A survey. *Journal of Artificial Intelligence Research*, 72. https://doi.org/10.1613/jair.1.12752
+
+van de Schoot, R., de Bruin, J., Schram, R., Zahedi, P., de Boer, J., Weijdema, F., Kramer, B., Huijts, M., Hoogerwerf, M., Ferdinands, G., Harkema, A., Willemsen, J., Ma, Y., Fang, Q., Hindriks, S., Tummers, L., & Oberski, D. L. (2021). An open source machine learning framework for efficient and transparent systematic reviews. *Nature Machine Intelligence*, 3(2), 125–133. https://doi.org/10.1038/s42256-020-00287-7
+
+Yu, X., et al. (2026a). VULCA-BENCH: Cross-cultural expert-level art critique evaluation with vision-language models. *arXiv preprint* arXiv:2601.07986. https://arxiv.org/abs/2601.07986
+
+Yu, X., et al. (2026b). VULCA-BENCH: A multicultural art-critique benchmark. *arXiv preprint* arXiv:2601.07984. https://arxiv.org/abs/2601.07984
+
+Zhang, W., et al. (2023). M3Exam: A multilingual, multimodal, multilevel benchmark for examining large language models. *arXiv preprint* arXiv:2306.05179. https://arxiv.org/abs/2306.05179
+</script>
+<!-- ARTICLE:END -->
+</div><!-- /view-article -->
+
+<script>
+(function () {
+  /* ----------------------------------------------------------------
+     The article is stored in this page as markdown and laid out here.
+     The renderer covers exactly the constructs article.md uses —
+     headings, paragraphs, rules, bold, italic, inline code, bare URLs —
+     and scripts/embed_article.py refuses to embed anything else, so an
+     unhandled construct fails the build instead of reaching a reader.
+     ---------------------------------------------------------------- */
+  var src = document.getElementById('article-source');
+  var body = document.getElementById('art-body');
+  var tocEl = document.getElementById('art-toc');
+
+  function slug(t) {
+    return t.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+  }
+  function esc(t) {
+    return t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+  function inline(t) {
+    return esc(t)
+      .replace(/`([^`]+)`/g, '<code>$1</code>')
+      .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*([^*\n]+)\*/g, '<em>$1</em>')
+      // Trailing punctuation belongs to the sentence, not to the URL.
+      .replace(/(https?:\/\/[^\s<]+?)([.,;:]?)(?=\s|$)/g,
+               '<a href="$1" rel="noopener noreferrer">$1</a>$2');
+  }
+
+  function render(md) {
+    var out = [], toc = [], inRefs = false;
+    md.replace(/\r\n/g, '\n').split(/\n{2,}/).forEach(function (block) {
+      // trim both ends: the embedded source begins with a newline, which would
+      // otherwise stop the first block from matching the h1 pattern.
+      block = block.replace(/^\s+|\s+$/g, '');
+      if (!block) return;
+      var m;
+      if ((m = block.match(/^# (.+)$/))) {
+        out.push('<h1 class="art-title">' + inline(m[1]) + '</h1>');
+      } else if ((m = block.match(/^## (.+)$/))) {
+        var id = slug(m[1]);
+        inRefs = /^references$/i.test(m[1].trim());
+        toc.push({ level: 2, id: id, text: m[1] });
+        out.push('<h2 id="' + id + '">' + inline(m[1]) + '</h2>');
+      } else if ((m = block.match(/^### (.+)$/))) {
+        var id3 = slug(m[1]);
+        toc.push({ level: 3, id: id3, text: m[1] });
+        out.push('<h3 id="' + id3 + '">' + inline(m[1]) + '</h3>');
+      } else if (/^-{3,}$/.test(block)) {
+        out.push('<hr>');
+      } else {
+        // A paragraph may wrap over several source lines.
+        var text = block.split('\n').join(' ');
+        out.push('<p' + (inRefs ? ' class="ref"' : '') + '>' + inline(text) + '</p>');
+      }
+    });
+    return { html: out.join('\n'), toc: toc };
+  }
+
+  function buildToc(items) {
+    var html = '<h2>Indice</h2><ol>';
+    items.forEach(function (it) {
+      html += '<li class="lvl' + it.level + '">'
+            + '<a href="#' + it.id + '">' + esc(it.text) + '</a></li>';
+    });
+    tocEl.innerHTML = html + '</ol>';
+  }
+
+  var result = render(src ? src.textContent : '');
+  body.innerHTML = result.html;
+  buildToc(result.toc);
+
+  /* Highlight the section being read: the last heading scrolled past, so the
+     index always shows a current position rather than going blank between
+     headings. Throttled through rAF; a plain index if anything is missing. */
+  if (result.toc.length) {
+    var links = {};
+    Array.prototype.forEach.call(tocEl.querySelectorAll('a'), function (a) {
+      links[a.getAttribute('href').slice(1)] = a;
+    });
+    var heads = result.toc
+      .map(function (t) { return { id: t.id, el: document.getElementById(t.id) }; })
+      .filter(function (h) { return h.el; });
+    var active = null, lastRun = 0;
+
+    function update() {
+      // While the panel is hidden every rect is zero, which would otherwise
+      // read as "every heading is above the fold" and select the last one.
+      if (document.getElementById('view-article').hidden) return;
+      var current = heads[0] ? heads[0].id : null;
+      for (var i = 0; i < heads.length; i++) {
+        if (heads[i].el.getBoundingClientRect().top <= 120) current = heads[i].id;
+        else break;
+      }
+      if (current === active) return;
+      if (active && links[active]) links[active].classList.remove('is-current');
+      if (current && links[current]) links[current].classList.add('is-current');
+      active = current;
+    }
+    /* Time-throttled rather than rAF-queued: a queued frame that never runs —
+       a background tab, a headless renderer — would leave the flag set and stop
+       the index updating for good. Reading 18 rects every 80ms costs nothing. */
+    function onScroll() {
+      var now = Date.now();
+      if (now - lastRun < 80) return;
+      lastRun = now;
+      update();
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    // The panel is hidden at load, so the first meaningful measurement can only
+    // happen once the article view is actually shown.
+    window.addEventListener('viewchange', update);
+    update();
+  }
+
+  /* The article reads light by default; the toggle affects only this panel. */
+  var panel = document.getElementById('view-article');
+  var modeBtn = document.getElementById('art-mode');
+  function setMode(dark) {
+    if (dark) panel.setAttribute('data-art-theme', 'dark');
+    else panel.removeAttribute('data-art-theme');
+    modeBtn.textContent = dark ? 'Tema chiaro' : 'Tema scuro';
+    modeBtn.setAttribute('aria-pressed', String(dark));
+  }
+  setMode(false);
+  modeBtn.addEventListener('click', function () {
+    setMode(panel.getAttribute('data-art-theme') !== 'dark');
+  });
+})();
+</script>
+
+<script>
+(function () {
+  var tabs = { findings: document.getElementById('tab-findings'),
+               article:  document.getElementById('tab-article') };
+  var views = { findings: document.getElementById('view-findings'),
+                article:  document.getElementById('view-article') };
+
+  function show(name, push) {
+    Object.keys(views).forEach(function (k) {
+      views[k].hidden = (k !== name);
+      tabs[k].setAttribute('aria-selected', String(k === name));
+    });
+    // Widens the page for the article's sidebar layout; see the 1080px block.
+    document.body.classList.toggle('reading-article', name === 'article');
+    window.dispatchEvent(new Event('viewchange'));
+    // The hash is the address of the view, so a link or a reload lands correctly.
+    if (push) history.replaceState(null, '', name === 'article' ? '#articolo' : location.pathname);
+    window.scrollTo(0, 0);
+  }
+
+  tabs.findings.addEventListener('click', function () { show('findings', true); });
+  tabs.article.addEventListener('click',  function () { show('article', true); });
+
+  // Deep links into the article (its table of contents, or an external link to a
+  // section) must open the article view rather than land on a hidden element.
+  function routeFromHash() {
+    var h = location.hash.slice(1);
+    if (!h) return;
+    if (h === 'articolo') { show('article', false); return; }
+    var el = document.getElementById(h);
+    if (el && views.article.contains(el)) {
+      show('article', false);
+      el.scrollIntoView();
+    }
+  }
+  window.addEventListener('hashchange', routeFromHash);
+  routeFromHash();
+})();
+</script>
+
+</main>
+</body>
+</html>

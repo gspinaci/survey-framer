@@ -64,6 +64,22 @@ GPT-4 achieves the highest average accuracy at 72.92%, but still struggles with 
 
 **Answer Multiplicity:** single_answer
 
-**Plurality Treatment:** not_addressed
+**Plurality Treatment:** not_stated
 
 **Facets Explanation:** The reference answers are sourced directly from the official answer keys of real, nationwide or regional graduation exams across nine countries. Answering these questions requires extensive prior domain and cultural knowledge that is not contained within the question stimulus itself. Because the benchmark consists entirely of standard multiple-choice questions, each question has a single static correct answer option, and the authors do not discuss or preserve divergent annotations or alternative valid interpretations.
+
+**Reported Format Gap:** no
+
+**Reported Format Gap Points:** None
+
+**Human Baseline Reported:** no
+
+**Human Gap Points:** None
+
+**Reported Best Score:** 72.92
+
+**Reported Best Metric:** accuracy
+
+**Reported Cultural Asymmetry:** yes
+
+**Results Explanation:** The benchmark's best overall model is 'GPT-4', which achieves a headline average 'accuracy' of '72.92' across the evaluated languages (Table 2). A systematic cultural and linguistic asymmetry is reported as models 'generally perform worse for non-Latin languages, such as Chinese... as well as low-resource languages like Javanese', with GPT-4's performance dropping to '55.26' on Javanese ('jv') and '56.04' on Thai ('th') compared to '87.55' on English ('en'). No direct human baseline is quantified, although conventional 'passing' thresholds (averaging '54.44') are provided. No format gap is reported as the benchmark evaluates a multiple-choice format throughout.

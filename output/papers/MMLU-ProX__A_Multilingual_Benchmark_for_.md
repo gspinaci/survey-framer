@@ -64,6 +64,22 @@ DeepSeek-R1 achieved the highest overall multilingual average of 75.5%, followed
 
 **Answer Multiplicity:** single_answer
 
-**Plurality Treatment:** not_addressed
+**Plurality Treatment:** not_stated
 
 **Facets Explanation:** MMLU-ProX translates the MMLU-Pro benchmark, which draws its multiple-choice questions and ground-truth options from pre-existing standardized exams and academic curricula (authored_answer_key). Answering these questions requires extensive background domain knowledge not present in the brief query (gold_beyond_stimulus: yes). The benchmark assumes a single, universally correct choice across all 29 translated versions without adjusting keys for cultural context (gold_community_dependent: no). Disagreements among the human translators verifying the translations were treated as quality flags for the translation rather than conceptual plurality, and plurality of interpretations of the answers themselves is not addressed.
+
+**Reported Format Gap:** no
+
+**Reported Format Gap Points:** None
+
+**Human Baseline Reported:** no
+
+**Human Gap Points:** None
+
+**Reported Best Score:** 75.5
+
+**Reported Best Metric:** accuracy
+
+**Reported Cultural Asymmetry:** yes
+
+**Results Explanation:** The paper does not report any performance differences across task formats or difficulty tiers on the same items, evaluating models consistently on a 10-choice multiple-choice format. No human baseline is provided for solving the benchmark questions, only a human evaluation for translation quality. The best reported headline score is 75.5% average accuracy across 29 languages, achieved by DeepSeek-R1 ('DeepSeek-R1 demonstrates superior overall performance with an average of 75.5% across all languages'). A systematic cultural and linguistic asymmetry is reported as a primary finding: 'While they perform well in high-resource languages, their performance declines markedly in low-resource languages, particularly for African languages.'

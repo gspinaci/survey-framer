@@ -51,5 +51,13 @@
   "gold_concerns_genesis": "yes",
   "answer_multiplicity": "single_answer",
   "plurality_treatment": "noise",
-  "facets_explanation": "The ground truth features were annotated by nine experts (four paper authors and five Hanfu club members), requiring uniform agreement among three annotators and treating unresolved disagreements as noise. Task 1 (VQA) uses multiple-choice questions with exactly one correct option, making its scoring single_answer. Correctly identifying features like the historical dynasty or specific collar/sleeve styles requires external cultural and historical domain knowledge not present in the images themselves."
+  "facets_explanation": "The ground truth features were annotated by nine experts (four paper authors and five Hanfu club members), requiring uniform agreement among three annotators and treating unresolved disagreements as noise. Task 1 (VQA) uses multiple-choice questions with exactly one correct option, making its scoring single_answer. Correctly identifying features like the historical dynasty or specific collar/sleeve styles requires external cultural and historical domain knowledge not present in the images themselves.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 34,
+  "human_baseline_reported": "yes",
+  "human_gap_points": 9,
+  "reported_best_score": 82.28,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "yes",
+  "results_explanation": "The highest overall model performance is achieved by Doubao-1.5-V with an accuracy of 82.28% on the SVQA task (Table 1). On the balanced VQA subset (Table 2), the best-performing model, Doubao-1.5-V, scores 74.48% on MVQA compared to the expert human baseline of 83.54%, which yields a human gap of 9.06 percentage points (rounded to 9, which closely aligns with the abstract's estimate of '10%'). A performance gap of 34 percentage points (34.25 actual points) is observed for MiniCPM-V-2.6 between the single-image format (SVQA: 68.04% accuracy) and the multi-image format (MVQA: 33.79% accuracy) on the same dataset (Table 1). Systematic language asymmetry is reported in Section 4.3, where English prompts ('P-En') consistently degrade model performance compared to Chinese prompts due to cultural translation challenges."
 }

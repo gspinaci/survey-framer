@@ -50,5 +50,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "single_answer",
   "plurality_treatment": "noise",
-  "facets_explanation": "The reference answers were created by contracted human trainers who formulated questions based on personal interests with single, short, and indisputable answers. Answering these questions requires extensive open-web browsing because the stimulus itself contains only complex search constraints, making the task heavily reliant on knowledge beyond the stimulus. Any ambiguity, multiple possible answers, or errors discovered during human cross-verification or model testing led to question revision or deletion, showing that plurality was treated as noise."
+  "facets_explanation": "The reference answers were created by contracted human trainers who formulated questions based on personal interests with single, short, and indisputable answers. Answering these questions requires extensive open-web browsing because the stimulus itself contains only complex search constraints, making the task heavily reliant on knowledge beyond the stimulus. Any ambiguity, multiple possible answers, or errors discovered during human cross-verification or model testing led to question revision or deletion, showing that plurality was treated as noise.",
+  "reported_format_gap": "no",
+  "reported_format_gap_points": null,
+  "human_baseline_reported": "yes",
+  "human_gap_points": -22,
+  "reported_best_score": 51.5,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "The paper reports a headline accuracy of 51.5% for the best-performing model, 'Deep Research' (Table 3). Humans solved 29.2% of the tasks ('Solved by human 367 / 1,255 (29.2%)', Table 2), resulting in a human gap of -22.3 percentage points (rounded to -22). No performance gaps between task formats or difficulty splits are reported for the same model, and cultural asymmetry is not stated."
 }

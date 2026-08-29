@@ -34,5 +34,37 @@
   "facets_explanation": {
     "description": "2-4 sentences giving the evidence in the paper for the facet values above, especially where sources are mixed or the paper is ambiguous. Paraphrase the paper's own description of how the dataset and its reference answers were built",
     "type": "string"
+  },
+  "reported_format_gap": {
+    "description": "Does the paper report, for the SAME models on the SAME material, a performance difference between two answer formats or two difficulty regimes? EXACTLY one of: yes, no, not_stated. Qualifying comparisons: multiple-choice vs open-ended/generative on the same items; exact match vs partial/per-field match; a standard split vs a 'hard' or adversarial split of the same benchmark; with-image vs text-only versions of the same questions; a shallow vs a deep tier of the same taxonomy (e.g. surface description vs interpretation layers). NOT qualifying: one model beating another, one language beating another, a metric changing across different benchmarks, or an ablation of the model rather than of the task format. Report 'no' when the paper evaluates a single format throughout and says nothing of the kind; 'not_stated' only when the paper reports no numeric results at all",
+    "type": "string"
+  },
+  "reported_format_gap_points": {
+    "description": "The LARGEST such gap the paper reports, in percentage points, as a positive integer (e.g. multiple-choice 94% falling to 23.9% on open completion is 70). If the paper reports the comparison on a 0-1 scale, convert to points (0.658 vs 0.04 is 62). If the paper gives a range, take the upper bound. null when reported_format_gap is not 'yes' or when no number is given",
+    "type": "integer|null"
+  },
+  "human_baseline_reported": {
+    "description": "Does the paper report a quantified human baseline, human expert score, or human inter-annotator agreement ceiling that model scores are compared against? EXACTLY one of: yes, no. A vague mention of human evaluation without a number is 'no'",
+    "type": "string"
+  },
+  "human_gap_points": {
+    "description": "Percentage points between the best reported model and the human baseline, as an integer: human minus best model. Positive when humans lead (human 92.4, best model 61.4 is 31); negative when the best model exceeds the human baseline. null if human_baseline_reported is 'no' or the two are not on the same metric",
+    "type": "integer|null"
+  },
+  "reported_best_score": {
+    "description": "The headline score of the best-performing model on the benchmark's primary metric, as a number on the paper's own scale (e.g. 13.4 for 13.4% accuracy, 61.1 for an F1 of 61.1). null if the paper reports no single headline figure",
+    "type": "number|null"
+  },
+  "reported_best_metric": {
+    "description": "The name of the metric reported_best_score is measured on, lowercase and unqualified: accuracy, f1, exact_match, bleu, cer, wer, pass@1, win_rate, cosine_similarity, human_score, other. null if reported_best_score is null. Scores on different metrics are not comparable — this field exists so aggregation can restrict itself to one metric at a time",
+    "type": "string|null"
+  },
+  "reported_cultural_asymmetry": {
+    "description": "Does the paper report a SYSTEMATIC performance difference across cultures, languages, regions or traditions — not merely that it evaluated several? EXACTLY one of: yes, no, not_stated. 'yes' requires the paper to state the asymmetry as a finding (e.g. Western-centric bias, degradation on low-resource languages, worse scores on a named region). 'no' when the paper covers multiple cultures or languages and reports no such difference. 'not_stated' when the benchmark is monocultural or monolingual and the question does not arise",
+    "type": "string"
+  },
+  "results_explanation": {
+    "description": "2-4 sentences giving the evidence for the results fields above, QUOTING the paper's own figures verbatim (model names, numbers, metric names, split names) so every value can be checked against the paper. Where a number was converted or derived (a 0-1 scale turned into points, a range reduced to its upper bound), say so explicitly. If a field is null, say in one clause why the paper gives no such figure",
+    "type": "string"
   }
 }

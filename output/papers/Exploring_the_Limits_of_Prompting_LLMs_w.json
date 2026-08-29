@@ -47,5 +47,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "single_answer",
   "plurality_treatment": "not_stated",
-  "facets_explanation": "The reference corpus (PSH v1.0) consists of 100 official parole suitability hearing transcripts obtained from the California Department of Corrections and Rehabilitation. The single ground truth for each case is the unique decision statement given by the presiding commissioner, which serves as a pre-existing administrative record. Generating the correct decision and rationale requires external knowledge of California state laws and parole guidelines not explicitly present in the provided interview transcript stimulus. As there is only one reference text per case, plurality and annotator consensus are not addressed."
+  "facets_explanation": "The reference corpus (PSH v1.0) consists of 100 official parole suitability hearing transcripts obtained from the California Department of Corrections and Rehabilitation. The single ground truth for each case is the unique decision statement given by the presiding commissioner, which serves as a pre-existing administrative record. Generating the correct decision and rationale requires external knowledge of California state laws and parole guidelines not explicitly present in the provided interview transcript stimulus. As there is only one reference text per case, plurality and annotator consensus are not addressed.",
+  "reported_format_gap": "no",
+  "reported_format_gap_points": null,
+  "human_baseline_reported": "yes",
+  "human_gap_points": null,
+  "reported_best_score": null,
+  "reported_best_metric": null,
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "The paper compares the linguistic features of LLM generations with actual human presiding commissioners' statements using z-scores, reporting human baselines for individual features under the 'Original' column in Table 1. For example, the 'Lexical Diversity' for original Commissioner 4 is '1.48' and 'Sentence Complexity' is '1.10', whereas the evaluated LLMs deviate significantly, with DeepSeek reaching a z-score of '34.91' on 'Sentence Complexity' when prompted with Commissioner 4's rhetorical 'fingerprint'. Because the findings are presented as standardized z-scores across multiple rhetorical dimensions rather than a single headline performance metric on a standardized scale, the best score, best metric, and human gap fields are null."
 }

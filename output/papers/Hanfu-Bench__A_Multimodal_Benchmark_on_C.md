@@ -47,6 +47,7 @@ Closed-source VLMs like Doubao-1.5-V achieve up to 82.28% on single-image VQA an
 ## Reviewer Notes
 
 - Minor disagreements on analytical_tasks: Ciop included 'classification' and 'stylistic_analysis', while Cip included 'factual_recall'. I retained 'classification' and 'stylistic_analysis' because the benchmark tests visual classification of garment components and styles rather than declarative text-based retrieval, making 'factual_recall' less precise here. Dataset size of 4186 was agreed upon (corresponding to the total sum of SVQA and MVQA test items).
+- Both analysts agreed on all fields but reported the format gap as 34 points based on the overall dataset score. The final report corrects this to 49 points (InternVL2.5 on the 'Jin' attribute dropping from 78.01% to 29.35%) to capture the largest reported gap.
 
 ## Additional Fields
 
@@ -67,3 +68,19 @@ Closed-source VLMs like Doubao-1.5-V achieve up to 82.28% on single-image VQA an
 **Plurality Treatment:** noise
 
 **Facets Explanation:** The dataset was annotated by nine domain experts (four paper authors and five university Hanfu club members). Features like historical dynasty and specific clothing styles (e.g., collar or sleeve types) were labeled, requiring external historical and cultural knowledge not visually present in the image itself. During annotation, disagreement was treated as noise: features were only retained if all three assigned annotators reached uniform agreement, while unresolved disagreements were marked 'unsure'. The primary visual question answering (VQA) task utilizes multiple-choice questions with exactly one correct option, making the evaluation single_answer.
+
+**Reported Format Gap:** yes
+
+**Reported Format Gap Points:** 49
+
+**Human Baseline Reported:** yes
+
+**Human Gap Points:** 9
+
+**Reported Best Score:** 82.28
+
+**Reported Best Metric:** accuracy
+
+**Reported Cultural Asymmetry:** yes
+
+**Results Explanation:** The paper reports a format gap between single-image (SVQA) and multi-image (MVQA) setups on the same benchmark. The largest such gap occurs for InternVL2.5 on the 'Jin' attribute, where accuracy drops from 78.01% on SVQA to 29.35% on MVQA, a difference of 49 percentage points (Table 1). A human expert baseline of 83.54% is reported on the MVQA subset, outperforming the best model (Doubao-1.5-V at 74.48%) by 9 points (Table 2). The best overall model score is 82.28% accuracy by Doubao-1.5-V on the SVQA task (Table 1). The paper reports a cultural asymmetry, finding that English prompts consistently degrade model performance on SVQA compared to Chinese prompts due to difficulties in aligning culturally specific terms (Section 4.3).

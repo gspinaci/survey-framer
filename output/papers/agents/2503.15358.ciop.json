@@ -47,5 +47,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "single_answer",
   "plurality_treatment": "not_stated",
-  "facets_explanation": "The target expressions were sourced from existing figurative datasets or selected by researchers, while native speakers designed visual scene descriptions representing literal and figurative contexts. Midjourney generated the images based on these prompts, and LLaVA generated captions which were subsequently verified by human evaluators. Correctly ranking the images requires external lexical and cultural knowledge of idiom meanings, as the definitions of these expressions are not provided within the evaluation stimulus itself."
+  "facets_explanation": "The target expressions were sourced from existing figurative datasets or selected by researchers, while native speakers designed visual scene descriptions representing literal and figurative contexts. Midjourney generated the images based on these prompts, and LLaVA generated captions which were subsequently verified by human evaluators. Correctly ranking the images requires external lexical and cultural knowledge of idiom meanings, as the definitions of these expressions are not provided within the evaluation stimulus itself.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 55,
+  "human_baseline_reported": "yes",
+  "human_gap_points": 3,
+  "reported_best_score": 1.0,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "no",
+  "results_explanation": "The paper reports a performance drop when transitioning from the standard Test Set to the Extended Evaluation Set (which tests the opposite idiom sense); for instance, HiTZ-Ixa drops from 1.00 to 0.45 Top 1 Acc in Portuguese Subtask A (Table 5), which is a 55-point gap. The best overall model score is 1.00 (100% accuracy) achieved by HiTZ-Ixa on the Portuguese Subtask A Test Set (Table 5). For the human baseline on the English extended evaluation set (Table 9), the 'Best individual' annotator scored 0.86 while the best model on that same split (PALI-NLP, Table 3) scored 0.83, resulting in a positive human gap of 3 points (0.03 converted to points). While the benchmark includes English and Portuguese, the authors report 'a smaller difference in performance... than we were anticipating,' indicating no systematic asymmetry."
 }

@@ -44,5 +44,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "answer_set",
   "plurality_treatment": "not_stated",
-  "facets_explanation": "The reference subject tags were extracted from existing library metadata in the TIBKAT catalog, which are assigned by specialized librarians using the German National Library's GND taxonomy. Correctly identifying these subjects requires knowledge of this taxonomy and its conceptual linkages, which are external to the provided title and abstract. Performance is evaluated quantitatively against a set of multiple pre-existing subject tags using precision and recall at k, and the paper does not address annotator divergence in the gold standard creation."
+  "facets_explanation": "The reference subject tags were extracted from existing library metadata in the TIBKAT catalog, which are assigned by specialized librarians using the German National Library's GND taxonomy. Correctly identifying these subjects requires knowledge of this taxonomy and its conceptual linkages, which are external to the provided title and abstract. Performance is evaluated quantitatively against a set of multiple pre-existing subject tags using precision and recall at k, and the paper does not address annotator divergence in the gold standard creation.",
+  "reported_format_gap": "no",
+  "reported_format_gap_points": null,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 0.66,
+  "reported_best_metric": "other",
+  "reported_cultural_asymmetry": "no",
+  "results_explanation": "The primary quantitative evaluation metric is recall, with the 'RUC Team' achieving the highest overall recall 'Ov. R@k' score of '0.66' on the 'tib-core' split (reported under 'other' because recall is not in the allowed list). No quantified human baseline score is reported for comparison with model performance, though subject specialists labeled model outputs qualitatively. At the language level, the authors found 'no significant difference between processing de or en records across all teams,' showing no systematic linguistic asymmetry."
 }

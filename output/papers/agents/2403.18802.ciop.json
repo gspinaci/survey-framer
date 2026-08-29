@@ -51,5 +51,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "graded_human_judgment",
   "plurality_treatment": "noise",
-  "facets_explanation": "The benchmark relies on an automated LLM-agent framework (SAFE) to generate factual annotations dynamically using Google Search (model_generated). Answering the prompts successfully requires external knowledge not supplied in the query (gold_beyond_stimulus). Disagreements between human crowdsourced annotators and the automated rater were treated as errors/noise to be resolved by expert adjudication (noise)."
+  "facets_explanation": "The benchmark relies on an automated LLM-agent framework (SAFE) to generate factual annotations dynamically using Google Search (model_generated). Answering the prompts successfully requires external knowledge not supplied in the query (gold_beyond_stimulus). Disagreements between human crowdsourced annotators and the automated rater were treated as errors/noise to be resolved by expert adjudication (noise).",
+  "reported_format_gap": "no",
+  "reported_format_gap_points": null,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 95.0,
+  "reported_best_metric": "f1",
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "The best-performing model on the benchmark is GPT-4-Turbo, which achieves a headline F1@64 score of 95.0% as shown in Table 2 (under 'GPT-4-Turbo' for 'F1@64'). No human baseline score is reported for the LongFact prompts, so human_baseline_reported is set to 'no'. The paper does not report any performance differences across distinct answer formats for evaluated models on the same data, nor does it evaluate or report on cultural asymmetries."
 }

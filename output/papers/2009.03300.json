@@ -53,5 +53,16 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "single_answer",
   "plurality_treatment": "not_stated",
-  "facets_explanation": "The reference answers were obtained directly from pre-existing answer keys of standardized practice exams (such as the GRE, AP exams, and USMLE), undergraduate course materials, and academic textbooks. Because these multiple-choice questions evaluate factual, procedural, and academic knowledge in a closed-book format, correct answers require external domain knowledge not found in the question stimulus itself. The paper does not address annotator disagreement or plurality of readings, relying instead on the absolute correctness of the authoritative source keys."
+  "facets_explanation": "The reference answers were obtained directly from pre-existing answer keys of standardized practice exams (such as the GRE, AP exams, and USMLE), undergraduate course materials, and academic textbooks. Because these multiple-choice questions evaluate factual, procedural, and academic knowledge in a closed-book format, correct answers require external domain knowledge not found in the question stimulus itself. The paper does not address annotator disagreement or plurality of readings, relying instead on the absolute correctness of the authoritative source keys.",
+  "reported_format_gap": "no",
+  "reported_format_gap_points": null,
+  "human_baseline_reported": "yes",
+  "human_gap_points": 41,
+  "reported_best_score": 48.9,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "The paper estimates that 'expert-level accuracy is approximately 89.8%'. The best-performing model evaluated is UnifiedQA which 'attains 48.9% accuracy' (Table 1), resulting in an expert-to-model gap of 40.9 percentage points (rounded to 41). While the paper notes that removing the '</s>' format token from UnifiedQA's inputs causes accuracy to decline 'by several percentage points' (Appendix A.3), it does not quantify this gap precisely or test alternative answer formats (e.g., open-ended vs multiple choice), so no format gap is reported.",
+  "review_notes_incremental": [
+    "Ciop and Cip disagreed on reported_format_gap. Cip recorded 'yes' and a gap of 6 points based on the difference between GPT-3's 5-shot (43.9%) and zero-shot (37.7%) accuracy. However, shot-count differences are a variation in evaluation setting rather than an answer format gap (e.g., MCQ vs open-ended) or difficulty regime as defined in the schema. I resolved to 'no' and null following Ciop's reading."
+  ]
 }

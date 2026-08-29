@@ -43,5 +43,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "answer_set",
   "plurality_treatment": "signal",
-  "facets_explanation": "The reference translations and pun location annotations were produced by professional French native-speaker translators, who serve as domain experts. Multiple valid French translations are preserved for each English pun to capture different creative ways of rendering the wordplay, treating linguistic divergence as signal. Translating the puns successfully requires deep external knowledge of phonetic and semantic structures in both languages that are not present in the source stimulus."
+  "facets_explanation": "The reference translations and pun location annotations were produced by professional French native-speaker translators, who serve as domain experts. Multiple valid French translations are preserved for each English pun to capture different creative ways of rendering the wordplay, treating linguistic divergence as signal. Translating the puns successfully requires deep external knowledge of phonetic and semantic structures in both languages that are not present in the source stimulus.",
+  "reported_format_gap": "no",
+  "reported_format_gap_points": null,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 43.33,
+  "reported_best_metric": "bleu",
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "The highest score on the primary metric of BLEU is 43.33, achieved by the 'Skommarkhos_Lucie_SFT' run on the test data (Table 4). No standard human baseline score is reported for comparison on this task, though a manual evaluation by a native French speaker shows the best run, 'dsgt_o4_mini_multi_agent_discriminator', achieved a 74% success rate (37 of 50 puns) in preserving both meaning and wordplay (Table 7). The paper does not evaluate alternative answer formats or report a format gap, and cross-cultural asymmetry is not stated as the task is restricted to English-to-French translation."
 }

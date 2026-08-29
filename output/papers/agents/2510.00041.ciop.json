@@ -50,5 +50,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "answer_set",
   "plurality_treatment": "noise",
-  "facets_explanation": "The reference translations, which make up the vast majority of the dataset's QA pairs, were produced using a multi-agent DeepSeek-R1 pipeline before undergoing manual verification. Correctly identifying the cultures, cultural objects, and conflicts depicted in the comic panels requires background knowledge not contained within the image stimulus itself. Disagreements among the five student annotators during manual verification were resolved through joint review and consensus group discussions, treating divergence as noise to be eliminated."
+  "facets_explanation": "The reference translations, which make up the vast majority of the dataset's QA pairs, were produced using a multi-agent DeepSeek-R1 pipeline before undergoing manual verification. Correctly identifying the cultures, cultural objects, and conflicts depicted in the comic panels requires background knowledge not contained within the image stimulus itself. Disagreements among the five student annotators during manual verification were resolved through joint review and consensus group discussions, treating divergence as noise to be eliminated.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 31,
+  "human_baseline_reported": "yes",
+  "human_gap_points": 51,
+  "reported_best_score": 34.2,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "yes",
+  "results_explanation": "The paper reports an evaluation format gap in Table 3 where Qwen2.5-VL's strict 'ACC' on Q4 is 3.20 but its composite 'CACC' is 34.2, representing a 31-point gap. In Table 7, a human baseline is reported across three difficulty tiers, where human performance on the Easy tier CACC is 74.7 compared to average MLLM performance of 23.8 (a gap of 51 points). Qwen2.5-VL achieves the best overall score of 34.2 CACC ('accuracy') on Conflict@Culture. Cultural asymmetry is systematically observed, with models reliably identifying representative cultures (e.g., Japan and Cambodia) while showing higher error rates on lesser-known cultures like Somalia (Figure 5), as well as performing much better on English (JA-EN BLEU 13.2) than on Thai (JA-TH BLEU 9.72)."
 }

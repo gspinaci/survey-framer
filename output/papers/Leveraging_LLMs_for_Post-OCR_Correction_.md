@@ -65,6 +65,22 @@ The instruction-tuned Llama 2 13B model significantly outperformed the fine-tune
 
 **Answer Multiplicity:** single_answer
 
-**Plurality Treatment:** not_addressed
+**Plurality Treatment:** not_stated
 
 **Facets Explanation:** The reference answers are sourced from the BLN600 corpus, which pairs OCR excerpts with 'manually re-keyed human transcriptions' from the source images, though the paper does not specify who authored these transcriptions or under what conditions (hence 'not_stated'). Post-OCR correction relies on reconstructing the text segment itself, requiring no external knowledge beyond the stimulus. Model performance is evaluated quantitatively by calculating Character Error Rate against a single ground-truth target sequence per item. The paper does not address annotator disagreement or the possibility of alternative valid transcriptions.
+
+**Reported Format Gap:** no
+
+**Reported Format Gap Points:** None
+
+**Human Baseline Reported:** no
+
+**Human Gap Points:** None
+
+**Reported Best Score:** 54.51
+
+**Reported Best Metric:** other
+
+**Reported Cultural Asymmetry:** not_stated
+
+**Results Explanation:** The best-performing model, 'Llama 2' '13B', achieves a headline score of '54.51' on the 'CER Reduction (%)' metric ('achieving a 54.51% reduction in the character error rate'). No quantified human baseline is reported for this task. There is no comparison of format or difficulty gaps. Cultural asymmetry is 'not_stated' because the BLN600 benchmark is monolingual, consisting entirely of 19th-century British newspaper articles written in English.

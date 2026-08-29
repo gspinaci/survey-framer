@@ -49,5 +49,16 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "single_answer",
   "plurality_treatment": "not_stated",
-  "facets_explanation": "The benchmark derives its reference answers from existing curated metadata natively mapped to Iconclass standards across ArtDL, the ICONCLASS AI Test Set, and Wikidata. Identifying the specific Christian saints depicted requires external knowledge of iconographic traditions and symbols that are not explicitly described in the image stimulus itself. The evaluation expects a single correct class label per image\u2014having explicitly filtered out multi-label entries featuring multiple saints\u2014and does not discuss the possibility of diverging annotator interpretations."
+  "facets_explanation": "The benchmark derives its reference answers from existing curated metadata natively mapped to Iconclass standards across ArtDL, the ICONCLASS AI Test Set, and Wikidata. Identifying the specific Christian saints depicted requires external knowledge of iconographic traditions and symbols that are not explicitly described in the image stimulus itself. The evaluation expects a single correct class label per image\u2014having explicitly filtered out multi-label entries featuring multiple saints\u2014and does not discuss the possibility of diverging annotator interpretations.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 19,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 90.45,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "The highest score reported is 90.45% accuracy, achieved by 'gemini-2.5-pro-preview-05-06' on the ArtDL dataset in the 'Test 1' configuration (Table 2). The paper reports a task format gap between different prompting conditions on the same models and datasets, specifically comparing classification with labels only ('Test 1') versus with detailed label descriptions ('Test 2'). The largest such gap is 19.48 percentage points (rounded to 19), observed for the 'siglip-base-patch16-512' model on the ArtDL dataset (68.19% in Test 2 vs 48.71% in Test 1). The paper does not quantify a human baseline. Cultural asymmetry is 'not_stated' as the dataset focuses entirely on Christian iconography and does not compare multiple cultures.",
+  "review_notes_incremental": [
+    "Ciop and Cip disagreed on reported_format_gap. Ciop recorded 'no', while Cip recorded 'yes' based on the performance difference between prompt conditions (Test 1 with labels only vs Test 2 with label descriptions). Providing detailed descriptions vs bare labels qualifies as a task format gap under the definitions, so Cip's 'yes' was accepted. The gap points were adjusted to 19 (truncating 19.48 to an integer). Both analysts agreed on all other fields."
+  ]
 }

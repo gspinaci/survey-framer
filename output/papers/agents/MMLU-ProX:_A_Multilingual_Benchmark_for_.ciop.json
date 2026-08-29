@@ -49,5 +49,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "single_answer",
   "plurality_treatment": "not_stated",
-  "facets_explanation": "MMLU-ProX translates the MMLU-Pro benchmark, which draws its questions and ground-truth options from pre-existing standardized exams and academic curricula (authored_answer_key). Answering these multiple-choice questions requires extensive background domain knowledge not present in the brief query (gold_beyond_stimulus: yes). The benchmark assumes a single, universally correct choice across all 29 translated versions without adjusting keys for cultural context (gold_community_dependent: no). Disagreements among the human translators verifying the translations were treated as quality flags rather than conceptual plurality, and the original answer keys remained unchanged (plurality_treatment: not_addressed)."
+  "facets_explanation": "MMLU-ProX translates the MMLU-Pro benchmark, which draws its questions and ground-truth options from pre-existing standardized exams and academic curricula (authored_answer_key). Answering these multiple-choice questions requires extensive background domain knowledge not present in the brief query (gold_beyond_stimulus: yes). The benchmark assumes a single, universally correct choice across all 29 translated versions without adjusting keys for cultural context (gold_community_dependent: no). Disagreements among the human translators verifying the translations were treated as quality flags rather than conceptual plurality, and the original answer keys remained unchanged (plurality_treatment: not_addressed).",
+  "reported_format_gap": "no",
+  "reported_format_gap_points": null,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 75.5,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "yes",
+  "results_explanation": "DeepSeek-R1 achieves the highest overall average accuracy of 75.5% ('75.5') across all 29 languages on the full MMLU-ProX benchmark (Table 3). The paper does not report a human baseline for answering the benchmark questions, nor does it evaluate different answer formats on the same items, meaning both human_baseline_reported and reported_format_gap are 'no'. It highlights a systematic linguistic asymmetry, noting that models' performance 'declines markedly in low-resource languages, particularly for African languages,' such as Wolof where performance drops to as low as '0.6%'."
 }

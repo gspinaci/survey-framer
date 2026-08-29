@@ -51,5 +51,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "single_answer",
   "plurality_treatment": "noise",
-  "facets_explanation": "CulturALL's ground truth was largely drafted by GPT-4o using crawled online posts and translated existing datasets, which were subsequently verified and refined by native-speaking university volunteers. Correctly answering the queries requires external cultural and domain knowledge that is explicitly withheld from the context scenarios. Correct answers are highly dependent on the specific cultural rules and customs of 51 distinct regions, while annotator disagreements during the peer-review quality control stage were treated as noise and resolved by revising or rejecting the items."
+  "facets_explanation": "CulturALL's ground truth was largely drafted by GPT-4o using crawled online posts and translated existing datasets, which were subsequently verified and refined by native-speaking university volunteers. Correctly answering the queries requires external cultural and domain knowledge that is explicitly withheld from the context scenarios. Correct answers are highly dependent on the specific cultural rules and customs of 51 distinct regions, while annotator disagreements during the peer-review quality control stage were treated as noise and resolved by revising or rejecting the items.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 82,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 44.48,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "yes",
+  "results_explanation": "The highest overall score on CulturALL is 44.48% accuracy achieved by 'gemini-2.5-pro_auto_true' (ID 1). A significant difficulty regime gap is reported between the benchmark's splits, with 'claude-opus-4-20250514_high_false' falling from '91.49%' accuracy on 'Easy' to '9.44%' on 'Hard' (a gap of 82.05 points, rounded to 82). No human baseline is quantified. For cultural asymmetry, the authors report that 'employing English prompts yields an accuracy of 36.40%, which is 8.08% lower than the accuracy achieved with the original native prompts' under the 'gemini-2.5-pro_auto_true' setting."
 }

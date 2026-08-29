@@ -47,5 +47,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "graded_human_judgment",
   "plurality_treatment": "not_stated",
-  "facets_explanation": "The benchmark evaluates humor explanation performance across SemEval 2017 Task 7, Context-Situated Puns, and ExplainTheJoke. These datasets provide pre-existing human annotations of pun words and semantic interpretations, which serve as the reference keys. Evaluation is performed dynamically by GPT-4o acting as an LLM judge to grade and compare generated explanations, with no discussion of annotator disagreement or multiple valid joke interpretations."
+  "facets_explanation": "The benchmark evaluates humor explanation performance across SemEval 2017 Task 7, Context-Situated Puns, and ExplainTheJoke. These datasets provide pre-existing human annotations of pun words and semantic interpretations, which serve as the reference keys. Evaluation is performed dynamically by GPT-4o acting as an LLM judge to grade and compare generated explanations, with no discussion of annotator disagreement or multiple valid joke interpretations.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 26,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 72.59,
+  "reported_best_metric": "win_rate",
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "The paper reports performance differences across modality configurations. The largest gap of 26.24 percentage points (rounded to 26) is shown in the Table 4 ablation study on SemEval heterographs, comparing 'No text, Audio Only' (25.50%) to 'Our System' (51.74%). The best reported model score is a 72.59% 'win_rate' for 'with audio' multimodal prompting on SemEval homographs (Table 1). No separate human baseline score is quantified on the evaluation metric, and cultural asymmetry is not stated as the benchmark evaluates only English datasets."
 }

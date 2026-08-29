@@ -68,3 +68,19 @@ Both evaluated LLMs demonstrated strong translation fidelity, with 71% of the Op
 **Plurality Treatment:** noise
 
 **Facets Explanation:** The reference texts are the original classical Arabic pages lifted directly from the digital Al-Shamela Library database. For automated evaluation, the back-translated Arabic text is compared to this single original Arabic source page using cosine similarity of vector embeddings. For manual human-in-the-loop validation, translation corrections are treated as noise to be resolved, requiring a consensus of at least two separate reviewers to be accepted.
+
+**Reported Format Gap:** no
+
+**Reported Format Gap Points:** None
+
+**Human Baseline Reported:** no
+
+**Human Gap Points:** None
+
+**Reported Best Score:** 86
+
+**Reported Best Metric:** other
+
+**Reported Cultural Asymmetry:** no
+
+**Results Explanation:** The paper evaluates translation quality by back-translating English text to Arabic and computing the cosine similarity of vector embeddings. The authors report that '86% of the Anthropic model results' (using claude-3-haiku-20240307) achieved 'cosine similarity scores >= 0.7' (reported_best_score is 86, reported_best_metric is 'other'). No quantitative human baseline or format gap comparisons are provided. Regarding cultural asymmetry, the authors discuss language bias but explicitly note that the tested commercial LLMs 'did not display detectable language bias between Arabic and English'.

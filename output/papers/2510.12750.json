@@ -55,5 +55,13 @@
   "facets_explanation": "The benchmark's questions and multiple-choice options are synthetically generated using a sequential multi-agent LLM pipeline based on Wikipedia art descriptions. The generation pipeline is explicitly designed to ensure that questions are unambiguous and answerable directly from the visual content of the image, avoiding reliance on external metadata. The evaluation uses a standard multiple-choice format with a single correct answer, and the paper does not address annotator divergence or community-specific readings.",
   "review_notes_incremental": [
     "Disagreement on gold_beyond_stimulus: Ciop selected 'yes' based on the general complexity of art interpretation, but the paper explicitly states that the pipeline's Judge agent ensures questions are 'unambiguously answerable from the image' and avoids questions answerable only via metadata. Resolved to 'no' following Cip."
-  ]
+  ],
+  "reported_format_gap": "no",
+  "reported_format_gap_points": null,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 0.71,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "Table 2 reports overall accuracy across 14 models on VQArt-Bench, where 'Gemini 2.5' achieves the highest 'Overall Acc.' of '0.71' (71%). The benchmark evaluates models exclusively using a multiple-choice format, so no format gap is reported. The paper mentions a 'human validation study' verifying that 'over the 98% of the reviewed questions were free from hallucinations', but this is a quality assurance dataset metric, and no human baseline for task performance is quantified. No cultural or regional performance asymmetries are reported."
 }

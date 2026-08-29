@@ -62,5 +62,16 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "single_answer",
   "plurality_treatment": "not_stated",
-  "facets_explanation": "HistBench's 414 reference answers were authored by over 40 expert contributors (including history professors, PhD students, and research assistants) using a standardized protocol and verified through a multi-stage review pipeline. Answering the questions requires substantial historical background knowledge external to the provided visual or textual stimuli, such as ancient language translation and specialized historical context. The evaluation relies on a single gold standard (either a single correct option for multiple-choice questions or a short-form exact match), and the paper does not discuss how inter-annotator disagreement or divergent historical interpretations were handled."
+  "facets_explanation": "HistBench's 414 reference answers were authored by over 40 expert contributors (including history professors, PhD students, and research assistants) using a standardized protocol and verified through a multi-stage review pipeline. Answering the questions requires substantial historical background knowledge external to the provided visual or textual stimuli, such as ancient language translation and specialized historical context. The evaluation relies on a single gold standard (either a single correct option for multiple-choice questions or a short-form exact match), and the paper does not discuss how inter-annotator disagreement or divergent historical interpretations were handled.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 35,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 36.47,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "no",
+  "results_explanation": "The paper reports a difficulty regime gap on the GAIA validation set, where 'HistAgent' (with 'Claude 3.7 Sonnet') achieves '69.81' accuracy on 'Level 1' but falls to '34.62' on 'Level 3', representing a gap of 35 percentage points. On the primary HistBench benchmark, the best model, 'HistAgent(gpt-4o)', achieves a headline average accuracy score of '36.47' on 'pass@2'. No quantified human performance baseline is reported. While the benchmark includes diverse linguistic sources, the authors do not report a systematic cultural or linguistic asymmetry in model performance.",
+  "review_notes_incremental": [
+    "Ciop and Cip disagreed on reported_format_gap. Cip correctly identified that the paper reports performance across different difficulty tiers (Level 1 vs Level 3) for the GAIA benchmark, which constitutes a qualifying difficulty regime gap. Resolved to 'yes' with a gap of 35 points, following Cip's extraction."
+  ]
 }

@@ -45,5 +45,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "single_answer",
   "plurality_treatment": "noise",
-  "facets_explanation": "The reference annotations were produced by three annotators from the research project team who manually inserted rhetorical tags into Swedish and English historical petitions. Inter-annotator disagreements were systematically resolved through discussion to establish a unified consensus, treating divergent readings as noise to be eliminated for consistency. The resulting task is a self-contained span-identification problem evaluated by matching model outputs directly against this single-reference key."
+  "facets_explanation": "The reference annotations were produced by three annotators from the research project team who manually inserted rhetorical tags into Swedish and English historical petitions. Inter-annotator disagreements were systematically resolved through discussion to establish a unified consensus, treating divergent readings as noise to be eliminated for consistency. The resulting task is a self-contained span-identification problem evaluated by matching model outputs directly against this single-reference key.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 22,
+  "human_baseline_reported": "yes",
+  "human_gap_points": null,
+  "reported_best_score": null,
+  "reported_best_metric": null,
+  "reported_cultural_asymmetry": "yes",
+  "results_explanation": "The paper reports model performance across human-annotated difficulty regimes; for example, Mistral 7B on Swedish petitions with English instructions (long 3-shot) drops from 72.8% F1 on 'Difficulty 0' to 50.5% on 'Difficulty 2', a gap of 22.3 percentage points (reported as 22). Human agreement is quantified in Table 2 using Cohen's kappa (e.g., 0.88 overall for English) and exact match percentage, but since these are different from the token-level F1 metric used for models, human_gap_points is null. No single aggregated benchmark score is reported as a primary headline metric. A systematic linguistic asymmetry is explicitly reported, noting that the 'Swedish data' and 'moderately resourced' context made Petitio and Conclusio 'more challenging' compared to English."
 }

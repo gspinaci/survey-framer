@@ -43,5 +43,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "single_answer",
   "plurality_treatment": "not_stated",
-  "facets_explanation": "The reference answers are retrieved from the pre-existing BLN600 corpus, which features manually re-keyed human transcriptions of 19th-century British Library newspapers, though the paper does not state how these transcribers were trained or selected. Correcting the OCR errors relies on reconstructing the text segment itself, meaning no external knowledge beyond the stimulus is strictly required for the target alignment. The benchmark utilizes a single ground-truth transcription per item to calculate Character Error Rate, and the paper does not address annotator disagreement or alternative transcriptions."
+  "facets_explanation": "The reference answers are retrieved from the pre-existing BLN600 corpus, which features manually re-keyed human transcriptions of 19th-century British Library newspapers, though the paper does not state how these transcribers were trained or selected. Correcting the OCR errors relies on reconstructing the text segment itself, meaning no external knowledge beyond the stimulus is strictly required for the target alignment. The benchmark utilizes a single ground-truth transcription per item to calculate Character Error Rate, and the paper does not address annotator disagreement or alternative transcriptions.",
+  "reported_format_gap": "no",
+  "reported_format_gap_points": null,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 54.51,
+  "reported_best_metric": "other",
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "The highest performing model is 'Llama 2' '13B', which achieves a headline score of '54.51' on 'CER Reduction (%)', categorized here as 'other' because it represents a relative percentage reduction in character error rate rather than raw CER. The paper does not measure or report a quantified human baseline ('no') or format/difficulty gaps ('no') for the same tasks. Because the BLN600 corpus is exclusively in English, systematic performance differences across languages are not evaluated or reported ('not_stated')."
 }

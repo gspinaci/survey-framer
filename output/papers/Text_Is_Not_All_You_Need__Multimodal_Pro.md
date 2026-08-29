@@ -65,6 +65,22 @@ Providing synthetic audio alongside text improves the model's humor explanation 
 
 **Answer Multiplicity:** graded_human_judgment
 
-**Plurality Treatment:** not_addressed
+**Plurality Treatment:** not_stated
 
 **Facets Explanation:** The paper evaluates humor explanation on the SemEval 2017 Task 7, Context-Situated Puns, and ExplainTheJoke datasets. While the paper notes that these datasets provide pre-existing human annotations and explanations (with ExplainTheJoke explicitly scraped from a website), it does not describe the specific annotation processes or annotator backgrounds for the majority of the data, resulting in a 'not_stated' gold source. Evaluation is performed by GPT-4o acting as an LLM judge to perform pairwise comparisons between generated and reference explanations ('graded_human_judgment'). Recognizing and explaining puns requires external linguistic knowledge (e.g., of homophones) beyond the stimulus text itself.
+
+**Reported Format Gap:** yes
+
+**Reported Format Gap Points:** 26
+
+**Human Baseline Reported:** no
+
+**Human Gap Points:** None
+
+**Reported Best Score:** 72.59
+
+**Reported Best Metric:** win_rate
+
+**Reported Cultural Asymmetry:** not_stated
+
+**Results Explanation:** The paper reports performance differences across modality configurations. The largest format gap of 26 percentage points is shown in the Table 4 ablation study on SemEval heterographs, comparing 'No text, Audio Only' (25.50%) to 'Our System' (51.74%). The best reported headline score for the evaluated Gemini-1.5-Flash model is a 72.59% 'win_rate' against human references for the 'with audio' multimodal prompting on SemEval homographs (Table 1). No independent human baseline score is quantified on the evaluation metric, as humans are instead used as a pairwise reference point. Cultural asymmetry is not stated as the benchmark evaluates only English datasets.

@@ -51,5 +51,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "single_answer",
   "plurality_treatment": "not_stated",
-  "facets_explanation": "The reference answers for M3Exam are sourced directly from the official answer keys of real, nationwide or regional human graduation exams across nine countries. Answering these questions requires extensive prior domain and cultural knowledge that is not contained within the question stimulus itself. Because the benchmark consists entirely of standard multiple-choice questions, each question has a single correct answer option, and the authors do not discuss or preserve divergent annotations or multiple valid interpretations."
+  "facets_explanation": "The reference answers for M3Exam are sourced directly from the official answer keys of real, nationwide or regional human graduation exams across nine countries. Answering these questions requires extensive prior domain and cultural knowledge that is not contained within the question stimulus itself. Because the benchmark consists entirely of standard multiple-choice questions, each question has a single correct answer option, and the authors do not discuss or preserve divergent annotations or multiple valid interpretations.",
+  "reported_format_gap": "no",
+  "reported_format_gap_points": null,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 72.92,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "yes",
+  "results_explanation": "The paper reports that 'GPT-4' achieves the best average 'accuracy' of '72.92' across all nine languages (Table 2). No human baseline is quantified, although 'passing' thresholds conventionally used in the corresponding countries are provided (averaging '54.44'). The authors document systematic linguistic asymmetry, finding that 'current models, including GPT-4, still struggle with multilingual text, particularly in low-resource and non-Latin script languages' such as Javanese and Thai."
 }

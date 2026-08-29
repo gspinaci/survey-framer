@@ -48,5 +48,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "single_answer",
   "plurality_treatment": "noise",
-  "facets_explanation": "The reference answers for SuperGPQA were compiled from pre-existing educational materials, such as textbook solutions, exam keys, and online exercises, which were sourced and verified by domain experts. Correctly answering the multiple-choice questions requires domain-specific academic knowledge not contained within the prompt itself. Any ambiguous questions or annotator disagreements were actively treated as noise and eliminated during the multi-stage quality control process to preserve a strict single-answer-key structure."
+  "facets_explanation": "The reference answers for SuperGPQA were compiled from pre-existing educational materials, such as textbook solutions, exam keys, and online exercises, which were sourced and verified by domain experts. Correctly answering the multiple-choice questions requires domain-specific academic knowledge not contained within the prompt itself. Any ambiguous questions or annotator disagreements were actively treated as noise and eliminated during the multi-stage quality control process to preserve a strict single-answer-key structure.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 34,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 61.82,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "The highest overall sample-wise accuracy is 61.82%, achieved by 'DeepSeek-R1' as reported in Table 5. The largest difficulty regime gap is observed in 'gpt-4o-2024-08-06', which scores 55.22% on the 'Easy' split and falls to 20.98% on the 'Hard' split (Table 5), representing a 34.24 percentage point gap. No quantified human baseline or expert scores are evaluated for comparison, and since the benchmark is translated entirely into English, no systematic cross-lingual or cross-cultural performance asymmetry is analyzed."
 }

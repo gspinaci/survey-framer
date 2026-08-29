@@ -49,5 +49,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "single_answer",
   "plurality_treatment": "noise",
-  "facets_explanation": "The reference answers were produced primarily by hired annotators from SuperAnnotate and Turing, starting from a seed set authored by the paper's authors and reviewed by USAFacts. While the primary corpus consists of Treasury Bulletins, 22% of the questions require external internet search for historical indices (like CPI-U or exchange rates) not present in the documents. Disagreements among annotators or conflicting agent predictions were treated as noise and systematically resolved through a multi-stage QA pipeline to maintain a single, deterministic correct answer."
+  "facets_explanation": "The reference answers were produced primarily by hired annotators from SuperAnnotate and Turing, starting from a seed set authored by the paper's authors and reviewed by USAFacts. While the primary corpus consists of Treasury Bulletins, 22% of the questions require external internet search for historical indices (like CPI-U or exchange rates) not present in the documents. Disagreements among annotators or conflicting agent predictions were treated as noise and systematically resolved through a multi-stage QA pipeline to maintain a single, deterministic correct answer.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 21,
+  "human_baseline_reported": "yes",
+  "human_gap_points": -22,
+  "reported_best_score": 66.92,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "The paper reports a performance gap of 21 percentage points (21.0 points) when comparing raw visual PDF documents to text-only parsed documents for the same model on the same questions: Claude Opus 4.6 on 'Oracle' went from '36.1%' on PDF to '57.1%' on Databricks Parsed. The human baseline was evaluated on a 30-sample subset of OfficeQA-Full, with the largest model lead (negative human gap) occurring on the 'Full Corpus' setting where 'Human (N=3)' achieved '34.6%' correctness compared to 'Agent (N=3)' on 'Parsed' at '56.7%', resulting in a gap of -22.1 percentage points (rounded to -22). The highest overall score reported on the benchmark is '66.92' correctness (accuracy) at '0.0%' error, achieved by the 'Claude Opus 4.6' agent under the 'Oracle' 'DBX Parsed' configuration. Cultural asymmetry is 'not_stated' because the benchmark is monolingual and focused exclusively on U.S. federal treasury documents, so no cross-cultural comparison was conducted."
 }

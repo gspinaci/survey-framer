@@ -64,6 +64,22 @@ The evaluated LLMs achieved balanced accuracies ranging from 33.6% (Llama-3.1-8B
 
 **Answer Multiplicity:** single_answer
 
-**Plurality Treatment:** not_addressed
+**Plurality Treatment:** not_stated
 
 **Facets Explanation:** The HiST-LLM benchmark is constructed from a subset of the Seshat Global History Databank, a pre-existing structured database of historical data reviewed and assembled by history experts and graduate research assistants. Answering the questions requires domain-specific historical knowledge not present in the prompt stimulus. The evaluation uses a four-choice multiple-choice format, and the treatment of annotator disagreement is not addressed in the provided text.
+
+**Reported Format Gap:** no
+
+**Reported Format Gap Points:** None
+
+**Human Baseline Reported:** no
+
+**Human Gap Points:** None
+
+**Reported Best Score:** 46
+
+**Reported Best Metric:** accuracy
+
+**Reported Cultural Asymmetry:** yes
+
+**Results Explanation:** The paper reports that 'GPT-4-Turbo' achieved the best performance with a balanced accuracy of '46%' ('ranging from 33.6% (Llama-3.1-8B) to 46% (GPT-4-Turbo)') on a 'four-choice format' benchmark. The format gap and human gap fields are null because the paper evaluates a single multiple-choice format and reports no quantified human baseline, only noting that models fall 'short of expert comprehension'. Regional asymmetry is explicitly identified as a finding, with performance being 'better for the Americas and lowest in Oceania and Sub-Saharan Africa for the more advanced models'.

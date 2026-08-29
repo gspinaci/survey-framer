@@ -59,5 +59,13 @@
   "facets_explanation": "The benchmark relies on a human-AI collaborative framework where reference answers are a mix of model-generated drafts (based on existing datasets and web resources) and human-authored items (from personal experience and cross-lingual inspiration). Ultimately, all items and answers were reviewed, refined, and finalized by 15 native-speaker volunteer annotators. Correctly answering the queries requires external, domain-specific cultural knowledge that is explicitly withheld from the context scenarios. The questions are community-dependent, heavily tied to the specific cultural norms of 51 distinct regions. During the peer-review quality control stage, any annotator disagreements or quality issues were treated as noise and resolved by revising or rejecting the items.",
   "review_notes_incremental": [
     "gold_source: Ciop chose model_generated, while Cip chose domain_expert. The text describes a mixed methodology where LLMs drafted some items and humans drafted others, but all items were ultimately reviewed and completed by 15 native-speaker 'volunteer annotators'. Although the paper refers to them as 'expert annotators' due to their linguistic and cultural background, they lack specified disciplinary training in the humanities, making crowd_annotation the most accurate fit for the controlled vocabulary. The mix of drafting methods is documented in the explanation."
-  ]
+  ],
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 82,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 44.48,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "yes",
+  "results_explanation": "The highest overall score on the CulturALL benchmark is 44.48% accuracy, achieved by 'gemini-2.5-pro_auto_true' (ID 1). The paper reports a large difficulty gap across its subsets; for example, 'claude-opus-4-20250514_high_false' achieves '91.49%' accuracy on the 'Easy' subset but drops to '9.44%' on the 'Hard' subset, representing a maximum gap of 82.05 percentage points (rounded to 82). The paper also tests the exact same material under two prompt regimes, finding that 'employing English prompts yields an accuracy of 36.40%, which is 8.08% lower than the accuracy achieved with the original native prompts.' A systematic linguistic/cultural asymmetry is noted as a finding, stating that 'Certain languages, such as Serbian, are relatively less challenging, whereas others, like Japanese, pose greater difficulties.' No quantitative human baseline score is reported for the evaluation tasks."
 }

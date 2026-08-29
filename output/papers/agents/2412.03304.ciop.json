@@ -47,5 +47,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "single_answer",
   "plurality_treatment": "noise",
-  "facets_explanation": "Global-MMLU adapts the pre-existing MMLU dataset, which derives its ground truth from academic exam answer keys, requiring substantial external domain knowledge to answer correctly. Although the benchmark categorizes items into culturally sensitive and agnostic subsets, it maintains a single universal correct answer per item across its multilingual translations. Disagreements among the human annotators who labeled the cultural sensitivity of the questions were resolved using a majority voting scheme, filtering out minority interpretations."
+  "facets_explanation": "Global-MMLU adapts the pre-existing MMLU dataset, which derives its ground truth from academic exam answer keys, requiring substantial external domain knowledge to answer correctly. Although the benchmark categorizes items into culturally sensitive and agnostic subsets, it maintains a single universal correct answer per item across its multilingual translations. Disagreements among the human annotators who labeled the cultural sensitivity of the questions were resolved using a majority voting scheme, filtering out minority interpretations.",
+  "reported_format_gap": "no",
+  "reported_format_gap_points": null,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": null,
+  "reported_best_metric": null,
+  "reported_cultural_asymmetry": "yes",
+  "results_explanation": "The paper does not report a quantified human baseline or a single headline score for the best-performing model in the text, but presents evaluations across models in bar charts (Figures 9, 10, 11). It reports a systematic cultural asymmetry, finding that 'progress on MMLU depends heavily on learning Western-centric concepts, with 28% of all questions requiring culturally sensitive knowledge.' It also notes that performance systematically degrades on low-resource languages: 'performance declines significantly for low-resource languages... accompanied by an increase in performance variability, with the standard deviation rising for mid-resource languages and even more so for low-resource languages, particularly on CS datasets.'"
 }

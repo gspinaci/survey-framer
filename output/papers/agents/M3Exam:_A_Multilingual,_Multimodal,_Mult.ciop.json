@@ -49,5 +49,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "single_answer",
   "plurality_treatment": "not_stated",
-  "facets_explanation": "The reference answers are derived directly from the official answer keys of standardized school-graduation and entrance exams across various countries. Correctly answering these questions inherently requires retrieving external domain and cultural knowledge not contained in the exam questions themselves. Although the benchmark contains multilingual questions reflecting distinct national educational systems, each item has a single static correct answer, and the paper does not address annotator disagreement or alternative interpretations."
+  "facets_explanation": "The reference answers are derived directly from the official answer keys of standardized school-graduation and entrance exams across various countries. Correctly answering these questions inherently requires retrieving external domain and cultural knowledge not contained in the exam questions themselves. Although the benchmark contains multilingual questions reflecting distinct national educational systems, each item has a single static correct answer, and the paper does not address annotator disagreement or alternative interpretations.",
+  "reported_format_gap": "no",
+  "reported_format_gap_points": null,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 72.92,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "yes",
+  "results_explanation": "The benchmark's best overall model is \"GPT-4\", which achieves a headline average accuracy of \"72.92%\" across the evaluated languages (Table 2). A systematic cultural and linguistic asymmetry is reported as models \"generally perform worse for non-Latin languages, such as Chinese... as well as low-resource languages like Javanese\", with GPT-4's performance dropping to \"55.26%\" on Javanese (\"jv\") and \"56.04%\" on Thai (\"th\") compared to \"87.55%\" on English (\"en\"). No direct human baseline evaluation is conducted on the benchmark, and no within-model format or difficulty-regime gaps on identical items are reported."
 }

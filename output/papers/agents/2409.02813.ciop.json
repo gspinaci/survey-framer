@@ -51,5 +51,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "single_answer",
   "plurality_treatment": "noise",
-  "facets_explanation": "The benchmark's core questions and ground-truth answers are sourced from college exams, quizzes, and textbooks, establishing them as pre-existing authored answer keys. Answering them correctly requires extensive disciplinary knowledge external to the stimulus, such as specialized historical, mathematical, or scientific concepts. Any discrepancies or potential errors during the option augmentation phase were resolved through multi-stage expert cross-validation, thereby treating divergent interpretations as noise to be eliminated."
+  "facets_explanation": "The benchmark's core questions and ground-truth answers are sourced from college exams, quizzes, and textbooks, establishing them as pre-existing authored answer keys. Answering them correctly requires extensive disciplinary knowledge external to the stimulus, such as specialized historical, mathematical, or scientific concepts. Any discrepancies or potential errors during the option augmentation phase were resolved through multi-stage expert cross-validation, thereby treating divergent interpretations as noise to be eliminated.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 38,
+  "human_baseline_reported": "yes",
+  "human_gap_points": 30,
+  "reported_best_score": 55.0,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "The paper reports accuracy across different settings in Table 1. The largest format gap is observed for VILA-1.5-40B, which drops 37.8 percentage points (rounded to 38) from 51.9% on MMMU (Val) to 14.1% on MMMU-Pro Vision. The best performing model is Claude 3.5 Sonnet with a score of 55.0% accuracy on the Standard (10 Opts) split, which is 30.4 percentage points (rounded to 30) below the Human Expert (High) baseline of 85.4%. On the Vision split, the best model is GPT-4o (0513) with 49.7% accuracy, which is 35.7 percentage points (rounded to 36) below the Human Expert (High) baseline of 85.4%. Systematic cultural asymmetry is not stated."
 }

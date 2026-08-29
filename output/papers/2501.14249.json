@@ -62,5 +62,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "single_answer",
   "plurality_treatment": "noise",
-  "facets_explanation": "The reference answers were authored by nearly 1,000 recruited subject-matter experts to evaluate advanced academic reasoning and domain knowledge. Solving the questions requires retrieving specialized knowledge not contained within the question stimulus. The benchmark employs exact-match or multiple-choice questions with a single objectively correct answer. Divergent readings and peer-reviewer disagreements were treated as noise, resolved through an iterative review, rebuttal, and post-release audit process until consensus was reached."
+  "facets_explanation": "The reference answers were authored by nearly 1,000 recruited subject-matter experts to evaluate advanced academic reasoning and domain knowledge. Solving the questions requires retrieving specialized knowledge not contained within the question stimulus. The benchmark employs exact-match or multiple-choice questions with a single objectively correct answer. Divergent readings and peer-reviewer disagreements were treated as noise, resolved through an iterative review, rebuttal, and post-release audit process until consensus was reached.",
+  "reported_format_gap": "no",
+  "reported_format_gap_points": null,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 13.4,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "The highest score reported on the benchmark is \"13.4\"% \"Accuracy\" by \"O3-MINI (HIGH)*\" on the text-only subset (Table 1). No human baseline solver score is reported, though the authors estimate an \"expert disagreement rate of 15.4% for the public set\" (Section B.3). Performance differences across answer formats (e.g. multiple-choice versus short-answer on identical items) or cultural groups are not evaluated or reported."
 }

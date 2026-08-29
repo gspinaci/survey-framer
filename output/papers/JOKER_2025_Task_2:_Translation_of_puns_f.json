@@ -50,5 +50,13 @@
   "facets_explanation": "Reference translations and pun location annotations were produced by professional translators, who serve as domain experts. A significant portion of the English puns is provided with multiple valid French translations, yielding an answer set that captures different creative strategies for rendering the wordplay. The paper does not explicitly analyze annotator disagreement or divergence as signal or noise, instead treating the multiple references as standard variations to allow robust machine translation evaluation. Successfully translating these puns requires deep linguistic, phonetic, and semantic knowledge of both languages that is not present in the source stimulus.",
   "review_notes_incremental": [
     "plurality_treatment: Ciop selected 'not_addressed', while Cip selected 'signal'. Resolved to 'not_addressed' because, while the dataset preserves multiple valid translations, the paper does not explicitly discuss treating this divergence as a theoretical signal about the material itself; it simply accommodates the standard need for multiple references in translation tasks. All other fields were agreed upon."
-  ]
+  ],
+  "reported_format_gap": "no",
+  "reported_format_gap_points": null,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 43.33,
+  "reported_best_metric": "bleu",
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "The highest score on the primary metric of BLEU is 43.33, achieved by the 'Skommarkhos_Lucie_SFT' run on the test data (Table 4). No standard human baseline score is reported for comparison on this task, though a manual evaluation by a native French speaker shows the best run achieved a 74% success rate (37 of 50 puns) in preserving both meaning and wordplay (Table 7). The paper does not evaluate alternative answer formats or report a format gap for the same models, and cross-cultural asymmetry is 'not_stated' as the task is restricted to English-to-French translation."
 }

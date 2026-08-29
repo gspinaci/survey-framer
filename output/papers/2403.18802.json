@@ -54,5 +54,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "graded_human_judgment",
   "plurality_treatment": "noise",
-  "facets_explanation": "LongFact uses open-ended prompts without predefined static answers. Instead, the SAFE framework dynamically determines the factual ground truth by using an LLM agent to extract atomic facts and verify them via Google Search (model_generated). Generating responses requires external knowledge not supplied in the query (gold_beyond_stimulus), and evaluation relies on LLM judgments rather than a fixed key (graded_human_judgment). Disagreements between human annotators and the automated rater were treated as errors and resolved through expert adjudication to determine a single correct label (noise)."
+  "facets_explanation": "LongFact uses open-ended prompts without predefined static answers. Instead, the SAFE framework dynamically determines the factual ground truth by using an LLM agent to extract atomic facts and verify them via Google Search (model_generated). Generating responses requires external knowledge not supplied in the query (gold_beyond_stimulus), and evaluation relies on LLM judgments rather than a fixed key (graded_human_judgment). Disagreements between human annotators and the automated rater were treated as errors and resolved through expert adjudication to determine a single correct label (noise).",
+  "reported_format_gap": "no",
+  "reported_format_gap_points": null,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 95.0,
+  "reported_best_metric": "f1",
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "The best-performing model is 'GPT-4-Turbo', which achieves the highest aggregated score of 95.0 on 'F1@64' and 66.4 on 'F1@178', as shown in Table 2. No quantified human baseline is reported for the primary generative tasks, although the authors note in an evaluation tool study that 'SAFE annotations were correct 76% of the time, whereas human annotations were correct only 19%'. The paper evaluates a single open-ended generation format and thus reports no format gaps, nor does it evaluate or report on cultural asymmetries for the tested models."
 }

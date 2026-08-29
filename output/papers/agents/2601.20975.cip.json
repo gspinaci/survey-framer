@@ -48,5 +48,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "answer_set",
   "plurality_treatment": "noise",
-  "facets_explanation": "The reference answers were curated by expert annotators and underwent a rigorous three-phase validation process where any inter-annotator discrepancies were resolved or discarded as noise. Because the queries are designed as open-web research tasks, correct answers require external knowledge not provided in the prompt stimulus. The evaluation system scores responses based on both single answers and structured answer sets containing multiple expected items, using an LLM-as-a-judge to assess semantic equivalence."
+  "facets_explanation": "The reference answers were curated by expert annotators and underwent a rigorous three-phase validation process where any inter-annotator discrepancies were resolved or discarded as noise. Because the queries are designed as open-web research tasks, correct answers require external knowledge not provided in the prompt stimulus. The evaluation system scores responses based on both single answers and structured answer sets containing multiple expected items, using an LLM-as-a-judge to assess semantic equivalence.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 16,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 81.9,
+  "reported_best_metric": "f1",
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "The primary metric is F1-score, on which 'Gemini Deep Research Agent' achieves the highest score of '81.90' (reported in Table 4). The paper reports no quantified human baseline, making human_baseline_reported 'no'. A format gap of 16 percentage points (15.81 rounded) is observed between the partial match metric F1-Score ('81.90%') and the exact match metric Fully Correct ('66.09%') for the best model, which the paper highlights as a 'roughly 15-point gap' representing the 'Last Mile Problem' in autonomous deep research."
 }

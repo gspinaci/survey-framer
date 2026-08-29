@@ -64,6 +64,22 @@ All tested LLMs show a strong resistance to adapting to human spoken norms: they
 
 **Answer Multiplicity:** single_answer
 
-**Plurality Treatment:** not_addressed
+**Plurality Treatment:** not_stated
 
 **Facets Explanation:** The reference corpus (PSH v1.0) consists of 100 official parole suitability hearing transcripts obtained from the California Department of Corrections and Rehabilitation. The single ground truth for each case is the unique decision statement given by the presiding commissioner, which serves as a pre-existing administrative record. Generating the correct decision and rationale requires external knowledge of California state laws and parole guidelines not explicitly present in the provided interview transcript stimulus. As there is only one reference text per case, plurality and annotator consensus are not addressed.
+
+**Reported Format Gap:** no
+
+**Reported Format Gap Points:** None
+
+**Human Baseline Reported:** yes
+
+**Human Gap Points:** None
+
+**Reported Best Score:** None
+
+**Reported Best Metric:** None
+
+**Reported Cultural Asymmetry:** not_stated
+
+**Results Explanation:** The paper compares the linguistic features of LLM generations with actual human presiding commissioners' statements using z-scores, reporting human baselines for individual features under the 'Original' column in Table 1. For example, the 'Lexical Diversity' for original Commissioner 4 is '1.48' and 'Sentence Complexity' is '1.10', whereas the evaluated LLMs deviate significantly, with DeepSeek reaching a z-score of '34.91' on 'Sentence Complexity' when prompted with Commissioner 4's rhetorical 'fingerprint'. Because the findings are presented as standardized z-scores across multiple rhetorical dimensions rather than a single headline performance metric on a standardized scale, the best score, best metric, and human gap fields are null.

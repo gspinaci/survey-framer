@@ -49,5 +49,13 @@
   "gold_concerns_genesis": "not_stated",
   "answer_multiplicity": "not_stated",
   "plurality_treatment": "not_stated",
-  "facets_explanation": "Because the provided text contains only the title, abstract, and publication metadata from the ACL Anthology, specific details about the dataset construction pipeline, reference answer sourcing, and evaluation formats are not stated. The abstract only specifies that DRISHTIKON is a multimodal, multilingual benchmark containing over 64,000 aligned text-image pairs across 15 languages."
+  "facets_explanation": "Because the provided text contains only the title, abstract, and publication metadata from the ACL Anthology, specific details about the dataset construction pipeline, reference answer sourcing, and evaluation formats are not stated. The abstract only specifies that DRISHTIKON is a multimodal, multilingual benchmark containing over 64,000 aligned text-image pairs across 15 languages.",
+  "reported_format_gap": "not_stated",
+  "reported_format_gap_points": null,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": null,
+  "reported_best_metric": null,
+  "reported_cultural_asymmetry": "yes",
+  "results_explanation": "The provided text contains only the metadata and abstract of the DRISHTIKON paper, which lacks numerical results, preventing the extraction of a best score, human baseline gap, or format gap. However, it explicitly notes a cultural and linguistic asymmetry as a core finding, stating that model limitations are particularly pronounced 'for low-resource languages and less-documented traditions.' Because no numeric data is present, the corresponding quantitative fields are set to null."
 }

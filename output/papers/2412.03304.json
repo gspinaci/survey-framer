@@ -54,5 +54,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "single_answer",
   "plurality_treatment": "noise",
-  "facets_explanation": "Global-MMLU adapts the pre-existing MMLU dataset, which derives its ground truth from academic exam and quiz answer keys. Answering these questions correctly requires substantial external domain knowledge not contained in the stimulus. Despite being translated into 42 languages and categorized into culturally sensitive and agnostic subsets, the benchmark maintains a single universal correct answer per item across all languages. Disagreements among the human annotators who labeled the cultural sensitivity of the questions were resolved using majority voting, effectively treating divergence as noise."
+  "facets_explanation": "Global-MMLU adapts the pre-existing MMLU dataset, which derives its ground truth from academic exam and quiz answer keys. Answering these questions correctly requires substantial external domain knowledge not contained in the stimulus. Despite being translated into 42 languages and categorized into culturally sensitive and agnostic subsets, the benchmark maintains a single universal correct answer per item across all languages. Disagreements among the human annotators who labeled the cultural sensitivity of the questions were resolved using majority voting, effectively treating divergence as noise.",
+  "reported_format_gap": "no",
+  "reported_format_gap_points": null,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": null,
+  "reported_best_metric": null,
+  "reported_cultural_asymmetry": "yes",
+  "results_explanation": "The paper reports no quantified human baseline, format gap, or single headline score for the best-performing model, presenting results primarily across models in charts. It explicitly confirms a systematic cultural asymmetry, finding that \"progress on MMLU depends heavily on learning Western-centric concepts, with 28% of all questions requiring culturally sensitive knowledge.\" Furthermore, the authors state that \"performance declines significantly for low-resource languages\" when evaluating multilingual capabilities."
 }

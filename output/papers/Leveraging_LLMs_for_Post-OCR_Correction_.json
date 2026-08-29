@@ -50,5 +50,13 @@
   "facets_explanation": "The reference answers are sourced from the BLN600 corpus, which pairs OCR excerpts with 'manually re-keyed human transcriptions' from the source images, though the paper does not specify who authored these transcriptions or under what conditions (hence 'not_stated'). Post-OCR correction relies on reconstructing the text segment itself, requiring no external knowledge beyond the stimulus. Model performance is evaluated quantitatively by calculating Character Error Rate against a single ground-truth target sequence per item. The paper does not address annotator disagreement or the possibility of alternative valid transcriptions.",
   "review_notes_incremental": [
     "gold_source: Cip inferred 'existing_metadata' under the assumption that the manual transcriptions were a product of the British Library Newspapers digitisation project itself. However, the text only states that the OCR is from that project and the ground truth consists of 'manually re-keyed human transcriptions' from the BLN600 corpus, without detailing their origin. Resolved to 'not_stated' as per Ciop's reading. All other fields were in agreement."
-  ]
+  ],
+  "reported_format_gap": "no",
+  "reported_format_gap_points": null,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 54.51,
+  "reported_best_metric": "other",
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "The best-performing model, 'Llama 2' '13B', achieves a headline score of '54.51' on the 'CER Reduction (%)' metric ('achieving a 54.51% reduction in the character error rate'). No quantified human baseline is reported for this task. There is no comparison of format or difficulty gaps. Cultural asymmetry is 'not_stated' because the BLN600 benchmark is monolingual, consisting entirely of 19th-century British newspaper articles written in English."
 }

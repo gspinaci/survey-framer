@@ -45,5 +45,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "single_answer",
   "plurality_treatment": "not_stated",
-  "facets_explanation": "The reference labels are retrieved from existing curated metadata based on Iconclass standards in the ArtDL, ICONCLASS, and Wikidata databases. Identifying specific saints within the paintings requires external knowledge of Christian iconographic traditions and symbols, which are not explicitly described within the image stimulus. The evaluation measures accuracy against a single correct class label per image, and the paper does not address annotator disagreement or alternative readings of the visual content."
+  "facets_explanation": "The reference labels are retrieved from existing curated metadata based on Iconclass standards in the ArtDL, ICONCLASS, and Wikidata databases. Identifying specific saints within the paintings requires external knowledge of Christian iconographic traditions and symbols, which are not explicitly described within the image stimulus. The evaluation measures accuracy against a single correct class label per image, and the paper does not address annotator disagreement or alternative readings of the visual content.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 20,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 90.45,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "The paper reports format-related performance differences across different prompt conditions, specifically between classification with labels only (Test 1) and classification with label descriptions (Test 2). The largest gap of 19.48 percentage points (rounded up to 20) is observed for the 'siglip-base-patch16-512' model on the ArtDL dataset, where performance rises from 48.71% in Test 1 to 68.19% in Test 2. The best overall score is 90.45% accuracy achieved by 'gemini-2.5-pro-preview-05-06' on the ArtDL dataset (Test 1). No human baseline or human expert benchmark score is quantified in the paper."
 }

@@ -48,5 +48,13 @@
   "gold_concerns_genesis": "yes",
   "answer_multiplicity": "graded_human_judgment",
   "plurality_treatment": "not_stated",
-  "facets_explanation": "The reference metadata is harvested directly from the pre-existing collection metadata of the Getty and Metropolitan Museum of Art databases. Answering these tasks correctly requires domain-specific art-historical knowledge that goes beyond the visual stimulus. The scoring uses an LLM-as-a-Judge framework (specifically GPT-4.1-mini) to evaluate semantic alignment on a three-tier correctness scale rather than hard exact match metrics. While dataset curation utilized a two-stage verification process where only verified items were retained, the paper does not formally address or quantify annotator divergence."
+  "facets_explanation": "The reference metadata is harvested directly from the pre-existing collection metadata of the Getty and Metropolitan Museum of Art databases. Answering these tasks correctly requires domain-specific art-historical knowledge that goes beyond the visual stimulus. The scoring uses an LLM-as-a-Judge framework (specifically GPT-4.1-mini) to evaluate semantic alignment on a three-tier correctness scale rather than hard exact match metrics. While dataset curation utilized a two-stage verification process where only verified items were retained, the paper does not formally address or quantify annotator divergence.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 74,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 0.029,
+  "reported_best_metric": "exact_match",
+  "reported_cultural_asymmetry": "yes",
+  "results_explanation": "The paper reports a large format gap between exact match accuracy ('Acc') and partial match rate ('Partial'), with the largest difference of 73.5 points (rounded to 74) observed on the Ancient Mediterranean split for GPT-5.4-mini ('0.735' partial vs '0.000' exact match). The best overall exact-match score on the primary evaluation is '0.029' achieved by 'Qwen3-VL-32B-Instruct'. Systematic cultural asymmetry is highlighted, noting that 'East Asia consistently yields the strongest performance across models' whereas for other regions like Europe, 'performance is lower and highly imbalanced across attributes'."
 }

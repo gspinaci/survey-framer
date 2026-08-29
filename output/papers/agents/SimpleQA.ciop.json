@@ -46,5 +46,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "single_answer",
   "plurality_treatment": "noise",
-  "facets_explanation": "SimpleQA was constructed using a team of contract annotators who authored the factual questions and verified the ground truth answers. Answering these questions correctly requires external knowledge not provided in the short-form prompt itself. The dataset target is strictly objective, single-answer facts; any questions showing ambiguity, subjectivity, or annotator disagreement were treated as noise and filtered out during curation."
+  "facets_explanation": "SimpleQA was constructed using a team of contract annotators who authored the factual questions and verified the ground truth answers. Answering these questions correctly requires external knowledge not provided in the short-form prompt itself. The dataset target is strictly objective, single-answer facts; any questions showing ambiguity, subjectivity, or annotator disagreement were treated as noise and filtered out during curation.",
+  "reported_format_gap": "not_stated",
+  "reported_format_gap_points": null,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": null,
+  "reported_best_metric": null,
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "The provided text is the GitHub README for the `openai/simple-evals` repository, which lists `SimpleQA` as one of its supported evaluations ('SimpleQA: Measuring short-form factuality in large language models') but does not contain any of its actual evaluation results. The benchmark results table in the README only reports scores for other datasets like 'MMLU', 'GPQA', 'MATH', 'HumanEval', and 'MGSM'. Therefore, all specific metrics, formatting gaps, and human baselines for SimpleQA are null or not stated in this document."
 }

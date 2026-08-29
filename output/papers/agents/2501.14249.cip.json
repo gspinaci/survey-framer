@@ -54,5 +54,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "single_answer",
   "plurality_treatment": "noise",
-  "facets_explanation": "The reference answers were authored by nearly 1,000 subject-matter experts, including researchers, professors, and graduate degree holders, to evaluate advanced reasoning and domain knowledge. Solving these closed-ended questions requires retrieval of specialized knowledge not contained within the question stimulus. Striving for objective, univocal correctness, the authors established a multi-stage expert review and post-release audit to resolve and minimize peer-reviewer disagreements, treating divergent readings as errors to be corrected or filtered out."
+  "facets_explanation": "The reference answers were authored by nearly 1,000 subject-matter experts, including researchers, professors, and graduate degree holders, to evaluate advanced reasoning and domain knowledge. Solving these closed-ended questions requires retrieval of specialized knowledge not contained within the question stimulus. Striving for objective, univocal correctness, the authors established a multi-stage expert review and post-release audit to resolve and minimize peer-reviewer disagreements, treating divergent readings as errors to be corrected or filtered out.",
+  "reported_format_gap": "no",
+  "reported_format_gap_points": null,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 13.4,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "The highest performing model evaluated is 'o3-mini (high)*' with an accuracy score of '13.4%' on the text-only subset, as reported in Table 1. No quantified human baseline score on the exam itself is compared against the models, making the human gap null. The paper also does not compare model performance across different format types (such as multiple-choice vs. exact-match) or analyze performance variations across different cultures or languages."
 }

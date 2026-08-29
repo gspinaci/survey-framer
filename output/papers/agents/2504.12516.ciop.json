@@ -47,5 +47,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "single_answer",
   "plurality_treatment": "noise",
-  "facets_explanation": "The reference answers were authored by contracted human trainers who constructed highly specific, multi-constraint questions around a target 'seed' fact to ensure a single, indisputable answer. Solving these questions inherently requires retrieving information from the open web, as the necessary knowledge is not contained within the prompt stimulus. Potential ambiguities or secondary valid answers discovered during cross-checking or post-hoc evaluation were treated as noise, resulting in either question revision or item exclusion to maintain a clean, single-answer key."
+  "facets_explanation": "The reference answers were authored by contracted human trainers who constructed highly specific, multi-constraint questions around a target 'seed' fact to ensure a single, indisputable answer. Solving these questions inherently requires retrieving information from the open web, as the necessary knowledge is not contained within the prompt stimulus. Potential ambiguities or secondary valid answers discovered during cross-checking or post-hoc evaluation were treated as noise, resulting in either question revision or item exclusion to maintain a clean, single-answer key.",
+  "reported_format_gap": "no",
+  "reported_format_gap_points": null,
+  "human_baseline_reported": "yes",
+  "human_gap_points": -22,
+  "reported_best_score": 51.5,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "The paper reports a human baseline of 29.2% based on Table 2 ('Solved by human: 367 / 1,255 (29.2%)'). The best-performing model evaluated on the primary benchmark split is 'Deep Research' with an accuracy of 51.5% ('Deep Research: 51.5' in Table 3). This represents a human-to-model gap of -22 percentage points (29.2% - 51.5% = -22.3 points). No format or difficulty splits are compared on the same material to report a format gap, and cultural asymmetry is not stated."
 }

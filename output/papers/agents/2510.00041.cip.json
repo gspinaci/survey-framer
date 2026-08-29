@@ -49,5 +49,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "single_answer",
   "plurality_treatment": "noise",
-  "facets_explanation": "Reference answers for the translation and cultural conflict tasks were initially drafted using DeepSeek-V3 and DeepSeek-R1 models before undergoing manual review and correction by student annotators. Correctly answering the questions requires extensive external domain knowledge about world cultures, styles, and regional customs that are not explicitly stated within the fictional comic stimuli. Any inter-annotator disagreements or formatting issues during the curation phase were resolved through group consensus and manual verification, treating divergence as noise to be resolved."
+  "facets_explanation": "Reference answers for the translation and cultural conflict tasks were initially drafted using DeepSeek-V3 and DeepSeek-R1 models before undergoing manual review and correction by student annotators. Correctly answering the questions requires extensive external domain knowledge about world cultures, styles, and regional customs that are not explicitly stated within the fictional comic stimuli. Any inter-annotator disagreements or formatting issues during the curation phase were resolved through group consensus and manual verification, treating divergence as noise to be resolved.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 22,
+  "human_baseline_reported": "yes",
+  "human_gap_points": null,
+  "reported_best_score": 34.2,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "yes",
+  "results_explanation": "The paper reports that 'Qwen2.5-VL demonstrates optimal performance' with a composite accuracy (CACC) of '34.2' on the primary Conflict@Culture Q4 task (Table 3). A difficulty gap of 22 percentage points is reported in Table 7, where average model Q1 ACC falls from '48.0' on 'Easy Questions' to '25.7' on 'Hard Questions'. The human gap points is null because Table 7 compares human performance against average 'Model Performance' (rather than the single best-performing model). Cultural asymmetry is confirmed as models perform better on 'representative cultures (e.g., Cambodia and Japan)' than on 'lesser-known cultures (e.g., Finnish and Somalia)' which 'exhibit notably higher error rates' (Section 5.5)."
 }

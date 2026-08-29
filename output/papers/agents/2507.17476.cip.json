@@ -49,5 +49,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "single_answer",
   "plurality_treatment": "not_stated",
-  "facets_explanation": "The benchmark questions and ground-truth final answers were produced by recruited native speakers of French, Spanish, and Chinese (gold_source: crowd_annotation). Answering the questions correctly requires external knowledge of language-specific grammatical quirks, wordplay, and cultural/calendar traditions not provided in the prompts (gold_beyond_stimulus: yes). The evaluation relies on an LLM-as-a-judge to assess whether a generated response matches the single, objective ground-truth answer (answer_multiplicity: single_answer)."
+  "facets_explanation": "The benchmark questions and ground-truth final answers were produced by recruited native speakers of French, Spanish, and Chinese (gold_source: crowd_annotation). Answering the questions correctly requires external knowledge of language-specific grammatical quirks, wordplay, and cultural/calendar traditions not provided in the prompts (gold_beyond_stimulus: yes). The evaluation relies on an LLM-as-a-judge to assess whether a generated response matches the single, objective ground-truth answer (answer_multiplicity: single_answer).",
+  "reported_format_gap": "no",
+  "reported_format_gap_points": null,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 49.0,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "yes",
+  "results_explanation": "The highest score on MultiNRC is achieved by 'o3-pro-2025-06-10-high' with an accuracy of '49.00' percent in the 'Original' setting (Table 3). No human baseline score is reported for task performance, so 'human_baseline_reported' is 'no' and 'human_gap_points' is null. The paper reports a systematic cultural asymmetry, noting 'especially pronounced gains for Spanish (+19.1) and Chinese (+12.5)' on math reasoning when evaluated on English equivalents compared to the original languages (Table 5)."
 }

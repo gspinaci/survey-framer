@@ -46,5 +46,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "single_answer",
   "plurality_treatment": "noise",
-  "facets_explanation": "Reference answers were verified by crowd annotators on Prolific who were selected based on demographic criteria (nationality and childhood residence) to match each of the 45 targeted regional cultures. Answering the questions requires declarative cultural knowledge that is not contained within the question prompt. Although some questions allow for multiple valid options (multi-mode), any questions that failed to reach a strict consensus of at least 4 out of 5 annotators were filtered out of the final benchmark."
+  "facets_explanation": "Reference answers were verified by crowd annotators on Prolific who were selected based on demographic criteria (nationality and childhood residence) to match each of the 45 targeted regional cultures. Answering the questions requires declarative cultural knowledge that is not contained within the question prompt. Although some questions allow for multiple valid options (multi-mode), any questions that failed to reach a strict consensus of at least 4 out of 5 annotators were filtered out of the final benchmark.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 53,
+  "human_baseline_reported": "yes",
+  "human_gap_points": 31,
+  "reported_best_score": 61.4,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "yes",
+  "results_explanation": "The paper reports a major performance drop from the multiple-choice CULTURALBENCH-Easy to the binary True/False CULTURALBENCH-Hard, with the largest gap of 53 points observed for Mixtral-8x7b, which drops from 73.92% (Table 10) to 21.16% (Table 11). Compared to the human baseline of '92.4% accuracy', the best model ('OpenAI o1') achieves '61.4% accuracy' on the Hard benchmark, leaving a human-model gap of 31 percentage points. The study also documents cultural asymmetry, noting that models perform better on North America but systematically 'under-perform on questions related to North Africa, South America and Middle East'."
 }

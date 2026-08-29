@@ -50,5 +50,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "graded_human_judgment",
   "plurality_treatment": "noise",
-  "facets_explanation": "LongFact consists of open-ended prompts without predefined static answers. Instead, the SAFE evaluator dynamically generates the factual ground truth by using an LLM agent to extract atomic facts and verify them against Google Search results. Disagreements between crowd annotators and the SAFE system were resolved through manual expert re-annotation to determine a single correct label, treating annotator divergence as noise."
+  "facets_explanation": "LongFact consists of open-ended prompts without predefined static answers. Instead, the SAFE evaluator dynamically generates the factual ground truth by using an LLM agent to extract atomic facts and verify them against Google Search results. Disagreements between crowd annotators and the SAFE system were resolved through manual expert re-annotation to determine a single correct label, treating annotator divergence as noise.",
+  "reported_format_gap": "no",
+  "reported_format_gap_points": null,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 95.0,
+  "reported_best_metric": "f1",
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "The best-performing model is 'GPT-4-Turbo', which achieves the highest aggregated score of '95.0' on 'F1@64' and '66.4' on 'F1@178', as shown in Table 2. No quantified human baseline is reported for the primary F1@K evaluation metrics, though the authors note that in a disagreement study of 100 facts, 'SAFE annotations were correct 76% of the time, whereas human annotations were correct only 19%'. Since the benchmark is monolingual (English) and evaluates a single open-ended generation format, no format gaps or cultural asymmetries are systematically reported for the evaluated models."
 }

@@ -55,5 +55,13 @@
   "facets_explanation": "Reference answers were verified by crowd annotators on Prolific, who were selected based on demographic criteria (nationality and childhood residence) to match each of the targeted regional cultures. Answering the questions requires declarative cultural knowledge not contained within the question prompt. The benchmark includes 'multi-mode' questions where multiple valid cultural answers are accepted; however, any option failing to reach a strict consensus of at least 4 out of 5 annotators is filtered out.",
   "review_notes_incremental": [
     "answer_multiplicity: Ciop selected answer_set, Cip selected single_answer. Resolved to answer_set because the benchmark explicitly features 'multi-mode' questions where multiple valid answers are accepted for a single item. plurality_treatment: Ciop selected signal (focusing on the preservation of multiple valid cultural realities), Cip selected noise (focusing on the filtering of items lacking annotator consensus). Resolved to noise, as divergence between annotators on any given option is explicitly filtered out via a strict 4/5 majority vote threshold."
-  ]
+  ],
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 53,
+  "human_baseline_reported": "yes",
+  "human_gap_points": 31,
+  "reported_best_score": 61.4,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "yes",
+  "results_explanation": "The paper compares multiple-choice (CULTURALBENCH-Easy) and binary True/False (CULTURALBENCH-Hard) formats on the same 1,696 questions, reporting a massive format gap. For instance, Mixtral-8x7b drops 53 percentage points, from 73.92% (Table 10) to 21.16% (Table 11). A quantified human baseline is reported at '92.4% accuracy', while the best-performing model, 'OpenAI o1', achieves '61.4% accuracy' on the Hard benchmark, resulting in a human-model gap of 31 percentage points. The study also identifies a systematic cultural asymmetry, stating that models perform better on regions like North America but 'under-perform on questions related to North Africa, South America and Middle East'."
 }

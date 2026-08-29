@@ -56,6 +56,15 @@
   "plurality_treatment": "noise",
   "facets_explanation": "The reference answers were curated by expert data annotators from various sources to reflect realistic user queries. Because the benchmark is based on open-web research tasks, answering requires retrieving external information not provided in the prompt stimulus. The ground truth incorporates both single answers and structured answer sets containing multiple expected items. Any divergence between annotators was addressed in a three-phase validation process where discrepancies were resolved and ambiguous prompts were filtered out, treating disagreement as noise.",
   "review_notes_incremental": [
-    "gold_source: Ciop chose crowd_annotation and Cip chose domain_expert. This was resolved to crowd_annotation because while the paper calls them 'expert data annotators', it does not state they have specific disciplinary training in the 17 diverse fields covered by the benchmark, fitting the definition of annotators recruited for the task without assumed domain expertise. Analysts agreed on all other fields."
-  ]
+    "gold_source: Ciop chose crowd_annotation and Cip chose domain_expert. This was resolved to crowd_annotation because while the paper calls them 'expert data annotators', it does not state they have specific disciplinary training in the 17 diverse fields covered by the benchmark, fitting the definition of annotators recruited for the task without assumed domain expertise. Analysts agreed on all other fields.",
+    "Ciop correctly identified the largest format gap of 22 points derived from Table 4 ('o3 Deep Research' 66.45 F1 vs 44.24 Fully correct), while Cip extracted the 16-point gap explicitly highlighted in the text for the best model. The final report adopts Ciop's 22 points as it represents the largest gap reported. Both analysts agreed on the remaining fields."
+  ],
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 22,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 81.9,
+  "reported_best_metric": "f1",
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "The benchmark's primary ranking metric is the \"F1-Score\", with the \"Gemini Deep Research Agent\" achieving the top score of \"81.90\" (Table 4). The paper reports a format gap comparing the partial-match \"F1-Score\" metric to the exact-match \"Fully correct\" metric on the same tasks, with the largest gap of 22 points (22.21 rounded) occurring for \"o3 Deep Research\" (\"66.45\" F1 vs \"44.24\" Fully correct in Table 4), while the paper explicitly highlights a \"roughly 15-point gap\" (15.81 rounded to 16) for the best model as the \"Last Mile Problem\". No quantified human baseline is evaluated or compared against the models. The paper does not analyze or report any cultural asymmetries."
 }

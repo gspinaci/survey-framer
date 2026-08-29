@@ -43,5 +43,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "single_answer",
   "plurality_treatment": "not_stated",
-  "facets_explanation": "The reference corpus (PSH v1.0) consists of 100 official parole suitability hearing transcripts obtained from the California Department of Corrections and Rehabilitation (CDCR). The decision statements of the presiding commissioners serve as the single ground truth for each case. The authors manually analyzed a subset of 20 statements to define the rhetorical features, but the final evaluation compares LLM generations directly to the corresponding unique human-written transcripts."
+  "facets_explanation": "The reference corpus (PSH v1.0) consists of 100 official parole suitability hearing transcripts obtained from the California Department of Corrections and Rehabilitation (CDCR). The decision statements of the presiding commissioners serve as the single ground truth for each case. The authors manually analyzed a subset of 20 statements to define the rhetorical features, but the final evaluation compares LLM generations directly to the corresponding unique human-written transcripts.",
+  "reported_format_gap": "no",
+  "reported_format_gap_points": null,
+  "human_baseline_reported": "yes",
+  "human_gap_points": null,
+  "reported_best_score": null,
+  "reported_best_metric": null,
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "The paper compares the linguistic features of LLM generations with actual human presiding commissioners' statements using z-score metrics, as presented in Table 1 (e.g., human 'Original' lexical diversity of '-0.55' vs. ChatGPT-4o 'byCorpus' of '16.92'). Because the primary findings are presented as standardized z-scores across multiple individual dimensions rather than a single 0-100 percentage metric or traditional benchmark score, the headline best score, metric, and percentage-point human gap are null."
 }

@@ -47,5 +47,13 @@
   "gold_concerns_genesis": "not_stated",
   "answer_multiplicity": "not_stated",
   "plurality_treatment": "not_stated",
-  "facets_explanation": "The provided text contains only the paper title 'An Investigation Into Value Misalignment in LLM-Generated Texts for Cultural Heritage' and IEEE website metadata. Lacking the publication's full text, details regarding the construction of the CHVM-1K dataset, its reference answers, annotator demographics, and evaluation metrics cannot be determined."
+  "facets_explanation": "The provided text contains only the paper title 'An Investigation Into Value Misalignment in LLM-Generated Texts for Cultural Heritage' and IEEE website metadata. Lacking the publication's full text, details regarding the construction of the CHVM-1K dataset, its reference answers, annotator demographics, and evaluation metrics cannot be determined.",
+  "reported_format_gap": "not_stated",
+  "reported_format_gap_points": null,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": null,
+  "reported_best_metric": null,
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "The provided text contains only the title 'An Investigation Into Value Misalignment in LLM-Generated Texts for Cultural Heritage' and website navigation metadata, with no actual experimental findings or text. Consequently, no quantitative model evaluations, metrics, or human baselines are reported, rendering all corresponding fields null or not_stated."
 }

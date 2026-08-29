@@ -48,5 +48,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "single_answer",
   "plurality_treatment": "not_stated",
-  "facets_explanation": "The dataset's questions and reference answers are produced by a multi-agent LLM pipeline using pre-processed Wikipedia art descriptions. The pipeline includes topic selection, open-ended question generation, multiple-choice option refinement, and validation by an LLM Judge. The design explicitly ensures that questions are non-trivial yet unambiguously answerable directly from the visual content of the image rather than requiring outside metadata. Stated human validation was performed on a sample to verify factual grounding, but inter-annotator divergence or disagreement is not addressed."
+  "facets_explanation": "The dataset's questions and reference answers are produced by a multi-agent LLM pipeline using pre-processed Wikipedia art descriptions. The pipeline includes topic selection, open-ended question generation, multiple-choice option refinement, and validation by an LLM Judge. The design explicitly ensures that questions are non-trivial yet unambiguously answerable directly from the visual content of the image rather than requiring outside metadata. Stated human validation was performed on a sample to verify factual grounding, but inter-annotator divergence or disagreement is not addressed.",
+  "reported_format_gap": "no",
+  "reported_format_gap_points": null,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 0.71,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "In Table 2, the best-performing model is 'Gemini 2.5', achieving an 'Overall Acc.' of '0.71' on a 0-1 scale. No format gap is reported, as the authors evaluate models solely using the multiple-choice format. While the paper describes a 'human validation study' to ensure dataset quality, finding that 'over the 98% of the reviewed questions were free from hallucinations,' this is a quality assurance metric rather than a task-solving human baseline score."
 }

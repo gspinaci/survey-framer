@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nove narrative sui benchmark LLM nelle Humanities</title>
+  <style>
+    :root{
+      --paper:#f5f3ee; --card:#fffdfa; --ink:#171714; --soft:#66645d;
+      --line:#dcd8ce; --red:#c94b3d; --blue:#356fa3; --green:#47866b;
+      --gold:#d69b32; --grey:#aaa69d; --pale:#ebe7de;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+    main{max-width:1080px;margin:auto;padding:52px 24px 80px}
+    header{border-bottom:1px solid var(--line);padding-bottom:32px}
+    .eyebrow,.num,.tag{font:700 12px/1.2 ui-monospace,SFMono-Regular,Menlo,monospace;text-transform:uppercase;letter-spacing:.09em}
+    .eyebrow,.num{color:var(--red)}
+    h1{font:700 clamp(34px,6vw,66px)/1.02 Georgia,serif;letter-spacing:-.035em;max-width:900px;margin:12px 0 18px}
+    .lede{font-size:19px;color:var(--soft);max-width:780px;margin:0}
+    .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:28px 0 0}
+    .kpi,.card{background:var(--card);border:1px solid var(--line);border-radius:14px}
+    .kpi{padding:18px}.kpi b{display:block;font:700 34px/1 Georgia,serif}.kpi span{display:block;color:var(--soft);font-size:13px;margin-top:7px}
+    nav{display:flex;gap:8px;flex-wrap:wrap;margin:24px 0 46px}
+    nav a{color:var(--soft);text-decoration:none;border:1px solid var(--line);background:var(--card);padding:5px 10px;border-radius:99px;font-size:12px}
+    nav a:hover{color:var(--ink);border-color:var(--ink)}
+    section{scroll-margin-top:20px;margin:0 0 58px}
+    .section-head{display:grid;grid-template-columns:55px 1fr;gap:14px;align-items:start;margin-bottom:18px}
+    h2{font:700 clamp(25px,4vw,38px)/1.12 Georgia,serif;letter-spacing:-.02em;margin:0}
+    .claim{font-size:18px;max-width:860px;margin:10px 0 0;color:var(--soft)}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+    .card{padding:20px;min-width:0}.wide{grid-column:1/-1}
+    h3{font-size:15px;margin:0 0 4px}.sub{font-size:13px;color:var(--soft);margin:0 0 18px}
+    .legend{display:flex;flex-wrap:wrap;gap:14px;margin:12px 0;font-size:12px;color:var(--soft)}
+    .sw{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px}
+    .stack-row{display:grid;grid-template-columns:52px 1fr 50px;gap:10px;align-items:center;margin:13px 0;font-size:13px}
+    .stack{display:flex;height:30px;background:var(--pale);border-radius:5px;overflow:hidden}.seg{display:flex;align-items:center;justify-content:center;color:white;font-size:11px;font-weight:700;min-width:0}.noise{background:var(--red)}.silent{background:var(--grey)}.signal{background:var(--green)}
+    .bar-row{display:grid;grid-template-columns:minmax(120px,1.1fr) 2fr 62px;gap:10px;align-items:center;margin:12px 0;font-size:13px}
+    .track{height:20px;background:var(--pale);border-radius:4px;overflow:hidden}.bar{height:100%;background:var(--blue);border-radius:4px}.bar.red{background:var(--red)}.bar.green{background:var(--green)}.bar.gold{background:var(--gold)}.bar.grey{background:var(--grey)}
+    .value{text-align:right;font-variant-numeric:tabular-nums;font-weight:700}
+    .big{font:700 56px/1 Georgia,serif;color:var(--red);margin:14px 0 4px}.big.blue{color:var(--blue)}
+    .donut-wrap{display:flex;align-items:center;gap:24px}.donut{width:142px;aspect-ratio:1;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--red) 0 7.14%,var(--grey) 7.14% 14.28%,var(--pale) 14.28%)}.donut:after{content:"3 / 42";display:grid;place-items:center;width:96px;aspect-ratio:1;border-radius:50%;background:var(--card);font:700 21px Georgia,serif}
+    .matrix{display:grid;grid-template-columns:145px repeat(4,1fr);gap:5px;font-size:12px}.cell{padding:9px 6px;background:var(--pale);text-align:center;border-radius:4px}.cell.head{background:transparent;color:var(--soft);font-size:11px}.cell.hot{background:#d9e8df;color:#244b39;font-weight:700}.cell.warm{background:#f5dfb8;color:#6a4811;font-weight:700}
+    .scale-row{display:grid;grid-template-columns:170px 1fr 90px;gap:10px;align-items:center;margin:14px 0;font-size:13px}.scale-track{height:10px;background:var(--pale);border-radius:8px}.scale-bar{height:100%;background:var(--blue);border-radius:8px}
+    .callout{border-left:4px solid var(--red);padding:10px 0 10px 16px;margin:18px 0 0;color:var(--soft);font-size:14px}.callout b{color:var(--ink)}
+    .tag{display:inline-block;color:var(--soft);background:var(--pale);padding:5px 7px;border-radius:4px;margin-bottom:12px}
+    details{margin-top:16px;border-top:1px solid var(--line);padding-top:10px}summary{cursor:pointer;color:var(--soft);font-size:12px}
+    table{border-collapse:collapse;width:100%;font-size:12px;margin-top:10px}th,td{text-align:left;border-bottom:1px solid var(--line);padding:6px 8px 6px 0}th{color:var(--soft)}td:last-child,th:last-child{text-align:right}
+    footer{border-top:1px solid var(--line);padding-top:22px;color:var(--soft);font-size:13px}.note{font-size:12px;color:var(--soft)}
+    @media(max-width:720px){main{padding:30px 16px 60px}.kpis,.grid{grid-template-columns:1fr}.wide{grid-column:auto}.section-head{grid-template-columns:38px 1fr}.matrix{grid-template-columns:100px repeat(4,1fr);font-size:10px}.cell{padding:7px 2px}.bar-row{grid-template-columns:110px 1fr 54px}.scale-row{grid-template-columns:130px 1fr 70px}.donut-wrap{align-items:flex-start;flex-direction:column}}
+    @media print{body{background:white}.card,.kpi{break-inside:avoid}nav{display:none}}
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="eyebrow">Analisi descrittiva · corpus di 42 benchmark</div>
+    <h1>Nove narrative sui benchmark LLM nelle Humanities</h1>
+    <p class="lede">Che cosa succede alla pluralità interpretativa quando diventa una ground truth? Tre risultati principali e sei pattern complementari, ricavati dalle proprietà dichiarate nei paper.</p>
+    <div class="kpis">
+      <div class="kpi"><b>19 / 42</b><span>trattano esplicitamente la divergenza come <em>noise</em></span></div>
+      <div class="kpi"><b>28 / 42</b><span>accettano una sola risposta per item</span></div>
+      <div class="kpi"><b>3 / 42</b><span>valutano la provenance degli oggetti</span></div>
+    </div>
+  </header>
+
+  <nav aria-label="Indice">
+    <a href="#n1">01 Tempo</a><a href="#n2">02 Pluralità</a><a href="#n3">03 Provenance</a>
+    <a href="#n4">04 General-purpose</a><a href="#n5">05 Gold</a><a href="#n6">06 Universalismo</a>
+    <a href="#n7">07 Multimodale</a><a href="#n8">08 Scala</a><a href="#n9">09 Silenzio</a>
+  </nav>
+
+  <section id="n1">
+    <div class="section-head"><div class="num">01</div><div><h2>La divergenza viene sempre più esplicitamente minimizzata</h2><p class="claim">La quota di <code>plurality_treatment=noise</code> passa dal 33% nel 2024 al 73% nel 2026. Il dato osservato non è una misura autonoma di “chiusura”: la chiusura epistemica è l’interpretazione teorica del pattern.</p></div></div>
+    <div class="card wide">
+      <h3>Trattamento della pluralità per anno</h3><p class="sub">Composizione percentuale; nell’ultima colonna è riportato il numero di paper.</p>
+      <div class="legend"><span><i class="sw noise"></i>noise</span><span><i class="sw silent"></i>not stated</span><span><i class="sw signal"></i>signal</span></div>
+      <div class="stack-row"><b>2023</b><div class="stack"><div class="seg noise" style="width:50%">1</div><div class="seg silent" style="width:50%">1</div></div><span>n=2</span></div>
+      <div class="stack-row"><b>2024</b><div class="stack"><div class="seg noise" style="width:33.33%">3</div><div class="seg silent" style="width:66.67%">6</div></div><span>n=9</span></div>
+      <div class="stack-row"><b>2025</b><div class="stack"><div class="seg noise" style="width:36.84%">7</div><div class="seg silent" style="width:63.16%">12</div></div><span>n=19</span></div>
+      <div class="stack-row"><b>2026</b><div class="stack"><div class="seg noise" style="width:72.73%">8</div><div class="seg silent" style="width:18.18%">2</div><div class="seg signal" style="width:9.09%">1</div></div><span>n=11</span></div>
+      <div class="callout"><b>Lettura:</b> nel 2026 il silenzio quasi scompare, ma viene sostituito soprattutto dalla minimizzazione esplicita del disaccordo, non dalla sua valorizzazione.</div>
+    </div>
+  </section>
+
+  <section id="n2">
+    <div class="section-head"><div class="num">02</div><div><h2>Dove la pluralità è costitutiva, gli esiti restano univoci</h2><p class="claim">Trascrizione e attribuzione mostrano due forme diverse di chiusura: una strutturale, attraverso la risposta unica; l’altra esplicita, attraverso il trattamento del disaccordo come rumore.</p></div></div>
+    <div class="grid">
+      <div class="card"><span class="tag">Chiusura strutturale</span><h3>Trascrizione e correzione</h3><div class="big">6 / 6</div><p class="sub">benchmark con <code>single_answer</code></p><div class="track"><div class="bar red" style="width:100%"></div></div><p class="note">Solo 2/6 dichiarano esplicitamente <code>noise</code>; negli altri quattro la pluralità non è discussa. Risposta unica e trattamento esplicito non sono la stessa misura.</p></div>
+      <div class="card"><span class="tag">Chiusura esplicita</span><h3>Attribuzione</h3><div class="big">4 / 5</div><p class="sub">benchmark con <code>plurality_treatment=noise</code></p><div class="track"><div class="bar red" style="width:80%"></div></div><p class="note">Autore, data e provenienza sono questioni su cui il disaccordo specialistico può essere permanente e produttivo.</p></div>
+      <div class="card wide"><h3>Disaccordo trattato come noise, per disciplina</h3><p class="sub">Le aree disciplinari non sono mutuamente esclusive.</p>
+        <div class="bar-row"><span>Music</span><div class="track"><div class="bar red" style="width:100%"></div></div><span class="value">5/5</span></div>
+        <div class="bar-row"><span>Philosophy</span><div class="track"><div class="bar red" style="width:83.33%"></div></div><span class="value">5/6</span></div>
+        <div class="bar-row"><span>Religious Studies</span><div class="track"><div class="bar red" style="width:70%"></div></div><span class="value">7/10</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="n3">
+    <div class="section-head"><div class="num">03</div><div><h2>La provenance degli oggetti è quasi assente</h2><p class="claim">Qui “provenance” è usato in senso ampio: datazione, attribuzione, luogo d’origine, provenienza e storia materiale — operazioni fondanti di molte discipline storiche — sono il target di appena tre benchmark.</p></div></div>
+    <div class="card"><div class="donut-wrap"><div class="donut" aria-label="3 benchmark su 42"></div><div><h3>Provenance <span class="note">(<code>gold_concerns_genesis</code>)</span></h3><p><b>3 yes</b> · 36 no · 3 not stated</p><p class="sub">Il corpus privilegia domande sul contenuto degli oggetti rispetto al ragionamento inferenziale sulla loro origine, attribuzione e storia materiale.</p></div></div><div class="callout"><b>Programma di ricerca:</b> progettare benchmark per datazione, attribuzione, provenienza e storia materiale che rappresentino evidenza incompleta e ipotesi concorrenti.</div></div>
+  </section>
+
+  <section id="n4">
+    <div class="section-head"><div class="num">04</div><div><h2>Il monolite general-purpose</h2><p class="claim">Gli otto benchmark general-purpose hanno una forma quasi invariabile: una risposta, conoscenza esterna allo stimolo e, quasi sempre, una chiave d’esame preesistente.</p></div></div>
+    <div class="card">
+      <div class="bar-row"><span>single answer</span><div class="track"><div class="bar blue" style="width:100%"></div></div><span class="value">8/8</span></div>
+      <div class="bar-row"><span>gold oltre stimolo</span><div class="track"><div class="bar blue" style="width:100%"></div></div><span class="value">8/8</span></div>
+      <div class="bar-row"><span>chiave autorata</span><div class="track"><div class="bar blue" style="width:87.5%"></div></div><span class="value">7/8</span></div>
+      <p class="note">La visibilità comparativa si concentra dove le humanities entrano come contenuto dentro una forma di valutazione rigida.</p>
+    </div>
+  </section>
+
+  <section id="n5">
+    <div class="section-head"><div class="num">05</div><div><h2>Due economie della verità</h2><p class="claim">Quando il benchmark dichiara di misurare competenza disciplinare, investe più spesso in esperti e metadati curatoriali; quando usa le humanities come contenuto, prevalgono crowd e chiavi d’esame.</p></div></div>
+    <div class="card wide"><h3><code>humanities_role × gold_source</code></h3><p class="sub">Selezione delle quattro fonti principali; i totali di riga includono anche le fonti non mostrate.</p>
+      <div class="matrix">
+        <div class="cell head"></div><div class="cell head">Esperti</div><div class="cell head">Metadati</div><div class="cell head">Chiavi</div><div class="cell head">Crowd</div>
+        <div class="cell head">Domain (n=23)</div><div class="cell hot">8</div><div class="cell hot">5</div><div class="cell">5</div><div class="cell">1</div>
+        <div class="cell head">Content (n=17)</div><div class="cell">1</div><div class="cell">1</div><div class="cell warm">3</div><div class="cell warm">7</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="n6">
+    <div class="section-head"><div class="num">06</div><div><h2>L’universalismo residuo</h2><p class="claim">Essere multilingue non significa ammettere che la correttezza possa dipendere dalla comunità: nell’83% del corpus la chiave resta universale.</p></div></div>
+    <div class="card"><div class="big blue">35 / 42</div><p class="sub"><code>gold_community_dependent=no</code> · 4 yes · 3 not stated</p><div class="stack"><div class="seg noise" style="width:83.33%">no · 83%</div><div class="seg signal" style="width:9.52%"></div><div class="seg silent" style="width:7.15%"></div></div><div class="callout"><b>Lettura:</b> il cross-culturale è prevalentemente traduttivo, non relativista: cambia la lingua della domanda, non necessariamente lo statuto della risposta.</div></div>
+  </section>
+
+  <section id="n7">
+    <div class="section-head"><div class="num">07</div><div><h2>Il multimodale investe in competenza</h2><p class="claim">I benchmark immagine+testo coinvolgono più spesso esperti e affrontano più esplicitamente l’accordo; quelli solo testuali ricorrono più spesso al crowd e tacciono sulla pluralità.</p></div></div>
+    <div class="grid">
+      <div class="card"><h3>Solo testo · n=23</h3><div class="bar-row"><span>esperti</span><div class="track"><div class="bar green" style="width:8.7%"></div></div><span class="value">2</span></div><div class="bar-row"><span>crowd</span><div class="track"><div class="bar gold" style="width:30.4%"></div></div><span class="value">7</span></div><div class="bar-row"><span>silenzio</span><div class="track"><div class="bar grey" style="width:56.5%"></div></div><span class="value">13</span></div></div>
+      <div class="card"><h3>Immagine + testo · n=17</h3><div class="bar-row"><span>esperti</span><div class="track"><div class="bar green" style="width:35.3%"></div></div><span class="value">6</span></div><div class="bar-row"><span>crowd</span><div class="track"><div class="bar gold" style="width:11.8%"></div></div><span class="value">2</span></div><div class="bar-row"><span>noise</span><div class="track"><div class="bar red" style="width:58.8%"></div></div><span class="value">10</span></div></div>
+    </div>
+  </section>
+
+  <section id="n8">
+    <div class="section-head"><div class="num">08</div><div><h2>La scala si paga in chiusura</h2><p class="claim">Le mediane non sono radicalmente diverse, ma gli estremi sì: i dataset più grandi sono a risposta singola, il formato più facilmente automatizzabile.</p></div></div>
+    <div class="card wide"><h3>Dimensione massima per formato</h3><p class="sub">Barre su scala logaritmica per mantenere visibili tutti i valori; etichette con valori reali.</p>
+      <div class="scale-row"><span>single answer</span><div class="scale-track"><div class="scale-bar" style="width:100%"></div></div><b>589.764</b></div>
+      <div class="scale-row"><span>answer set</span><div class="scale-track"><div class="scale-bar" style="width:88%"></div></div><b>123.589</b></div>
+      <div class="scale-row"><span>giudizio graduato</span><div class="scale-track"><div class="scale-bar" style="width:81%"></div></div><b>51.698</b></div>
+      <details><summary>Mostra mediane e numerosità</summary><table><thead><tr><th>Formato</th><th>n con size</th><th>Mediana</th><th>Massimo</th></tr></thead><tbody><tr><td>single_answer</td><td>27</td><td>3.445</td><td>589.764</td></tr><tr><td>answer_set</td><td>5</td><td>1.696</td><td>123.589</td></tr><tr><td>graded_human_judgment</td><td>5</td><td>5.444</td><td>51.698</td></tr></tbody></table></details>
+    </div>
+  </section>
+
+  <section id="n9">
+    <div class="section-head"><div class="num">09</div><div><h2>Il silenzio come reperto</h2><p class="claim"><code>not_stated</code> non è trattato come un dato mancante: registra quali decisioni di costruzione della ground truth il paper non rende ispezionabili.</p></div></div>
+    <div class="card wide">
+      <div class="bar-row"><span>Trattamento pluralità</span><div class="track"><div class="bar grey" style="width:52.38%"></div></div><span class="value">22 · 52%</span></div>
+      <div class="bar-row"><span>Fonte del gold</span><div class="track"><div class="bar grey" style="width:14.29%"></div></div><span class="value">6 · 14%</span></div>
+      <div class="bar-row"><span>Molteplicità risposte</span><div class="track"><div class="bar grey" style="width:9.52%"></div></div><span class="value">4 · 10%</span></div>
+      <div class="bar-row"><span>Dipendenza comunità</span><div class="track"><div class="bar grey" style="width:7.14%"></div></div><span class="value">3 · 7%</span></div>
+      <div class="bar-row"><span>Provenance dell’oggetto</span><div class="track"><div class="bar grey" style="width:7.14%"></div></div><span class="value">3 · 7%</span></div>
+      <div class="bar-row"><span>Oltre lo stimolo</span><div class="track"><div class="bar grey" style="width:4.76%"></div></div><span class="value">2 · 5%</span></div>
+    </div>
+  </section>
+
+  <footer>
+    <p><b>Metodo.</b> Dati ricavati dai 42 report finali in <code>output/papers/</code>; definizioni delle sfaccettature in <code>paper/METHODOLOGY_facets.md</code>. I conteggi sono riproducibili con <code>python scripts/facet_report.py</code>.</p>
+    <p><b>Limiti.</b> Pattern descrittivi, non inferenza statistica. Il corpus non è ancora validato contro codifica umana; tre paper non sono inclusi per PDF mancante; le aree disciplinari richiedono normalizzazione. Le percentuali annuali poggiano su gruppi piccoli, in particolare 11 paper nel 2026.</p>
+  </footer>
+</main>
+</body>
+</html>

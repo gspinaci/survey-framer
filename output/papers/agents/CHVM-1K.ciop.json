@@ -46,5 +46,13 @@
   "gold_concerns_genesis": "not_stated",
   "answer_multiplicity": "not_stated",
   "plurality_treatment": "not_stated",
-  "facets_explanation": "The provided document contains only the publication metadata and boilerplate text for the paper 'An Investigation Into Value Misalignment in LLM-Generated Texts for Cultural Heritage' (CHVM-1K). Due to the complete absence of the paper's body text, details regarding the construction of the gold standard, annotation procedures, and multiplicity treatments are not stated."
+  "facets_explanation": "The provided document contains only the publication metadata and boilerplate text for the paper 'An Investigation Into Value Misalignment in LLM-Generated Texts for Cultural Heritage' (CHVM-1K). Due to the complete absence of the paper's body text, details regarding the construction of the gold standard, annotation procedures, and multiplicity treatments are not stated.",
+  "reported_format_gap": "not_stated",
+  "reported_format_gap_points": null,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": null,
+  "reported_best_metric": null,
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "The provided text contains only the title 'An Investigation Into Value Misalignment in LLM-Generated Texts for Cultural Heritage' and IEEE platform boilerplate metadata, without any of the actual paper content, experimental results, or evaluation data. Because no models, metrics, or performance figures are described in the text, all quantitative fields are null and human baseline or format gap comparisons are marked as no or not stated."
 }

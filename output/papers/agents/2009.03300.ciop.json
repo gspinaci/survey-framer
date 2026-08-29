@@ -48,5 +48,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "single_answer",
   "plurality_treatment": "not_stated",
-  "facets_explanation": "The dataset consists of 15,908 multiple-choice questions gathered from standardized test preparation materials, university exams, and textbook resources, establishing pre-authored answer keys as the ground truth. Because these questions evaluate factual and academic knowledge in a closed-book format, correct answers require external domain knowledge not found in the prompt. Annotator divergence or alternative interpretations of the source questions are not addressed, as the benchmark relies directly on the absolute correctness of the source keys."
+  "facets_explanation": "The dataset consists of 15,908 multiple-choice questions gathered from standardized test preparation materials, university exams, and textbook resources, establishing pre-authored answer keys as the ground truth. Because these questions evaluate factual and academic knowledge in a closed-book format, correct answers require external domain knowledge not found in the prompt. Annotator divergence or alternative interpretations of the source questions are not addressed, as the benchmark relies directly on the absolute correctness of the source keys.",
+  "reported_format_gap": "no",
+  "reported_format_gap_points": null,
+  "human_baseline_reported": "yes",
+  "human_gap_points": 41,
+  "reported_best_score": 48.9,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "The paper reports a baseline for 'unspecialized humans' at '34.5% accuracy' and an 'expert-level accuracy' of 'approximately 89.8%'. The best-performing model evaluated is 'UnifiedQA' which 'attains 48.9% accuracy' (Table 1), resulting in an expert-to-model gap of 40.9 percentage points (rounded to 41). Although the paper notes that removing the '</s>' format token from UnifiedQA's inputs causes accuracy to decline 'by several percentage points' (Appendix A.3), it does not quantify this gap precisely, so no format gap is reported as an integer."
 }

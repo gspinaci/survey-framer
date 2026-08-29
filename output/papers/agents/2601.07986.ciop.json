@@ -53,5 +53,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "not_stated",
   "plurality_treatment": "noise",
-  "facets_explanation": "The reference critiques were written and reviewed by bilingual domain experts with PhDs or advanced training in art history and regional studies. Disagreements between annotators and reviewers were resolved through structured discussion and consensus to establish a singular gold-standard critique, thereby treating divergence as noise. Correctly evaluating the higher layers (L3\u2013L5) requires external historical, cultural, and philosophical knowledge that cannot be extracted from the image stimulus alone."
+  "facets_explanation": "The reference critiques were written and reviewed by bilingual domain experts with PhDs or advanced training in art history and regional studies. Disagreements between annotators and reviewers were resolved through structured discussion and consensus to establish a singular gold-standard critique, thereby treating divergence as noise. Correctly evaluating the higher layers (L3\u2013L5) requires external historical, cultural, and philosophical knowledge that cannot be extracted from the image stimulus alone.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 40,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 72.4,
+  "reported_best_metric": "other",
+  "reported_cultural_asymmetry": "no",
+  "results_explanation": "The paper reports a performance gap between difficulty regimes (shallow L1\u2013L2 vs. deep L3\u2013L5 tiers of their taxonomy). In Table 7, 'all models show a 31\u201340 percentage-point drop', with the largest drop observed for 'GPT-4o' which falls from '87.1' on L1\u2013L2 to '46.8' on L3\u2013L5 (a gap of 40.3 percentage points, rounded to 40). The headline best overall score is '72.4' achieved by 'Gemini-2.5-Pro' on the primary metric 'Dimension Coverage Rate (DCR)' (Table 7). No quantified human baseline or expert reference score is reported on this same metric, so the human gap is null. Although the benchmark spans 8 cultural traditions, no systematic performance asymmetry across cultures is reported for the evaluated models."
 }

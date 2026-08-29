@@ -47,5 +47,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "single_answer",
   "plurality_treatment": "not_stated",
-  "facets_explanation": "The reference answers were manually produced or verified by domain experts affiliated with the respective digital humanities projects. The tasks focus on transcription, structured metadata extraction, and segmentation directly from the provided images or text files, meaning answers do not require external knowledge beyond the stimulus. Scoring is automated, matching the LLM output against a single schema-based ground truth using metrics such as Character Error Rate, F1 score, or fuzzy string matching."
+  "facets_explanation": "The reference answers were manually produced or verified by domain experts affiliated with the respective digital humanities projects. The tasks focus on transcription, structured metadata extraction, and segmentation directly from the provided images or text files, meaning answers do not require external knowledge beyond the stimulus. Scoring is automated, matching the LLM output against a single schema-based ground truth using metrics such as Character Error Rate, F1 score, or fuzzy string matching.",
+  "reported_format_gap": "no",
+  "reported_format_gap_points": null,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": null,
+  "reported_best_metric": null,
+  "reported_cultural_asymmetry": "no",
+  "results_explanation": "The paper evaluates LLMs across eight distinct datasets in the RISE suite rather than reporting a single aggregate headline figure, stating that 'cross-benchmark comparisons are possible only after normalisation'. Individual dataset results are reported, with the highest performance being '97.47%, Anthropic, Claude Sonnet 4.5' for 'BOOK ADVERT XMLS' and the lowest being '58.40% OpenAI, gpt-5' for 'COMPANY LISTS'. No quantitative human baseline or format gap comparisons are provided, and while the suite includes multilingual materials in languages such as 'German, French, English, Latin, Greek, and other European languages', no systematic cultural or linguistic asymmetry is reported."
 }

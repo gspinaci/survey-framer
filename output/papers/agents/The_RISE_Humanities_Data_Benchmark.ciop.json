@@ -48,5 +48,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "single_answer",
   "plurality_treatment": "not_stated",
-  "facets_explanation": "Ground truths were manually created or verified by domain experts associated with digital humanities projects at the University of Basel. The benchmark tasks focus on document understanding, layout segmentation, and metadata extraction, meaning the target answers are derived directly from the provided document images or text stimuli. Evaluation is executed against a single expected Pydantic schema using automated distance metrics (like F1, CER, or fuzzy matching), and the paper does not explicitly address how annotator disagreement or alternative readings were handled."
+  "facets_explanation": "Ground truths were manually created or verified by domain experts associated with digital humanities projects at the University of Basel. The benchmark tasks focus on document understanding, layout segmentation, and metadata extraction, meaning the target answers are derived directly from the provided document images or text stimuli. Evaluation is executed against a single expected Pydantic schema using automated distance metrics (like F1, CER, or fuzzy matching), and the paper does not explicitly address how annotator disagreement or alternative readings were handled.",
+  "reported_format_gap": "no",
+  "reported_format_gap_points": null,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": null,
+  "reported_best_metric": null,
+  "reported_cultural_asymmetry": "no",
+  "results_explanation": "The benchmark consists of eight distinct task-specific datasets (e.g., 'Bibliographic Data', 'Business Letters', 'Fraktur Adverts') without presenting a single, aggregated headline figure; hence, reported_best_score is null. Instead, individual best scores are reported per dataset, such as 97.47% for 'Book Advert XMLs' (Anthropic, Claude Sonnet 4.5) and 77.00% F1 for 'Business Letters' (OpenAI, gpt-5). No quantified human baseline score or systematic format-based performance gaps (such as multiple-choice vs open-ended formats) are reported in the text."
 }

@@ -44,5 +44,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "single_answer",
   "plurality_treatment": "not_stated",
-  "facets_explanation": "The reference translations for the primary 8-letter test set were manually produced by a domain expert, while the reference summaries for the paragraph-level evaluation were taken from a professional, expert-edited historical edition of Heinrich Bullinger's correspondence. Evaluation relies on computing BLEU and ChrF scores against these single reference targets, representing a single-answer setup. The paper does not address annotator disagreement or alternative readings during the creation of these gold reference texts."
+  "facets_explanation": "The reference translations for the primary 8-letter test set were manually produced by a domain expert, while the reference summaries for the paragraph-level evaluation were taken from a professional, expert-edited historical edition of Heinrich Bullinger's correspondence. Evaluation relies on computing BLEU and ChrF scores against these single reference targets, representing a single-answer setup. The paper does not address annotator disagreement or alternative readings during the creation of these gold reference texts.",
+  "reported_format_gap": "no",
+  "reported_format_gap_points": null,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 34.5,
+  "reported_best_metric": "bleu",
+  "reported_cultural_asymmetry": "no",
+  "results_explanation": "The paper reports that GPT-4 achieved the highest score with a BLEU score of '34.50' for translating Latin into English (Table 1). No format gaps or difficulty regimes were compared on the same data, meaning 'reported_format_gap' is 'no'. Although human references were used for BLEU evaluation and human judges scored summaries on a custom rubric (averaging '43.5 out of 58' for correctness), no quantified human baseline on the translation metrics was reported, making 'human_baseline_reported' 'no'."
 }

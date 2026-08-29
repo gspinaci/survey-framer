@@ -49,5 +49,16 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "single_answer",
   "plurality_treatment": "noise",
-  "facets_explanation": "The reference annotations marking rhetorical spans in the Swedish and English historical petitions were produced manually by three annotators from the research team. Inter-annotator disagreements were systematically resolved through discussion after each batch to establish consistent guidelines and a unified consensus, thereby treating divergent readings as noise to be eliminated. The resulting task is evaluated by matching model outputs directly against this single-reference key."
+  "facets_explanation": "The reference annotations marking rhetorical spans in the Swedish and English historical petitions were produced manually by three annotators from the research team. Inter-annotator disagreements were systematically resolved through discussion after each batch to establish consistent guidelines and a unified consensus, thereby treating divergent readings as noise to be eliminated. The resulting task is evaluated by matching model outputs directly against this single-reference key.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 22,
+  "human_baseline_reported": "yes",
+  "human_gap_points": null,
+  "reported_best_score": null,
+  "reported_best_metric": null,
+  "reported_cultural_asymmetry": "yes",
+  "results_explanation": "The paper reports model performance across human-annotated difficulty regimes; for example, Mistral 7B on Swedish petitions with English instructions (long 3-shot) drops from an F1 of 72.8 on 'Difficulty 0' to 50.5 on 'Difficulty 2' (Table 6), a gap of 22.3 percentage points (recorded as 22). Human inter-annotator agreement is quantified as a baseline ceiling (e.g., 68.0% exact match and 0.88 Cohen's kappa overall for English in Table 2), but because these metrics differ from the token-level F1 used for models, the human gap is null. No single aggregated benchmark score is reported as a primary headline metric, as results are presented separately by rhetorical section and language. A systematic linguistic asymmetry is explicitly reported, noting that 'models generally found both Petitio and Conclusio more challenging to annotate in the Swedish Petitions' compared to the English ones.",
+  "review_notes_incremental": [
+    "Ciop and Cip disagreed on human_baseline_reported and reported_best_score. For human_baseline_reported, resolved to 'yes' (favoring Cip) because the paper explicitly quantifies human inter-annotator agreement in Table 2 as a baseline for the task's complexity, even though the differing metrics make human_gap_points null. For reported_best_score, resolved to null (favoring Cip) because the paper only reports performance per section (salutatio, petitio, conclusio) and dataset, providing no single headline aggregated figure; Ciop's 100.0 was a maximum score on a specific sub-task (salutatio) rather than a benchmark headline."
+  ]
 }

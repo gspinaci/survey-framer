@@ -45,5 +45,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "single_answer",
   "plurality_treatment": "not_stated",
-  "facets_explanation": "The reference translations were produced by a domain expert for the MT test set, while the reference summaries were lifted from the scholarly Heinrich Bullinger correspondence edition, prepared by historical experts at the Institute for Swiss Reformation Studies. Answering correctly does not require knowledge outside the text because the tasks are translation and summarization of the provided letters. Evaluation of the generated texts relies on automated metrics (BLEU and ChrF) comparing to these single references, and the variance among the three human judges who graded the summaries was simply averaged."
+  "facets_explanation": "The reference translations were produced by a domain expert for the MT test set, while the reference summaries were lifted from the scholarly Heinrich Bullinger correspondence edition, prepared by historical experts at the Institute for Swiss Reformation Studies. Answering correctly does not require knowledge outside the text because the tasks are translation and summarization of the provided letters. Evaluation of the generated texts relies on automated metrics (BLEU and ChrF) comparing to these single references, and the variance among the three human judges who graded the summaries was simply averaged.",
+  "reported_format_gap": "no",
+  "reported_format_gap_points": null,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 34.5,
+  "reported_best_metric": "bleu",
+  "reported_cultural_asymmetry": "yes",
+  "results_explanation": "The highest reported performance is a BLEU score of 34.50 for GPT-4 translating Latin to English (Table 1). No format gaps are evaluated on the same items, and human translations are used solely as reference gold standards rather than a comparative baseline score. The paper reports a systematic linguistic asymmetry, noting that GPT-4 reaches '34.50' in BLEU for English compared to '27.07' for German, explaining that 'English is by far the highest resource language on the internet, and many researchers reported better MT into English'."
 }

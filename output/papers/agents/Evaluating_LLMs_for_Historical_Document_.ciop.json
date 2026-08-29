@@ -45,5 +45,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "single_answer",
   "plurality_treatment": "noise",
-  "facets_explanation": "The ground truth transcription was created by a single expert annotator who performed a 100% manual review and correction of the corpus using eScriptorium to ensure diplomatic fidelity. A second verifier audited a sample of 500 lines, showing high agreement (98.6% line-level exact-match), which was used to validate the dataset accuracy rather than to preserve interpretive divergence. The models are evaluated using character and word error rates against this single, definitive reference transcription."
+  "facets_explanation": "The ground truth transcription was created by a single expert annotator who performed a 100% manual review and correction of the corpus using eScriptorium to ensure diplomatic fidelity. A second verifier audited a sample of 500 lines, showing high agreement (98.6% line-level exact-match), which was used to validate the dataset accuracy rather than to preserve interpretive divergence. The models are evaluated using character and word error rates against this single, definitive reference transcription.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 24,
+  "human_baseline_reported": "yes",
+  "human_gap_points": 3,
+  "reported_best_score": 3.36,
+  "reported_best_metric": "cer",
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "The best-performing model, Gemini-2.5-Pro, achieved a headline Character Error Rate of 3.36% ('cer') in full page mode (Table 3). A human verification audit of 500 lines reported that 'character-level accuracy was 99.93%', which compared to Gemini's 96.64% character accuracy (derived as 100 - 3.36% CER) yields a human-model gap of 3.29 percentage points (rounded to 3). The largest format/processing gap occurs for Gemini-2.5-Flash, whose WER degrades from '6.70%' in Full page mode to '30.77%' in Sliding Window mode (Table 2), a gap of 24.07 percentage points (rounded to 24)."
 }

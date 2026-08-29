@@ -46,5 +46,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "answer_set",
   "plurality_treatment": "not_stated",
-  "facets_explanation": "Reference translations were authored by professional translators, who act as domain experts in translation. Multiple translations are provided for a significant portion of puns, yielding an answer set that represents different valid stylistic and semantic strategies. Disagreements or variations are not explicitly analyzed as signal or noise by the authors, but are simply preserved to allow robust automatic and manual evaluations. Translating puns requires deep external linguistic, phonetic, and cultural knowledge beyond the source English stimulus."
+  "facets_explanation": "Reference translations were authored by professional translators, who act as domain experts in translation. Multiple translations are provided for a significant portion of puns, yielding an answer set that represents different valid stylistic and semantic strategies. Disagreements or variations are not explicitly analyzed as signal or noise by the authors, but are simply preserved to allow robust automatic and manual evaluations. Translating puns requires deep external linguistic, phonetic, and cultural knowledge beyond the source English stimulus.",
+  "reported_format_gap": "no",
+  "reported_format_gap_points": null,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 43.33,
+  "reported_best_metric": "bleu",
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "The paper does not compare different task formats or difficulty tiers for the same models, so reported_format_gap is 'no'. No human baseline score is quantified on the translation task, meaning human_baseline_reported is 'no'. The best-performing system on the primary BLEU metric on the test dataset is 'Skommarkhos_Lucie_SFT' with a score of '43.33' (Table 4). Cultural asymmetry is marked as 'not_stated' because the benchmark is restricted to the English-to-French translation direction and does not compare multiple cultural or regional settings."
 }

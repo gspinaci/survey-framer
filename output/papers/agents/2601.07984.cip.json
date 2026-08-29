@@ -50,5 +50,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "graded_human_judgment",
   "plurality_treatment": "noise",
-  "facets_explanation": "The reference art critiques are authored by domain experts across six distinct cultural traditions, incorporating external historical and philosophical knowledge not contained in the visual stimuli. Multiplicity of interpretation is addressed using rubric-based graded scoring by a single LLM judge calibrated against human expert scores. Annotator disagreement is treated as an inherent subjectivity challenge, which is structurally managed by bypassing dual-judge averaging in favor of the calibrated single-judge design."
+  "facets_explanation": "The reference art critiques are authored by domain experts across six distinct cultural traditions, incorporating external historical and philosophical knowledge not contained in the visual stimuli. Multiplicity of interpretation is addressed using rubric-based graded scoring by a single LLM judge calibrated against human expert scores. Annotator disagreement is treated as an inherent subjectivity challenge, which is structurally managed by bypassing dual-judge averaging in favor of the calibrated single-judge design.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 29,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 4.27,
+  "reported_best_metric": "other",
+  "reported_cultural_asymmetry": "yes",
+  "results_explanation": "The best-performing model is 'Gemini-2.5-Pro' with a calibrated score of '4.27' on the primary metric 'S*_II' (Table 6). A format/difficulty gap of 29 points (normalized from a raw 1.16 difference on the 1-5 scale) is reported for 'Qwen3-VL-235B' between the shallow 'Coverage' dimension ('4.49') and the deeper 'Accuracy' dimension ('3.33'). A systematic cultural asymmetry is documented where 'Western art samples consistently receive higher scores than non-Western ones', specifically 'The gap between Chinese and Western art scores is -0.39 (Cohen\u2019s d = -0.74, p < 0.001)'."
 }

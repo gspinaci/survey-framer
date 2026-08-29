@@ -64,6 +64,22 @@ Top generative models perform exceptionally well on historical data extraction, 
 
 **Answer Multiplicity:** single_answer
 
-**Plurality Treatment:** not_addressed
+**Plurality Treatment:** not_stated
 
 **Facets Explanation:** The reference answers (ground truths) were manually created or verified by domain experts affiliated with digital humanities projects at the University of Basel. The benchmark tasks focus on document understanding, layout segmentation, transcription, and structured metadata extraction directly from the provided image or text stimuli, meaning that the answers do not require external knowledge beyond the stimulus. Evaluation is executed automatically by matching the LLM output against a single expected Pydantic schema using distance metrics such as F1, Character Error Rate, or fuzzy matching. While the paper acknowledges that ground truths represent operationalised scholarly interpretation rather than absolute correctness, it does not explicitly address how annotator disagreement or alternative readings were handled during dataset construction.
+
+**Reported Format Gap:** no
+
+**Reported Format Gap Points:** None
+
+**Human Baseline Reported:** no
+
+**Human Gap Points:** None
+
+**Reported Best Score:** None
+
+**Reported Best Metric:** None
+
+**Reported Cultural Asymmetry:** no
+
+**Results Explanation:** The paper evaluates LLMs across eight distinct humanities datasets in the RISE suite without reporting a single aggregate headline figure, stating that 'cross-benchmark comparisons are possible only after normalisation'. Instead, individual best scores are provided per dataset, such as '97.47%, Anthropic, Claude Sonnet 4.5' for 'BOOK ADVERT XMLS' and '58.40% OpenAI, gpt-5' for 'COMPANY LISTS'. The text does not report any quantified human baselines, systematic format-based performance gaps, or cultural asymmetries.

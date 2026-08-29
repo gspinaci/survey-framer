@@ -50,5 +50,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "single_answer",
   "plurality_treatment": "not_stated",
-  "facets_explanation": "The reference answers were obtained directly from pre-existing answer keys of standardized practice exams (such as the GRE, AP exams, and USMLE) and academic textbooks, which were collected online by graduate and undergraduate students. The tasks assess declarative and procedural knowledge that is not contained within the question stimulus itself. Because the ground truth is derived directly from these pre-existing authoritative answer keys, the paper does not address annotator disagreement or plurality of readings."
+  "facets_explanation": "The reference answers were obtained directly from pre-existing answer keys of standardized practice exams (such as the GRE, AP exams, and USMLE) and academic textbooks, which were collected online by graduate and undergraduate students. The tasks assess declarative and procedural knowledge that is not contained within the question stimulus itself. Because the ground truth is derived directly from these pre-existing authoritative answer keys, the paper does not address annotator disagreement or plurality of readings.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 6,
+  "human_baseline_reported": "yes",
+  "human_gap_points": 41,
+  "reported_best_score": 48.9,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "The best-performing model overall is UnifiedQA, which achieves a headline average accuracy of 48.9% ('Uni\ufb01edQA 48.9' in Table 1). The authors compare this to an estimated expert-level human baseline of 'approximately 89.8%', resulting in a gap of 40.9 points (rounded to 41). A prompt format gap of 6.2 points (rounded to 6) is reported for the largest GPT-3 model, which achieves '43.9%' in the 5-shot setting (Table 1) compared to 'about 37.7%' in the zero-shot setting (Appendix A)."
 }

@@ -49,5 +49,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "single_answer",
   "plurality_treatment": "not_stated",
-  "facets_explanation": "The reference answers for MILU were sourced directly from pre-existing official answer keys of over 1,500 competitive and civil service exams across India. Because these are multiple-choice questions testing domain knowledge, answering them successfully requires retrieval of external factual and cultural information not contained within the question prompt itself. The paper does not address annotator or key disagreement, treating each exam question as having a single, definitive correct answer."
+  "facets_explanation": "The reference answers for MILU were sourced directly from pre-existing official answer keys of over 1,500 competitive and civil service exams across India. Because these are multiple-choice questions testing domain knowledge, answering them successfully requires retrieval of external factual and cultural information not contained within the question prompt itself. The paper does not address annotator or key disagreement, treating each exam question as having a single, definitive correct answer.",
+  "reported_format_gap": "no",
+  "reported_format_gap_points": null,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 74.74,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "yes",
+  "results_explanation": "The benchmark reports no performance comparison across different answer formats for the same models. No human baseline is evaluated or quantified for the benchmark. The highest overall performance is achieved by 'GPT-4o' with an average 'accuracy' of '74.74%' (also summarized as '74%' in the abstract). A systematic cultural asymmetry is observed, with models performing better in high-resource Indic languages (e.g., 'en, hi, bn') than in low-resource ones (e.g., 'ta, te'), and demonstrating lower accuracy in culturally relevant domains like 'Arts & Humanities' compared to 'STEM'."
 }

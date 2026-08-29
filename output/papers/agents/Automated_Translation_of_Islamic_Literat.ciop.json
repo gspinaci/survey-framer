@@ -46,5 +46,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "single_answer",
   "plurality_treatment": "noise",
-  "facets_explanation": "The reference texts used for translation and back-translation validation are sourced from the pre-existing Al-Shamela digital library database. Automated evaluation compares the model's back-translation against a single original Arabic page reference using vector-embedding cosine similarity. For the manual validation portion, human annotator divergence is treated as noise, requiring a consensus of at least two reviewers to accept any translation errors."
+  "facets_explanation": "The reference texts used for translation and back-translation validation are sourced from the pre-existing Al-Shamela digital library database. Automated evaluation compares the model's back-translation against a single original Arabic page reference using vector-embedding cosine similarity. For the manual validation portion, human annotator divergence is treated as noise, requiring a consensus of at least two reviewers to accept any translation errors.",
+  "reported_format_gap": "no",
+  "reported_format_gap_points": null,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 86,
+  "reported_best_metric": "other",
+  "reported_cultural_asymmetry": "no",
+  "results_explanation": "The paper evaluates its translation quality via back-translation, reporting that '71% of the OpenAI model results and 86% of the Anthropic model results had cosine similarity scores >= 0.7' (reported_best_score is 86, reported_best_metric is 'other'). Human evaluation is mentioned qualitatively via crowd-sourcing reviews ('correction requires at least two separate reviewers'), but no quantitative human baseline score is reported. Regarding cultural asymmetry, the authors explicitly note that 'the used commercial LLMs , the OpenAI-4o-mini and the Anthropic\u2019s Clause-Haiku-3.0, did not display detectable language bias between Arabic and English'."
 }

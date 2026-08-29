@@ -51,5 +51,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "single_answer",
   "plurality_treatment": "noise",
-  "facets_explanation": "The reference answers originate from MMLU's pre-existing exam and quiz keys, representing an authored answer key. Answering the questions requires external domain knowledge not contained in the multiple-choice prompts themselves. Annotator disagreements during the cultural-sensitivity tagging process were resolved via majority voting (treating divergence as noise), and the dataset maintains a single universal answer key across all 42 translated language versions."
+  "facets_explanation": "The reference answers originate from MMLU's pre-existing exam and quiz keys, representing an authored answer key. Answering the questions requires external domain knowledge not contained in the multiple-choice prompts themselves. Annotator disagreements during the cultural-sensitivity tagging process were resolved via majority voting (treating divergence as noise), and the dataset maintains a single universal answer key across all 42 translated language versions.",
+  "reported_format_gap": "no",
+  "reported_format_gap_points": null,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": null,
+  "reported_best_metric": null,
+  "reported_cultural_asymmetry": "yes",
+  "results_explanation": "No quantified format gap or human baseline is reported in the text. Although the paper evaluates closed models like 'GPT-4o' and 'Claude Sonnet 3.5' which 'consistently outperform smaller open-source models', it does not report their exact numeric headline scores in the text, leaving `reported_best_score` as null. It confirms a systematic cultural asymmetry, noting that 'progress on MMLU depends heavily on learning Western-centric concepts, with 28% of all questions requiring culturally sensitive knowledge' and highlighting that 'performance declines significantly for low-resource languages'."
 }

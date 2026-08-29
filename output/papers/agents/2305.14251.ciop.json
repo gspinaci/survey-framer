@@ -46,5 +46,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "single_answer",
   "plurality_treatment": "noise",
-  "facets_explanation": "The reference factuality labels (Supported, Not-supported, Irrelevant) were authored by professional freelancers hired through Upwork who acted as fact-checkers. Answering the prompt 'Tell me a bio of <entity>' inherently requires external historical and biographical knowledge not present in the stimulus. Annotator disagreements were analyzed qualitatively in the appendix to identify edge cases, but they were not preserved as a signal in the final evaluation metric, which relies on unified binary decisions per atomic fact."
+  "facets_explanation": "The reference factuality labels (Supported, Not-supported, Irrelevant) were authored by professional freelancers hired through Upwork who acted as fact-checkers. Answering the prompt 'Tell me a bio of <entity>' inherently requires external historical and biographical knowledge not present in the stimulus. Annotator disagreements were analyzed qualitatively in the appendix to identify edge cases, but they were not preserved as a signal in the final evaluation metric, which relies on unified binary decisions per atomic fact.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 64,
+  "human_baseline_reported": "yes",
+  "human_gap_points": null,
+  "reported_best_score": 71.5,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "no",
+  "results_explanation": "PerplexityAI achieves the best human-annotated FACTSCORE of 71.5% ('FACTSCORE 71.5' in Table 1). A significant difficulty gap of 64 percentage points is reported for ChatGPT, which drops from 80% to 16% as entity rarity increases ('80% \u2192 16% for ChatGPT' in Section 3.4). While human inter-annotator agreements of '96%, 90% and 88%' are reported, the exact numeric performance of the human biography baseline visually depicted in Figure 3 is not explicitly stated in the text, preventing a direct calculation of human_gap_points."
 }

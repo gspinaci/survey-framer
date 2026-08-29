@@ -48,5 +48,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "answer_set",
   "plurality_treatment": "signal",
-  "facets_explanation": "The reference annotations were created by multiple human annotators whose specific academic or professional backgrounds are not explicitly stated. The task involves matching text spans to topic descriptions that are provided directly within the prompt, requiring no knowledge beyond the provided stimulus. Rather than collapsing individual annotations into a single consensus key, the benchmark preserves divergent human judgments as signal; models are evaluated against each individual annotator's spans, and the resulting agreement metrics are averaged."
+  "facets_explanation": "The reference annotations were created by multiple human annotators whose specific academic or professional backgrounds are not explicitly stated. The task involves matching text spans to topic descriptions that are provided directly within the prompt, requiring no knowledge beyond the provided stimulus. Rather than collapsing individual annotations into a single consensus key, the benchmark preserves divergent human judgments as signal; models are evaluated against each individual annotator's spans, and the resulting agreement metrics are averaged.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 10,
+  "human_baseline_reported": "yes",
+  "human_gap_points": 8,
+  "reported_best_score": 61.1,
+  "reported_best_metric": "f1",
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "The paper reports a human baseline word-level F1 of 68.7 compared to 61.1 achieved by the best model 'gpt-5-2-2025-12-11', yielding a human lead of 7.6 percentage points (rounded to 8). Table 3 reports an answer format gap where 'the matching approach improves span-level F1 by 0.104 compared to tagging', corresponding to a 10-point difference (converted from 0.104 on a 0-1 scale to points). Cultural asymmetry is marked 'not_stated' because the benchmark is monolingual, evaluating only historical Czech documents."
 }

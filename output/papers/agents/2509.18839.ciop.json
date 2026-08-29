@@ -48,5 +48,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "single_answer",
   "plurality_treatment": "not_stated",
-  "facets_explanation": "The benchmark relies on pre-existing metadata from ArtDL, the Iconclass AI Test Set, and Wikidata, where artworks are natively mapped to structured Iconclass codes. Answering correctly requires external domain knowledge of the Christian iconographic tradition to link visual attributes (like keys, wheels, or arrows) to specific saintly identities. The evaluation enforces a single correct target label per image by explicitly filtering out multi-label entries, and does not discuss annotator divergence or alternative interpretations."
+  "facets_explanation": "The benchmark relies on pre-existing metadata from ArtDL, the Iconclass AI Test Set, and Wikidata, where artworks are natively mapped to structured Iconclass codes. Answering correctly requires external domain knowledge of the Christian iconographic tradition to link visual attributes (like keys, wheels, or arrows) to specific saintly identities. The evaluation enforces a single correct target label per image by explicitly filtering out multi-label entries, and does not discuss annotator divergence or alternative interpretations.",
+  "reported_format_gap": "no",
+  "reported_format_gap_points": null,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 90.45,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "The highest score reported is an accuracy of 90.45%, achieved by \"gemini-2.5-pro-preview-05-06\" on the ArtDL dataset under \"Test 1\" (Table 2). The paper compares these results to machine baselines, specifically \"ResNet50 baselines fine-tuned on the same datasets,\" but does not report a quantified human baseline. Cultural asymmetry is not stated because the benchmark is monocultural, focusing entirely on Western Christian saints, and does not evaluate across multiple cultural traditions."
 }

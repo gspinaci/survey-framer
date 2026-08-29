@@ -43,5 +43,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "single_answer",
   "plurality_treatment": "not_stated",
-  "facets_explanation": "The reference answers are sourced from BLN600, which leverages pre-existing high-quality manually re-keyed transcriptions from the British Library Newspapers digitisation project (existing_metadata). The performance is evaluated quantitatively by matching model output against a single ground-truth target sequence using Character Error Rate (single_answer). Potential variations or disagreements in transcription spelling and conventions are not discussed (not_addressed)."
+  "facets_explanation": "The reference answers are sourced from BLN600, which leverages pre-existing high-quality manually re-keyed transcriptions from the British Library Newspapers digitisation project (existing_metadata). The performance is evaluated quantitatively by matching model output against a single ground-truth target sequence using Character Error Rate (single_answer). Potential variations or disagreements in transcription spelling and conventions are not discussed (not_addressed).",
+  "reported_format_gap": "no",
+  "reported_format_gap_points": null,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 54.51,
+  "reported_best_metric": "other",
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "The best-performing model, \"Llama 2\" \"13B\", achieves a headline score of \"54.51\" on the \"CER Reduction (%)\" metric (\"achieving a 54.51% reduction in the character error rate\"). No human baseline is quantified on this task, meaning the human gap is null. There is no comparison of format gaps (reported_format_gap is \"no\"). Cultural asymmetry is \"not_stated\" because the BLN600 benchmark is monolingual, consisting of \"19th century newspaper articles, written in English\"."
 }

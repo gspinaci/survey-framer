@@ -48,5 +48,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "graded_human_judgment",
   "plurality_treatment": "not_stated",
-  "facets_explanation": "Reference answers are only present for a small subset of the 51.7K questions, consisting of Q&A forum answers (existing_metadata) and freelance-authored answers for Kirundi. Evaluating the open-ended responses relies on Google Search verification and LLM/human grading (graded_human_judgment) rather than an exact-match gold key."
+  "facets_explanation": "Reference answers are only present for a small subset of the 51.7K questions, consisting of Q&A forum answers (existing_metadata) and freelance-authored answers for Kirundi. Evaluating the open-ended responses relies on Google Search verification and LLM/human grading (graded_human_judgment) rather than an exact-match gold key.",
+  "reported_format_gap": "no",
+  "reported_format_gap_points": null,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 56.9,
+  "reported_best_metric": "other",
+  "reported_cultural_asymmetry": "yes",
+  "results_explanation": "The benchmark evaluates models on long-form question answering using a custom composite score S (S = Ssurf * Sfact * Srel). In Table 2, the best overall score S is 56.9, achieved by both GPT-4O and GPT-4-TURBO on the culturally agnostic split (compared to 49.2 and 48.7 respectively on the culturally specific split). No human baseline score is quantified for model comparison, and no comparison between different answer formats on the same items is reported. Systematic cultural asymmetry is a core finding, with models performing significantly worse on culturally specific questions (e.g., 'answers to culturally specific questions contain more factual errors than answers to culturally agnostic questions') and on low-resource languages."
 }

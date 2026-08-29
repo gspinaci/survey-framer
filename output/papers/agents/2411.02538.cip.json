@@ -48,5 +48,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "single_answer",
   "plurality_treatment": "not_stated",
-  "facets_explanation": "The reference answers for MILU were sourced directly from pre-existing answer keys of over 1,500 competitive, national, and state-level civil service examinations in India. To ensure a minimum of 100 questions per subject-language pair, 25% of the items were translated from English using GPT-4o, while the remaining 75% were kept in their original source languages. Answering these multiple-choice questions requires external factual and cultural knowledge not present in the brief question stems, with correctness determined by matching a single gold option."
+  "facets_explanation": "The reference answers for MILU were sourced directly from pre-existing answer keys of over 1,500 competitive, national, and state-level civil service examinations in India. To ensure a minimum of 100 questions per subject-language pair, 25% of the items were translated from English using GPT-4o, while the remaining 75% were kept in their original source languages. Answering these multiple-choice questions requires external factual and cultural knowledge not present in the brief question stems, with correctness determined by matching a single gold option.",
+  "reported_format_gap": "no",
+  "reported_format_gap_points": null,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 74.74,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "yes",
+  "results_explanation": "The highest reported performance on MILU is achieved by GPT-4o with an average score of 74.74% on the accuracy metric, as stated in Section 5.1: 'GPT-4O emerges as the strongest model, consistently outperforming all competitors across languages, with an average accuracy of 74.74%.' No quantified human baseline or human performance ceiling is reported. Systematic cultural and linguistic asymmetries are highlighted as a core finding, with the authors noting that 'Models also perform better in high-resource languages as compared to low-resource ones' and 'models perform poorly in culturally relevant areas, such as Arts & Humanities and Social Sciences, compared to more general fields like STEM.'"
 }

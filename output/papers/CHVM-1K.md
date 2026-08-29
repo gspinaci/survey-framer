@@ -64,6 +64,22 @@ Identifies systematic biases, misrepresentations, and value misalignments in LLM
 
 **Answer Multiplicity:** not_stated
 
-**Plurality Treatment:** not_addressed
+**Plurality Treatment:** not_stated
 
 **Facets Explanation:** The provided document contains only the publication metadata and boilerplate text for the paper. Due to the complete absence of the paper's body text, details regarding the construction of the gold standard, annotation procedures, and multiplicity treatments are not stated.
+
+**Reported Format Gap:** not_stated
+
+**Reported Format Gap Points:** None
+
+**Human Baseline Reported:** no
+
+**Human Gap Points:** None
+
+**Reported Best Score:** None
+
+**Reported Best Metric:** None
+
+**Reported Cultural Asymmetry:** not_stated
+
+**Results Explanation:** The provided text contains only the title 'An Investigation Into Value Misalignment in LLM-Generated Texts for Cultural Heritage' and IEEE platform boilerplate metadata, without any of the actual paper content. Consequently, no quantitative model evaluations, metrics, or human baselines are reported, rendering all corresponding fields null or not_stated.

@@ -49,5 +49,16 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "single_answer",
   "plurality_treatment": "not_stated",
-  "facets_explanation": "The reference translations for the primary 8-letter machine translation test set were manually produced by a domain expert. The reference summaries for the paragraph-level evaluation were taken from a professional, expert-edited historical edition of Heinrich Bullinger's correspondence (acting as a secondary, pre-existing source of expert reference). Answering correctly does not require knowledge outside the text, as the tasks are translation and summarization of the provided letters. Evaluation relies on automated metrics (BLEU and ChrF) comparing the generated texts to these single reference targets. The paper does not address annotator disagreement or alternative readings during the creation of the reference texts."
+  "facets_explanation": "The reference translations for the primary 8-letter machine translation test set were manually produced by a domain expert. The reference summaries for the paragraph-level evaluation were taken from a professional, expert-edited historical edition of Heinrich Bullinger's correspondence (acting as a secondary, pre-existing source of expert reference). Answering correctly does not require knowledge outside the text, as the tasks are translation and summarization of the provided letters. Evaluation relies on automated metrics (BLEU and ChrF) comparing the generated texts to these single reference targets. The paper does not address annotator disagreement or alternative readings during the creation of the reference texts.",
+  "reported_format_gap": "no",
+  "reported_format_gap_points": null,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 34.5,
+  "reported_best_metric": "bleu",
+  "reported_cultural_asymmetry": "yes",
+  "results_explanation": "The paper reports that GPT-4 achieved the highest score with a BLEU score of 34.50 for translating Latin to English (Table 1). No format gaps or difficulty regimes were compared on the same data. Human translations and summaries were used as reference gold standards and humans judged the model outputs, but no quantified human baseline was evaluated on the same metrics. The paper notes a systemic linguistic asymmetry, explaining that the higher translation performance into English compared to German (27.07 BLEU) occurs because 'English is by far the highest resource language on the internet'.",
+  "review_notes_incremental": [
+    "Ciop and Cip disagreed on reported_cultural_asymmetry. Ciop marked 'yes' citing the performance gap between English and German target translations, while Cip marked 'no'. I resolved to 'yes', as the paper explicitly attributes the BLEU score discrepancy to differing levels of language resources, fitting the definition of a systemic linguistic asymmetry."
+  ]
 }

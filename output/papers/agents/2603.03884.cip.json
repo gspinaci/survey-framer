@@ -44,5 +44,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "answer_set",
   "plurality_treatment": "signal",
-  "facets_explanation": "The reference annotations were created by multiple annotators whose exact professional or academic backgrounds are not explicitly stated, though they followed detailed guidelines and attended regular alignment meetings. Instead of collapsing annotations into a single consensus key, the benchmark preserves divergent interpretations as signal, evaluating models against each individual annotator's spans and averaging the resulting agreement metrics. The task focuses on matching text spans to topic descriptions provided directly within the prompt, meaning no knowledge beyond the stimulus is required."
+  "facets_explanation": "The reference annotations were created by multiple annotators whose exact professional or academic backgrounds are not explicitly stated, though they followed detailed guidelines and attended regular alignment meetings. Instead of collapsing annotations into a single consensus key, the benchmark preserves divergent interpretations as signal, evaluating models against each individual annotator's spans and averaging the resulting agreement metrics. The task focuses on matching text spans to topic descriptions provided directly within the prompt, meaning no knowledge beyond the stimulus is required.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 10,
+  "human_baseline_reported": "yes",
+  "human_gap_points": 8,
+  "reported_best_score": 61.1,
+  "reported_best_metric": "f1",
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "The paper reports an answer format gap of 0.104 F1 (10 percentage points) between the 'Matching (x Tagging)' span extraction strategies in Table 3. The human baseline for word-level topic localization is 68.7 F1, while the best model ('gpt-5-2-2025-12-11') achieves 61.1 F1, representing an 8-point gap (7.6 rounded up). Because the dataset is exclusively in Czech, no cross-cultural or multilingual asymmetry is discussed."
 }

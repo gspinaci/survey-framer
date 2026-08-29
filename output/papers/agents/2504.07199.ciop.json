@@ -44,5 +44,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "answer_set",
   "plurality_treatment": "not_stated",
-  "facets_explanation": "The reference annotations were extracted directly from existing TIBKAT catalog metadata, which are maintained by library subject specialists using the GND taxonomy. Correctly assigning these controlled vocabulary terms requires mapping the content to an external classification system, meaning the required knowledge goes beyond the provided text. Divergence or disagreements between catalogers or evaluation librarians are not discussed in the paper."
+  "facets_explanation": "The reference annotations were extracted directly from existing TIBKAT catalog metadata, which are maintained by library subject specialists using the GND taxonomy. Correctly assigning these controlled vocabulary terms requires mapping the content to an external classification system, meaning the required knowledge goes beyond the provided text. Divergence or disagreements between catalogers or evaluation librarians are not discussed in the paper.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 24,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 0.66,
+  "reported_best_metric": "other",
+  "reported_cultural_asymmetry": "no",
+  "results_explanation": "The paper reports a best overall recall score of '0.66' ('Ov. R@k') achieved by the 'RUC Team' on the 'tib-core' dataset, and '0.63' by 'Annif' on the 'all-subjects' dataset. A format gap of 24 points is shown in qualitative evaluations (Table 4) where 'DNB-AI' drops from a 'P@10' of '0.65' under relaxed matching (Case 1) to '0.41' under strict matching (Case 2). No quantitative human baseline score is reported for comparison, and the authors note 'no significant difference' in performance across German ('de') and English ('en') records."
 }

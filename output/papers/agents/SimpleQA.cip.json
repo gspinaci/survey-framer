@@ -48,5 +48,13 @@
   "gold_concerns_genesis": "not_stated",
   "answer_multiplicity": "not_stated",
   "plurality_treatment": "not_stated",
-  "facets_explanation": "The provided text is the README of the simple-evals repository, which only introduces SimpleQA as a benchmark for measuring short-form factuality without detailing its dataset construction process. Because it is a factual question-answering task without context, answering correctly requires knowledge beyond the prompt stimulus. Specific details regarding the gold source, scoring multiplicity, and plurality treatment are not stated in this repository documentation."
+  "facets_explanation": "The provided text is the README of the simple-evals repository, which only introduces SimpleQA as a benchmark for measuring short-form factuality without detailing its dataset construction process. Because it is a factual question-answering task without context, answering correctly requires knowledge beyond the prompt stimulus. Specific details regarding the gold source, scoring multiplicity, and plurality treatment are not stated in this repository documentation.",
+  "reported_format_gap": "not_stated",
+  "reported_format_gap_points": null,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": null,
+  "reported_best_metric": null,
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "The provided text is the README of the OpenAI 'simple-evals' GitHub repository, which lists SimpleQA as an included benchmark but does not report its evaluation results, scores, or metrics in the text. The results table provided only presents data for MMLU, GPQA, MATH, HumanEval, and MGSM. Consequently, the headline score, human baseline, and format gap comparisons for SimpleQA are not stated in the provided text."
 }

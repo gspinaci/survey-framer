@@ -49,5 +49,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "single_answer",
   "plurality_treatment": "noise",
-  "facets_explanation": "The reference answers were reviewed, completed, and verified by 15 native or highly proficient language annotators (domain experts) who filtered and corrected LLM-drafted candidate items. Correctly resolving the grounded scenarios requires external, domain-specific cultural knowledge that is not provided within the prompt text. The items are structured around 51 distinct country/region codes with community-specific gold answers, and any annotator disagreements or quality issues were resolved or discarded during peer review."
+  "facets_explanation": "The reference answers were reviewed, completed, and verified by 15 native or highly proficient language annotators (domain experts) who filtered and corrected LLM-drafted candidate items. Correctly resolving the grounded scenarios requires external, domain-specific cultural knowledge that is not provided within the prompt text. The items are structured around 51 distinct country/region codes with community-specific gold answers, and any annotator disagreements or quality issues were resolved or discarded during peer review.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 82,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 44.48,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "yes",
+  "results_explanation": "The highest overall score on the CulturALL benchmark is 44.48% accuracy, achieved by 'gemini-2.5-pro_auto_true' (ID 1). The paper reports a large difficulty gap across subsets; for example, 'claude-opus-4-20250514_high_false' (ID 8) achieves '91.49%' accuracy on the 'Easy' subset but drops to '9.44%' on the 'Hard' subset, representing a gap of 82.05 percentage points (rounded to 82). A systematic linguistic/cultural asymmetry is noted, stating that 'Certain languages, such as Serbian, are relatively less challenging, whereas others, like Japanese, pose greater difficulties' (with Serbian accuracy reaching '86.49%' while Japanese drops to '15.92%' under setting ID 1). No quantitative human baseline score is reported for the benchmark tasks."
 }

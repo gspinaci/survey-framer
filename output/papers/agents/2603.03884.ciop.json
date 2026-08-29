@@ -44,5 +44,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "answer_set",
   "plurality_treatment": "signal",
-  "facets_explanation": "The reference answers were created by a group of human annotators in a two-phase process (topic definition and localization), but their academic or professional background is not explicitly stated. Rather than resolving disagreements into a single gold standard, the evaluation preserves each annotator's spans, computing pairwise agreement scores to evaluate models against the full distribution of human judgments (signal). The localization tasks require identifying spans within the provided historical documents based on the provided topic names and descriptions, requiring no external knowledge."
+  "facets_explanation": "The reference answers were created by a group of human annotators in a two-phase process (topic definition and localization), but their academic or professional background is not explicitly stated. Rather than resolving disagreements into a single gold standard, the evaluation preserves each annotator's spans, computing pairwise agreement scores to evaluate models against the full distribution of human judgments (signal). The localization tasks require identifying spans within the provided historical documents based on the provided topic names and descriptions, requiring no external knowledge.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 10,
+  "human_baseline_reported": "yes",
+  "human_gap_points": 8,
+  "reported_best_score": 61.1,
+  "reported_best_metric": "f1",
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "The paper reports a human baseline word-level F1 of 68.7% compared to 61.1% achieved by the best model 'gpt-5-2-2025-12-11', yielding a human lead of 7.6 percentage points (rounded to 8). An answer format gap of 10.4 percentage points (0.104 F1) is reported in Table 3 between 'Matching' and 'Tagging' span extraction strategies (rounded to 10). Cultural asymmetry is marked as 'not_stated' because the benchmark is monolingual, focused exclusively on historical Czech documents."
 }

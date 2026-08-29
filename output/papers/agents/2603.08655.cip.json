@@ -48,5 +48,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "single_answer",
   "plurality_treatment": "noise",
-  "facets_explanation": "The reference answers were created in collaboration with annotation partners SuperAnnotate and Turing, who generated questions grounded in the Treasury Bulletins. Disagreements during verification were treated as noise, resolved by a third annotator or by revising the question to eliminate ambiguity. Each question maps to a single, unambiguous correct answer evaluated via exact match or relative numerical error."
+  "facets_explanation": "The reference answers were created in collaboration with annotation partners SuperAnnotate and Turing, who generated questions grounded in the Treasury Bulletins. Disagreements during verification were treated as noise, resolved by a third annotator or by revising the question to eliminate ambiguity. Each question maps to a single, unambiguous correct answer evaluated via exact match or relative numerical error.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 21,
+  "human_baseline_reported": "yes",
+  "human_gap_points": -21,
+  "reported_best_score": 66.92,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "The paper reports a 21.0 percentage point format gap for 'Claude Opus 4.6' when evaluated on oracle pages with 'Databricks parsed' text (57.14% accuracy) versus raw 'PDF' images (36.09% accuracy). On a 30-sample subset of 'OfficeQA-Full', human annotators achieved an accuracy of 51.1% on oracle pages, which is 21.1 percentage points lower than the best model ('Agent Parsed' at 72.2%), resulting in a human gap of -21 points (or -22 points on the full corpus split). The best overall performance on the primary metric of 'accuracy' (correctness at 0.0% allowable error) on 'OfficeQA Pro' is 66.92%, achieved by the 'Claude Opus 4.6' agent under the 'Oracle DBX Parsed' configuration."
 }

@@ -43,5 +43,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "single_answer",
   "plurality_treatment": "not_stated",
-  "facets_explanation": "HiST-LLM is constructed from the Seshat Global History Databank, a pre-existing structured database of historical data reviewed and assembled by history experts and graduate research assistants. Answering the questions requires domain-specific factual knowledge of historical societies not present in the prompt stimulus. The evaluation uses a four-choice multiple-choice format with a single correct key, and the treatment of annotator disagreement is not addressed in the provided text."
+  "facets_explanation": "HiST-LLM is constructed from the Seshat Global History Databank, a pre-existing structured database of historical data reviewed and assembled by history experts and graduate research assistants. Answering the questions requires domain-specific factual knowledge of historical societies not present in the prompt stimulus. The evaluation uses a four-choice multiple-choice format with a single correct key, and the treatment of annotator disagreement is not addressed in the provided text.",
+  "reported_format_gap": "no",
+  "reported_format_gap_points": null,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 46,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "yes",
+  "results_explanation": "The paper reports that 'GPT-4-Turbo' achieved the best performance with a balanced accuracy of '46%' ('ranging from 33.6% (Llama-3.1-8B) to 46% (GPT-4-Turbo)'). No quantified human baseline is reported, though the authors note that models fall 'short of expert comprehension'. Regional asymmetry is identified, with performance 'better for the Americas and lowest in Oceania and Sub-Saharan Africa for the more advanced models' on a 'four-choice format' benchmark."
 }

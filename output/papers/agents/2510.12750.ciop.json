@@ -49,5 +49,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "single_answer",
   "plurality_treatment": "not_stated",
-  "facets_explanation": "The benchmark's questions and options were synthetically generated using a sequential multi-agent LLM pipeline based on Wikipedia art descriptions, classifying the gold source as model-generated. Answering the questions (e.g., identifying specific iconographic themes like 'The Adoration of the Shepherds') requires external domain knowledge that goes beyond the visual stimulus itself. The evaluation uses a standard multiple-choice format with a single correct answer, and the paper does not discuss annotator divergence or community-specific readings."
+  "facets_explanation": "The benchmark's questions and options were synthetically generated using a sequential multi-agent LLM pipeline based on Wikipedia art descriptions, classifying the gold source as model-generated. Answering the questions (e.g., identifying specific iconographic themes like 'The Adoration of the Shepherds') requires external domain knowledge that goes beyond the visual stimulus itself. The evaluation uses a standard multiple-choice format with a single correct answer, and the paper does not discuss annotator divergence or community-specific readings.",
+  "reported_format_gap": "no",
+  "reported_format_gap_points": null,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 0.71,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "The paper reports overall accuracy across 14 models on VQArt-Bench, where Gemini 2.5 achieves the highest overall accuracy of 0.71 (71%) in Table 2. No human baseline score or solver accuracy is quantified, only a human validation of dataset quality verifying that over '98% of the reviewed questions were free from hallucinations'. The benchmark is evaluated solely in a multiple-choice format with no comparison to open-ended generation or other task formats, and no cultural or regional performance asymmetries are reported."
 }

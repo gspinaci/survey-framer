@@ -51,5 +51,13 @@
   "gold_concerns_genesis": "yes",
   "answer_multiplicity": "single_answer",
   "plurality_treatment": "not_stated",
-  "facets_explanation": "The reference answers are derived from pre-existing educational assessments: Italian secondary-school exercises (MyZanichelli) and US Advanced Placement Art History examinations (2013-2024), representing standardized answer keys. Answering these questions requires extensive art-historical, stylistic, and contextual knowledge that is not present in the image or question text alone. Because the dataset relies on established educational curricula with singular correct answers, it does not explicitly address community-dependent variations or interpretive disagreements among annotators."
+  "facets_explanation": "The reference answers are derived from pre-existing educational assessments: Italian secondary-school exercises (MyZanichelli) and US Advanced Placement Art History examinations (2013-2024), representing standardized answer keys. Answering these questions requires extensive art-historical, stylistic, and contextual knowledge that is not present in the image or question text alone. Because the dataset relies on established educational curricula with singular correct answers, it does not explicitly address community-dependent variations or interpretive disagreements among annotators.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 88,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 82.8,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "yes",
+  "results_explanation": "The benchmark reports that 'models exceeding 94 percent on multiple choice can fall to 23.9 percent on open completion (Claude Opus 4.6) and 6.2 percent on error identification (Claude Sonnet 4.6)', representing a maximum format gap of 88.1 percentage points (rounded to 88) for Claude Sonnet 4.6. The best performing model on the primary macro-average accuracy metric is 'Gemini 3.1 Pro Preview' with '82.8 %'. No quantified human baseline is reported. A systematic language asymmetry is identified via logistic regression, showing that 'Language: Italian' questions have significantly lower odds of being answered correctly than English ones, with an odds ratio of '0.459' (p < .001)."
 }

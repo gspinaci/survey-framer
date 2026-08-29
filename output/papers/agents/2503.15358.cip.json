@@ -46,5 +46,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "single_answer",
   "plurality_treatment": "noise",
-  "facets_explanation": "The reference sentences and scene descriptions were authored by native speakers of English and Brazilian Portuguese, with candidates sourced from pre-existing datasets like NCTTI or identified by the researchers. Items where annotators struggled to depict the literal or figurative scenes were filtered out of the final dataset. The evaluation uses separate splits for English and Brazilian Portuguese to account for different linguistic and cultural idiomatic paradigms, scoring models against a single expected ranking or top-choice target."
+  "facets_explanation": "The reference sentences and scene descriptions were authored by native speakers of English and Brazilian Portuguese, with candidates sourced from pre-existing datasets like NCTTI or identified by the researchers. Items where annotators struggled to depict the literal or figurative scenes were filtered out of the final dataset. The evaluation uses separate splits for English and Brazilian Portuguese to account for different linguistic and cultural idiomatic paradigms, scoring models against a single expected ranking or top-choice target.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 48,
+  "human_baseline_reported": "yes",
+  "human_gap_points": -12,
+  "reported_best_score": 0.93,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "no",
+  "results_explanation": "On the primary Subtask A English Text & Images benchmark, the best-performing model 'PALI-NLP' achieved a Test Set 'Top 1 Acc' of '0.93' (Table 3). A modality format gap of 48 percentage points is demonstrated by the model 'daalft' on the English Extended Evaluation set, dropping from '0.81' Top 1 Acc on Text & Images (Table 3) to '0.33' on Text-Only (Table 4). Human baseline evaluation on this same extended set yielded an 'Annotator average' Top 1 Acc of '0.71' (Table 9), resulting in a -12 point gap compared to PALI-NLP's score of '0.83' (0.71 - 0.83 = -0.12)."
 }

@@ -46,5 +46,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "single_answer",
   "plurality_treatment": "noise",
-  "facets_explanation": "The Swedish petitions were transcribed by a historian, while the English ones were sourced from a digitised archive. For rhetorical span annotation, each document was labeled by two of three project annotators, with disagreements systematically resolved through batch-wise discussions to establish consistent guidelines. A difficulty score (0-2) was also assigned to each document based on the degree of consensus and interpretive challenges experienced during annotation."
+  "facets_explanation": "The Swedish petitions were transcribed by a historian, while the English ones were sourced from a digitised archive. For rhetorical span annotation, each document was labeled by two of three project annotators, with disagreements systematically resolved through batch-wise discussions to establish consistent guidelines. A difficulty score (0-2) was also assigned to each document based on the degree of consensus and interpretive challenges experienced during annotation.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 22,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 100.0,
+  "reported_best_metric": "f1",
+  "reported_cultural_asymmetry": "yes",
+  "results_explanation": "The paper reports that 'Gemini' (Gemini 1.5 Pro) achieves a perfect 'F1' score of '100.0' on the Swedish 'salutatio' across multiple prompt settings in Tables 4 and 5. Table 6 evaluates models across human difficulty tiers, revealing a performance gap where 'Mistral 7B' under the 'eng long 3-shot' prompt scores '72.8' on 'Difficulty 0' but falls to '50.5' on 'Difficulty 2' (a gap of 22.3 percentage points, rounded to 22). No human baseline is evaluated on the same F1 metric, though inter-annotator agreement (Cohen's kappa and %Exact) is detailed in Table 2. Systematic cross-lingual asymmetry is explicitly reported, noting that 'models generally found both Petitio and Conclusio more challenging to annotate in the Swedish Petitions' compared to the English ones."
 }

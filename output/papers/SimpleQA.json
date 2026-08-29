@@ -51,5 +51,13 @@
   "facets_explanation": "The provided text is a GitHub repository README that introduces SimpleQA as an evaluation for 'short-form factuality' but does not contain details about its construction. Because it tests factuality in a zero-shot setting without providing retrieved context passages, answering correctly requires knowledge beyond the prompt stimulus. All other dataset construction and scoring details (such as the gold source, answer multiplicity, and treatment of annotator plurality) are omitted from this document.",
   "review_notes_incremental": [
     "Ciop inferred dataset construction details (gold_source as 'crowd_annotation', plurality_treatment as 'noise', answer_multiplicity as 'single_answer', gold_community_dependent and gold_concerns_genesis as 'no') likely from external knowledge of the official OpenAI SimpleQA paper. However, these details are completely absent from the provided GitHub README text. Following the adjudication rules to prefer 'not_stated' over unsupported inference, I resolved all such fields to 'not_stated' / 'not_addressed' in alignment with Cip's reading. Both analysts correctly agreed on gold_beyond_stimulus as 'yes' due to the zero-shot factual QA nature of the benchmark."
-  ]
+  ],
+  "reported_format_gap": "not_stated",
+  "reported_format_gap_points": null,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": null,
+  "reported_best_metric": null,
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "The provided text is the GitHub README for the `openai/simple-evals` repository, which lists SimpleQA as one of its supported evaluations (\"SimpleQA: Measuring short-form factuality in large language models\") but does not contain any of its actual evaluation results. The \"Benchmark Results\" table only reports scores for other datasets like \"MMLU\", \"GPQA\", \"MATH\", \"HumanEval\", and \"MGSM\". Consequently, because the document contains no numeric results or data for SimpleQA, all specific metrics, headline scores, format gaps, and human baselines are omitted or not stated."
 }

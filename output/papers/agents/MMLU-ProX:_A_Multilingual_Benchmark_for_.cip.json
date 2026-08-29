@@ -47,5 +47,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "single_answer",
   "plurality_treatment": "not_stated",
-  "facets_explanation": "MMLU-ProX is built on top of MMLU-Pro, which inherits standardized test questions and academic exam solutions (authored_answer_key) that require external domain knowledge (gold_beyond_stimulus is yes). While the translation pipeline employed native-speaking experts to rate accuracy, fluency, and completeness on a 5-point scale, the evaluation itself relies on standard parallel multiple-choice answer matching. Divergences in expert translation scores below 3 were handled by completely retranslating the affected discipline, and the plurality of interpretations or alternative answers is not addressed."
+  "facets_explanation": "MMLU-ProX is built on top of MMLU-Pro, which inherits standardized test questions and academic exam solutions (authored_answer_key) that require external domain knowledge (gold_beyond_stimulus is yes). While the translation pipeline employed native-speaking experts to rate accuracy, fluency, and completeness on a 5-point scale, the evaluation itself relies on standard parallel multiple-choice answer matching. Divergences in expert translation scores below 3 were handled by completely retranslating the affected discipline, and the plurality of interpretations or alternative answers is not addressed.",
+  "reported_format_gap": "no",
+  "reported_format_gap_points": null,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 75.5,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "yes",
+  "results_explanation": "The paper does not report any performance differences across task formats or difficulty tiers on the same items, as it evaluates models solely on a 10-choice multiple-choice format. No human baseline is provided for solving the benchmark questions, only a human translation quality evaluation using a 1-5 Likert scale. The best reported score on the full version of the benchmark is 75.5% average accuracy across 29 languages, achieved by DeepSeek-R1 ('DeepSeek-R1 demonstrates superior overall performance with an average of 75.5% across all languages'). A systematic cultural and linguistic asymmetry is reported, as 'While they perform well in high-resource languages, their performance declines markedly in low-resource languages, particularly for African languages' like Wolof, Yoruba, and Zulu."
 }

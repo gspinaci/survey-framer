@@ -50,5 +50,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "graded_human_judgment",
   "plurality_treatment": "noise",
-  "facets_explanation": "The reference critiques and the 450-sample evaluation subset were annotated by domain experts with training in art history. Answering correctly requires external socio-cultural and historical knowledge not present within the raw image. The benchmark explicitly splits evaluations across six distinct cultural traditions with community-specific aesthetic dimensions, and manages annotator/judge disagreement as measurement unreliability (noise) mitigated through single-judge sigmoid calibration."
+  "facets_explanation": "The reference critiques and the 450-sample evaluation subset were annotated by domain experts with training in art history. Answering correctly requires external socio-cultural and historical knowledge not present within the raw image. The benchmark explicitly splits evaluations across six distinct cultural traditions with community-specific aesthetic dimensions, and manages annotator/judge disagreement as measurement unreliability (noise) mitigated through single-judge sigmoid calibration.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 22,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 4.27,
+  "reported_best_metric": "other",
+  "reported_cultural_asymmetry": "yes",
+  "results_explanation": "The best-performing model is Gemini-2.5-Pro with a score of 4.27 on the human-calibrated S*_II metric (Table 6), categorized as 'other'. No human baseline score is reported on the evaluation scale, so human_baseline_reported is 'no'. A cultural asymmetry is reported as 'Western art samples consistently receive higher scores than non-Western ones' with a Chinese-Western score gap of '-0.39' (Cohen's d = -0.74, p < 0.001, Section 6.3). A performance gap is observed across difficulty tiers of the same taxonomy as scores degrade from surface Coverage to deeper interpretation Depth; for DeepSeek-VL2, the score drops from 3.50 to 2.64 (Table 6), which converts to a 21.5 percentage point drop (rounded to 22) when scaling the 1-5 system to a 0-100 range."
 }

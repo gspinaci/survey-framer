@@ -43,5 +43,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "single_answer",
   "plurality_treatment": "not_stated",
-  "facets_explanation": "The reference decision statements are extracted from official transcripts of the California Department of Corrections and Rehabilitation, which represent pre-existing administrative metadata. Evaluating whether the model can generate the correct decision and rationale requires external knowledge of California state laws and parole guidelines not present in the interview transcript stimulus. The evaluation compares the statistical rhetorical properties of the generated text against a single original reference text per hearing, meaning plurality and annotator consensus are not addressed."
+  "facets_explanation": "The reference decision statements are extracted from official transcripts of the California Department of Corrections and Rehabilitation, which represent pre-existing administrative metadata. Evaluating whether the model can generate the correct decision and rationale requires external knowledge of California state laws and parole guidelines not present in the interview transcript stimulus. The evaluation compares the statistical rhetorical properties of the generated text against a single original reference text per hearing, meaning plurality and annotator consensus are not addressed.",
+  "reported_format_gap": "no",
+  "reported_format_gap_points": null,
+  "human_baseline_reported": "yes",
+  "human_gap_points": null,
+  "reported_best_score": null,
+  "reported_best_metric": null,
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "The paper does not report a single standard headline performance metric like accuracy or F1, meaning reported_best_score, reported_best_metric, and reported_format_gap_points are null. It reports human baselines for individual features as z-scores in Table 1 under the 'Original' column (e.g., Lexical Diversity for original Commissioner 4 is '1.48' and Sentence Complexity is '1.10'). The evaluated LLMs deviate significantly from these baselines, with DeepSeek's Sentence Complexity reaching a z-score of '34.91' when prompted with Commissioner 4's rhetorical fingerprint."
 }

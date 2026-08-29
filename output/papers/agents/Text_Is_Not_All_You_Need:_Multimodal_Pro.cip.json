@@ -47,5 +47,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "graded_human_judgment",
   "plurality_treatment": "not_stated",
-  "facets_explanation": "The paper leverages pre-existing human explanations and annotations from SemEval 2017 Task 7, Context-Situated Puns, and ExplainTheJoke, but does not specify the original annotation protocols, leading to a 'not_stated' gold source. The evaluation relies on GPT-4o as an LLM judge performing pairwise quality assessments of free-text explanations, which represents 'graded_human_judgment'. Explaining puns requires external linguistic knowledge of homophones and double meanings not present in the stimulus, though the dataset does not model community-dependent variations in correctness."
+  "facets_explanation": "The paper leverages pre-existing human explanations and annotations from SemEval 2017 Task 7, Context-Situated Puns, and ExplainTheJoke, but does not specify the original annotation protocols, leading to a 'not_stated' gold source. The evaluation relies on GPT-4o as an LLM judge performing pairwise quality assessments of free-text explanations, which represents 'graded_human_judgment'. Explaining puns requires external linguistic knowledge of homophones and double meanings not present in the stimulus, though the dataset does not model community-dependent variations in correctness.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 26,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 72.59,
+  "reported_best_metric": "win_rate",
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "The benchmark evaluates Gemini-1.5-Flash, reporting a maximum performance of 72.59% win_rate on the SemEval homograph dataset when using the 'with audio' multimodal prompting strategy. Comparing different input modalities, the paper reports a maximum format gap of 26 points (derived from 51.74% for 'Our System' versus 25.50% for 'No text, Audio Only' on heterographs in the Table 4 ablation study). No independent human baseline score is reported, as humans are instead used as a pairwise reference point to calculate win rates."
 }

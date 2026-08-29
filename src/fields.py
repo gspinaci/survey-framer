@@ -164,6 +164,21 @@ ENUM_FIELDS: dict[str, set[str]] = {
     # used not_stated for the paper's silence, and the odd one out drew an
     # off-vocabulary value on the first run. One token per meaning across all facets.
     "plurality_treatment": {"noise", "signal", "not_stated"},
+    # Results axis: what the paper reports the models actually did. The facets above
+    # describe how a benchmark was built; these describe what it measured, and the
+    # two are only worth having together because the survey's claim is that the
+    # first explains the second. Same design rule — each value must be something the
+    # paper states, not something the coder judges. See RESULTS_axis in
+    # paper/RESULTS_analysis.md.
+    "reported_format_gap": {"yes", "no", "not_stated"},
+    "human_baseline_reported": {"yes", "no"},
+    "reported_cultural_asymmetry": {"yes", "no", "not_stated"},
+    # reported_best_metric carries null legitimately (no headline figure), so the
+    # check below has to tolerate None — it already does: absent and None are skipped.
+    "reported_best_metric": {
+        "accuracy", "f1", "exact_match", "bleu", "cer", "wer", "pass@1",
+        "win_rate", "cosine_similarity", "human_score", "other",
+    },
 }
 
 # The facets whose ciop/cip divergence is worth reporting (see FACET_FIELDS use in
@@ -175,6 +190,18 @@ FACET_FIELDS: tuple[str, ...] = (
     "gold_concerns_genesis",
     "answer_multiplicity",
     "plurality_treatment",
+)
+
+# The results-axis fields, kept separate from FACET_FIELDS so the two axes can be
+# reported and disagreement-checked independently.
+RESULT_FIELDS: tuple[str, ...] = (
+    "reported_format_gap",
+    "reported_format_gap_points",
+    "human_baseline_reported",
+    "human_gap_points",
+    "reported_best_score",
+    "reported_best_metric",
+    "reported_cultural_asymmetry",
 )
 
 LIST_ENUM_FIELDS: dict[str, set[str]] = {

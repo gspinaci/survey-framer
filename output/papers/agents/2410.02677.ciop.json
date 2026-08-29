@@ -47,5 +47,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "answer_set",
   "plurality_treatment": "signal",
-  "facets_explanation": "Annotators were recruited via Prolific based on region-specific criteria, such as nationality and primary residence before age 18, to ensure native cultural expertise. Answering the questions requires declarative cultural knowledge that is completely external to the zero-shot prompt. Multiple correct answers are explicitly preserved as multi-mode questions to test model over-convergence on cultural stereotypes, while items with high disagreement (failing to reach a 4/5 annotator consensus on any option) are filtered out."
+  "facets_explanation": "Annotators were recruited via Prolific based on region-specific criteria, such as nationality and primary residence before age 18, to ensure native cultural expertise. Answering the questions requires declarative cultural knowledge that is completely external to the zero-shot prompt. Multiple correct answers are explicitly preserved as multi-mode questions to test model over-convergence on cultural stereotypes, while items with high disagreement (failing to reach a 4/5 annotator consensus on any option) are filtered out.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 53,
+  "human_baseline_reported": "yes",
+  "human_gap_points": 31,
+  "reported_best_score": 61.4,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "yes",
+  "results_explanation": "The paper compares multiple-choice (Easy) and binary True/False (Hard) formats on the same 1,696 questions, reporting that models show a huge format gap (e.g., Mixtral-8x7b drops by 52.76 percentage points from 73.92% on Easy to 21.16% on Hard). The human baseline is quantified at '92.4% accuracy' for both formats, while the best-performing model, 'OpenAI o1', achieves a headline score of '61.4%' accuracy on CulturalBench-Hard, representing a human-model gap of 31 percentage points. Additionally, a systematic cultural asymmetry is identified: 'Across the board, models under-perform on questions related to North Africa, South America and Middle East' compared to better-represented regions like North America."
 }

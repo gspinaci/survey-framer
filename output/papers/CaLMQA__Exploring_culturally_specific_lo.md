@@ -48,6 +48,7 @@ Models generate answers with significantly more factual errors for culturally sp
 
 - Ciop and Cip disagreed on humanities_role. Ciop suggested 'domain', but the benchmark tests general LLM competencies (long-form QA, multilinguality, factuality) using cultural knowledge merely as test material rather than assessing disciplinary academic methods, so 'content' was chosen. Cip's 'generation' was selected over Ciop's 'fact_verification' for analytical_tasks because the LLMs themselves perform long-form generation, while fact verification is used purely as an external automated metric (VeriScore/FACTSCORE) to judge the output.
 - Ciop and Cip diverged on gold_source. Ciop chose existing_metadata because the reference answers were scraped from pre-existing QA forums. Cip chose crowd_annotation because Prolific workers were hired to harvest them and Upwork freelancers authored the Kirundi answers; resolved to crowd_annotation as the hired workers were the mechanism of dataset curation and creation. Ciop's inclusion of fact_verification in analytical_tasks was dropped because fact verification is the metric used to evaluate the LLMs (FactScore), not the task the models perform. primary_evaluation_setting was added as 'zero-shot' based on the paper's explicit text.
+- Ciop and Cip disagreed on reported_best_score. Ciop extracted 56.9, which is the score on the culturally agnostic baseline split; Cip extracted 49.2, which is the score on the culturally specific split that constitutes the actual CaLMQA benchmark. I resolved to 49.2 as the more accurate reflection of the main dataset.
 
 ## Additional Fields
 
@@ -65,6 +66,22 @@ Models generate answers with significantly more factual errors for culturally sp
 
 **Answer Multiplicity:** graded_human_judgment
 
-**Plurality Treatment:** not_addressed
+**Plurality Treatment:** not_stated
 
 **Facets Explanation:** Reference answers are only collected for a small subset of the 51.7K questions, sourced primarily by crowdworkers hired to harvest community QA forums, with additional answers authored by hired freelancers for Kirundi. Evaluation relies on model-based scoring (VeriScore, GPT-4o) and multi-aspect human ratings on a 5-point scale rather than exact string matching against a static key. The questions require external cultural knowledge, and answers explicitly depend on the specific cultural community. Inter-annotator variance is controlled statistically, but the treatment of divergent defensible readings is not addressed.
+
+**Reported Format Gap:** no
+
+**Reported Format Gap Points:** None
+
+**Human Baseline Reported:** no
+
+**Human Gap Points:** None
+
+**Reported Best Score:** 49.2
+
+**Reported Best Metric:** other
+
+**Reported Cultural Asymmetry:** yes
+
+**Results Explanation:** The benchmark evaluates long-form question answering using a custom overall score S (S = Ssurf * Sfact * Srel). In Table 2, the best overall score S on the core culturally specific split is 49.2, achieved by GPT-4O (which also scored 56.9 on the culturally agnostic baseline split). The paper does not report a human baseline or compare performance across different answer formats on the same items. A systematic cultural asymmetry is reported, as the authors find that answers to culturally specific questions contain more factual errors than culturally agnostic ones, and that factuality and relevance drop 'considerably on low-resource languages'.

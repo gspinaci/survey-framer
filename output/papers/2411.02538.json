@@ -54,5 +54,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "single_answer",
   "plurality_treatment": "not_stated",
-  "facets_explanation": "The reference answers for MILU were sourced directly from pre-existing answer keys of over 1,500 competitive and civil service exams across India. Because these are multiple-choice questions testing domain knowledge, answering them successfully requires retrieval of external factual and cultural information not contained within the question prompt itself. Correctness is determined by matching a single gold option, and the paper does not address annotator or key disagreement."
+  "facets_explanation": "The reference answers for MILU were sourced directly from pre-existing answer keys of over 1,500 competitive and civil service exams across India. Because these are multiple-choice questions testing domain knowledge, answering them successfully requires retrieval of external factual and cultural information not contained within the question prompt itself. Correctness is determined by matching a single gold option, and the paper does not address annotator or key disagreement.",
+  "reported_format_gap": "no",
+  "reported_format_gap_points": null,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 74.74,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "yes",
+  "results_explanation": "The benchmark reports no performance comparison across different answer formats for the same models. No human baseline is evaluated or quantified for the benchmark. The highest overall performance is achieved by 'GPT-4o', which emerges as the strongest model with an 'average accuracy of 74.74%'. A systematic cultural asymmetry is reported as a core finding, with the authors noting that 'models perform poorly in culturally relevant areas, such as Arts & Humanities and Social Sciences, compared to more general fields like STEM' and perform better in 'high-resource languages as compared to low-resource ones.'"
 }

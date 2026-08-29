@@ -59,5 +59,13 @@
   "gold_concerns_genesis": "no",
   "answer_multiplicity": "single_answer",
   "plurality_treatment": "not_stated",
-  "facets_explanation": "The benchmark's 414 questions were authored by over 40 history experts, including professors, PhD students, and research assistants from institutions like Fudan and Princeton. Answering these tasks requires extensive historical background knowledge external to the provided visual or textual stimulus. Although a multi-stage review pipeline was used to filter out ambiguous questions, the paper does not systematically address how inter-annotator disagreement or competing historical interpretations were treated."
+  "facets_explanation": "The benchmark's 414 questions were authored by over 40 history experts, including professors, PhD students, and research assistants from institutions like Fudan and Princeton. Answering these tasks requires extensive historical background knowledge external to the provided visual or textual stimulus. Although a multi-stage review pipeline was used to filter out ambiguous questions, the paper does not systematically address how inter-annotator disagreement or competing historical interpretations were treated.",
+  "reported_format_gap": "no",
+  "reported_format_gap_points": null,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 36.47,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "no",
+  "results_explanation": "On the primary benchmark, HistBench, the best-performing model is the specialized HistAgent (based on GPT-4o), which achieves an average accuracy of \"36.47%\" at pass@2 and \"27.54%\" at pass@1 (Table 5). No quantified human performance baseline is reported on the benchmark's questions. While the dataset encompasses high linguistic and geographic diversity with \"29 ancient and modern languages,\" the results are not systematically broken down or analyzed to show performance asymmetries across cultures or languages."
 }
