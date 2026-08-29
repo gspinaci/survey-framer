@@ -132,11 +132,19 @@ Accuracy is the headline metric in 21 of the 42, with F1 in three, BLEU in two, 
 
 Evaluation is overwhelmingly of the model as it comes: nineteen benchmarks evaluate zero-shot, nineteen across multiple regimes, three few-shot, and exactly one principally evaluates models fine-tuned on the task.
 
-Size is not merely a matter of cost, because it sets a floor on what a benchmark can detect at all. Distinguishing two models that differ by ε requires on the order of 1/ε² items, so a benchmark of *n* items resolves differences of roughly 1/√n and no finer (Hardt, 2026). Applied to this corpus: of the 40 benchmarks declaring a size, **14 are large enough to resolve a one-point difference** (10,000 items or more), 22 can resolve two points, and ten fall below a thousand items and therefore cannot distinguish differences smaller than about three points. The smallest, a 100-item corpus of parole hearings, resolves nothing finer than ten. This does not invalidate those benchmarks — a 100-item expert-annotated corpus can be exactly the right instrument for a question — but it does mean that model comparisons reported to one decimal place on small benchmarks are reporting noise, and it bears directly on how the score dispersion above should be read.
-
 The systems evaluated are concentrated. **Thirty-eight of the 42 benchmarks (90%) evaluate at least one OpenAI model**, against 23 for Google, 20 for Anthropic, 15 for Alibaba's Qwen family and 13 for Meta's Llama. What is known about the humanities capabilities of language models is largely what is known about one provider's models.
 
 Across the 21 benchmarks reporting accuracy — the only directly comparable subset — the best model scores range from 13.4 (Humanity's Last Exam; Phan et al., 2025) to 93.0 (AdMIRe; Pickard et al., 2025), with a median of 61.8. The dispersion, not the ranking, is the finding: the field simultaneously produces evidence that models nearly saturate humanities tasks and evidence that they fail them, and what separates the extremes is not the difficulty of the material but how tightly the question is drawn.
+
+[[figure:scores]]
+
+**Figure 1.** Best reported model score on the 21 benchmarks whose headline metric is accuracy — the only subset on a common scale. The other 21 report F1, BLEU, CER, a bespoke metric, or no single figure. This is deliberately not a ranking: each benchmark defines its own task, and a 90% on Christian iconography and a 13% on Humanity's Last Exam measure incommensurable things. What the figure shows is the spread, and that the two ends of it are produced by the same field in the same two years.
+
+Size is not merely a matter of cost, because it sets a floor on what a benchmark can detect at all. Distinguishing two models that differ by ε requires on the order of 1/ε² items, so a benchmark of *n* items resolves differences of roughly 1/√n and no finer (Hardt, 2026). Applied to this corpus: of the 40 benchmarks declaring a size, **14 are large enough to resolve a one-point difference** (10,000 items or more), 22 can resolve two points, and ten fall below a thousand items and therefore cannot distinguish differences smaller than about three points. The smallest, a 100-item corpus of parole hearings, resolves nothing finer than ten. This does not invalidate those benchmarks — a 100-item expert-annotated corpus can be exactly the right instrument for a question — but it does mean that model comparisons reported to one decimal place on small benchmarks are reporting noise, and it bears directly on how the dispersion in Figure 1 should be read.
+
+[[figure:resolution]]
+
+**Figure 2.** The ten benchmarks with fewer than a thousand items, showing what each can actually resolve. The bar is not a score: it is the smallest difference between two models the benchmark is capable of detecting, derived from its size alone. A one-point gap reported on the parole-hearings corpus is indistinguishable from no gap at all.
 
 ### 4.2 Where reference answers come from, and how many are accepted
 
@@ -147,6 +155,10 @@ The choice tracks what the benchmark claims to measure. Where the benchmark is d
 This convergence is also the only internal evidence that the disciplinary-role judgement was not arbitrary: the role is an interpretive judgement made by the readers, the source of the gold is an observable property of dataset construction, and the two were extracted in independent passes under different schemas.
 
 Turning to scoring: 28 of the 42 accept a single answer per item, five accept an enumerated set, five use graded human or model judgement, and four do not state. Crossing this with whether answering requires knowledge absent from the stimulus yields the central count of the census. **Twenty-one benchmarks — exactly half the corpus — pose questions whose correct answer must be inferred from outside the stimulus, and score the result against a single key.** They require interpretation and accept one interpretation.
+
+[[figure:crosstab]]
+
+**Figure 3.** How many answers the scoring accepts, against whether answering requires knowledge absent from the stimulus. Both properties are verifiable in the stated evaluation protocol, and neither asks the coder to judge whether a task is "really" interpretive. The top-left cell is the census's central count: the benchmarks that demand inference and admit one result.
 
 Those 21 are not evenly distributed: they are 8 of the 8 general-purpose benchmarks and 13 of the 34 purpose-built ones (38%). This is a property of the large benchmarks rather than of the field as a whole, for reasons Section 4.4 makes explicit.
 
@@ -164,7 +176,15 @@ Two qualifications constrain the claim. First, the 18 benchmarks that report no 
 
 **A robustness check the previous paragraph requires.** If a benchmark is too small, a reported gap could be sampling noise rather than a property of the instrument. Taking each benchmark's own resolution floor from Section 4.1, all nine gaps exceed three times the smallest difference their benchmark can detect — the tightest case being CzechTopic, whose 10-point gap sits against a 2.3-point floor on 1,820 items. None of the nine is an artefact of a small test set.
 
+[[figure:gaps]]
+
+**Figure 4.** The nine benchmarks that measured the same material two ways, showing the gap each reports and what was varied to produce it. The dark tick on every bar is that benchmark's own noise floor from Figure 2: in all nine cases the gap clears it several times over, so none of these is a small-sample artefact. The task, the items and the models are held fixed throughout; only the rule for awarding the score changes.
+
 A third observation belongs here. Only 13 of the 42 benchmarks measure a human baseline at all, and nine quantify the gap. In two of those nine the model exceeds the human — both agentic search tasks, where the human is constrained by time rather than by competence.
+
+[[figure:human]]
+
+**Figure 5.** The nine benchmarks that quantify a human baseline, as points separating the best model from the human. Two are negative. Both are agentic retrieval tasks in which the human reference was working under a time limit, which makes them measurements of patience rather than of judgement — a reminder that a human baseline is itself an instrument with a construction, and that most of the corpus does not build one at all.
 
 ### 4.4 The general-purpose block
 
