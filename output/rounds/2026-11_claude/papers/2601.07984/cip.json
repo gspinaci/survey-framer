@@ -1,0 +1,255 @@
+{
+  "benchmark_name": "VULCA-BENCH tri-tier evaluation framework (VULCA-Framework): Cross-Cultural Expert-Level Art Critique Evaluation",
+  "publication_year": 2026,
+  "humanities_role": "domain",
+  "humanities_role_explanation": "The benchmark targets art-critical competence itself: generating L1-L5 art critiques (visual description to philosophical aesthetics) across six cultural traditions, grounded in Panofsky's iconology and culture-specific art-theoretical dimensions, and scored against expert critiques.",
+  "benchmark_modalities": [
+    "text",
+    "image"
+  ],
+  "benchmark_modalities_explanation": "Input is an artwork image plus artist/title/culture metadata and a prompt; output is a bilingual (Chinese-English) text critique. Expert reference critiques are text.",
+  "analytical_tasks": [
+    "generation",
+    "interpretation",
+    "cultural_reasoning",
+    "stylistic_analysis",
+    "visual_recognition",
+    "attribution"
+  ],
+  "analytical_tasks_explanation": "Open-ended generative art critique covering five levels: L1 visual perception, L2 technical analysis, L3 cultural symbolism (iconographic interpretation), L4 historical context (art-historical attribution), L5 philosophical aesthetics (iconological interpretation). Scored on Coverage, Alignment, Depth, Accuracy, Quality across 165 culture-specific dimensions. Attribution is only one level among five, not the main target.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "Scoped to art critique generation across six cultural traditions; not a broad multi-task benchmark."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "15 VLMs: GPT-5, GPT-5.2, GPT-5-mini, GPT-4o, GPT-4o-mini, Claude-Sonnet-4.5, Claude-Opus-4.5, Claude-Haiku-3.5, Gemini-2.5-Pro, Gemini-3-Pro, Qwen3-VL-235B, Qwen3-VL-Flash, Llama4-Scout, GLM-4V-Flash, DeepSeek-VL2."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Calibrated Tier II score S*_II (1-5), Tier I metrics (DCR, CSA, CDS, LQS), ICC(2,1), weighted kappa, MAE, Pearson r, Cohen's d."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "arXiv 2601.07984 (v3, 24 Feb 2026)."
+    }
+  },
+  "summary": "The paper proposes a tri-tier evaluation framework (automated metrics, single-judge rubric scoring, sigmoid calibration to human experts) for cross-cultural generative art critique by VLMs, built on the VULCA-BENCH corpus. It evaluates 15 VLMs on 294 samples across six traditions and finds that automated metrics and judge scores measure different constructs, that understanding degrades from L1-L2 to L3-L5, and that Western art receives higher scores.",
+  "key_findings": "Best model Gemini-2.5-Pro S*_II 4.27, worst DeepSeek-VL2 3.01. Depth (sigma 0.56) and Alignment (0.48) are most discriminative. Tier I-Tier II ICC below 0.2; cross-judge ICC from -0.50 to 0.12. 13 of 15 models favour Western art (Cohen's d = -0.74; CN-WE gap -0.39). Calibration reduces MAE by only 1.7%. Inter-annotator agreement is moderate (kappa_w 0.43).",
+  "relevant_asjc_areas": [
+    "Visual Arts and Performing Arts",
+    "Cultural Studies",
+    "History",
+    "Philosophy"
+  ],
+  "dataset_size": "6804",
+  "evaluation_set_size": 294,
+  "evaluation_unit": "image-critique pair (artwork image with expert bilingual critique)",
+  "primary_evaluation_setting": "zero-shot",
+  "gold_source": "domain_expert",
+  "gold_upstream": null,
+  "gold_upstream_source": null,
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "yes",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "graded_human_judgment",
+  "plurality_treatment": "signal",
+  "facets_explanation": "Reference critiques are expert-written bilingual critiques from the companion VULCA-BENCH corpus, tagged with culture-specific dimensions; human calibration scores come from domain experts. Scoring is a rubric-based LLM judge (Claude Opus 4.5) calibrated to human ratings. The paper says the expert critique is an alignment anchor rather than a unique gold answer because L3-L5 admits legitimate interpretive plurality, and it reports low L3-L5 agreement as evidence of inherent subjectivity. Dimensions are culture-specific per tradition.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": null,
+  "reported_format_gap_kind": null,
+  "reported_gap_kinds": [
+    "depth",
+    "input"
+  ],
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 4.27,
+  "reported_best_metric": "other",
+  "reported_cultural_asymmetry": "yes",
+  "results_explanation": "Table 6 lists Gemini-2.5-Pro with S*_II 4.27 (calibrated 1-5 score, metric 'other'). Depth/Alignment (sigma 0.56/0.48) are more discriminative than Coverage/Quality, supporting a depth gap, but no single point gap is given, so the gap points are null. Few-shot prompting is mentioned qualitatively as decreasing performance without numbers. The paper reports 'thirteen of fifteen VLMs favour Western art critiques' with Cohen's d = -0.74. No human performance baseline is reported on the same metric.",
+  "evidence": {
+    "humanities_role": [
+      {
+        "quote": "Art understanding requires moving from visual description (L1–L2) to cultural interpretation, including symbolism, historical context, and philosophical aesthetics",
+        "where": "p. 1, Introduction"
+      }
+    ],
+    "dataset_size": [
+      {
+        "quote": "The complete corpus contains 6,804 matched pairs across 7 cultural traditions.",
+        "where": "p. 5, Section 4 Dataset"
+      }
+    ],
+    "evaluation_set_size": [
+      {
+        "quote": "we extract 294 stratified samples with bilingual expert-written critiques which we use as evaluation samples (Eval.) for our experiments",
+        "where": "p. 5, Section 4 Dataset"
+      }
+    ],
+    "primary_evaluation_setting": [
+      {
+        "quote": "Our experiments and reported results represent only zero-shot prompting approaches.",
+        "where": "p. 9, Limitations"
+      }
+    ],
+    "gold_source": [
+      {
+        "quote": "The 450-sample human-scored subset was annotated by domain experts via a balanced incomplete block design",
+        "where": "p. 5, Section 4 Dataset"
+      }
+    ],
+    "gold_beyond_stimulus": [
+      {
+        "quote": "the judge compares the VLM critique against the expert reference to assess cultural alignment and factual accuracy",
+        "where": "p. 3, Section 3.1"
+      }
+    ],
+    "gold_community_dependent": [
+      {
+        "quote": "165 culture-specific dimensions across six traditions",
+        "where": "p. 1, Abstract"
+      }
+    ],
+    "gold_concerns_genesis": [],
+    "answer_multiplicity": [
+      {
+        "quote": "Tier II applies rubric-based single-judge scoring",
+        "where": "p. 1, Abstract"
+      }
+    ],
+    "plurality_treatment": [
+      {
+        "quote": "the expert critique serves as an alignment anchor rather than a unique gold answer, since L3–L5 dimensions admit legitimate interpretive plurality",
+        "where": "p. 5, Section 3.1"
+      }
+    ],
+    "gold_upstream_source": [],
+    "reported_format_gap": [
+      {
+        "quote": "The most discriminative dimension is Critique Depth (σ = 0.56)",
+        "where": "p. 7, Section 6.1"
+      }
+    ],
+    "reported_format_gap_points": [],
+    "reported_format_gap_kind": [],
+    "human_baseline_reported": [],
+    "human_gap_points": [],
+    "reported_best_score": [
+      {
+        "quote": "Gemini-2.5-Pro 4.27",
+        "where": "p. 7, Table 6"
+      }
+    ],
+    "reported_cultural_asymmetry": [
+      {
+        "quote": "thirteen of fifteen VLMs favour Western art critiques",
+        "where": "p. 8, Section 6.3"
+      }
+    ]
+  },
+  "checks": {
+    "missing_fields": [],
+    "vocab_warnings": [],
+    "evidence": {
+      "quotes": {
+        "humanities_role": [
+          "exact"
+        ],
+        "dataset_size": [
+          "exact"
+        ],
+        "evaluation_set_size": [
+          "exact"
+        ],
+        "primary_evaluation_setting": [
+          "exact"
+        ],
+        "gold_source": [
+          "exact"
+        ],
+        "gold_beyond_stimulus": [
+          "exact"
+        ],
+        "gold_community_dependent": [
+          "exact"
+        ],
+        "answer_multiplicity": [
+          "exact"
+        ],
+        "plurality_treatment": [
+          "exact"
+        ],
+        "reported_format_gap": [
+          "exact"
+        ],
+        "reported_best_score": [
+          "exact"
+        ],
+        "reported_cultural_asymmetry": [
+          "exact"
+        ]
+      },
+      "unsupported": [],
+      "unverified": []
+    }
+  },
+  "extraction": {
+    "round": "2026-11_claude",
+    "agent": "cip",
+    "role": "reader",
+    "scope": "technical",
+    "operator": "gspinaci",
+    "backend": "claude-cli",
+    "backend_kind": "claude-cli",
+    "model": "claude-sonnet-5-5",
+    "prompt_sha256": "de1b2a4e5c1121fdd28eae57251ef2535cfda50623e8b4280a669e829f653e73",
+    "scaffold_sha256": "910de03d8019fcc1daec329d31a9ae64b10f9ed69baaca8db4553000177bb766",
+    "rendered_prompt_sha256": "e05208abe2b7d185f28377860e6a600ae1245163d211ee5a5517aa21a69f4b55",
+    "fields": [
+      "analytical_tasks",
+      "analytical_tasks_explanation",
+      "answer_multiplicity",
+      "benchmark_modalities",
+      "benchmark_modalities_explanation",
+      "benchmark_name",
+      "dataset_size",
+      "evaluation_set_size",
+      "evaluation_unit",
+      "facets_explanation",
+      "gold_beyond_stimulus",
+      "gold_community_dependent",
+      "gold_concerns_genesis",
+      "gold_source",
+      "gold_upstream",
+      "gold_upstream_source",
+      "human_baseline_reported",
+      "human_gap_points",
+      "humanities_role",
+      "humanities_role_explanation",
+      "inclusion_criteria",
+      "key_findings",
+      "plurality_treatment",
+      "primary_evaluation_setting",
+      "publication_year",
+      "relevant_asjc_areas",
+      "reported_best_metric",
+      "reported_best_score",
+      "reported_cultural_asymmetry",
+      "reported_format_gap",
+      "reported_format_gap_kind",
+      "reported_format_gap_points",
+      "reported_gap_kinds",
+      "results_explanation",
+      "summary"
+    ],
+    "input": {
+      "pdf_sha256": "b0e0d077cdd5f96fb898af11663954c1408748df6e50491e78af1d4bb16d77fc",
+      "text_chars": 59772
+    },
+    "started": "2026-11-09T21:24:23+00:00",
+    "seconds": 16.7
+  },
+  "paper_id": "2601.07984"
+}

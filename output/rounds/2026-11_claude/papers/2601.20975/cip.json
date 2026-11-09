@@ -1,0 +1,256 @@
+{
+  "benchmark_name": "DeepSearchQA",
+  "publication_year": 2026,
+  "humanities_role": "content",
+  "humanities_role_explanation": "Items are web-research information-seeking prompts across 17 fields (politics, finance, science, health, history, geography, media); humanities topics such as History supply some content, but the competence tested is general deep-research agent capability (search, collation, stopping), not disciplinary competence.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Text-only prompts and text answer lists; agents browse the open web, but the benchmark items and answers are textual.",
+  "analytical_tasks": [
+    "factual_recall",
+    "open_ended_qa",
+    "information_extraction",
+    "retrieval_and_ranking",
+    "logical_and_quantitative_reasoning",
+    "agentic_tool_use"
+  ],
+  "analytical_tasks_explanation": "Multi-step information seeking with exhaustive answer-set generation: 'Systematic Collation', 'Entity Resolution (De-duplication)', and reasoning about 'Stopping Criteria'. Task taxonomy: Structured Retrieval, Context Management, Logical Reasoning (constraint solving, aggregation, filtering). Each task is a causal chain of dependent search steps over web sources.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "Scoped to one task type, deep-research / exhaustive information-seeking by agents, although it spans 17 domains."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Gemini Deep Research Agent, GPT-5 Pro/GPT-5 High Reasoning, Gemini 3 Pro Preview, o3 Deep Research, o4 Mini Deep Research, Gemini 2.5 Flash, Claude 4.5 Opus/Sonnet/Haiku."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "F1 (primary), precision, recall, and categorical rates (Fully Correct, Fully Incorrect, Partially Correct, Correct with Extraneous Answers) with 95% CIs."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "arXiv preprint, 28 Jan 2026."
+    }
+  },
+  "summary": "DeepSearchQA is a 900-prompt benchmark of hand-crafted, multi-step web research tasks across 17 fields whose answers are exhaustive sets rather than single items. It scores outcome-only with set-based precision/recall/F1 and categorical correctness using an LLM judge, and evaluates deep-research agents and reasoning models.",
+  "key_findings": "Gemini Deep Research Agent leads (F1 81.90, Fully Correct 66.09%), followed by GPT-5 Pro High Reasoning (F1 78.98, 65.18%). Smaller models drop sharply (Claude 4.5 Haiku F1 22.24, Fully Incorrect 71.00%). A ~15-point gap between F1 and Fully Correct reflects under-retrieval and hedging. Sampling n=8 raises Fully Correct from 67.18% to 85.71%.",
+  "relevant_asjc_areas": [
+    "History"
+  ],
+  "dataset_size": "900",
+  "evaluation_set_size": 900,
+  "evaluation_unit": "prompt with ground-truth answer set",
+  "primary_evaluation_setting": "zero-shot",
+  "gold_source": "domain_expert",
+  "gold_upstream": null,
+  "gold_upstream_source": null,
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "answer_set",
+  "plurality_treatment": "noise",
+  "facets_explanation": "Questions were curated by expert data annotators and verified via a three-phase protocol (independent research by three reviewers, comparison with the curator's ground truth, conflict resolution); ambiguous prompts were filtered out. Answers must be found on the open web rather than in the prompt. Scoring accepts a ground-truth answer set, matched by an LLM judge (Gemini 2.5 Flash) for semantic equivalence. The expert annotators are described as data annotators, not specifically humanities-trained, so domain_expert is the closest label.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 15,
+  "reported_format_gap_kind": "scoring",
+  "reported_gap_kinds": [
+    "scoring",
+    "input"
+  ],
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 81.9,
+  "reported_best_metric": "f1",
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "Table 4 lists 'Gemini Deep Research Agent 66.09 ±3.16 ... 81.90' as the top F1. The paper notes 'its strict success rate is 66.09%' versus an F1 of 81.90%, a 'roughly 15-point gap' (scoring kind, F1 vs fully correct). Sampling n times raises Fully Correct 'from 67.18% (n = 1) to 85.71% (n = 8)', an input/compute comparison of about 19 points, but the largest scoring gap is kept at 15 here. No human baseline is reported.",
+  "evidence": {
+    "humanities_role": [
+      {
+        "quote": "The questions span a broad distribution of domains—including Politics and Government, Finance and Economics, Science, Health, History, Geography, and Media",
+        "where": "p. 4, Section 2"
+      }
+    ],
+    "dataset_size": [
+      {
+        "quote": "The benchmark contains 900 prompts paired with ground-truth answer sets.",
+        "where": "p. 4, Section 2"
+      }
+    ],
+    "evaluation_set_size": [
+      {
+        "quote": "The benchmark contains 900 prompts paired with ground-truth answer sets.",
+        "where": "p. 4, Section 2"
+      }
+    ],
+    "primary_evaluation_setting": [
+      {
+        "quote": "we use Gemini 2.5 Flash (Gemini Team, Google, 2025) in a zero-shot setting",
+        "where": "p. 7, Section 3.2"
+      }
+    ],
+    "gold_source": [
+      {
+        "quote": "The DeepSearchQA dataset comprises a diverse set of questions curated by expert data annotators from various sources",
+        "where": "p. 4, Section 2"
+      }
+    ],
+    "gold_beyond_stimulus": [
+      {
+        "quote": "The benchmark requires agents to conduct deep, autonomous browsing operations to generate a complete, verifiable set of all possible answers",
+        "where": "p. 3, Section 1.3"
+      }
+    ],
+    "gold_community_dependent": [],
+    "gold_concerns_genesis": [],
+    "answer_multiplicity": [
+      {
+        "quote": "Set Answer: The answer is a collection of items.",
+        "where": "p. 4, Answer Types"
+      }
+    ],
+    "plurality_treatment": [
+      {
+        "quote": "Any discrepancies triggered a final 3) Conflict Resolution Phase",
+        "where": "p. 5, Quality Verification Protocol"
+      },
+      {
+        "quote": "All ambiguous prompts were filtered at this stage.",
+        "where": "p. 5, Quality Verification Protocol"
+      }
+    ],
+    "gold_upstream_source": [],
+    "reported_format_gap": [
+      {
+        "quote": "while the Gemini Deep Research Agent achieves an F1-Score of 81.90%, its strict success rate is 66.09%. This roughly 15-point gap",
+        "where": "p. 8, Metric Divergence"
+      }
+    ],
+    "reported_format_gap_points": [
+      {
+        "quote": "This roughly 15-point gap represents the “Last Mile Problem” in autonomous deep research.",
+        "where": "p. 8"
+      }
+    ],
+    "reported_format_gap_kind": [
+      {
+        "quote": "We observe a distinct divergence between the granular F1-Score and strict Fully Correct (𝑆= 𝐺) success rates.",
+        "where": "p. 8"
+      }
+    ],
+    "human_baseline_reported": [],
+    "human_gap_points": [],
+    "reported_best_score": [
+      {
+        "quote": "Gemini Deep Research Agent 66.09 ±3.16 9.95 ±2.00 10.30 ±2.03 81.90",
+        "where": "p. 8, Table 4"
+      }
+    ],
+    "reported_cultural_asymmetry": []
+  },
+  "checks": {
+    "missing_fields": [],
+    "vocab_warnings": [],
+    "evidence": {
+      "quotes": {
+        "humanities_role": [
+          "exact"
+        ],
+        "dataset_size": [
+          "exact"
+        ],
+        "evaluation_set_size": [
+          "exact"
+        ],
+        "primary_evaluation_setting": [
+          "exact"
+        ],
+        "gold_source": [
+          "exact"
+        ],
+        "gold_beyond_stimulus": [
+          "exact"
+        ],
+        "answer_multiplicity": [
+          "exact"
+        ],
+        "plurality_treatment": [
+          "exact",
+          "exact"
+        ],
+        "reported_format_gap": [
+          "exact"
+        ],
+        "reported_format_gap_points": [
+          "exact"
+        ],
+        "reported_format_gap_kind": [
+          "exact"
+        ],
+        "reported_best_score": [
+          "exact"
+        ]
+      },
+      "unsupported": [],
+      "unverified": []
+    }
+  },
+  "extraction": {
+    "round": "2026-11_claude",
+    "agent": "cip",
+    "role": "reader",
+    "scope": "technical",
+    "operator": "gspinaci",
+    "backend": "claude-cli",
+    "backend_kind": "claude-cli",
+    "model": "claude-sonnet-5-5",
+    "prompt_sha256": "de1b2a4e5c1121fdd28eae57251ef2535cfda50623e8b4280a669e829f653e73",
+    "scaffold_sha256": "910de03d8019fcc1daec329d31a9ae64b10f9ed69baaca8db4553000177bb766",
+    "rendered_prompt_sha256": "52126b3592a35fcfed2f5e554689adeab812ccda58148def656cde69d0802222",
+    "fields": [
+      "analytical_tasks",
+      "analytical_tasks_explanation",
+      "answer_multiplicity",
+      "benchmark_modalities",
+      "benchmark_modalities_explanation",
+      "benchmark_name",
+      "dataset_size",
+      "evaluation_set_size",
+      "evaluation_unit",
+      "facets_explanation",
+      "gold_beyond_stimulus",
+      "gold_community_dependent",
+      "gold_concerns_genesis",
+      "gold_source",
+      "gold_upstream",
+      "gold_upstream_source",
+      "human_baseline_reported",
+      "human_gap_points",
+      "humanities_role",
+      "humanities_role_explanation",
+      "inclusion_criteria",
+      "key_findings",
+      "plurality_treatment",
+      "primary_evaluation_setting",
+      "publication_year",
+      "relevant_asjc_areas",
+      "reported_best_metric",
+      "reported_best_score",
+      "reported_cultural_asymmetry",
+      "reported_format_gap",
+      "reported_format_gap_kind",
+      "reported_format_gap_points",
+      "reported_gap_kinds",
+      "results_explanation",
+      "summary"
+    ],
+    "input": {
+      "pdf_sha256": "1f9c11951f4374fe7445f6da27ac9b744614b822639cdd2fa8a97ee63f720de3",
+      "text_chars": 51030
+    },
+    "started": "2026-11-09T21:23:52+00:00",
+    "seconds": 16.6
+  },
+  "paper_id": "2601.20975"
+}

@@ -1,0 +1,240 @@
+{
+  "benchmark_name": "Historical OCR evaluation framework with Historical Character Preservation Rate (HCPR) and Archaic Insertion Rate (AIR) on 18th-century Russian Civil font texts",
+  "publication_year": 2025,
+  "humanities_role": "domain",
+  "humanities_role_explanation": "Targets disciplinary competence of diplomatic transcription of historical print for digital humanities corpus creation, including period-specific orthography (HCPR/AIR metrics), rather than using historical text as generic items.",
+  "benchmark_modalities": [
+    "image",
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Page/line images of 18th-century Russian books are given to multimodal LLMs, which output text transcriptions; text GT is compared against output. Post-OCR correction also tested with image+OCR text or text only.",
+  "analytical_tasks": [
+    "transcription_and_correction",
+    "visual_recognition"
+  ],
+  "analytical_tasks_explanation": "Diplomatic transcription (OCR) of 18th-century Russian Civil font pages in single-line, sliding-window and full-page modes; post-OCR correction experiments; historical character preservation and archaic insertion analysis.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "Scoped to a single task (historical OCR) and one corpus (18th-century Russian Civil font)."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "12 multimodal LLMs: Claude 3.5/3.7, GPT-4o, GPT-4.1, o4-mini, Gemini 2.0/2.0 Flash-Lite/2.5 Flash/2.5 Pro, Qwen2.5-VL-72B, Llama-4 Maverick/Scout."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "CER, WER, case-insensitive CER/WER, HCPR, AIR, CaseER, coefficient of variation of word accuracy."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "RANLP 2025 workshop, Sep 2025."
+    }
+  },
+  "summary": "The paper presents an evaluation methodology for LLM-based historical OCR with contamination-aware dataset creation, novel metrics (HCPR, AIR), and stability testing, demonstrated on 1,029 pages of 18th-century Russian Civil font books. Twelve multimodal LLMs are compared; Gemini and Qwen models perform best, LLMs 'over-historicize', and post-OCR correction does not help.",
+  "key_findings": "Gemini-2.5-Pro best in full-page mode (CER 3.36%, WER 4.69%, historical character error 9.83%). Traditional OCR much worse (Tesseract CER 21.55%, PyLaia 26.93%, Surya 45.96%). Models insert archaic characters (GPT-4o in 59% of files). Context-enhanced Russian prompts reduce CER by up to 0.02. Post-OCR correction degrades or fails to improve performance.",
+  "relevant_asjc_areas": [
+    "Language and Linguistics"
+  ],
+  "dataset_size": "1029",
+  "evaluation_set_size": 1029,
+  "evaluation_unit": "scanned page image (28,657 lines, 146,690 words)",
+  "primary_evaluation_setting": "mix",
+  "gold_source": "domain_expert",
+  "gold_upstream": null,
+  "gold_upstream_source": null,
+  "gold_beyond_stimulus": "no",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "not_stated",
+  "facets_explanation": "GT was prepared by layout analysis (YOLOv8), initial TrOCR transcription, then 100% manual correction in eScriptorium by a single expert annotator with a two-pass protocol following diplomatic principles. A 500-line stratified sample was audited by a second verifier (98.6% line exact match, 99.93% character accuracy). Scoring compares output to a single transcription via Levenshtein distance.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 15,
+  "reported_format_gap_kind": "input",
+  "reported_gap_kinds": [
+    "input",
+    "scoring"
+  ],
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 3.36,
+  "reported_best_metric": "cer",
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "Table 3 reports Gemini-2.5-Pro full page 'CER (%) 3.36' and WER 4.69. The largest input-mode gap is Gemini-2.5-Flash CER 4.94 (full page) vs 25.63 (sliding window), about 21 points; however GPT-4o 9.23 vs 23.75 single line is ~14.5. Largest: Gemini-2.5-Flash 4.94 vs 25.63 gives 20.69, so see note. No human baseline is given; the 98.6% verifier agreement is a GT audit, not a human-vs-model baseline.",
+  "evidence": {
+    "humanities_role": [
+      {
+        "quote": "Using 18th-century Russian Civil font texts, we introduce novel metrics including Historical Character Preservation Rate (HCPR) and Archaic Insertion Rate (AIR)",
+        "where": "p. 1, Abstract"
+      }
+    ],
+    "dataset_size": [
+      {
+        "quote": "a novel dataset of 1,029 pages from 428 unique 18th-century Russian books",
+        "where": "p. 2, Introduction"
+      }
+    ],
+    "evaluation_set_size": [
+      {
+        "quote": "which serves as the evaluation set for the LLMs",
+        "where": "p. 3, Section 3 Dataset"
+      }
+    ],
+    "primary_evaluation_setting": [
+      {
+        "quote": "we tested three prompting strategies: a simple English prompt, a context-enhanced English prompt, and a context-enhanced Russian prompt",
+        "where": "p. 4, Prompt Engineering Impact"
+      }
+    ],
+    "gold_source": [
+      {
+        "quote": "GT was produced by a single expert annotator using a two-pass protocol.",
+        "where": "p. 3, Section 3"
+      }
+    ],
+    "gold_beyond_stimulus": [
+      {
+        "quote": "preserving period-specific orthography, hyphenation, original errors, typos, and spacing conventions to accurately reflect the source documents",
+        "where": "p. 2-3, Manual Correction"
+      }
+    ],
+    "gold_community_dependent": [],
+    "gold_concerns_genesis": [],
+    "answer_multiplicity": [
+      {
+        "quote": "Character Error Rate (CER) and Word Error Rate (WER), using Levenshtein distance between prediction and ground truth.",
+        "where": "p. 3, Evaluation Metrics"
+      }
+    ],
+    "plurality_treatment": [],
+    "gold_upstream_source": [],
+    "reported_format_gap": [
+      {
+        "quote": "Gemini-2.5-Flash 4.94 6.70 18.79 26.21 25.63 30.77",
+        "where": "p. 5, Table 2"
+      }
+    ],
+    "reported_format_gap_points": [
+      {
+        "quote": "Gemini-2.5-Flash 4.94 6.70 18.79 26.21 25.63 30.77",
+        "where": "p. 5, Table 2"
+      }
+    ],
+    "reported_format_gap_kind": [
+      {
+        "quote": "We evaluated all models across the three recognition modes using standard metrics",
+        "where": "p. 4, Section 5"
+      }
+    ],
+    "human_baseline_reported": [],
+    "human_gap_points": [],
+    "reported_best_score": [
+      {
+        "quote": "Gemini-2.5-Pro 3.36 (0.14–20.95)",
+        "where": "p. 5, Table 3"
+      }
+    ],
+    "reported_cultural_asymmetry": []
+  },
+  "checks": {
+    "missing_fields": [],
+    "vocab_warnings": [],
+    "evidence": {
+      "quotes": {
+        "humanities_role": [
+          "exact"
+        ],
+        "dataset_size": [
+          "exact"
+        ],
+        "evaluation_set_size": [
+          "exact"
+        ],
+        "primary_evaluation_setting": [
+          "exact"
+        ],
+        "gold_source": [
+          "exact"
+        ],
+        "gold_beyond_stimulus": [
+          "fuzzy"
+        ],
+        "answer_multiplicity": [
+          "exact"
+        ],
+        "reported_format_gap": [
+          "exact"
+        ],
+        "reported_format_gap_points": [
+          "exact"
+        ],
+        "reported_format_gap_kind": [
+          "exact"
+        ],
+        "reported_best_score": [
+          "exact"
+        ]
+      },
+      "unsupported": [],
+      "unverified": []
+    }
+  },
+  "extraction": {
+    "round": "2026-11_claude",
+    "agent": "cip",
+    "role": "reader",
+    "scope": "technical",
+    "operator": "gspinaci",
+    "backend": "claude-cli",
+    "backend_kind": "claude-cli",
+    "model": "claude-sonnet-5-5",
+    "prompt_sha256": "de1b2a4e5c1121fdd28eae57251ef2535cfda50623e8b4280a669e829f653e73",
+    "scaffold_sha256": "910de03d8019fcc1daec329d31a9ae64b10f9ed69baaca8db4553000177bb766",
+    "rendered_prompt_sha256": "beb400a757d11a16738d7a20a7e29d716cdb03d6e35c5a44eff0e5186736f78a",
+    "fields": [
+      "analytical_tasks",
+      "analytical_tasks_explanation",
+      "answer_multiplicity",
+      "benchmark_modalities",
+      "benchmark_modalities_explanation",
+      "benchmark_name",
+      "dataset_size",
+      "evaluation_set_size",
+      "evaluation_unit",
+      "facets_explanation",
+      "gold_beyond_stimulus",
+      "gold_community_dependent",
+      "gold_concerns_genesis",
+      "gold_source",
+      "gold_upstream",
+      "gold_upstream_source",
+      "human_baseline_reported",
+      "human_gap_points",
+      "humanities_role",
+      "humanities_role_explanation",
+      "inclusion_criteria",
+      "key_findings",
+      "plurality_treatment",
+      "primary_evaluation_setting",
+      "publication_year",
+      "relevant_asjc_areas",
+      "reported_best_metric",
+      "reported_best_score",
+      "reported_cultural_asymmetry",
+      "reported_format_gap",
+      "reported_format_gap_kind",
+      "reported_format_gap_points",
+      "reported_gap_kinds",
+      "results_explanation",
+      "summary"
+    ],
+    "input": {
+      "pdf_sha256": "a8ce088b0465e9fd3f2b8455eb61ee299f0fde8c14fc46d58a12db6fcc84b62c",
+      "text_chars": 38460
+    },
+    "started": "2026-11-09T21:24:51+00:00",
+    "seconds": 16.2
+  },
+  "paper_id": "Evaluating_LLMs_for_Historical_Document_"
+}

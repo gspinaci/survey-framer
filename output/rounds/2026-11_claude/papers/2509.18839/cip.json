@@ -1,0 +1,246 @@
+{
+  "benchmark_name": "Benchmarking Vision-Language and Multimodal LLMs on Christian Iconography (ArtDL, ICONCLASS, Wikidata saint classification)",
+  "publication_year": 2025,
+  "humanities_role": "domain",
+  "humanities_role_explanation": "Items are paintings of Christian saints classified with Iconclass codes; the task targets iconographic classification, a core art-historical competence, for metadata curation in digital humanities.",
+  "benchmark_modalities": [
+    "image",
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Painting images are paired with text prompts listing class names or Iconclass descriptions (and few-shot labelled exemplars). The CSV metadata lists text only, but images are the primary stimulus.",
+  "analytical_tasks": [
+    "classification",
+    "visual_recognition"
+  ],
+  "analytical_tasks_explanation": "Single-label classification of Christian saints (10 classes per dataset) in paintings, framed as iconography classification with Iconclass codes; essentially recognition of which saint is depicted, from labels, Iconclass descriptions, or few-shot exemplars.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "Scoped to single-label Christian saint iconography classification."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "GPT-4o, GPT-4o-mini, Gemini 2.5 Pro, Gemini 2.5 Flash, plus CLIP and SigLIP variants."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Accuracy and cross-dataset prediction consistency; ResNet50 baselines."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "arXiv preprint September 2025."
+    }
+  },
+  "summary": "The paper benchmarks CLIP/SigLIP and multimodal LLMs (GPT-4o, Gemini 2.5) on single-label classification of Christian saints across three Iconclass-based datasets, under zero-shot with labels, zero-shot with Iconclass descriptions, and few-shot settings. LLMs beat fine-tuned ResNet50 baselines on ArtDL and ICONCLASS, while SigLIP does best on Wikidata.",
+  "key_findings": "Gemini-2.5 Pro reaches 90.45% on ArtDL and about 84-85% on ICONCLASS; on Wikidata SigLIP-so400m is best (66.29%) and LLMs fall to about 45%. Class descriptions generally help zero-shot; few-shot mostly lowers accuracy. LLMs show low cross-dataset consistency (25-33%) vs. contrastive models. Possible training contamination on ArtDL/ICONCLASS is noted.",
+  "relevant_asjc_areas": [
+    "Visual Arts and Performing Arts",
+    "History",
+    "Religious Studies"
+  ],
+  "dataset_size": "3445",
+  "evaluation_set_size": 1864,
+  "evaluation_unit": "painting image (single-label)",
+  "primary_evaluation_setting": "mix",
+  "gold_source": "existing_dataset",
+  "gold_upstream": "ArtDL (Milani and Fraternali) test set, ICONCLASS AI Test Set (Posthumus), and Wikidata Iconclass-coded paintings; this paper says only that images are annotated with Iconclass codes, and metadata is 'usually created by domain experts'.",
+  "gold_upstream_source": "not_stated",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "not_stated",
+  "facets_explanation": "Labels are Iconclass codes already attached to ArtDL, the ICONCLASS AI Test Set and Wikidata; the authors filtered to the top 10 classes and removed multi-label images. Identifying the saint requires iconographic knowledge not given in the image itself (except in the description condition). Each image has a single label scored by exact match.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 21,
+  "reported_format_gap_kind": "input",
+  "reported_gap_kinds": [
+    "input"
+  ],
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 90.45,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "Best headline: Gemini-2.5 Pro 90.45% accuracy on ArtDL Test 1. Largest within-model input gap: siglip-base-patch16-512 on ArtDL rises from 48.71% (Test 1) to 68.19% (Test 2) (about 19.5 points), and siglip-large-patch16-384 from 54.45% to 72.21%; the largest is clip-vit-large-patch14 on ArtDL, 30.58% to 44.31% (13.7), but siglip-base on Wikidata drops 57.47% to 46.94%. The largest observed is siglip-base ArtDL 48.71 to 68.19 = 19.48, rounded to 19; ICONCLASS siglip-base 43.51 vs others smaller. No human baseline reported. Evaluation set size is the ArtDL test set of 1,864 images; the dataset total is 1,864 + 863 + 718 = 3,445.",
+  "evidence": {
+    "humanities_role": [
+      {
+        "quote": "Iconography helps to understand the representations and themes expressed in images by identifying symbols, subjects, and motifs in paintings.",
+        "where": "p. 2, Introduction"
+      }
+    ],
+    "dataset_size": [
+      {
+        "quote": "The test set, published along with the paper, contains 1,864 images.",
+        "where": "p. 3, 2.1.1 ArtDL"
+      },
+      {
+        "quote": "resulting in a dataset comprising 863 images.",
+        "where": "p. 3, 2.1.2"
+      }
+    ],
+    "evaluation_set_size": [
+      {
+        "quote": "The test set, published along with the paper, contains 1,864 images.",
+        "where": "p. 3, 2.1.1 ArtDL"
+      }
+    ],
+    "primary_evaluation_setting": [
+      {
+        "quote": "Models were\ntested under three conditions: (1) classification using class labels, (2) classification with Iconclass\ndescriptions, and (3) few-shot learning with five exemplars.",
+        "where": "p. 1, Abstract"
+      }
+    ],
+    "gold_source": [
+      {
+        "quote": "Each image is annotated with\nIconclass codes, covering 10 key figures of Christian iconography",
+        "where": "p. 3, 2.1.1 ArtDL"
+      }
+    ],
+    "gold_beyond_stimulus": [
+      {
+        "quote": "This configuration tests the model’s\nability to leverage pre-trained knowledge connections between visual features and semantic concepts.",
+        "where": "p. 5, Test 1"
+      }
+    ],
+    "gold_community_dependent": [],
+    "gold_concerns_genesis": [],
+    "answer_multiplicity": [
+      {
+        "quote": "Each is mapped to a single\niconographic label",
+        "where": "p. 3, 2.1.1 ArtDL"
+      }
+    ],
+    "plurality_treatment": [],
+    "gold_upstream_source": [],
+    "reported_format_gap": [
+      {
+        "quote": "siglip-base-patch16-512\n48.71%\n68.19%\n55.90%",
+        "where": "p. 7, Table 2"
+      }
+    ],
+    "reported_format_gap_points": [
+      {
+        "quote": "siglip-base-patch16-512\n48.71%\n68.19%\n55.90%",
+        "where": "p. 7, Table 2"
+      }
+    ],
+    "reported_format_gap_kind": [
+      {
+        "quote": "Test 2\nis a zero-shot classification task with label descriptions.",
+        "where": "p. 5, 2.3"
+      }
+    ],
+    "human_baseline_reported": [],
+    "human_gap_points": [],
+    "reported_best_score": [
+      {
+        "quote": "gemini-2.5-pro-preview-05-06\n90.45%",
+        "where": "p. 7, Table 2"
+      }
+    ],
+    "reported_cultural_asymmetry": []
+  },
+  "checks": {
+    "missing_fields": [],
+    "vocab_warnings": [],
+    "evidence": {
+      "quotes": {
+        "humanities_role": [
+          "exact"
+        ],
+        "dataset_size": [
+          "exact",
+          "exact"
+        ],
+        "evaluation_set_size": [
+          "exact"
+        ],
+        "primary_evaluation_setting": [
+          "exact"
+        ],
+        "gold_source": [
+          "exact"
+        ],
+        "gold_beyond_stimulus": [
+          "exact"
+        ],
+        "answer_multiplicity": [
+          "exact"
+        ],
+        "reported_format_gap": [
+          "exact"
+        ],
+        "reported_format_gap_points": [
+          "exact"
+        ],
+        "reported_format_gap_kind": [
+          "exact"
+        ],
+        "reported_best_score": [
+          "exact"
+        ]
+      },
+      "unsupported": [],
+      "unverified": []
+    }
+  },
+  "extraction": {
+    "round": "2026-11_claude",
+    "agent": "cip",
+    "role": "reader",
+    "scope": "technical",
+    "operator": "gspinaci",
+    "backend": "claude-cli",
+    "backend_kind": "claude-cli",
+    "model": "claude-sonnet-5-5",
+    "prompt_sha256": "de1b2a4e5c1121fdd28eae57251ef2535cfda50623e8b4280a669e829f653e73",
+    "scaffold_sha256": "910de03d8019fcc1daec329d31a9ae64b10f9ed69baaca8db4553000177bb766",
+    "rendered_prompt_sha256": "8892f045e0087abf3dbb1fabed0d8868631c30071cce4cda39dedb55157d5024",
+    "fields": [
+      "analytical_tasks",
+      "analytical_tasks_explanation",
+      "answer_multiplicity",
+      "benchmark_modalities",
+      "benchmark_modalities_explanation",
+      "benchmark_name",
+      "dataset_size",
+      "evaluation_set_size",
+      "evaluation_unit",
+      "facets_explanation",
+      "gold_beyond_stimulus",
+      "gold_community_dependent",
+      "gold_concerns_genesis",
+      "gold_source",
+      "gold_upstream",
+      "gold_upstream_source",
+      "human_baseline_reported",
+      "human_gap_points",
+      "humanities_role",
+      "humanities_role_explanation",
+      "inclusion_criteria",
+      "key_findings",
+      "plurality_treatment",
+      "primary_evaluation_setting",
+      "publication_year",
+      "relevant_asjc_areas",
+      "reported_best_metric",
+      "reported_best_score",
+      "reported_cultural_asymmetry",
+      "reported_format_gap",
+      "reported_format_gap_kind",
+      "reported_format_gap_points",
+      "reported_gap_kinds",
+      "results_explanation",
+      "summary"
+    ],
+    "input": {
+      "pdf_sha256": "ffece62eff57fbf822d31ccafd6f6dd3f71dec6b9112ef99210bed289593c78c",
+      "text_chars": 40939
+    },
+    "started": "2026-11-09T21:24:21+00:00",
+    "seconds": 16.9
+  },
+  "paper_id": "2509.18839"
+}

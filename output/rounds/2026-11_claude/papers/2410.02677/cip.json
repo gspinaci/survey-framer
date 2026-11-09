@@ -1,0 +1,283 @@
+{
+  "benchmark_name": "CulturalBench",
+  "publication_year": 2025,
+  "humanities_role": "content",
+  "humanities_role_explanation": "Everyday cultural practices (food, greetings, etiquette, celebrations) from 45 regions supply the items, but the benchmark tests LLMs' cultural knowledge as general QA, not disciplinary humanities competence.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "English-only text questions: four-option multiple-choice (Easy) and True/False binary statements (Hard).",
+  "analytical_tasks": [
+    "multiple_choice_qa",
+    "factual_recall",
+    "cultural_reasoning",
+    "fact_verification"
+  ],
+  "analytical_tasks_explanation": "Cultural knowledge QA about region-specific norms and practices. Easy is multiple choice (incl. multi-select composite options); Hard converts each option into a True/False judgement and requires all four correct. Paper frames this as 'cultural knowledge' and tests 'mode-seeking' on multi-answer questions.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "Scoped to cultural knowledge QA, not a broad multi-task benchmark."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "29 LMs including GPT-4o, o1, o3-mini, GPT-3.5, Claude 3/3.5, Llama 3/3.1/3.3, Mistral/Mixtral, Qwen 2.5, DeepSeek V3/R1, Gemma 2, Cohere Aya, Grok 2."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Accuracy (Easy: per-question; Hard: all four binary judgements correct), compared with random and human baselines."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "arXiv 2410.02677v2, June 2025 (first posted October 2024)."
+    }
+  },
+  "summary": "CulturalBench is a set of 1,696 human-written and five-annotator-verified questions on cultural knowledge across 45 regions and 17 topics, built with a human-AI red-teaming pipeline (CulturalTeaming). It is released in an Easy multiple-choice and a Hard True/False version, and 29 LMs are evaluated zero-shot. Models fall far below humans on Hard and show regional asymmetries and difficulty with multi-answer questions.",
+  "key_findings": "Best on Hard is o1 at 61.4% (paper also states 61.5%) vs human 92.4%; on Easy best is o1 at 89.6%. Worst on Hard is Aya-8b at 28.7%. Multi-mode questions are much harder (avg 20.9% vs 49.6% single-mode). A question-free embedding heuristic reaches 40.4% on Easy. Models do better on North America, North Europe and South Asia, and worse on South America, East Europe and Middle East/West Asia. Regional providers (Mistral, Qwen, DeepSeek) do not beat GPT-4o on their own regions.",
+  "relevant_asjc_areas": [
+    "Cultural Studies",
+    "Anthropology",
+    "Language and Linguistics"
+  ],
+  "dataset_size": "1696",
+  "evaluation_set_size": 1696,
+  "evaluation_unit": "multiple-choice question (Hard version: 6,784 binary True/False statements derived from them)",
+  "primary_evaluation_setting": "zero-shot",
+  "gold_source": "crowd_annotation",
+  "gold_upstream": null,
+  "gold_upstream_source": null,
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "yes",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "answer_set",
+  "plurality_treatment": "noise",
+  "facets_explanation": "Questions were written by Prolific annotators from each region with AI help, then verified by five Prolific annotators per region (nationality and residence before 18); annotators could select multiple options and items were kept only with majority votes of at least 4 of 5. Multiple correct answers are accepted for multi-mode questions. Disagreement is resolved by majority filtering, and questions without consensus are removed. Answers depend on region-specific knowledge not in the question.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 28,
+  "reported_format_gap_kind": "format",
+  "reported_gap_kinds": [
+    "format",
+    "difficulty"
+  ],
+  "human_baseline_reported": "yes",
+  "human_gap_points": 31,
+  "reported_best_score": 61.4,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "yes",
+  "results_explanation": "o1 achieves 89.6% on Easy but 61.4% on Hard (same questions, MC vs True/False), a gap of about 28 points (89.6-61.4=28.2, rounded). Human baseline is 92.4%, so the gap to best Hard model is 92.4-61.4=31 points. Headline score is o1 on CulturalBench-Hard (the text also states 61.5% elsewhere). Regional averages: North America 57.9%, South America 41.5%, East Europe 41.5%, Middle East/West Asia 37.8%.",
+  "evidence": {
+    "humanities_role": [
+      {
+        "quote": "a set of 1,696 human-written and human-verified questions to assess LMs' cultural knowledge, covering 45 global regions",
+        "where": "p. 1, Abstract"
+      }
+    ],
+    "dataset_size": [
+      {
+        "quote": "We introduce CULTURALBENCH containing 1,696 high-quality, challenging and diverse questions with full verification by human annotators.",
+        "where": "p. 1, Introduction"
+      }
+    ],
+    "evaluation_set_size": [
+      {
+        "quote": "directly using the 1,696 standardized questions with four options",
+        "where": "p. 2, Introduction"
+      }
+    ],
+    "primary_evaluation_setting": [
+      {
+        "quote": "We evaluate 29 current LMs in a zero-shot setting on CULTURALBENCH in two setups",
+        "where": "p. 5, Sec. 4"
+      }
+    ],
+    "gold_source": [
+      {
+        "quote": "we recruited five annotators for each region through the Prolific platform",
+        "where": "p. 3, Sec. 2.2"
+      }
+    ],
+    "gold_beyond_stimulus": [
+      {
+        "quote": "Human annotators are instructed to brainstorm culturally relevant scenarios based on their personal experiences of their cultures",
+        "where": "p. 3, Sec. 2.1"
+      }
+    ],
+    "gold_community_dependent": [
+      {
+        "quote": "We collected questions at the country/regional level, pairing each question with a specific region.",
+        "where": "p. 3, Sec. 2.2"
+      }
+    ],
+    "gold_concerns_genesis": [],
+    "answer_multiplicity": [
+      {
+        "quote": "Multi-Mode: multiple correct answers",
+        "where": "p. 2, Introduction"
+      }
+    ],
+    "plurality_treatment": [
+      {
+        "quote": "We have strict criteria on filtering out questions with no answer having majority vote (i.e., ≥4 out of 5 annotators)",
+        "where": "p. 2, Introduction"
+      }
+    ],
+    "gold_upstream_source": [],
+    "reported_format_gap": [
+      {
+        "quote": "o1, achieves 89.6% accuracy on CULTURALBENCH-Easy but drops to 61.4% accuracy on CULTURALBENCH-Hard",
+        "where": "p. 6, Sec. 4.1"
+      }
+    ],
+    "reported_format_gap_points": [
+      {
+        "quote": "o1, achieves 89.6% accuracy on CULTURALBENCH-Easy but drops to 61.4% accuracy on CULTURALBENCH-Hard",
+        "where": "p. 6, Sec. 4.1"
+      }
+    ],
+    "reported_format_gap_kind": [
+      {
+        "quote": "converts each multiple choice question into a multi-label question with binary choice (True/False) for each of the four options",
+        "where": "p. 2, Introduction"
+      }
+    ],
+    "human_baseline_reported": [
+      {
+        "quote": "Compared to human performance (92.4% accuracy)",
+        "where": "p. 1, Abstract"
+      }
+    ],
+    "human_gap_points": [
+      {
+        "quote": "These scores are considerably lower compared to the human baseline of 92.4%",
+        "where": "p. 5, Sec. 4.1"
+      }
+    ],
+    "reported_best_score": [
+      {
+        "quote": "with accuracy ranging from 28.7% for Cohere Aya-8b to 61.4% for OpenAI o1",
+        "where": "p. 5, Sec. 4.1"
+      }
+    ],
+    "reported_cultural_asymmetry": [
+      {
+        "quote": "Models score lower in questions relating to South America, East Europe, and the Middle East.",
+        "where": "p. 7, Sec. 4.3"
+      }
+    ]
+  },
+  "checks": {
+    "missing_fields": [],
+    "vocab_warnings": [],
+    "evidence": {
+      "quotes": {
+        "humanities_role": [
+          "exact"
+        ],
+        "dataset_size": [
+          "exact"
+        ],
+        "evaluation_set_size": [
+          "exact"
+        ],
+        "primary_evaluation_setting": [
+          "exact"
+        ],
+        "gold_source": [
+          "exact"
+        ],
+        "gold_beyond_stimulus": [
+          "exact"
+        ],
+        "gold_community_dependent": [
+          "exact"
+        ],
+        "answer_multiplicity": [
+          "fuzzy"
+        ],
+        "plurality_treatment": [
+          "exact"
+        ],
+        "reported_format_gap": [
+          "exact"
+        ],
+        "reported_format_gap_points": [
+          "exact"
+        ],
+        "reported_format_gap_kind": [
+          "exact"
+        ],
+        "human_baseline_reported": [
+          "exact"
+        ],
+        "human_gap_points": [
+          "exact"
+        ],
+        "reported_best_score": [
+          "exact"
+        ],
+        "reported_cultural_asymmetry": [
+          "exact"
+        ]
+      },
+      "unsupported": [],
+      "unverified": []
+    }
+  },
+  "extraction": {
+    "round": "2026-11_claude",
+    "agent": "cip",
+    "role": "reader",
+    "scope": "technical",
+    "operator": "gspinaci",
+    "backend": "claude-cli",
+    "backend_kind": "claude-cli",
+    "model": "claude-sonnet-5-5",
+    "prompt_sha256": "de1b2a4e5c1121fdd28eae57251ef2535cfda50623e8b4280a669e829f653e73",
+    "scaffold_sha256": "910de03d8019fcc1daec329d31a9ae64b10f9ed69baaca8db4553000177bb766",
+    "rendered_prompt_sha256": "41b95ef0fd4a1458826fafd9b7c8ffc7f847ba26936a95504ca022079d4dff6e",
+    "fields": [
+      "analytical_tasks",
+      "analytical_tasks_explanation",
+      "answer_multiplicity",
+      "benchmark_modalities",
+      "benchmark_modalities_explanation",
+      "benchmark_name",
+      "dataset_size",
+      "evaluation_set_size",
+      "evaluation_unit",
+      "facets_explanation",
+      "gold_beyond_stimulus",
+      "gold_community_dependent",
+      "gold_concerns_genesis",
+      "gold_source",
+      "gold_upstream",
+      "gold_upstream_source",
+      "human_baseline_reported",
+      "human_gap_points",
+      "humanities_role",
+      "humanities_role_explanation",
+      "inclusion_criteria",
+      "key_findings",
+      "plurality_treatment",
+      "primary_evaluation_setting",
+      "publication_year",
+      "relevant_asjc_areas",
+      "reported_best_metric",
+      "reported_best_score",
+      "reported_cultural_asymmetry",
+      "reported_format_gap",
+      "reported_format_gap_kind",
+      "reported_format_gap_points",
+      "reported_gap_kinds",
+      "results_explanation",
+      "summary"
+    ],
+    "input": {
+      "pdf_sha256": "f9848b7945f58b28bd4df9c66f66949c5fb53c364e9a39d7c8578eeec5abb5e8",
+      "text_chars": 91664
+    },
+    "started": "2026-11-09T21:25:11+00:00",
+    "seconds": 18.6
+  },
+  "paper_id": "2410.02677"
+}

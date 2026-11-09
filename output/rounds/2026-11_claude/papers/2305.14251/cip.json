@@ -1,0 +1,242 @@
+{
+  "benchmark_name": "FActScore (Factual precision in Atomicity Score)",
+  "publication_year": 2023,
+  "humanities_role": "content",
+  "humanities_role_explanation": "People biographies (sampled from Wikidata/Wikipedia) supply the generation prompts, but the competence tested is general factual precision of long-form generation, not disciplinary humanities competence.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Text-only: prompts 'Tell me a bio of <entity>' and LM-generated biographies, decomposed into atomic facts and checked against English Wikipedia text.",
+  "analytical_tasks": [
+    "generation",
+    "fact_verification",
+    "factual_recall",
+    "information_extraction"
+  ],
+  "analytical_tasks_explanation": "LMs generate biographies (long-form generation); each atomic fact is labeled Supported/Not-supported/Irrelevant against Wikipedia (fact verification of 'atomic facts'). Breaking generations into atomic facts is a form of information extraction. Correct generation relies on factual recall of entity knowledge, including rare entities.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "Scoped to a single task: factual precision of people biographies against Wikipedia."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "InstructGPT, ChatGPT, PerplexityAI (human eval); plus GPT-4, Alpaca, Vicuna, Dolly, Oasst-pythia, StableLM-tuned, MPT Chat via the automated estimator."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "FActScore (% atomic facts supported), Error Rate vs human FActScore, ranking consistency, F1 micro, Pearson r."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "arXiv 2305.14251, May 2023 (v2 Oct 2023)."
+    }
+  },
+  "summary": "The paper introduces FActScore, which decomposes long-form generations into atomic facts and computes the share supported by a knowledge source (Wikipedia). It reports human-annotated FActScores for three commercial LMs and presents an automatic retrieval+LM estimator with <2% error, used to evaluate 13 subjects on 500 biographies each.",
+  "key_findings": "Human FActScores: InstructGPT 42.5, ChatGPT 58.3, PerplexityAI 71.5. Scores drop for rarer entities (ChatGPT 80% to 16%) and for later positions in generations. Estimator error rate under 2% (best variants), retrieval helps substantially. GPT-4 and ChatGPT are more factual than public models; all LMs less factual than humans; Vicuna and Alpaca are best public models.",
+  "relevant_asjc_areas": [
+    "Language and Linguistics"
+  ],
+  "dataset_size": "183 human-annotated people entities (549 annotated generations) plus 500 unlabeled entities for 13 subjects (6,500 generations)",
+  "evaluation_set_size": 183,
+  "evaluation_unit": "people entity (biography generation prompt), each decomposed into atomic facts",
+  "primary_evaluation_setting": "zero-shot",
+  "gold_source": "domain_expert",
+  "gold_upstream": null,
+  "gold_upstream_source": null,
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "noise",
+  "facets_explanation": "Freelance fact-checking experts hired via Upwork revised InstructGPT-generated atomic facts and labeled each as Supported/Not-supported/Irrelevant against English Wikipedia; 10% of data was double-annotated (96/90/88% agreement). Each fact has a single binary label; the paper treats disagreement as limitation cases (70% attributed to debatability, mistakes) and assumes support is 'undebatable'. Answering requires parametric knowledge of the person, which is not in the prompt.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": null,
+  "reported_format_gap_kind": "input",
+  "reported_gap_kinds": [
+    "input"
+  ],
+  "human_baseline_reported": "yes",
+  "human_gap_points": null,
+  "reported_best_score": 71.5,
+  "reported_best_metric": "other",
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "Table 1 'FACTSCORE 42.5 58.3 71.5' for InstructGPT, ChatGPT, PerplexityAI (human evaluation); the headline is PerplexityAI 71.5 on FActScore (percentage of supported atomic facts, not a standard metric, so labeled 'other'). Format gap: estimator variants with and without retrieval differ (e.g. ChatGPT No-context ER 39.6 vs Retrieve→LM 5.1 for InstructGPT), but no single points figure is extracted. Human baseline: human-written bios are scored by the estimator and exceed all LMs, but no exact number is given in text, so human_gap_points is null.",
+  "evidence": {
+    "humanities_role": [
+      {
+        "quote": "We evaluate FACTSCORE on the task of generating people biographies because generations consist of verifiable statements rather than debatable or subjective ones",
+        "where": "p. 2, Introduction"
+      }
+    ],
+    "dataset_size": [
+      {
+        "quote": "In total, we evaluate 6,500 generations from 13 subjects, which would have cost $26K if they were evaluated by humans.",
+        "where": "p. 8, Section 4.3.1"
+      },
+      {
+        "quote": "We sample 183 people entities from Wikidata who have corresponding Wikipedia pages.",
+        "where": "p. 4, Section 3.3"
+      }
+    ],
+    "evaluation_set_size": [
+      {
+        "quote": "We sample 183 people entities from Wikidata who have corresponding Wikipedia pages.",
+        "where": "p. 4, Section 3.3"
+      }
+    ],
+    "primary_evaluation_setting": [
+      {
+        "quote": "The validation is based on zero-shot prompting of an LM referred to as an LMEVAL",
+        "where": "p. 6, Section 4.1"
+      }
+    ],
+    "gold_source": [
+      {
+        "quote": "We recruit fact-checking experts—freelancers who mentioned fact-checking as their expertise—for Step 3.",
+        "where": "p. 15, Appendix A.3"
+      }
+    ],
+    "gold_beyond_stimulus": [
+      {
+        "quote": "We feed a prompt “Tell me a bio of <entity>” to the LMSUBJ and take a generation as it is.",
+        "where": "p. 4, Section 3.3 Step 1"
+      }
+    ],
+    "gold_community_dependent": [],
+    "gold_concerns_genesis": [],
+    "answer_multiplicity": [
+      {
+        "quote": "assigning a binary label to each atomic fact, allowing a fine-grained evaluation of factual precision",
+        "where": "p. 1-2, Introduction"
+      }
+    ],
+    "plurality_treatment": [
+      {
+        "quote": "Whether or not an atomic fact is supported by C is undebatable.",
+        "where": "p. 3, Section 3.1 assumptions"
+      }
+    ],
+    "gold_upstream_source": [],
+    "reported_format_gap": [],
+    "reported_format_gap_points": [],
+    "reported_format_gap_kind": [],
+    "human_baseline_reported": [
+      {
+        "quote": "All LMs are substantially less factual than humans.",
+        "where": "p. 8, Section 4.3.2"
+      }
+    ],
+    "human_gap_points": [],
+    "reported_best_score": [
+      {
+        "quote": "FACTSCORE 42.5 58.3 71.5",
+        "where": "p. 4, Table 1"
+      }
+    ],
+    "reported_cultural_asymmetry": []
+  },
+  "checks": {
+    "missing_fields": [],
+    "vocab_warnings": [],
+    "evidence": {
+      "quotes": {
+        "humanities_role": [
+          "exact"
+        ],
+        "dataset_size": [
+          "exact",
+          "exact"
+        ],
+        "evaluation_set_size": [
+          "exact"
+        ],
+        "primary_evaluation_setting": [
+          "exact"
+        ],
+        "gold_source": [
+          "exact"
+        ],
+        "gold_beyond_stimulus": [
+          "exact"
+        ],
+        "answer_multiplicity": [
+          "missing"
+        ],
+        "plurality_treatment": [
+          "exact"
+        ],
+        "human_baseline_reported": [
+          "exact"
+        ],
+        "reported_best_score": [
+          "exact"
+        ]
+      },
+      "unsupported": [
+        "reported_format_gap",
+        "reported_format_gap_kind"
+      ],
+      "unverified": [
+        "answer_multiplicity"
+      ]
+    }
+  },
+  "extraction": {
+    "round": "2026-11_claude",
+    "agent": "cip",
+    "role": "reader",
+    "scope": "technical",
+    "operator": "gspinaci",
+    "backend": "claude-cli",
+    "backend_kind": "claude-cli",
+    "model": "claude-sonnet-5-5",
+    "prompt_sha256": "de1b2a4e5c1121fdd28eae57251ef2535cfda50623e8b4280a669e829f653e73",
+    "scaffold_sha256": "910de03d8019fcc1daec329d31a9ae64b10f9ed69baaca8db4553000177bb766",
+    "rendered_prompt_sha256": "12644ddafc0548fc9457ace7fbd6e6a2b6d3a5dc0c5b745dfb9a28cfd4208a7c",
+    "fields": [
+      "analytical_tasks",
+      "analytical_tasks_explanation",
+      "answer_multiplicity",
+      "benchmark_modalities",
+      "benchmark_modalities_explanation",
+      "benchmark_name",
+      "dataset_size",
+      "evaluation_set_size",
+      "evaluation_unit",
+      "facets_explanation",
+      "gold_beyond_stimulus",
+      "gold_community_dependent",
+      "gold_concerns_genesis",
+      "gold_source",
+      "gold_upstream",
+      "gold_upstream_source",
+      "human_baseline_reported",
+      "human_gap_points",
+      "humanities_role",
+      "humanities_role_explanation",
+      "inclusion_criteria",
+      "key_findings",
+      "plurality_treatment",
+      "primary_evaluation_setting",
+      "publication_year",
+      "relevant_asjc_areas",
+      "reported_best_metric",
+      "reported_best_score",
+      "reported_cultural_asymmetry",
+      "reported_format_gap",
+      "reported_format_gap_kind",
+      "reported_format_gap_points",
+      "reported_gap_kinds",
+      "results_explanation",
+      "summary"
+    ],
+    "input": {
+      "pdf_sha256": "88f7542131228f320829a67678f5dec2b069a72acf3852b3e563f0c1d03fc8ff",
+      "text_chars": 96904
+    },
+    "started": "2026-11-09T21:23:50+00:00",
+    "seconds": 16.3
+  },
+  "paper_id": "2305.14251"
+}

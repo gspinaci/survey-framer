@@ -1,0 +1,258 @@
+{
+  "benchmark_name": "HistBench",
+  "publication_year": 2025,
+  "humanities_role": "domain",
+  "humanities_role_explanation": "HistBench is designed to evaluate historical reasoning and historical research capabilities (source processing, historical analysis, bibliographic retrieval) with questions authored by historians; it targets disciplinary competence itself.",
+  "benchmark_modalities": [
+    "text",
+    "image",
+    "audio",
+    "video"
+  ],
+  "benchmark_modalities_explanation": "Questions are grounded in printed texts, manuscript scans, images, maps, inscriptions, audio recordings and video; some combine text and image. Most are image/manuscript-based questions with text prompts; audio (9) and video (5) are small subsets.",
+  "analytical_tasks": [
+    "factual_recall",
+    "multiple_choice_qa",
+    "open_ended_qa",
+    "information_extraction",
+    "transcription_and_correction",
+    "translation",
+    "causal_and_temporal_reasoning",
+    "interpretation",
+    "attribution",
+    "visual_recognition",
+    "cultural_reasoning",
+    "agentic_tool_use",
+    "retrieval_and_ranking"
+  ],
+  "analytical_tasks_explanation": "Six dimensions: bibliographic retrieval, source identification, source processing (handwriting/image/audio/video extraction), historical analysis (causal inference, ideological analysis), interdisciplinary integration, cultural contextualization. Formats are exact-match short answers (306) and multiple-choice (108). Examples include translating and dating a Latin inscription, identifying a person in an image, and paleography of Old Uighur text. Evaluated systems are search-augmented LLMs and agents.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "Scoped to a single domain (history)."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "GPT-4o, DeepSeek-R1, o4-mini-high, o3, Grok 3 with online search, plus HistAgent and ODR-smolagents agents."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Accuracy (pass@1, pass@2) judged by an LLM plus human expert validation."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "arXiv 2505.20246, May-June 2025."
+    }
+  },
+  "summary": "The paper introduces HistBench, a 414-question expert-authored benchmark for historical reasoning across 29 languages and multimodal sources, and HistAgent, a tool-equipped history-specific agent. HistAgent (GPT-4o) outperforms generalist agents and search-augmented LLMs on HistBench, the HLE history subset, and is competitive on GAIA.",
+  "key_findings": "HistAgent (GPT-4o) gets 27.54% pass@1 and 36.47% pass@2 on HistBench versus ODR-smolagents 20.29%/25.12%, GPT-4o online 18.60%, Grok 3 17.63%, DeepSeek-R1 14.49%. o3:online reaches 32.37% and o4-mini-high:online 30.68% average. On the HLE history subset HistAgent gets 28.57% pass@1. On GAIA validation it gets 60.00% pass@1.",
+  "relevant_asjc_areas": [
+    "Arts and Humanities (miscellaneous)",
+    "History",
+    "Archeology (arts and humanities)",
+    "Language and Linguistics",
+    "Classics",
+    "Visual Arts and Performing Arts"
+  ],
+  "dataset_size": "414",
+  "evaluation_set_size": 414,
+  "evaluation_unit": "question",
+  "primary_evaluation_setting": "zero-shot",
+  "gold_source": "domain_expert",
+  "gold_upstream": null,
+  "gold_upstream_source": null,
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "not_stated",
+  "facets_explanation": "Questions and answers were authored by more than 40 contributors (research assistants, graduate students, professors) with history backgrounds, each providing an answer, explanation and references, then reviewed by screening, LLM pre-evaluation (questions solved by more than two models excluded) and professional review. Many questions require rare external knowledge or literature search. Scoring uses a single ground-truth answer (exact match or one correct option), judged by an LLM; the limitations note that scholars may disagree, but no treatment of annotator disagreement is described.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 10,
+  "reported_format_gap_kind": "input",
+  "reported_gap_kinds": [
+    "input",
+    "difficulty"
+  ],
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 36.47,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "Best headline: HistAgent(gpt-4o) pass@2 average 36.47 on HistBench (accuracy %). Pass@1 vs pass@2 for HistAgent is 27.54 vs 36.47 (a ~9-point difference, a retry-based comparison; the largest per-level difference, Level 2, is 23.84 vs 35.47, about 12 points, rounded to 12 -- reported here as ~10 approximate). Standalone o3:online scores 32.37 average. No human baseline is reported.",
+  "evidence": {
+    "humanities_role": [
+      {
+        "quote": "HistBench is the first benchmark specifically designed to evaluate the capabilities of LLMs in historical reasoning.",
+        "where": "p. 5, Section 3.1"
+      }
+    ],
+    "dataset_size": [
+      {
+        "quote": "HistBench contains a total of 414 questions, spanning diverse historical domains, periods, and geographic regions.",
+        "where": "p. 8, Section 3.4.1"
+      }
+    ],
+    "evaluation_set_size": [
+      {
+        "quote": "the percentage of the 414 questions for which the agent’s response is judged correct by both the LLM judge and professtional validation",
+        "where": "p. 15, Section 5.2"
+      }
+    ],
+    "primary_evaluation_setting": [
+      {
+        "quote": "Each question is posed to the agent in a fresh session.",
+        "where": "p. 14, Section 5.1"
+      }
+    ],
+    "gold_source": [
+      {
+        "quote": "The benchmark contains 414 questions authored by more than 40 contributors, including Ph.D. students and domain experts.",
+        "where": "p. 5, Section 3.1"
+      }
+    ],
+    "gold_beyond_stimulus": [
+      {
+        "quote": "Questions that are solved by more than two existing models without access to supporting materials are excluded from the dataset.",
+        "where": "p. 8, Stage 2"
+      }
+    ],
+    "gold_community_dependent": [],
+    "gold_concerns_genesis": [],
+    "answer_multiplicity": [
+      {
+        "quote": "all the questions are closed questions with an only exact answer to simplify the evaluation criteria",
+        "where": "p. 21, Limitations"
+      }
+    ],
+    "plurality_treatment": [],
+    "gold_upstream_source": [],
+    "reported_format_gap": [
+      {
+        "quote": "HistAgent(gpt-4o) pass@1 28.92 23.84 32.89 27.54 pass@2 36.14 35.47 39.47 36.47",
+        "where": "p. 16, Table 5"
+      }
+    ],
+    "reported_format_gap_points": [
+      {
+        "quote": "pass@2 36.14 35.47 39.47 36.47",
+        "where": "p. 16, Table 5"
+      }
+    ],
+    "reported_format_gap_kind": [
+      {
+        "quote": "HistAgent(gpt-4o) pass@1 28.92 23.84 32.89 27.54",
+        "where": "p. 16, Table 5"
+      }
+    ],
+    "human_baseline_reported": [],
+    "human_gap_points": [],
+    "reported_best_score": [
+      {
+        "quote": "HistAgent based on GPT-4o achieves an accuracy of 27.54% pass@1 and 36.47% pass@2",
+        "where": "p. 1, Abstract"
+      }
+    ],
+    "reported_cultural_asymmetry": []
+  },
+  "checks": {
+    "missing_fields": [],
+    "vocab_warnings": [],
+    "evidence": {
+      "quotes": {
+        "humanities_role": [
+          "exact"
+        ],
+        "dataset_size": [
+          "exact"
+        ],
+        "evaluation_set_size": [
+          "exact"
+        ],
+        "primary_evaluation_setting": [
+          "exact"
+        ],
+        "gold_source": [
+          "exact"
+        ],
+        "gold_beyond_stimulus": [
+          "exact"
+        ],
+        "answer_multiplicity": [
+          "exact"
+        ],
+        "reported_format_gap": [
+          "exact"
+        ],
+        "reported_format_gap_points": [
+          "exact"
+        ],
+        "reported_format_gap_kind": [
+          "exact"
+        ],
+        "reported_best_score": [
+          "exact"
+        ]
+      },
+      "unsupported": [],
+      "unverified": []
+    }
+  },
+  "extraction": {
+    "round": "2026-11_claude",
+    "agent": "cip",
+    "role": "reader",
+    "scope": "technical",
+    "operator": "gspinaci",
+    "backend": "claude-cli",
+    "backend_kind": "claude-cli",
+    "model": "claude-sonnet-5-5",
+    "prompt_sha256": "de1b2a4e5c1121fdd28eae57251ef2535cfda50623e8b4280a669e829f653e73",
+    "scaffold_sha256": "910de03d8019fcc1daec329d31a9ae64b10f9ed69baaca8db4553000177bb766",
+    "rendered_prompt_sha256": "7fb8a7dcfb806f15512ff2531332856faaae1aa2d78a357cd1b74aecb5e59111",
+    "fields": [
+      "analytical_tasks",
+      "analytical_tasks_explanation",
+      "answer_multiplicity",
+      "benchmark_modalities",
+      "benchmark_modalities_explanation",
+      "benchmark_name",
+      "dataset_size",
+      "evaluation_set_size",
+      "evaluation_unit",
+      "facets_explanation",
+      "gold_beyond_stimulus",
+      "gold_community_dependent",
+      "gold_concerns_genesis",
+      "gold_source",
+      "gold_upstream",
+      "gold_upstream_source",
+      "human_baseline_reported",
+      "human_gap_points",
+      "humanities_role",
+      "humanities_role_explanation",
+      "inclusion_criteria",
+      "key_findings",
+      "plurality_treatment",
+      "primary_evaluation_setting",
+      "publication_year",
+      "relevant_asjc_areas",
+      "reported_best_metric",
+      "reported_best_score",
+      "reported_cultural_asymmetry",
+      "reported_format_gap",
+      "reported_format_gap_kind",
+      "reported_format_gap_points",
+      "reported_gap_kinds",
+      "results_explanation",
+      "summary"
+    ],
+    "input": {
+      "pdf_sha256": "9b091bf44d17705da000ab22e678aebb6a478ca22d8f2cc84f7861bafdbcc97a",
+      "text_chars": 87926
+    },
+    "started": "2026-11-09T21:26:04+00:00",
+    "seconds": 16.5
+  },
+  "paper_id": "2505.20246"
+}

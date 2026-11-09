@@ -1,0 +1,262 @@
+{
+  "benchmark_name": "CzechTopic",
+  "publication_year": 2026,
+  "humanities_role": "content",
+  "humanities_role_explanation": "Historical Czech documents (OCR'd books and periodicals) supply the texts, but the competence tested is generic topic localization (span-level text understanding), not a disciplinary humanities skill.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Text-only: OCR output (PERO-OCR) from scanned historical Czech pages, split into 768-1024 character segments; topics given as name plus short description.",
+  "analytical_tasks": [
+    "information_extraction",
+    "classification"
+  ],
+  "analytical_tasks_explanation": "Topic localization: identifying word-level spans expressing a given topic (name + description), with overlapping and non-contiguous spans; also text-level topic presence detection (document-level zero-shot classification). Span labeling via tagging and matching paradigms.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "Scoped to a single task, topic localization, on Czech historical texts."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "GPT-5.2, GPT-5-mini, GPT-5-nano, gpt-oss-20b, Llama 3.3 70B, Llama 3.2 3B, Gemma 3 27B/4B, Gemini 3 Pro Preview; plus fine-tuned BERT-style encoders."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Precision, recall, F1, IoU, localization success at IoU thresholds, Krippendorff's alpha, bootstrap CIs."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "arXiv preprint 4 March 2026."
+    }
+  },
+  "summary": "The paper introduces CzechTopic, a human-annotated benchmark for zero-shot topic localization in historical Czech documents, with topics defined by name and description and annotated word-level spans. Evaluation is relative to human pairwise agreement rather than a single gold annotation. LLMs and BERT cross-encoders distilled from gpt-5-mini annotations are benchmarked.",
+  "key_findings": "Best LLM (gpt-5-2) reaches word-level F1 61.1 and IoU 48.7 versus human baseline 68.7 F1 and 57.2 IoU; text-level F1 80.6 vs 83.2. LLM word F1 ranges from 13.2 to 61.1. Best distilled BERT (robeczech) gets word F1 48.3. Matching beats tagging by 0.104 F1; few-shot adds 0.010; prompt language has no effect. Krippendorff's alpha 0.616 (micro).",
+  "relevant_asjc_areas": [
+    "Language and Linguistics"
+  ],
+  "dataset_size": "525 texts (363 topics, 1,820 annotated text-topic pairs) in the human-annotated benchmark; an additional distilled development set of 15,550 texts is separate.",
+  "evaluation_set_size": 363,
+  "evaluation_unit": "topic (macro-averaged over topics; 1,820 annotated text-topic pairs across 525 texts)",
+  "primary_evaluation_setting": "mix",
+  "gold_source": "domain_expert",
+  "gold_upstream": null,
+  "gold_upstream_source": null,
+  "gold_beyond_stimulus": "no",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "answer_set",
+  "plurality_treatment": "signal",
+  "facets_explanation": "Human annotators defined topics (Phase 1) and localized spans independently (Phase 2) following written guidelines and regular meetings; their disciplinary training is not stated, so domain_expert is a weak reading. Evaluation is against all annotators' spans via average pairwise agreement rather than a single gold, so divergence is treated as informative; the paper tests that annotators agree more with each other than with the topic author. A separate development set was LLM-generated (gpt-5-mini) but is not the evaluation key.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 10,
+  "reported_format_gap_kind": "scoring",
+  "reported_gap_kinds": [
+    "scoring",
+    "input"
+  ],
+  "human_baseline_reported": "yes",
+  "human_gap_points": 8,
+  "reported_best_score": 61.1,
+  "reported_best_metric": "f1",
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "Best LLM gpt-5-2-2025-12-11 has word-level F1 61.1 (human baseline 68.7), so gap is 8 points (68.7-61.1=7.6, rounded). Gap points 10 derive from ablation: matching improves word F1 by 0.104 over tagging (converted to ~10 points); few-shot vs zero-shot 0.010.",
+  "evidence": {
+    "humanities_role": [
+      {
+        "quote": "The data for our dataset originate from historical Czech documents, primarily books and periodicals.",
+        "where": "p. 5, Section 3.1"
+      }
+    ],
+    "dataset_size": [
+      {
+        "quote": "comprising 525 texts, 363 topics, and 1,820 annotated (text, topic) pairs",
+        "where": "p. 3, Contributions"
+      }
+    ],
+    "evaluation_set_size": [
+      {
+        "quote": "All metrics are macro-averaged over topics.",
+        "where": "p. 9, Section 4.1"
+      },
+      {
+        "quote": "In total, 363 topics were annotated, yielding 1,820 annotated (text, topic) pairs.",
+        "where": "p. 7, Section 3.3"
+      }
+    ],
+    "primary_evaluation_setting": [
+      {
+        "quote": "Experiments were conducted in both zero-shot and few-shot settings",
+        "where": "p. 9, Section 4.3"
+      }
+    ],
+    "gold_source": [
+      {
+        "quote": "The annotation process involved multiple annotators and was conducted in two phases: topic definition (Phase 1) and topic localization (Phase 2)",
+        "where": "p. 6, Section 3.2"
+      }
+    ],
+    "gold_beyond_stimulus": [
+      {
+        "quote": "The objective is to identify and localize all spans in the document that correspond to the given topic.",
+        "where": "p. 2, Fig. 1"
+      }
+    ],
+    "gold_community_dependent": [],
+    "gold_concerns_genesis": [],
+    "answer_multiplicity": [
+      {
+        "quote": "Rather than constructing a single gold annotation, we define the human baseline using average pairwise agreement",
+        "where": "p. 3, Introduction"
+      }
+    ],
+    "plurality_treatment": [
+      {
+        "quote": "This result indicates a systematic, though moderate, divergence between the original topic formulation and subsequent localization judgments.",
+        "where": "p. 12, Results"
+      }
+    ],
+    "gold_upstream_source": [],
+    "reported_format_gap": [],
+    "reported_format_gap_points": [
+      {
+        "quote": "the matching approach improves span-level F1 by 0.104 compared to tagging",
+        "where": "p. 12, Ablation"
+      }
+    ],
+    "reported_format_gap_kind": [
+      {
+        "quote": "the matching approach improves span-level F1 by 0.104 compared to tagging",
+        "where": "p. 12, Ablation"
+      }
+    ],
+    "human_baseline_reported": [
+      {
+        "quote": "Human baseline\n85.7 86.7 83.2[81.5,84.9]\n72.8 72.8 68.7[66.7,70.6] 57.2[55.1,59.3]",
+        "where": "p. 11, Table 2"
+      }
+    ],
+    "human_gap_points": [
+      {
+        "quote": "remaining notably below the human baseline (68.7 F1 and 57.2 IoU, p < 0.001)",
+        "where": "p. 10, Results"
+      }
+    ],
+    "reported_best_score": [
+      {
+        "quote": "Even the strongest LLM achieves a word-level F1 of 61.1 and IoU of 48.7",
+        "where": "p. 10, Results"
+      }
+    ],
+    "reported_cultural_asymmetry": []
+  },
+  "checks": {
+    "missing_fields": [],
+    "vocab_warnings": [],
+    "evidence": {
+      "quotes": {
+        "humanities_role": [
+          "exact"
+        ],
+        "dataset_size": [
+          "exact"
+        ],
+        "evaluation_set_size": [
+          "exact",
+          "exact"
+        ],
+        "primary_evaluation_setting": [
+          "exact"
+        ],
+        "gold_source": [
+          "exact"
+        ],
+        "gold_beyond_stimulus": [
+          "exact"
+        ],
+        "answer_multiplicity": [
+          "exact"
+        ],
+        "plurality_treatment": [
+          "exact"
+        ],
+        "reported_format_gap_points": [
+          "exact"
+        ],
+        "reported_format_gap_kind": [
+          "exact"
+        ],
+        "human_baseline_reported": [
+          "exact"
+        ],
+        "human_gap_points": [
+          "exact"
+        ],
+        "reported_best_score": [
+          "exact"
+        ]
+      },
+      "unsupported": [
+        "reported_format_gap"
+      ],
+      "unverified": []
+    }
+  },
+  "extraction": {
+    "round": "2026-11_claude",
+    "agent": "cip",
+    "role": "reader",
+    "scope": "technical",
+    "operator": "gspinaci",
+    "backend": "claude-cli",
+    "backend_kind": "claude-cli",
+    "model": "claude-sonnet-5-5",
+    "prompt_sha256": "de1b2a4e5c1121fdd28eae57251ef2535cfda50623e8b4280a669e829f653e73",
+    "scaffold_sha256": "910de03d8019fcc1daec329d31a9ae64b10f9ed69baaca8db4553000177bb766",
+    "rendered_prompt_sha256": "4a7d18d79d790a269dff4912c98087dacdaa0be3a0181cd2843dc1da064a17dd",
+    "fields": [
+      "analytical_tasks",
+      "analytical_tasks_explanation",
+      "answer_multiplicity",
+      "benchmark_modalities",
+      "benchmark_modalities_explanation",
+      "benchmark_name",
+      "dataset_size",
+      "evaluation_set_size",
+      "evaluation_unit",
+      "facets_explanation",
+      "gold_beyond_stimulus",
+      "gold_community_dependent",
+      "gold_concerns_genesis",
+      "gold_source",
+      "gold_upstream",
+      "gold_upstream_source",
+      "human_baseline_reported",
+      "human_gap_points",
+      "humanities_role",
+      "humanities_role_explanation",
+      "inclusion_criteria",
+      "key_findings",
+      "plurality_treatment",
+      "primary_evaluation_setting",
+      "publication_year",
+      "relevant_asjc_areas",
+      "reported_best_metric",
+      "reported_best_score",
+      "reported_cultural_asymmetry",
+      "reported_format_gap",
+      "reported_format_gap_kind",
+      "reported_format_gap_points",
+      "reported_gap_kinds",
+      "results_explanation",
+      "summary"
+    ],
+    "input": {
+      "pdf_sha256": "95aa30f801f2d121c308eda1a63a229950e2f4b5dfaa8bb69312068b25601fbf",
+      "text_chars": 46743
+    },
+    "started": "2026-11-09T21:24:51+00:00",
+    "seconds": 16.1
+  },
+  "paper_id": "2603.03884"
+}

@@ -1,0 +1,254 @@
+{
+  "benchmark_name": "IRLBench",
+  "publication_year": 2025,
+  "humanities_role": "content",
+  "humanities_role_explanation": "Items are drawn from 2024 Irish Leaving Certificate exams across 12 subjects (mostly STEM and business, with History, Politics & Society, Art as a minority). The competence tested is general academic reasoning and multilingual transfer in Irish vs English, not humanities disciplinary competence.",
+  "benchmark_modalities": [
+    "text",
+    "image"
+  ],
+  "benchmark_modalities_explanation": "Text questions in parallel Irish and English; 18.11% of samples include graphical illustrations (figures, tables, diagrams) that models must interpret alongside text.",
+  "analytical_tasks": [
+    "open_ended_qa",
+    "factual_recall",
+    "logical_and_quantitative_reasoning",
+    "visual_reasoning",
+    "translation",
+    "calibration_and_uncertainty"
+  ],
+  "analytical_tasks_explanation": "Long-form open-ended generation answering exam questions, graded against official marking schemes ('factual correctness, domain-specific academic knowledge, linguistic fidelity, and depth of reasoning'). Includes math/physics/chemistry reasoning, multimodal diagram questions, parallel Irish-English comparison for multilingual transfer (language fidelity via FastText), and self-reported confidence calibration analysis.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": true,
+      "note": "Broad multi-subject benchmark of 12 subjects in four groups, evaluating open-ended academic reasoning across languages."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "o4-mini, gpt-4.1, gemini-2.0-flash, Llama-4-Scout-Instruct, aya-vision-32b, aya-vision-8b."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Accuracy via binary LLM-as-judge (gemini-2.5-flash) against marking schemes; language fidelity percentage; confidence vs accuracy."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "arXiv preprint 16 May 2025."
+    }
+  },
+  "summary": "IRLBench is a parallel Irish-English multimodal benchmark of 1700 question-marking-scheme samples from the 2024 Irish Leaving Certificate, framed as open-ended generation and judged by an LLM against official marking schemes. Evaluations of six LLMs/VLMs show a persistent English-Irish gap and weak Irish language fidelity.",
+  "key_findings": "Best English accuracy 76.2% (o4-mini); best Irish accuracy 58.43% (gpt-4.1), o4-mini 55.82% in Irish. Gap exceeds 10% for all models (o4-mini 20.4%, gemini-2.0-flash 17.9%, gpt-4.1 12.9%). aya-vision models nearly fail in Irish. Most models produce valid Irish under 80% of the time (except gpt-4.1). Models are overconfident (>80% confidence vs <60% accuracy).",
+  "relevant_asjc_areas": [
+    "Language and Linguistics",
+    "Education",
+    "History",
+    "Visual Arts and Performing Arts"
+  ],
+  "dataset_size": 1700,
+  "evaluation_set_size": 1700,
+  "evaluation_unit": "question-marking scheme sample (850 per language)",
+  "primary_evaluation_setting": "zero-shot",
+  "gold_source": "authored_answer_key",
+  "gold_upstream": null,
+  "gold_upstream_source": null,
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "not_stated",
+  "facets_explanation": "Reference answers are the official Leaving Certificate marking schemes, extracted by gemini-2.0-flash and verified by human annotators for duplication, typos and missing pairs. The judge assigns a binary correct/incorrect label against the scheme. The same content is given in both languages with one key; answering requires external academic knowledge.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 20,
+  "reported_format_gap_kind": "input",
+  "reported_gap_kinds": [
+    "input"
+  ],
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 76.2,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "yes",
+  "results_explanation": "The paper states 'the top-performing model, o4-mini, achieves a strong average accuracy of 76.2%' in English and Table 3 gives 76.17. English vs Irish on the same questions: o4-mini has a gap of '20.4%' (reported as 20, upper figure). No human baseline is reported. Evaluation set is all 1700 samples (850 per language is derived from 'equally distributed'). The Irish-language performance deficit is stated as a finding.",
+  "evidence": {
+    "humanities_role": [
+      {
+        "quote": "IRLBench consists of 1700 samples, each containing a pair of question and marking scheme developed from the 2024 Irish Leaving Certificate exams.",
+        "where": "p. 5, Section 3.2"
+      }
+    ],
+    "dataset_size": [
+      {
+        "quote": "IRLBench consists of 1700 samples, each containing a pair of question and marking scheme",
+        "where": "p. 5, Section 3.2"
+      }
+    ],
+    "evaluation_set_size": [
+      {
+        "quote": "Total samples across all groups: 1700",
+        "where": "p. 6, Table 2"
+      }
+    ],
+    "primary_evaluation_setting": [
+      {
+        "quote": "For each evaluation, the judge model receives a prompt containing the original exam question, its official marking scheme, and the candidate model’s generated response.",
+        "where": "p. 6, Section 3.3"
+      }
+    ],
+    "gold_source": [
+      {
+        "quote": "Each subject’s official marking scheme enables precise and structured evaluation.",
+        "where": "p. 5, Section 3.1"
+      }
+    ],
+    "gold_beyond_stimulus": [
+      {
+        "quote": "the benchmark enables comprehensive evaluation of factual correctness, domain-specific academic knowledge, linguistic fidelity, and depth of reasoning",
+        "where": "p. 2, Introduction"
+      }
+    ],
+    "gold_community_dependent": [],
+    "gold_concerns_genesis": [],
+    "answer_multiplicity": [
+      {
+        "quote": "The judge then assigns a binary label: correct or incorrect",
+        "where": "p. 6, Section 3.3"
+      }
+    ],
+    "plurality_treatment": [],
+    "gold_upstream_source": [],
+    "reported_format_gap": [
+      {
+        "quote": "reasoning-adapted models (e.g., through reinforcement learning with test-time scaling), such as o4-mini, exhibit a notably larger gap (20.4%)",
+        "where": "p. 7, Section 4.1"
+      }
+    ],
+    "reported_format_gap_points": [
+      {
+        "quote": "exhibit a notably larger gap (20.4%) compared to more general models like gpt-4.1 (12.9%)",
+        "where": "p. 7, Section 4.1"
+      }
+    ],
+    "reported_format_gap_kind": [
+      {
+        "quote": "despite being presented with the same questions but written in Irish",
+        "where": "p. 7, Section 4.1"
+      }
+    ],
+    "human_baseline_reported": [],
+    "human_gap_points": [],
+    "reported_best_score": [
+      {
+        "quote": "the top-performing model, o4-mini, achieves a strong average accuracy of 76.2%",
+        "where": "p. 6, Section 4.1"
+      }
+    ],
+    "reported_cultural_asymmetry": [
+      {
+        "quote": "Our results reveal a persistent performance gap between English and Irish",
+        "where": "p. 2, Introduction"
+      }
+    ]
+  },
+  "checks": {
+    "missing_fields": [],
+    "vocab_warnings": [],
+    "evidence": {
+      "quotes": {
+        "humanities_role": [
+          "exact"
+        ],
+        "dataset_size": [
+          "exact"
+        ],
+        "evaluation_set_size": [
+          "exact"
+        ],
+        "primary_evaluation_setting": [
+          "exact"
+        ],
+        "gold_source": [
+          "exact"
+        ],
+        "gold_beyond_stimulus": [
+          "exact"
+        ],
+        "answer_multiplicity": [
+          "exact"
+        ],
+        "reported_format_gap": [
+          "exact"
+        ],
+        "reported_format_gap_points": [
+          "exact"
+        ],
+        "reported_format_gap_kind": [
+          "exact"
+        ],
+        "reported_best_score": [
+          "exact"
+        ],
+        "reported_cultural_asymmetry": [
+          "exact"
+        ]
+      },
+      "unsupported": [],
+      "unverified": []
+    }
+  },
+  "extraction": {
+    "round": "2026-11_claude",
+    "agent": "cip",
+    "role": "reader",
+    "scope": "technical",
+    "operator": "gspinaci",
+    "backend": "claude-cli",
+    "backend_kind": "claude-cli",
+    "model": "claude-sonnet-5-5",
+    "prompt_sha256": "de1b2a4e5c1121fdd28eae57251ef2535cfda50623e8b4280a669e829f653e73",
+    "scaffold_sha256": "910de03d8019fcc1daec329d31a9ae64b10f9ed69baaca8db4553000177bb766",
+    "rendered_prompt_sha256": "ef6247a1cb15eafc3234fe6eed394a2d060f4be7cb54c2c6d450047af5b14a4d",
+    "fields": [
+      "analytical_tasks",
+      "analytical_tasks_explanation",
+      "answer_multiplicity",
+      "benchmark_modalities",
+      "benchmark_modalities_explanation",
+      "benchmark_name",
+      "dataset_size",
+      "evaluation_set_size",
+      "evaluation_unit",
+      "facets_explanation",
+      "gold_beyond_stimulus",
+      "gold_community_dependent",
+      "gold_concerns_genesis",
+      "gold_source",
+      "gold_upstream",
+      "gold_upstream_source",
+      "human_baseline_reported",
+      "human_gap_points",
+      "humanities_role",
+      "humanities_role_explanation",
+      "inclusion_criteria",
+      "key_findings",
+      "plurality_treatment",
+      "primary_evaluation_setting",
+      "publication_year",
+      "relevant_asjc_areas",
+      "reported_best_metric",
+      "reported_best_score",
+      "reported_cultural_asymmetry",
+      "reported_format_gap",
+      "reported_format_gap_kind",
+      "reported_format_gap_points",
+      "reported_gap_kinds",
+      "results_explanation",
+      "summary"
+    ],
+    "input": {
+      "pdf_sha256": "dde4ad9868acf6878b9a635d25f29e7a7f6c7f8ac9f311c5ecec88cf14203cad",
+      "text_chars": 36996
+    },
+    "started": "2026-11-09T21:25:39+00:00",
+    "seconds": 15.4
+  },
+  "paper_id": "IRLBench:_A_Multi-modal,_Culturally_Grou"
+}

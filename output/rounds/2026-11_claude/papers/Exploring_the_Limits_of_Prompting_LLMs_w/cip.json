@@ -1,0 +1,205 @@
+{
+  "benchmark_name": null,
+  "publication_year": 2025,
+  "humanities_role": "content",
+  "humanities_role_explanation": "Parole hearing transcripts (legal/institutional spoken language) supply the material; the study tests general stylistic imitation/impersonation capability of LLMs via prompting, not disciplinary humanities competence. No benchmark is introduced.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Text only: verbatim transcripts of California parole suitability hearings are used as input and LLMs generate spoken-style decision statements as text.",
+  "analytical_tasks": [
+    "generation",
+    "stylistic_analysis"
+  ],
+  "analytical_tasks_explanation": "Generation of parole decision statements while impersonating a specific presiding commissioner; evaluation is via stylistic analysis of 'rhetorical fingerprints' (sentence complexity, lexical diversity MTLD, discourse markers, nominalizations, modals, pronoun usage, jargon) compared to original statements via z-scores.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "Single-domain case study (parole hearing decision statements); no benchmark introduced."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "GPT-4o, GPT-4.1 and DeepSeek R1 evaluated via API."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Z-scores of linguistic features (MTLD lexical diversity, sentence complexity, discourse marker, nominalization, modal, pronoun, jargon frequencies) relative to original commissioner statements."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Published September 2025 (RANLP 2025 workshop)."
+    }
+  },
+  "summary": "The paper distills speaker-specific rhetorical fingerprints of four presiding parole commissioners from verbatim transcripts and uses them to enhance prompts for LLMs generating decision statements. Comparing fingerprint-enhanced prompts with a primed-by-corpus prompt, it finds that LLMs approximate some features but retain model-specific fingerprints.",
+  "key_findings": "All three LLMs strongly deviate from original commissioners in lexical diversity and sentence complexity (z-scores 5.76 to 40.20 and 16.52 to 34.91), overuse nominalizations, underuse discourse markers, modals and first person plural, and show model-specific fingerprints largely independent of prompting. DeepSeek barely changes between conditions.",
+  "relevant_asjc_areas": [
+    "Language and Linguistics"
+  ],
+  "dataset_size": "100",
+  "evaluation_set_size": 100,
+  "evaluation_unit": "parole hearing transcript (with one presiding commissioner decision statement each)",
+  "primary_evaluation_setting": "mix",
+  "gold_source": "existing_metadata",
+  "gold_upstream": null,
+  "gold_upstream_source": null,
+  "gold_beyond_stimulus": "no",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "not_stated",
+  "plurality_treatment": "not_stated",
+  "facets_explanation": "The reference is the human presiding commissioner's verbatim decision statements from official CDCR transcripts (100 transcripts, 25 per commissioner), requested from the CDCR. These are institutional records rather than assessment keys; no annotators or agreement figures are described, and there is no per-item answer key, since scoring compares feature z-scores against original statement statistics.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": null,
+  "reported_format_gap_kind": null,
+  "reported_gap_kinds": [
+    "input"
+  ],
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": null,
+  "reported_best_metric": null,
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "No single headline score is given since results are feature-level z-scores per model, commissioner and condition. Fingerprint vs primed-by-corpus prompts are compared (e.g. DeepSeek nominalization for Commissioner 4 'was 6.47 for primed-by-corpus and 9.1 for fingerprint condition'), but no gap in points is reported.",
+  "evidence": {
+    "humanities_role": [
+      {
+        "quote": "we explore the limits of popular LLMs in impersonating content in a high-stakes legal setting, namely for the generation of the decision statement in parole suitability hearings",
+        "where": "p. 1, Abstract"
+      }
+    ],
+    "dataset_size": [
+      {
+        "quote": "PSH v1.0, comprises 100 parole hearing transcripts that we requested from the California Department of Corrections and Rehabilitation (CDCR)",
+        "where": "p. 2, Section 3.2"
+      }
+    ],
+    "evaluation_set_size": [
+      {
+        "quote": "we select two female and two male presiding commissioners with 25 transcripts per commissioner",
+        "where": "p. 2, Section 3.2"
+      }
+    ],
+    "primary_evaluation_setting": [
+      {
+        "quote": "The three state-of-the-art models, namely GPT-4o, GPT-4.1 and DeepSeek R1, were accessed and prompted via their respective API",
+        "where": "p. 5, Section 5.3"
+      },
+      {
+        "quote": "with and without commissioner-specific rhetorical fingerprints",
+        "where": "p. 6, Section 5.3"
+      }
+    ],
+    "gold_source": [
+      {
+        "quote": "comprises 100 parole hearing transcripts that we requested from the California Department of Corrections and Rehabilitation (CDCR)",
+        "where": "p. 2, Section 3.2"
+      }
+    ],
+    "gold_beyond_stimulus": [],
+    "gold_community_dependent": [],
+    "gold_concerns_genesis": [],
+    "answer_multiplicity": [],
+    "plurality_treatment": [],
+    "gold_upstream_source": [],
+    "reported_format_gap": [
+      {
+        "quote": "DeepSeek for Commissioner 4, where z-score was 6.47 for primed-by-corpus and 9.1 for fingerprint condition",
+        "where": "p. 8, Section 6.2"
+      }
+    ],
+    "reported_format_gap_points": [],
+    "reported_format_gap_kind": [],
+    "human_baseline_reported": [],
+    "human_gap_points": [],
+    "reported_best_score": [],
+    "reported_cultural_asymmetry": []
+  },
+  "checks": {
+    "missing_fields": [],
+    "vocab_warnings": [],
+    "evidence": {
+      "quotes": {
+        "humanities_role": [
+          "exact"
+        ],
+        "dataset_size": [
+          "exact"
+        ],
+        "evaluation_set_size": [
+          "exact"
+        ],
+        "primary_evaluation_setting": [
+          "exact",
+          "exact"
+        ],
+        "gold_source": [
+          "exact"
+        ],
+        "reported_format_gap": [
+          "exact"
+        ]
+      },
+      "unsupported": [
+        "gold_beyond_stimulus"
+      ],
+      "unverified": []
+    }
+  },
+  "extraction": {
+    "round": "2026-11_claude",
+    "agent": "cip",
+    "role": "reader",
+    "scope": "technical",
+    "operator": "gspinaci",
+    "backend": "claude-cli",
+    "backend_kind": "claude-cli",
+    "model": "claude-sonnet-5-5",
+    "prompt_sha256": "de1b2a4e5c1121fdd28eae57251ef2535cfda50623e8b4280a669e829f653e73",
+    "scaffold_sha256": "910de03d8019fcc1daec329d31a9ae64b10f9ed69baaca8db4553000177bb766",
+    "rendered_prompt_sha256": "3a093d1051cb92a34ca44999631d8327174735309746d014667db8e174b2354e",
+    "fields": [
+      "analytical_tasks",
+      "analytical_tasks_explanation",
+      "answer_multiplicity",
+      "benchmark_modalities",
+      "benchmark_modalities_explanation",
+      "benchmark_name",
+      "dataset_size",
+      "evaluation_set_size",
+      "evaluation_unit",
+      "facets_explanation",
+      "gold_beyond_stimulus",
+      "gold_community_dependent",
+      "gold_concerns_genesis",
+      "gold_source",
+      "gold_upstream",
+      "gold_upstream_source",
+      "human_baseline_reported",
+      "human_gap_points",
+      "humanities_role",
+      "humanities_role_explanation",
+      "inclusion_criteria",
+      "key_findings",
+      "plurality_treatment",
+      "primary_evaluation_setting",
+      "publication_year",
+      "relevant_asjc_areas",
+      "reported_best_metric",
+      "reported_best_score",
+      "reported_cultural_asymmetry",
+      "reported_format_gap",
+      "reported_format_gap_kind",
+      "reported_format_gap_points",
+      "reported_gap_kinds",
+      "results_explanation",
+      "summary"
+    ],
+    "input": {
+      "pdf_sha256": "a2af0cb20c24765cfc047f37fcde3d6ece7370be275af06b4b9cec17bc985187",
+      "text_chars": 49963
+    },
+    "started": "2026-11-09T21:25:04+00:00",
+    "seconds": 13.7
+  },
+  "paper_id": "Exploring_the_Limits_of_Prompting_LLMs_w"
+}

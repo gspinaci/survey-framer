@@ -1,0 +1,238 @@
+{
+  "benchmark_name": "MMLU-ProX",
+  "publication_year": 2025,
+  "humanities_role": "none",
+  "humanities_role_explanation": "MMLU-ProX is a general multitask knowledge/reasoning benchmark (14 disciplines from MMLU-Pro) translated into 29 languages. It is not built around humanities material or disciplinary humanities competence; no humanities-specific items or metrics are reported.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Text-only multiple-choice questions with 10 options, in 29 languages. The Limitations section states the benchmark focuses solely on textual inputs.",
+  "analytical_tasks": [
+    "multiple_choice_qa",
+    "logical_and_quantitative_reasoning",
+    "factual_recall",
+    "translation"
+  ],
+  "analytical_tasks_explanation": "Massive multitask language understanding with reasoning-focused 10-option multiple-choice questions across 14 disciplines, evaluated with 5-shot and zero-shot chain-of-thought. The 'cross-lingual reasoning' evaluation uses parallel translated questions. Translation is part of benchmark construction, not a task given to the models.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": true,
+      "note": "Broad multi-discipline (14 disciplines, 57 subjects) multitask benchmark across 29 languages."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "36 LLMs including o4-mini, GPT-4.1, GPT-4o, DeepSeek-R1/V3, Qwen2.5/Qwen3, Llama, Gemma3, Mistral, Aya, Phi4, InternLM."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Accuracy (%) per language and on average; expert translation ratings (1-5) for accuracy, fluency, completeness."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "EMNLP 2025 proceedings (November 2025)."
+    }
+  },
+  "summary": "MMLU-ProX extends MMLU-Pro to 29 typologically diverse languages with 11,829 parallel questions per language (plus a 658-question lite version), translated through a four-stage LLM translation agent with expert verification. The authors evaluate 36 LLMs and report large performance disparities, especially for low-resource African languages.",
+  "key_findings": "DeepSeek-R1 has the best average (75.5%), followed by GPT-4.1 (72.7%) and DeepSeek-V3 (70.5%). Accuracy falls as low as 0.6% on some African languages (Wolof) versus over 75% on Western European languages. Reasoning mode helps (R1 beats V3 by 5.0% on average), scale helps low-resource languages more, and the lite version differs from the full one by only 1.14% on average.",
+  "relevant_asjc_areas": [],
+  "dataset_size": "11829 questions per language across 29 languages (about 343k questions in total); lite version 658 per language",
+  "evaluation_set_size": 11759,
+  "evaluation_unit": "multiple-choice question (per language)",
+  "primary_evaluation_setting": "mix",
+  "gold_source": "existing_dataset",
+  "gold_upstream": "MMLU-Pro (Wang et al., 2024a); production not described in this paper beyond being an English reasoning-focused extension of MMLU. MMLU-ProX answers are inherited from it after manual curation.",
+  "gold_upstream_source": "not_stated",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "not_stated",
+  "facets_explanation": "The questions and answer keys are inherited from English MMLU-Pro, which was cleaned by four specialists and translated by Claude Sonnet 3.7 through a four-stage agent, with GPT-4.1/o3 verification. Experts rated translation quality for 15 languages, but the answer key stays one universal key for all languages. Answering requires domain knowledge not in the question text.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": null,
+  "reported_format_gap_kind": "input",
+  "reported_gap_kinds": [
+    "input"
+  ],
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 75.5,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "yes",
+  "results_explanation": "DeepSeek-R1 achieves 'an average of 75.5% across all languages' (5-shot CoT accuracy), the best overall. Zero-shot versus 5-shot comparisons are shown in Figure 6 (for example +3.7% for GPT-4.1 on English), but no maximum gap is given as a number in the text, so the gap points are null. No human baseline is reported.",
+  "evidence": {
+    "humanities_role": [
+      {
+        "quote": "MMLU-ProX extends the challenging MMLU-Pro benchmark to encompass 29 typologically diverse languages",
+        "where": "p. 3, Section 3.1"
+      }
+    ],
+    "dataset_size": [
+      {
+        "quote": "The resulting benchmark contains 11,829 questions per language in its full version, with a lite version of 658 questions available for efficient evaluation.",
+        "where": "p. 2, Introduction"
+      }
+    ],
+    "evaluation_set_size": [
+      {
+        "quote": "meaning actual assessments occur on 11,759 and 588 questions, respectively.",
+        "where": "p. 8, Section 5.3"
+      }
+    ],
+    "primary_evaluation_setting": [
+      {
+        "quote": "using both zero-shot and 5-shot chain-of-thought (CoT) (Wei et al., 2022) prompting across 36 latest LLMs",
+        "where": "p. 2, Introduction"
+      }
+    ],
+    "gold_source": [
+      {
+        "quote": "MMLU-ProX extends the challenging MMLU-Pro benchmark to encompass 29 typologically diverse languages",
+        "where": "p. 3, Section 3.1"
+      }
+    ],
+    "gold_beyond_stimulus": [
+      {
+        "quote": "MMLU-Pro enhances its predecessor through more complex reasoning questions, expanded answer choices, and reduction of dataset noise",
+        "where": "p. 2, Introduction"
+      }
+    ],
+    "gold_community_dependent": [],
+    "gold_concerns_genesis": [],
+    "answer_multiplicity": [
+      {
+        "quote": "Multiple-choice (10)",
+        "where": "p. 3, Table 1, MMLU-ProX row"
+      }
+    ],
+    "plurality_treatment": [],
+    "gold_upstream_source": [],
+    "reported_format_gap": [
+      {
+        "quote": "Performance comparison of zero-shot and 5-shot prompting across languages and models.",
+        "where": "p. 8, Figure 6"
+      }
+    ],
+    "reported_format_gap_points": [],
+    "reported_format_gap_kind": [
+      {
+        "quote": "Performance comparison of zero-shot and 5-shot prompting across languages and models.",
+        "where": "p. 8, Figure 6"
+      }
+    ],
+    "human_baseline_reported": [],
+    "human_gap_points": [],
+    "reported_best_score": [
+      {
+        "quote": "DeepSeek-R1 demonstrates superior overall performance with an average of 75.5% across all languages",
+        "where": "p. 5, Section 4.2"
+      }
+    ],
+    "reported_cultural_asymmetry": [
+      {
+        "quote": "their performance declines markedly in low-resource languages, particularly for African languages.",
+        "where": "p. 1, Abstract"
+      }
+    ]
+  },
+  "checks": {
+    "missing_fields": [],
+    "vocab_warnings": [],
+    "evidence": {
+      "quotes": {
+        "humanities_role": [
+          "exact"
+        ],
+        "dataset_size": [
+          "exact"
+        ],
+        "evaluation_set_size": [
+          "exact"
+        ],
+        "primary_evaluation_setting": [
+          "exact"
+        ],
+        "gold_source": [
+          "exact"
+        ],
+        "gold_beyond_stimulus": [
+          "exact"
+        ],
+        "answer_multiplicity": [
+          "exact"
+        ],
+        "reported_format_gap": [
+          "exact"
+        ],
+        "reported_format_gap_kind": [
+          "exact"
+        ],
+        "reported_best_score": [
+          "exact"
+        ],
+        "reported_cultural_asymmetry": [
+          "exact"
+        ]
+      },
+      "unsupported": [],
+      "unverified": []
+    }
+  },
+  "extraction": {
+    "round": "2026-11_claude",
+    "agent": "cip",
+    "role": "reader",
+    "scope": "technical",
+    "operator": "gspinaci",
+    "backend": "claude-cli",
+    "backend_kind": "claude-cli",
+    "model": "claude-sonnet-5-5",
+    "prompt_sha256": "de1b2a4e5c1121fdd28eae57251ef2535cfda50623e8b4280a669e829f653e73",
+    "scaffold_sha256": "910de03d8019fcc1daec329d31a9ae64b10f9ed69baaca8db4553000177bb766",
+    "rendered_prompt_sha256": "d0ccd177dbc3d8050ca4db19c4271b48d0d41c025f053dfb27e71cc0539dec8d",
+    "fields": [
+      "analytical_tasks",
+      "analytical_tasks_explanation",
+      "answer_multiplicity",
+      "benchmark_modalities",
+      "benchmark_modalities_explanation",
+      "benchmark_name",
+      "dataset_size",
+      "evaluation_set_size",
+      "evaluation_unit",
+      "facets_explanation",
+      "gold_beyond_stimulus",
+      "gold_community_dependent",
+      "gold_concerns_genesis",
+      "gold_source",
+      "gold_upstream",
+      "gold_upstream_source",
+      "human_baseline_reported",
+      "human_gap_points",
+      "humanities_role",
+      "humanities_role_explanation",
+      "inclusion_criteria",
+      "key_findings",
+      "plurality_treatment",
+      "primary_evaluation_setting",
+      "publication_year",
+      "relevant_asjc_areas",
+      "reported_best_metric",
+      "reported_best_score",
+      "reported_cultural_asymmetry",
+      "reported_format_gap",
+      "reported_format_gap_kind",
+      "reported_format_gap_points",
+      "reported_gap_kinds",
+      "results_explanation",
+      "summary"
+    ],
+    "input": {
+      "pdf_sha256": "a206294f814f4f50f109f52996ad00ce53062194332a30cb0bcccdf0fda0c4f5",
+      "text_chars": 73885
+    },
+    "started": "2026-11-09T21:25:40+00:00",
+    "seconds": 16.3
+  },
+  "paper_id": "MMLU-ProX:_A_Multilingual_Benchmark_for_"
+}

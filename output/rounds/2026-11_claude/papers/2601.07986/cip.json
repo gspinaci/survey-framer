@@ -1,0 +1,257 @@
+{
+  "benchmark_name": "VULCA-BENCH (Vision-Understanding-Language-Culture Assessment)",
+  "publication_year": 2026,
+  "humanities_role": "domain",
+  "humanities_role_explanation": "Designed to measure art-critical and cultural interpretation competence (L1-L5 grounded in Panofsky's iconology) on museum artworks from eight traditions; items target disciplinary art-historical competence, not generic ability.",
+  "benchmark_modalities": [
+    "text",
+    "image"
+  ],
+  "benchmark_modalities_explanation": "Artwork images from museum collections paired with expert-written bilingual (Chinese-English) critiques; VLMs receive the image and generate an English critique, which is scored against culture-specific dimension sets.",
+  "analytical_tasks": [
+    "generation",
+    "interpretation",
+    "cultural_reasoning",
+    "stylistic_analysis",
+    "attribution",
+    "visual_reasoning"
+  ],
+  "analytical_tasks_explanation": "Generative art critique spanning L1 visual perception, L2 technical analysis, L3 cultural symbolism (iconography), L4 historical context (period, artist, provenance, 'art-historical attribution'), and L5 philosophical aesthetics (iconological interpretation). Scored by Dimension Coverage Rate over 225 culture-specific dimensions.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "Scoped to multicultural art critique with VLMs; a single-domain benchmark."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "GPT-4o, Claude-Sonnet-4.5, Gemini-2.5-Pro, Qwen3-VL-235B, GLM-4V-Flash; few-shot also DeepSeek-VL2 and Claude-Opus-4.5."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Dimension Coverage Rate (keyword matching), layer gap ΔL, Spearman rank correlation, Cohen's kappa, ICC."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "arXiv 2601.07986v3, January 2026 (revised 24 Feb 2026)."
+    }
+  },
+  "summary": "VULCA-BENCH is a multicultural art-critique benchmark of 7,410 image-critique pairs across eight traditions with expert bilingual critiques annotated against a five-layer (L1-L5) framework with 225 culture-specific dimensions. A pilot of five VLMs shows a 31-40 point drop in dimension coverage from visual/technical (L1-L2) to cultural interpretation (L3-L5).",
+  "key_findings": "All five models show a 31-40 pp drop from L1-L2 to L3-L5 (e.g., Gemini-2.5-Pro 89.2 vs 58.1; GPT-4o 87.1 vs 46.8). Gemini-2.5-Pro best with DCR 72.4. Naive few-shot prompting reduces DCR for most models (DeepSeek-VL2 -41.3%, GPT-4o -15.5%), while Claude models remain stable. Error patterns: surface terminology, anachronism, cultural conflation.",
+  "relevant_asjc_areas": [
+    "Visual Arts and Performing Arts",
+    "History",
+    "Cultural Studies",
+    "Philosophy"
+  ],
+  "dataset_size": "7410",
+  "evaluation_set_size": 336,
+  "evaluation_unit": "image-critique pair",
+  "primary_evaluation_setting": "mix",
+  "gold_source": "domain_expert",
+  "gold_upstream": null,
+  "gold_upstream_source": null,
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "yes",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "answer_set",
+  "plurality_treatment": "noise",
+  "facets_explanation": "Critiques were written by native expert annotators (PhD-level art historians) per tradition, following L1-L5 with explicit covered_dimensions labels, reviewed by a second expert. Each culture adapts the framework to its own aesthetic theory (e.g., rasa, wabi-sabi, qiyun), so correctness is culture-relative. Scoring checks which dimensions from a set are covered (keyword matching), and annotator disagreement is resolved by discussion/escalation and reported as IAA kappa.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 40,
+  "reported_format_gap_kind": "depth",
+  "reported_gap_kinds": [
+    "depth",
+    "input"
+  ],
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 72.4,
+  "reported_best_metric": "other",
+  "reported_cultural_asymmetry": "no",
+  "results_explanation": "Table 7 reports Gemini-2.5-Pro DCR 72.4 as best, with L1-L2 89.2 vs L3-L5 58.1 (ΔL 31.1); GPT-4o has the largest ΔL of 40.3, so the depth gap upper bound is 40 points (L1-L2 vs L3-L5). Few-shot (Appendix J) is an input comparison: DeepSeek-VL2 0.985 to 0.578 DCR. The headline metric is Dimension Coverage Rate, which is mapped to 'other'. The paper reports no human baseline score on the same metric; human IAA is reported but not compared against models. The evaluation set is N=336 balanced-pilot pairs; per-culture differences are not framed as a systematic asymmetry.",
+  "evidence": {
+    "humanities_role": [
+      {
+        "quote": "a multicultural art-critique benchmark for evaluating Vision–Language Models’ (VLMs) cultural understanding beyond surface-level visual perception",
+        "where": "p. 1, Abstract"
+      }
+    ],
+    "dataset_size": [
+      {
+        "quote": "VULCA-BENCH comprises 7,410 matched image-critique pairs drawn from 11,964 total images",
+        "where": "p. 6, Section 4"
+      }
+    ],
+    "evaluation_set_size": [
+      {
+        "quote": "We sample 48 pairs per culture (N=336 total) and evaluate 5 VLMs",
+        "where": "p. 7, Section 6.1"
+      }
+    ],
+    "primary_evaluation_setting": [
+      {
+        "quote": "We compare zero-shot, 1-shot, and 3-shot prompting with DeepSeek-VL2, GPT-4o, Claude-Opus-4.5, and Claude-Sonnet-4.5",
+        "where": "p. 13, Appendix J"
+      }
+    ],
+    "gold_source": [
+      {
+        "quote": "Expert annotators generate critiques following the L1–L5 framework.",
+        "where": "p. 5, Section 3.4"
+      }
+    ],
+    "gold_beyond_stimulus": [
+      {
+        "quote": "L1–L2 require visual observation; L3–L5 demand progressively deeper cultural knowledge that VLMs typically lack.",
+        "where": "p. 4, Section 3.2"
+      }
+    ],
+    "gold_community_dependent": [
+      {
+        "quote": "Framework symmetry ensures each culture adapts L1–L5 to its own aesthetic theory",
+        "where": "p. 3, Section 3.1"
+      }
+    ],
+    "gold_concerns_genesis": [],
+    "answer_multiplicity": [
+      {
+        "quote": "Dc k ⊆Dk denotes the sub-set of dimensions detected via keyword matching.",
+        "where": "p. 7, Section 6.1"
+      }
+    ],
+    "plurality_treatment": [
+      {
+        "quote": "Annotator-reviewer disagreements are resolved through discussion with reference to authoritative sources; unresolved cases (<2%) escalate to senior expert panel.",
+        "where": "p. 5, Section 3.4"
+      }
+    ],
+    "gold_upstream_source": [],
+    "reported_format_gap": [],
+    "reported_format_gap_points": [
+      {
+        "quote": "GPT-4o 87.1 46.8 40.3 65.3",
+        "where": "p. 7, Table 7"
+      }
+    ],
+    "reported_format_gap_kind": [
+      {
+        "quote": "∆L = L1–L2 −L3–L5 measures cultural depth deficit.",
+        "where": "p. 7, Table 7 caption"
+      }
+    ],
+    "human_baseline_reported": [],
+    "human_gap_points": [],
+    "reported_best_score": [
+      {
+        "quote": "Gemini-2.5-Pro 89.2 58.1 31.1 72.4",
+        "where": "p. 7, Table 7"
+      }
+    ],
+    "reported_cultural_asymmetry": []
+  },
+  "checks": {
+    "missing_fields": [],
+    "vocab_warnings": [],
+    "evidence": {
+      "quotes": {
+        "humanities_role": [
+          "exact"
+        ],
+        "dataset_size": [
+          "exact"
+        ],
+        "evaluation_set_size": [
+          "exact"
+        ],
+        "primary_evaluation_setting": [
+          "exact"
+        ],
+        "gold_source": [
+          "exact"
+        ],
+        "gold_beyond_stimulus": [
+          "exact"
+        ],
+        "gold_community_dependent": [
+          "exact"
+        ],
+        "answer_multiplicity": [
+          "exact"
+        ],
+        "plurality_treatment": [
+          "exact"
+        ],
+        "reported_format_gap_points": [
+          "exact"
+        ],
+        "reported_format_gap_kind": [
+          "exact"
+        ],
+        "reported_best_score": [
+          "exact"
+        ]
+      },
+      "unsupported": [
+        "reported_format_gap"
+      ],
+      "unverified": []
+    }
+  },
+  "extraction": {
+    "round": "2026-11_claude",
+    "agent": "cip",
+    "role": "reader",
+    "scope": "technical",
+    "operator": "gspinaci",
+    "backend": "claude-cli",
+    "backend_kind": "claude-cli",
+    "model": "claude-sonnet-5-5",
+    "prompt_sha256": "de1b2a4e5c1121fdd28eae57251ef2535cfda50623e8b4280a669e829f653e73",
+    "scaffold_sha256": "910de03d8019fcc1daec329d31a9ae64b10f9ed69baaca8db4553000177bb766",
+    "rendered_prompt_sha256": "45b2aa4940fa075f97f9eb51d961c85c31c4e5ca76ee0b38c50c1de323302e62",
+    "fields": [
+      "analytical_tasks",
+      "analytical_tasks_explanation",
+      "answer_multiplicity",
+      "benchmark_modalities",
+      "benchmark_modalities_explanation",
+      "benchmark_name",
+      "dataset_size",
+      "evaluation_set_size",
+      "evaluation_unit",
+      "facets_explanation",
+      "gold_beyond_stimulus",
+      "gold_community_dependent",
+      "gold_concerns_genesis",
+      "gold_source",
+      "gold_upstream",
+      "gold_upstream_source",
+      "human_baseline_reported",
+      "human_gap_points",
+      "humanities_role",
+      "humanities_role_explanation",
+      "inclusion_criteria",
+      "key_findings",
+      "plurality_treatment",
+      "primary_evaluation_setting",
+      "publication_year",
+      "relevant_asjc_areas",
+      "reported_best_metric",
+      "reported_best_score",
+      "reported_cultural_asymmetry",
+      "reported_format_gap",
+      "reported_format_gap_kind",
+      "reported_format_gap_points",
+      "reported_gap_kinds",
+      "results_explanation",
+      "summary"
+    ],
+    "input": {
+      "pdf_sha256": "d5704d2b1851f334b6626c4a6ef31e0d2bae014bdedc7d352912b2a6a28fe069",
+      "text_chars": 55490
+    },
+    "started": "2026-11-09T21:24:07+00:00",
+    "seconds": 16.6
+  },
+  "paper_id": "2601.07986"
+}

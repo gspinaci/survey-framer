@@ -1,0 +1,214 @@
+{
+  "benchmark_name": null,
+  "publication_year": 2024,
+  "humanities_role": "content",
+  "humanities_role_explanation": "Historical newspaper articles (BLN600) supply the items, but the competence tested is generic post-OCR text correction (OCR error repair via seq2seq/LLM), not disciplinary humanities competence.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Text-only: noisy OCR text sequences as input, human re-keyed transcription as target. Images are not shown to the models.",
+  "analytical_tasks": [
+    "transcription_and_correction"
+  ],
+  "analytical_tasks_explanation": "Post-OCR correction framed as sequence-to-sequence NMT (BART) or prompt-based instruction following (Llama 2: 'Fix the OCR errors in the provided text'). Error types discussed: substitution, insertion, deletion, misnamed entities, hallucination.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "Single task (post-OCR correction) on a single dataset (BLN600); no new benchmark is introduced."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Llama 2 7B and 13B (LoRA instruction-tuned) compared with BART base/large."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Percentage reduction in character error rate (CER), averaged over five runs."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "LT4HALA 2024 @ LREC-COLING, 25 May 2024."
+    }
+  },
+  "summary": "The paper instruction-tunes Llama 2 (7B, 13B) with LoRA for post-OCR correction of BLN600, a corpus of 19th-century British newspaper articles, and compares it to fine-tuned BART. Llama 2 13B substantially outperforms BART and is more data-efficient with limited training data.",
+  "key_findings": "Llama 2 13B achieves a 54.51% CER reduction vs 23.30% for BART large (14.60% for BART base, 43.26% for Llama 2 7B). Llama 2 performs strongly even with small training subsets, whereas BART improves substantially with more data.",
+  "relevant_asjc_areas": [
+    "Arts and Humanities (miscellaneous)",
+    "Language and Linguistics",
+    "Library and Information Sciences",
+    "History"
+  ],
+  "dataset_size": "13192",
+  "evaluation_set_size": 2792,
+  "evaluation_unit": "OCR/ground-truth sequence pair (mostly sentences)",
+  "primary_evaluation_setting": "fine-tuned",
+  "gold_source": "existing_dataset",
+  "gold_upstream": "BLN600 (Booth et al., 2024): OCR excerpts from British Library Newspapers with manually re-keyed human transcriptions from the source images; further production details not described in this paper.",
+  "gold_upstream_source": "not_stated",
+  "gold_beyond_stimulus": "no",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "not_stated",
+  "facets_explanation": "Reference texts are the manually re-keyed human transcriptions from BLN600, an existing dataset by overlapping authors (Booth et al. 2024). The paper does not describe annotator expertise or agreement. Scoring compares model output to a single reference via CER.",
+  "reported_format_gap": "no",
+  "reported_format_gap_points": null,
+  "reported_format_gap_kind": null,
+  "reported_gap_kinds": [],
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 54.51,
+  "reported_best_metric": "other",
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "Table 3 reports 'Llama 2 13B 54.51' as percentage CER reduction (mean over five training and evaluation iterations), versus BART 400M 23.30. The metric is CER reduction, not a standard listed metric, hence 'other'. Training-set size comparison (six subsets of 80 samples) is a training-data ablation, not a format gap. No human baseline is given.",
+  "evidence": {
+    "humanities_role": [
+      {
+        "quote": "Poor OCR quality continues to be a major obstacle for humanities scholars seeking to make use of digitised primary sources such as historical newspapers.",
+        "where": "p. 1, Abstract"
+      }
+    ],
+    "dataset_size": [
+      {
+        "quote": "Total 600 13,192 0.0771 0.1216",
+        "where": "p. 3, Table 1"
+      }
+    ],
+    "evaluation_set_size": [
+      {
+        "quote": "Test 120 2,792 0.0840 0.1354",
+        "where": "p. 3, Table 1"
+      }
+    ],
+    "primary_evaluation_setting": [
+      {
+        "quote": "By instruction-tuning Llama 2 and comparing it to a fine-tuned BART on BLN600",
+        "where": "p. 1, Abstract"
+      }
+    ],
+    "gold_source": [
+      {
+        "quote": "The dataset contains OCR excerpts from British Library Newspapers Parts I-II (1800-1900) (Gale, 2024), along with high-quality manually re-keyed human transcriptions from the source images.",
+        "where": "p. 2, Section 3.1"
+      }
+    ],
+    "gold_beyond_stimulus": [
+      {
+        "quote": "For each ground truth segment, the corresponding OCR text is then gathered using a search algorithm",
+        "where": "p. 2, Section 3.1"
+      }
+    ],
+    "gold_community_dependent": [],
+    "gold_concerns_genesis": [],
+    "answer_multiplicity": [
+      {
+        "quote": "computing the Levenshtein distance between the recognised text and the reference text",
+        "where": "p. 3, Section 3.1"
+      }
+    ],
+    "plurality_treatment": [],
+    "gold_upstream_source": [],
+    "reported_format_gap": [],
+    "reported_format_gap_points": [],
+    "reported_format_gap_kind": [],
+    "human_baseline_reported": [],
+    "human_gap_points": [],
+    "reported_best_score": [
+      {
+        "quote": "Llama 2 13B 54.51",
+        "where": "p. 4, Table 3"
+      }
+    ],
+    "reported_cultural_asymmetry": []
+  },
+  "checks": {
+    "missing_fields": [],
+    "vocab_warnings": [],
+    "evidence": {
+      "quotes": {
+        "humanities_role": [
+          "exact"
+        ],
+        "dataset_size": [
+          "exact"
+        ],
+        "evaluation_set_size": [
+          "exact"
+        ],
+        "primary_evaluation_setting": [
+          "exact"
+        ],
+        "gold_source": [
+          "exact"
+        ],
+        "gold_beyond_stimulus": [
+          "exact"
+        ],
+        "answer_multiplicity": [
+          "exact"
+        ],
+        "reported_best_score": [
+          "table"
+        ]
+      },
+      "unsupported": [],
+      "unverified": []
+    }
+  },
+  "extraction": {
+    "round": "2026-11_claude",
+    "agent": "cip",
+    "role": "reader",
+    "scope": "technical",
+    "operator": "gspinaci",
+    "backend": "claude-cli",
+    "backend_kind": "claude-cli",
+    "model": "claude-sonnet-5-5",
+    "prompt_sha256": "de1b2a4e5c1121fdd28eae57251ef2535cfda50623e8b4280a669e829f653e73",
+    "scaffold_sha256": "910de03d8019fcc1daec329d31a9ae64b10f9ed69baaca8db4553000177bb766",
+    "rendered_prompt_sha256": "65ee052cf2a5a75ca00246d7548264972af4bbb33a2a00dd9a4ba32b7d1e0ed5",
+    "fields": [
+      "analytical_tasks",
+      "analytical_tasks_explanation",
+      "answer_multiplicity",
+      "benchmark_modalities",
+      "benchmark_modalities_explanation",
+      "benchmark_name",
+      "dataset_size",
+      "evaluation_set_size",
+      "evaluation_unit",
+      "facets_explanation",
+      "gold_beyond_stimulus",
+      "gold_community_dependent",
+      "gold_concerns_genesis",
+      "gold_source",
+      "gold_upstream",
+      "gold_upstream_source",
+      "human_baseline_reported",
+      "human_gap_points",
+      "humanities_role",
+      "humanities_role_explanation",
+      "inclusion_criteria",
+      "key_findings",
+      "plurality_treatment",
+      "primary_evaluation_setting",
+      "publication_year",
+      "relevant_asjc_areas",
+      "reported_best_metric",
+      "reported_best_score",
+      "reported_cultural_asymmetry",
+      "reported_format_gap",
+      "reported_format_gap_kind",
+      "reported_format_gap_points",
+      "reported_gap_kinds",
+      "results_explanation",
+      "summary"
+    ],
+    "input": {
+      "pdf_sha256": "50d1b703ea66c9e3e9a7d438a8d8578641555e3f3716ef9690da6a23ba8a367e",
+      "text_chars": 25431
+    },
+    "started": "2026-11-09T21:24:37+00:00",
+    "seconds": 13.3
+  },
+  "paper_id": "Leveraging_LLMs_for_Post-OCR_Correction_"
+}

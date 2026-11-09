@@ -1,0 +1,243 @@
+{
+  "benchmark_name": "Humanity's Last Exam (HLE)",
+  "publication_year": 2025,
+  "humanities_role": "content",
+  "humanities_role_explanation": "HLE is a broad multi-subject expert exam (math, sciences, humanities) built to test frontier closed-ended academic knowledge. Humanities subjects (Classics, Art History, Musicology, Philosophy, Poetry, Linguistics) supply some items, but the benchmark does not target humanities disciplinary competence specifically; humanities is one category in the breakdown.",
+  "benchmark_modalities": [
+    "text",
+    "image"
+  ],
+  "benchmark_modalities_explanation": "Questions are either text-only or text plus an accompanying image; around 14% require comprehending both text and an image. The remaining questions are text-only.",
+  "analytical_tasks": [
+    "factual_recall",
+    "multiple_choice_qa",
+    "logical_and_quantitative_reasoning",
+    "calibration_and_uncertainty",
+    "open_ended_qa"
+  ],
+  "analytical_tasks_explanation": "Closed-ended academic questions in two formats: exact-match short answers (76%) and multiple-choice (24%, five or more options). They test graduate-level knowledge and deep reasoning, with an emphasis on mathematics, and include some humanities items such as translating a Palmyrene inscription or identifying closed syllables in Biblical Hebrew. Models also state a confidence from 0-100%, and RMS calibration error is measured. Subjective interpretation and open-ended questions are explicitly prohibited, so open_ended_qa applies only to the short exact-match answers.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": true,
+      "note": "Broad multi-subject benchmark of 2,500 questions across over a hundred subjects (math, humanities, natural sciences, etc.)."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "GPT-4o, Grok 2, Claude 3.5 Sonnet, Gemini 1.5 Pro, Gemini 2.0 Flash Thinking, o1, DeepSeek-R1, o3-mini (high)."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Accuracy (judged by o3-mini against the reference answer) and RMS calibration error; completion token counts are also reported."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "arXiv 2501.14249, January 2025 (v10 dated 20 Feb 2026)."
+    }
+  },
+  "summary": "The paper introduces Humanity's Last Exam, a 2,500-question multi-modal benchmark of expert-written, closed-ended academic questions across over a hundred subjects, filtered so that frontier LLMs fail them. Questions go through LLM difficulty checks, two rounds of expert review, audits and a bug-bounty. Frontier models score low on accuracy and are poorly calibrated.",
+  "key_findings": "Accuracy ranges from 2.7% (GPT-4o) to 13.4% (o3-mini high); RMS calibration error is 73-89% across all models, indicating confident wrong answers. Humanities accuracy (text-only) ranges from 1.0% to 10.4%. Reasoning models use far more completion tokens. Estimated expert disagreement rate is 15.4% on the public set (about 18% on a biology/chemistry/health subset).",
+  "relevant_asjc_areas": [
+    "Arts and Humanities (miscellaneous)",
+    "History",
+    "Philosophy",
+    "Linguistics and Language",
+    "Literature and Literary Theory",
+    "Music",
+    "Classics",
+    "Archaeology"
+  ],
+  "dataset_size": "2500",
+  "evaluation_set_size": 2500,
+  "evaluation_unit": "exam question (multiple-choice or exact-match)",
+  "primary_evaluation_setting": "zero-shot",
+  "gold_source": "domain_expert",
+  "gold_upstream": null,
+  "gold_upstream_source": null,
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "noise",
+  "facets_explanation": "Questions and answers were written by nearly 1000 subject-expert contributors (mostly professors, researchers and graduate degree holders), each with a rationale. Reviewers holding graduate degrees checked them against rubrics. The rubric requires an 'objectively correct, univocal answer' and rejects subjective interpretation. Questions are meant to be non-searchable and to need specialized knowledge not in the prompt. Expert disagreement is estimated as an error rate to be reduced through audits and removals.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": null,
+  "reported_format_gap_kind": "input",
+  "reported_gap_kinds": [
+    "input"
+  ],
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 13.4,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "Table 1: O3-MINI (HIGH) reaches 13.4 accuracy (%) with 80 calibration error, the best result. Text-only vs full-dataset results (Tables 2 and 3) differ slightly for the same models, e.g. O1 7.8 text-only vs 8.0 full, so no meaningful gap in points is given. No human baseline score is reported, only an expert disagreement rate of 15.4%.",
+  "evidence": {
+    "humanities_role": [
+      {
+        "quote": "HLE consists of 2,500 questions across dozens of subjects, including mathematics, humanities, and the natural sciences.",
+        "where": "p. 4, Abstract"
+      }
+    ],
+    "dataset_size": [
+      {
+        "quote": "HUMANITY’S LAST EXAM (HLE) consists of 2,500 challenging questions across over a hundred subjects.",
+        "where": "p. 5, Section 3"
+      }
+    ],
+    "evaluation_set_size": [
+      {
+        "quote": "a benchmark of 2,500 extremely challenging questions from dozens of subject areas",
+        "where": "p. 4, Introduction"
+      }
+    ],
+    "primary_evaluation_setting": [
+      {
+        "quote": "we evaluate the accuracy of all models on HLE using our zero-shot chain-of-thought prompts",
+        "where": "p. 26, Section C.6"
+      }
+    ],
+    "gold_source": [
+      {
+        "quote": "questions from nearly 1000 subject expert contributors affiliated with over 500 institutions across 50 countries",
+        "where": "p. 5, Section 3.1"
+      }
+    ],
+    "gold_beyond_stimulus": [
+      {
+        "quote": "test model knowledge beyond what is readily indexed on the internet",
+        "where": "p. 23, Section B.3"
+      }
+    ],
+    "gold_community_dependent": [],
+    "gold_concerns_genesis": [],
+    "answer_multiplicity": [
+      {
+        "quote": "Questions should ask for something precise and have an objectively correct, univocal answer.",
+        "where": "p. 26, Section C.7.1"
+      }
+    ],
+    "plurality_treatment": [
+      {
+        "quote": "final estimated expert disagreement rate of 15.4% for the public set",
+        "where": "p. 22, Section B.3"
+      }
+    ],
+    "gold_upstream_source": [],
+    "reported_format_gap": [],
+    "reported_format_gap_points": [],
+    "reported_format_gap_kind": [
+      {
+        "quote": "We report text-only results on all models in Section C.2",
+        "where": "p. 8, Table 1 caption"
+      }
+    ],
+    "human_baseline_reported": [],
+    "human_gap_points": [],
+    "reported_best_score": [
+      {
+        "quote": "O3-MINI (HIGH)∗ 13.4",
+        "where": "p. 8, Table 1"
+      }
+    ],
+    "reported_cultural_asymmetry": []
+  },
+  "checks": {
+    "missing_fields": [],
+    "vocab_warnings": [],
+    "evidence": {
+      "quotes": {
+        "humanities_role": [
+          "exact"
+        ],
+        "dataset_size": [
+          "exact"
+        ],
+        "evaluation_set_size": [
+          "exact"
+        ],
+        "primary_evaluation_setting": [
+          "exact"
+        ],
+        "gold_source": [
+          "exact"
+        ],
+        "gold_beyond_stimulus": [
+          "exact"
+        ],
+        "answer_multiplicity": [
+          "exact"
+        ],
+        "plurality_treatment": [
+          "exact"
+        ],
+        "reported_format_gap_kind": [
+          "exact"
+        ],
+        "reported_best_score": [
+          "exact"
+        ]
+      },
+      "unsupported": [
+        "reported_format_gap"
+      ],
+      "unverified": []
+    }
+  },
+  "extraction": {
+    "round": "2026-11_claude",
+    "agent": "cip",
+    "role": "reader",
+    "scope": "technical",
+    "operator": "gspinaci",
+    "backend": "claude-cli",
+    "backend_kind": "claude-cli",
+    "model": "claude-sonnet-5-5",
+    "prompt_sha256": "de1b2a4e5c1121fdd28eae57251ef2535cfda50623e8b4280a669e829f653e73",
+    "scaffold_sha256": "910de03d8019fcc1daec329d31a9ae64b10f9ed69baaca8db4553000177bb766",
+    "rendered_prompt_sha256": "004509d36ade14bdad465f60d4e1b7fd192ec775c9992cd8e424020af5fa607d",
+    "fields": [
+      "analytical_tasks",
+      "analytical_tasks_explanation",
+      "answer_multiplicity",
+      "benchmark_modalities",
+      "benchmark_modalities_explanation",
+      "benchmark_name",
+      "dataset_size",
+      "evaluation_set_size",
+      "evaluation_unit",
+      "facets_explanation",
+      "gold_beyond_stimulus",
+      "gold_community_dependent",
+      "gold_concerns_genesis",
+      "gold_source",
+      "gold_upstream",
+      "gold_upstream_source",
+      "human_baseline_reported",
+      "human_gap_points",
+      "humanities_role",
+      "humanities_role_explanation",
+      "inclusion_criteria",
+      "key_findings",
+      "plurality_treatment",
+      "primary_evaluation_setting",
+      "publication_year",
+      "relevant_asjc_areas",
+      "reported_best_metric",
+      "reported_best_score",
+      "reported_cultural_asymmetry",
+      "reported_format_gap",
+      "reported_format_gap_kind",
+      "reported_format_gap_points",
+      "reported_gap_kinds",
+      "results_explanation",
+      "summary"
+    ],
+    "input": {
+      "pdf_sha256": "93729958e082b58237ae0eafc296b7647b9fdcf172e3b47cba744b1b19866ca5",
+      "text_chars": 107054
+    },
+    "started": "2026-11-09T21:23:51+00:00",
+    "seconds": 17.3
+  },
+  "paper_id": "2501.14249"
+}

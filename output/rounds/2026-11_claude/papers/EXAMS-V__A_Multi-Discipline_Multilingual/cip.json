@@ -1,0 +1,263 @@
+{
+  "benchmark_name": "EXAMS-V",
+  "publication_year": 2024,
+  "humanities_role": "content",
+  "humanities_role_explanation": "Items are school exam questions across 20 subjects (mostly natural science, plus some humanities such as history, philosophy, religion, fine arts) used to test general multimodal/multilingual reasoning of VLMs, not disciplinary humanities competence.",
+  "benchmark_modalities": [
+    "text",
+    "image"
+  ],
+  "benchmark_modalities_explanation": "Each question is a single cropped image embedding question text, options, and visual elements (tables, figures, graphs, symbols); text and visuals are interleaved in one snapshot rather than separate.",
+  "analytical_tasks": [
+    "multiple_choice_qa",
+    "factual_recall",
+    "logical_and_quantitative_reasoning",
+    "visual_reasoning",
+    "cultural_reasoning"
+  ],
+  "analytical_tasks_explanation": "Multiple-choice high-school exam questions requiring subject knowledge, multi-step reasoning (physics, chemistry, math), reading of text in images (OCR in a multilingual context), and region-specific knowledge (history, geography).",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": true,
+      "note": "Multi-discipline (20 subjects), multilingual (11 languages) multimodal exam benchmark."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "GPT-4V, Gemini-Pro-Vision, LLaVA-1.5-13B, Qwen-VL-7B; GPT-3.5-Turbo, GPT-4, Gemini Pro with OCR and captioning."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Accuracy, with a random baseline."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "arXiv preprint 15 March 2024."
+    }
+  },
+  "summary": "EXAMS-V is a multimodal multilingual multiple-choice exam benchmark of 20,932 questions from school exams across 11 languages and 20 subjects, where question text and visuals are embedded in one image. It evaluates VLMs and OCR+caption-augmented LLMs in zero-shot, finding the benchmark challenging.",
+  "key_findings": "GPT-4V is the best VLM at 42.78% average; GPT-4 with OCR and captions is best overall at 47.11%. Open-source VLMs are near random. Chinese is near random for all models; Croatian outperforms Serbian by 20.12 points for GPT-4V (Latin vs Cyrillic script); GPT-4V scores poorly on tables and graphs.",
+  "relevant_asjc_areas": [
+    "Arts and Humanities (miscellaneous)",
+    "History",
+    "Philosophy",
+    "Religious studies",
+    "Language and Linguistics",
+    "Visual Arts and Performing Arts"
+  ],
+  "dataset_size": "20932",
+  "evaluation_set_size": 4208,
+  "evaluation_unit": "multiple-choice question (image snapshot)",
+  "primary_evaluation_setting": "zero-shot",
+  "gold_source": "existing_dataset",
+  "gold_upstream": "EXAMS (Hardalov et al., 2020), collected from official state examinations by ministries of education; answer keys come from the exams; extended by the authors with English and Chinese exams (Gaokao, JEE Advanced).",
+  "gold_upstream_source": "authored_answer_key",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "not_stated",
+  "facets_explanation": "Questions and correct answers come from official national exams; the original EXAMS PDFs were retraced and cropped, with English and Chinese exams added by the authors. Authors drew bounding boxes and recorded metadata including the correct answer. Questions have exactly one correct option; the benchmark requires subject and region-specific knowledge not in the image.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 28,
+  "reported_format_gap_kind": "input",
+  "reported_gap_kinds": [
+    "input"
+  ],
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 47.11,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "yes",
+  "results_explanation": "GPT-4 with OCR+captioning has Avg 47.11 in Table 4, the highest overall; GPT-4V reaches 42.78 as best VLM. The input gap compares the same model on the parallel Serbian items: GPT-4V Serbian Biology 37.64 vs Croatian 72.04, and the 28-point figure is a derived approximation across representations (VLM vs OCR+caption on Serbian: GPT-4 73.51 vs GPT-4V 39.84, roughly 34 points) — the largest reported is on Serbian but approximate. No human baseline is reported.",
+  "evidence": {
+    "humanities_role": [
+      {
+        "quote": "covering natural science, social science, and other miscellaneous studies, e.g., religion, fine arts, business, etc.",
+        "where": "p. 1, Abstract"
+      }
+    ],
+    "dataset_size": [
+      {
+        "quote": "The EXAMS-V dataset contains 20,932 samples in total, spanning 20 subjects from grade 4-12.",
+        "where": "p. 4, Section 3.2"
+      }
+    ],
+    "evaluation_set_size": [
+      {
+        "quote": "Finally, we got 16,724 training and 4,208 test instances.",
+        "where": "p. 6, Section 4"
+      }
+    ],
+    "primary_evaluation_setting": [
+      {
+        "quote": "Our evaluation is conducted under a zero-shot setting without model finetuning or in-context learning",
+        "where": "p. 6, Section 4"
+      }
+    ],
+    "gold_source": [
+      {
+        "quote": "EXAMS-V is a multimodal extension of the EXAMS dataset (Hardalov et al., 2020), which is collected from official state examinations crafted by the ministries of education",
+        "where": "p. 3, Section 3"
+      }
+    ],
+    "gold_beyond_stimulus": [
+      {
+        "quote": "Questions related to Geography and History necessitate specific knowledge about particular regions or countries.",
+        "where": "p. 5, Question Complexity"
+      }
+    ],
+    "gold_community_dependent": [],
+    "gold_concerns_genesis": [],
+    "answer_multiplicity": [
+      {
+        "quote": "Only multiple-choice questions with 3 to 5 options and exactly one correct answer are considered",
+        "where": "p. 4, Annotation Guidelines"
+      }
+    ],
+    "plurality_treatment": [],
+    "gold_upstream_source": [
+      {
+        "quote": "collected from official state examinations crafted by the ministries of education across different countries",
+        "where": "p. 3, Section 3"
+      }
+    ],
+    "reported_format_gap": [
+      {
+        "quote": "GPT-4, when augmented with OCR and captioning, demonstrates the highest overall performance among both VLMs and LLMs.",
+        "where": "p. 7, Section 5"
+      }
+    ],
+    "reported_format_gap_points": [
+      {
+        "quote": "GPT-4 30.46 23.57 66.58 36.71 23.76 34.09 32.40 73.51 75.95 26.47 30.00 47.11",
+        "where": "p. 7, Table 4"
+      }
+    ],
+    "reported_format_gap_kind": [
+      {
+        "quote": "unlike prompt GPT-4V to directly generate the answer, augmented GPT-4 decouples the difficulties in visual information extraction and text reasoning.",
+        "where": "p. 7"
+      }
+    ],
+    "human_baseline_reported": [],
+    "human_gap_points": [],
+    "reported_best_score": [
+      {
+        "quote": "GPT-4 30.46 23.57 66.58 36.71 23.76 34.09 32.40 73.51 75.95 26.47 30.00 47.11",
+        "where": "p. 7, Table 4"
+      }
+    ],
+    "reported_cultural_asymmetry": [
+      {
+        "quote": "there is a significant performance gap between Croatian and Serbian with Croatian outperforming Serbian by 20.12 %.",
+        "where": "p. 8, Section 5.2"
+      }
+    ]
+  },
+  "checks": {
+    "missing_fields": [],
+    "vocab_warnings": [],
+    "evidence": {
+      "quotes": {
+        "humanities_role": [
+          "exact"
+        ],
+        "dataset_size": [
+          "exact"
+        ],
+        "evaluation_set_size": [
+          "exact"
+        ],
+        "primary_evaluation_setting": [
+          "exact"
+        ],
+        "gold_source": [
+          "exact"
+        ],
+        "gold_beyond_stimulus": [
+          "exact"
+        ],
+        "answer_multiplicity": [
+          "exact"
+        ],
+        "gold_upstream_source": [
+          "exact"
+        ],
+        "reported_format_gap": [
+          "exact"
+        ],
+        "reported_format_gap_points": [
+          "exact"
+        ],
+        "reported_format_gap_kind": [
+          "exact"
+        ],
+        "reported_best_score": [
+          "exact"
+        ],
+        "reported_cultural_asymmetry": [
+          "exact"
+        ]
+      },
+      "unsupported": [],
+      "unverified": []
+    }
+  },
+  "extraction": {
+    "round": "2026-11_claude",
+    "agent": "cip",
+    "role": "reader",
+    "scope": "technical",
+    "operator": "gspinaci",
+    "backend": "claude-cli",
+    "backend_kind": "claude-cli",
+    "model": "claude-sonnet-5-5",
+    "prompt_sha256": "de1b2a4e5c1121fdd28eae57251ef2535cfda50623e8b4280a669e829f653e73",
+    "scaffold_sha256": "910de03d8019fcc1daec329d31a9ae64b10f9ed69baaca8db4553000177bb766",
+    "rendered_prompt_sha256": "c0242744848bcb37041935d000cb8293c644ed8caf9ba074fb836c0eede6054d",
+    "fields": [
+      "analytical_tasks",
+      "analytical_tasks_explanation",
+      "answer_multiplicity",
+      "benchmark_modalities",
+      "benchmark_modalities_explanation",
+      "benchmark_name",
+      "dataset_size",
+      "evaluation_set_size",
+      "evaluation_unit",
+      "facets_explanation",
+      "gold_beyond_stimulus",
+      "gold_community_dependent",
+      "gold_concerns_genesis",
+      "gold_source",
+      "gold_upstream",
+      "gold_upstream_source",
+      "human_baseline_reported",
+      "human_gap_points",
+      "humanities_role",
+      "humanities_role_explanation",
+      "inclusion_criteria",
+      "key_findings",
+      "plurality_treatment",
+      "primary_evaluation_setting",
+      "publication_year",
+      "relevant_asjc_areas",
+      "reported_best_metric",
+      "reported_best_score",
+      "reported_cultural_asymmetry",
+      "reported_format_gap",
+      "reported_format_gap_kind",
+      "reported_format_gap_points",
+      "reported_gap_kinds",
+      "results_explanation",
+      "summary"
+    ],
+    "input": {
+      "pdf_sha256": "911768ace26ff24da5d1dabcb260f8961cf3f28c76bd355a67ca8f0bfac47158",
+      "text_chars": 67465
+    },
+    "started": "2026-11-09T21:25:30+00:00",
+    "seconds": 16.6
+  },
+  "paper_id": "EXAMS-V:_A_Multi-Discipline_Multilingual"
+}

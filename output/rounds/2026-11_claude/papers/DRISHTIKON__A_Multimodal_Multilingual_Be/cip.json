@@ -1,0 +1,250 @@
+{
+  "benchmark_name": "DRISHTIKON",
+  "publication_year": 2025,
+  "humanities_role": "both",
+  "humanities_role_explanation": "Indian cultural material (festivals, attire, cuisine, art, history) supplies image-question items, and the benchmark explicitly targets cultural competence in Indian culture. Items are tagged by cultural attribute, but there are no distinct item groups or metrics separating content-as-data from disciplinary competence; the benchmark targets cultural-knowledge competence itself, so domain is the closest reading.",
+  "benchmark_modalities": [
+    "text",
+    "image"
+  ],
+  "benchmark_modalities_explanation": "Each multiple-choice question in 15 languages is paired with a culturally relevant image (provided as URL) selected via Google Image Search; models must combine visual and textual input.",
+  "analytical_tasks": [
+    "multiple_choice_qa",
+    "factual_recall",
+    "visual_recognition",
+    "cultural_reasoning",
+    "logical_and_quantitative_reasoning",
+    "visual_reasoning"
+  ],
+  "analytical_tasks_explanation": "4-option MCQs on Indian cultural aspects (attire, festivals, cuisine, art, heritage sites, personalities). Reasoning-augmented types: Common Sense Cultural, Multi-hop Reasoning (linking dance form to festival and state), and Analogy. Paper frames this as 'perception, inference, and cultural alignment' and 'cultural reasoning'.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "Scoped to one domain: Indian culture, MCQ format only."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates VLMs: SmolVLM-256M, InternVL3-1B/14B, Janus-Pro-7B, Qwen2-VL-7B, Llama-4-Scout-17B, LLaVA-1.6-Mistral-7B, Gemma-3-27B-IT, Qwen2.5-Omni-7B, GPT-4o-mini, Kimi-VL-A3B-Thinking, Chitrarth, Maya."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Accuracy over multiple-choice questions."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "EMNLP 2025 (November 2025)."
+    }
+  },
+  "summary": "DRISHTIKON is a multimodal, multilingual MCQ benchmark on Indian culture covering all 28 states and 8 UTs in 15 languages with 64,288 question-image-language instances. It evaluates a range of VLMs in zero-shot and chain-of-thought settings and reports gaps for low-resource languages and less-documented regions.",
+  "key_findings": "GPT-4o-mini is consistently best; small models such as SmolVLM-256M and InternVL3-1B are competitive; Maya performs well. English is best, while Sindhi, Konkani and Kannada drop by over 40% relative to English in some cases. Multi-hop questions show steep drops; CoT yields gains of up to 10-15% on multi-hop and analogy questions. Lower accuracy for regions like Lakshadweep, Mizoram, and Dadra and Nagar Haveli.",
+  "relevant_asjc_areas": [
+    "Cultural Studies",
+    "Anthropology",
+    "Visual Arts and Performing Arts",
+    "Language and Linguistics",
+    "History"
+  ],
+  "dataset_size": "64288",
+  "evaluation_set_size": 64288,
+  "evaluation_unit": "question-image-language triple (multiple-choice question)",
+  "primary_evaluation_setting": "mix",
+  "gold_source": "domain_expert",
+  "gold_upstream": null,
+  "gold_upstream_source": null,
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "noise",
+  "facets_explanation": "2,126 English MCQs were authored by trained annotators with backgrounds in Indian history, sociology or cultural studies, drawing on Wikipedia, Ritiriwaz, Holidify, Google Arts & Culture and Times of India, then peer-reviewed and adjudicated by a cultural expert. Distractors were semi-automated plus human curation; 2,160 reasoning MCQs were LLM-augmented and manually reviewed, and translation into 14 languages was done by Gemini Pro with human verification on stratified samples. Cohen's kappa 0.82 was reported and disagreements were resolved by discussion or expert input. Answers require external cultural knowledge beyond the image, and a single universal key is used across languages.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 15,
+  "reported_format_gap_kind": "input",
+  "reported_gap_kinds": [
+    "input",
+    "format"
+  ],
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": null,
+  "reported_best_metric": null,
+  "reported_cultural_asymmetry": "yes",
+  "results_explanation": "The paper reports CoT versus zero-shot gains of 'up to 10–15%' on multi-hop and analogy questions (upper bound 15 used). Language gaps: 'accuracy dropping by over 40% in some cases compared to English'. No single headline numeric score is given in text (results are in figures only), so reported_best_score is null. No human baseline is reported.",
+  "evidence": {
+    "humanities_role": [
+      {
+        "quote": "designed to evaluate the cultural understanding of generative AI systems",
+        "where": "p. 1, Abstract"
+      }
+    ],
+    "dataset_size": [
+      {
+        "quote": "The resulting dataset comprises 64,288 question-image-language triples spanning 36 regions, 16 cultural themes, and multiple question types.",
+        "where": "p. 5, Section 3.4"
+      }
+    ],
+    "evaluation_set_size": [
+      {
+        "quote": "Reported percentages represent the average accuracy for each language–model pair over the entire dataset.",
+        "where": "p. 8, Figure 6 caption"
+      }
+    ],
+    "primary_evaluation_setting": [
+      {
+        "quote": "under zero-shot, and chain-of-thought (CoT) prompting paradigms",
+        "where": "p. 2, Introduction"
+      }
+    ],
+    "gold_source": [
+      {
+        "quote": "Each MCQ was initially authored by trained annotators with backgrounds in Indian history, sociology, or cultural studies.",
+        "where": "p. 15, A.2.1"
+      }
+    ],
+    "gold_beyond_stimulus": [
+      {
+        "quote": "Gaps in visual grounding where accurate interpretation required deeper regional or cultural knowledge.",
+        "where": "p. 22, A.9"
+      }
+    ],
+    "gold_community_dependent": [],
+    "gold_concerns_genesis": [],
+    "answer_multiplicity": [
+      {
+        "quote": "we framed multiple-choice questions (MCQs) with one correct answer and three distractors",
+        "where": "p. 3, Section 3.1"
+      }
+    ],
+    "plurality_treatment": [
+      {
+        "quote": "Disagreements primarily arose from regional overlaps (e.g., shared traditions across bordering states), which were resolved through discussion or expert input.",
+        "where": "p. 15, A.2.3"
+      }
+    ],
+    "gold_upstream_source": [],
+    "reported_format_gap": [],
+    "reported_format_gap_points": [
+      {
+        "quote": "yielding accuracy gains of up to 10–15%",
+        "where": "p. 9, Section 5.6"
+      }
+    ],
+    "reported_format_gap_kind": [
+      {
+        "quote": "We compare model performance under zero-shot and chain-of-thought (CoT) prompting",
+        "where": "p. 9, Section 5.6"
+      }
+    ],
+    "human_baseline_reported": [],
+    "human_gap_points": [],
+    "reported_best_score": [],
+    "reported_cultural_asymmetry": [
+      {
+        "quote": "with accuracy dropping by over 40% in some cases compared to English",
+        "where": "p. 7, Section 5.3"
+      }
+    ]
+  },
+  "checks": {
+    "missing_fields": [],
+    "vocab_warnings": [],
+    "evidence": {
+      "quotes": {
+        "humanities_role": [
+          "exact"
+        ],
+        "dataset_size": [
+          "exact"
+        ],
+        "evaluation_set_size": [
+          "exact"
+        ],
+        "primary_evaluation_setting": [
+          "exact"
+        ],
+        "gold_source": [
+          "exact"
+        ],
+        "gold_beyond_stimulus": [
+          "exact"
+        ],
+        "answer_multiplicity": [
+          "exact"
+        ],
+        "plurality_treatment": [
+          "exact"
+        ],
+        "reported_format_gap_points": [
+          "exact"
+        ],
+        "reported_format_gap_kind": [
+          "exact"
+        ],
+        "reported_cultural_asymmetry": [
+          "exact"
+        ]
+      },
+      "unsupported": [
+        "reported_format_gap"
+      ],
+      "unverified": []
+    }
+  },
+  "extraction": {
+    "round": "2026-11_claude",
+    "agent": "cip",
+    "role": "reader",
+    "scope": "technical",
+    "operator": "gspinaci",
+    "backend": "claude-cli",
+    "backend_kind": "claude-cli",
+    "model": "claude-sonnet-5-5",
+    "prompt_sha256": "de1b2a4e5c1121fdd28eae57251ef2535cfda50623e8b4280a669e829f653e73",
+    "scaffold_sha256": "910de03d8019fcc1daec329d31a9ae64b10f9ed69baaca8db4553000177bb766",
+    "rendered_prompt_sha256": "e1a9a9658275bf0d18b08d90774d573afa1ec1082c950f1581471b60cb1c1a9f",
+    "fields": [
+      "analytical_tasks",
+      "analytical_tasks_explanation",
+      "answer_multiplicity",
+      "benchmark_modalities",
+      "benchmark_modalities_explanation",
+      "benchmark_name",
+      "dataset_size",
+      "evaluation_set_size",
+      "evaluation_unit",
+      "facets_explanation",
+      "gold_beyond_stimulus",
+      "gold_community_dependent",
+      "gold_concerns_genesis",
+      "gold_source",
+      "gold_upstream",
+      "gold_upstream_source",
+      "human_baseline_reported",
+      "human_gap_points",
+      "humanities_role",
+      "humanities_role_explanation",
+      "inclusion_criteria",
+      "key_findings",
+      "plurality_treatment",
+      "primary_evaluation_setting",
+      "publication_year",
+      "relevant_asjc_areas",
+      "reported_best_metric",
+      "reported_best_score",
+      "reported_cultural_asymmetry",
+      "reported_format_gap",
+      "reported_format_gap_kind",
+      "reported_format_gap_points",
+      "reported_gap_kinds",
+      "results_explanation",
+      "summary"
+    ],
+    "input": {
+      "pdf_sha256": "68462bc1c4a9a372d8830bcfec30db5f7ed8459202356348fbf7d52249c248e3",
+      "text_chars": 86072
+    },
+    "started": "2026-11-09T21:25:48+00:00",
+    "seconds": 16.3
+  },
+  "paper_id": "DRISHTIKON:_A_Multimodal_Multilingual_Be"
+}

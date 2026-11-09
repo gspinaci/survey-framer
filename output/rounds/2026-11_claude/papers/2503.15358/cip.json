@@ -1,0 +1,248 @@
+{
+  "benchmark_name": "AdMIRe (Advancing Multimodal Idiomaticity Representation), SemEval-2025 Task 1",
+  "publication_year": 2025,
+  "humanities_role": "domain",
+  "humanities_role_explanation": "Targets disciplinary linguistic competence: interpreting idiomatic vs literal meaning of nominal compounds (idiomaticity), a linguistics phenomenon, rather than using idioms merely as generic items.",
+  "benchmark_modalities": [
+    "text",
+    "image"
+  ],
+  "benchmark_modalities_explanation": "Subtask A: context sentence plus five generated images (or captions in text-only track). Subtask B: two-image sequence prefix plus four candidate completion images (or captions). Images generated with Midjourney; captions by LLaVA.",
+  "analytical_tasks": [
+    "retrieval_and_ranking",
+    "interpretation",
+    "visual_reasoning",
+    "sequence_prediction",
+    "classification"
+  ],
+  "analytical_tasks_explanation": "Subtask A: ranking five images by how well they depict the idiomatic or literal sense of a nominal compound in context (multiple image choice). Subtask B: next-image prediction in a three-panel sequence plus identifying whether the sense is idiomatic or literal (sentence type classification).",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "Scoped to a single phenomenon (idiomaticity of nominal compounds) in two languages."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Participant systems used GPT-4/GPT-4o, Qwen2.5, DeepSeek, LLaVA, plus CLIP/SBERT/BLIP; no fixed set of models evaluated by organizers."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Top-1 image accuracy, DCG, image completion accuracy, sentence type accuracy."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "arXiv March 2025 (v3 June 2025), SemEval-2025."
+    }
+  },
+  "summary": "The paper presents the SemEval-2025 Task 1 AdMIRe datasets and shared task on multimodal idiomaticity in English and Brazilian Portuguese: ranking images by idiomatic or literal meaning and predicting the next image in a sequence. It reports results from 20 teams and a human evaluation; top systems used LLM/VLM ensembles with multiple prompt queries and reached human-level performance.",
+  "key_findings": "Best Subtask A English test: top-1 accuracy 0.93 (PALI-NLP, dutir914, AlexUNLP-NB). On the extended evaluation set the best was PALI-NLP 0.83. Humans: average 0.71, best individual 0.86, pool 0.83 top-1 on the English extended set. Mixture-of-experts and multiple prompts helped; LLMs were biased toward idiomatic readings; Subtask B had few submissions and volatile results.",
+  "relevant_asjc_areas": [
+    "Language and Linguistics"
+  ],
+  "dataset_size": "185",
+  "evaluation_set_size": 15,
+  "evaluation_unit": "item (context sentence with five candidate images, Subtask A English test)",
+  "primary_evaluation_setting": "mix",
+  "gold_source": "paper_authors",
+  "gold_upstream": null,
+  "gold_upstream_source": null,
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "not_stated",
+  "facets_explanation": "Native-speaker annotators (project researchers/collaborators) wrote the scene descriptions, context sentences and sequences, and images were generated from them. The expected ranking is fixed by the sense used. Candidate compounds came from existing datasets but the answer key is the authors' constructed ordering. Dataset size 185 = 100 EN + 55 PT-BR Subtask A items + 30 EN Subtask B items, minus 10 overlapping items counted in both subsets (counted as 185 incl. overlap; 175 unique).",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": null,
+  "reported_format_gap_kind": null,
+  "reported_gap_kinds": [
+    "difficulty",
+    "input"
+  ],
+  "human_baseline_reported": "yes",
+  "human_gap_points": 0,
+  "reported_best_score": 0.93,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "no",
+  "results_explanation": "Table 3 lists PALI-NLP 0.93 top-1 accuracy (English, text & images, test set). Human table: Best individual 0.86, Pool of experts 0.83 on the extended set versus best system 0.83 (PALI-NLP), so human_gap is 0 (pool ties best system). Test vs extended results differ across teams but no single numeric gap is stated explicitly, so reported_format_gap_points is null. The paper states the English/Portuguese difference was smaller than anticipated.",
+  "evidence": {
+    "humanities_role": [
+      {
+        "quote": "which challenges the community to assess and improve models’ ability to interpret idiomatic expressions in multimodal contexts and in multiple languages",
+        "where": "p. 1, Abstract"
+      }
+    ],
+    "dataset_size": [
+      {
+        "quote": "In total, we obtained 100 English and 55 Portuguese potentially idiomatic expressions",
+        "where": "p. 2, Sec 2.2"
+      },
+      {
+        "quote": "A total of 30 items were collected in English.",
+        "where": "p. 2, Sec 2.3"
+      }
+    ],
+    "evaluation_set_size": [
+      {
+        "quote": "The English dataset for Subtask A includes 70 training items (350 image-caption pairs), 15 development items, and 15 test items",
+        "where": "p. 3, Sec 3.1"
+      }
+    ],
+    "primary_evaluation_setting": [
+      {
+        "quote": "All teams opted to use prompting methods with large, generative language and vision-language models and/or to fine-tune smaller pretrained models on the task.",
+        "where": "p. 5, Sec 4.2"
+      }
+    ],
+    "gold_source": [
+      {
+        "quote": "Native speakers of the target language were asked to write a short sentence describing a visual scene depicting each target expression",
+        "where": "p. 2, Sec 2.2"
+      }
+    ],
+    "gold_beyond_stimulus": [
+      {
+        "quote": "Idiomatic expressions present a unique challenge in NLP, as their meanings are often not directly inferable from their constituent words.",
+        "where": "p. 1, Abstract"
+      }
+    ],
+    "gold_community_dependent": [],
+    "gold_concerns_genesis": [],
+    "answer_multiplicity": [
+      {
+        "quote": "The image strongly associated with the target sense should be ranked first, followed by the mildly associated one.",
+        "where": "p. 4, Sec 3.3.1"
+      }
+    ],
+    "plurality_treatment": [],
+    "gold_upstream_source": [],
+    "reported_format_gap": [
+      {
+        "quote": "The highest-ranked system (daalft) reported a substantial drop in accuracy on the extended test set.",
+        "where": "p. 7, Sec 4.3.2"
+      }
+    ],
+    "reported_format_gap_points": [],
+    "reported_format_gap_kind": [],
+    "human_baseline_reported": [
+      {
+        "quote": "Pool of experts 0.83 3.39",
+        "where": "p. 8, Table 9"
+      }
+    ],
+    "human_gap_points": [
+      {
+        "quote": "the pool of experts approach would tie with the most performant system",
+        "where": "p. 8, Sec 5"
+      }
+    ],
+    "reported_best_score": [
+      {
+        "quote": "PALI-NLP 1 0.93 3.52",
+        "where": "p. 6, Table 3"
+      }
+    ],
+    "reported_cultural_asymmetry": []
+  },
+  "checks": {
+    "missing_fields": [],
+    "vocab_warnings": [],
+    "evidence": {
+      "quotes": {
+        "humanities_role": [
+          "exact"
+        ],
+        "dataset_size": [
+          "exact",
+          "exact"
+        ],
+        "evaluation_set_size": [
+          "exact"
+        ],
+        "primary_evaluation_setting": [
+          "exact"
+        ],
+        "gold_source": [
+          "exact"
+        ],
+        "gold_beyond_stimulus": [
+          "exact"
+        ],
+        "answer_multiplicity": [
+          "exact"
+        ],
+        "reported_format_gap": [
+          "exact"
+        ],
+        "human_baseline_reported": [
+          "exact"
+        ],
+        "human_gap_points": [
+          "exact"
+        ],
+        "reported_best_score": [
+          "exact"
+        ]
+      },
+      "unsupported": [],
+      "unverified": []
+    }
+  },
+  "extraction": {
+    "round": "2026-11_claude",
+    "agent": "cip",
+    "role": "reader",
+    "scope": "technical",
+    "operator": "gspinaci",
+    "backend": "claude-cli",
+    "backend_kind": "claude-cli",
+    "model": "claude-sonnet-5-5",
+    "prompt_sha256": "de1b2a4e5c1121fdd28eae57251ef2535cfda50623e8b4280a669e829f653e73",
+    "scaffold_sha256": "910de03d8019fcc1daec329d31a9ae64b10f9ed69baaca8db4553000177bb766",
+    "rendered_prompt_sha256": "2824bb5197d88f53951383a09a7c9fb6068a198566838e7d3693df912e51afa8",
+    "fields": [
+      "analytical_tasks",
+      "analytical_tasks_explanation",
+      "answer_multiplicity",
+      "benchmark_modalities",
+      "benchmark_modalities_explanation",
+      "benchmark_name",
+      "dataset_size",
+      "evaluation_set_size",
+      "evaluation_unit",
+      "facets_explanation",
+      "gold_beyond_stimulus",
+      "gold_community_dependent",
+      "gold_concerns_genesis",
+      "gold_source",
+      "gold_upstream",
+      "gold_upstream_source",
+      "human_baseline_reported",
+      "human_gap_points",
+      "humanities_role",
+      "humanities_role_explanation",
+      "inclusion_criteria",
+      "key_findings",
+      "plurality_treatment",
+      "primary_evaluation_setting",
+      "publication_year",
+      "relevant_asjc_areas",
+      "reported_best_metric",
+      "reported_best_score",
+      "reported_cultural_asymmetry",
+      "reported_format_gap",
+      "reported_format_gap_kind",
+      "reported_format_gap_points",
+      "reported_gap_kinds",
+      "results_explanation",
+      "summary"
+    ],
+    "input": {
+      "pdf_sha256": "db4845e34592e4a803c435586f4c11d4e51cac6f5094f2ac026b5650125c2e95",
+      "text_chars": 53155
+    },
+    "started": "2026-11-09T21:24:21+00:00",
+    "seconds": 16.4
+  },
+  "paper_id": "2503.15358"
+}

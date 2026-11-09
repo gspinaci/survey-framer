@@ -1,0 +1,153 @@
+{
+  "benchmark_name": "Comics Cross-Cultural Benchmark (C3B)",
+  "publication_year": 2026,
+  "humanities_role": "content",
+  "humanities_role_explanation": "Comic pages (generated and Manga109) supply the stimuli, but the competences tested (visual recognition of culture-linked objects, conflict detection, machine translation) are general MLLM capabilities rather than disciplinary competence in comics studies or cultural studies.",
+  "benchmark_modalities": [
+    "text",
+    "image"
+  ],
+  "benchmark_modalities_explanation": "Comic page images (AI-generated comics and Manga109 pages) paired with natural-language questions; Generation@Culture also gives a source sentence alongside the page, with text outputs.",
+  "analytical_tasks": [
+    "multiple_choice_qa",
+    "visual_recognition",
+    "cultural_reasoning",
+    "classification",
+    "open_ended_qa",
+    "translation",
+    "fact_verification"
+  ],
+  "analytical_tasks_explanation": "Q1 background culture identification (multi-answer multiple choice), Q2 culture-aware object detection (choose option listing exactly the objects), Q3 yes/no identification of cultural conflict, Q4 free-form description of conflicts in the format 'Something should not be in Some Culture', and Q5 machine translation from Japanese into EN/DE/RU/TH/ES given a manga page (Generation@Culture).",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "Scoped to cultural awareness of MLLMs using comics; three tasks within one domain."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "11 open-source MLLMs: SPHINX, Monkey, MiniGPT-v2, mPLUG-Owl3, LLaVA1.5-7B, LLaVA-NeXT, LLaVA-OV, InternLM-XC2.5, Llama3.2, Qwen2.5-VL, InternVL2."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Accuracy, composite CACC for Q4, BLEU, COMET, BLEURT; human evaluation comparison."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "arXiv 2510.00041v2, ICLR 2026 (Feb 2026 version)."
+    }
+  },
+  "summary": "C3B is a comic-based benchmark of 2220 images and 18789 QA pairs testing MLLM cultural awareness through three tasks of rising difficulty: culture and object recognition, cultural conflict detection, and culturally grounded translation. Evaluating 11 open-source MLLMs shows large gaps to human performance and weaker results on lesser-known cultures.",
+  "key_findings": "Qwen2.5-VL is best overall (Q1 ACC 53.7, CACC 34.2 on Q4; best BLEU on all five language pairs). Q4 ACC is near zero for all models (max 3.87). JA-TH is the hardest translation pair and JA-EN the easiest. Humans outperform models on every tier (e.g. Q1 92.0 vs 48.0 on easy). Lesser-known cultures (Finnish, Somalia) show higher error rates than well-known ones (Cambodia, Japan).",
+  "relevant_asjc_areas": [
+    "Arts and Humanities (miscellaneous)",
+    "Visual Arts and Performing Arts",
+    "Language and Linguistics",
+    "Cultural Studies"
+  ],
+  "dataset_size": "18789",
+  "evaluation_set_size": 18789,
+  "evaluation_unit": "QA pair",
+  "primary_evaluation_setting": "zero-shot",
+  "gold_source": "paper_authors",
+  "gold_upstream": null,
+  "gold_upstream_source": null,
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "answer_set",
+  "plurality_treatment": "noise",
+  "facets_explanation": "Cultures and cultural-object lists were annotated manually by students (two undergraduates, reviewed by three graduate students) with Wikipedia as reference, and QA options were built from them; Q4 gold answers were drafted by DeepSeek-V3 then manually verified and corrected; translation references were produced by a DeepSeek-R1 Translator/Reviewer pipeline with manual verification. Annotators were the authors' team, so the key is mixed manual/model-generated and I report the manual annotation as the majority source for Q1-Q3. Q1 accepts 1 to 5 correct options. Disagreement is reported as an inter-annotator agreement of 76.8% and resolved via group discussion.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": null,
+  "reported_format_gap_kind": null,
+  "reported_gap_kinds": [
+    "depth",
+    "scoring",
+    "input"
+  ],
+  "human_baseline_reported": "yes",
+  "human_gap_points": null,
+  "reported_best_score": 53.7,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "yes",
+  "results_explanation": "Best headline score is Qwen2.5-VL on Q1: 'Qwen2.5-VL 53.7' (accuracy); Q4 ACC and CACC differ for the same outputs (e.g. Qwen2.5-VL ACC 3.20 vs CACC 34.2), and an OCR comparison drops BLEU (Qwen2.5-VL JA-ES 14.5 vs 1.32 with OCR). Human vs model is reported per difficulty tier on 100 sampled questions per tier, e.g. Q1 easy human 92.0 vs model 48.0, but the model figures there are averages over all models, not the best model, so the gap to the best model is not computed. The largest format gap is not given as a single clean number because the comparisons are across questions or tiers, so it is null. Figure 5 shows per-culture accuracy with lesser-known cultures having higher error rates.",
+  "checks": {
+    "missing_fields": [],
+    "vocab_warnings": [],
+    "evidence": {
+      "quotes": {},
+      "unsupported": [
+        "humanities_role",
+        "dataset_size",
+        "evaluation_set_size",
+        "primary_evaluation_setting",
+        "gold_source",
+        "gold_beyond_stimulus",
+        "answer_multiplicity",
+        "plurality_treatment",
+        "reported_format_gap",
+        "human_baseline_reported",
+        "reported_best_score",
+        "reported_cultural_asymmetry"
+      ],
+      "unverified": []
+    }
+  },
+  "extraction": {
+    "round": "2026-11_claude",
+    "agent": "cip",
+    "role": "reader",
+    "scope": "technical",
+    "operator": "gspinaci",
+    "backend": "claude-cli",
+    "backend_kind": "claude-cli",
+    "model": "claude-sonnet-5-5",
+    "prompt_sha256": "de1b2a4e5c1121fdd28eae57251ef2535cfda50623e8b4280a669e829f653e73",
+    "scaffold_sha256": "910de03d8019fcc1daec329d31a9ae64b10f9ed69baaca8db4553000177bb766",
+    "rendered_prompt_sha256": "30d33de7c8a862c4efe7dd0f5e0ccbc715f1c98c0316e9b6dfb83e1c8f0c876a",
+    "fields": [
+      "analytical_tasks",
+      "analytical_tasks_explanation",
+      "answer_multiplicity",
+      "benchmark_modalities",
+      "benchmark_modalities_explanation",
+      "benchmark_name",
+      "dataset_size",
+      "evaluation_set_size",
+      "evaluation_unit",
+      "facets_explanation",
+      "gold_beyond_stimulus",
+      "gold_community_dependent",
+      "gold_concerns_genesis",
+      "gold_source",
+      "gold_upstream",
+      "gold_upstream_source",
+      "human_baseline_reported",
+      "human_gap_points",
+      "humanities_role",
+      "humanities_role_explanation",
+      "inclusion_criteria",
+      "key_findings",
+      "plurality_treatment",
+      "primary_evaluation_setting",
+      "publication_year",
+      "relevant_asjc_areas",
+      "reported_best_metric",
+      "reported_best_score",
+      "reported_cultural_asymmetry",
+      "reported_format_gap",
+      "reported_format_gap_kind",
+      "reported_format_gap_points",
+      "reported_gap_kinds",
+      "results_explanation",
+      "summary"
+    ],
+    "input": {
+      "pdf_sha256": "866a48733a2ecdc4d8c032fb55e9192a740243c5fbbab7ebe2469c6715f33a8d",
+      "text_chars": 80804
+    },
+    "started": "2026-11-09T21:26:03+00:00",
+    "seconds": 14.5
+  },
+  "paper_id": "2510.00041"
+}

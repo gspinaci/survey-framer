@@ -1,0 +1,261 @@
+{
+  "benchmark_name": "Massive Multitask Language Understanding (MMLU)",
+  "publication_year": 2021,
+  "humanities_role": "content",
+  "humanities_role_explanation": "Humanities subjects (history, law, philosophy, ethics, religions) are 13 of 57 tasks among STEM, social science and other subjects; the benchmark measures general world knowledge and problem solving across academic and professional fields, not humanities disciplinary competence specifically.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Text-only multiple-choice questions; the authors explicitly state they designed the benchmark in a text-only format.",
+  "analytical_tasks": [
+    "multiple_choice_qa",
+    "factual_recall",
+    "logical_and_quantitative_reasoning",
+    "normative_judgment",
+    "calibration_and_uncertainty"
+  ],
+  "analytical_tasks_explanation": "Four-option multiple-choice questions over 57 subjects testing 'world knowledge and problem solving ability' (declarative vs procedural knowledge). Includes legal reasoning, moral scenarios (ETHICS-derived normative judgments), calculation-heavy STEM problems, and a calibration analysis of model confidence vs accuracy.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": true,
+      "note": "Broad multitask benchmark covering 57 subjects across STEM, humanities, social sciences and other."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "GPT-3 (Small, Medium, Large, X-Large), UnifiedQA, and fine-tuned RoBERTa-base, ALBERT-xxlarge, GPT-2."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Classification accuracy, plus calibration (RMS calibration error, confidence vs accuracy)."
+    },
+    "published_after_march_2023": {
+      "met": false,
+      "note": "arXiv September 2020 (v3 January 2021), ICLR 2021."
+    }
+  },
+  "summary": "The paper introduces a multiple-choice benchmark of 57 subjects spanning STEM, humanities, social sciences and other areas, at difficulty from elementary to professional, to measure knowledge acquired in pretraining in zero-shot and few-shot settings. The largest GPT-3 reaches 43.9% few-shot accuracy, with lopsided performance, near-random results on morality and law, and poor calibration.",
+  "key_findings": "GPT-3 X-Large few-shot 43.9% average (Humanities 40.8); UnifiedQA 48.9%; smaller GPT-3 models near random (25%). Zero-shot GPT-3 X-Large about 37.7%. Models are below expert level (~89.8%) on every task; unspecialized MTurk humans get 34.5%. Confidence can be up to 24% off from accuracy in zero-shot. Near-random on Moral Scenarios and Professional Law.",
+  "relevant_asjc_areas": [
+    "Philosophy",
+    "History",
+    "Religious studies",
+    "Law",
+    "Arts and Humanities (miscellaneous)"
+  ],
+  "dataset_size": "15908",
+  "evaluation_set_size": 14079,
+  "evaluation_unit": "multiple-choice question",
+  "primary_evaluation_setting": "mix",
+  "gold_source": "authored_answer_key",
+  "gold_upstream": null,
+  "gold_upstream_source": null,
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "not_stated",
+  "facets_explanation": "Questions were manually collected by graduate and undergraduate students from freely available online sources such as GRE and USMLE practice questions, undergraduate course questions, and Oxford University Press reader questions, so answer keys come from existing assessment material. Most items require external domain knowledge not in the question text. Scoring is the highest-probability option among A-D against a single key. The paper does not discuss annotator disagreement.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 6,
+  "reported_format_gap_kind": "input",
+  "reported_gap_kinds": [
+    "input"
+  ],
+  "human_baseline_reported": "yes",
+  "human_gap_points": 46,
+  "reported_best_score": 43.9,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "Table 1 reports 'GPT-3 X-Large (few-shot) 43.9' average accuracy and 'UnifiedQA 48.9'; the headline score uses the best GPT-3 few-shot figure (43.9), though UnifiedQA's 48.9 is higher (UnifiedQA is the best model overall, so the headline of 48.9 would arguably be more faithful). The format gap is the zero-shot (about 37.7%) vs few-shot (43.9%) GPT-3 difference, about 6 points (derived). Human gap is expert-level estimate 89.8 minus best model 43.9, about 46 (derived).",
+  "evidence": {
+    "humanities_role": [
+      {
+        "quote": "The test spans subjects in the humanities, social sciences, hard sciences, and other areas that are important for some people to learn.",
+        "where": "p. 3, Section 3"
+      }
+    ],
+    "dataset_size": [
+      {
+        "quote": "We collected 15908 questions in total, which we split into a few-shot development set, a validation set, and a test set.",
+        "where": "p. 3, Section 3"
+      }
+    ],
+    "evaluation_set_size": [
+      {
+        "quote": "the test set has 14079 questions",
+        "where": "p. 3, Section 3"
+      }
+    ],
+    "primary_evaluation_setting": [
+      {
+        "quote": "we assess pretrained models in a zero-shot, few-shot, or transfer setting",
+        "where": "p. 8, Section 5"
+      }
+    ],
+    "gold_source": [
+      {
+        "quote": "These include practice questions for tests such as the Graduate Record Examination and the United States Medical Licensing Examination.",
+        "where": "p. 3, Section 3"
+      }
+    ],
+    "gold_beyond_stimulus": [
+      {
+        "quote": "To succeed at our test, future models should be well-rounded, possess extensive world knowledge, and develop expert-level problem solving ability.",
+        "where": "p. 4, Section 3"
+      }
+    ],
+    "gold_community_dependent": [],
+    "gold_concerns_genesis": [],
+    "answer_multiplicity": [
+      {
+        "quote": "The model then produces probabilities for the tokens “A,” “B,” “C,” and “D,” and we treat the highest probability option as the prediction.",
+        "where": "p. 6, Section 4.1"
+      }
+    ],
+    "plurality_treatment": [],
+    "gold_upstream_source": [],
+    "reported_format_gap": [
+      {
+        "quote": "the largest GPT-3 model has a much higher zero-shot accuracy of about 37.7%.",
+        "where": "p. 6, Section 4.2"
+      }
+    ],
+    "reported_format_gap_points": [
+      {
+        "quote": "GPT-3 X-Large (few-shot) 40.8 50.4 36.7 48.8 43.9",
+        "where": "p. 5, Table 1"
+      }
+    ],
+    "reported_format_gap_kind": [
+      {
+        "quote": "For zero-shot evaluation, we append the question to the prompt. For few-shot evaluation, we add up to 5 demonstration examples",
+        "where": "p. 6, Section 4.1"
+      }
+    ],
+    "human_baseline_reported": [
+      {
+        "quote": "we then estimate that expert-level accuracy is approximately 89.8%.",
+        "where": "p. 3, Section 3"
+      }
+    ],
+    "human_gap_points": [
+      {
+        "quote": "expert-level accuracy is approximately 89.8%",
+        "where": "p. 3, Section 3"
+      }
+    ],
+    "reported_best_score": [
+      {
+        "quote": "GPT-3 X-Large (few-shot) 40.8 50.4 36.7 48.8 43.9",
+        "where": "p. 5, Table 1"
+      }
+    ],
+    "reported_cultural_asymmetry": []
+  },
+  "checks": {
+    "missing_fields": [],
+    "vocab_warnings": [],
+    "evidence": {
+      "quotes": {
+        "humanities_role": [
+          "exact"
+        ],
+        "dataset_size": [
+          "exact"
+        ],
+        "evaluation_set_size": [
+          "exact"
+        ],
+        "primary_evaluation_setting": [
+          "exact"
+        ],
+        "gold_source": [
+          "exact"
+        ],
+        "gold_beyond_stimulus": [
+          "exact"
+        ],
+        "answer_multiplicity": [
+          "exact"
+        ],
+        "reported_format_gap": [
+          "exact"
+        ],
+        "reported_format_gap_points": [
+          "exact"
+        ],
+        "reported_format_gap_kind": [
+          "exact"
+        ],
+        "human_baseline_reported": [
+          "exact"
+        ],
+        "human_gap_points": [
+          "exact"
+        ],
+        "reported_best_score": [
+          "exact"
+        ]
+      },
+      "unsupported": [],
+      "unverified": []
+    }
+  },
+  "extraction": {
+    "round": "2026-11_claude",
+    "agent": "cip",
+    "role": "reader",
+    "scope": "technical",
+    "operator": "gspinaci",
+    "backend": "claude-cli",
+    "backend_kind": "claude-cli",
+    "model": "claude-sonnet-5-5",
+    "prompt_sha256": "de1b2a4e5c1121fdd28eae57251ef2535cfda50623e8b4280a669e829f653e73",
+    "scaffold_sha256": "910de03d8019fcc1daec329d31a9ae64b10f9ed69baaca8db4553000177bb766",
+    "rendered_prompt_sha256": "61294ecf833baff382f445960ff886d4a084b092d55cdc9ab1c01477af719c24",
+    "fields": [
+      "analytical_tasks",
+      "analytical_tasks_explanation",
+      "answer_multiplicity",
+      "benchmark_modalities",
+      "benchmark_modalities_explanation",
+      "benchmark_name",
+      "dataset_size",
+      "evaluation_set_size",
+      "evaluation_unit",
+      "facets_explanation",
+      "gold_beyond_stimulus",
+      "gold_community_dependent",
+      "gold_concerns_genesis",
+      "gold_source",
+      "gold_upstream",
+      "gold_upstream_source",
+      "human_baseline_reported",
+      "human_gap_points",
+      "humanities_role",
+      "humanities_role_explanation",
+      "inclusion_criteria",
+      "key_findings",
+      "plurality_treatment",
+      "primary_evaluation_setting",
+      "publication_year",
+      "relevant_asjc_areas",
+      "reported_best_metric",
+      "reported_best_score",
+      "reported_cultural_asymmetry",
+      "reported_format_gap",
+      "reported_format_gap_kind",
+      "reported_format_gap_points",
+      "reported_gap_kinds",
+      "results_explanation",
+      "summary"
+    ],
+    "input": {
+      "pdf_sha256": "d3a7b0f8589f5365ebfd34a3876a9a8b3fde83e0adb9ed19ccf8f0034bb48fc1",
+      "text_chars": 83724
+    },
+    "started": "2026-11-09T21:22:10+00:00",
+    "seconds": 19.9
+  },
+  "paper_id": "2009.03300"
+}

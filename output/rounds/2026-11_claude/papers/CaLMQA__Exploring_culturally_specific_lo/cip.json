@@ -1,0 +1,254 @@
+{
+  "benchmark_name": "Cultural Long-form Multilingual Question Answering (CaLMQA)",
+  "publication_year": 2025,
+  "humanities_role": "content",
+  "humanities_role_explanation": "Culturally specific questions (history, religion, customs, language and literature, food) supply the items, but the competence measured is general multilingual long-form QA quality (surface, factuality, relevance), not disciplinary humanities competence.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Text-only questions in 23 languages with long-form text answers; reference answers exist for a subset.",
+  "analytical_tasks": [
+    "open_ended_qa",
+    "generation",
+    "fact_verification",
+    "cultural_reasoning",
+    "factual_recall"
+  ],
+  "analytical_tasks_explanation": "Long-form QA on culturally specific questions ('culturally specific long-form question answering'). Answers are evaluated for factuality (claim verification via VeriScore), relevance (LLM-as-judge), and surface issues (wrong language, repetition); human raters score and rank answers.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "Scoped to one task (long-form QA on culturally specific questions) and framework."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Claude-3-Opus, Gemini-1.5-Pro, GPT-4-Turbo, GPT-4o, Aya-Expanse-32B, Llama-3-70B, Mixtral-8x22B."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Wrong-language %, repetition %, factual precision (VeriScore), relevance %, combined overall score S, human 5-point ratings and rankings with CLMM."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "ACL 2025 (July 2025); models from 2024."
+    }
+  },
+  "summary": "CaLMQA is a translation-free dataset of 51.7K culturally specific long-form questions across 23 languages, collected from community forums and from hired native speakers for low-resource languages. Seven LLMs are evaluated with automatic surface, factuality and relevance metrics plus native-speaker human evaluation in five languages. Culturally specific questions yield less factual answers than culturally agnostic ones, and low-resource languages show severe surface errors.",
+  "key_findings": "Factual precision is 64-71% for culturally agnostic vs 45-52% for culturally specific answers. Open-weight models perform much worse on low-resource languages (LLaMA-3-70B wrong language 76.0/70.0%). Human raters prefer GPT-4-Turbo, then Claude-3-Opus, then Mixtral. Culturally agnostic answers have a 67% chance of a higher rating. Omissions and factuality issues predict ratings.",
+  "relevant_asjc_areas": [
+    "Language and Linguistics",
+    "Cultural Studies",
+    "Linguistics and Language"
+  ],
+  "dataset_size": "51,700",
+  "evaluation_set_size": 3644,
+  "evaluation_unit": "question",
+  "primary_evaluation_setting": "zero-shot",
+  "gold_source": "crowd_annotation",
+  "gold_upstream": null,
+  "gold_upstream_source": null,
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "yes",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "graded_human_judgment",
+  "plurality_treatment": "not_stated",
+  "facets_explanation": "Questions were collected by Prolific crowdworkers from community forums (923 with real user answers), scaled by GPT-4o-mini filtering (50,227 additional), and written by Upwork native speakers for low-resource languages (548). Model answers are scored by VeriScore factuality against Google search evidence, an LLM relevance judge, and native-speaker human ratings; no single gold answer is matched. Culture-specific questions are defined as having answers dependent on cultural or regional context, with per-language native questions.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 18,
+  "reported_format_gap_kind": "difficulty",
+  "reported_gap_kinds": [
+    "difficulty",
+    "input"
+  ],
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 56.9,
+  "reported_best_metric": "other",
+  "reported_cultural_asymmetry": "yes",
+  "results_explanation": "Table 2 reports overall score S of 'GPT-4O 56.9 / 49.2' (agnostic / specific) and 'GPT-4-TURBO 56.9 / 48.7'; the headline 56.9 is the combined S on the culturally agnostic portion. The gap points of 18 are derived from factual precision 69.6 vs 52.2 (GPT-4o), comparing culturally agnostic vs culturally specific questions (treated as a difficulty-type comparison). No human baseline is reported; human evaluation compares models only. The evaluation set is 3,644 questions.",
+  "evidence": {
+    "humanities_role": [
+      {
+        "quote": "we collect that cultural knowledge in CALMQA",
+        "where": "p. 3, Sec. 2.1"
+      }
+    ],
+    "dataset_size": [
+      {
+        "quote": "CALMQA – the first textual multilingual long-form question answering (LFQA) dataset, with 51.7K questions across 23 languages",
+        "where": "p. 2, Introduction"
+      }
+    ],
+    "evaluation_set_size": [
+      {
+        "quote": "we assemble an evaluation set of 3,644 questions from three sources",
+        "where": "p. 4, Sec. 3 Data"
+      }
+    ],
+    "primary_evaluation_setting": [
+      {
+        "quote": "Each model is prompted with a question from our dataset in a zero-shot setup without instructions.",
+        "where": "p. 4, Inference Setting"
+      }
+    ],
+    "gold_source": [
+      {
+        "quote": "we hire 29 native speakers (1-3 annotators per language, depending on their availability) on Upwork",
+        "where": "p. 3, Sec. 2.2"
+      }
+    ],
+    "gold_beyond_stimulus": [
+      {
+        "quote": "verifies automatically extracted claims against retrieved evidence",
+        "where": "p. 5, Sec. 3.1"
+      }
+    ],
+    "gold_community_dependent": [
+      {
+        "quote": "have different answers depending on the cultural or regional context",
+        "where": "p. 1, Abstract"
+      }
+    ],
+    "gold_concerns_genesis": [],
+    "answer_multiplicity": [
+      {
+        "quote": "rate it on a 5-point scale (excellent, good, average, poor, unusable)",
+        "where": "p. 6, Sec. 4"
+      }
+    ],
+    "plurality_treatment": [],
+    "gold_upstream_source": [],
+    "reported_format_gap": [],
+    "reported_format_gap_points": [
+      {
+        "quote": "GPT-4O 2.7 / 1.2 7.5 / 1.4 90.4 / 97.4 69.6 / 52.2",
+        "where": "p. 6, Table 2"
+      }
+    ],
+    "reported_format_gap_kind": [
+      {
+        "quote": "Generated answers to culturally agnostic questions tend to be more factual (64%– 71%) than answers to culturally specific questions (45%–52%).",
+        "where": "p. 5, Sec. 3.2"
+      }
+    ],
+    "human_baseline_reported": [],
+    "human_gap_points": [],
+    "reported_best_score": [
+      {
+        "quote": "GPT-4O 2.7 / 1.2 7.5 / 1.4 90.4 / 97.4 69.6 / 52.2 88.2 / 95.7 56.9 / 49.2",
+        "where": "p. 6, Table 2"
+      }
+    ],
+    "reported_cultural_asymmetry": [
+      {
+        "quote": "The closed models significantly outperform the open models on the low-resource languages, scoring mostly 22 – 66 while the open models mostly score below 10.",
+        "where": "p. 6, Sec. 3.2"
+      }
+    ]
+  },
+  "checks": {
+    "missing_fields": [],
+    "vocab_warnings": [],
+    "evidence": {
+      "quotes": {
+        "humanities_role": [
+          "exact"
+        ],
+        "dataset_size": [
+          "exact"
+        ],
+        "evaluation_set_size": [
+          "exact"
+        ],
+        "primary_evaluation_setting": [
+          "exact"
+        ],
+        "gold_source": [
+          "exact"
+        ],
+        "gold_beyond_stimulus": [
+          "exact"
+        ],
+        "gold_community_dependent": [
+          "exact"
+        ],
+        "answer_multiplicity": [
+          "exact"
+        ],
+        "reported_format_gap_points": [
+          "exact"
+        ],
+        "reported_format_gap_kind": [
+          "exact"
+        ],
+        "reported_best_score": [
+          "exact"
+        ],
+        "reported_cultural_asymmetry": [
+          "exact"
+        ]
+      },
+      "unsupported": [
+        "reported_format_gap"
+      ],
+      "unverified": []
+    }
+  },
+  "extraction": {
+    "round": "2026-11_claude",
+    "agent": "cip",
+    "role": "reader",
+    "scope": "technical",
+    "operator": "gspinaci",
+    "backend": "claude-cli",
+    "backend_kind": "claude-cli",
+    "model": "claude-sonnet-5-5",
+    "prompt_sha256": "de1b2a4e5c1121fdd28eae57251ef2535cfda50623e8b4280a669e829f653e73",
+    "scaffold_sha256": "910de03d8019fcc1daec329d31a9ae64b10f9ed69baaca8db4553000177bb766",
+    "rendered_prompt_sha256": "b6c2f9a17f0d5cfb3b0294290980757f80e941208f2b998d43debf3fd977d5c0",
+    "fields": [
+      "analytical_tasks",
+      "analytical_tasks_explanation",
+      "answer_multiplicity",
+      "benchmark_modalities",
+      "benchmark_modalities_explanation",
+      "benchmark_name",
+      "dataset_size",
+      "evaluation_set_size",
+      "evaluation_unit",
+      "facets_explanation",
+      "gold_beyond_stimulus",
+      "gold_community_dependent",
+      "gold_concerns_genesis",
+      "gold_source",
+      "gold_upstream",
+      "gold_upstream_source",
+      "human_baseline_reported",
+      "human_gap_points",
+      "humanities_role",
+      "humanities_role_explanation",
+      "inclusion_criteria",
+      "key_findings",
+      "plurality_treatment",
+      "primary_evaluation_setting",
+      "publication_year",
+      "relevant_asjc_areas",
+      "reported_best_metric",
+      "reported_best_score",
+      "reported_cultural_asymmetry",
+      "reported_format_gap",
+      "reported_format_gap_kind",
+      "reported_format_gap_points",
+      "reported_gap_kinds",
+      "results_explanation",
+      "summary"
+    ],
+    "input": {
+      "pdf_sha256": "611bd041780c3335e97319be9d1e2124177395bf2c63f107bb7fa3b08d4f3aae",
+      "text_chars": 131016
+    },
+    "started": "2026-11-09T21:25:55+00:00",
+    "seconds": 16.8
+  },
+  "paper_id": "CaLMQA:_Exploring_culturally_specific_lo"
+}
