@@ -3,3 +3,6 @@ output/pdfs/
 __pycache__/
 *.pyc
 .venv/
+output/findings.html
+# mock/plumbing test rounds (census.py --round test-...)
+output/rounds/test-*/

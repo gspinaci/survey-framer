@@ -1,0 +1,43 @@
+{
+  "run_id": "2026-05-22_asreview",
+  "route": "asreview",
+  "tool": "ASReview (active-learning-assisted screening; van de Schoot et al. 2021)",
+  "pool": {
+    "built_with": "../benchmark_llm_humanities_review/build_pool (queries in build_pool/config.yaml)",
+    "config_sha256": "27a5519e34618ea7965fd2febf2dc4bab5d3e0bf63da7694974f4448fd9a62f2",
+    "stage": "B",
+    "built_on": "2026-05-22",
+    "size": 61295,
+    "with_abstract": 57023,
+    "by_source": {
+      "openalex": 16039,
+      "semanticscholar": 23153,
+      "acl": 4936,
+      "arxiv": 14692,
+      "ceur": 683,
+      "hf": 1746,
+      "seed": 46
+    },
+    "seed_records_loaded_as_relevant": 124,
+    "manifest": "../benchmark_llm_humanities_review/build_pool_output/final/run_manifest.json",
+    "prisma_log": "../benchmark_llm_humanities_review/build_pool_output/final/prisma_log.md"
+  },
+  "screening": {
+    "executed": {
+      "from": "2026-05-22",
+      "to": "2026-06-16"
+    },
+    "operators": null,
+    "stopping_rule": "none pre-registered (article Sec. 3.2)",
+    "records_screened": null,
+    "note": "operators and number of records screened are not recorded in this repository; the ASReview project file holds them"
+  },
+  "records_in_table": 12,
+  "records_by_added_on": {
+    "2026-06-16": 12
+  },
+  "reconstructed": {
+    "on": "2026-11-09",
+    "by": "scripts/backfill_provenance.py"
+  }
+}

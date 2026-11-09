@@ -1,0 +1,51 @@
+{
+  "round": "2026-11_claude",
+  "created": "2026-11-09T20:54:55+00:00",
+  "created_by": "RG",
+  "note": "Frozen protocol. Artifacts whose agent model or prompt hash differ from this snapshot are refused. To change prompts or models, start a new round.",
+  "prompts_not_yet_written": [],
+  "protocol_sha256": "c4e236a0234a882004841f44440934fc7fb932166d300b82761d2abb4b5d9f10",
+  "research_questions_sha256": "eef1e0955043c49d934507b46e8172af9909e94548c01930c10d7ecbdcf7bc01",
+  "agents": {
+    "ciop": {
+      "role": "reader",
+      "scope": "humanist",
+      "model": "claude-sonnet-5-5",
+      "backend": "claude-cli",
+      "prompt": "prompts/ciop.txt",
+      "prompt_sha256": "b17f9954e3f6fcfaea00bfc79666d31ac51f915da45046c71b23fea2335612f0",
+      "fields": "all",
+      "scaffold_sha256": "48c260061fd825a1b6150c73dace26ffacf1c43be51c37f2f14c413fa32989bc"
+    },
+    "cip": {
+      "role": "reader",
+      "scope": "technical",
+      "model": "claude-sonnet-5-5",
+      "backend": "claude-cli",
+      "prompt": "prompts/cip.txt",
+      "prompt_sha256": "de1b2a4e5c1121fdd28eae57251ef2535cfda50623e8b4280a669e829f653e73",
+      "fields": "all",
+      "scaffold_sha256": "910de03d8019fcc1daec329d31a9ae64b10f9ed69baaca8db4553000177bb766"
+    },
+    "supervisor": {
+      "role": "supervisor",
+      "scope": "",
+      "model": "claude-sonnet-5-5",
+      "backend": "claude-cli",
+      "prompt": "prompts/supervisor.txt",
+      "prompt_sha256": "fbaa0533fe3191d8292183d5ea6310c689b90b5f2502536d9c1ec0ce6004c70a",
+      "fields": "all",
+      "scaffold_sha256": "f83b2fb4da8cafdd3f1a413c13f51e8096c29116fde99002da2f2d5df88b3eeb"
+    },
+    "reviewer": {
+      "role": "reviewer",
+      "scope": "",
+      "model": "claude-opus-5-5",
+      "backend": "claude-cli",
+      "prompt": "prompts/reviewer_round.txt",
+      "prompt_sha256": "6bedac88d6ae89527f93ce1df024fb38bbeeb2931aafa2920c3f3a2eab109b10",
+      "fields": "all",
+      "scaffold_sha256": "c8e0b257a95cc446b1618a55c0edecca9e05d8c74df3e94ba0803bb189a1640c"
+    }
+  }
+}

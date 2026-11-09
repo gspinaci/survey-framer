@@ -1,0 +1,246 @@
+{
+  "benchmark_name": null,
+  "publication_year": 2025,
+  "humanities_role": "domain",
+  "humanities_role_explanation": "The benchmark targets iconographic classification of Christian saints with Iconclass codes. The paper frames this as a core art-historical operation, citing Panofsky's definition of iconography, and positions the models as tools for metadata curation in digital humanities. The competence tested is disciplinary, though it stops at identifying the saint (the subject) rather than iconological interpretation.",
+  "benchmark_modalities": [
+    "image",
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Images of paintings are paired with text prompts listing candidate class names (Test 1) or Iconclass descriptions of each class (Test 2). In Test 3, five labelled exemplar images are added. Models output a text label. The CSV metadata lists text only, but the images are the stimuli.",
+  "analytical_tasks": [
+    "classification",
+    "visual_recognition"
+  ],
+  "analytical_tasks_explanation": "The paper's task is 'single-label classification of Christian Iconography', i.e. 'image classification of Christian saints'. Each painting is assigned to one of the 10 most frequent saint and Virgin Mary Iconclass classes. Recognition of the depicted saint rests on visual attributes, under three conditions: zero-shot 'with labeled names', zero-shot 'with label descriptions' from Iconclass, and 'few-shot Learning' with five exemplars. The paper speaks of models that 'interpret the Iconography', but the scored operation is identifying a saint, not hermeneutic or symbolic reading.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "Scoped to a single task, single-label classification of Christian saints, across three Iconclass-supporting datasets."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "GPT-4o (2024-08-06), GPT-4o-mini (2024-07-18), Gemini 2.5 Pro (preview-05-06) and Gemini 2.5 Flash (preview-05-20), plus CLIP and SigLIP variants and a ResNet50 baseline."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Accuracy (top-1), plus a cross-dataset prediction consistency percentage over 36 near-duplicate image pairs."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "arXiv:2509.18839v1, 23 Sep 2025."
+    }
+  },
+  "summary": "The paper benchmarks CLIP, SigLIP, GPT-4o and Gemini 2.5 models on single-label classification of Christian saints in paintings. It uses three Iconclass-supporting datasets: the ArtDL test set, a filtered subset of the ICONCLASS AI Test Set, and a Wikidata subset. Three conditions (class labels, Iconclass descriptions, five-shot exemplars) are compared against fine-tuned ResNet50 baselines; multimodal LLMs beat the baselines on ArtDL and ICONCLASS but not on Wikidata.",
+  "key_findings": "Gemini 2.5 Pro reached 90.45% accuracy on ArtDL (Test 1), above the ResNet50 baseline of 84.44%. On ICONCLASS, Gemini 2.5 Pro reached up to 84.82%. On Wikidata, SigLIP-so400m was best (66.29%) while the LLMs stayed around 44-47%. Iconclass descriptions generally improved zero-shot accuracy, but few-shot mostly lowered it. Cross-dataset consistency was lower for LLMs (about 22-33%) than for contrastive models (up to 86.11%).",
+  "relevant_asjc_areas": [
+    "Visual Arts and Performing Arts",
+    "Religious Studies"
+  ],
+  "dataset_size": "3445",
+  "evaluation_set_size": 1864,
+  "evaluation_unit": "image of a painting (single-label)",
+  "primary_evaluation_setting": "mix",
+  "gold_source": "existing_dataset",
+  "gold_upstream": "ArtDL (Milani and Fraternali [20]) test set and the Iconclass AI Test Set (Posthumus [24]), each with images annotated with Iconclass codes; the Wikidata subset uses Iconclass statements on Wikidata painting items. Production not described in this paper.",
+  "gold_upstream_source": "not_stated",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "not_stated",
+  "facets_explanation": "The reference labels are the Iconclass codes already attached to images in ArtDL, the ICONCLASS AI Test Set and Wikidata. The authors only filtered to the top ten saint classes and removed multi-saint, failed or duplicate images. ArtDL and ICONCLASS (2,727 of 3,445 images) are published research datasets. The Wikidata subset (718 images) comes from community-curated collection metadata. The paper does not describe how any of these annotations were produced. Identifying a saint requires pre-trained iconographic knowledge not contained in the image (Test 1 relies on 'pre-trained knowledge connections'). Each image maps to one label, and annotator or reading disagreement is not discussed.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 19,
+  "reported_format_gap_kind": "input",
+  "reported_gap_kinds": [
+    "input"
+  ],
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 90.45,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "Table 2 (ArtDL) gives 'gemini-2.5-pro-preview-05-06 90.45%' on Test 1, the headline accuracy, computed on the ArtDL test set of 1,864 images. ICONCLASS (863 images) and Wikidata (718 images) are scored separately, so dataset_size 3,445 = 1,864 + 863 + 718. The largest same-model gap across input conditions is siglip-base-patch16-512 on ArtDL, 48.71% (Test 1, labels) vs 68.19% (Test 2, descriptions); this is 19.48 points, rounded to 19 (derived). Runners-up are siglip-large-patch16-384 on ArtDL (72.21% vs 53.49%, Test 2 vs Test 3) and on Wikidata (43.95% vs 61.17%). The abstract gives 64.86% as the Wikidata best, but Table 4 shows 66.29% for siglip-so400m on Test 1. The ResNet50 baseline is a supervised model, not a human reference, and no human baseline is reported.",
+  "evidence": {
+    "humanities_role": [
+      {
+        "quote": "branch of the history of art which concerns itself with the subject matter or meaning of works of art, as opposed to their form",
+        "where": "p. 2, Introduction"
+      },
+      {
+        "quote": "single-label classification of Christian Iconography",
+        "where": "p. 1, Abstract"
+      }
+    ],
+    "dataset_size": [
+      {
+        "quote": "resulting in a dataset comprising 863 images",
+        "where": "p. 3, Section 2.1.2"
+      },
+      {
+        "quote": "we retained 718 images of paintings",
+        "where": "p. 3, Section 2.1.3"
+      }
+    ],
+    "evaluation_set_size": [
+      {
+        "quote": "The test set, published along with the paper, contains 1,864 images.",
+        "where": "p. 3, Section 2.1.1"
+      }
+    ],
+    "primary_evaluation_setting": [
+      {
+        "quote": "Models were tested under three conditions: (1) classification using class labels, (2) classification with Iconclass descriptions, and (3) few-shot learning with five exemplars.",
+        "where": "p. 1, Abstract"
+      }
+    ],
+    "gold_source": [
+      {
+        "quote": "Each image is annotated with Iconclass codes, covering 10 key figures of Christian iconography",
+        "where": "p. 3, Section 2.1.1"
+      },
+      {
+        "quote": "We investigated the images belonging to three collections, which we selected for their native support of Iconclass classes.",
+        "where": "p. 3, Section 2.1"
+      }
+    ],
+    "gold_beyond_stimulus": [
+      {
+        "quote": "This configuration tests the model’s ability to leverage pre-trained knowledge connections between visual features and semantic concepts.",
+        "where": "p. 5, Section 2.3, Test 1"
+      }
+    ],
+    "gold_community_dependent": [],
+    "gold_concerns_genesis": [],
+    "answer_multiplicity": [
+      {
+        "quote": "Each is mapped to a single iconographic label",
+        "where": "p. 3, Section 2.1.1"
+      }
+    ],
+    "plurality_treatment": [],
+    "gold_upstream_source": [],
+    "reported_format_gap": [
+      {
+        "quote": "Enriching prompts with class descriptions generally improved zero-shot performance, while few-shot learning produced lower results",
+        "where": "p. 1, Abstract"
+      }
+    ],
+    "reported_format_gap_points": [
+      {
+        "quote": "siglip-base-patch16-512 48.71% 68.19% 55.90%",
+        "where": "p. 7, Table 2 (ArtDL), Test 1 vs Test 2"
+      }
+    ],
+    "reported_format_gap_kind": [
+      {
+        "quote": "Test 2 is a zero-shot classification task with label descriptions.",
+        "where": "p. 5, Section 2.3"
+      }
+    ],
+    "human_baseline_reported": [],
+    "human_gap_points": [],
+    "reported_best_score": [
+      {
+        "quote": "gemini-2.5-pro-preview-05-06 90.45% 90.18% 86.59%",
+        "where": "p. 7, Table 2 (ArtDL)"
+      }
+    ],
+    "reported_cultural_asymmetry": []
+  },
+  "confidence": {
+    "humanities_role": "high",
+    "dataset_size": "low",
+    "evaluation_set_size": "high",
+    "primary_evaluation_setting": "high",
+    "gold_source": "low",
+    "gold_beyond_stimulus": "high",
+    "gold_community_dependent": "high",
+    "gold_concerns_genesis": "high",
+    "answer_multiplicity": "high",
+    "plurality_treatment": "high",
+    "gold_upstream_source": "high",
+    "reported_format_gap": "high",
+    "reported_format_gap_points": "high",
+    "reported_format_gap_kind": "high",
+    "human_baseline_reported": "high",
+    "human_gap_points": "high",
+    "reported_best_score": "high",
+    "reported_cultural_asymmetry": "high"
+  },
+  "needs_human": [],
+  "review_notes": "analytical_tasks: ciop gave [classification, visual_recognition]; cip added interpretation. I dropped interpretation. The scored operation is identifying which saint is depicted, against a single Iconclass label (pp. 3, 5); no symbolic or thematic reading is scored, despite the abstract's verb 'interpret'. relevant_asjc_areas: cip added History. I dropped it because the benchmark addresses art-historical iconography and religious subjects, not historical events or chronology; I kept Visual Arts and Performing Arts and Religious Studies. dataset_size: both readers gave 3,445 (1,864 + 863 + 718), one as a string and one as an integer; I kept 3,445 with low confidence, because the full ArtDL dataset has about 42,000 images and only its test set enters the benchmark. evaluation_unit: wording harmonised. Facets: both readers agreed on all of them (gold_source existing_dataset, gold_upstream_source not_stated, gold_beyond_stimulus yes, gold_community_dependent no, gold_concerns_genesis no, answer_multiplicity single_answer, plurality_treatment not_stated). I note that the Wikidata subset (718 images) is closer to existing_metadata, but ArtDL and ICONCLASS cover the majority (2,727 images), so existing_dataset stands; confidence is low. The format gap of 19 points (input kind, siglip-base ArtDL Test 1 vs Test 2) was verified against Table 2 and is the largest across Tables 2-4. The abstract's Wikidata figure (64.86%) is inconsistent with Table 4 (66.29%), which does not affect the headline score. No other significant disagreements.",
+  "checks": {
+    "missing_fields": [],
+    "vocab_warnings": [],
+    "evidence": {
+      "quotes": {
+        "humanities_role": [
+          "exact",
+          "exact"
+        ],
+        "dataset_size": [
+          "exact",
+          "exact"
+        ],
+        "evaluation_set_size": [
+          "exact"
+        ],
+        "primary_evaluation_setting": [
+          "exact"
+        ],
+        "gold_source": [
+          "exact",
+          "exact"
+        ],
+        "gold_beyond_stimulus": [
+          "exact"
+        ],
+        "answer_multiplicity": [
+          "exact"
+        ],
+        "reported_format_gap": [
+          "exact"
+        ],
+        "reported_format_gap_points": [
+          "exact"
+        ],
+        "reported_format_gap_kind": [
+          "exact"
+        ],
+        "reported_best_score": [
+          "exact"
+        ]
+      },
+      "unsupported": [],
+      "unverified": []
+    },
+    "confidence_missing": []
+  },
+  "extraction": {
+    "round": "pilot-2026-11b",
+    "agent": "reviewer",
+    "role": "reviewer",
+    "scope": "",
+    "operator": "RG",
+    "backend": "claude-cli",
+    "backend_kind": "claude-cli",
+    "model": "claude-opus-5-5",
+    "prompt_sha256": "6bedac88d6ae89527f93ce1df024fb38bbeeb2931aafa2920c3f3a2eab109b10",
+    "scaffold_sha256": "c8e0b257a95cc446b1618a55c0edecca9e05d8c74df3e94ba0803bb189a1640c",
+    "rendered_prompt_sha256": "1bd3fee3726d858b8ed6aee03eadfe5170122e61fabbc3d2f0aae675b00f84ce",
+    "input": {
+      "pdf_sha256": "ffece62eff57fbf822d31ccafd6f6dd3f71dec6b9112ef99210bed289593c78c",
+      "text_chars": 40939,
+      "readings": {
+        "ciop": "ciop.rework1.json",
+        "cip": "cip.rework1.json"
+      }
+    },
+    "started": "2026-11-09T20:52:32+00:00",
+    "seconds": 42.6
+  },
+  "paper_id": "2509.18839",
+  "paper_name": "Christian Iconography"
+}

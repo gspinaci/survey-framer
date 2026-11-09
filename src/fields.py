@@ -141,6 +141,18 @@ def render_schema(fields: dict[str, str]) -> str:
     return "{\n" + ",\n".join(entries) + "\n}"
 
 
+# Kinds of same-material comparison (reported_format_gap). The article's
+# instrument-dependence claim (Sec. 4.3) counts the first three: the measuring
+# rule changes while the task stays fixed.
+GAP_KINDS: dict[str, str] = {
+    "scoring": "identical output, stricter or looser scoring rule",
+    "format": "same items, different answer format (closed vs open)",
+    "depth": "surface vs interpretation tier of the paper's own taxonomy",
+    "difficulty": "a harder subset of the same items",
+    "input": "different representation of the same items shown to the model",
+}
+INSTRUMENT_GAP_KINDS = ("scoring", "format", "depth")
+
 # Closed value sets checked after extraction. Keys absent from a report are
 # skipped, so this works for incremental runs over a field subset too.
 ENUM_FIELDS: dict[str, set[str]] = {
@@ -150,7 +162,15 @@ ENUM_FIELDS: dict[str, set[str]] = {
     # the task categories that could not be separated non-arbitrarily. See
     # METHODOLOGY_facets.md. "not_stated" is a measurement, not a missing value —
     # it must stay distinguishable from "no".
+    # existing_dataset added 2026-11 (pilot-2026-11): a reused research corpus such as
+    # BLN600 had no value of its own and fell into existing_metadata or not_stated.
     "gold_source": {
+        "existing_metadata", "existing_dataset", "authored_answer_key", "crowd_annotation",
+        "domain_expert", "paper_authors", "model_generated", "not_stated",
+    },
+    # For existing_dataset: how the upstream annotations were made, as far as the
+    # paper says. Following the citation into the upstream paper is a separate step.
+    "gold_upstream_source": {
         "existing_metadata", "authored_answer_key", "crowd_annotation",
         "domain_expert", "paper_authors", "model_generated", "not_stated",
     },
@@ -171,6 +191,9 @@ ENUM_FIELDS: dict[str, set[str]] = {
     # paper states, not something the coder judges. See RESULTS_axis in
     # paper/RESULTS_analysis.md.
     "reported_format_gap": {"yes", "no", "not_stated"},
+    # The gap typology the article applied by hand (GAP_KIND in
+    # scripts/findings_report.py), extracted as data from round 2026-11 on.
+    "reported_format_gap_kind": set(GAP_KINDS),
     "human_baseline_reported": {"yes", "no"},
     "reported_cultural_asymmetry": {"yes", "no", "not_stated"},
     # reported_best_metric carries null legitimately (no headline figure), so the
@@ -204,8 +227,76 @@ RESULT_FIELDS: tuple[str, ...] = (
     "reported_cultural_asymmetry",
 )
 
+# Fields whose value must be backed by a verbatim quote from the paper (readers of
+# the round-based engine; see docs/PIPELINE.md §3). These are the values the
+# survey aggregates and argues from; prose fields carry their own wording already.
+EVIDENCE_FIELDS: tuple[str, ...] = (
+    "humanities_role",
+    "dataset_size",
+    "evaluation_set_size",
+    "primary_evaluation_setting",
+    *FACET_FIELDS,
+    "gold_upstream_source",
+    "reported_format_gap",
+    "reported_format_gap_points",
+    "reported_format_gap_kind",
+    "human_baseline_reported",
+    "human_gap_points",
+    "reported_best_score",
+    "reported_cultural_asymmetry",
+)
+
+# Values that state the paper's silence, and so need no quote.
+SILENT_VALUES = {None, "not_stated", ""}
+
+# Field values that record an ABSENCE — the paper does not do or report the thing —
+# and so cannot be quoted. Found in the first pilot (2026-11-09): readers rightly
+# gave no quote for these, and requiring one would push them to quote something
+# irrelevant. Whether the paper is really silent is the supervisor's check, not
+# the script's. Every other non-silent value needs a quote.
+ABSENCE_VALUES: dict[str, set[str]] = {
+    "human_baseline_reported": {"no"},
+    "reported_format_gap": {"no"},
+    "reported_cultural_asymmetry": {"no"},
+    "gold_community_dependent": {"no"},
+    "gold_concerns_genesis": {"no"},
+}
+
+
+def needs_quote(field: str, value) -> bool:
+    if value is None or value == []:
+        return False
+    v = str(value).strip().lower()
+    return v not in SILENT_VALUES and v not in ABSENCE_VALUES.get(field, set())
+
+
+def render_evidence_rules(fields: dict[str, str]) -> str:
+    """The <<EVIDENCE_RULES>> block: which of the requested fields need a quote."""
+    needed = [f for f in EVIDENCE_FIELDS if f in fields]
+    if not needed:
+        return ""
+    absences = [f'{f} = "no"' for f in needed if f in ABSENCE_VALUES]
+    return (
+        "EVIDENCE — every aggregated value must be traceable to the paper.\n"
+        'Besides the fields above, return an "evidence" object keyed by field name, for each of: '
+        + ", ".join(needed) + ".\n"
+        'Each entry is a list of 1-2 items {"quote": "...", "where": "..."}:\n'
+        "- quote: copied VERBATIM from the paper text below — one contiguous span of at most ~40 words, "
+        "no ellipses, no paraphrase, no added words. For a number taken from a table, quote the row "
+        "label and the cell value as they appear (e.g. \"GPT-4o 72.3\"). Quotes are checked mechanically "
+        "against the text; a quote that cannot be found counts as no evidence.\n"
+        '- where: the page marker ("p. 4") and, if visible, the section or table name.\n'
+        "No quote is needed (give an empty list) for not_stated, for null, and for values that record "
+        "an absence — " + (", ".join(absences) if absences else "none here") + " — because silence "
+        "cannot be quoted; make sure the paper really is silent before using them.\n"
+        "Every other value needs a quote. If you cannot find one, change the value to not_stated "
+        "(or null) rather than keep an unsupported one."
+    )
+
+
 LIST_ENUM_FIELDS: dict[str, set[str]] = {
     "analytical_tasks": set(ANALYTICAL_TASK_VOCAB),
+    "reported_gap_kinds": set(GAP_KINDS),
     "benchmark_modalities": {"text", "image", "audio", "video"},
 }
 

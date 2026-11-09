@@ -29,7 +29,12 @@ _NOOP_NOTE_PREFIXES = ("no significant disagreement", "no disagreement")
 def _is_noop_note(note: str) -> bool:
     return note.strip().lower().startswith(_NOOP_NOTE_PREFIXES)
 
-from config import PAPERS_DIR, PDFS_DIR, OUTPUT_DIR, AGENTS_DIR, GEMINI_API_KEY
+import shutil
+from collections import Counter
+from datetime import date
+
+from config import (PAPERS_DIR, PDFS_DIR, OUTPUT_DIR, AGENTS_DIR, GEMINI_API_KEY,
+                    LLM_BACKEND, PERSONA_MODEL, REVIEWER_MODEL)
 from src.csv_reader import read_papers_csv
 from src.pdf_fetcher import fetch_pdf, pdf_filename
 from src.pdf_extractor import extract_text
@@ -38,6 +43,21 @@ from src.fields import check_vocab, declared_fields, missing_fields
 from src.report_writer import write_paper_report
 from src.narrative import generate_narrative
 from src.dashboard import generate_dashboard
+
+
+def _provenance(fields: list[str]) -> dict:
+    """Which backend and models produced a record (or a field increment).
+
+    Records made before this stamp existed (the Jul-Aug 2026 Gemini run) carry no
+    "extraction" key; treat its absence as gemini-3.5-flash + gemini-3.1-pro-preview.
+    """
+    return {
+        "backend": LLM_BACKEND,
+        "persona_model": PERSONA_MODEL,
+        "reviewer_model": REVIEWER_MODEL,
+        "date": date.today().isoformat(),
+        "fields": fields,
+    }
 
 
 def step_fetch(papers: list[dict]) -> dict[str, Path]:
@@ -99,6 +119,9 @@ def step_analyze(papers: list[dict], pdf_paths: dict[str, Path], force: bool = F
             analysis["paper_id"] = pid
             analysis["paper_name"] = title
             analysis["csv_row"] = paper.get("csv_row", "")
+            stamp = _provenance(["*"])
+            for report in (ciop, cip, analysis):
+                report["extraction"] = stamp
             ciop_json.write_text(json.dumps(ciop, indent=2), encoding="utf-8")
             cip_json.write_text(json.dumps(cip, indent=2), encoding="utf-8")
             final_json.write_text(json.dumps(analysis, indent=2), encoding="utf-8")
@@ -106,9 +129,11 @@ def step_analyze(papers: list[dict], pdf_paths: dict[str, Path], force: bool = F
         else:
             # INCREMENTAL run: extract only the newly declared fields and merge
             ciop_new, cip_new, final_new = analyze_paper(text, missing, title=title, metadata=metadata)
+            stamp = _provenance(sorted(missing))
             for path, new in ((ciop_json, ciop_new), (cip_json, cip_new), (final_json, final_new)):
                 data = json.loads(path.read_text(encoding="utf-8"))
                 data.update({k: new[k] for k in missing if k in new})
+                data.setdefault("extraction_incremental", []).append(stamp)
                 note = new.get("review_notes") if path is final_json else None
                 if note and not _is_noop_note(note):
                     data.setdefault("review_notes_incremental", []).append(note)
@@ -225,9 +250,17 @@ def find_pdfs(papers: list[dict]) -> dict[str, Path]:
 
 
 def _validate_config(step: str) -> None:
-    if step in ("analyze", "narrative", "all") and not GEMINI_API_KEY:
-        print("Error: GEMINI_API_KEY not set. Copy .env.example to .env and add your key.")
+    if step not in ("analyze", "narrative", "all"):
+        return
+    if LLM_BACKEND == "gemini" and not GEMINI_API_KEY:
+        print("Error: LLM_BACKEND=gemini but GEMINI_API_KEY is not set. "
+              "Add it to .env, or set LLM_BACKEND=claude.")
         sys.exit(1)
+    if LLM_BACKEND == "claude" and not shutil.which("claude"):
+        print("Error: LLM_BACKEND=claude but the `claude` CLI is not on PATH. "
+              "Install Claude Code and log in, or set LLM_BACKEND=gemini.")
+        sys.exit(1)
+    print(f"LLM backend: {LLM_BACKEND} (personas: {PERSONA_MODEL}, reviewer: {REVIEWER_MODEL})")
 
 
 def main():
@@ -243,6 +276,12 @@ def main():
         "--force",
         action="store_true",
         help="Recompute all fields for all papers, ignoring the cache",
+    )
+    parser.add_argument(
+        "--ignore-screening",
+        action="store_true",
+        help="Fetch/analyze every row, not only those accepted by both reviewers "
+             "(for test CSVs without Accept columns)",
     )
     args = parser.parse_args()
 
@@ -261,13 +300,28 @@ def main():
     papers = read_papers_csv(csv_path)
     print(f"Loaded {len(papers)} papers from {csv_path}")
 
-    if args.step in ("fetch", "all"):
-        pdf_paths = step_fetch(papers)
+    # Screening gate. The table now also holds discovery candidates awaiting the
+    # double verification; nothing is downloaded or sent to a model before both
+    # reviewers have accepted it (docs/PIPELINE.md §4).
+    by_status = Counter(p["screening_status"] for p in papers)
+    print("Screening: " + ", ".join(f"{n} {s}" for s, n in sorted(by_status.items())))
+    if args.ignore_screening:
+        workset = papers
+        print("  --ignore-screening: processing every row")
     else:
-        pdf_paths = find_pdfs(papers)
+        workset = [p for p in papers if p["screening_status"] == "included"]
+        held = [p for p in papers if p["screening_status"] != "included"]
+        if held:
+            print(f"  {len(held)} not included are not fetched or analysed "
+                  f"(use --ignore-screening to override)")
+
+    if args.step in ("fetch", "all"):
+        pdf_paths = step_fetch(workset)
+    else:
+        pdf_paths = find_pdfs(workset)
 
     if args.step in ("analyze", "all"):
-        step_analyze(papers, pdf_paths, force=args.force)
+        step_analyze(workset, pdf_paths, force=args.force)
 
     passing_ids = None
     if args.step in ("narrative", "all"):

@@ -1,0 +1,274 @@
+{
+  "benchmark_name": "History Seshat Test for LLMs (HiST-LLM)",
+  "publication_year": 2024,
+  "humanities_role": "domain",
+  "humanities_role_explanation": "The benchmark is designed to test graduate- and expert-level global history knowledge itself. It draws on the Seshat Global History Databank, whose codings were made by research assistants under expert supervision and are linked to scholarly references. It also probes how evenly LLM historical knowledge is spread across regions and periods. This is disciplinary competence, not a generic skill exercised on humanities text.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Text only. Each item is a templated multiple-choice question naming a variable, a polity and a date range, with four answer options (Present, Inferred Present, Inferred Absent, Absent). Models are prompted to give short chain-of-thought reasoning before answering.",
+  "analytical_tasks": [
+    "factual_recall",
+    "multiple_choice_qa"
+  ],
+  "analytical_tasks_explanation": "Models must state whether a historical characteristic (e.g. writing, professional military officers, battle axes, fasting) was 'present, absent, inferred present, or inferred absent in a particular polity and time frame'. The paper frames this as assessing 'the ability of LLMs to retain factual knowledge' at expert level. It explicitly also tests whether a fact is evidenced or 'inferred based on indirect evidence'. The questions are posed in a four-choice format, and a 2-choice (present/absent) variant is also reported. Picking one of four status codes is treated as multiple-choice QA, not as a separate classification task. Judging presence or absence is a recall of databank facts, not verification of a supplied claim.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "Scoped to a single domain (expert-level global history knowledge) and a single question template derived from Seshat."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "GPT-3.5-turbo, GPT-4-turbo, GPT-4o, Llama-3-70B, Llama-3.1-70B (FP8), Llama-3.1-8B (FP8), Gemini-1.5-flash."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Balanced accuracy and adjusted balanced accuracy (4-choice and 2-choice), with bootstrap 95% confidence intervals; breakdowns by time period, region, NGA and variable category."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "NeurIPS 2024 Datasets and Benchmarks track; evaluations executed in August 2024."
+    }
+  },
+  "summary": "The paper introduces HiST-LLM, built by converting 36,000 data points from the Seshat Global History Databank into four-choice questions. The data points cover more than 600 polities and are coded by research assistants under scholarly supervision, with partial expert review. Seven LLMs are evaluated with few-shot chain-of-thought prompting, and results are broken down by period, world region and variable category. Models beat chance but fall well short of expert knowledge; they do better on earlier periods and worst on Oceania and Sub-Saharan Africa.",
+  "key_findings": "4-choice balanced accuracy ranges from 33.6% (Llama-3.1-8B) to 46.0% (GPT-4-turbo), against 25% chance. 2-choice balanced accuracy ranges from 57.6 to 63.2 (GPT-4o best), against 50% chance. Accuracy declines toward recent periods: GPT-4-Turbo scores 55.3% for 8k–6k BCE and 38.7% for 1.5k–2k CE. Models do best on the Americas and worst on Oceania and Sub-Saharan Africa; the paper calls these regional differences moderate but suggestive of bias.",
+  "relevant_asjc_areas": [
+    "History",
+    "Archeology (arts and humanities)"
+  ],
+  "dataset_size": "36000",
+  "evaluation_set_size": 36000,
+  "evaluation_unit": "Seshat data point (variable–polity–time frame) converted into a four-choice question",
+  "primary_evaluation_setting": "few-shot",
+  "gold_source": "existing_dataset",
+  "gold_upstream": "Seshat: Global History Databank (Turchin et al. 2015; Francois et al. 2016; Turchin et al. 2018 [10–12]). Per this paper, research assistants coded variables from scholarly publications under the supervision of established scholars (professors and PhD-level researchers), writing justification paragraphs with citations. 14,000 of the 36,000 data points underwent iterative expert review; the remaining 22,000 were RA-coded under Seshat board supervision without the same scrutiny.",
+  "gold_upstream_source": "domain_expert",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "noise",
+  "facets_explanation": "The reference answers are the Seshat codes (Present, Absent, Inferred Present, Inferred Absent) taken from the databank. Graduate research assistants coded them under the supervision of professors and PhD-level researchers, and expert review covered 14,000 of the 36,000 points. Several of the benchmark authors are themselves Seshat team members. The question gives only the variable, polity and dates, so answering requires external historical knowledge. Scoring is exact match against one code per item. The paper says that for complex topics it is 'vital to record differing interpretations' and that Seshat encodes what is 'contested'. However, in building the data, divergence among coders is handled through 'multiple rounds of expert feedback and revisions', and RAs' 'subjective interpretations' are listed as a limitation. Each item ends with one code, and the benchmark preserves no alternative readings. The stance on how the data were built is therefore closer to noise, though the case is not clear-cut.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 24,
+  "reported_format_gap_kind": "format",
+  "reported_gap_kinds": [
+    "format"
+  ],
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 46.0,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "yes",
+  "results_explanation": "Table 1 gives 'GPT-4-turbo 46.0 [45.5, 46.5]' balanced accuracy (4-choice) as the best 4-choice score. This balanced accuracy is mapped to the 'accuracy' label. Section 5's prose states '43.8% for GPT-4-Turbo', which conflicts with Table 1; the table and abstract value (46%) are used. The 2-choice variant on the same items gives '57.6 to 63.2' (chance 50%). The largest 2-choice minus 4-choice difference is derived from Table 1 for Llama-3.1-8B (FP8): 57.6 − 33.6 = 24.0 points. The two formats have different chance levels (50% vs 25%), and on adjusted balanced accuracy the gap is smaller or even reversed (GPT-4-turbo 28.0 vs 20.0). human_gap_points is null because no human baseline is reported; the paper only proposes a human benchmark as future work. The regional asymmetry is stated as a finding: models 'perform the worst in Oceania and Sub-Saharan Africa', which the paper reads as possible bias.",
+  "evidence": {
+    "humanities_role": [
+      {
+        "quote": "we introduce a unique data set of graduate and expert academic level global history knowledge",
+        "where": "p. 1, Introduction"
+      },
+      {
+        "quote": "their history knowledge and comprehension at a graduate level remains untested",
+        "where": "p. 1, Abstract"
+      }
+    ],
+    "dataset_size": [
+      {
+        "quote": "the dataset used in the current article comprises 383 variables with 36,000 data points across more than 600 polities",
+        "where": "p. 2, Introduction"
+      }
+    ],
+    "evaluation_set_size": [
+      {
+        "quote": "This dataset comprises 36,000 data points of historical knowledge across over 600 polities",
+        "where": "p. 9, Discussion and Conclusion"
+      }
+    ],
+    "primary_evaluation_setting": [
+      {
+        "quote": "We used a multi-shot approach, providing four examples demonstrating solutions to other questions",
+        "where": "p. 7, Section 4"
+      },
+      {
+        "quote": "Overall performance of models with chain of thought prompting and category specific few-shot examples",
+        "where": "p. 8, Table 1 caption"
+      }
+    ],
+    "gold_source": [
+      {
+        "quote": "Under the supervision of established scholars (professors and PhD-level researchers), research assistants (RAs) populate the database with accessible information from scholarly publications.",
+        "where": "p. 6, Section 3.2"
+      }
+    ],
+    "gold_beyond_stimulus": [
+      {
+        "quote": "we asked whether a certain variable (e.g., writing) was present, absent, inferred present, or inferred absent in a particular polity and time frame",
+        "where": "p. 7, Section 4"
+      }
+    ],
+    "gold_community_dependent": [],
+    "gold_concerns_genesis": [],
+    "answer_multiplicity": [
+      {
+        "quote": "Models are evaluated by checking if their answers match exactly with the correct answers.",
+        "where": "p. 7, Section 4"
+      }
+    ],
+    "plurality_treatment": [
+      {
+        "quote": "Steps 2 and 3 are iterative, often requiring multiple rounds of expert feedback and revisions.",
+        "where": "p. 6, Section 3.2"
+      },
+      {
+        "quote": "research assistants may have subjective interpretations when coding variables",
+        "where": "p. 6, Section 3.3"
+      }
+    ],
+    "gold_upstream_source": [
+      {
+        "quote": "14,000 out of 36,000 data points underwent this process of expert review and cleaning",
+        "where": "p. 6, Section 3.2"
+      }
+    ],
+    "reported_format_gap": [
+      {
+        "quote": "This table also includes the benchmark in a 2-choice format (absent/present)",
+        "where": "p. 7, Section 5"
+      }
+    ],
+    "reported_format_gap_points": [
+      {
+        "quote": "Llama-3.1-8B (FP8) 33.6 [33.2, 34.1] 57.6 [57.1, 58.1]",
+        "where": "p. 8, Table 1"
+      }
+    ],
+    "reported_format_gap_kind": [
+      {
+        "quote": "We refer to this as the 2-choice balanced accuracy, whereas the test including inferred categories is the 4-choice balanced accuracy.",
+        "where": "p. 7, Section 4"
+      }
+    ],
+    "human_baseline_reported": [],
+    "human_gap_points": [],
+    "reported_best_score": [
+      {
+        "quote": "GPT-4-turbo 46.0 [45.5, 46.5]",
+        "where": "p. 8, Table 1"
+      }
+    ],
+    "reported_cultural_asymmetry": [
+      {
+        "quote": "performance is more even but still better for the Americas and lowest in Oceania and Sub-Saharan Africa for the more advanced models",
+        "where": "p. 1, Abstract"
+      }
+    ]
+  },
+  "confidence": {
+    "humanities_role": "high",
+    "dataset_size": "high",
+    "evaluation_set_size": "high",
+    "primary_evaluation_setting": "high",
+    "gold_source": "high",
+    "gold_beyond_stimulus": "high",
+    "gold_community_dependent": "high",
+    "gold_concerns_genesis": "high",
+    "answer_multiplicity": "high",
+    "plurality_treatment": "low",
+    "gold_upstream_source": "high",
+    "reported_format_gap": "high",
+    "reported_format_gap_points": "high",
+    "reported_format_gap_kind": "low",
+    "human_baseline_reported": "high",
+    "human_gap_points": "high",
+    "reported_best_score": "high",
+    "reported_cultural_asymmetry": "high"
+  },
+  "needs_human": [
+    {
+      "field": "plurality_treatment",
+      "reason": "The paper takes two stances. At the level of the source databank, it says recording differing interpretations is 'vital' and that Seshat encodes what is 'contested' (p. 4), which reads as signal. At the level of how the benchmark was built, coder divergence is resolved through iterative expert review and RA subjectivity is listed as a limitation (p. 6), and each item keeps one code; this reads as noise. The readers split not_stated/signal, and I chose noise. Humans should decide which level the facet should capture."
+    }
+  ],
+  "review_notes": "analytical_tasks: ciop gave [multiple_choice_qa, factual_recall, fact_verification, classification]; cip gave [factual_recall, multiple_choice_qa]. I kept the shorter list. The paper frames the task as retaining factual knowledge in a multiple-choice format (p. 7). The four status codes are answer options, not a separate labelling task. No supplied claim is verified. relevant_asjc_areas: both readers named History plus archaeology; I used the vocabulary form 'Archeology (arts and humanities)'. I did not add Religious studies despite the religion variable categories, to avoid a generous union. plurality_treatment (facet disagreement): ciop gave not_stated, and the supervisor flagged it as inconsistent with that reader's own explanation; cip gave signal, citing p. 4 ('vital to record differing interpretations', 'contested'). On re-reading pp. 2, 4 and 6: p. 2 describes historians' disagreement as a challenge for benchmarking. p. 6 resolves coder divergence through 'multiple rounds of expert feedback and revisions' and lists RAs' 'subjective interpretations' as a limitation. The benchmark scores one code per item and retains no alternative readings. not_stated is untenable because the paper does discuss the topic. I chose noise as the stance governing how the data were built, with low confidence, and sent it to humans. dataset_size: ciop gave the string '36000', cip the integer 36000; the field is a string, so '36000'. benchmark_name: wording differs only; I used the paper's full name plus acronym. reported_format_gap_kind: both readers said format, and the paper calls it a '2-choice format' (p. 7). But it is described as measuring balanced accuracy 'using only the Present and Absent categories', which could be a re-scoring of the same outputs. I kept format with low confidence. reported_best_score: both gave 46.0 (Table 1). cip noted that the Section 5 prose says 43.8%; I followed the table and abstract. All other facets (gold_source existing_dataset, gold_upstream_source domain_expert, gold_beyond_stimulus yes, gold_community_dependent no, gold_concerns_genesis no, answer_multiplicity single_answer) and the remaining results fields agreed.",
+  "checks": {
+    "missing_fields": [],
+    "vocab_warnings": [],
+    "evidence": {
+      "quotes": {
+        "humanities_role": [
+          "exact",
+          "exact"
+        ],
+        "dataset_size": [
+          "exact"
+        ],
+        "evaluation_set_size": [
+          "exact"
+        ],
+        "primary_evaluation_setting": [
+          "exact",
+          "exact"
+        ],
+        "gold_source": [
+          "exact"
+        ],
+        "gold_beyond_stimulus": [
+          "exact"
+        ],
+        "answer_multiplicity": [
+          "exact"
+        ],
+        "plurality_treatment": [
+          "exact",
+          "exact"
+        ],
+        "gold_upstream_source": [
+          "exact"
+        ],
+        "reported_format_gap": [
+          "exact"
+        ],
+        "reported_format_gap_points": [
+          "exact"
+        ],
+        "reported_format_gap_kind": [
+          "exact"
+        ],
+        "reported_best_score": [
+          "exact"
+        ],
+        "reported_cultural_asymmetry": [
+          "exact"
+        ]
+      },
+      "unsupported": [],
+      "unverified": []
+    },
+    "confidence_missing": []
+  },
+  "extraction": {
+    "round": "pilot-2026-11b",
+    "agent": "reviewer",
+    "role": "reviewer",
+    "scope": "",
+    "operator": "RG",
+    "backend": "claude-cli",
+    "backend_kind": "claude-cli",
+    "model": "claude-opus-5-5",
+    "prompt_sha256": "6bedac88d6ae89527f93ce1df024fb38bbeeb2931aafa2920c3f3a2eab109b10",
+    "scaffold_sha256": "c8e0b257a95cc446b1618a55c0edecca9e05d8c74df3e94ba0803bb189a1640c",
+    "rendered_prompt_sha256": "eeb760dfc89a6bb6888d676cfa2adaca0e7fc2df6122327fafc1d96c586d8652",
+    "input": {
+      "pdf_sha256": "f67e322e460d40a7d44066df692c608b7713e85644d10fd92e00b986c85d191f",
+      "text_chars": 108301,
+      "readings": {
+        "ciop": "ciop.rework1.json",
+        "cip": "cip.rework1.json"
+      }
+    },
+    "started": "2026-11-09T20:52:32+00:00",
+    "seconds": 60.6
+  },
+  "paper_id": "HiST-LLM",
+  "paper_name": "HiST-LLM"
+}

@@ -1,0 +1,89 @@
+{
+  "readers": {
+    "ciop": {
+      "check": {
+        "verdict": "rework",
+        "issues": [
+          {
+            "field": "reported_format_gap_points",
+            "kind": "wrong_number",
+            "problem": "The report gives 22 as the largest 2-choice vs 4-choice gap. Table 1 (p. 8) shows a larger one. Llama-3.1-8B (FP8) scores 57.6 on 2-choice and 33.6 on 4-choice, and GPT-3.5-turbo scores 57.9 vs 35.6 (22.3). The quoted Llama-3-70B row (62.6 vs 39.5) gives 23.1, not 22. The results_explanation is also internally inconsistent: it calls 22 'a conservative undercount' and says the true maximum is 23, yet keeps 22 as the value.",
+            "instruction": "Recompute the 2-choice minus 4-choice difference for every model row in Table 1 (p. 8). Take the largest difference as the field definition requires, and replace the quote with the row that actually gives it. Then rewrite results_explanation so the stated figure, the quoted row and the arithmetic agree, and so it no longer hedges between values."
+          }
+        ],
+        "notes": "The reading is otherwise sound: the quotes are verbatim, the gold_source/existing_dataset choice is defensible, and the single-answer scoring, no-human-baseline, regional-asymmetry and best-score entries are supported. I did not challenge plurality_treatment=not_stated, although Sec. 3 says Seshat records contested interpretations, because the benchmark itself does not treat disagreement as signal. I also did not challenge mapping balanced accuracy to 'accuracy', or the choice of format as the gap kind."
+      },
+      "final_version": "ciop.rework1.json",
+      "recheck": {
+        "verdict": "rework",
+        "issues": [
+          {
+            "field": "plurality_treatment",
+            "kind": "missed_statement",
+            "problem": "The reader put not_stated, but the paper discusses disagreement between defensible readings. Sec. 1 (p. 2) says experts' inferences 'can lead to disagreements among even professional historians', citing Roman Empire population estimates of 50 to over 150 million. Sec. 3 (p. 4) says Seshat records 'what is unknown, poorly known, and contested' and that for complex topics 'it is vital to record differing interpretations'. Sec. 3.3 (p. 6) says RAs 'may have subjective interpretations' and that expert review changes under 5% of data. The reader's own facets_explanation mentions that Seshat records contested knowledge, so the value and the explanation disagree. The field also has no evidence entry, although the paper addresses the topic.",
+            "instruction": "Re-read Sec. 1 (p. 2), Sec. 3 (p. 4) and Sec. 3.3 (p. 6) on disagreement, contested knowledge and subjective RA coding. Decide whether the paper states a stance on divergence between annotators or between defensible readings. If it does, give the value that matches that stance and quote the passage. If you keep not_stated, make facets_explanation consistent with that choice."
+          }
+        ],
+        "notes": "The reading is otherwise careful. Every quote was found verbatim, and the 24-point 2-choice vs 4-choice gap (Llama-3.1-8B: 57.6 − 33.6) and the 46.0 best score match Table 1. I left several defensible choices alone: 'format' as the gap kind, existing_dataset with domain_expert upstream, few-shot as the setting, and the balanced-accuracy-to-accuracy mapping."
+      },
+      "status": "flagged",
+      "flags_for_reviewer": [
+        {
+          "field": "plurality_treatment",
+          "kind": "missed_statement",
+          "problem": "The reader put not_stated, but the paper discusses disagreement between defensible readings. Sec. 1 (p. 2) says experts' inferences 'can lead to disagreements among even professional historians', citing Roman Empire population estimates of 50 to over 150 million. Sec. 3 (p. 4) says Seshat records 'what is unknown, poorly known, and contested' and that for complex topics 'it is vital to record differing interpretations'. Sec. 3.3 (p. 6) says RAs 'may have subjective interpretations' and that expert review changes under 5% of data. The reader's own facets_explanation mentions that Seshat records contested knowledge, so the value and the explanation disagree. The field also has no evidence entry, although the paper addresses the topic.",
+          "instruction": "Re-read Sec. 1 (p. 2), Sec. 3 (p. 4) and Sec. 3.3 (p. 6) on disagreement, contested knowledge and subjective RA coding. Decide whether the paper states a stance on divergence between annotators or between defensible readings. If it does, give the value that matches that stance and quote the passage. If you keep not_stated, make facets_explanation consistent with that choice."
+        }
+      ]
+    },
+    "cip": {
+      "check": {
+        "verdict": "rework",
+        "issues": [
+          {
+            "field": "primary_evaluation_setting",
+            "kind": "misapplied_definition",
+            "problem": "The reader gave 'mix', but the paper evaluates every model under one prompting regime. Sec. 4 describes a 'multi-shot approach, providing four examples' plus reasoning before the answer. The Table 1 caption says 'chain of thought prompting and category specific few-shot examples'. Appendix B shows a single prompt template. No zero-shot condition or other setting is reported. The quoted evidence supports few-shot only, and the reader's own summary calls it 'a few-shot chain-of-thought setting'.",
+            "instruction": "Re-read Sec. 4, the Table 1 caption and Appendix B. Check whether the paper actually reports more than one evaluation setting, as 'mix' requires. Re-assign the value on that basis and quote the passage that shows the settings used."
+          },
+          {
+            "field": "plurality_treatment",
+            "kind": "missed_statement",
+            "problem": "The reader put not_stated, but the paper discusses divergence between defensible readings. The Introduction says inference 'can lead to disagreements among even professional historians', with the Roman Empire population estimates as an example. Sec. 3 says Seshat records 'what is known about global history, but also what is unknown, poorly known, and contested', and that for complex topics 'it is vital to record differing interpretations'. Sec. 3.3 notes that RAs 'may have subjective interpretations'.",
+            "instruction": "Re-read the Introduction (p. 2), Sec. 3 (p. 4) and Sec. 3.3 on disagreement and contested readings. Decide whether the paper states a stance on divergence, and quote the supporting passage. If you keep not_stated, say why these passages do not count."
+          }
+        ],
+        "notes": "The numbers check out against Table 1: best 4-choice balanced accuracy 46.0, the largest 2- vs 4-choice gap of 24 points for Llama-3.1-8B, and the conflict with the 43.8 in the Sec. 5 text is flagged. I did not challenge existing_dataset with domain_expert upstream, the 'format' kind for the 2- vs 4-choice comparison (scoring would also be arguable), or the mapping of balanced accuracy to 'accuracy'."
+      },
+      "final_version": "cip.rework1.json",
+      "recheck": {
+        "verdict": "accept",
+        "issues": [],
+        "notes": "All quotes were found verbatim and support their values. The numbers match the paper: the 24-point gap is Llama-3.1-8B at 57.6 (2-choice) vs 33.6 (4-choice), the largest across the seven models in Table 1, and the 46.0 headline matches Table 1 (the reader also flagged the 43.8 inconsistency in the text). Several choices are defensible and were left alone: existing_dataset with domain_expert upstream, plurality_treatment 'signal', the 2-choice vs 4-choice comparison as a format gap (the 2-choice scores use only Present/Absent items), and few-shot as the setting."
+      },
+      "status": "accepted_after_rework",
+      "flags_for_reviewer": []
+    }
+  },
+  "extraction": {
+    "round": "pilot-2026-11b",
+    "agent": "supervisor",
+    "role": "supervisor",
+    "scope": "",
+    "operator": "RG",
+    "backend": "claude-cli",
+    "backend_kind": "claude-cli",
+    "model": "claude-sonnet-5-5",
+    "prompt_sha256": "fbaa0533fe3191d8292183d5ea6310c689b90b5f2502536d9c1ec0ce6004c70a",
+    "scaffold_sha256": "f83b2fb4da8cafdd3f1a413c13f51e8096c29116fde99002da2f2d5df88b3eeb",
+    "rendered_prompt_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "input": {
+      "pdf_sha256": "f67e322e460d40a7d44066df692c608b7713e85644d10fd92e00b986c85d191f",
+      "text_chars": 108301
+    },
+    "max_rework": 1,
+    "started": "2026-11-09T20:50:24+00:00",
+    "seconds": 99.3
+  },
+  "paper_id": "HiST-LLM"
+}

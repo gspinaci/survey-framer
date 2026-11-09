@@ -1,0 +1,260 @@
+{
+  "benchmark_name": "History Seshat Test for LLMs (HiST-LLM)",
+  "publication_year": 2024,
+  "humanities_role": "domain",
+  "humanities_role_explanation": "The items are expert-coded historical facts (presence/absence/inferred status of social, religious, legal and military variables across 600+ polities) from the Seshat Global History Databank. They test graduate/expert-level history knowledge itself, not a generic skill on humanities text.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Text-only. Each item is a templated multiple-choice question naming a variable, a polity and a date range, with four answer options.",
+  "analytical_tasks": [
+    "factual_recall",
+    "multiple_choice_qa"
+  ],
+  "analytical_tasks_explanation": "Models judge whether a historical characteristic (e.g. writing, fasting, battle axes) was present, absent, inferred present or inferred absent for a polity and time frame. This is expert-level factual knowledge of global history, plus a distinction between evidenced and inferred facts, in a 4-choice format and a 2-choice present/absent variant.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "Scoped to a single domain (global history knowledge) and a single question template derived from Seshat."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "GPT-3.5-turbo, GPT-4-turbo, GPT-4o, Llama-3-70B, Llama-3.1-70B (FP8), Llama-3.1-8B (FP8), Gemini-1.5-flash."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Balanced accuracy and adjusted balanced accuracy (4-choice and 2-choice), with bootstrap 95% confidence intervals."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "NeurIPS 2024 Datasets and Benchmarks track; evaluations run in August 2024."
+    }
+  },
+  "summary": "The paper introduces HiST-LLM, a benchmark built from the Seshat Global History Databank by converting 36,000 expert-coded data points on 600+ polities into multiple-choice questions. Seven LLMs are evaluated in a few-shot chain-of-thought setting. Performance is above chance but well short of expert knowledge, and it is better for earlier periods and uneven across regions.",
+  "key_findings": "4-choice balanced accuracy ranges from 33.6% (Llama-3.1-8B) to 46.0% (GPT-4-Turbo), against 25% for random guessing. 2-choice balanced accuracy ranges from 57.6% to 63.2% (GPT-4o best). Accuracy declines for more recent periods. Performance is best for the Americas and lowest for Oceania and Sub-Saharan Africa.",
+  "relevant_asjc_areas": [
+    "History",
+    "Archeology (arts and humanities)"
+  ],
+  "dataset_size": 36000,
+  "evaluation_set_size": 36000,
+  "evaluation_unit": "Seshat data point converted into a multiple-choice question",
+  "primary_evaluation_setting": "mix",
+  "gold_source": "existing_dataset",
+  "gold_upstream": "Seshat Global History Databank (Turchin et al. 2015; Francois et al. 2016; Turchin et al. 2018). Per this paper, graduate-level research assistants coded the data under the supervision of established scholars, and 14,000 of 36,000 points were additionally expert-reviewed.",
+  "gold_upstream_source": "domain_expert",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "not_stated",
+  "facets_explanation": "Reference answers are the Seshat codes (Present, Absent, Inferred Present, Inferred Absent). They were coded by graduate research assistants under the supervision of professors and PhD-level researchers, with expert review for 14,000 of the 36,000 points. The question stimulus contains no evidence, so answering requires external historical knowledge. Scoring is exact match against a single code, and the paper does not treat annotator disagreement as a signal.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 24,
+  "reported_format_gap_kind": "format",
+  "reported_gap_kinds": [
+    "format"
+  ],
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 46.0,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "yes",
+  "results_explanation": "The abstract reports balanced accuracy 'ranging from 33.6% (Llama-3.1-8B) to 46% (GPT-4-Turbo)' in the 4-choice format. The headline score is therefore 46.0 balanced accuracy, which is mapped to the 'accuracy' label. The 2-choice variant on the same items gives 57.6 to 63.2. The largest gap I derived is Llama-3.1-8B, 57.6 (2-choice) vs 33.6 (4-choice), i.e. 24 points; the chance levels differ (50% vs 25%). The text in Section 5 states GPT-4-Turbo at 43.8%, which conflicts with Table 1's 46.0. No human baseline is reported. The regional asymmetry is stated as lowest in Oceania and Sub-Saharan Africa.",
+  "evidence": {
+    "humanities_role": [
+      {
+        "quote": "we introduce a unique data set of graduate and expert academic level global history knowledge",
+        "where": "p. 1, Introduction"
+      }
+    ],
+    "dataset_size": [
+      {
+        "quote": "comprises 383 variables with 36,000 data points across more than 600 polities",
+        "where": "p. 2, Introduction"
+      }
+    ],
+    "evaluation_set_size": [
+      {
+        "quote": "comprises 383 variables with 36,000 data points across more than 600 polities",
+        "where": "p. 2, Introduction"
+      }
+    ],
+    "primary_evaluation_setting": [
+      {
+        "quote": "We used a multi-shot approach, providing four examples demonstrating solutions to other questions",
+        "where": "p. 7, Section 4"
+      }
+    ],
+    "gold_source": [
+      {
+        "quote": "Under the supervision of established scholars (professors and PhD-level researchers), research assistants (RAs) populate the database with accessible information from scholarly publications.",
+        "where": "p. 6, Section 3.2"
+      }
+    ],
+    "gold_beyond_stimulus": [
+      {
+        "quote": "we asked whether a certain variable (e.g., writing) was present, absent, inferred present, or inferred absent in a particular polity and time frame.",
+        "where": "p. 7, Section 4"
+      }
+    ],
+    "gold_community_dependent": [],
+    "gold_concerns_genesis": [],
+    "answer_multiplicity": [
+      {
+        "quote": "Models are evaluated by checking if their answers match exactly with the correct answers.",
+        "where": "p. 7, Section 4"
+      }
+    ],
+    "plurality_treatment": [],
+    "gold_upstream_source": [
+      {
+        "quote": "Under the supervision of established scholars (professors and PhD-level researchers), research assistants (RAs) populate the database with accessible information from scholarly publications.",
+        "where": "p. 6, Section 3.2"
+      }
+    ],
+    "reported_format_gap": [
+      {
+        "quote": "We refer to this as the 2-choice balanced accuracy, whereas the test including inferred categories is the 4-choice balanced accuracy.",
+        "where": "p. 7, Section 4"
+      }
+    ],
+    "reported_format_gap_points": [
+      {
+        "quote": "balanced accuracy ranging from 33.6% (Llama-3.1-8B) to 46% (GPT-4-Turbo)",
+        "where": "p. 1, Abstract"
+      },
+      {
+        "quote": "which models balanced accuracy ranges from 57.6 to 63.2 (random performance would result in 50%)",
+        "where": "p. 7, Section 5"
+      }
+    ],
+    "reported_format_gap_kind": [
+      {
+        "quote": "We refer to this as the 2-choice balanced accuracy, whereas the test including inferred categories is the 4-choice balanced accuracy.",
+        "where": "p. 7, Section 4"
+      }
+    ],
+    "human_baseline_reported": [],
+    "human_gap_points": [],
+    "reported_best_score": [
+      {
+        "quote": "33.6% (Llama-3.1-8B) to 46% (GPT-4-Turbo)",
+        "where": "p. 1, Abstract"
+      }
+    ],
+    "reported_cultural_asymmetry": [
+      {
+        "quote": "performance is more even but still better for the Americas and lowest in Oceania and Sub-Saharan Africa for the more advanced models",
+        "where": "p. 1, Abstract"
+      }
+    ]
+  },
+  "checks": {
+    "missing_fields": [],
+    "vocab_warnings": [],
+    "evidence": {
+      "quotes": {
+        "humanities_role": [
+          "exact"
+        ],
+        "dataset_size": [
+          "exact"
+        ],
+        "evaluation_set_size": [
+          "exact"
+        ],
+        "primary_evaluation_setting": [
+          "exact"
+        ],
+        "gold_source": [
+          "exact"
+        ],
+        "gold_beyond_stimulus": [
+          "exact"
+        ],
+        "answer_multiplicity": [
+          "exact"
+        ],
+        "gold_upstream_source": [
+          "exact"
+        ],
+        "reported_format_gap": [
+          "exact"
+        ],
+        "reported_format_gap_points": [
+          "exact",
+          "exact"
+        ],
+        "reported_format_gap_kind": [
+          "exact"
+        ],
+        "reported_best_score": [
+          "exact"
+        ],
+        "reported_cultural_asymmetry": [
+          "exact"
+        ]
+      },
+      "unsupported": [],
+      "unverified": []
+    }
+  },
+  "extraction": {
+    "round": "pilot-2026-11b",
+    "agent": "cip",
+    "role": "reader",
+    "scope": "technical",
+    "operator": "RG",
+    "backend": "claude-cli",
+    "backend_kind": "claude-cli",
+    "model": "claude-sonnet-5-5",
+    "prompt_sha256": "de1b2a4e5c1121fdd28eae57251ef2535cfda50623e8b4280a669e829f653e73",
+    "scaffold_sha256": "910de03d8019fcc1daec329d31a9ae64b10f9ed69baaca8db4553000177bb766",
+    "rendered_prompt_sha256": "bc0ebb9f4d5bd3f4ac84667eabc8e736c5ef7fe78e9dd1b0f6e5d691d34a668f",
+    "fields": [
+      "analytical_tasks",
+      "analytical_tasks_explanation",
+      "answer_multiplicity",
+      "benchmark_modalities",
+      "benchmark_modalities_explanation",
+      "benchmark_name",
+      "dataset_size",
+      "evaluation_set_size",
+      "evaluation_unit",
+      "facets_explanation",
+      "gold_beyond_stimulus",
+      "gold_community_dependent",
+      "gold_concerns_genesis",
+      "gold_source",
+      "gold_upstream",
+      "gold_upstream_source",
+      "human_baseline_reported",
+      "human_gap_points",
+      "humanities_role",
+      "humanities_role_explanation",
+      "inclusion_criteria",
+      "key_findings",
+      "plurality_treatment",
+      "primary_evaluation_setting",
+      "publication_year",
+      "relevant_asjc_areas",
+      "reported_best_metric",
+      "reported_best_score",
+      "reported_cultural_asymmetry",
+      "reported_format_gap",
+      "reported_format_gap_kind",
+      "reported_format_gap_points",
+      "reported_gap_kinds",
+      "results_explanation",
+      "summary"
+    ],
+    "input": {
+      "pdf_sha256": "f67e322e460d40a7d44066df692c608b7713e85644d10fd92e00b986c85d191f",
+      "text_chars": 108301
+    },
+    "started": "2026-11-09T20:49:53+00:00",
+    "seconds": 31.1
+  },
+  "paper_id": "HiST-LLM"
+}

@@ -141,3 +141,27 @@ I quattro step sono ora sicuri anche eseguiti separatamente — prima il bug B.1
 ## Decisione ancora aperta
 
 La tassonomia a 22 termini in [src/fields.py](../src/fields.py) merita una revisione disciplinare. Ha superato 42 paper senza violazioni e senza termini morti, il che dice che è *praticabile*, non che i confini siano quelli giusti — per esempio se `interpretation` e `cultural_reasoning` vadano tenuti separati, o se `attribution` (datazione, autore, provenienza) debba assorbire parte di `classification`. Cambiarli dopo costa un altro run completo, quindi è il momento giusto per guardarli.
+
+---
+
+# Modifiche dello schema per il round 2026-11 (motore `census.py`)
+
+**Data:** 9 novembre 2026
+**Stato:** applicate allo schema; valgono dal round `2026-11_claude`, in cui il corpus viene ri-estratto per intero. I record di agosto (Gemini) restano con lo schema precedente.
+
+Tutte e tre vengono dal pilota `pilot-2026-11`: confrontando i record Claude con quelli di agosto, ogni scarto rimasto si spiegava con una definizione ambigua, non con un errore di lettura.
+
+### 1. Dimensione: due misure in due campi
+**Il problema.** `dataset_size` diceva "count the full evaluation set", ma non diceva l'unità né se contare anche le parti usate per l'addestramento. BLN600: Gemini 13.192 (sequenze, intero dataset), Claude 600 (articoli, intero dataset); i modelli sono valutati su 120 articoli, cioè 2.792 sequenze. Da questo numero dipende la soglia di risoluzione della Figura 2.
+**La soluzione.** `dataset_size` = l'intero benchmark com'è rilasciato, tutte le parti. Nuovi campi: `evaluation_set_size` (gli item su cui si calcolano i punteggi riportati, il numero che serve per la soglia di risoluzione) ed `evaluation_unit` (che cos'è un item, nell'unità su cui si fa la media della metrica).
+
+### 2. Il tipo di gap diventa un dato estratto
+**Il problema.** `reported_format_gap` registra qualunque confronto tra due modi di misurare lo stesso materiale. Quali di questi contino come "cambio di strumento" (§4.3: 9 benchmark) era deciso a mano, nel dizionario `GAP_KIND` di `scripts/findings_report.py`. Christian Iconography (prompt arricchito, 19 punti) è lì classificato come `input`, fuori dai 9; Gemini e Claude lo leggevano diversamente perché la definizione non diceva nulla del prompting.
+**La soluzione.** La definizione elenca i cinque tipi: `scoring`, `format`, `depth`, `difficulty`, `input`, dove `input` comprende anche zero-shot contro few-shot e più o meno contesto nel prompt. Nuovi campi: `reported_gap_kinds` (tutti i tipi riportati dal paper) e `reported_format_gap_kind` (il tipo del gap di cui si riportano i punti). Il conteggio di §4.3 usa `scoring`, `format` e `depth` (`INSTRUMENT_GAP_KINDS` in `src/fields.py`). La classificazione a mano resta valida per i record di agosto.
+
+### 3. `gold_source`: le risposte prese da un dataset esistente, e la loro traccia
+**Il problema.** Le risposte riprese da un dataset di ricerca pubblicato da altri non avevano un valore proprio: BLN600 riusa trascrizioni di Booth et al. 2024 e finiva in `existing_metadata` (pensato per cataloghi e archivi) o in `not_stated`.
+**La soluzione.** Nuovo valore `existing_dataset`. `existing_metadata` resta per i record prodotti per la cura delle collezioni, non per la ricerca. Per non spostare soltanto il problema (da dove vengono le annotazioni del dataset originario?), due campi nuovi: `gold_upstream` (quale dataset, come lo cita il paper, e cosa ne dice il paper) e `gold_upstream_source` (come erano state prodotte quelle annotazioni, con lo stesso vocabolario; `not_stated` se il paper si limita a citare). Risalire al paper del dataset originario è un passo separato, da fare solo per questi record.
+
+### Cambiano i vocabolari, quindi serve una ri-estrazione completa
+Come per `authored_answer_key` ad agosto: un valore nuovo non si recupera dai valori già assegnati. È compreso nel round `2026-11_claude`, che rifà tutto.

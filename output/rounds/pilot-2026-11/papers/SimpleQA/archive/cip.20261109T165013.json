@@ -1,0 +1,197 @@
+{
+  "benchmark_name": "SimpleQA",
+  "publication_year": 2024,
+  "humanities_role": "content",
+  "humanities_role_explanation": "Questions span general-knowledge topics (science & technology, politics, art, geography, sports, music, TV, history, video games); humanities topics such as art and history only supply content for generic short-form factual QA, and the competence tested is factuality, not disciplinary skill.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Text-only short questions with short text answers.",
+  "analytical_tasks": [
+    "factual_recall",
+    "open_ended_qa",
+    "calibration_and_uncertainty"
+  ],
+  "analytical_tasks_explanation": "Short, fact-seeking questions with a single indisputable answer (short-form factuality), graded correct/incorrect/not attempted. Calibration is measured via stated confidence and answer-frequency over 100 samples ('know what they know').",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": true,
+      "note": "Broad multi-topic factual QA benchmark covering many domains, not scoped to one humanities domain."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Claude-3-haiku, Claude-3-sonnet, Claude-3-opus, Claude-3.5-sonnet, GPT-4o-mini, GPT-4o, o1-mini, o1-preview."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Correct, not attempted, incorrect, correct given attempted, F-score; calibration plots."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "arXiv preprint 7 Nov 2024."
+    }
+  },
+  "summary": "SimpleQA is a benchmark of 4,326 short, fact-seeking questions with single indisputable answers, adversarially collected against GPT-4 responses. Models are graded correct/incorrect/not attempted by a prompted ChatGPT grader, and calibration is also measured.",
+  "key_findings": "Frontier models score low: o1-preview best with 42.7% correct and F-score 44.8; GPT-4o 38.2% correct; Claude-3.5-sonnet 28.9% correct but F-score 35.0, as Claude models abstain more often. Larger models are better calibrated, but all overstate confidence.",
+  "relevant_asjc_areas": [
+    "Multidisciplinary"
+  ],
+  "dataset_size": 4326,
+  "primary_evaluation_setting": "zero-shot",
+  "gold_source": "crowd_annotation",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "noise",
+  "facets_explanation": "AI trainers (human annotators) wrote questions and reference answers with supporting web links, and a second independent trainer answered; only matching questions were kept, with two unique source domains required. Questions with multiple answers or ambiguity were removed or treated as errors (~3% estimated error rate). Questions are closed-book factual with one gold target graded by a prompted ChatGPT classifier.",
+  "reported_format_gap": "no",
+  "reported_format_gap_points": null,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 42.7,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "Table 3 reports o1-preview with Correct 42.7, Not attempted 9.2, Incorrect 48.1, Correct given attempted 47.0, F-score 44.8; the headline is the 'Correct' percentage (treated as accuracy). GPT-4o scores 38.2 correct. The third-trainer check gave 94.4% agreement, but this is a data-quality check, not a human baseline on the same metric as the models.",
+  "evidence": {
+    "humanities_role": [
+      {
+        "quote": "SimpleQA contains questions from a wide range of topics, including history, science & technology, art, geography, TV shows, etc.",
+        "where": "p. 2, Introduction"
+      }
+    ],
+    "dataset_size": [
+      {
+        "quote": "We present a benchmark called SimpleQA, which contains 4,326 short, fact-seeking questions.",
+        "where": "p. 2, Introduction"
+      }
+    ],
+    "primary_evaluation_setting": [],
+    "gold_source": [
+      {
+        "quote": "First, AI trainers (i.e., human annotators) created question and answer pairs.",
+        "where": "p. 3, Section 2"
+      }
+    ],
+    "gold_beyond_stimulus": [
+      {
+        "quote": "Here we only focus on objective knowledge and force questions to be written such that they only have a single, indisputable answer.",
+        "where": "p. 3, Section 2.1"
+      }
+    ],
+    "gold_community_dependent": [],
+    "gold_concerns_genesis": [],
+    "answer_multiplicity": [
+      {
+        "quote": "questions are created such that there exists only a single, indisputable answer.",
+        "where": "p. 1, Abstract"
+      }
+    ],
+    "plurality_treatment": [
+      {
+        "quote": "Only questions where the answers from both AI trainers were the same were kept in the dataset.",
+        "where": "p. 3, Section 2.1"
+      }
+    ],
+    "reported_format_gap": [],
+    "reported_format_gap_points": [],
+    "human_baseline_reported": [],
+    "human_gap_points": [],
+    "reported_best_score": [
+      {
+        "quote": "OpenAI o1-preview 42.7 9.2 48.1 47.0 44.8",
+        "where": "p. 7, Table 3"
+      }
+    ],
+    "reported_cultural_asymmetry": []
+  },
+  "checks": {
+    "missing_fields": [],
+    "vocab_warnings": [],
+    "evidence": {
+      "quotes": {
+        "humanities_role": [
+          "exact"
+        ],
+        "dataset_size": [
+          "exact"
+        ],
+        "gold_source": [
+          "exact"
+        ],
+        "gold_beyond_stimulus": [
+          "exact"
+        ],
+        "answer_multiplicity": [
+          "exact"
+        ],
+        "plurality_treatment": [
+          "exact"
+        ],
+        "reported_best_score": [
+          "exact"
+        ]
+      },
+      "unsupported": [
+        "primary_evaluation_setting",
+        "gold_community_dependent",
+        "gold_concerns_genesis",
+        "reported_format_gap",
+        "human_baseline_reported"
+      ],
+      "unverified": []
+    }
+  },
+  "extraction": {
+    "round": "pilot-2026-11",
+    "agent": "cip",
+    "role": "reader",
+    "scope": "technical",
+    "operator": "RG",
+    "backend": "claude-cli",
+    "backend_kind": "claude-cli",
+    "model": "claude-sonnet-5-5",
+    "prompt_sha256": "de1b2a4e5c1121fdd28eae57251ef2535cfda50623e8b4280a669e829f653e73",
+    "research_questions_sha256": "eef1e0955043c49d934507b46e8172af9909e94548c01930c10d7ecbdcf7bc01",
+    "rendered_prompt_sha256": "80752d707c9a38aa113170bf993cd4bdecb91824b8f97d95c7114f53125da7cb",
+    "fields": [
+      "analytical_tasks",
+      "analytical_tasks_explanation",
+      "answer_multiplicity",
+      "benchmark_modalities",
+      "benchmark_modalities_explanation",
+      "benchmark_name",
+      "dataset_size",
+      "facets_explanation",
+      "gold_beyond_stimulus",
+      "gold_community_dependent",
+      "gold_concerns_genesis",
+      "gold_source",
+      "human_baseline_reported",
+      "human_gap_points",
+      "humanities_role",
+      "humanities_role_explanation",
+      "inclusion_criteria",
+      "key_findings",
+      "plurality_treatment",
+      "primary_evaluation_setting",
+      "publication_year",
+      "relevant_asjc_areas",
+      "reported_best_metric",
+      "reported_best_score",
+      "reported_cultural_asymmetry",
+      "reported_format_gap",
+      "reported_format_gap_points",
+      "results_explanation",
+      "summary"
+    ],
+    "input": {
+      "pdf": "SimpleQA.pdf",
+      "pdf_sha256": "cca3809270242e8f280a4edf2141800d2580c95a0772b654b805a7152f7227ff",
+      "text_chars": 32742
+    },
+    "started": "2026-11-09T16:36:39+00:00",
+    "seconds": 12.2
+  },
+  "paper_id": "SimpleQA"
+}

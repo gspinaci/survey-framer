@@ -1,0 +1,35 @@
+{
+  "run_id": "2026-05_curated-sources",
+  "route": "curated",
+  "tool": "manual search",
+  "operators": [
+    "GS",
+    "RG"
+  ],
+  "description": "Hand search of frontier-model system cards, digital-humanities and computational-linguistics venues, shared tasks and benchmark aggregators. The finder is recorded in Hunter, the source in Source.",
+  "sources_checked": "input/Survey Benchmarks LLM+DH - Sources.csv",
+  "window": {
+    "from": null,
+    "to": null,
+    "note": "no publication window at search time; the recency criterion (after March 2023, with MMLU as documented exception) was applied at screening"
+  },
+  "executed": {
+    "from": "2026-05",
+    "to": "2026-07-03"
+  },
+  "records_in_table": 33,
+  "records_by_added_on": {
+    "2026-05-23": 31,
+    "2026-06-16": 1,
+    "2026-07-03": 1
+  },
+  "notes": [
+    "28 of these records carry Source 2 = ASREVIEW: they were in the table before the ASReview screening and were loaded into it as seed (prior relevant) records, so their presence in the pool is not an independent discovery.",
+    "EduArt (added 2026-07-03) has no Hunter and no Accept decisions recorded."
+  ],
+  "reconstructed": {
+    "on": "2026-11-09",
+    "by": "scripts/backfill_provenance.py",
+    "method": "route from Source/Source 2/Hunter; Added on = date of the first git commit of input/papers.csv containing the row"
+  }
+}

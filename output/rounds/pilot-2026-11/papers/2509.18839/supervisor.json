@@ -1,0 +1,75 @@
+{
+  "readers": {
+    "ciop": {
+      "check": {
+        "verdict": "accept",
+        "issues": [],
+        "notes": "All quotes were found verbatim and support their values. The numbers match the paper: dataset_size 3445 is 1,864 + 863 + 718, and the best score of 90.45 on accuracy is Gemini-2.5 Pro on ArtDL Test 1. Several choices are defensible and I left them alone: reported_format_gap 'no', since the three tests are prompting regimes rather than answer formats; gold_source 'existing_metadata' for the Iconclass codes already attached to the images; and benchmark_name null, since the paper names no benchmark."
+      },
+      "final_version": "ciop.json",
+      "status": "accepted",
+      "flags_for_reviewer": []
+    },
+    "cip": {
+      "check": {
+        "verdict": "rework",
+        "issues": [
+          {
+            "field": "reported_format_gap_points",
+            "kind": "wrong_number",
+            "problem": "The value 21 matches no gap in the paper's tables. The results_explanation itself admits 'the stated 21 is derived from siglip-base on ICONCLASS Test 1 vs Test 2 comparisons and should be checked', and its own computed figures are 18-19. In Table 2 the siglip-large-patch16-384 gap between Test 2 and Test 3 is 72.21 vs 53.49, about 19. In Table 4 siglip-large-patch16-384 Test 3 vs Test 2 is 61.17 vs 43.95, about 17. The siglip-base ICONCLASS comparison cited for 21 does not give 21 either (43.51 vs 33.33 is about 10). The quote given supports 54.45 vs 72.21 (about 18), not 21.",
+            "instruction": "Recompute the largest same-model, same-dataset gap between Test 1, 2 and 3 across Tables 2, 3 and 4 (pp 7-8). Quote the exact pair of cells that gives the maximum, and make the integer match that pair. Then make the results_explanation consistent with it."
+          },
+          {
+            "field": "results_explanation",
+            "kind": "unsupported",
+            "problem": "The explanation is internally contradictory. It names several different 'largest' gaps (18, 14, 19, 19) and then states 21 with a derivation that does not match the tables. It also says 'gemini-2.5-pro on Wikidata changes little' without a figure. This makes the numeric fields unverifiable.",
+            "instruction": "Rewrite results_explanation so it quotes the Table 2-4 figures verbatim for the single maximum gap and the headline score, and states clearly how the integer was derived."
+          },
+          {
+            "field": "gold_source",
+            "kind": "unsupported",
+            "problem": "The quote ('which we selected for their native support of Iconclass classes', Sec. 2.1) shows why the datasets were chosen. It does not say who produced the reference labels. The paper does not describe the annotation process for ArtDL, ICONCLASS or Wikidata. The Introduction (p. 2) says only that corpora 'contain metadata, usually created by domain experts', which is generic.",
+            "instruction": "Re-read Secs. 2.1-2.1.3 and the Introduction for any statement of how the Iconclass labels were produced. Quote the passage that supports the chosen value, or reconsider the value if the paper is silent on provenance of the labels."
+          },
+          {
+            "field": "gold_beyond_stimulus",
+            "kind": "unsupported",
+            "problem": "The quote (Test 1 description, p. 5) is about what the test probes in the model. It does not show that the reference answer requires knowledge outside the stimulus. The quote also does not mention iconographic attributes. Test 2 supplies Iconclass descriptions in the prompt, which complicates the claim.",
+            "instruction": "Find and quote text showing whether identifying the saint needs knowledge outside the image and candidate list (for example Sec. 2.1 or 2.3), and justify the value from it."
+          }
+        ],
+        "notes": "Choices not challenged: humanities_role=domain, answer_multiplicity=single_answer, primary_evaluation_setting=mix, reported_cultural_asymmetry=not_stated, human_baseline=no, and the headline 90.45 accuracy. The main defects are the unsupported format-gap number and the weak quotes for gold_source and gold_beyond_stimulus."
+      },
+      "final_version": "cip.rework1.json",
+      "recheck": {
+        "verdict": "accept",
+        "issues": [],
+        "notes": "All quotes were found verbatim and the numbers check out: dataset_size is 1,864 + 863 + 718 = 3,445, the best accuracy is 90.45% for Gemini 2.5 Pro on ArtDL, and the largest within-model gap is siglip-base ArtDL at 68.19 − 48.71 = 19.48, which gives 19. Choices I considered defensible and did not challenge: gold_source as existing_metadata, gold_beyond_stimulus as yes, and counting the Test 1 vs Test 2 prompt-enrichment difference as a format gap. The last of these is borderline, since the paper frames it as context enrichment, but the definition allows it."
+      },
+      "status": "accepted_after_rework",
+      "flags_for_reviewer": []
+    }
+  },
+  "extraction": {
+    "round": "pilot-2026-11",
+    "agent": "supervisor",
+    "role": "supervisor",
+    "scope": "",
+    "operator": "RG",
+    "backend": "claude-cli",
+    "backend_kind": "claude-cli",
+    "model": "claude-sonnet-5-5",
+    "prompt_sha256": "d068b5b800f030232d9962eee3dc5afa24961e692fa200376d3d4102e860ff38",
+    "scaffold_sha256": "4e04559133a808a698d90727709c9b760fd69800616609354d64d83d04244435",
+    "rendered_prompt_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "input": {
+      "pdf_sha256": "ffece62eff57fbf822d31ccafd6f6dd3f71dec6b9112ef99210bed289593c78c",
+      "text_chars": 40939
+    },
+    "max_rework": 1,
+    "started": "2026-11-09T16:53:51+00:00",
+    "seconds": 53.5
+  },
+  "paper_id": "2509.18839"
+}

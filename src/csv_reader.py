@@ -23,10 +23,23 @@ def read_papers_csv(csv_path: Path) -> list[dict]:
             arxiv_id = _extract_arxiv_id(article_url) or _extract_arxiv_id(resource_url)
             doi = _extract_doi(article_url) or _extract_doi(resource_url)
 
-            paper_id = arxiv_id or doi or name[:40].replace(" ", "_")
+            # The ID column is authoritative once a record has one. Deriving the id
+            # from mutable cells (the URL, or worse the Name) let ids drift whenever
+            # a row was edited; IDs are now assigned once, at registration, and the
+            # derivation below survives only for rows that predate the column.
+            paper_id = (row.get("ID") or "").strip() or arxiv_id or doi or name[:40].replace(" ", "_")
+
+            accept_gs = row.get("Accept GS", "").strip()
+            accept_rg = row.get("Accept RG", "").strip()
 
             paper = {
                 "id": paper_id,
+                "pdf_url": (row.get("PDF URL") or "").strip(),
+                "discovery_route": (row.get("Discovery route") or "").strip(),
+                "discovery_run": (row.get("Discovery run") or "").strip(),
+                "discovery_ref": (row.get("Discovery ref") or "").strip(),
+                "added_on": (row.get("Added on") or "").strip(),
+                "screening_status": screening_status(accept_gs, accept_rg),
                 "name": name,
                 "year": year,
                 "article_url": article_url,
@@ -43,13 +56,31 @@ def read_papers_csv(csv_path: Path) -> list[dict]:
                 "specific_source": row.get("Specific source", "").strip(),
                 "notes_gs": row.get("Notes GS", "").strip(),
                 "notes_rg": row.get("Notes RG", "").strip(),
-                "accept_gs": row.get("Accept GS", "").strip(),
-                "accept_rg": row.get("Accept RG", "").strip(),
+                "accept_gs": accept_gs,
+                "accept_rg": accept_rg,
                 "hunter": row.get("Hunter", "").strip(),
                 "csv_row": idx,
             }
             papers.append(paper)
     return papers
+
+
+def screening_status(accept_gs: str, accept_rg: str) -> str:
+    """Where a record stands in the double verification (article Sec. 3.2).
+
+    included  both reviewers TRUE — the only status that is fetched and analysed
+    conflict  one TRUE, one FALSE — to be resolved by discussion
+    excluded  a FALSE and no TRUE
+    pending   at least one decision missing and no FALSE yet (new candidates)
+    """
+    votes = [v.strip().upper() for v in (accept_gs, accept_rg)]
+    if votes == ["TRUE", "TRUE"]:
+        return "included"
+    if "TRUE" in votes and "FALSE" in votes:
+        return "conflict"
+    if "FALSE" in votes:
+        return "excluded"
+    return "pending"
 
 
 def _extract_arxiv_id(url: str) -> str | None:

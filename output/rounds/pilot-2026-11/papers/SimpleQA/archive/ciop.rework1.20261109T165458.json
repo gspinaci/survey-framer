@@ -1,0 +1,208 @@
+{
+  "benchmark_name": "SimpleQA",
+  "publication_year": 2024,
+  "humanities_role": "content",
+  "humanities_role_explanation": "SimpleQA is a general short-form factuality benchmark. Topics such as art, history and music supply some items (Art n=550, Music n=341, History n=173), but the competence tested is general factual recall and calibration, not humanistic interpretation. Most items concern science, politics, sports, TV and similar areas.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Text-only questions with short text answers.",
+  "analytical_tasks": [
+    "factual_recall",
+    "open_ended_qa",
+    "calibration_and_uncertainty"
+  ],
+  "analytical_tasks_explanation": "Short fact-seeking questions with a single indisputable answer (dates, persons, numbers, places), answered in free text, i.e. factual recall rather than interpretation. Responses are graded correct, incorrect or not attempted. Calibration is measured via stated confidence and answer frequency over 100 samples (whether models 'know what they know').",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "Single-task benchmark (short-form factual QA) with diverse topics (science and technology, politics, art, geography, sports, music, TV, history, video games). The paper states it 'only measures factuality under the constrained setting of short, fact-seeking queries', so topic breadth does not make it a multi-task benchmark."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Claude-3 haiku/sonnet/opus, Claude-3.5-sonnet, GPT-4o, GPT-4o-mini, o1-mini, o1-preview."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Correct, not attempted, incorrect, correct given attempted, F-score, calibration plots."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "arXiv preprint, 7 Nov 2024."
+    }
+  },
+  "summary": "SimpleQA is a benchmark of 4,326 short, fact-seeking questions with single indisputable answers, adversarially collected against GPT-4 responses. Answers are graded as correct, incorrect or not attempted, and the paper also measures model calibration. Frontier models score below 50%.",
+  "key_findings": "o1-preview scored best (42.7% correct, F-score 44.8), followed by GPT-4o (38.2% correct). Claude models attempt fewer questions, which gives a similar F-score. Models overstate their confidence, and o1-preview is the best calibrated. The authors estimate the benchmark's error rate at around 3%.",
+  "relevant_asjc_areas": [
+    "History",
+    "Music",
+    "Visual Arts and Performing Arts"
+  ],
+  "dataset_size": 4326,
+  "primary_evaluation_setting": "zero-shot",
+  "gold_source": "crowd_annotation",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "noise",
+  "facets_explanation": "Reference answers were written by AI trainers (human annotators) and kept only if a second independent trainer's answer matched, with supporting sources from two unique domains. Questions were required to have a single, indisputable answer; ambiguous items or ones with contradictory sources were treated as errors, estimated at about 3%. The paper does not describe the annotators as disciplinary experts. The questions give no context, so answering requires external world knowledge.",
+  "reported_format_gap": "no",
+  "reported_format_gap_points": null,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 42.7,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "Table 3 lists OpenAI o1-preview with 42.7 Correct, 9.2 Not attempted, 48.1 Incorrect, 47.0 Correct given attempted and 44.8 F-score, the best overall-correct figure. GPT-4o scores 38.2 and Claude-3.5-sonnet scores 28.9. The third trainer's 94.4% on 1,000 sampled items is a data-quality check, not a human baseline for model comparison. No format comparison or cultural asymmetry is reported.",
+  "evidence": {
+    "humanities_role": [
+      {
+        "quote": "The most common topics were Science & Technology (n=858), Politics (n=709), and Art (n=550).",
+        "where": "p. 4, Section 2.3"
+      }
+    ],
+    "dataset_size": [
+      {
+        "quote": "which contains 4,326 short, fact-seeking questions",
+        "where": "p. 2, Introduction"
+      }
+    ],
+    "primary_evaluation_setting": [
+      {
+        "quote": "we evaluated various OpenAI (OpenAI, 2024a,b,c) and Anthropic models (Anthropic, 2024) on SimpleQA",
+        "where": "p. 6, Section 3"
+      }
+    ],
+    "gold_source": [
+      {
+        "quote": "AI trainers (i.e., human annotators) created question and answer pairs.",
+        "where": "p. 3, Section 2"
+      }
+    ],
+    "gold_beyond_stimulus": [
+      {
+        "quote": "Who received the IEEE Frank Rosenblatt Award in 2010?",
+        "where": "p. 2, Table 1"
+      }
+    ],
+    "gold_community_dependent": [],
+    "gold_concerns_genesis": [],
+    "answer_multiplicity": [
+      {
+        "quote": "force questions to be written such that they only have a single, indisputable answer",
+        "where": "p. 3, Section 2.1"
+      },
+      {
+        "quote": "a prompted ChatGPT classifier that sees both the predicted answer and the reference answer",
+        "where": "p. 5, Section 2.4"
+      }
+    ],
+    "plurality_treatment": [
+      {
+        "quote": "we removed questions from the dataset if answers from two trainers didn’t agree according to a prompted ChatGPT classifier",
+        "where": "p. 4, Section 2.2"
+      }
+    ],
+    "reported_format_gap": [],
+    "reported_format_gap_points": [],
+    "human_baseline_reported": [],
+    "human_gap_points": [],
+    "reported_best_score": [
+      {
+        "quote": "OpenAI o1-preview 42.7 9.2 48.1 47.0 44.8",
+        "where": "p. 7, Table 3"
+      }
+    ],
+    "reported_cultural_asymmetry": []
+  },
+  "checks": {
+    "missing_fields": [],
+    "vocab_warnings": [],
+    "evidence": {
+      "quotes": {
+        "humanities_role": [
+          "exact"
+        ],
+        "dataset_size": [
+          "exact"
+        ],
+        "primary_evaluation_setting": [
+          "exact"
+        ],
+        "gold_source": [
+          "exact"
+        ],
+        "gold_beyond_stimulus": [
+          "exact"
+        ],
+        "answer_multiplicity": [
+          "exact",
+          "exact"
+        ],
+        "plurality_treatment": [
+          "exact"
+        ],
+        "reported_best_score": [
+          "exact"
+        ]
+      },
+      "unsupported": [],
+      "unverified": []
+    }
+  },
+  "extraction": {
+    "round": "pilot-2026-11",
+    "agent": "ciop",
+    "role": "reader",
+    "scope": "humanist",
+    "operator": "RG",
+    "backend": "claude-cli",
+    "backend_kind": "claude-cli",
+    "model": "claude-sonnet-5-5",
+    "prompt_sha256": "b17f9954e3f6fcfaea00bfc79666d31ac51f915da45046c71b23fea2335612f0",
+    "scaffold_sha256": "68f9a7ab2901764543d1868900ed7d5e145a54937ea3593c18b367a98852d414",
+    "rendered_prompt_sha256": "851a4c800f8c3a531db754f694e8badfd571652f40b262031cbe51a4fc41f47a",
+    "fields": [
+      "analytical_tasks",
+      "analytical_tasks_explanation",
+      "answer_multiplicity",
+      "benchmark_modalities",
+      "benchmark_modalities_explanation",
+      "benchmark_name",
+      "dataset_size",
+      "facets_explanation",
+      "gold_beyond_stimulus",
+      "gold_community_dependent",
+      "gold_concerns_genesis",
+      "gold_source",
+      "human_baseline_reported",
+      "human_gap_points",
+      "humanities_role",
+      "humanities_role_explanation",
+      "inclusion_criteria",
+      "key_findings",
+      "plurality_treatment",
+      "primary_evaluation_setting",
+      "publication_year",
+      "relevant_asjc_areas",
+      "reported_best_metric",
+      "reported_best_score",
+      "reported_cultural_asymmetry",
+      "reported_format_gap",
+      "reported_format_gap_points",
+      "results_explanation",
+      "summary"
+    ],
+    "input": {
+      "pdf_sha256": "cca3809270242e8f280a4edf2141800d2580c95a0772b654b805a7152f7227ff",
+      "text_chars": 32742
+    },
+    "started": "2026-11-09T16:51:15+00:00",
+    "seconds": 10.6,
+    "rework_of": "ciop.json",
+    "requested_by": "supervisor",
+    "rework": 1
+  },
+  "paper_id": "SimpleQA"
+}

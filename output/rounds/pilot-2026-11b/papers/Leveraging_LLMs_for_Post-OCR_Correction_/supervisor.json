@@ -1,0 +1,93 @@
+{
+  "readers": {
+    "ciop": {
+      "check": {
+        "verdict": "rework",
+        "issues": [
+          {
+            "field": "gold_source",
+            "kind": "bad_quote",
+            "problem": "The gold_source quote was only fuzzy-matched by the mechanical check, not found verbatim. The paper's wording (p. 1 Introduction) is 'This dataset contains OCR text sourced from British Library Newspapers along with manu-ally re-keyed human transcriptions', with a hyphenation break, so the quote as given is not exact.",
+            "instruction": "Re-quote the passage on how BLN600's reference transcriptions were produced verbatim (Introduction p. 1 or Sec. 3.1 'high-quality manually re-keyed human transcriptions from the source images'), so the quote matches the text exactly."
+          },
+          {
+            "field": "gold_beyond_stimulus",
+            "kind": "unsupported",
+            "problem": "The quote (Sec. 3.1) describes how source/target pairs were assembled with a search algorithm. It says nothing about whether correct answers need knowledge outside the OCR input. The facets_explanation claim that correction needs no outside knowledge is not backed by this quote. Table 2 (e.g. the misnamed entity example) and the p. 4 remark that entity correction depends on context suggest the question is worth re-checking.",
+            "instruction": "Re-read Sec. 3.1 and Sec. 4 (error types, misnamed entities, insertions) and quote a passage that actually bears on whether the reference answer depends on information beyond the input text, then reassess the value."
+          },
+          {
+            "field": "answer_multiplicity",
+            "kind": "unsupported",
+            "problem": "The quote is the general CER definition (Levenshtein distance against the reference). It does not show that the scorer accepts a single reference answer. In fact the reported metric is percentage CER reduction (Formula 1, Sec. 4) computed against one target t.",
+            "instruction": "Re-check the scoring description in Sec. 3.1 and Formula (1) in Sec. 4 and quote the passage that shows how many reference answers the scorer accepts."
+          },
+          {
+            "field": "humanities_role",
+            "kind": "unsupported",
+            "problem": "The quote is from the Abstract, motivating the work for humanities scholars. It does not describe the items or the competence tested, which the explanation relies on. Sec. 3.1 describes the corpus content (crime news, 19th-century vocabulary).",
+            "instruction": "Re-read Sec. 3.1 and quote the passage describing the items and what the task asks of the model, to support the content/domain choice."
+          }
+        ],
+        "notes": "The reading is mostly sound: the gold_source, format-gap, human-baseline, dataset and evaluation-set sizes (13,192 and 2,792 per Table 1), 'other' metric for CER reduction, and the benchmark_name null choice are all defensible and were not challenged. The issues concern quotes that do not support their values."
+      },
+      "final_version": "ciop.rework1.json",
+      "recheck": {
+        "verdict": "accept",
+        "issues": [],
+        "notes": "The reading is sound. Quotes were verified, numbers match Table 1 (13,192 total; 2,792 test) and Table 3 (54.51), and the definitions are applied correctly: existing_dataset with gold_upstream_source not_stated, no format gap since the training-size comparison is an ablation, humanities_role content, single_answer scoring against one ground truth. The choice of 'other' for the CER-reduction metric and the 'no' for gold_beyond_stimulus are defensible and were not challenged."
+      },
+      "status": "accepted_after_rework",
+      "flags_for_reviewer": []
+    },
+    "cip": {
+      "check": {
+        "verdict": "rework",
+        "issues": [
+          {
+            "field": "reported_format_gap",
+            "kind": "unsupported",
+            "problem": "The reader set reported_format_gap to 'yes' with kind 'input' (zero-shot vs few-shot/more context), but gave no quote, and the mechanical check flags it as unsupported. The paper's only comparison is training-set size (Sec. 4, Fig. 3: six subsets of 80 samples), which is an ablation of the model's training data, not a different presentation or scoring of the same items. The definition excludes ablations of the model itself. The paper otherwise evaluates a single regime (CER reduction on the test set).",
+            "instruction": "Re-read Sec. 4 and Fig. 3 and decide whether any comparison of the same models on the same items under two ways of measuring or presenting them is actually reported. If so, quote it. Also check that reported_format_gap and reported_gap_kinds are consistent with the definition's exclusion of model ablations such as training-data size."
+          },
+          {
+            "field": "reported_best_metric",
+            "kind": "misapplied_definition",
+            "problem": "The reader used 'other' for the metric, but the paper's headline figure is a percentage reduction in character error rate (Formula 1, Sec. 4, Table 3). The reader's own results_explanation says so. The vocabulary has a 'cer' label, and the choice of 'other' rests on the claim that the metric is 'not a standard label', which is not obviously right for a CER-based score. The field exists so aggregation can restrict itself to comparable metrics, and a relative reduction in CER is not the same quantity as CER itself.",
+            "instruction": "Re-check Formula (1) and Table 3 and decide which metric label best fits the quantity reported as reported_best_score, given that the score is a relative reduction in CER rather than CER itself. Justify the choice against the field definition in results_explanation."
+          }
+        ],
+        "notes": "The reading is mostly sound. Dataset and evaluation set sizes (13,192 and 2,792 sequence pairs), existing_dataset gold source, single_answer, fine-tuned setting and the humanities_role of content are all defensible and left alone. The main problem is the unsupported format-gap claim."
+      },
+      "final_version": "cip.rework1.json",
+      "recheck": {
+        "verdict": "accept",
+        "issues": [],
+        "notes": "The reading is sound. Quotes are verified; dataset_size (13,192) and evaluation_set_size (2,792) match Table 1; gold_source as existing_dataset with BLN600 named in gold_upstream is correct; reported_format_gap 'no' is defensible, since the training-size comparison is an ablation of training data rather than a different presentation of the same items. Defensible choices left unchallenged: humanities_role 'content', reported_best_metric 'cer' (with the relative-reduction caveat stated), and not_stated for reported_cultural_asymmetry in a monolingual English benchmark."
+      },
+      "status": "accepted_after_rework",
+      "flags_for_reviewer": []
+    }
+  },
+  "extraction": {
+    "round": "pilot-2026-11b",
+    "agent": "supervisor",
+    "role": "supervisor",
+    "scope": "",
+    "operator": "RG",
+    "backend": "claude-cli",
+    "backend_kind": "claude-cli",
+    "model": "claude-sonnet-5-5",
+    "prompt_sha256": "fbaa0533fe3191d8292183d5ea6310c689b90b5f2502536d9c1ec0ce6004c70a",
+    "scaffold_sha256": "f83b2fb4da8cafdd3f1a413c13f51e8096c29116fde99002da2f2d5df88b3eeb",
+    "rendered_prompt_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "input": {
+      "pdf_sha256": "50d1b703ea66c9e3e9a7d438a8d8578641555e3f3716ef9690da6a23ba8a367e",
+      "text_chars": 25431
+    },
+    "max_rework": 1,
+    "started": "2026-11-09T20:50:24+00:00",
+    "seconds": 56.9
+  },
+  "paper_id": "Leveraging_LLMs_for_Post-OCR_Correction_"
+}

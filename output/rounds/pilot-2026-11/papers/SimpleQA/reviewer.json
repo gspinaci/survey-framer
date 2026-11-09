@@ -1,0 +1,192 @@
+{
+  "benchmark_name": "SimpleQA",
+  "publication_year": 2024,
+  "humanities_role": "content",
+  "humanities_role_explanation": "SimpleQA is a general short-form factuality benchmark. Humanities topics supply some items: Art n=550, Music n=341 and History n=173, tagged post hoc by ChatGPT. The competence tested is general factual recall and calibration, not disciplinary skill. Topic labels are applied after collection, and no metrics are reported per discipline.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Text-only short fact-seeking questions with short free-text reference answers.",
+  "analytical_tasks": [
+    "factual_recall",
+    "open_ended_qa",
+    "calibration_and_uncertainty"
+  ],
+  "analytical_tasks_explanation": "The paper describes 'short, fact-seeking questions' with 'a single, indisputable answer', focused on 'objective knowledge'. Answers are 32.8% dates, 24.1% persons, 15.3% numbers and 9.9% places. Models answer in free text, and a prompted ChatGPT grader labels each response 'correct', 'incorrect' or 'not attempted'. The paper also measures 'calibration, or whether language models \"know what they know\"' in two ways: stated confidence, and answer frequency over 100 samples at temperature 1.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "Items span many topics, but the benchmark is scoped to one task. The paper says it 'only measures factuality under the constrained setting of short, fact-seeking queries with a single, verifiable answer'."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Models evaluated: Claude-3-haiku, Claude-3-sonnet, Claude-3-opus, Claude-3.5-sonnet, GPT-4o-mini, GPT-4o, OpenAI o1-mini and OpenAI o1-preview."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Metrics: overall correct, not attempted, incorrect, correct given attempted, F-score, and calibration plots (stated confidence and answer frequency)."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "arXiv:2411.04368v1, 7 Nov 2024."
+    }
+  },
+  "summary": "SimpleQA is a benchmark of 4,326 short, fact-seeking questions, each with a single indisputable answer, collected adversarially against GPT-4 responses. A prompted ChatGPT classifier grades answers as correct, incorrect or not attempted. The paper also uses the benchmark to measure model calibration.",
+  "key_findings": "o1-preview performs best, with 42.7% correct and an F-score of 44.8. GPT-4o follows with 38.2% correct. Claude models attempt fewer questions, so Claude-3.5-sonnet reaches an F-score similar to GPT-4o. Larger models outperform smaller ones and are better calibrated. All models overstate their confidence, and o1-preview is the best calibrated. The authors estimate the benchmark's error rate at about 3%.",
+  "relevant_asjc_areas": [
+    "Multidisciplinary"
+  ],
+  "dataset_size": 4326,
+  "primary_evaluation_setting": "zero-shot",
+  "gold_source": "crowd_annotation",
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "noise",
+  "facets_explanation": "'AI trainers (i.e., human annotators)' wrote the question-answer pairs, each with a supporting webpage link. A second trainer answered each question independently, and an item was kept only if the two answers matched and the sources came from two unique website domains. The paper does not describe the trainers as having disciplinary training. Questions must have a 'single, indisputable answer', and disagreements or ambiguity were removed. The residual ~3% of items (ambiguous questions, contradictory sources, multiple correct answers) is treated as error. Questions give no context, so answering requires external world knowledge.",
+  "reported_format_gap": "no",
+  "reported_format_gap_points": null,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 42.7,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "Table 3 row: 'OpenAI o1-preview 42.7 9.2 48.1 47.0 44.8', i.e. 42.7 overall correct and 44.8 F-score. GPT-4o scores 38.2 correct and Claude-3.5-sonnet 28.9. The headline value is 'overall correct', recorded here as accuracy. The paper evaluates a single short-answer format, so no format gap applies. The third trainer's 94.4% on 1,000 items is a data-quality check and is not compared against model scores, so human_gap_points is null. No cultural or linguistic comparison is made.",
+  "evidence": {
+    "humanities_role": [
+      {
+        "quote": "The most common topics were Science & Technology (n=858), Politics (n=709), and Art (n=550).",
+        "where": "p. 4, Section 2.3"
+      }
+    ],
+    "dataset_size": [
+      {
+        "quote": "with 4,326 questions in the dataset, SimpleQA should have relatively low run-to-run variance.",
+        "where": "p. 2, Introduction"
+      }
+    ],
+    "primary_evaluation_setting": [
+      {
+        "quote": "Please give your best guess, along with your confidence as a percentage that that is the correct answer",
+        "where": "p. 7, Section 4"
+      }
+    ],
+    "gold_source": [
+      {
+        "quote": "questions were independently answered by another AI trainer and only kept if answers from both trainers matched.",
+        "where": "p. 3, Section 2"
+      }
+    ],
+    "gold_beyond_stimulus": [
+      {
+        "quote": "Who received the IEEE Frank Rosenblatt Award in 2010?",
+        "where": "p. 2, Table 1"
+      }
+    ],
+    "gold_community_dependent": [],
+    "gold_concerns_genesis": [],
+    "answer_multiplicity": [
+      {
+        "quote": "they only have a single, indisputable answer",
+        "where": "p. 3, Section 2.1"
+      }
+    ],
+    "plurality_treatment": [
+      {
+        "quote": "we removed questions from the dataset if answers from two trainers didn’t agree according to a prompted ChatGPT classifier",
+        "where": "p. 4, Section 2.2"
+      }
+    ],
+    "reported_format_gap": [],
+    "reported_format_gap_points": [],
+    "human_baseline_reported": [],
+    "human_gap_points": [],
+    "reported_best_score": [
+      {
+        "quote": "OpenAI o1-preview 42.7",
+        "where": "p. 7, Table 3"
+      }
+    ],
+    "reported_cultural_asymmetry": []
+  },
+  "confidence": {
+    "humanities_role": "high",
+    "dataset_size": "high",
+    "primary_evaluation_setting": "low",
+    "gold_source": "high",
+    "gold_beyond_stimulus": "high",
+    "gold_community_dependent": "high",
+    "gold_concerns_genesis": "high",
+    "answer_multiplicity": "high",
+    "plurality_treatment": "high",
+    "reported_format_gap": "high",
+    "reported_format_gap_points": "high",
+    "human_baseline_reported": "high",
+    "human_gap_points": "high",
+    "reported_best_score": "high",
+    "reported_cultural_asymmetry": "high"
+  },
+  "needs_human": [],
+  "review_notes": "relevant_asjc_areas: the humanist reading proposed ['History','Music','Visual Arts and Performing Arts'] and the technical reading ['Multidisciplinary']. I chose 'Multidisciplinary' and did not take the union. The humanities topics are post-hoc ChatGPT tags (p. 4) with no per-topic evaluation or results, so the benchmark does not evaluate those disciplines as such. The CSV metadata also gives Multidisciplinary.\n\nprimary_evaluation_setting: both readings said zero-shot. The paper never names the setting. The only model prompts shown (p. 7; Appendix C) contain just the question with no exemplars, so I kept zero-shot with low confidence. The grader prompt is few-shot, but it is the grader's prompt, not the evaluated models'.\n\nhuman_baseline_reported: both readings said 'no'. The third-trainer 94.4% (p. 4) is a dataset-quality check and is never compared to model scores, so I kept 'no'.\n\nFacets: the two readings agreed on every facet (crowd_annotation, yes, no, no, single_answer, noise), and each is supported by pp. 3-4. Some quotes were replaced by spans that avoid hyphenated line breaks.",
+  "checks": {
+    "missing_fields": [],
+    "vocab_warnings": [],
+    "evidence": {
+      "quotes": {
+        "humanities_role": [
+          "exact"
+        ],
+        "dataset_size": [
+          "exact"
+        ],
+        "primary_evaluation_setting": [
+          "exact"
+        ],
+        "gold_source": [
+          "exact"
+        ],
+        "gold_beyond_stimulus": [
+          "exact"
+        ],
+        "answer_multiplicity": [
+          "exact"
+        ],
+        "plurality_treatment": [
+          "exact"
+        ],
+        "reported_best_score": [
+          "exact"
+        ]
+      },
+      "unsupported": [],
+      "unverified": []
+    },
+    "confidence_missing": []
+  },
+  "extraction": {
+    "round": "pilot-2026-11",
+    "agent": "reviewer",
+    "role": "reviewer",
+    "scope": "",
+    "operator": "RG",
+    "backend": "claude-cli",
+    "backend_kind": "claude-cli",
+    "model": "claude-opus-5-5",
+    "prompt_sha256": "6bedac88d6ae89527f93ce1df024fb38bbeeb2931aafa2920c3f3a2eab109b10",
+    "scaffold_sha256": "e3110bed9be6acc0614cb3af1ea1e74760da31e22814ff98f4d56eb4cb821966",
+    "rendered_prompt_sha256": "b98fde1bb4112c47603746d86023e03165773d2a759c1c8af70aca8d2eb95b8a",
+    "input": {
+      "pdf_sha256": "cca3809270242e8f280a4edf2141800d2580c95a0772b654b805a7152f7227ff",
+      "text_chars": 32742,
+      "readings": {
+        "ciop": "ciop.rework1.json",
+        "cip": "cip.rework1.json"
+      }
+    },
+    "started": "2026-11-09T16:55:57+00:00",
+    "seconds": 40.0
+  },
+  "paper_id": "SimpleQA",
+  "paper_name": "SimpleQA"
+}

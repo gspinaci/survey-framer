@@ -7,7 +7,7 @@ reports against the paper text and writes the final report.
 
 import json
 
-from config import GEMINI_PERSONA_MODEL, GEMINI_REVIEWER_MODEL
+from config import PERSONA_MODEL, REVIEWER_MODEL
 from src import llm
 from src.fields import render_schema, render_task_vocab
 
@@ -33,9 +33,14 @@ def build_metadata_block(title: str, metadata: dict | None) -> str:
     return block.strip()
 
 
-def _fill(template: str, schema: str, text: str, title: str, metadata: dict | None) -> str:
+def _fill(template: str, schema: str, text: str, title: str, metadata: dict | None,
+          research_questions: str = "", evidence_rules: str = "") -> str:
+    # The two optional blocks are used by the round-based readers (src/stages/reader.py);
+    # this legacy three-agent flow leaves them empty, so its prompts are unchanged.
     return (
-        template.replace("<<SCHEMA>>", schema)
+        template.replace("<<RESEARCH_QUESTIONS>>", research_questions)
+        .replace("<<EVIDENCE_RULES>>", evidence_rules)
+        .replace("<<SCHEMA>>", schema)
         .replace("<<TASK_VOCAB>>", render_task_vocab())
         .replace("<<METADATA>>", build_metadata_block(title, metadata))
         .replace("<<PAPER_TEXT>>", text)
@@ -46,7 +51,7 @@ def run_persona(persona: str, text: str, fields: dict[str, str],
                 title: str = "", metadata: dict | None = None) -> dict:
     """Run one persona agent ("ciop" or "cip") over the given fields."""
     prompt = _fill(llm.load_prompt(persona), render_schema(fields), text, title, metadata)
-    return llm.generate_json(prompt, GEMINI_PERSONA_MODEL, label=f"{title[:40]}.{persona}")
+    return llm.generate_json(prompt, PERSONA_MODEL, label=f"{title[:40]}.{persona}")
 
 
 def run_reviewer(text: str, fields: dict[str, str], ciop: dict, cip: dict,
@@ -54,7 +59,7 @@ def run_reviewer(text: str, fields: dict[str, str], ciop: dict, cip: dict,
     prompt = _fill(llm.load_prompt("reviewer"), render_schema(fields), text, title, metadata)
     prompt = prompt.replace("<<CIOP_REPORT>>", json.dumps(ciop, indent=2))
     prompt = prompt.replace("<<CIP_REPORT>>", json.dumps(cip, indent=2))
-    return llm.generate_json(prompt, GEMINI_REVIEWER_MODEL, label=f"{title[:40]}.reviewer")
+    return llm.generate_json(prompt, REVIEWER_MODEL, label=f"{title[:40]}.reviewer")
 
 
 def analyze_paper(text: str, fields: dict[str, str], title: str = "",

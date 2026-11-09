@@ -1,0 +1,105 @@
+{
+  "readers": {
+    "ciop": {
+      "check": {
+        "verdict": "rework",
+        "issues": [
+          {
+            "field": "gold_source",
+            "kind": "misapplied_definition",
+            "problem": "The reader chose existing_metadata, but the reference texts are manually re-keyed human transcriptions of newspaper images, produced as part of the BLN600 corpus (Section 3.1). Re-keying is a transcription made for the corpus, not a catalogue record, finding aid or database that already described the object. The paper says nothing about who re-keyed the text or how, nor does it say these were pre-existing records. The quote supports 'manually re-keyed human transcriptions' but not the metadata category.",
+            "instruction": "Reconsider gold_source. The paper does not say who produced the transcriptions (training, hiring) beyond 'manually re-keyed', so not_stated is likely right unless a defensible alternative such as domain_expert or crowd_annotation is evidenced. Remove the existing_metadata claim and explain in facets_explanation."
+          },
+          {
+            "field": "gold_beyond_stimulus",
+            "kind": "unsupported",
+            "problem": "The quote ('For each ground truth segment, the corresponding OCR text is then gathered using a search algorithm') describes pair construction, not whether the answer needs knowledge outside the stimulus. It does not support the value 'no'.",
+            "instruction": "Replace the quote with one that bears on whether the correction depends on external knowledge (e.g. the Table 2 discussion that entity correction depends on surrounding context and corruption level), or set to not_stated if no such statement exists. Note that restoring misnamed entities may need external knowledge, so justify the choice."
+          },
+          {
+            "field": "answer_multiplicity",
+            "kind": "unsupported",
+            "problem": "The quote about CER (Levenshtein distance against the reference text, Section 3.1) does support scoring against a single reference, so the value single_answer is defensible. However, the quote is from the general CER definition, which is acceptable, so this is minor; no change needed beyond confirming it is the scorer used in Section 4 (Formula 1).",
+            "instruction": "Optionally cite Formula (1) in Section 4 as the scorer actually used."
+          },
+          {
+            "field": "reported_best_metric",
+            "kind": "vocabulary",
+            "problem": "The reported metric is percentage reduction in CER, which is not in the list, so 'other' is acceptable. However, the reported_format_gap is 'no' and the paper does compare training-set sizes, which is not a format gap, so that is fine. No change needed here.",
+            "instruction": "No change required."
+          }
+        ],
+        "notes": "The reading is largely sound: task, modality, dataset size (600 samples, Section 3.1), the 54.51 figure and the 'other' metric are well supported. The main errors are the gold_source category (re-keyed transcriptions are not existing metadata) and a gold_beyond_stimulus quote that does not support its value. I did not challenge humanities_role 'content', primary_evaluation_setting 'fine-tuned' (instruction-tuning/fine-tuning is the paper's setting), or the 'no' values for format gap and human baseline."
+      },
+      "final_version": "ciop.rework1.json",
+      "recheck": {
+        "verdict": "accept",
+        "issues": [],
+        "notes": "The reading is sound. Quotes are verified, and the 'not_stated' values (gold_source, gold_beyond_stimulus, plurality_treatment) fit the paper, which only says 'manually re-keyed human transcriptions' without naming who made them. I did not challenge three defensible choices: dataset_size 600 (the whole corpus, Table 1, rather than the 120-sample test split), reported_best_metric 'other' for percentage CER reduction, and gold_community_dependent 'no' for a monolingual English corpus."
+      },
+      "status": "accepted_after_rework",
+      "flags_for_reviewer": []
+    },
+    "cip": {
+      "check": {
+        "verdict": "rework",
+        "issues": [
+          {
+            "field": "gold_source",
+            "kind": "misapplied_definition",
+            "problem": "The report sets existing_metadata, but the ground truth is manually re-keyed human transcriptions of the source images (p. 2, Section 3.1), not catalogue records, library metadata or finding aids. The paper does not say who did the re-keying or what training they had. The report's own facets_explanation says the ground truth comes from an existing corpus prepared by others, which does not make it documentary metadata.",
+            "instruction": "Re-evaluate gold_source against the definitions. Human transcription produced for the corpus is not existing_metadata. If the paper does not state who produced the re-keyed text, use not_stated and describe the BLN600 provenance (Booth et al., 2024) in facets_explanation. Do not pick domain_expert or crowd_annotation without evidence."
+          },
+          {
+            "field": "gold_beyond_stimulus",
+            "kind": "bad_quote",
+            "problem": "The quote 'Unlike ICDAR, the OCR text and ground truth are not aligned at character level in BLN600' is about alignment of the data. It says nothing about whether the correct answer needs knowledge outside the input. The value 'no' is plausible, since the correction is derived from the OCR text, but the quote does not support it. Some corrections, such as the misnamed-entity example in Table 2, may in fact require outside knowledge.",
+            "instruction": "Replace the quote with one that supports the judgment (for example the task description or the Fig. 2 instruction prompt), or choose not_stated if the paper gives no basis for the value."
+          },
+          {
+            "field": "answer_multiplicity",
+            "kind": "bad_quote",
+            "problem": "The quote describes how CER is computed from the Levenshtein distance against the reference text (p. 3, Section 3.1). This supports a single reference, so the value single_answer is defensible. However, the quote is about the metric definition, not about the number of accepted answers. This is minor.",
+            "instruction": "If the evidence is kept, state in the explanation that the scorer compares against one reference string. Otherwise cite the text that says there is one target per sequence."
+          },
+          {
+            "field": "reported_best_metric",
+            "kind": "vocabulary",
+            "problem": "The report uses 'other' for percentage reduction in CER. This is defensible because the metric is not raw CER, but the justification only appears in results_explanation. No error of reading.",
+            "instruction": "No change needed."
+          }
+        ],
+        "notes": "The report is accurate on dataset_size (600), best score (54.51), the single fine-tuned setting and the task framing. The main defect is gold_source, where re-keyed human transcriptions were mislabelled as existing_metadata. The 'other' choice for the metric and the humanities_role of content are defensible and I did not challenge them."
+      },
+      "final_version": "cip.rework1.json",
+      "recheck": {
+        "verdict": "accept",
+        "issues": [],
+        "notes": "The reading is sound. Quotes are verified, and the numbers (600 samples, 54.51 and 23.30 percent CER reduction) match the paper. Defensible choices I did not challenge: gold_source as not_stated, since Section 3.1 says 'manually re-keyed' transcriptions without saying who produced them; reported_best_metric as 'other' for percentage CER reduction; humanities_role as 'content'; and dataset_size as 600 samples rather than the 13,192 sequences."
+      },
+      "status": "accepted_after_rework",
+      "flags_for_reviewer": []
+    }
+  },
+  "extraction": {
+    "round": "pilot-2026-11",
+    "agent": "supervisor",
+    "role": "supervisor",
+    "scope": "",
+    "operator": "RG",
+    "backend": "claude-cli",
+    "backend_kind": "claude-cli",
+    "model": "claude-sonnet-5-5",
+    "prompt_sha256": "28c1dbcd7ea8fa79cb11ff605af7bc166ec18bef53df839de81ddeb9ca30e776",
+    "scaffold_sha256": "4b8a40ef091e0311d01a31c8a8c64493fceed03d1b1f738ef7f79ec72e1c29ce",
+    "rendered_prompt_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "input": {
+      "pdf_sha256": "50d1b703ea66c9e3e9a7d438a8d8578641555e3f3716ef9690da6a23ba8a367e",
+      "text_chars": 25431
+    },
+    "max_rework": 1,
+    "started": "2026-11-09T16:51:01+00:00",
+    "seconds": 48.5
+  },
+  "paper_id": "Leveraging_LLMs_for_Post-OCR_Correction_"
+}

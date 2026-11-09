@@ -1,0 +1,220 @@
+{
+  "benchmark_name": null,
+  "publication_year": 2024,
+  "humanities_role": "content",
+  "humanities_role_explanation": "Historical newspaper text (BLN600: 19th-century crime and court reporting) supplies the OCR/ground-truth pairs. The task given to the model is 'Fix the OCR errors in the provided text', i.e. generic character-level denoising. It does not test historical knowledge or interpretation.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Text only: noisy OCR output is the input and the manually re-keyed transcription is the target. Page images are not shown to the models.",
+  "analytical_tasks": [
+    "transcription_and_correction"
+  ],
+  "analytical_tasks_explanation": "Post-OCR correction, framed as sequence-to-sequence translation for BART and as a prompt-based instruction ('Fix the OCR errors in the provided text') for Llama 2. The error types discussed are substitutions, insertions, deletions, misnamed entities and hallucinations. No interpretive task is involved.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "Single-task study on post-OCR correction of one corpus (BLN600); not a broad multi-task benchmark."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Llama 2 7B and 13B (instruction-tuned with LoRA) compared with BART base and large."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Percentage reduction in character error rate (CER)."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "LT4HALA 2024 @ LREC-COLING, 25 May 2024."
+    }
+  },
+  "summary": "The paper instruction-tunes Llama 2 (7B, 13B) with LoRA for post-OCR correction of BLN600, a parallel corpus of 19th-century British newspaper articles, and compares it to fine-tuned BART. Llama 2 13B more than doubles BART's CER reduction and stays strong with little training data.",
+  "key_findings": "Llama 2 13B reduces CER by 54.51% versus 23.30% for BART large; Llama 2 7B reaches 43.26% and BART base 14.60%. Llama 2 performs well from the smallest training subset, while BART improves with more data. Substitutions and deletions are easiest to correct; insertions and misnamed entities are harder.",
+  "relevant_asjc_areas": [
+    "History",
+    "Language and Linguistics"
+  ],
+  "dataset_size": "13192",
+  "evaluation_set_size": 2792,
+  "evaluation_unit": "sequence pair (OCR segment with ground-truth segment)",
+  "primary_evaluation_setting": "fine-tuned",
+  "gold_source": "existing_dataset",
+  "gold_upstream": "BLN600 (Booth et al., 2024): parallel corpus of OCR text from British Library Newspapers with high-quality manually re-keyed human transcriptions from the source images; this paper does not describe further how the transcriptions were produced.",
+  "gold_upstream_source": "not_stated",
+  "gold_beyond_stimulus": "no",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "not_stated",
+  "facets_explanation": "Reference texts are the manually re-keyed human transcriptions in BLN600, a previously published corpus whose authors overlap with this paper's. Scoring compares each prediction p with a single target ground truth t. The paper locates the difficulty of correction in the corrupted input and its surrounding context (insertions depend on context, entity correction on the level of corruption). It never says that outside knowledge is needed, so I read the key as depending only on the input. It does not discuss annotator disagreement.",
+  "reported_format_gap": "no",
+  "reported_format_gap_points": null,
+  "reported_format_gap_kind": null,
+  "reported_gap_kinds": [],
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 54.51,
+  "reported_best_metric": "other",
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "Table 3 reports 'Llama 2 13B 54.51' as CER reduction (%), the best result, averaged over five training and evaluation iterations. The metric is percentage reduction in CER, not raw CER, hence 'other'. The training-size comparison varies training data, which is an ablation and not a format gap. No human baseline is reported.",
+  "evidence": {
+    "humanities_role": [
+      {
+        "quote": "BLN600 largely focuses on crime-related news from London publications, detailing criminal cases,",
+        "where": "p. 2, Section 3.1 BLN600"
+      },
+      {
+        "quote": "Fix the OCR errors in the provided text.",
+        "where": "p. 3, Figure 2"
+      }
+    ],
+    "dataset_size": [
+      {
+        "quote": "Total 600 13,192 0.0771 0.1216",
+        "where": "p. 3, Table 1"
+      }
+    ],
+    "evaluation_set_size": [
+      {
+        "quote": "Test 120 2,792 0.0840 0.1354",
+        "where": "p. 3, Table 1"
+      }
+    ],
+    "primary_evaluation_setting": [
+      {
+        "quote": "By instruction-tuning Llama 2 and comparing it to a fine-tuned BART on BLN600",
+        "where": "p. 1, Abstract"
+      }
+    ],
+    "gold_source": [
+      {
+        "quote": "The dataset contains OCR excerpts from British Library Newspapers Parts I-II (1800-1900) (Gale, 2024), along with high-quality manually re-",
+        "where": "p. 2, Section 3.1 BLN600"
+      }
+    ],
+    "gold_beyond_stimulus": [
+      {
+        "quote": "more difficult to correct due to the dependence on the surrounding context",
+        "where": "p. 3, Section 4 Results"
+      }
+    ],
+    "gold_community_dependent": [],
+    "gold_concerns_genesis": [],
+    "answer_multiplicity": [
+      {
+        "quote": "where s is the source OCR text, t is the target ground truth and p is the model's prediction.",
+        "where": "p. 4, Section 4 Results, Formula (1)"
+      }
+    ],
+    "plurality_treatment": [],
+    "gold_upstream_source": [],
+    "reported_format_gap": [],
+    "reported_format_gap_points": [],
+    "reported_format_gap_kind": [],
+    "human_baseline_reported": [],
+    "human_gap_points": [],
+    "reported_best_score": [
+      {
+        "quote": "Llama 2 13B 54.51",
+        "where": "p. 4, Table 3"
+      }
+    ],
+    "reported_cultural_asymmetry": []
+  },
+  "checks": {
+    "missing_fields": [],
+    "vocab_warnings": [],
+    "evidence": {
+      "quotes": {
+        "humanities_role": [
+          "exact",
+          "exact"
+        ],
+        "dataset_size": [
+          "exact"
+        ],
+        "evaluation_set_size": [
+          "exact"
+        ],
+        "primary_evaluation_setting": [
+          "exact"
+        ],
+        "gold_source": [
+          "exact"
+        ],
+        "gold_beyond_stimulus": [
+          "exact"
+        ],
+        "answer_multiplicity": [
+          "exact"
+        ],
+        "reported_best_score": [
+          "table"
+        ]
+      },
+      "unsupported": [],
+      "unverified": []
+    }
+  },
+  "extraction": {
+    "round": "pilot-2026-11b",
+    "agent": "ciop",
+    "role": "reader",
+    "scope": "humanist",
+    "operator": "RG",
+    "backend": "claude-cli",
+    "backend_kind": "claude-cli",
+    "model": "claude-sonnet-5-5",
+    "prompt_sha256": "b17f9954e3f6fcfaea00bfc79666d31ac51f915da45046c71b23fea2335612f0",
+    "scaffold_sha256": "48c260061fd825a1b6150c73dace26ffacf1c43be51c37f2f14c413fa32989bc",
+    "rendered_prompt_sha256": "f2a0300421e42bf0e3442bb83b4199bdc2c39d221fdd90116b472a60660d8cdb",
+    "fields": [
+      "analytical_tasks",
+      "analytical_tasks_explanation",
+      "answer_multiplicity",
+      "benchmark_modalities",
+      "benchmark_modalities_explanation",
+      "benchmark_name",
+      "dataset_size",
+      "evaluation_set_size",
+      "evaluation_unit",
+      "facets_explanation",
+      "gold_beyond_stimulus",
+      "gold_community_dependent",
+      "gold_concerns_genesis",
+      "gold_source",
+      "gold_upstream",
+      "gold_upstream_source",
+      "human_baseline_reported",
+      "human_gap_points",
+      "humanities_role",
+      "humanities_role_explanation",
+      "inclusion_criteria",
+      "key_findings",
+      "plurality_treatment",
+      "primary_evaluation_setting",
+      "publication_year",
+      "relevant_asjc_areas",
+      "reported_best_metric",
+      "reported_best_score",
+      "reported_cultural_asymmetry",
+      "reported_format_gap",
+      "reported_format_gap_kind",
+      "reported_format_gap_points",
+      "reported_gap_kinds",
+      "results_explanation",
+      "summary"
+    ],
+    "input": {
+      "pdf_sha256": "50d1b703ea66c9e3e9a7d438a8d8578641555e3f3716ef9690da6a23ba8a367e",
+      "text_chars": 25431
+    },
+    "started": "2026-11-09T20:50:32+00:00",
+    "seconds": 24.0,
+    "rework_of": "ciop.json",
+    "requested_by": "supervisor",
+    "rework": 1
+  },
+  "paper_id": "Leveraging_LLMs_for_Post-OCR_Correction_"
+}

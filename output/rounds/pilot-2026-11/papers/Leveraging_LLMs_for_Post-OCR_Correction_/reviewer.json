@@ -1,0 +1,177 @@
+{
+  "benchmark_name": null,
+  "publication_year": 2024,
+  "humanities_role": "content",
+  "humanities_role_explanation": "Historical newspaper text (BLN600: 19th-century British newspaper articles, mostly crime reporting) supplies the items. The competence tested is generic post-OCR error correction, scored by percentage reduction in character error rate. No historical, philological or interpretive competence is assessed separately.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Text-only. Noisy OCR text segments are the input and corrected text is the output. The source page images are not given to the models.",
+  "analytical_tasks": [
+    "transcription_and_correction"
+  ],
+  "analytical_tasks_explanation": "The paper calls the task 'post-OCR correction'. BART treats it as sequence-to-sequence neural machine translation from OCR text to reference text. Llama 2 treats it as prompt-based correction with the instruction 'Fix the OCR errors in the provided text'. The paper discusses five error types: substitution, insertion, deletion, misnamed entity and hallucination.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "Single-task study (post-OCR correction) on one existing corpus (BLN600). It does not introduce a new benchmark."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Llama 2 7B and 13B base models, instruction-tuned with LoRA, compared with fine-tuned BART base (140M) and large (400M)."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Percentage reduction in character error rate (CER), with CER based on Levenshtein distance."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "LT4HALA 2024 @ LREC-COLING-2024, 25 May 2024."
+    }
+  },
+  "summary": "The paper instruction-tunes Llama 2 (7B, 13B) with LoRA for post-OCR correction of BLN600, a parallel corpus of 19th-century British newspaper OCR text and manually re-keyed transcriptions. It compares this prompt-based approach with fine-tuned BART framed as neural machine translation. Llama 2 13B reduces CER by 54.51%, against 23.30% for BART large, and Llama 2 performs well even with little training data.",
+  "key_findings": "Mean CER reduction over five runs: Llama 2 13B 54.51%, Llama 2 7B 43.26%, BART 400M 23.30%, BART 140M 14.60%. BART improves substantially as training data grows, whereas Llama 2 is strong from the smallest subset (80 samples). Substitutions and deletions are the most common errors and the easiest to correct. Insertions are harder, results on misnamed entities vary with the level of corruption, and hallucinated OCR text that is unintelligible even to humans remains hard.",
+  "relevant_asjc_areas": [
+    "History",
+    "Language and Linguistics"
+  ],
+  "dataset_size": 600,
+  "primary_evaluation_setting": "fine-tuned",
+  "gold_source": "not_stated",
+  "gold_beyond_stimulus": "not_stated",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "not_stated",
+  "facets_explanation": "The ground truth is BLN600's 'high-quality manually re-keyed human transcriptions from the source images', taken from a pre-existing corpus (Booth et al., 2024). The paper does not say who did the re-keying or what training they had. These are not catalogue or library metadata, so gold_source is not_stated. The models see only the OCR string, while the reference was keyed from the page images. Table 2 shows cases, such as the misnamed entity and the hallucination ('A SAD CASE' from garbled OCR), where the target cannot be read off the input. However, the paper never states whether correct output requires knowledge beyond the stimulus, so gold_beyond_stimulus is left not_stated. Each prediction is scored by CER against a single target ground truth t. Annotator disagreement and alternative valid readings are not discussed.",
+  "reported_format_gap": "no",
+  "reported_format_gap_points": null,
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 54.51,
+  "reported_best_metric": "other",
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "Table 3 reports CER Reduction (%) of 54.51 for Llama 2 13B, 43.26 for 7B, 23.30 for BART 400M and 14.60 for BART 140M. Each value is the mean across five training and evaluation iterations. The metric is the percentage reduction in CER, (CER(s,t) - CER(p,t)) / CER(s,t) x 100, not raw CER, so it is labelled 'other'. The paper reports no human baseline. The training-set-size experiment varies the training data, not the answer format, so there is no format gap. The corpus is English-only; the remark that Llama 2 is predominantly English-trained is not a measured cross-language finding.",
+  "evidence": {
+    "humanities_role": [
+      {
+        "quote": "Poor OCR quality continues to be a major obstacle for humanities scholars seeking to make use of digitised primary sources such as historical newspapers.",
+        "where": "p. 1, Abstract"
+      }
+    ],
+    "dataset_size": [
+      {
+        "quote": "Comprising 600 samples, the articles are sourced from six different publications",
+        "where": "p. 2, Section 3.1"
+      }
+    ],
+    "primary_evaluation_setting": [
+      {
+        "quote": "By instruction-tuning Llama 2 and comparing it to a fine-tuned BART on BLN600",
+        "where": "p. 1, Abstract"
+      }
+    ],
+    "gold_source": [],
+    "gold_beyond_stimulus": [],
+    "gold_community_dependent": [],
+    "gold_concerns_genesis": [],
+    "answer_multiplicity": [
+      {
+        "quote": "where s is the source OCR text, t is the target ground truth and p is the model’s prediction.",
+        "where": "p. 4, Section 4, Formula (1)"
+      }
+    ],
+    "plurality_treatment": [],
+    "reported_format_gap": [],
+    "reported_format_gap_points": [],
+    "human_baseline_reported": [],
+    "human_gap_points": [],
+    "reported_best_score": [
+      {
+        "quote": "54.51% reduction in the character error rate against BART’s 23.30%",
+        "where": "p. 1, Abstract"
+      },
+      {
+        "quote": "Llama 2 13B 54.51",
+        "where": "p. 4, Table 3"
+      }
+    ],
+    "reported_cultural_asymmetry": []
+  },
+  "confidence": {
+    "humanities_role": "high",
+    "dataset_size": "high",
+    "primary_evaluation_setting": "high",
+    "gold_source": "low",
+    "gold_beyond_stimulus": "low",
+    "gold_community_dependent": "high",
+    "gold_concerns_genesis": "high",
+    "answer_multiplicity": "high",
+    "plurality_treatment": "high",
+    "reported_format_gap": "high",
+    "reported_format_gap_points": "high",
+    "human_baseline_reported": "high",
+    "human_gap_points": "high",
+    "reported_best_score": "high",
+    "reported_cultural_asymmetry": "high"
+  },
+  "needs_human": [
+    {
+      "field": "gold_beyond_stimulus",
+      "reason": "The reference was keyed from page images the model never sees. Table 2 shows targets, such as a corrupted entity name and a hallucinated title, that cannot be recovered from the OCR input, but the paper never assesses whether correct output requires external knowledge. Set to not_stated; reviewers may judge whether the Table 2 examples justify 'yes'."
+    }
+  ],
+  "review_notes": "benchmark_name: ciop gave null and cip gave 'BLN600'. BLN600 is a pre-existing corpus (Booth et al., 2024) that this paper uses but does not introduce, so null per the field definition. gold_source (facet): ciop gave existing_metadata, cip gave not_stated. Sec. 3.1 (p. 2) says only 'manually re-keyed human transcriptions from the source images', with no producers named; these are transcriptions, not catalogue metadata. Resolved to not_stated (supervisor flag upheld). gold_beyond_stimulus (facet): ciop gave yes, citing 'unintelligible even to humans', which concerns model struggles. cip gave no, citing the prompt and 'surrounding context', which does not establish absence either. The paper does not address the question, so not_stated, flagged for humans. relevant_asjc_areas: cip added Library and Information Sciences. The paper evaluates text correction, not library practice, and that category is outside the humanities ASJC areas, so the list is History and Language and Linguistics. Agreed and kept: humanities_role content, text modality, transcription_and_correction, dataset_size 600, fine-tuned, single_answer, plurality not_stated, gold_community_dependent no, gold_concerns_genesis no, format gap no (the training-size experiment is a data ablation), no human baseline, best score 54.51 on 'other' (CER reduction, not raw CER), cultural asymmetry not_stated (English-only corpus).",
+  "checks": {
+    "missing_fields": [],
+    "vocab_warnings": [],
+    "evidence": {
+      "quotes": {
+        "humanities_role": [
+          "exact"
+        ],
+        "dataset_size": [
+          "exact"
+        ],
+        "primary_evaluation_setting": [
+          "exact"
+        ],
+        "answer_multiplicity": [
+          "exact"
+        ],
+        "reported_best_score": [
+          "exact",
+          "table"
+        ]
+      },
+      "unsupported": [],
+      "unverified": []
+    },
+    "confidence_missing": []
+  },
+  "extraction": {
+    "round": "pilot-2026-11",
+    "agent": "reviewer",
+    "role": "reviewer",
+    "scope": "",
+    "operator": "RG",
+    "backend": "claude-cli",
+    "backend_kind": "claude-cli",
+    "model": "claude-opus-5-5",
+    "prompt_sha256": "6bedac88d6ae89527f93ce1df024fb38bbeeb2931aafa2920c3f3a2eab109b10",
+    "scaffold_sha256": "e3110bed9be6acc0614cb3af1ea1e74760da31e22814ff98f4d56eb4cb821966",
+    "rendered_prompt_sha256": "97274719564952dad430da48fec8022b0360ff4c55b8663feeb12472efafbc10",
+    "input": {
+      "pdf_sha256": "50d1b703ea66c9e3e9a7d438a8d8578641555e3f3716ef9690da6a23ba8a367e",
+      "text_chars": 25431,
+      "readings": {
+        "ciop": "ciop.rework1.json",
+        "cip": "cip.rework1.json"
+      }
+    },
+    "started": "2026-11-09T16:55:57+00:00",
+    "seconds": 40.0
+  },
+  "paper_id": "Leveraging_LLMs_for_Post-OCR_Correction_",
+  "paper_name": "Leveraging LLMs for Post-OCR Correction of Historical Newspapers"
+}

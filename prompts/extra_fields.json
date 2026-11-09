@@ -1,15 +1,31 @@
 {
   "dataset_size": {
-    "description": "Number of examples/items in the benchmark, as an integer; null if not stated. Count the full evaluation set, not a single subset or split",
+    "description": "Total number of items in the benchmark as released, all splits included (train, development and test), counted in the same unit as evaluation_unit; null if not stated. Not the size of the part models are scored on: that is evaluation_set_size",
     "type": "integer|null"
+  },
+  "evaluation_set_size": {
+    "description": "Number of items the paper's reported model scores are computed on — usually the test split, or the whole benchmark when there is no split — counted in evaluation_unit. This is the number that limits how small a difference between two models the benchmark can detect. If different results use different sets, give the set behind the headline score (reported_best_score). null if not stated",
+    "type": "integer|null"
+  },
+  "evaluation_unit": {
+    "description": "What one item is, in the paper's own terms, for both dataset_size and evaluation_set_size (e.g. 'multiple-choice question', 'image-question pair', 'newspaper article', 'OCR text line'). If the paper counts in more than one unit (e.g. articles split into lines), use the unit the metric is averaged over and mention the other in results_explanation; null if not stated",
+    "type": "string|null"
   },
   "primary_evaluation_setting": {
     "description": "How models are primarily evaluated. Use EXACTLY one of these four lowercase values and nothing else: zero-shot, few-shot, fine-tuned, mix. Use 'mix' whenever more than one setting is used (including zero-shot plus few-shot, or zero-shot plus chain-of-thought). Do not add qualifiers, articles or explanations",
     "type": "string"
   },
   "gold_source": {
-    "description": "How the reference answers (ground truth) were produced. EXACTLY one lowercase value: existing_metadata (lifted from a documentary process that already described the object — catalogue records, library or museum metadata, archival finding aids, structured databases), authored_answer_key (lifted from pre-existing material authored as assessment or reference: exam and quiz answer keys, textbook solutions, standardized tests, encyclopedia entries), crowd_annotation (annotators without disciplinary training, hired or recruited for this benchmark), domain_expert (annotators with training in the relevant humanities discipline), paper_authors (the authors wrote the items and answers themselves), model_generated (an LLM or other model produced, translated or filtered the reference answers), not_stated (the paper does not say). The distinction between existing_metadata and authored_answer_key matters: a curatorial record and a GRE answer key carry different kinds of authority. If the benchmark mixes sources, report the one covering the majority of items and describe the mix in facets_explanation",
+    "description": "How the reference answers (ground truth) were produced. EXACTLY one lowercase value: existing_metadata (lifted from a documentary process that already described the object for curation, not for research or evaluation — catalogue records, library or museum metadata, archival finding aids, collection databases), existing_dataset (reused from a previously published research dataset, corpus or benchmark built by others — e.g. a corpus of human transcriptions, a databank coded by experts; name it in gold_upstream), authored_answer_key (lifted from pre-existing material authored as assessment or reference: exam and quiz answer keys, textbook solutions, standardized tests, encyclopedia entries), crowd_annotation (annotators without disciplinary training, hired or recruited for this benchmark), domain_expert (annotators with training in the relevant humanities discipline, working for this benchmark), paper_authors (the authors wrote the items and answers themselves), model_generated (an LLM or other model produced, translated or filtered the reference answers), not_stated (the paper does not say). The distinctions matter: a curatorial record, a research dataset and a GRE answer key carry different kinds of authority. If the benchmark mixes sources, report the one covering the majority of items and describe the mix in facets_explanation",
     "type": "string"
+  },
+  "gold_upstream": {
+    "description": "Only when gold_source is existing_dataset, otherwise null: the dataset the reference answers come from, as this paper names and cites it, followed by what this paper says about how THAT dataset's annotations were produced. Do not go beyond this paper: if it does not say, write the name and citation followed by 'production not described in this paper'",
+    "type": "string|null"
+  },
+  "gold_upstream_source": {
+    "description": "Only when gold_source is existing_dataset, otherwise null: how the upstream dataset's reference annotations were produced, as far as THIS paper states. EXACTLY one of: existing_metadata, authored_answer_key, crowd_annotation, domain_expert, paper_authors (the upstream dataset's own authors wrote them), model_generated, not_stated. not_stated is the expected value when the paper only cites the dataset; following the citation into the upstream paper is a separate step",
+    "type": "string|null"
   },
   "gold_beyond_stimulus": {
     "description": "Does answering correctly require knowledge NOT present in the stimulus given to the model (image, passage, document)? EXACTLY one of: yes, no, not_stated. Judge the reference answer, not the difficulty: identifying a figure from a caption already in the input is 'no'; identifying it from iconographic attributes that must be matched against an external tradition is 'yes'",
@@ -36,12 +52,20 @@
     "type": "string"
   },
   "reported_format_gap": {
-    "description": "Does the paper report, for the SAME models on the SAME material, a performance difference between two answer formats or two difficulty regimes? EXACTLY one of: yes, no, not_stated. Qualifying comparisons: multiple-choice vs open-ended/generative on the same items; exact match vs partial/per-field match; a standard split vs a 'hard' or adversarial split of the same benchmark; with-image vs text-only versions of the same questions; a shallow vs a deep tier of the same taxonomy (e.g. surface description vs interpretation layers). NOT qualifying: one model beating another, one language beating another, a metric changing across different benchmarks, or an ablation of the model rather than of the task format. Report 'no' when the paper evaluates a single format throughout and says nothing of the kind; 'not_stated' only when the paper reports no numeric results at all",
+    "description": "Does the paper report, for the SAME models on the SAME items (or on a harder subset of them), a performance difference between two ways of measuring or presenting them? EXACTLY one of: yes, no, not_stated. Qualifying comparisons, by kind (list the kinds in reported_gap_kinds): scoring — identical model output scored by a stricter or looser rule (exact vs partial match, strict vs relaxed matching, F1 vs fully correct); format — the same items asked in a different answer format (multiple-choice vs open-ended, multiple-choice vs true/false); depth — a shallow vs a deep tier of the paper's own taxonomy (surface description vs interpretation layers); difficulty — a standard vs a hard or adversarial subset of the same benchmark; input — the model is shown a different representation of the same items (with vs without image, parsed text vs raw document, more vs less context in the prompt, zero-shot vs few-shot). NOT qualifying: one model beating another, one language beating another, a metric changing across different benchmarks, an ablation of the model itself (size, fine-tuning, architecture). Report 'no' when the paper evaluates a single regime throughout; 'not_stated' only when the paper reports no numeric results at all",
     "type": "string"
   },
   "reported_format_gap_points": {
     "description": "The LARGEST such gap the paper reports, in percentage points, as a positive integer (e.g. multiple-choice 94% falling to 23.9% on open completion is 70). If the paper reports the comparison on a 0-1 scale, convert to points (0.658 vs 0.04 is 62). If the paper gives a range, take the upper bound. null when reported_format_gap is not 'yes' or when no number is given",
     "type": "integer|null"
+  },
+  "reported_format_gap_kind": {
+    "description": "The kind of the comparison that gives reported_format_gap_points — EXACTLY one of: scoring, format, depth, difficulty, input (see reported_format_gap); null when reported_format_gap is not 'yes'",
+    "type": "string|null"
+  },
+  "reported_gap_kinds": {
+    "description": "Every kind of qualifying comparison the paper reports (see reported_format_gap), as a list using only: scoring, format, depth, difficulty, input. The census's instrument-dependence count uses scoring, format and depth; difficulty and input are recorded so nothing reported is lost. Empty list when reported_format_gap is not 'yes'",
+    "type": "list[string]"
   },
   "human_baseline_reported": {
     "description": "Does the paper report a quantified human baseline, human expert score, or human inter-annotator agreement ceiling that model scores are compared against? EXACTLY one of: yes, no. A vague mention of human evaluation without a number is 'no'",

@@ -1,12 +1,18 @@
-"""Shared Gemini call helpers and prompt loading."""
+"""Shared LLM call helpers and prompt loading.
+
+Two interchangeable backends behind generate_json / generate_text, selected by
+config.LLM_BACKEND: "gemini" (Google GenAI API) and "claude" (Claude Code CLI in
+headless mode, using the logged-in subscription). Prompts, parsing and the
+malformed-reply dump are shared, so the two differ only in the model.
+"""
 
 import json
 import re
+import subprocess
+import tempfile
 import time
 
-import google.genai as genai
-
-from config import GEMINI_API_KEY, OUTPUT_DIR, PROMPTS_DIR
+from config import GEMINI_API_KEY, LLM_BACKEND, OUTPUT_DIR, PROMPTS_DIR
 
 # A malformed reply wastes the whole paper (three agent calls), so retry before
 # giving up. A resample clears the truncations described below.
@@ -92,20 +98,113 @@ def _generate(client, model: str, prompt: str, config: dict, label: str):
     raise last_error
 
 
-def generate_json(prompt: str, model: str, label: str = "reply") -> dict:
+# --- Claude backend ----------------------------------------------------------
+#
+# `claude -p` is Claude Code's headless mode. Flags, and why each is there:
+#   --tools ""              pure text-in/JSON-out: no file, shell or web access,
+#                           so the model answers from the prompt alone, exactly
+#                           like the Gemini call it replaces
+#   --system-prompt         replaces Claude Code's coding-agent system prompt
+#   --setting-sources ""    ignore user/project settings, hooks and permissions
+#   --strict-mcp-config     no MCP servers
+#   --no-session-persistence  don't litter the session history with 100+ calls
+# Not --bare: bare mode never reads the OAuth login, i.e. it would require an
+# API key and bypass the subscription this backend exists to use.
+# cwd is a neutral temp dir so no project CLAUDE.md is auto-discovered.
+CLAUDE_SYSTEM_PROMPT = (
+    "You are a careful research assistant extracting structured information "
+    "from academic papers for a systematic survey. Follow the instructions in "
+    "the user message exactly. When asked for JSON, reply with the JSON object "
+    "only: no markdown fences, no commentary."
+)
+# A reviewer call carries the full paper plus two reports (~30-60k tokens) and
+# may think at length before answering; ten minutes is generous but bounded.
+CLAUDE_TIMEOUT_S = 600
+
+# Errors that clear by waiting a little. The subscription's own usage cap is NOT
+# in this list: it resets on a scale of hours, so retrying would only burn time —
+# it is surfaced as a hard error instead (see _claude_complete).
+_CLAUDE_TRANSIENT = ("overloaded", "529", "500", "502", "503", "timed out", "ECONNRESET")
+
+
+def _claude_complete(prompt: str, model: str, label: str) -> str:
+    cmd = [
+        "claude", "-p",
+        "--model", model,
+        "--output-format", "json",
+        "--tools", "",
+        "--system-prompt", CLAUDE_SYSTEM_PROMPT,
+        "--setting-sources", "",
+        "--strict-mcp-config",
+        "--no-session-persistence",
+    ]
+    last_error: Exception | None = None
+    for attempt in range(1, RATE_LIMIT_ATTEMPTS + 1):
+        try:
+            proc = subprocess.run(
+                cmd, input=prompt, capture_output=True, text=True,
+                timeout=CLAUDE_TIMEOUT_S, cwd=tempfile.gettempdir(),
+            )
+            try:
+                envelope = json.loads(proc.stdout)
+            except json.JSONDecodeError:
+                raise RuntimeError(
+                    f"claude -p exited {proc.returncode}: {(proc.stderr or proc.stdout)[:500]}")
+            if envelope.get("is_error") or envelope.get("subtype") != "success":
+                raise RuntimeError(f"claude -p error: {str(envelope.get('result'))[:500]}")
+            return envelope.get("result") or ""
+        except (RuntimeError, subprocess.TimeoutExpired) as e:
+            message = str(e)
+            if "limit" in message.lower() and "reset" in message.lower():
+                raise RuntimeError(f"Claude usage limit reached — {message}") from e
+            transient = isinstance(e, subprocess.TimeoutExpired) or any(
+                m in message for m in _CLAUDE_TRANSIENT)
+            if not transient or attempt == RATE_LIMIT_ATTEMPTS:
+                raise
+            last_error = e
+            delay = RATE_LIMIT_BACKOFF_S * (2 ** (attempt - 1))
+            print(f"  RETRY: {label} — {message[:80]}, waiting {delay}s "
+                  f"(attempt {attempt}/{RATE_LIMIT_ATTEMPTS})", flush=True)
+            time.sleep(delay)
+    raise last_error
+
+
+# --- Gemini backend ----------------------------------------------------------
+
+def _gemini_complete(prompt: str, model: str, label: str, max_tokens: int,
+                     json_mode: bool) -> str:
+    import google.genai as genai  # imported lazily: only this backend needs it
+
     client = genai.Client(api_key=GEMINI_API_KEY)
-    config = {
-        "response_mime_type": "application/json",
-        "max_output_tokens": MAX_OUTPUT_TOKENS,
-    }
+    config = {"max_output_tokens": max_tokens}
+    if json_mode:
+        config["response_mime_type"] = "application/json"
+    response = _generate(client, model, prompt, config, label)
+    return response.text or ""
+
+
+def _complete(prompt: str, model: str, label: str, max_tokens: int, json_mode: bool,
+              backend: str | None = None) -> str:
+    """backend: a backend *kind* ("claude-cli" | "gemini"); None = config.LLM_BACKEND
+    (the legacy main.py flow). The round-based engine always passes it explicitly,
+    from the agent's entry in census.toml."""
+    kind = backend or ("claude-cli" if LLM_BACKEND == "claude" else "gemini")
+    if kind == "claude-cli":
+        return _claude_complete(prompt, model, label)
+    if kind == "gemini":
+        return _gemini_complete(prompt, model, label, max_tokens, json_mode)
+    raise ValueError(f"backend {kind!r} cannot be called for text (mock is handled by the stage)")
+
+
+def generate_json(prompt: str, model: str, label: str = "reply", backend: str | None = None) -> dict:
     last_error: Exception | None = None
     for attempt in range(1, JSON_ATTEMPTS + 1):
-        response = _generate(client, model, prompt, config, label)
+        reply = _complete(prompt, model, label, MAX_OUTPUT_TOKENS, json_mode=True, backend=backend)
         try:
-            return _parse_json_reply(response.text or "")
+            return _parse_json_reply(reply)
         except (json.JSONDecodeError, ValueError) as e:
             last_error = e
-            _dump_malformed(response.text or "", model, f"{label}.attempt{attempt}", e)
+            _dump_malformed(reply, model, f"{label}.attempt{attempt}", e)
     raise last_error
 
 
@@ -115,10 +214,7 @@ def generate_text(prompt: str, model: str) -> str:
     The explicit ceiling is precautionary, not a fix for an observed clip: unlike
     generate_json, a truncated narrative would still be valid text and would pass
     silently into the output file rather than raising, so the limit is stated
-    rather than inherited from the API default.
+    rather than inherited from the API default. (The Claude backend has no
+    per-call ceiling flag; its model default is far above the narrative's size.)
     """
-    client = genai.Client(api_key=GEMINI_API_KEY)
-    response = _generate(
-        client, model, prompt, {"max_output_tokens": MAX_NARRATIVE_TOKENS}, "narrative"
-    )
-    return response.text
+    return _complete(prompt, model, "narrative", MAX_NARRATIVE_TOKENS, json_mode=False)

@@ -1,0 +1,465 @@
+{
+  "window": {
+    "from": "2026-05-01",
+    "to": "2026-11-09"
+  },
+  "counts": {
+    "candidates": 30,
+    "borderline": 14,
+    "near_misses": 50,
+    "unverified": 71,
+    "logged_batches": 194
+  },
+  "candidates": [
+    {
+      "name": "Across Generations: Latin-inscription NER evaluation",
+      "article": "https://aclanthology.org/2026.lt4hala-1.11/",
+      "full_text_pdf": "https://aclanthology.org/2026.lt4hala-1.11.pdf",
+      "first_public_date": "2026-05-11",
+      "source_reference": "turn2221227view4",
+      "criteria": {
+        "C1": "Sections 3-4 fix a 1,000-inscription EDCS corpus and 70/15/15 split with token-level P/R/F1.",
+        "C2": "Section 3.3 evaluates prompted and fine-tuned generative LLMs.",
+        "C3": "The source texts are ancient Latin inscriptions, including Roman personal names.",
+        "C4": "Appendix A gives the English instruction 'You are a Latin epigraphy Named Entity Recognition expert'."
+      },
+      "caveat": "no",
+      "confidence": "medium"
+    },
+    {
+      "name": "Ancient Greek synset-selection evaluation",
+      "article": "https://aclanthology.org/2026.lt4hala-1.38/",
+      "full_text_pdf": "https://aclanthology.org/2026.lt4hala-1.38.pdf",
+      "first_public_date": "2026-05-11",
+      "source_reference": "turn7991567view0",
+      "criteria": {
+        "C1": "Sections 3.7-4 evaluate fixed synonym groups using human 0-3 relevance labels and ranked-list metrics.",
+        "C2": "Section 3.6 compares three instruction-tuned LLMs for definitional matching and reranking.",
+        "C3": "The inputs are Ancient Greek synonym groups and classical lexicographic definitions.",
+        "C4": "Section 3.3 maps their definitions to Open English WordNet glosses."
+      },
+      "caveat": "yes: C1; small graded evaluation study; complete standalone test release not established",
+      "confidence": "medium"
+    },
+    {
+      "name": "Historical Germanic POS-tagging evaluation",
+      "article": "https://aclanthology.org/2026.lt4hala-1.12/",
+      "full_text_pdf": "https://aclanthology.org/2026.lt4hala-1.12.pdf",
+      "first_public_date": "2026-05-11",
+      "source_reference": "turn2221227view5",
+      "criteria": {
+        "C1": "The paper defines genre-specific train/development/test partitions and a common UPOS scoring protocol.",
+        "C2": "Section 7 names both generative instruction-tuned models evaluated against mBERT.",
+        "C3": "The historical subsets are manuscript-based poetry and prose; modern subsets also include literary works.",
+        "C4": "Section 3.2 explicitly includes modern English literary prose and poetry."
+      },
+      "caveat": "yes: C1; reused corpora with a new combined evaluation protocol rather than a wholly new corpus",
+      "confidence": "medium"
+    },
+    {
+      "name": "StoicLLM philosophical-alignment evaluation",
+      "article": "https://aclanthology.org/2026.nlp4dh-1.32/",
+      "full_text_pdf": "https://aclanthology.org/2026.nlp4dh-1.32.pdf",
+      "first_public_date": "2026-05-12",
+      "source_reference": "turn2808355view0",
+      "criteria": {
+        "C1": "The evaluation fixes 100 open-ended questions and eight scored criteria.",
+        "C2": "The experiments compare generative Llama and Qwen variants with a three-model critic bank.",
+        "C3": "Grounding and assessment concern Stoic teachings of Seneca and Epictetus.",
+        "C4": "English translations ground the models and the paper prints English evaluation questions and prompts."
+      },
+      "caveat": "yes: C1; fixed study described but complete question-set availability not established",
+      "confidence": "medium"
+    },
+    {
+      "name": "Creativity Bias literary-translation evaluation",
+      "article": "https://aclanthology.org/2026.eamt-1.43/",
+      "full_text_pdf": "https://aclanthology.org/2026.eamt-1.43.pdf",
+      "first_public_date": "2026-05-13",
+      "source_reference": "turn8668699view0",
+      "criteria": {
+        "C1": "Sections 3-4 fix six literary excerpts, human/MT/post-edited translations and professional creativity annotations.",
+        "C2": "GPT-4o produces the MT condition and GPT-5.2 judging is compared quantitatively with professionals.",
+        "C3": "The fixed material comprises poems, short stories and thrillers.",
+        "C4": "English is a source language and Appendix B specifies an English translation prompt."
+      },
+      "caveat": "no",
+      "confidence": "high"
+    },
+    {
+      "name": "Fluency and Faithfulness literary-translation protocol",
+      "article": "https://aclanthology.org/2026.nlp4dh-1.17/",
+      "full_text_pdf": "https://aclanthology.org/2026.nlp4dh-1.17.pdf",
+      "first_public_date": "2026-05-14",
+      "source_reference": "turn4595582view3",
+      "criteria": {
+        "C1": "Sections 3-4 deduplicate Par3 to 106 books and define a new book-held-out fluency/faithfulness evaluation.",
+        "C2": "The authors generate and score new translations with TranslateGemma-4B.",
+        "C3": "Evaluation uses novels and a comparison corpus of English novels published in 1800-1930.",
+        "C4": "All translation conditions are evaluated in English as the target language."
+      },
+      "caveat": "yes: C1; new protocol on an existing corpus; exact filtered-data release not established",
+      "confidence": "medium"
+    },
+    {
+      "name": "TAB-VLM",
+      "article": "https://aclanthology.org/2026.findings-acl.1514/",
+      "full_text_pdf": "https://aclanthology.org/2026.findings-acl.1514.pdf",
+      "first_public_date": "2026-05-14",
+      "source_reference": "turn7116884view0",
+      "criteria": {
+        "C1": "The paper defines 600 questions in six categories grounded in 1,600 artifacts and reports category/overall accuracy.",
+        "C2": "Ten generative VLMs are evaluated; GPT-5.2 is the strongest reported model.",
+        "C3": "Museum artifacts span prehistoric to modern Indian cultural history.",
+        "C4": "The paper's actual question templates are English, including material-availability and period-attribution questions."
+      },
+      "caveat": "no",
+      "confidence": "high"
+    },
+    {
+      "name": "QuestBench",
+      "article": "https://arxiv.org/abs/2605.21413",
+      "full_text_pdf": "https://arxiv.org/pdf/2605.21413",
+      "first_public_date": "2026-05-20",
+      "source_reference": "turn8565929view0",
+      "criteria": {
+        "C1": "The paper releases 256 questions with question-specific scoring criteria and reports pass rates for thirteen systems.",
+        "C2": "Appendix D lists the evaluated generative deep-research systems.",
+        "C3": "Appendix F identifies Literature 43; History 33; Foreign Languages 27; Arts 15; Archaeology 6; Cultural Geography 7.",
+        "C4": "Appendix E.2 states that all models receive the printed English standardized research-assistant prompt."
+      },
+      "caveat": "no",
+      "confidence": "high"
+    },
+    {
+      "name": "Faith-transition asymmetry evaluation",
+      "article": "https://arxiv.org/abs/2605.22975",
+      "full_text_pdf": "https://arxiv.org/pdf/2605.22975",
+      "first_public_date": "2026-05-21",
+      "source_reference": "turn9273602view0",
+      "criteria": {
+        "C1": "The study fixes 182 ordered religion pairings, repeats controlled templates and quantitatively scores encouragement.",
+        "C2": "Twenty commercial and open generative LMs are explicitly tested.",
+        "C3": "The task concerns transitions between fourteen religious/nonreligious positions.",
+        "C4": "The paper prints the actual English simulated-user and scoring templates."
+      },
+      "caveat": "yes: C1; evaluation-study protocol rather than a packaged leaderboard benchmark",
+      "confidence": "medium"
+    },
+    {
+      "name": "AllFaith Religious Representation Benchmark",
+      "article": "https://arxiv.org/abs/2605.24319",
+      "full_text_pdf": "https://arxiv.org/pdf/2605.24319",
+      "first_public_date": "2026-05-23",
+      "source_reference": "turn2123197view0",
+      "criteria": {
+        "C1": "The authors select a fixed 150-question set from 343 questions and apply a defined mention-scoring protocol.",
+        "C2": "The paper reports quantitative responses from 27 generative LLMs.",
+        "C3": "Questions concern ethical/life issues and the evaluation measures explicit religious traditions, practices and leaders.",
+        "C4": "The evaluated question examples and instructions are English."
+      },
+      "caveat": "yes: C3; prompts are secular life/ethical questions, with religion measured in model responses",
+      "confidence": "medium"
+    },
+    {
+      "name": "CULTURE-MT",
+      "article": "https://proceedings.mlr.press/v306/wu26by.html",
+      "full_text_pdf": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/wu26by/wu26by.pdf",
+      "first_public_date": "2026-05-25",
+      "source_reference": "turn6274977view1",
+      "criteria": {
+        "C1": "The paper defines 1,002 notes across fourteen verticals and a documented culturally sensitive translation-scoring protocol.",
+        "C2": "The experiments compare fifteen LLM translation systems and adapted Qwen models.",
+        "C3": "Humanities-bearing subsets include painting, crafts, movies/TV and culturally situated slang/pragmatics; share not separately reported.",
+        "C4": "English is the translation target."
+      },
+      "caveat": "yes: C3; mixed contemporary UGC, including non-humanities verticals; cultural component identifiable",
+      "confidence": "medium"
+    },
+    {
+      "name": "LitSeg grounded literary-QA/segmentation protocol",
+      "article": "https://arxiv.org/abs/2605.27156",
+      "full_text_pdf": "https://arxiv.org/pdf/2605.27156",
+      "first_public_date": "2026-05-26",
+      "source_reference": "turn5733530view0",
+      "criteria": {
+        "C1": "V1 Appendix A defines a five-rater grounded win/loss/tie protocol on fixed literary QA sets; v2 adds chunk-quality ratings.",
+        "C2": "Appendix I identifies generative Qwen chunkers and the common Qwen answer generator.",
+        "C3": "The new protocol assesses literary narrative completeness, coherence and scene boundaries.",
+        "C4": "V1 limitations explicitly restrict evaluation to English; English prompts are also printed."
+      },
+      "caveat": "yes: C1; new scoring protocol on existing corpora; sampled-chunk identities and standalone release not established",
+      "confidence": "medium"
+    },
+    {
+      "name": "METATR v1.0",
+      "article": "https://arxiv.org/abs/2605.26712",
+      "full_text_pdf": "https://arxiv.org/pdf/2605.26712",
+      "first_public_date": "2026-05-26",
+      "source_reference": "turn1694664view0",
+      "criteria": {
+        "C1": "METATR fixes 453 images from seventeen source datasets and compares systems with normalized CER.",
+        "C2": "The evaluation includes generative OCR/VLMs and frontier multimodal LLMs.",
+        "C3": "Historical subsets include BnL, DAI, DIYHistory, FINLAM, HORAE, OpenITI, PELLET, RASM, READ and ScribbleLens; full suite is mixed.",
+        "C4": "The source table includes English DIYHistory/FINLAM/IAM material and an English extraction prompt."
+      },
+      "caveat": "no",
+      "confidence": "high"
+    },
+    {
+      "name": "PersLitEval",
+      "article": "https://arxiv.org/abs/2605.27015",
+      "full_text_pdf": "https://arxiv.org/pdf/2605.27015",
+      "first_public_date": "2026-05-26",
+      "source_reference": "turn8668699view2",
+      "criteria": {
+        "C1": "The paper defines 4,514 four-choice questions in eight categories and reports accuracy for ten prompting strategies.",
+        "C2": "Section 4 names six generative instruction-tuned LLMs.",
+        "C3": "The set tests Persian literary meaning, devices, classical vocabulary, grammar and word formation.",
+        "C4": "Section 4 explicitly says all instruction prompts were English while questions and choices were Persian."
+      },
+      "caveat": "no",
+      "confidence": "high"
+    },
+    {
+      "name": "FMG-Bench v1",
+      "article": "https://arxiv.org/abs/2608.12324",
+      "full_text_pdf": "https://arxiv.org/pdf/2608.12324",
+      "first_public_date": "2026-05-29",
+      "source_reference": "turn9542685view6",
+      "criteria": {
+        "C1": "Sections 3 and 7 fix 120 base scenarios, four system conditions and explicit weighted/triage-adjusted scoring.",
+        "C2": "Section 9 lists fourteen target generative LLMs, distinct from the judge panel.",
+        "C3": "Scenarios assess Christian doctrine, denominational differences and theological/pastoral interpretation.",
+        "C4": "The abstract and limitations explicitly call the benchmark English-language/English-only."
+      },
+      "caveat": "no",
+      "confidence": "high"
+    },
+    {
+      "name": "ChinaHeritaQA",
+      "article": "https://arxiv.org/abs/2606.08959",
+      "full_text_pdf": "https://arxiv.org/pdf/2606.08959",
+      "first_public_date": "2026-06-08",
+      "source_reference": "turn8707977view2",
+      "criteria": {
+        "C1": "The paper fixes 14,133 bilingual MCQs over 2,279 images and reports accuracy/macro-F1 across seven tasks.",
+        "C2": "Section 5.1 evaluates six open generative VLMs.",
+        "C3": "The sixty sites comprise 41 cultural, four mixed and fifteen natural sites; humanities item share is not separately given.",
+        "C4": "Figure 5 reports separate English and Chinese F1 results, beyond merely offering translated examples."
+      },
+      "caveat": "no",
+      "confidence": "high"
+    },
+    {
+      "name": "Does Bigger Mean Funnier? Qwen3 evaluation",
+      "article": "https://aclanthology.org/2026.chum-1.7/",
+      "full_text_pdf": "https://aclanthology.org/2026.chum-1.7.pdf",
+      "first_public_date": "2026-07-03",
+      "source_reference": "turn7039390view2",
+      "criteria": {
+        "C1": "Section 3 fixes fifty themes, one joke per model/theme and all ten model pairs in both orders.",
+        "C2": "Five instruction-tuned generative Qwen3 variants are compared.",
+        "C3": "The task assesses creative verbal humor, with human comedy judgments.",
+        "C4": "The released theme examples and Appendix A generation instruction are English."
+      },
+      "caveat": "yes: C1; a small within-family evaluation study; comparative score depends on the candidate pool",
+      "confidence": "medium"
+    },
+    {
+      "name": "Navigating the Joke Space originality evaluation",
+      "article": "https://aclanthology.org/2026.chum-1.8/",
+      "full_text_pdf": "https://aclanthology.org/2026.chum-1.8.pdf",
+      "first_public_date": "2026-07-03",
+      "source_reference": "turn7039390view3",
+      "criteria": {
+        "C1": "The study fixes 400 new GPT jokes plus eighty JEST items and compares originality metrics against three professional raters.",
+        "C2": "The evaluated outputs come from GPT-4o and GPT-5.4, with generator-level quantitative comparisons.",
+        "C3": "It operationalizes originality using verbal-humor theory and expert comedy ratings.",
+        "C4": "Its reference corpus contains one million English jokes and its actual generation prompt is English."
+      },
+      "caveat": "yes: C1; new fixed-output/meta-evaluation protocol; full reusable input/test release not established",
+      "confidence": "medium"
+    },
+    {
+      "name": "The Roast of GPT4o evaluation",
+      "article": "https://aclanthology.org/2026.chum-1.5/",
+      "full_text_pdf": "https://aclanthology.org/2026.chum-1.5.pdf",
+      "first_public_date": "2026-07-03",
+      "source_reference": "turn7039390view1",
+      "criteria": {
+        "C1": "The study fixes ten human/AI roast pairs and a documented blinded rating/authorship survey.",
+        "C2": "GPT-4o generates a matched roast for each human stimulus.",
+        "C3": "The source corpus is Comedy Central celebrity-roast performances.",
+        "C4": "English source transcripts and actual English generation prompts are printed/described."
+      },
+      "caveat": "yes: C1; small fixed evaluation study with human scoring rather than a standard automatic benchmark",
+      "confidence": "medium"
+    },
+    {
+      "name": "Apartheid witness-report summarization/NER evaluation",
+      "article": "https://aclanthology.org/2026.nlp4dh-1.35/",
+      "full_text_pdf": "https://aclanthology.org/2026.nlp4dh-1.35.pdf",
+      "first_public_date": "2026-07-04",
+      "source_reference": "turn2808355view1",
+      "criteria": {
+        "C1": "Section 3 fixes 200 manually annotated witness reports, with summaries and extraction labels and stated metrics.",
+        "C2": "Section 4 compares open generative models and GPT-4o-mini.",
+        "C3": "The reports recount apartheid-era human-rights violations and are preserved historical testimony.",
+        "C4": "The corpus description explicitly discusses English transcripts and professional translation into English."
+      },
+      "caveat": "no",
+      "confidence": "high"
+    },
+    {
+      "name": "Register Mixing: segment-register evaluation",
+      "article": "https://aclanthology.org/2026.nlp4dh-1.14/",
+      "full_text_pdf": "https://aclanthology.org/2026.nlp4dh-1.14.pdf",
+      "first_public_date": "2026-07-04",
+      "source_reference": "turn4595582view2",
+      "criteria": {
+        "C1": "The study evaluates two LLMs on the same hundred human-annotated segments and validates Gemini on another five hundred.",
+        "C2": "Both Gemini-3-Flash and Qwen3-235B-A22B produce scored register labels.",
+        "C3": "The material is analyzed explicitly as linguistic registers/discourse functions, rather than topical sentiment.",
+        "C4": "Section 3 samples 10,000 English HPLT documents."
+      },
+      "caveat": "yes: C1/C3; small human-gold study; general web material qualifies through linguistic register analysis",
+      "confidence": "medium"
+    },
+    {
+      "name": "CultureTalk-ID",
+      "article": "https://aclanthology.org/2026.findings-aacl.147/",
+      "full_text_pdf": "https://aclanthology.org/2026.findings-aacl.147.pdf",
+      "first_public_date": "2026-07-23",
+      "source_reference": "turn9277993view3",
+      "criteria": {
+        "C1": "The paper defines 4,496 dialogues and fixed continuation, translation and language-steering evaluations.",
+        "C2": "Section 4 compares frontier, multilingual and regional generative LMs.",
+        "C3": "Dialogues cover thirteen cultural topics across eleven Indonesian regions.",
+        "C4": "Appendix C prints English instructions as the prompts used for evaluation, including translation tasks."
+      },
+      "caveat": "yes: C4; English is used for instructions, not as a dialogue/translation endpoint",
+      "confidence": "medium"
+    },
+    {
+      "name": "TriviaRoomQA",
+      "article": "https://aclanthology.org/2026.findings-emnlp.2155/",
+      "full_text_pdf": "https://aclanthology.org/2026.findings-emnlp.2155.pdf",
+      "first_public_date": "2026-07-23",
+      "source_reference": "turn8373784view0",
+      "criteria": {
+        "C1": "The paper fixes 3,300 parallel questions across six languages, plus extra French items, and an accuracy protocol.",
+        "C2": "Thirty open autoregressive language models are evaluated by answer likelihood.",
+        "C3": "Identifiable humanities categories include history, music, film/entertainment and culture; exact humanities share not reported.",
+        "C4": "English is one of the six parallel evaluated languages."
+      },
+      "caveat": "no",
+      "confidence": "high"
+    },
+    {
+      "name": "Cultural Moment Benchmark (CMB)",
+      "article": "https://aclanthology.org/2026.emnlp-main.1913/",
+      "full_text_pdf": "https://aclanthology.org/2026.emnlp-main.1913.pdf",
+      "first_public_date": "2026-08-24",
+      "source_reference": "turn1863347view0",
+      "criteria": {
+        "C1": "The paper fixes 306 concepts and 624 videos with naming, video recognition and temporal-grounding scoring.",
+        "C2": "Six generative VLM configurations are quantitatively evaluated.",
+        "C3": "Concept categories are Celebration, Dance, Game, Music and Wedding across seven countries.",
+        "C4": "The paper specifies English concept descriptions and prints English task instructions."
+      },
+      "caveat": "no",
+      "confidence": "high"
+    },
+    {
+      "name": "CHARM",
+      "article": "https://aclanthology.org/2026.findings-emnlp.460/",
+      "full_text_pdf": "https://aclanthology.org/2026.findings-emnlp.460.pdf",
+      "first_public_date": "2026-09-01",
+      "source_reference": "turn2743111view0",
+      "criteria": {
+        "C1": "The benchmark fixes forty characters and separate awareness, compliance and verification question sets with accuracy-based metrics.",
+        "C2": "The experiments compare six generative language-model families.",
+        "C3": "Characters are real historical or fictional figures from five cultural regions.",
+        "C4": "The paper's evaluated English-speaking settings and actual English question/prompt examples establish English use."
+      },
+      "caveat": "no",
+      "confidence": "high"
+    },
+    {
+      "name": "MemeCULT-1K",
+      "article": "https://aclanthology.org/2026.emnlp-main.550/",
+      "full_text_pdf": "https://aclanthology.org/2026.emnlp-main.550.pdf",
+      "first_public_date": "2026-09-01",
+      "source_reference": "turn8707977view1",
+      "criteria": {
+        "C1": "Section 3 fixes 1,000 memes plus 54 dialect examples, three reference explanations each and a defined two-condition protocol.",
+        "C2": "The experiments evaluate thirteen models generating meme explanations.",
+        "C3": "The data targets culturally implicit cinema, pop-culture, irony, wordplay and regional humor, rather than sentiment labels.",
+        "C4": "The dataset contains 331 English memes and all human-reference explanations are English."
+      },
+      "caveat": "no",
+      "confidence": "high"
+    },
+    {
+      "name": "CulturalMenuBench",
+      "article": "https://aclanthology.org/2026.findings-emnlp.1875/",
+      "full_text_pdf": "https://aclanthology.org/2026.findings-emnlp.1875.pdf",
+      "first_public_date": "2026-09-03",
+      "source_reference": "turn7437965view0",
+      "criteria": {
+        "C1": "The paper defines 4,870 items across ten tasks, ten languages and eighteen regions with task-specific scoring.",
+        "C2": "Twelve generative VLMs are compared.",
+        "C3": "The tasks assess regional dishes, culinary practices and cultural attribution.",
+        "C4": "English is explicitly among the ten benchmark languages."
+      },
+      "caveat": "no",
+      "confidence": "high"
+    },
+    {
+      "name": "Fab AI Linguistic Knowledge Benchmark",
+      "article": "https://www.fab-ai.org/resources/technical-report/testing-what-ai-models-know-about-the-structure-of-languages",
+      "full_text_pdf": "https://cdn.sanity.io/files/4nuqcuvm/production/00bafffe156368868d08ad4028df27b5324b749c.pdf",
+      "first_public_date": "2026-09-04",
+      "source_reference": "turn7288712view0",
+      "criteria": {
+        "C1": "The report fixes 137 English and 135 Kiswahili items and defines regex/LLM-judge accuracy scoring.",
+        "C2": "It reports evaluated generative model families and model-wise accuracy tables.",
+        "C3": "Nine linguistic domains cover phonics, orthography, morphology, syntax and metalinguistic reasoning.",
+        "C4": "English has its own evaluated question set and is the instruction language."
+      },
+      "caveat": "yes: C1; public sample/full benchmark access conditions require checking before independent rerun",
+      "confidence": "medium"
+    },
+    {
+      "name": "NormViz-Bench",
+      "article": "https://proceedings.colm.cc/paper_files/paper/2026/hash/211ab571cc9f3802afa6ffff52ae3e5b-Abstract-Conference.html",
+      "full_text_pdf": "https://arxiv.org/pdf/2609.06831",
+      "first_public_date": "2026-09-06",
+      "source_reference": "turn8707977view0",
+      "criteria": {
+        "C1": "The full paper fixes 3,272 contrastive image pairs and requires both labels correct for group accuracy.",
+        "C2": "The main and appendix tables evaluate generative VLMs, including tuned Qwen3-VL systems.",
+        "C3": "The material depicts etiquette, religious practices, celebrations and other culturally situated norms.",
+        "C4": "Figure 1 prints the English classification prompt and associated English cultural-norm descriptions."
+      },
+      "caveat": "no",
+      "confidence": "medium"
+    },
+    {
+      "name": "Changing grammatical-use detection evaluation",
+      "article": "https://doi.org/10.1093/llc/fqag121",
+      "full_text_pdf": "",
+      "first_public_date": "2026-09-09",
+      "source_reference": "turn2810948view1",
+      "criteria": {
+        "C1": "The study fixes balanced 360-instance datasets per phenomenon with 80/10/10 splits and specified quantitative evaluation.",
+        "C2": "Section 3.2 evaluates four generative models with controlled few-shot prompts.",
+        "C3": "The material concerns historical changes in purposive to-infinitives and conjunction for, using diachronic corpora.",
+        "C4": "Both grammatical phenomena and the evaluated corpus material are English."
+      },
+      "caveat": "no",
+      "confidence": "medium"
+    }
+  ]
+}

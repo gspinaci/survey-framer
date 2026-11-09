@@ -1,0 +1,75 @@
+{
+  "readers": {
+    "ciop": {
+      "check": {
+        "verdict": "accept",
+        "issues": [],
+        "notes": "The reading is sound. All quotes were found verbatim and support their values, and dataset_size of 3445 correctly sums 1,864 + 863 + 718. I did not challenge three defensible choices: existing_metadata for the Iconclass labels, reported_format_gap 'no' (the three tests are prompting conditions, not answer formats), and 90.45 as the best accuracy (the abstract's 64.86% for Wikidata differs from the table's 66.29%, but the headline figure is unaffected). The reader's key_findings use the table figure."
+      },
+      "final_version": "ciop.json",
+      "status": "accepted",
+      "flags_for_reviewer": []
+    },
+    "cip": {
+      "check": {
+        "verdict": "rework",
+        "issues": [
+          {
+            "field": "reported_format_gap_points",
+            "kind": "wrong_number",
+            "problem": "The reader gives 21, but its own results_explanation admits the figure is 'derived from siglip-base on ICONCLASS Test 1 vs Test 2 comparisons and should be checked', and the cited quote (siglip-large ArtDL 54.45/72.21/53.49) does not yield 21. In Tables 2-4 the largest Test-vs-Test gap for the same model on the same data is siglip-large-patch16-384 on Wikidata: Test 1 60.03% vs Test 2 43.95% = 16.08, and Test 3 61.17% vs Test 2 43.95% = 17.22 (about 17). On ArtDL, clip-vit-base-patch32 Test 1 16.15% vs Test 2 31.55% = 15.4, siglip-base Test 1 48.71% vs Test 2 68.19% = 19.48, siglip-large Test 1 54.45% vs Test 2 72.21% = 17.76, siglip-large Test 2 72.21% vs Test 3 53.49% = 18.72, and siglip-base Test 2 vs Test 3 = 12.29. On ICONCLASS, gpt-4o-mini Test 1 55.74% vs Test 2 59.56% is small. The maximum is siglip-base on ArtDL Test 2 vs Test 1 (19.48, about 19) or siglip-large Test 2 vs Test 3 (18.72); no pair reaches 21. Also, Tests 1-3 are conditions (labels / descriptions / few-shot), not strictly answer formats, so the qualifying status of this comparison is debatable.",
+            "instruction": "Recompute the largest gap from Tables 2-4 (the maximum appears to be about 19 points: siglip-base-patch16-512 on ArtDL, 48.71% to 68.19%), set reported_format_gap_points accordingly, and align the quote and results_explanation. Remove the contradictory, hedged wording in results_explanation. Also reconsider whether the Test 1/2/3 comparison qualifies as a format or difficulty-regime gap under the definition; if it does not, set reported_format_gap to 'no' and the points to null."
+          },
+          {
+            "field": "reported_best_score",
+            "kind": "wrong_number",
+            "problem": "The headline is taken only from ArtDL Test 1 (90.45), which matches the abstract's peak. This is defensible, but key_findings says SigLIP-so400m was best on Wikidata at 66.29%, consistent with Table 4. No error here; however, results_explanation contains inconsistent and erroneous statements (e.g., 'gemini-2.5-pro on Wikidata changes little', 'Test 2 72.21% vs Test 3 53.49%' labeled as the upper bound but then 21 stated).",
+            "instruction": "Clean up results_explanation so every number quoted is checkable against Tables 2-4 and consistent with the final reported_format_gap_points."
+          },
+          {
+            "field": "dataset_size",
+            "kind": "wrong_number",
+            "problem": "dataset_size is 3445 (= 1864 + 863 + 718), which is the sum of the three evaluation sets, but the supporting quotes only cover ArtDL (1,864) and Wikidata (718); the ICONCLASS count of 863 (Sec. 2.1.2) is not quoted. Also, ResNet50 baselines were evaluated on a 20% split, but the LLM evaluation sets are the full ones. The sum is defensible, but the evidence is incomplete.",
+            "instruction": "Add the Sec. 2.1.2 quote 'resulting in a dataset comprising 863 images' as evidence and state in the explanation that 3445 = 1864 + 863 + 718."
+          },
+          {
+            "field": "gold_source",
+            "kind": "unsupported",
+            "problem": "The quote 'which we selected for their native support of Iconclass classes' (Sec. 2.1) shows why the datasets were chosen but does not itself say how the labels were produced. The value existing_metadata is plausible (Iconclass annotations in ArtDL, the AI Test Set and Wikidata), but the quote does not support it.",
+            "instruction": "Replace the quote with one that shows labels come from existing Iconclass annotations, e.g. 'Each image is annotated with Iconclass codes' (Sec. 2.1.1) or the Wikidata SPARQL query description (Sec. 2.1.3)."
+          }
+        ],
+        "notes": "The overall reading is sound on humanities_role, answer_multiplicity, gold_beyond_stimulus, human baseline and cultural asymmetry (not_stated for a single-culture benchmark is defensible). The main errors are the unsupported gap figure of 21 and a weak gold_source quote; the multi-source summed dataset_size and the headline score choice are defensible."
+      },
+      "final_version": "cip.rework1.json",
+      "recheck": {
+        "verdict": "accept",
+        "issues": [],
+        "notes": "The reading is sound. All quotes were found verbatim and support their fields. The numbers match Tables 2-4, and dataset_size 3445 equals 1864 + 863 + 718. Defensible choices I did not challenge: reported_format_gap 'no' (Tests 1-3 vary the context given to the model, not the answer format or difficulty tier), gold_source 'existing_metadata' (labels come from Iconclass annotations and Wikidata), and humanities_role 'domain'."
+      },
+      "status": "accepted_after_rework",
+      "flags_for_reviewer": []
+    }
+  },
+  "extraction": {
+    "round": "pilot-2026-11",
+    "agent": "supervisor",
+    "role": "supervisor",
+    "scope": "",
+    "operator": "RG",
+    "backend": "claude-cli",
+    "backend_kind": "claude-cli",
+    "model": "claude-sonnet-5-5",
+    "prompt_sha256": "28c1dbcd7ea8fa79cb11ff605af7bc166ec18bef53df839de81ddeb9ca30e776",
+    "scaffold_sha256": "4b8a40ef091e0311d01a31c8a8c64493fceed03d1b1f738ef7f79ec72e1c29ce",
+    "rendered_prompt_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "input": {
+      "pdf_sha256": "ffece62eff57fbf822d31ccafd6f6dd3f71dec6b9112ef99210bed289593c78c",
+      "text_chars": 40939
+    },
+    "max_rework": 1,
+    "started": "2026-11-09T16:51:01+00:00",
+    "seconds": 49.1
+  },
+  "paper_id": "2509.18839"
+}

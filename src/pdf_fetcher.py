@@ -6,6 +6,17 @@ import requests
 
 from config import UNPAYWALL_EMAIL
 
+# Five papers in the census were analysed from an HTML landing page saved under a
+# .pdf name, because every source below returned *something* with status 200 and
+# nothing checked what it was. The extraction then ran silently over 900-28,000
+# characters of page chrome (article Sec. 3.3). Anything not starting with the PDF
+# magic bytes is now rejected, so a landing page surfaces as MISSING instead.
+PDF_MAGIC = b"%PDF-"
+
+
+def _is_pdf(data: bytes | None) -> bool:
+    return bool(data) and data[:1024].lstrip().startswith(PDF_MAGIC)
+
 
 def pdf_filename(paper_id: str) -> str:
     """Canonical on-disk name for a paper's PDF.
@@ -54,27 +65,33 @@ def fetch_pdf(paper: dict, output_dir: Path) -> Path | None:
     filename = pdf_filename(paper["id"])
     dest = output_dir / filename
     if dest.exists() and dest.stat().st_size > 1000:
-        return dest
+        if _is_pdf(dest.read_bytes()[:1024]):
+            return dest
+        # A previously saved landing page: discard it and fetch again.
+        dest.unlink()
 
-    pdf_bytes = None
-
+    candidates = []
+    # The table's "PDF URL" column wins: it is filled where the catalogued Article
+    # URL is a landing page, paywalled or unreachable from here.
+    if paper.get("pdf_url"):
+        candidates.append(lambda: _fetch_from_url(paper["pdf_url"]))
     if paper.get("arxiv_id"):
-        pdf_bytes = _fetch_arxiv_pdf(paper["arxiv_id"])
+        candidates.append(lambda: _fetch_arxiv_pdf(paper["arxiv_id"]))
+    if paper.get("doi"):
+        def _via_unpaywall():
+            pdf_url = _resolve_doi_to_pdf(paper["doi"])
+            return _fetch_from_url(pdf_url) if pdf_url else None
+        candidates.append(_via_unpaywall)
+    if paper.get("article_url"):
+        candidates.append(lambda: _fetch_from_url(paper["article_url"]))
+    if paper.get("resource_url"):
+        candidates.append(lambda: _fetch_from_url(paper["resource_url"]))
 
-    if not pdf_bytes and paper.get("doi"):
-        pdf_url = _resolve_doi_to_pdf(paper["doi"])
-        if pdf_url:
-            pdf_bytes = _fetch_from_url(pdf_url)
-
-    if not pdf_bytes and paper.get("article_url"):
-        pdf_bytes = _fetch_from_url(paper["article_url"])
-
-    if not pdf_bytes and paper.get("resource_url"):
-        pdf_bytes = _fetch_from_url(paper["resource_url"])
-
-    if pdf_bytes:
-        dest.write_bytes(pdf_bytes)
-        time.sleep(1)
-        return dest
+    for attempt in candidates:
+        pdf_bytes = attempt()
+        if _is_pdf(pdf_bytes):
+            dest.write_bytes(pdf_bytes)
+            time.sleep(1)
+            return dest
 
     return None

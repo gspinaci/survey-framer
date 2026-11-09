@@ -1,0 +1,151 @@
+{
+  "readers": {
+    "ciop": {
+      "check": {
+        "verdict": "rework",
+        "issues": [
+          {
+            "field": "reported_format_gap_points",
+            "kind": "wrong_number",
+            "problem": "The report sets points and kind to null on the grounds that 'the paper gives no single gap figure'. But the paper gives the numbers for the comparisons the reader itself lists. Table 3 reports Q4 ACC and CACC for every model (e.g. Qwen2.5-VL 3.20 vs 34.2). Table 7 gives the model scores by tier (e.g. Q1 48.0 / 32.6 / 25.7). Table 8 (p. 23) gives BLEU with and without OCR (e.g. Qwen2.5-VL JA-ES 1.32 vs 14.5). With reported_format_gap 'yes' and numbers available, null points and null kind do not follow the field definition, which asks for the largest gap.",
+            "instruction": "Re-read Table 3, Table 7 and Table 8 (Appendix H). Compute the largest same-model, same-item gap in each qualifying comparison you list. Then fill reported_format_gap_points with the largest one, in percentage points, and set reported_format_gap_kind to the kind of that comparison. State the derivation in results_explanation."
+          },
+          {
+            "field": "human_gap_points",
+            "kind": "wrong_number",
+            "problem": "The report gives 43 and explains it as 'human 92.0 minus best-model 53.7 on Q1'. That subtraction gives about 38, not 43. The paper's own like-for-like model figure for the same 100-question easy tier is 48.0 (Table 7), which gives 44. Neither equals 43, so the figure is not derivable from either pair of numbers in the explanation.",
+            "instruction": "Recompute human_gap_points from Table 7 (p. 10) and Table 3 (p. 7). Decide which model score is the comparator, taking into account that the human tiers use 100 sampled questions per tier. Make the arithmetic match the numbers you quote, and state the comparison explicitly in results_explanation."
+          }
+        ],
+        "notes": "Evidence quotes were all found verbatim and the field values are mostly defensible. I left model_generated for gold_source, answer_set, noise, gold_beyond_stimulus 'yes', and zero-shot (inferred from prompts, with a quote that does not state it) unchallenged. The problems are limited to the two numeric fields on format gap and human gap."
+      },
+      "final_version": "ciop.rework1.json",
+      "recheck": {
+        "verdict": "rework",
+        "issues": [
+          {
+            "field": "evaluation_set_size",
+            "kind": "wrong_number",
+            "problem": "The reader gives 18789, the total of all QA pairs. The headline score (reported_best_score 53.7) is Q1 accuracy for Qwen2.5-VL from Table 3, which covers the Extraction@Culture questions only. Table 2 lists 1023 QA pairs for Extraction@Culture, with one QA pair per image. The definition says that when results use different sets, the field must give the set behind the headline score.",
+            "instruction": "Re-read Table 2 and Table 3 (Sec. 3.3 and 5.1) and decide which set the headline score is computed on. Revise evaluation_set_size and its evidence so they match that set, and say in results_explanation that the other tasks are scored on different sets."
+          },
+          {
+            "field": "human_gap_points",
+            "kind": "misapplied_definition",
+            "problem": "The definition requires human minus the best reported model. The reader computed 92.0 minus 48.0 from the Table 7 row 'Model Performance'. Sec. 5.6 does not say this row is the best model, and the reader's own results_explanation admits it may be an average across models. The best model's Q1 accuracy in Table 3 is 53.7. The headline score and the human gap therefore rest on different model figures.",
+            "instruction": "Re-read Sec. 5.6, Table 7 and Appendix G to establish what the 'Model Performance' row represents. Then check whether the 44-point gap compares the human score to the best model as the definition requires. If the paper does not make the comparator clear, state that in the explanation and justify the choice of numbers."
+          }
+        ],
+        "notes": "Most of the reading is sound: the quotes were found verbatim, and gold_source, plurality_treatment, cultural asymmetry and humanities_role are well supported. I did not challenge answer_multiplicity 'answer_set' (Q1 accepts multiple options, though most items are single-reference translations), or the 'scoring' kind for the Q4 ACC vs CACC gap. Both are defensible readings for the reviewer to weigh."
+      },
+      "status": "flagged",
+      "flags_for_reviewer": [
+        {
+          "field": "evaluation_set_size",
+          "kind": "wrong_number",
+          "problem": "The reader gives 18789, the total of all QA pairs. The headline score (reported_best_score 53.7) is Q1 accuracy for Qwen2.5-VL from Table 3, which covers the Extraction@Culture questions only. Table 2 lists 1023 QA pairs for Extraction@Culture, with one QA pair per image. The definition says that when results use different sets, the field must give the set behind the headline score.",
+          "instruction": "Re-read Table 2 and Table 3 (Sec. 3.3 and 5.1) and decide which set the headline score is computed on. Revise evaluation_set_size and its evidence so they match that set, and say in results_explanation that the other tasks are scored on different sets."
+        },
+        {
+          "field": "human_gap_points",
+          "kind": "misapplied_definition",
+          "problem": "The definition requires human minus the best reported model. The reader computed 92.0 minus 48.0 from the Table 7 row 'Model Performance'. Sec. 5.6 does not say this row is the best model, and the reader's own results_explanation admits it may be an average across models. The best model's Q1 accuracy in Table 3 is 53.7. The headline score and the human gap therefore rest on different model figures.",
+          "instruction": "Re-read Sec. 5.6, Table 7 and Appendix G to establish what the 'Model Performance' row represents. Then check whether the 44-point gap compares the human score to the best model as the definition requires. If the paper does not make the comparator clear, state that in the explanation and justify the choice of numbers."
+        }
+      ]
+    },
+    "cip": {
+      "check": {
+        "verdict": "rework",
+        "issues": [
+          {
+            "field": "human_gap_points",
+            "kind": "wrong_number",
+            "problem": "The reported 44 is 92.0 minus 48.0, but 48.0 is the averaged 'Model Performance' row in Table 7 (p. 10), not the best model. The field is defined as human minus the best reported model on the same metric. The reader's own results_explanation says the best-model difference is about 38 (92.0 vs 53.7) and then keeps 44 anyway. The quote given for this field is only the model-average row, so it does not show where 44 comes from.",
+            "instruction": "Re-read Sec. 5.6 and Table 7 (p. 10) and Table 3 (p. 7). Decide which model figure is the best model on the same metric and the same item set as the human figure. Recompute the sign and size of the gap from the paper's own numbers, and make human_gap_points and results_explanation agree. If no valid best-model comparison exists on the human subset, apply the field's null rule."
+          },
+          {
+            "field": "reported_format_gap_points",
+            "kind": "missing",
+            "problem": "reported_format_gap is 'yes', yet the points are null and the explanation says no point value is given. The paper does give numbers for qualifying comparisons. Table 3 reports Q4 ACC against CACC for the same models. Table 7 reports easy, medium and hard tiers for the model rows. Table 5 reports the input ablation. The field asks for the largest gap reported, so a number is due.",
+            "instruction": "Re-check Tables 3, 5 and 7 and list each same-model, same-item comparison with its numbers. Take the largest in percentage points and fill the field, noting in results_explanation how it was computed. Skip comparisons that do not qualify under the definition, such as one model versus another."
+          },
+          {
+            "field": "reported_format_gap_kind",
+            "kind": "unsupported",
+            "problem": "The mechanical check flags this field as unsupported. It has no evidence quote, and the value 'scoring' is not tied to any number because points is null. The Table 3 caption quote supports only that Q4 ACC and CACC differ, not which comparison gives the largest gap.",
+            "instruction": "After re-establishing the largest gap, give the kind of the comparison that produces that number, with a verbatim quote and page or table reference. Keep it consistent with reported_gap_kinds."
+          }
+        ],
+        "notes": "The rest of the reading is sound. gold_source as model_generated (translations make up the majority and are DeepSeek-generated with manual verification), answer_set, noise, the reported_best_score of 53.7 accuracy, and humanities_role 'content' are defensible. primary_evaluation_setting 'zero-shot' rests on a weak quote about the official inference code, but the paper mentions no few-shot setting, so I did not challenge it."
+      },
+      "final_version": "cip.rework1.json",
+      "recheck": {
+        "verdict": "rework",
+        "issues": [
+          {
+            "field": "reported_format_gap_points",
+            "kind": "misapplied_definition",
+            "problem": "The 31-point gap is Qwen2.5-VL's Q4 ACC (3.20) against CACC (34.2) in Table 3. Sec. 4 defines CACC as 0.3×ACC(Q1) + 0.3×ACC(Q2) + 0.4×ACC(Q4), so CACC is a composite that adds the Q1 and Q2 accuracies. It is not the same model output scored by a stricter or looser rule. The report calls this 'scoring' kind, which does not fit the definition. The comparisons the paper reports on the same models and items are easy vs hard tiers in Table 7 and OCR vs no OCR in Table 8, and the largest of these may be larger than the one the reader chose.",
+            "instruction": "Re-read Sec. 4 (Metrics), the Table 3 caption, Table 7 and Table 8. Decide which reported comparisons really give the same models on the same items under two scoring, format, depth, difficulty or input regimes, and which merely combine different questions into one metric. Recompute the largest qualifying gap and its kind, and update reported_format_gap_points, reported_format_gap_kind and reported_gap_kinds so they are consistent with that choice. Quote the table rows behind the final number."
+          },
+          {
+            "field": "reported_format_gap_kind",
+            "kind": "misapplied_definition",
+            "problem": "The 'scoring' label rests on the Table 3 ACC vs CACC comparison. That comparison is not a re-scoring of identical output, because CACC folds in Q1 and Q2 accuracy. The quotes given for this field (Table 3 caption and a table row) show that the metrics differ in composition, not that one rule is stricter or looser.",
+            "instruction": "After re-checking the gap comparison, make sure the kind matches the comparison that actually gives the points. Quote the passage that describes that comparison."
+          },
+          {
+            "field": "evaluation_set_size",
+            "kind": "wrong_number",
+            "problem": "The report gives 18789, the whole benchmark, but the headline score (Q1 ACC 53.7, Table 3) is computed on Extraction@Culture. Table 2 lists that task at 1023 QA pairs, with one QA pair per image (Sec. 3.3). The 16743 translation pairs are scored separately in Table 4 with BLEU, COMET and BLEURT. The field definition says to give the set behind the headline score.",
+            "instruction": "Re-check Table 2 and Sec. 3.3 and identify which set the reported_best_score is computed on. Set evaluation_set_size to that set, and mention the other sets in results_explanation."
+          }
+        ],
+        "notes": "Most of the reading holds up: model_generated as majority gold source (16743 of 18789 translation pairs from a DeepSeek translator-reviewer pipeline with manual verification), answer_set, noise, the cultural asymmetry finding and the null human_gap_points are all defensible choices that I did not challenge. The problems are the format-gap computation, which compares a composite metric against a single-question metric, and the evaluation set size, which does not match the headline score."
+      },
+      "status": "flagged",
+      "flags_for_reviewer": [
+        {
+          "field": "reported_format_gap_points",
+          "kind": "misapplied_definition",
+          "problem": "The 31-point gap is Qwen2.5-VL's Q4 ACC (3.20) against CACC (34.2) in Table 3. Sec. 4 defines CACC as 0.3×ACC(Q1) + 0.3×ACC(Q2) + 0.4×ACC(Q4), so CACC is a composite that adds the Q1 and Q2 accuracies. It is not the same model output scored by a stricter or looser rule. The report calls this 'scoring' kind, which does not fit the definition. The comparisons the paper reports on the same models and items are easy vs hard tiers in Table 7 and OCR vs no OCR in Table 8, and the largest of these may be larger than the one the reader chose.",
+          "instruction": "Re-read Sec. 4 (Metrics), the Table 3 caption, Table 7 and Table 8. Decide which reported comparisons really give the same models on the same items under two scoring, format, depth, difficulty or input regimes, and which merely combine different questions into one metric. Recompute the largest qualifying gap and its kind, and update reported_format_gap_points, reported_format_gap_kind and reported_gap_kinds so they are consistent with that choice. Quote the table rows behind the final number."
+        },
+        {
+          "field": "reported_format_gap_kind",
+          "kind": "misapplied_definition",
+          "problem": "The 'scoring' label rests on the Table 3 ACC vs CACC comparison. That comparison is not a re-scoring of identical output, because CACC folds in Q1 and Q2 accuracy. The quotes given for this field (Table 3 caption and a table row) show that the metrics differ in composition, not that one rule is stricter or looser.",
+          "instruction": "After re-checking the gap comparison, make sure the kind matches the comparison that actually gives the points. Quote the passage that describes that comparison."
+        },
+        {
+          "field": "evaluation_set_size",
+          "kind": "wrong_number",
+          "problem": "The report gives 18789, the whole benchmark, but the headline score (Q1 ACC 53.7, Table 3) is computed on Extraction@Culture. Table 2 lists that task at 1023 QA pairs, with one QA pair per image (Sec. 3.3). The 16743 translation pairs are scored separately in Table 4 with BLEU, COMET and BLEURT. The field definition says to give the set behind the headline score.",
+          "instruction": "Re-check Table 2 and Sec. 3.3 and identify which set the reported_best_score is computed on. Set evaluation_set_size to that set, and mention the other sets in results_explanation."
+        }
+      ]
+    }
+  },
+  "extraction": {
+    "round": "pilot-2026-11b",
+    "agent": "supervisor",
+    "role": "supervisor",
+    "scope": "",
+    "operator": "RG",
+    "backend": "claude-cli",
+    "backend_kind": "claude-cli",
+    "model": "claude-sonnet-5-5",
+    "prompt_sha256": "fbaa0533fe3191d8292183d5ea6310c689b90b5f2502536d9c1ec0ce6004c70a",
+    "scaffold_sha256": "f83b2fb4da8cafdd3f1a413c13f51e8096c29116fde99002da2f2d5df88b3eeb",
+    "rendered_prompt_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "input": {
+      "pdf_sha256": "866a48733a2ecdc4d8c032fb55e9192a740243c5fbbab7ebe2469c6715f33a8d",
+      "text_chars": 80804
+    },
+    "max_rework": 1,
+    "started": "2026-11-09T20:50:24+00:00",
+    "seconds": 127.1
+  },
+  "paper_id": "2510.00041"
+}

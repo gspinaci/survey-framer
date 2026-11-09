@@ -27,9 +27,13 @@ instrument asks instead about properties the paper states.
 - Your disciplinary training matters here for reading what the annotation process actually involved — e.g. whether "expert annotators" means trained art historians or graduate students, whether metadata came from a catalogue or was written for the benchmark.
 - Do not harmonize a facet with what you answered for humanities_role or analytical_tasks. They are independent observations and forcing them to agree is what this design avoids.
 
+<<RESEARCH_QUESTIONS>>
+
 Extract a JSON object with exactly these fields:
 
 <<SCHEMA>>
+
+<<EVIDENCE_RULES>>
 
 <<METADATA>>
 

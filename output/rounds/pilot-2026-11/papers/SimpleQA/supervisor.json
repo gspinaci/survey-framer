@@ -1,0 +1,81 @@
+{
+  "readers": {
+    "ciop": {
+      "check": {
+        "verdict": "rework",
+        "issues": [
+          {
+            "field": "answer_multiplicity",
+            "kind": "bad_quote",
+            "problem": "The mechanical check did not find the quote \"questions were written in such a way that they only have a single, indisputable answer\" in the text. Section 2.1 words it differently, so the value has no verified evidence.",
+            "instruction": "Re-read Sec. 2.1 (\"Must have a single answer\") and Sec. 2.4 on how the grader compares predictions to the gold target. Replace the quote with a verbatim passage that supports the value for the scorer."
+          },
+          {
+            "field": "inclusion_criteria.general_purpose_benchmark",
+            "kind": "misapplied_definition",
+            "problem": "The field is defined as true only for broad multi-task benchmarks and false for benchmarks scoped to one task or domain. The reader's own note says the benchmark \"is scoped to a single task (short-form factual QA)\". Sec. 1 and Sec. 5 say the same: \"it only measures factuality under the constrained setting of short, fact-seeking queries\". The value and the note contradict each other.",
+            "instruction": "Re-check the definition of general_purpose_benchmark against the scope the paper describes in Sec. 1 and Sec. 5. Make the met value and the note consistent with that definition."
+          }
+        ],
+        "notes": "The reading is mostly sound. The gold-source, plurality, genesis and format-gap fields are well grounded in Sec. 2 and 2.2. I did not challenge these defensible choices: gold_source as crowd_annotation (AI trainers, with no disciplinary training stated); zero-shot as the default setting, though the quote does not state it; headline score as overall correct (42.7) rather than F-score (44.8); and the third trainer's 94.4% treated as a data-quality check, not a human baseline."
+      },
+      "final_version": "ciop.rework1.json",
+      "recheck": {
+        "verdict": "accept",
+        "issues": [],
+        "notes": "All quotes were found verbatim, and the values follow the field definitions and match Table 3 and Sections 2.1-2.4. I did not challenge these defensible choices: crowd_annotation for the AI trainers (the paper gives no disciplinary credentials), zero-shot as the setting (the controlled vocabulary has no not_stated option and the paper describes no shots), 42.7 overall correct as the headline accuracy rather than the 44.8 F-score, and human_baseline_reported as no, since the third trainer's 94.4% is a data-quality check and is not compared against models."
+      },
+      "status": "accepted_after_rework",
+      "flags_for_reviewer": []
+    },
+    "cip": {
+      "check": {
+        "verdict": "rework",
+        "issues": [
+          {
+            "field": "answer_multiplicity",
+            "kind": "bad_quote",
+            "problem": "The mechanical check did not find the quote. Section 2.1 reads \"force questions to be written such that they only have a single, indisputable answer\", not \"questions had to be written such that...\". The value therefore has no verified evidence. The reader also justifies it from the question-writing criterion, while the field is about what the scorer accepts.",
+            "instruction": "Re-read Sec. 2.1 and Sec. 2.4 (grading and metrics, with the Appendix A grader template). Give a verbatim quote that shows how many answers the scoring accepts per item, and check the value against that scorer description."
+          },
+          {
+            "field": "gold_source",
+            "kind": "misapplied_definition",
+            "problem": "The value is paper_authors, but the paper says the question-answer pairs were written by \"AI trainers (i.e., human annotators)\" (Sec. 2, first paragraph), and a second and third trainer verified them. The reader's own facets_explanation describes them as annotators hired by the authors' organisation, not as the authors. The definition of paper_authors requires that the authors wrote the items and answers themselves.",
+            "instruction": "Re-read Sec. 2 and Sec. 2.1-2.2 on who wrote and verified the reference answers. Check which gold_source definition matches that description, and whether the paper says anything about the annotators' disciplinary training. Quote the relevant passage."
+          }
+        ],
+        "notes": "The reading is otherwise careful. Evidence quotes are mostly verbatim, the numbers match Table 3 (42.7, 4,326), and the choices of humanities_role content, plurality noise, format_gap no and human_baseline no are defensible. I did not challenge three weakly supported values: primary_evaluation_setting zero-shot (the quote is the calibration prompt, though Appendix C shows no examples), the gold_beyond_stimulus quote (which is general), and human_baseline no (the third-trainer 94.4% is a data-quality check, not a model comparison)."
+      },
+      "final_version": "cip.rework1.json",
+      "recheck": {
+        "verdict": "accept",
+        "issues": [],
+        "notes": "The reading is sound: all quotes were found verbatim, the numbers match Table 3 and Sec. 1 (4,326 items; o1-preview 42.7 correct, F-score 44.8), and the facet values follow the definitions. Choices I did not challenge: gold_source as crowd_annotation (the paper only says 'AI trainers (i.e., human annotators)' and gives no disciplinary training), zero-shot supported only indirectly by the Appendix C prompt template, the third-trainer 94.4% check not counted as a human baseline, and general_purpose_benchmark set to false."
+      },
+      "status": "accepted_after_rework",
+      "flags_for_reviewer": []
+    }
+  },
+  "extraction": {
+    "round": "pilot-2026-11",
+    "agent": "supervisor",
+    "role": "supervisor",
+    "scope": "",
+    "operator": "RG",
+    "backend": "claude-cli",
+    "backend_kind": "claude-cli",
+    "model": "claude-sonnet-5-5",
+    "prompt_sha256": "d068b5b800f030232d9962eee3dc5afa24961e692fa200376d3d4102e860ff38",
+    "scaffold_sha256": "4e04559133a808a698d90727709c9b760fd69800616609354d64d83d04244435",
+    "rendered_prompt_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "input": {
+      "pdf_sha256": "cca3809270242e8f280a4edf2141800d2580c95a0772b654b805a7152f7227ff",
+      "text_chars": 32742
+    },
+    "max_rework": 1,
+    "started": "2026-11-09T16:53:51+00:00",
+    "seconds": 67.4
+  },
+  "paper_id": "SimpleQA"
+}

@@ -1,0 +1,75 @@
+# Census protocol — what this survey asks and which agents answer it.
+#
+# The engine (census.py) reads this file; nothing about the research itself is
+# hard-coded. Another census = another census.toml + prompts/. See docs/PIPELINE.md.
+#
+# Distributed work: every agent can be run on its own, by any operator, on their
+# own account (`python census.py run <agent>`). Each agent writes its own file per
+# paper, so results from different people merge in git without conflicts.
+
+[census]
+name = "Benchmarks evaluating generative LLMs on digital humanities material"
+table = "input/papers.csv"
+research_questions = "prompts/research_questions.md"
+
+# The extraction round everyone is currently contributing to. A round freezes the
+# protocol (agents, models, prompt hashes) in output/rounds/<round>/round.json the
+# first time `python census.py round init` is run; artifacts made under a different
+# protocol are refused, so two operators can never mix prompt or model versions.
+round = "2026-11_claude"
+
+[defaults]
+backend = "claude-cli"
+model = "claude-sonnet-5-5"
+
+# Backends. Which one serves an agent is fixed here, per agent; the account behind
+# it is whoever is logged in (claude-cli) or whose key is in .env (APIs) on the
+# machine that runs the step — that is what lets each person use their own account.
+[backends.claude-cli]
+kind = "claude-cli"          # `claude -p`, Claude subscription; no API key
+[backends.gemini]
+kind = "gemini"              # Google GenAI API; GEMINI_API_KEY in .env
+[backends.mock]
+kind = "mock"                # no model: fabricates schema-valid output, for testing the plumbing
+
+# --- agents -------------------------------------------------------------------
+# role   : reader | supervisor | reviewer | narrator | critic | scout | intake
+# scope  : what this instance covers (a reading lens, a source family, ...)
+# fields : for readers, the schema fields it extracts ("all", or a list; globs ok)
+# count  : number of independent instances; count = k expands to <id>-1 ... <id>-k
+# Stage order and dependencies follow from the roles (docs/PIPELINE.md §1):
+# readers -> supervisor -> reviewer -> narrator -> critic.
+
+[[agent]]
+id = "ciop"
+role = "reader"
+scope = "humanist"
+prompt = "prompts/ciop.txt"
+fields = "all"
+
+[[agent]]
+id = "cip"
+role = "reader"
+scope = "technical"
+prompt = "prompts/cip.txt"
+fields = "all"
+
+# Example: a third, specialised reader on the results axis only.
+# [[agent]]
+# id = "tables"
+# role = "reader"
+# scope = "results-tables"
+# prompt = "prompts/tables.txt"
+# fields = ["reported_*", "human_*"]
+
+[[agent]]
+id = "supervisor"
+role = "supervisor"
+prompt = "prompts/supervisor.txt"   # check + rework template, split by <<<REWORK_TEMPLATE>>>
+max_rework = 1
+
+[[agent]]
+id = "reviewer"
+role = "reviewer"
+model = "claude-opus-5-5"
+prompt = "prompts/reviewer_round.txt"   # prompts/reviewer.txt stays with the legacy main.py flow

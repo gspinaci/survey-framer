@@ -30,9 +30,13 @@ instrument asks instead about properties the paper states.
 - answer_multiplicity is about the SCORER, not the prompt format: a multiple-choice benchmark graded by exact option match is single_answer, while free generation graded by an LLM judge on a rubric is graded_human_judgment.
 - plurality_treatment: reporting a low inter-annotator agreement as a limitation to be reduced is 'noise'; keeping divergent annotations as parallel valid references is 'signal'.
 
+<<RESEARCH_QUESTIONS>>
+
 Extract a JSON object with exactly these fields:
 
 <<SCHEMA>>
+
+<<EVIDENCE_RULES>>
 
 <<METADATA>>
 

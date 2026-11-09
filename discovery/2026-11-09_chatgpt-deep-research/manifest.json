@@ -1,0 +1,75 @@
+{
+  "run_id": "2026-11-09_chatgpt-deep-research",
+  "route": "agentic",
+  "tool": "ChatGPT Deep Research (OpenAI), external to this repository",
+  "model": "not recorded by the tool",
+  "operator": "RG",
+  "prompt": {
+    "path": "prompt.md",
+    "sha256": "168a134900bf7578b6d3207f9da60c175f5a030732a5c76cfa41a49ef8ccc066",
+    "source": "docs/deep_research_prompt.md as of 2026-11-09"
+  },
+  "window": {
+    "from": "2026-05-01",
+    "to": "2026-11-09"
+  },
+  "executed_on": "2026-11-09",
+  "received_on": "2026-11-09T14:29",
+  "known_records_suppressed": true,
+  "known_records_note": "the prompt listed the 45 catalogued benchmarks and asked not to report them, so this run cannot measure its overlap with the other routes; future agentic runs should report known records as such instead of suppressing them (needed for capture-recapture)",
+  "raw_files": {
+    "README.txt": "e717c4507d49fa1ac0a4fa31bb790df7633ea26d6c2780912820ad472c2cc8d9",
+    "candidates.csv": "bbf4ee8724a0849a8485b4eeb033888a0bb8fdf57311501b0d21f8016b1cf123",
+    "near_misses.csv": "570fc4d7d90684e2fc73af5ed4ac421e0f4745ced04f400d8a4e423861dc4523",
+    "paper_checks.json": "20a18af34ee2af4890d0ac44597165a5c02700b7af31a102e024b34f58093c67",
+    "search_log.csv": "3415d72e48b4dfc7a9a9401601140f565bf4034d2bd1d72de19f37be45bc9f19",
+    "unverified.csv": "7c91b90fc6caf3b6c2f03248b873c57d3e1b18acc2d66d8f09051e24f612fce5"
+  },
+  "counts": {
+    "candidates": 30,
+    "borderline": 14,
+    "near_misses": 50,
+    "unverified": 71,
+    "logged_batches": 194
+  },
+  "access_failures_reported": "OpenReview browser-verification wall, some arXiv DisabledError, ACM 403, DHQ inaccessible, HELM unreadable, NeurIPS 2026 proceedings not yet indexed (raw/README.txt)",
+  "import": {
+    "on": "2026-11-09",
+    "table": "input/papers.csv",
+    "rows_added": 30,
+    "ids_added": [
+      "2026.lt4hala-1.11",
+      "2026.lt4hala-1.38",
+      "2026.lt4hala-1.12",
+      "2026.nlp4dh-1.32",
+      "2026.eamt-1.43",
+      "2026.nlp4dh-1.17",
+      "2026.findings-acl.1514",
+      "2605.21413",
+      "2605.22975",
+      "2605.24319",
+      "pmlr-v306-wu26by",
+      "2605.27156",
+      "2605.26712",
+      "2605.27015",
+      "2608.12324",
+      "2606.08959",
+      "2026.chum-1.7",
+      "2026.chum-1.8",
+      "2026.chum-1.5",
+      "2026.nlp4dh-1.35",
+      "2026.nlp4dh-1.14",
+      "2026.findings-aacl.147",
+      "2026.findings-emnlp.2155",
+      "2026.emnlp-main.1913",
+      "2026.findings-emnlp.460",
+      "2026.emnlp-main.550",
+      "2026.findings-emnlp.1875",
+      "Fab_AI_Linguistic_Knowledge_Benchmark",
+      "NormViz-Bench",
+      "10.1093/llc/fqag121"
+    ],
+    "duplicates": [],
+    "not_imported": "near_misses.csv and unverified.csv stay in raw/ as leads; they lack the C1-C4 evidence a table row needs"
+  }
+}

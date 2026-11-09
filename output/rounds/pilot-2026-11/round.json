@@ -1,0 +1,70 @@
+{
+  "round": "pilot-2026-11",
+  "created": "2026-11-09T16:36:19+00:00",
+  "created_by": "RG",
+  "note": "Frozen protocol. Artifacts whose agent model or prompt hash differ from this snapshot are refused. To change prompts or models, start a new round.",
+  "prompts_not_yet_written": [],
+  "protocol_sha256": "c4e236a0234a882004841f44440934fc7fb932166d300b82761d2abb4b5d9f10",
+  "research_questions_sha256": "eef1e0955043c49d934507b46e8172af9909e94548c01930c10d7ecbdcf7bc01",
+  "agents": {
+    "ciop": {
+      "role": "reader",
+      "scope": "humanist",
+      "model": "claude-sonnet-5-5",
+      "backend": "claude-cli",
+      "prompt": "prompts/ciop.txt",
+      "prompt_sha256": "b17f9954e3f6fcfaea00bfc79666d31ac51f915da45046c71b23fea2335612f0",
+      "fields": "all",
+      "scaffold_sha256": "68f9a7ab2901764543d1868900ed7d5e145a54937ea3593c18b367a98852d414"
+    },
+    "cip": {
+      "role": "reader",
+      "scope": "technical",
+      "model": "claude-sonnet-5-5",
+      "backend": "claude-cli",
+      "prompt": "prompts/cip.txt",
+      "prompt_sha256": "de1b2a4e5c1121fdd28eae57251ef2535cfda50623e8b4280a669e829f653e73",
+      "fields": "all",
+      "scaffold_sha256": "825a5abe69b4131359c2768912f9bec3b9e81e76cdde58f80aaf7eb478a5eb04"
+    },
+    "supervisor": {
+      "role": "supervisor",
+      "scope": "",
+      "model": "claude-sonnet-5-5",
+      "backend": "claude-cli",
+      "prompt": "prompts/supervisor.txt",
+      "prompt_sha256": "d068b5b800f030232d9962eee3dc5afa24961e692fa200376d3d4102e860ff38",
+      "fields": "all",
+      "scaffold_sha256": "4e04559133a808a698d90727709c9b760fd69800616609354d64d83d04244435"
+    },
+    "reviewer": {
+      "role": "reviewer",
+      "scope": "",
+      "model": "claude-opus-5-5",
+      "backend": "claude-cli",
+      "prompt": "prompts/reviewer_round.txt",
+      "prompt_sha256": "6bedac88d6ae89527f93ce1df024fb38bbeeb2931aafa2920c3f3a2eab109b10",
+      "fields": "all",
+      "scaffold_sha256": "e3110bed9be6acc0614cb3af1ea1e74760da31e22814ff98f4d56eb4cb821966"
+    }
+  },
+  "refreshes": [
+    {
+      "on": "2026-11-09T16:49:42+00:00",
+      "by": "RG",
+      "changed": [
+        "ciop",
+        "cip",
+        "reviewer",
+        "supervisor"
+      ]
+    },
+    {
+      "on": "2026-11-09T16:53:50+00:00",
+      "by": "RG",
+      "changed": [
+        "supervisor"
+      ]
+    }
+  ]
+}

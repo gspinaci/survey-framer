@@ -1,0 +1,87 @@
+{
+  "readers": {
+    "ciop": {
+      "check": {
+        "verdict": "rework",
+        "issues": [
+          {
+            "field": "reported_format_gap_points",
+            "kind": "wrong_number",
+            "problem": "The value 21 matches no gap in Tables 2-4. The reader's own results_explanation says the largest computed gap is 19.48 (siglip-base-patch16-512 on ArtDL, 68.19 vs 48.71) and then calls 21 'approximate and rounded up'. The conversion rules do not allow rounding up beyond the paper's own figures.",
+            "instruction": "Recompute the largest Test 1 vs Test 2 and zero-shot vs few-shot gap across Tables 2, 3 and 4 (p. 7-8), including Test 2 vs Test 3 comparisons. Report that figure as an integer, and make results_explanation consistent with it."
+          },
+          {
+            "field": "reported_format_gap",
+            "kind": "unsupported",
+            "problem": "The value 'yes' has no evidence quote. The mechanical check lists this field as unsupported, and the evidence list for it is empty.",
+            "instruction": "Quote the passage that shows the same models on the same items under different input conditions, for example the Section 3.3 text on descriptions versus labels or few-shot versus zero-shot, or the Table 2-4 rows, and give its location."
+          },
+          {
+            "field": "evaluation_set_size",
+            "kind": "wrong_number",
+            "problem": "The value is 3445, the pooled size of all three datasets. The definition asks for the set behind the headline score. The headline 90.45% is Gemini 2.5 Pro on ArtDL, whose test set is 1,864 images (Sec. 2.1.1). The reader's own quote for this field says 1,864, which does not support 3445.",
+            "instruction": "Re-check which set the headline score (reported_best_score) is computed on, using Sec. 2.1.1 and Table 2. Set evaluation_set_size to match, and explain in results_explanation that the other datasets are scored on different sets."
+          }
+        ],
+        "notes": "The reading is mostly sound. Reasonable choices I did not challenge are gold_source as existing_dataset with not_stated upstream, gold_beyond_stimulus as yes, single_answer, and not_stated for plurality and cultural asymmetry. dataset_size of 3445 correctly sums 1,864 + 863 + 718."
+      },
+      "final_version": "ciop.rework1.json",
+      "recheck": {
+        "verdict": "accept",
+        "issues": [],
+        "notes": "The reading is sound. All quotes were found verbatim and support their values, and the numbers match the tables: the 19-point input gap is siglip-base on ArtDL, 68.19 minus 48.71 = 19.48, and it is the largest across Tables 2-4. Defensible choices I did not challenge: dataset_size 3445 as the sum of the ArtDL test set (1,864), ICONCLASS (863) and Wikidata (718), gold_beyond_stimulus 'yes', and gold_source 'existing_dataset' with gold_upstream_source 'not_stated'."
+      },
+      "status": "accepted_after_rework",
+      "flags_for_reviewer": []
+    },
+    "cip": {
+      "check": {
+        "verdict": "rework",
+        "issues": [
+          {
+            "field": "reported_format_gap",
+            "kind": "unsupported",
+            "problem": "The value is 'yes' but no evidence quote is given, and the mechanical check flags it as unsupported. The paper does compare the same models on the same images across Test 1 (labels), Test 2 (Iconclass descriptions) and Test 3 (few-shot) in Tables 2-4 and in the Sec. 4 discussion of RQ2. The report never quotes this comparison.",
+            "instruction": "Re-read Sec. 2.3 and Sec. 3.3/4 (RQ2) and Tables 2-4, then quote the passage or table rows that show the same models being scored under different input conditions. Make sure reported_gap_kinds matches the comparisons you quote."
+          },
+          {
+            "field": "reported_format_gap_points",
+            "kind": "wrong_number",
+            "problem": "The value 28 does not match the paper's tables. The cited row, siglip-base-patch16-512 on ArtDL (48.71% vs 68.19%), gives about 19.5 points. The reader's own results_explanation says the 28-point figure 'is not directly supported and should be re-checked'. The explanation also lists several candidate gaps without settling on one.",
+            "instruction": "Recompute the largest same-model gap between conditions from Tables 2, 3 and 4 across all model rows and all test pairs. Apply the rounding rule in the field definition. Quote the two cells that give the figure, and rewrite results_explanation so it is consistent with the final number."
+          }
+        ],
+        "notes": "The core facets are defensible and I did not challenge them: existing_dataset gold source with not_stated upstream, domain role, mix setting, dataset_size of 3,445, evaluation set of 1,864 and a best score of 90.45 accuracy. The problems are confined to the format-gap fields, where the points are wrong and no supporting quote is given."
+      },
+      "final_version": "cip.rework1.json",
+      "recheck": {
+        "verdict": "accept",
+        "issues": [],
+        "notes": "All quotes were found verbatim and support their values. The format-gap figure checks out: the largest same-model gap across Tables 2-4 is siglip-base-patch16-512 on ArtDL, 48.71% vs 68.19%, which is 19.48 points and rounds to 19. Defensible choices left alone: dataset_size as the sum of the three subsets (3,445), the 'interpretation' task label, gold_beyond_stimulus 'yes', and gold_source 'existing_dataset' with the upstream production left as not_stated."
+      },
+      "status": "accepted_after_rework",
+      "flags_for_reviewer": []
+    }
+  },
+  "extraction": {
+    "round": "pilot-2026-11b",
+    "agent": "supervisor",
+    "role": "supervisor",
+    "scope": "",
+    "operator": "RG",
+    "backend": "claude-cli",
+    "backend_kind": "claude-cli",
+    "model": "claude-sonnet-5-5",
+    "prompt_sha256": "fbaa0533fe3191d8292183d5ea6310c689b90b5f2502536d9c1ec0ce6004c70a",
+    "scaffold_sha256": "f83b2fb4da8cafdd3f1a413c13f51e8096c29116fde99002da2f2d5df88b3eeb",
+    "rendered_prompt_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "input": {
+      "pdf_sha256": "ffece62eff57fbf822d31ccafd6f6dd3f71dec6b9112ef99210bed289593c78c",
+      "text_chars": 40939
+    },
+    "max_rework": 1,
+    "started": "2026-11-09T20:50:24+00:00",
+    "seconds": 82.9
+  },
+  "paper_id": "2509.18839"
+}

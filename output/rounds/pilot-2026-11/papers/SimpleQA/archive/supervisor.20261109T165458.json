@@ -1,0 +1,81 @@
+{
+  "readers": {
+    "ciop": {
+      "check": {
+        "verdict": "rework",
+        "issues": [
+          {
+            "field": "answer_multiplicity",
+            "kind": "bad_quote",
+            "problem": "The quote 'questions were written in such a way that they only have a single, indisputable answer' was not found verbatim in the paper (mechanical check: missing). The text of Section 2.1 reads 'force questions to be written such that they only have a single, indisputable answer'. The intro (p. 2) says 'questions were written in such a way that the predicted answers are easily gradable'. The reader appears to have blended the two. The value single_answer is defensible, since the grader in Section 2.4 matches against one gold target, but it needs a verbatim quote.",
+            "instruction": "Replace the quote with an exact string from the paper, e.g. 'force questions to be written such that they only have a single, indisputable answer' (Section 2.1, p. 3). Optionally add the Section 2.4 grader description, in which a prompted ChatGPT classifier compares the predicted answer with the reference answer."
+          },
+          {
+            "field": "inclusion_criteria.general_purpose_benchmark",
+            "kind": "misapplied_definition",
+            "problem": "The criterion is marked met=true, but the field definition says true only for broad multi-task benchmarks and false for benchmarks scoped to one task. The reader's own note concedes it is 'scoped to a single task (short-form factual QA)'. The paper says the same: 'it only measures factuality under the constrained setting of short, fact-seeking queries' (Section 5, p. 8). Broad topic coverage does not make it multi-task.",
+            "instruction": "Set general_purpose_benchmark.met to false and revise the note to say that it is a single-task short-form factual QA benchmark with diverse topics."
+          }
+        ],
+        "notes": "The reading is mostly careful: the numbers (4,326 items, o1-preview 42.7 correct and 44.8 F-score), the single-answer scoring and the data-quality check are handled correctly. Choices I did not challenge: gold_source crowd_annotation for the 'AI trainers' (the paper gives them no disciplinary credentials), no human baseline (the 94.4% third-trainer check is not compared against models), best metric labelled accuracy, and zero-shot as primary_evaluation_setting. The paper never names the prompting setting, but the vocabulary has no not_stated option and the questions are posed directly."
+      },
+      "final_version": "ciop.rework1.json",
+      "recheck": {
+        "verdict": "accept",
+        "issues": [],
+        "notes": "The reading is sound. All quotes were found verbatim and support their values, and the numbers match Table 3 and Section 2. The reader correctly kept the third trainer's 94.4% (Section 2.2) out of human_baseline_reported, since the paper uses it as a data-quality check and does not compare models against it. Defensible choices I did not challenge: crowd_annotation for the AI-trainer answer keys; 'zero-shot' as the only fitting value, because the paper never states the prompting regime; and 'accuracy' for the headline score, where the F-score (o1-preview 44.8) is the paper's own single-number metric."
+      },
+      "status": "accepted_after_rework",
+      "flags_for_reviewer": []
+    },
+    "cip": {
+      "check": {
+        "verdict": "rework",
+        "issues": [
+          {
+            "field": "gold_source",
+            "kind": "misapplied_definition",
+            "problem": "The report gives 'paper_authors', but the paper (p. 3, Section 2) says the question-answer pairs were written by 'AI trainers (i.e., human annotators)' and verified by other AI trainers, not by the paper's authors. The report's own facets_explanation describes them as 'human annotators hired by the authors' organisation'. Under the definition, paper_authors means the authors wrote the items and answers themselves. Hired annotators with no stated disciplinary training match crowd_annotation.",
+            "instruction": "Change gold_source to 'crowd_annotation'. Keep the quote from p. 3, Section 2 as evidence, and adjust facets_explanation so it does not suggest the authors wrote the items."
+          },
+          {
+            "field": "answer_multiplicity",
+            "kind": "bad_quote",
+            "problem": "The quote was not found verbatim. The paper (p. 3, Section 2.1) reads 'force questions to be written such that they only have a single, indisputable answer'. The report's quote starts 'questions had to be written such that...', which is a paraphrase. The value 'single_answer' is defensible, but the evidence is not a verbatim quote.",
+            "instruction": "Replace the quote with the exact text from p. 3, Section 2.1: 'force questions to be written such that they only have a single, indisputable answer'. You could also add the scorer evidence from Section 2.4 or the Appendix A grader template, which grades against a single gold target."
+          }
+        ],
+        "notes": "The reading is mostly sound: the numbers (4,326 items; o1-preview 42.7 correct, F-score 44.8), the 'no' format gap, the null cultural asymmetry and the 'noise' treatment of disagreement are defensible. Two things were not challenged. The primary_evaluation_setting quote is the calibration prompt, which does not by itself show zero-shot, though the paper does not describe few-shot prompting. The gold_beyond_stimulus quote is only indirect support, but the value follows from the context-free questions. Treating the third-trainer 94.4% as a data-quality figure rather than a human baseline is also a reasonable choice."
+      },
+      "final_version": "cip.rework1.json",
+      "recheck": {
+        "verdict": "accept",
+        "issues": [],
+        "notes": "The reading is sound. All quotes were found verbatim, and the values follow their definitions. The reader's defensible choices include crowd_annotation for the AI trainers (no disciplinary training is stated), single_answer from the scorer, no format gap, and no human baseline (the third-trainer 94.4% is a data-quality check, not a baseline). Reporting accuracy of 42.7 as the best score rather than F-score 44.8 is also defensible and was explained. One weakness: the quote for primary_evaluation_setting (the confidence prompt, p. 7) does not itself show zero-shot, but the paper describes no few-shot or fine-tuned setting for the evaluated models and the field has no not_stated option, so I did not require rework."
+      },
+      "status": "accepted_after_rework",
+      "flags_for_reviewer": []
+    }
+  },
+  "extraction": {
+    "round": "pilot-2026-11",
+    "agent": "supervisor",
+    "role": "supervisor",
+    "scope": "",
+    "operator": "RG",
+    "backend": "claude-cli",
+    "backend_kind": "claude-cli",
+    "model": "claude-sonnet-5-5",
+    "prompt_sha256": "28c1dbcd7ea8fa79cb11ff605af7bc166ec18bef53df839de81ddeb9ca30e776",
+    "scaffold_sha256": "4b8a40ef091e0311d01a31c8a8c64493fceed03d1b1f738ef7f79ec72e1c29ce",
+    "rendered_prompt_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "input": {
+      "pdf_sha256": "cca3809270242e8f280a4edf2141800d2580c95a0772b654b805a7152f7227ff",
+      "text_chars": 32742
+    },
+    "max_rework": 1,
+    "started": "2026-11-09T16:51:01+00:00",
+    "seconds": 65.6
+  },
+  "paper_id": "SimpleQA"
+}

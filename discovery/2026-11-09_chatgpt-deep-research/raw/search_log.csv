@@ -1,0 +1,320 @@
+"Batch","Source","Queries / opened pages","Screening date range","Method","Returned source refs","Main candidate matches","Near-miss matches","Unverified matches","Total named lead matches","Names (retained)","Names (near misses)","Names (unverified)"
+"1","broad discovery","site:arxiv.org 2026 benchmark cultural heritage history humanities LLM May June July
+site:arxiv.org 2026 benchmark art literature poetry music large language models
+site:aclanthology.org/2026 benchmark historical literature cultural
+2026 benchmark digital humanities generative language models May November","2026 (screen 2026-05-01 to 2026-11-09)","web search","10","1","2","2","5","Cultural Moment Benchmark (CMB)","GaoYao; CArtBench","CultureVidBench; History-Event"
+"2","arXiv domain searches","site:arxiv.org (2605 OR 2606 OR 2607 OR 2608 OR 2609 OR 2610 OR 2611) benchmark (history OR historical OR manuscript OR archive OR palaeography OR epigraphy)
+site:arxiv.org (2605 OR 2606 OR 2607 OR 2608 OR 2609 OR 2610 OR 2611) benchmark (artwork OR painting OR iconography OR museum OR archaeology OR heritage)
+site:arxiv.org 2026 benchmark (literature OR poetry OR literary OR classics OR Latin OR Sanskrit OR ""Ancient Greek"")
+site:arxiv.org 2026 benchmark (music OR musicology OR religion OR philosophy OR folklore OR culture)","2026; first-public dates screened to 2026-05-01..2026-11-09","web search","11","1","2","2","5","Cultural Moment Benchmark (CMB)","Voices of Civilizations; ArtistMus","MusICA-MetaBench; Ancient Greek to Modern Greek MT benchmark"
+"3","ACL workshops and campaigns","site:aclanthology.org/2026 (lt4hala OR nlp4dh OR latech OR lm4dh OR ml4al) (benchmark OR evaluation OR LLM)
+site:aclanthology.org/2026 (clrel OR chum OR nakbanlp OR loreslm OR africanlp OR vardial OR signlang OR llm4ssh) benchmark
+2026 EvaLatin EvaHan JOKER PAN SemEval benchmark English language models","2026; first-public dates screened to 2026-05-01..2026-11-09","web search","12","1","1","0","2","TriviaRoomQA","CNSL-bench",""
+"4","arXiv","site:arxiv.org/abs/2605 benchmark humanities history art
+site:arxiv.org/abs/2606 benchmark cultural heritage literature
+site:arxiv.org/abs/2607 benchmark painting museum history
+site:arxiv.org/abs/2608 benchmark humanities culture literature
+site:arxiv.org/abs/2609 benchmark art history music
+site:arxiv.org/abs/2610 benchmark humanities cultural
+site:arxiv.org/abs/2611 benchmark humanities history","2026; screen 2026-05-01..2026-11-09","web search","12","0","2","1","3","","CArtBench; TimeTravel","SynGallery"
+"5","ML and vision venues","site:openreview.net 2026 benchmark humanities culture history art
+site:proceedings.mlr.press 2026 benchmark cultural history literature
+site:neurips.cc 2026 datasets benchmarks cultural humanities
+site:openaccess.thecvf.com CVPR2026 benchmark art cultural heritage
+ECCV 2026 VISART AI4VA SINT4CH WCCA VLMs-4-all benchmark","2026; screen 2026-05-01..2026-11-09","web search","15","0","0","0","0","","",""
+"6","DH venues and journals","2026 ""benchmark"" ""large language"" ""Journal of Open Humanities Data""
+2026 ""benchmark"" ""Digital Humanities Quarterly""
+2026 ""benchmark"" ""Digital Scholarship in the Humanities""
+2026 ""benchmark"" ""JOCCH"" language
+DH2026 CHR2026 ""benchmark"" language","2026; screen 2026-05-01..2026-11-09","web search","15","0","0","1","1","","","Chronologic"
+"7","arXiv","site:arxiv.org 2026 benchmark philosophy religion theology LLM after:2026-05-01 before:2026-11-10","2026-05-01..2026-11-09 (search filter where present)","web search","7","3","0","0","3","Faith-transition asymmetry evaluation; AllFaith Religious Representation Benchmark; FMG-Bench v1","",""
+"8","arXiv","site:arxiv.org 2026 benchmark historical manuscripts archives LLM after:2026-05-01 before:2026-11-10","2026-05-01..2026-11-09 (search filter where present)","web search","7","0","0","4","4","","","IPC / Interpres Parallel Corpus; PalmLeafVQA; LongHisDoc; AraMS28k"
+"9","ML venues","ICLR ICML COLM NeurIPS 2026 humanities history literature benchmark","2026-05-01..2026-11-09 (search filter where present)","web search","7","0","0","0","0","","",""
+"10","arXiv","site:arxiv.org 2026 benchmark literature poetry literary language models after:2026-05-01 before:2026-11-10","2026-05-01..2026-11-09 (search filter where present)","web search","7","1","0","2","3","PersLitEval","","LALA; Peony"
+"11","ML venues","site:openreview.net ""2026"" ""benchmark"" ""cultural""","2026-05-01..2026-11-09 (search filter where present)","web search","7","0","1","0","1","","IndicVisionBench",""
+"12","NeurIPS 2026 D&B","site:openreview.net ""NeurIPS 2026"" ""benchmark"" culture history music literature","2026-05-01..2026-11-09 screening","web search","8","0","0","1","1","","","PersonalBench"
+"13","arXiv culture","site:arxiv.org 2026 ""benchmark"" ""culture"" after:2026-05-01 before:2026-11-10","2026-05-01..2026-11-09 screening","web search","4","1","0","3","4","CultureTalk-ID","","ArtECulture; WorldBench; CultureVidBench"
+"14","arXiv linguistics","site:arxiv.org 2026 benchmark linguistics grammatical syntactic semantic pragmatic after:2026-05-01 before:2026-11-10","2026-05-01..2026-11-09 screening","web search","8","0","0","1","1","","","Saudi dialect/pragmatics evaluation"
+"15","arXiv music","site:arxiv.org 2026 ""benchmark"" ""music"" after:2026-05-01 before:2026-11-10","2026-05-01..2026-11-09 screening","web search","6","0","0","3","3","","","MusICA-MetaBench; MuSPBench; MUB / Music Understanding Benchmark"
+"16","arXiv historical languages","site:arxiv.org 2026 benchmark Latin Sanskrit Ancient Greek classical Chinese translation after:2026-05-01 before:2026-11-10","2026-05-01..2026-11-09 screening","web search","8","0","0","3","3","","","IPC / Interpres Parallel Corpus; Ancient-Bench; Ancient Greek to Modern Greek MT benchmark"
+"17","ACL/Findings","site:aclanthology.org/2026 ""literary"" ""benchmark""","2026; screen window","web search","7","0","1","0","1","","LitVISTA",""
+"18","LaTeCH-CLfL 2026","LaTeCH CLfL 2026 benchmark language models","2026; screen window","web search","7","0","0","0","0","","",""
+"19","LT4HALA 2026","LT4HALA 2026 proceedings large language evaluation benchmark","2026; screen window","web search","7","0","0","0","0","","",""
+"20","ACL/Findings","site:aclanthology.org/2026 ""historical"" ""benchmark""","2026; screen window","web search","7","1","3","2","6","CHARM","PBEBench; BIRD-History; STQA","History-Event; AC-DiaWSD"
+"21","ACL/Findings","site:aclanthology.org/2026 ""cultural"" ""benchmark"" -CultureVidBench -CArtBench -GaoYao","2026; screen window","web search","7","3","2","1","6","CultureTalk-ID; Cultural Moment Benchmark (CMB); CulturalMenuBench","GaoYao; CArtBench","CultureVidBench"
+"22","LREC 2026","site:aclanthology.org/2026.lrec ""benchmark"" history culture literature English","2026; screen window","web search","7","0","2","1","3","","CArtBench; BIRD-History","CultureVidBench"
+"23","CLEF 2026","CLEF 2026 JOKER PAN overview paper generative","2026; screen 2026-05-01..2026-11-09","web search","5","0","0","0","0","","",""
+"24","ML4AL/CLRel/CHum","ML4AL CLRel CHum 2026 proceedings benchmark","2026; screen 2026-05-01..2026-11-09","web search","5","0","0","0","0","","",""
+"25","DSH","site:academic.oup.com/dsh 2026 benchmark large language","2026; screen 2026-05-01..2026-11-09","web search","5","1","0","0","1","Changing grammatical-use detection evaluation","",""
+"26","LM4DH","LM4DH 2026 proceedings benchmark evaluation","2026; screen 2026-05-01..2026-11-09","web search","5","0","0","0","0","","",""
+"27","DHQ","site:digitalhumanities.org/dhq/vol/20 ""2026"" ""evaluation"" ""language""","2026; screen 2026-05-01..2026-11-09","web search","5","0","0","0","0","","",""
+"28","ACM JOCCH","site:dl.acm.org 2026 JOCCH benchmark language models","2026; screen 2026-05-01..2026-11-09","web search","5","0","0","0","0","","",""
+"29","DH2026/CHR2026","DH2026 CHR 2026 computational humanities benchmark LLM","2026; screen 2026-05-01..2026-11-09","web search","5","0","0","0","0","","",""
+"30","NLP4DH","NLP4DH 2026 proceedings evaluation benchmark LLM","2026; screen 2026-05-01..2026-11-09","web search","5","0","0","0","0","","",""
+"31","NakbaNLP/LoResLM/AfricaNLP/VarDial/sign-lang/LLM4SSH","2026 NakbaNLP LoResLM AfricaNLP VarDial sign-lang LLM4SSH benchmark","2026; screen 2026-05-01..2026-11-09","web search","5","0","0","0","0","","",""
+"32","SemEval 2026","SemEval 2026 tasks humour translation pun idioms literature","2026; screen 2026-05-01..2026-11-09","web search","5","0","0","1","1","","","SemEval 2026 Task 1 MWAHAHA"
+"33","Reports: Qwen/DeepSeek","Qwen DeepSeek 2026 technical report benchmark humanities culture","2026; screen window","web search","6","0","0","0","0","","",""
+"34","HELM/aggregators","HELM 2026 benchmark culture history literature new","2026; screen window","web search","6","0","0","0","0","","",""
+"35","System cards: Anthropic","site:anthropic.com 2026 system card benchmark humanities history culture","2026; screen window","web search","6","0","0","0","0","","",""
+"36","Reports: Mistral/xAI","Mistral xAI 2026 system card benchmark knowledge humanities","2026; screen window","web search","6","0","0","0","0","","",""
+"37","Hugging Face","site:huggingface.co/datasets 2026 benchmark humanities culture history","2026; screen window","web search","6","1","0","0","1","TAB-VLM","",""
+"38","Reports: Meta","Meta Muse 2026 technical report benchmarks culture","2026; screen window","web search","5","0","0","0","0","","",""
+"39","System cards: Google DeepMind","site:deepmind.google 2026 model card benchmark humanities","2026; screen window","web search","6","0","0","0","0","","",""
+"40","System cards: OpenAI","site:openai.com 2026 system card benchmark humanities history culture","2026; screen window","web search","6","0","0","0","0","","",""
+"41","arXiv full text","benchmark philosophy philosophical reasoning 2026","2026; screen window","web search","12","1","0","1","2","FMG-Bench v1","","LePhilBench"
+"42","arXiv full text","cultural benchmark 2026 multimodal English","2026; screen window","web search","12","0","0","4","4","","","ArtECulture; ImageEval2026 / AynVQA; TransMeme; PUMA"
+"43","arXiv full text","literature literary translation narrative benchmark 2026","2026; screen window","web search","12","2","0","3","5","Creativity Bias literary-translation evaluation; LitSeg grounded literary-QA/segmentation protocol","","CSWBench; RedChamberQA / NSST-GraphRAG; Manga109-v2026"
+"44","arXiv full text","benchmark archaeology epigraphy museum 2026","2026; screen window","web search","12","0","0","1","1","","","Chronologic"
+"45","arXiv full text","benchmark historical OCR handwriting manuscripts English 2026","2026; screen window","web search","12","1","0","1","2","METATR v1.0","","AraMS28k"
+"46","Dates","""CHARM"" ""Character Hallucination"" arxiv","No filter; establish earliest version","web search","4","1","0","0","1","CHARM","",""
+"47","Dates","""TriviaRoomQA"" arxiv","No filter; establish earliest version","web search","4","1","0","0","1","TriviaRoomQA","",""
+"48","Dates","""CNSL-bench"" arxiv","No filter; establish earliest version","web search","4","0","1","0","1","","CNSL-bench",""
+"49","Dates","""CulturalMenuBench"" arxiv","No filter; establish earliest version","web search","4","1","0","0","1","CulturalMenuBench","",""
+"50","Alternate papers","""ArtECulture"" paper pdf","No filter; establish earliest version","web search","4","0","0","1","1","","","ArtECulture"
+"51","Dates","""A Language Model from 1913"" arxiv","No filter; establish earliest version","web search","4","0","0","1","1","","","History-Event"
+"52","Alternate papers","""Music I Care About"" paper pdf","No filter; establish earliest version","web search","4","0","0","1","1","","","MusICA-MetaBench"
+"53","Dates","""LitVISTA"" arxiv","No filter; establish earliest version","web search","4","0","1","0","1","","LitVISTA",""
+"54","Alternate papers","""The LALA Benchmark"" pdf","No filter; establish earliest version","web search","4","0","0","1","1","","","LALA"
+"55","Candidate follow-up","""GaoYao"" arxiv","No filter; verify title/date/alternate full text","web search","4","0","1","0","1","","GaoYao",""
+"56","Candidate follow-up","""METATR"" benchmark paper pdf","No filter; verify title/date/alternate full text","web search","4","1","0","0","1","METATR v1.0","",""
+"57","Candidate follow-up","""AVMeme Exam"" paper","No filter; verify title/date/alternate full text","web search","4","0","1","0","1","","AVMemeExam",""
+"58","Candidate follow-up","""Interpres-Parallel-Corpus"" paper","No filter; verify title/date/alternate full text","web search","4","0","0","1","1","","","IPC / Interpres Parallel Corpus"
+"59","Candidate follow-up","""A Diagnostic Benchmark for Sweden-Related Factual Knowledge"" arxiv","No filter; verify title/date/alternate full text","web search","4","0","1","0","1","","Swedish factual-knowledge benchmark",""
+"60","Candidate follow-up","""On the Cultural Anachronism and Temporal Reasoning""","No filter; verify title/date/alternate full text","web search","4","1","0","0","1","TAB-VLM","",""
+"61","Candidate follow-up","""MuSP-Bench"" paper","No filter; verify title/date/alternate full text","web search","4","0","0","1","1","","","MuSPBench"
+"62","Candidate follow-up","""ProHist-Bench"" arxiv","No filter; verify title/date/alternate full text","web search","4","0","1","0","1","","ProHist-Bench original 400-item set",""
+"63","CVPR/ECCV 2026","CVPR ECCV 2026 artwork museum visual art benchmark VLM","2026; screen window","system3","7","0","1","0","1","","CArtBench",""
+"64","General-purpose exams","2026 new benchmark history philosophy humanities exam English LLM","2026; screen window","system3","7","0","0","0","0","","",""
+"65","ICLR 2026","site:openreview.net ""ICLR 2026"" ""benchmark"" ""history""","2026; screen window","system3","7","0","0","1","1","","","WorldBench"
+"66","COLM 2026","site:openreview.net ""COLM 2026"" ""benchmark"" humanities literature cultural","2026; screen window","system3","7","0","1","1","2","","XCR-Bench","RoCulturaMCQ"
+"67","NeurIPS 2026 D&B","NeurIPS 2026 Datasets Benchmarks humanities cultural music literature","2026; screen window","system3","7","0","0","0","0","","",""
+"68","ICML 2026","site:proceedings.mlr.press/v306 ""benchmark"" ""cultural""","2026; screen window","system3","7","1","0","0","1","CULTURE-MT","",""
+"69","Religious Studies/Philosophy","2026 benchmark religious theological philosophical language models English","2026; screen window","system3","7","1","0","0","1","FMG-Bench v1","",""
+"70","New benchmark versions","2026 VULCA VQArt benchmark v2","2026; verify new evaluation set and first-public window","system3","6","0","0","0","0","","",""
+"71","New benchmark versions","RISE humanities benchmark v0.6 v0.7 new datasets 2026","2026; verify new evaluation set and first-public window","system3","6","0","0","0","0","","",""
+"72","New benchmark versions","2026 ""MMLU"" ""v2"" benchmark humanities","2026; verify new evaluation set and first-public window","system3","6","0","0","0","0","","",""
+"73","JOHD collection","""Benchmarking in Digital Humanities"" 2026","2026; verify new evaluation set and first-public window","system3","6","0","0","0","0","","",""
+"74","CHR 2026","Computational Humanities Research 2026 proceedings benchmark","2026; verify new evaluation set and first-public window","system3","6","0","0","0","0","","",""
+"75","New benchmark versions","""Humanity's Last Exam Verified"" paper 2026","2026; verify new evaluation set and first-public window","system3","6","0","0","0","0","","",""
+"76","New benchmark versions","2026 ""CulturalBench"" ""new"" benchmark dataset","2026; verify new evaluation set and first-public window","system3","6","1","0","0","1","CULTURE-MT","",""
+"77","New benchmark versions","""HLE-Diamond"" paper","2026; verify new evaluation set and first-public window","system3","6","0","0","0","0","","",""
+"78","First-public-date check","""Does Bigger Mean Funnier"" arxiv","Unrestricted to find earlier versions","system3","3","1","0","0","1","Does Bigger Mean Funnier? Qwen3 evaluation","",""
+"79","First-public-date check","""Temporal Text Classification with Large Language Models"" arxiv","Unrestricted to find earlier versions","system3","3","0","1","0","1","","Temporal Text Classification with LLMs",""
+"80","First-public-date check","""Narrative Landscape"" ""LLMs"" arxiv","Unrestricted to find earlier versions","system3","3","0","0","1","1","","","Narrative Landscape"
+"81","First-public-date check","""Navigating the Joke Space"" arxiv","Unrestricted to find earlier versions","system3","3","1","0","0","1","Navigating the Joke Space originality evaluation","",""
+"82","First-public-date check","""StoicLLM"" arxiv","Unrestricted to find earlier versions","system3","3","1","0","0","1","StoicLLM philosophical-alignment evaluation","",""
+"83","First-public-date check","""PBEBench"" arxiv","Unrestricted to find earlier versions","system3","3","0","1","0","1","","PBEBench",""
+"84","First-public-date check","""Evaluating Open-Source LLMs"" ""Apartheid""","Unrestricted to find earlier versions","system3","3","1","0","0","1","Apartheid witness-report summarization/NER evaluation","",""
+"85","First-public-date check","""Register Mixing Is the Norm on the Web"" arxiv","Unrestricted to find earlier versions","system3","3","1","0","0","1","Register Mixing: segment-register evaluation","",""
+"86","First-public-date check","""The Roast of GPT4o"" paper","Unrestricted to find earlier versions","system3","3","1","0","0","1","The Roast of GPT4o evaluation","",""
+"87","First-public-date check","""Directional Alignment and Narrative Agency"" arxiv","Unrestricted to find earlier versions","system3","3","0","1","0","1","","Directional Alignment / narrative agency",""
+"88","First-public-date check","""Fluency and Faithfulness in Human and Machine Literary Translation"" arxiv","Unrestricted to find earlier versions","system3","3","1","0","0","1","Fluency and Faithfulness literary-translation protocol","",""
+"89","First-public-date check","""Cards Against LLMs"" arxiv","Unrestricted to find earlier versions","system3","3","0","1","0","1","","Cards Against LLMs",""
+"90","arXiv cs.AI","site:arxiv.org ""2026"" ""cs.AI"" benchmark historical philosophy","2026; screen first public date window","system3","7","0","0","0","0","","",""
+"91","Literature","2026 poetry literary benchmark English LLM new","2026; screen first public date window","system3","7","0","2","0","2","","POEMetric; NeoClassic classical-Chinese poetry evaluation",""
+"92","Cultural Studies/Religious Studies","2026 benchmark folklore religion oral history English LLM","2026; screen first public date window","system3","7","1","0","1","2","AllFaith Religious Representation Benchmark","","CulturalProbe"
+"93","Visual Arts/Museology","2026 benchmark artwork iconography museum VLM art history -VQArt -EduArt -VULCA -Appear2Meaning","2026; screen first public date window","system3","7","1","1","0","2","TAB-VLM","CArtBench",""
+"94","arXiv cs.MM","site:arxiv.org ""2026"" ""cs.MM"" benchmark music culture","2026; screen first public date window","system3","4","0","1","2","3","","Voices of Civilizations","MusICA-MetaBench; MuSPBench"
+"95","Language and Linguistics","2026 new benchmark linguistic grammatical pragmatic English generative language models May June July August","2026; screen first public date window","system3","7","1","0","1","2","Fab AI Linguistic Knowledge Benchmark","","M-GATE"
+"96","arXiv cs.DL","site:arxiv.org ""2026"" ""cs.DL"" evaluation heritage historical","2026; screen first public date window","system3","7","0","0","0","0","","",""
+"97","Candidate verification","""Distributional Open-Ended Evaluation"" arxiv","Unrestricted for first-public dates; screen window","system3","4","0","1","0","1","","DOVE",""
+"98","Candidate verification","""Measuring Meta-Cultural Competency"" arxiv","Unrestricted for first-public dates; screen window","system3","4","0","0","0","0","","",""
+"99","Candidate verification","""AC-DiaWSD"" arxiv","Unrestricted for first-public dates; screen window","system3","4","0","0","1","1","","","AC-DiaWSD"
+"100","Candidate verification","""HistoricalMisinfo"" arxiv","Unrestricted for first-public dates; screen window","system3","4","0","0","0","0","","",""
+"101","Candidate verification","""CULTURE-MT"" arxiv","Unrestricted for first-public dates; screen window","system3","4","1","0","0","1","CULTURE-MT","",""
+"102","Candidate verification","""METATR"" benchmark dataset Teklia","Unrestricted for first-public dates; screen window","system3","4","1","0","0","1","METATR v1.0","",""
+"103","Candidate verification","""Neo-Classic"" benchmark arxiv","Unrestricted for first-public dates; screen window","system3","4","0","1","0","1","","NeoClassic classical-Chinese poetry evaluation",""
+"104","Candidate verification","2026 English prompt benchmark manuscripts heritage archaeology large language","Unrestricted for first-public dates; screen window","system3","4","0","0","1","1","","","Warring States linguistic benchmark"
+"105","Candidate verification","site:aclanthology.org/2026 ""Task 7:"" ""Everyday Knowledge"" ""Myung""","Unrestricted for first-public dates; screen window","system3","3","0","0","0","0","","",""
+"106","Candidate verification","site:aclanthology.org/2026 ""Task 5:"" ""Rating"" ""Plausibility"" -at","Unrestricted for first-public dates; screen window","system3","4","0","0","0","0","","",""
+"107","First-public-date check","""Tracing Morph Origins in Czech""","Unrestricted","system3","3","0","0","0","0","","",""
+"108","First-public-date check","""Overview of EvaHan2026""","Unrestricted","system3","3","0","0","1","1","","","EvaHan 2026"
+"109","First-public-date check","""Overview of the Named Entity Recognition Task"" ""2026""","Unrestricted","system3","3","0","0","1","1","","","Chronologic"
+"110","First-public-date check","""POS Tagging with Generative LLMs""","Unrestricted","system3","3","1","0","0","1","Historical Germanic POS-tagging evaluation","",""
+"111","First-public-date check","""Across Generations"" ""NER"" ""Latin Inscriptions""","Unrestricted","system3","3","1","0","0","1","Across Generations: Latin-inscription NER evaluation","",""
+"112","First-public-date check","""Domain-Aware Error Correction"" ""Hebrew""","Unrestricted","system3","3","0","0","0","0","","",""
+"113","JOCCH","""Automatic Annotation and Analysis of Oral History"" Densho pdf","2026; verify first-public date","system3","4","0","0","0","0","","",""
+"114","LT4HALA remaining","""Evaluating Hierarchical Aggregation"" ""Synset""","2026; verify first-public date","system3","4","1","1","0","2","Ancient Greek synset-selection evaluation","Uncovering Work from Words: Swedish petitions",""
+"115","Linguistics reports","""Linguistic Knowledge Benchmark"" ""2026""","2026; verify first-public date","system3","4","1","1","1","3","Fab AI Linguistic Knowledge Benchmark","Multilingual Pedagogy Benchmark","Decodability Assessment Benchmark"
+"116","LT4HALA remaining","""Cost-Aware Pre-Annotation"" ""2026""","2026; verify first-public date","system3","4","0","0","0","0","","",""
+"117","Alternate full text","""LALA"" ""benchmark"" github Foster","2026; verify first-public date","system3","4","0","0","1","1","","","LALA"
+"118","Linguistics reports","""M-GATE"" benchmark technical report","2026; verify first-public date","system3","4","0","0","1","1","","","M-GATE"
+"119","LT4HALA remaining","""From Lemmatization to Legal Terminology""","2026; verify first-public date","system3","4","0","0","0","0","","",""
+"120","LLMs4SSH","""Benchmarking LLMs for Aspect-Based Sentiment"" ""Historical""","2026; verify first-public date","system3","4","0","0","0","0","","",""
+"121","Alternate full text","""MusICA-MetaBench"" github","2026; verify first-public date","system3","4","0","0","1","1","","","MusICA-MetaBench"
+"122","Model cards","2026 system card new benchmark creative writing literature humanities","2026; screen May 1–November 9","system3","10","0","0","1","1","","","AGCBench"
+"123","Vision workshops","2026 VISART AI4VA SINT4CH WCCA benchmark language","2026; screen May 1–November 9","system3","7","0","1","1","2","","Uncertainty-Aware Art-Historical Dating","SynGallery"
+"124","General purpose benchmarks","2026 ""DeepResearchBench"" humanities history evaluation","2026; screen May 1–November 9","system3","10","0","1","0","1","","DeepResearch Bench II",""
+"125","NakbaNLP/sign-lang","2026 NakbaNLP signlang benchmark generative language models","2026; screen May 1–November 9","system3","6","0","1","0","1","","CNSL-bench",""
+"126","General purpose benchmarks","2026 new benchmark expert knowledge humanities philosophy history English -HistBench -HSSBench -EduArt -MMLU","2026; screen May 1–November 9","system3","10","1","0","0","1","QuestBench","",""
+"127","Historical evaluation expansion","2026 historical humanities manuscript evaluation generative language models new benchmark","2026; screen May 1–November 9","system3","10","0","0","2","2","","","Chronologic; Warring States linguistic benchmark"
+"128","Culture full-text expansion","2026 cultural benchmark new English history traditions","2026; screen May 1–November 9","system3","9","0","0","0","0","","",""
+"129","Source index screening","https://visarts.eu/","2026; screen window","Opened index","1","0","1","1","2","","Uncertainty-Aware Art-Historical Dating","SynGallery"
+"130","Source index screening","https://ai4va-cvpr.github.io/","2026; screen window","Opened index","1","0","1","0","1","","PortraitCraft",""
+"131","Source index screening","https://www.digitalhumanities.org/dhq/","2026; screen window","Opened index","1","0","0","0","0","","",""
+"132","Source index screening","https://crfm.stanford.edu/helm/","2026; screen window","Opened index","1","0","0","0","0","","",""
+"133","Source index screening","https://lrec.elra.info/conference/2026/workshop/signlang","2026; screen window","Opened index","1","0","0","0","0","","",""
+"134","Source index screening","https://aclanthology.org/volumes/2026.nakbanlp-1/","2026; screen window","Opened index","1","0","0","3","3","","","M-GATE; ChronoLearn; Tarikhi"
+"135","System report","DeepSeek V4.1 technical report September October 2026 benchmarks","2026; screen window","system3","5","0","0","0","0","","",""
+"136","Aggregators","site:benchmarklist.com 2026 culture humanities history literature","2026; screen window","system3","5","1","0","0","1","PersLitEval","",""
+"137","System report","Grok 4.7 2026 model card benchmarks","2026; screen window","system3","5","0","0","0","0","","",""
+"138","System report","Qwen3.8 technical report 2026 benchmarks humanities","2026; screen window","system3","5","0","0","0","0","","",""
+"139","Aggregators","Papers with Code successor 2026 benchmark art history humanities","2026; screen window","system3","5","0","0","0","0","","",""
+"140","System report","Mistral Large 4 2026 model card evaluation benchmarks","2026; screen window","system3","5","0","0","0","0","","",""
+"141","arXiv full-text follow-up","https://arxiv.org/pdf/2607.01152
+https://arxiv.org/pdf/2607.03836
+https://arxiv.org/pdf/2607.06015
+https://arxiv.org/pdf/2608.01942
+https://arxiv.org/pdf/2608.03358
+https://arxiv.org/pdf/2608.03803
+https://arxiv.org/pdf/2608.12324
+https://arxiv.org/pdf/2608.21827","2026-05-01/2026-11-09","open full PDF","8","1","0","7","8","FMG-Bench v1","","MusICA-MetaBench; IPC / Interpres Parallel Corpus; ArtECulture; Peony; M-GATE; AGCBench; CultureVidBench"
+"142","arXiv full-text follow-up","https://arxiv.org/pdf/2608.21853
+https://arxiv.org/pdf/2608.26921
+https://arxiv.org/pdf/2608.27127
+https://arxiv.org/pdf/2608.27169
+https://arxiv.org/pdf/2608.28212
+https://arxiv.org/pdf/2608.29990
+https://arxiv.org/pdf/2608.30475
+https://arxiv.org/pdf/2609.01056","2026-05-01/2026-11-09","open full PDF","8","0","0","8","8","","","MuSPBench; Ancient-Bench; AraMS28k; WorldBench; ImageEval2026 / AynVQA; TransMeme; PUMA; Saudi dialect/pragmatics evaluation"
+"143","arXiv full-text follow-up","https://arxiv.org/pdf/2609.05139
+https://arxiv.org/pdf/2609.31651
+https://arxiv.org/pdf/2610.14531
+https://arxiv.org/pdf/2610.19427
+https://arxiv.org/pdf/2610.20272
+https://arxiv.org/pdf/2610.22989
+https://arxiv.org/pdf/2610.34080
+https://arxiv.org/pdf/2605.18504","2026-05-01/2026-11-09","open full PDF","8","0","0","8","8","","","LALA; MUB / Music Understanding Benchmark; PalmLeafVQA; LongHisDoc; LePhilBench; CSWBench; RedChamberQA / NSST-GraphRAG; Ancient Greek to Modern Greek MT benchmark"
+"144","arXiv full-text follow-up","https://arxiv.org/pdf/2605.13596
+https://arxiv.org/pdf/2605.21182
+https://arxiv.org/pdf/2605.27015
+https://arxiv.org/pdf/2605.21413","2026-05-01/2026-11-09","open full PDF","4","3","0","1","4","Creativity Bias literary-translation evaluation; QuestBench; PersLitEval","","Manga109-v2026"
+"145","Final metadata verification","""Large language models as digital libraries: a multi-benchmark and multi-model study""
+""TAB-VLM"" benchmark 2026 April May
+""When AI Is Your Pastor"" arxiv 2608.12324
+""Creativity Bias"" ""Gerrits"" 2026
+""Fluency and Faithfulness"" literary translation 2026 arxiv","2026-05-01/2026-11-09","web search","8","4","0","0","4","Creativity Bias literary-translation evaluation; Fluency and Faithfulness literary-translation protocol; TAB-VLM; FMG-Bench v1","",""
+"146","Venue follow-up","""CURVE"" ""Cultural and Multilingual Long Video"" benchmark 2026 arxiv
+""PortraitCraft"" benchmark paper 2026
+""Disagreement-Preserving Evaluation for Art Attribution""
+""POEMetric"" benchmark 2026 arxiv
+""HistoBench"" benchmark ICLR 2026","2026-05-01/2026-11-09","web search","9","0","3","1","4","","POEMetric; PortraitCraft; Uncertainty-Aware Art-Historical Dating","SynGallery"
+"147","Final metadata verification","https://arxiv.org/abs/2608.12324
+https://www.fab-ai.org/resources/benchmark/about-the-linguistic-knowledge-benchmark
+https://zenodo.org/records/19727990
+https://zenodo.org/records/19707162","2026-05-01/2026-11-09","web search","6","2","0","0","2","FMG-Bench v1; Fab AI Linguistic Knowledge Benchmark","",""
+"148","Final metadata verification","turn7381369view0 find PDF
+turn7381369view0 find github.com
+turn2810948view1 find pdf
+turn8861202view0 find English
+turn8565929view0 find You are
+turn8668699view0 find github","2026-05-01/2026-11-09","web search","11","3","0","0","3","Creativity Bias literary-translation evaluation; QuestBench; Changing grammatical-use detection evaluation","",""
+"149","Paper verification follow-up","https://www.dei.unipd.it/~cazzaromir/IRCDL2026_CazzaroSilvello_CR.pdf","2026-05-01/2026-11-09","web search","1","0","0","0","0","","",""
+"150","Paper verification follow-up","https://openaccess.thecvf.com/content/CVPR2026/papers/Singh_CURVE_A_Benchmark_for_Cultural_and_Multilingual_Long_Video_Reasoning_CVPR_2026_paper.pdf
+https://openreview.net/pdf/d28550b529d3b03ad075bc0c4451d3271d1f8788.pdf
+https://openreview.net/pdf/b095142a3913b9884170e222b97049fb059956c1.pdf","2026-05-01/2026-11-09","web search","3","0","0","0","0","","",""
+"151","Paper verification follow-up","turn2221227view4 Llama
+turn2221227view5 English
+turn4595582view3 TranslateGemma
+turn7425354view0 github
+turn7991567view0 English
+turn9277993view2 Qwen
+turn9277993view3 chrF","2026-05-01/2026-11-09","web search","14","6","1","1","8","Across Generations: Latin-inscription NER evaluation; Ancient Greek synset-selection evaluation; Historical Germanic POS-tagging evaluation; Fluency and Faithfulness literary-translation protocol; Register Mixing: segment-register evaluation; CultureTalk-ID","Uncovering Work from Words: Swedish petitions","AC-DiaWSD"
+"152","System cards follow-up","https://qwen.ai/blog?id=qwen3.8
+https://mistral.ai/news/mistral-large-4/
+https://x.ai/news/grok-4-7
+https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash","2026-05-01/2026-11-09","web search","4","0","0","0","0","","",""
+"153","Final paper follow-up","""JEST"" benchmark ""Toplyn"" ""2026""
+""Navigating the Joke Space"" arxiv
+""Does Bigger Mean Funnier"" 2026 benchmark
+""Register Mixing Is the Norm"" arxiv 2026","2026-05-01/2026-11-09","web search","10","3","0","0","3","Does Bigger Mean Funnier? Qwen3 evaluation; Navigating the Joke Space originality evaluation; Register Mixing: segment-register evaluation","",""
+"154","Final paper follow-up","turn2221227view4
+turn7039390view2
+turn7039390view2
+turn7039390view3
+turn8565929view0
+turn8668699view0","2026-05-01/2026-11-09","web search","11","5","0","0","5","Across Generations: Latin-inscription NER evaluation; Creativity Bias literary-translation evaluation; QuestBench; Does Bigger Mean Funnier? Qwen3 evaluation; Navigating the Joke Space originality evaluation","",""
+"155","Final paper follow-up","turn8861202view0 link 1
+turn8861202view0 link 3","2026-05-01/2026-11-09","web search","3","0","0","0","0","","",""
+"156","Final paper follow-up","https://www.fab-ai.org/resources","2026-05-01/2026-11-09","web search","1","1","1","1","3","Fab AI Linguistic Knowledge Benchmark","Multilingual Pedagogy Benchmark","Decodability Assessment Benchmark"
+"157","Final recall cross-check","""JEST: A Benchmark for Rating the Funniness of Short Texts"" pdf
+""JEST"" ""Toplyn"" ""Amir"" arxiv benchmark
+""CURVE"" ""Singh"" ""Nagrani"" arxiv 2026
+""Uncertainty-Aware Art-Historical Dating"" paper
+site:aclanthology.org/2026.nakbanlp ""benchmark"" ""English""
+""RISE"" ""v0.7.0"" ""benchmark""","2026-05-01/2026-11-09","web search","9","1","2","2","5","Navigating the Joke Space originality evaluation","CURVE / MINERVA-Cultural; Uncertainty-Aware Art-Historical Dating","QuestionArchaeology; HumorSkills image-caption evaluation"
+"158","ICCC 2026 and new versions","ICCC 2026 conference-program and accepted-papers indexes
+RISE benchmark GitHub releases
+ProHist-Bench README","2026-05-01/2026-11-09","opened program/releases","4","0","2","3","5","","Creative Transformation in Literary Texts; From 31 Functions to 14 Categories","QuestionArchaeology; HumorSkills image-caption evaluation; The Flow of LLM-Generated Poetry"
+"159","ICCC 2026 papers","ICCC26 papers 46 JEST;21 Reading Between Lines; program links24/28/30/36/38/65 full PDFs","2026-05-01/2026-11-09","full-text screening","13","0","0","1","1","","","QuestionArchaeology"
+"160","ICCC/date/resource verification","""Reading Between the Lines: Can LLMs Discover the Question Behind the Text"" arxiv
+""JEST: A Benchmark"" ""2026"" arxiv March
+""Cognitive, Social and Creative Skills for Effective AI Humor Generation"" arxiv
+""Register Mixing Is the Norm on the Web"" 2025
+""Across Generations"" ""Latin Inscriptions"" github
+""AC-DiaWSD"" github","2026-05-01/2026-11-09","web search","12","1","1","2","4","Register Mixing: segment-register evaluation","Creative Transformation in Literary Texts","QuestionArchaeology; HumorSkills image-caption evaluation"
+"161","Resource and scoring verification","CultureTalk-ID Section4 and GitHub
+Creativity Bias Appendix B GitHub
+Latin NER footnote4
+Does Bigger Mean Funnier release URL
+JEST date search","2026-05-01/2026-11-09","web search","14","5","0","0","5","Across Generations: Latin-inscription NER evaluation; Creativity Bias literary-translation evaluation; Faith-transition asymmetry evaluation; Does Bigger Mean Funnier? Qwen3 evaluation; CultureTalk-ID","",""
+"162","Recall audit: cross-cultural / Nakba / sign language","https://aclanthology.org/2026.emnlp-main.741.pdf
+https://www.mdpi.com/2079-9292/15/15/3399
+turn9888845view0","2026-05-01/2026-11-09","web search","4","0","1","2","3","","XCR-Bench","ChronoLearn; Tarikhi"
+"163","Recall audit: cross-cultural / Nakba / sign language","""XCR-Bench"" arxiv
+""RoCulturaMCQ"" 2026 English
+""Tarikhi"" ""2026"" ""English""
+""SignGPT and the Visual Language Toolkit"" 2026 arxiv
+""Transfer Learning for Named Entity Recognition of Classical Latin through LLM Prompting""","2026-05-01/2026-11-09","web search","10","0","2","2","4","","XCR-Bench; SignGPT / Visual Language Toolkit","RoCulturaMCQ; Tarikhi"
+"164","NakbaNLP and sign-lang full-paper follow-up","NakbaNLP2026 1.4 ChronoLearn;1.6 Tarikhi;1.7 manuscript task PDFs
+signlang2026 1.6 SignGPT full PDF","2026-05-01/2026-11-09","web search","6","0","1","3","4","","SignGPT / Visual Language Toolkit","ChronoLearn; Tarikhi; NAKBA Arabic Manuscript Understanding 2026"
+"165","Explicit arXiv categories and named workshops","site:arxiv.org/abs/ (cs.CL OR cs.AI) (benchmark OR evaluation) (humanities OR historical OR literature OR philosophy) 2026
+site:arxiv.org/abs/ (cs.CV OR cs.MM) (benchmark OR evaluation) (art OR heritage OR music OR cultural) 2026
+site:arxiv.org/abs/ cs.DL (benchmark OR evaluation OR ""test set"") (archive OR manuscript OR museum OR history OR humanities) 2026
+2026 SINT4CH WCCA VLMs-4-all benchmark cultural heritage evaluation
+2026 ML4AL LM4DH CLRel LaTeCH CLfL LoResLM AfricaNLP VarDial benchmark","2026-05-01/2026-11-09","web search","10","2","1","2","5","TAB-VLM; ChinaHeritaQA","CArtBench","Chronologic; CulMind / CulMind-R"
+"166","NakbaNLP English verification","turn2562260view0 English
+turn2562260view0 prompt
+turn2562260view1 English
+turn2562260view1 prompt
+turn2562260view2 English","2026-05-01/2026-11-09","web search","8","0","0","3","3","","","ChronoLearn; Tarikhi; NAKBA Arabic Manuscript Understanding 2026"
+"167","Cultural VLM aggregator final recall check","https://buraksatar.github.io/resources/
+ChinaHeritaQA author page
+CulMind arXiv2606.21618 PDF/HTML","2026-05-01/2026-11-09","web search","4","6","10","2","18","TAB-VLM; ChinaHeritaQA; Cultural Moment Benchmark (CMB); MemeCULT-1K; CulturalMenuBench; NormViz-Bench","AVMemeExam; TimeTravel; BLEnD-Vis; ConfusedTourist; BanglaVerse; IndicVisionBench; Afri-MCQA; M4-RAG; RAVENEA; DuwatBench","CultureVidBench; CulMind / CulMind-R"
+"168","Cultural VLM aggregator lead-date verification","GG-EZ; BLEnD-Vis; ConfusedTourist; CultureMix; MMAC; BanglaVerse; IndicVisionBench; M2CQA; Afri-MCQA; M4-RAG; RAVENEA; NormViz; DuwatBench; MemeCULT-1K; ChinaHeritaQA","2026-05-01/2026-11-09","open linked primary papers","11","0","10","0","10","","GG-EZ / Anthropogenic Regional Adaptation; BLEnD-Vis; ConfusedTourist; CultureMix / World in a Frame; MMA-ASIA / MMAC; BanglaVerse; IndicVisionBench; M2CQA; Afri-MCQA; M4-RAG",""
+"169","Cultural VLM aggregator remaining dates","RAVENEA; NormViz; DuwatBench; MemeCULT-1K; ChinaHeritaQA primary abs links","2026-05-01/2026-11-09","web search","7","3","2","0","5","ChinaHeritaQA; MemeCULT-1K; NormViz-Bench","RAVENEA; DuwatBench",""
+"170","Cultural VLM final paper verification","NormViz arXiv2609.06831 PDF; MemeCULT-1K2609.01772 PDF; ChinaHeritaQA2606.08959 PDF
+BanglaVerse; IndicVisionBench; M2CQA; Afri-MCQA; M4-RAG first submission histories","2026-05-01/2026-11-09","web search","13","3","5","0","8","ChinaHeritaQA; MemeCULT-1K; NormViz-Bench","BanglaVerse; IndicVisionBench; M2CQA; Afri-MCQA; M4-RAG",""
+"171","New cultural candidates full-text/date verification","""NormViz"" COLM 2026 openreview
+""MemeCULT-1K"" site:aclanthology.org/2026
+""ChinaHeritaQA"" arxiv 2606.08959","2026-05-01/2026-11-09","web search","11","3","0","0","3","ChinaHeritaQA; MemeCULT-1K; NormViz-Bench","",""
+"172","New cultural candidates full-text/date verification","turn8707977view0 You are
+turn8707977view0 github
+turn8707977view1 github
+turn8707977view1 Models
+turn8707977view2 Models
+turn8707977view2 huggingface","2026-05-01/2026-11-09","web search","9","3","0","0","3","ChinaHeritaQA; MemeCULT-1K; NormViz-Bench","",""
+"173","Opened ACL/DH workshop full papers","Opened full texts/indexes recorded in nlp_papers","2026-05-01/2026-11-09; dates screened; some older versions for exclusion","full-text or source-index access audit","6","2","0","1","3","Fluency and Faithfulness literary-translation protocol; Register Mixing: segment-register evaluation","","Narrative Landscape"
+"174","Opened NLP4DH additional full papers","Opened full texts/indexes recorded in nlp_more","2026-05-01/2026-11-09; dates screened; some older versions for exclusion","full-text or source-index access audit","4","2","0","0","2","StoicLLM philosophical-alignment evaluation; Apartheid witness-report summarization/NER evaluation","",""
+"175","Opened CHum full papers","Opened full texts/indexes recorded in chum_candidates","2026-05-01/2026-11-09; dates screened; some older versions for exclusion","full-text or source-index access audit","5","3","1","0","4","Does Bigger Mean Funnier? Qwen3 evaluation; Navigating the Joke Space originality evaluation; The Roast of GPT4o evaluation","Cards Against LLMs",""
+"176","Opened LT4HALA full papers","Opened full texts/indexes recorded in lt_fulls","2026-05-01/2026-11-09; dates screened; some older versions for exclusion","full-text or source-index access audit","9","3","1","5","9","Across Generations: Latin-inscription NER evaluation; Ancient Greek synset-selection evaluation; Historical Germanic POS-tagging evaluation","Uncovering Work from Words: Swedish petitions","Chronologic; Czech morpheme-origin evaluation; Domain-aware Hebrew citation NER; EvaLatin 2026 NER; EvaHan 2026"
+"177","Opened LT4HALA synset paper","Opened full texts/indexes recorded in lt_synset_full","2026-05-01/2026-11-09; dates screened; some older versions for exclusion","full-text or source-index access audit","1","1","1","0","2","Ancient Greek synset-selection evaluation","Uncovering Work from Words: Swedish petitions",""
+"178","Opened CLEF JOKER full overviews","Opened full texts/indexes recorded in jokers_full","2026-05-01/2026-11-09; dates screened; some older versions for exclusion","full-text or source-index access audit","5","0","0","0","0","","",""
+"179","Opened SemEval full overviews","Opened full texts/indexes recorded in semeval_overviews","2026-05-01/2026-11-09; dates screened; some older versions for exclusion","full-text or source-index access audit","10","0","0","1","1","","","SemEval 2026 Task 4 NSNRL"
+"180","Opened LT4HALA EvaLatin/EvaHan/EvaCun programs","Opened full texts/indexes recorded in lt4hala_program","2026-05-01/2026-11-09; dates screened; some older versions for exclusion","full-text or source-index access audit","5","3","0","1","4","Across Generations: Latin-inscription NER evaluation; Ancient Greek synset-selection evaluation; Historical Germanic POS-tagging evaluation","","EvaHan 2026"
+"181","Opened DSH full papers","Opened full texts/indexes recorded in dsh_papers","2026-05-01/2026-11-09; dates screened; some older versions for exclusion","full-text or source-index access audit","6","1","0","2","3","Changing grammatical-use detection evaluation","","Chronologic; Human perceptions of register alignment"
+"182","Opened system-card/report indexes","Opened full texts/indexes recorded in cards_indices","2026-05-01/2026-11-09; dates screened; some older versions for exclusion","full-text or source-index access audit","5","0","0","0","0","","",""
+"183","Opened vision workshop programs","Opened full texts/indexes recorded in ai4va_cvpr","2026-05-01/2026-11-09; dates screened; some older versions for exclusion","full-text or source-index access audit","1","0","1","0","1","","PortraitCraft",""
+"184","Opened VISART program","Opened full texts/indexes recorded in visart","2026-05-01/2026-11-09; dates screened; some older versions for exclusion","full-text or source-index access audit","1","0","1","1","2","","Uncertainty-Aware Art-Historical Dating","SynGallery"
+"185","Opened DHQ official site","Opened full texts/indexes recorded in dhq_official","2026-05-01/2026-11-09; dates screened; some older versions for exclusion","full-text or source-index access audit","1","0","0","0","0","","",""
+"186","Opened HELM official index","Opened full texts/indexes recorded in helm_official","2026-05-01/2026-11-09; dates screened; some older versions for exclusion","full-text or source-index access audit","1","0","0","0","0","","",""
+"187","Opened sign-lang index","Opened full texts/indexes recorded in sign_index","2026-05-01/2026-11-09; dates screened; some older versions for exclusion","full-text or source-index access audit","1","0","0","0","0","","",""
+"188","Opened NakbaNLP full index","Opened full texts/indexes recorded in nakba_index","2026-05-01/2026-11-09; dates screened; some older versions for exclusion","full-text or source-index access audit","1","0","0","3","3","","","M-GATE; ChronoLearn; Tarikhi"
+"189","Opened ICCC full papers","Opened full texts/indexes recorded in iccc_screen_a","2026-05-01/2026-11-09; dates screened; some older versions for exclusion","full-text or source-index access audit","6","0","1","1","2","","Creative Transformation in Literary Texts","QuestionArchaeology"
+"190","Opened ICCC full papers","Opened full texts/indexes recorded in iccc_screen_b","2026-05-01/2026-11-09; dates screened; some older versions for exclusion","full-text or source-index access audit","8","0","1","1","2","","From 31 Functions to 14 Categories","HumorSkills image-caption evaluation"
+"191","Opened critical-search archive OCR paper","Opened full texts/indexes recorded in archive_full","2026-05-01/2026-11-09; dates screened; some older versions for exclusion","full-text or source-index access audit","1","0","0","0","0","","",""
+"192","Opened RESAC DSE paper","Opened full texts/indexes recorded in resac_full","2026-05-01/2026-11-09; dates screened; some older versions for exclusion","full-text or source-index access audit","1","0","0","0","0","","",""
+"193","Opened Fab AI full technical report","Opened full texts/indexes recorded in fab_pdf","2026-05-01/2026-11-09; dates screened; some older versions for exclusion","full-text or source-index access audit","2","1","0","0","1","Fab AI Linguistic Knowledge Benchmark","",""
+"194","LitSeg v1 protocol/date verification","https://arxiv.org/html/2605.27156v1
+https://arxiv.org/pdf/2605.27156v1
+v1 Appendix A grounded pairwise evaluation and English limitations","2026-05-26 v1 / 2026-09-07 v2; both in window","opened full HTML and Appendix A","5","1","0","0","1","LitSeg grounded literary-QA/segmentation protocol","",""
