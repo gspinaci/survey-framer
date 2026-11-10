@@ -1,0 +1,217 @@
+{
+  "benchmark_name": "VQArt-Bench",
+  "publication_year": 2025,
+  "humanities_role": "content",
+  "humanities_role_explanation": "Artwork images and Wikipedia descriptions supply the items, but the seven dimensions (instance identity, attribute, location, counting, spatial relation, interaction, visual-inspired reasoning) are generic SEED-Bench visual-understanding skills, not art-historical competence such as iconographic or iconological interpretation. Although the paper invokes Panofsky, the items test visual perception over art images.",
+  "benchmark_modalities": [
+    "text",
+    "image"
+  ],
+  "benchmark_modalities_explanation": "Artwork images paired with text multiple-choice questions and four options each.",
+  "analytical_tasks": [
+    "multiple_choice_qa",
+    "visual_recognition",
+    "visual_reasoning",
+    "logical_and_quantitative_reasoning",
+    "causal_and_temporal_reasoning"
+  ],
+  "analytical_tasks_explanation": "Four-option multiple-choice VQA over seven dimensions taken from SEED-Bench: Instance Identity and Attribute (visual_recognition), Location and Spatial Relation and Interaction (visual_reasoning), Instance Counting (counting), and Visual-Inspired Reasoning (common-sense or causal reasoning, inferring intent, cause or future outcomes). The paper frames the work as testing symbolism and interpretation, but the dimensions are largely perceptual.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "Scoped to VQA on art and cultural heritage images."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "14 MLLMs: Gemini 2.5, GPT-4o, GPT-4o mini, Aria, Aya Vision, Kimi-VL, Phi-4, Pixtral, InstructBLIP-Vicuna, LLaVA, LLaVA-NeXT, Gemma 3 (4B, 12B, 27B)."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Accuracy on multiple-choice questions."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "arXiv preprint, 14 Oct 2025."
+    }
+  },
+  "summary": "VQArt-Bench is a 14,463-question multiple-choice VQA benchmark on art images, generated through a multi-agent LLM pipeline (topic selector, question generator, refiner, judge) grounded in Wikipedia descriptions. Fourteen MLLMs are evaluated across seven visual-understanding dimensions.",
+  "key_findings": "Gemini 2.5 is best overall (0.71). Most models are below 50%. Counting is weakest and visual-inspired reasoning strongest. Kimi-VL is the best open-source model (0.67) and beats GPT-4o (0.64). Larger Gemma 3 models do better. InstructBLIP-Vicuna scores 0.24, near chance.",
+  "relevant_asjc_areas": [
+    "Visual Arts and Performing Arts",
+    "Museology"
+  ],
+  "dataset_size": "14463",
+  "evaluation_set_size": 14463,
+  "evaluation_unit": "multiple-choice question",
+  "primary_evaluation_setting": "zero-shot",
+  "gold_source": "model_generated",
+  "gold_upstream": null,
+  "gold_upstream_source": null,
+  "gold_beyond_stimulus": "no",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "not_stated",
+  "facets_explanation": "Questions, correct answers and distractors were produced by a chain of LLM agents (Topic Selector, Question Generator, Question Refiner, Judge) from Wikipedia descriptions. Human experts reviewed a 25% sample only for hallucination, not to author the key. The questions are meant to be answerable from the image alone.",
+  "reported_format_gap": "no",
+  "reported_format_gap_points": null,
+  "reported_format_gap_kind": null,
+  "reported_gap_kinds": [],
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 71,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "Table 2 lists Gemini 2.5 with Overall Acc. 0.71, converted to 71 points here. The paper reports no human baseline and no format comparison on the same items. It does compare against SEED-Bench, which is a different benchmark.",
+  "evidence": {
+    "humanities_role": [
+      {
+        "quote": "we use a well-established hierarchy of seven distinct reasoning dimensions derived from [27].",
+        "where": "p. 4, 3.1 Evaluation dimensions"
+      }
+    ],
+    "dataset_size": [
+      {
+        "quote": "The complete VQArt-Bench benchmark consists of 14,463 high-quality, multiple-choice questions",
+        "where": "p. 7, 3.5"
+      }
+    ],
+    "evaluation_set_size": [
+      {
+        "quote": "Total 14463",
+        "where": "p. 7, Table 1"
+      }
+    ],
+    "primary_evaluation_setting": [
+      {
+        "quote": "without being subject to fine-tuning of any kind",
+        "where": "p. 8, 4.1 Analysis"
+      }
+    ],
+    "gold_source": [
+      {
+        "quote": "Subsequently, the Question Refiner converts these into a challenging multiple-choice format with plausible distractors, and finally, every question is validated by the Judge",
+        "where": "p. 2, Introduction"
+      }
+    ],
+    "gold_beyond_stimulus": [
+      {
+        "quote": "avoiding questions that would be answerable only by looking to the metadata.",
+        "where": "p. 6, Step 2"
+      }
+    ],
+    "gold_community_dependent": [],
+    "gold_concerns_genesis": [],
+    "answer_multiplicity": [
+      {
+        "quote": "accuracy refers to the proportion of correctly answered multiple-choice questions relative to the total number of questions",
+        "where": "p. 7, 4.1 Analysis"
+      }
+    ],
+    "plurality_treatment": [],
+    "gold_upstream_source": [],
+    "reported_format_gap": [],
+    "reported_format_gap_points": [],
+    "reported_format_gap_kind": [],
+    "human_baseline_reported": [],
+    "human_gap_points": [],
+    "reported_best_score": [
+      {
+        "quote": "Gemini 2.5 0.73 0.73 0.66 0.72 0.75 0.74 0.80 0.71",
+        "where": "p. 8, Table 2"
+      }
+    ],
+    "reported_cultural_asymmetry": []
+  },
+  "checks": {
+    "missing_fields": [],
+    "vocab_warnings": [],
+    "evidence": {
+      "quotes": {
+        "humanities_role": [
+          "exact"
+        ],
+        "dataset_size": [
+          "exact"
+        ],
+        "evaluation_set_size": [
+          "exact"
+        ],
+        "primary_evaluation_setting": [
+          "exact"
+        ],
+        "gold_source": [
+          "exact"
+        ],
+        "gold_beyond_stimulus": [
+          "exact"
+        ],
+        "answer_multiplicity": [
+          "exact"
+        ],
+        "reported_best_score": [
+          "exact"
+        ]
+      },
+      "unsupported": [],
+      "unverified": []
+    }
+  },
+  "extraction": {
+    "round": "2026-11_claude",
+    "agent": "ciop",
+    "role": "reader",
+    "scope": "humanist",
+    "operator": "RG",
+    "backend": "claude-cli",
+    "backend_kind": "claude-cli",
+    "model": "claude-sonnet-5-5",
+    "prompt_sha256": "b17f9954e3f6fcfaea00bfc79666d31ac51f915da45046c71b23fea2335612f0",
+    "scaffold_sha256": "48c260061fd825a1b6150c73dace26ffacf1c43be51c37f2f14c413fa32989bc",
+    "rendered_prompt_sha256": "949e013da7cac2b69aee151aafe9bf9a723115e17ca95a9cb78df8789b2ada21",
+    "fields": [
+      "analytical_tasks",
+      "analytical_tasks_explanation",
+      "answer_multiplicity",
+      "benchmark_modalities",
+      "benchmark_modalities_explanation",
+      "benchmark_name",
+      "dataset_size",
+      "evaluation_set_size",
+      "evaluation_unit",
+      "facets_explanation",
+      "gold_beyond_stimulus",
+      "gold_community_dependent",
+      "gold_concerns_genesis",
+      "gold_source",
+      "gold_upstream",
+      "gold_upstream_source",
+      "human_baseline_reported",
+      "human_gap_points",
+      "humanities_role",
+      "humanities_role_explanation",
+      "inclusion_criteria",
+      "key_findings",
+      "plurality_treatment",
+      "primary_evaluation_setting",
+      "publication_year",
+      "relevant_asjc_areas",
+      "reported_best_metric",
+      "reported_best_score",
+      "reported_cultural_asymmetry",
+      "reported_format_gap",
+      "reported_format_gap_kind",
+      "reported_format_gap_points",
+      "reported_gap_kinds",
+      "results_explanation",
+      "summary"
+    ],
+    "input": {
+      "pdf_sha256": "a1b81923180b553dda091316f56829cedba193d5f9da7cf7915612fcf0c83693",
+      "text_chars": 45919
+    },
+    "started": "2026-11-10T11:09:38+00:00",
+    "seconds": 12.6
+  },
+  "paper_id": "2510.12750"
+}

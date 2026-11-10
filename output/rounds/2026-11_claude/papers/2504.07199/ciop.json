@@ -1,0 +1,240 @@
+{
+  "benchmark_name": "LLMs4Subjects",
+  "publication_year": 2025,
+  "humanities_role": "content",
+  "humanities_role_explanation": "The items are library catalogue records (title and abstract) of a science and technology library, tagged with GND subject headings. The competence tested is generic multi-label subject indexing over mostly STEM records, not humanities disciplinary competence. Library cataloguing supplies the setting; History, Literature and Linguistics appear only as minor subject domains in the qualitative sample.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Text only: record title and abstract in English or German as input, GND subject headings as output.",
+  "analytical_tasks": [
+    "classification",
+    "retrieval_and_ranking"
+  ],
+  "analytical_tasks_explanation": "Systems recommend a top-k ranked list of GND subject headings (Sachbegriff) for each record, described as extreme multi-label subject tagging/indexing. Systems retrieve and rank candidates from a taxonomy of about 204k terms (79k for tib-core), and are scored by precision, recall and F1@k. Subject specialists also judged the top 20 predictions manually.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "Scoped to one task (GND subject tagging) in one library domain, as a SemEval shared task."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Participants used Llama-3.x, Qwen2.5-72B, Mistral/Mixtral, ChatGLM 4 and others. The organizers' baseline was GPT-4o via the Assistant API."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Precision@k, recall@k, F1@k, and average recall across k; qualitative librarian judgments scored with P/R/F1@20."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "arXiv preprint April 2025 (v3 May 2025); SemEval-2025."
+    }
+  },
+  "summary": "SemEval-2025 Task 5 asked participants to build LLM-based systems that recommend GND subject headings for bilingual (German/English) technical records from TIB's open-access catalogue. Evaluation combined quantitative precision/recall at k with a manual assessment by TIB subject librarians. Ensembles, synthetic data and multilingual models performed well, and the purely LLM few-shot ensemble DNB-AI ranked first in the qualitative evaluation.",
+  "key_findings": "Annif ranked first on all-subjects and RUC Team on tib-core by average recall. DNB-AI, an LLM ensemble with few-shot prompting and no fine-tuning, was best in the qualitative evaluation. Theses were the hardest record type, and no significant difference between German and English was reported. The GPT-4o baseline ranked below participant submissions.",
+  "relevant_asjc_areas": [
+    "Museology"
+  ],
+  "dataset_size": "123589",
+  "evaluation_set_size": null,
+  "evaluation_unit": "library catalogue record (title and abstract with GND subject annotations)",
+  "primary_evaluation_setting": "mix",
+  "gold_source": "existing_metadata",
+  "gold_upstream": null,
+  "gold_upstream_source": null,
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "answer_set",
+  "plurality_treatment": "not_stated",
+  "facets_explanation": "Reference subjects are the GND headings assigned by TIB's 17 subject librarians during routine cataloguing, which the paper describes as created continuously and drawn from title, abstract and full text. This is curatorial metadata reused as gold, not annotation produced for the benchmark. Each record has several accepted subjects (about 3 to 7), and the correct headings depend on the GND vocabulary, which is external to the input. The qualitative evaluation adds librarian labels (Y/I/N) and adjusts recall for newly identified correct subjects, but the paper does not discuss disagreement between annotators.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 21,
+  "reported_format_gap_kind": "scoring",
+  "reported_gap_kinds": [
+    "scoring"
+  ],
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 0.63,
+  "reported_best_metric": "other",
+  "reported_cultural_asymmetry": "no",
+  "results_explanation": "The quantitative leaderboard ranks teams on average recall; the best on all-subjects is Annif with \"Ov. R@k\" 0.63, and on tib-core RUC Team with 0.66. The headline 0.63 is the all-subjects average recall across k=5 to 50, so its metric is recorded as other. The qualitative case 1 (Y and I counted correct) versus case 2 (only Y) shows DNB-AI P@5 0.74 versus 0.53, a gap of 21 points. This is a scoring-rule comparison on the same outputs. No human baseline is reported. Language-level results showed \"no significant difference between processing de or en records\". The evaluation set size is not stated as a single number for the quantitative leaderboard.",
+  "evidence": {
+    "humanities_role": [
+      {
+        "quote": "a shared task on automated subject tagging for scientific and technical records in English and German using the GND taxonomy",
+        "where": "p. 1, Abstract"
+      }
+    ],
+    "dataset_size": [
+      {
+        "quote": "resulting in a dataset of 123,589 records",
+        "where": "p. 2, Section 3"
+      }
+    ],
+    "evaluation_set_size": [],
+    "primary_evaluation_setting": [
+      {
+        "quote": "Multiple off-the-shelf LLMs use few-shot prompting with 8-12 examples",
+        "where": "p. 4, Section 6 (DNB-AI)"
+      },
+      {
+        "quote": "LoRA-based (Hu et al., 2022) fine-tuning on TIBKAT data",
+        "where": "p. 4, Section 6 (DUTIR831)"
+      }
+    ],
+    "gold_source": [
+      {
+        "quote": "Subject annotations in the TIB catalog are continuously created by a dedicated team of",
+        "where": "p. 2-3, Section 3.1"
+      }
+    ],
+    "gold_beyond_stimulus": [
+      {
+        "quote": "Given a record’s title and abstract as input, systems were expected to generate a customizable top-k ranked list of relevant GND subjects.",
+        "where": "p. 3, Section 4"
+      }
+    ],
+    "gold_community_dependent": [],
+    "gold_concerns_genesis": [],
+    "answer_multiplicity": [
+      {
+        "quote": "each record annotated with an average of 3 to 7 subjects",
+        "where": "p. 3, Section 4.2"
+      }
+    ],
+    "plurality_treatment": [],
+    "gold_upstream_source": [],
+    "reported_format_gap": [
+      {
+        "quote": "Therefore, the remainder of this section focuses on case 2, where only Y labels are treated as correct.",
+        "where": "p. 10, Section 7.2"
+      }
+    ],
+    "reported_format_gap_points": [
+      {
+        "quote": "DNB-AI 0.74 0.33 0.65 0.54 0.57",
+        "where": "p. 9, Table 4 case 1"
+      },
+      {
+        "quote": "DNB-AI 0.53 0.34 0.41 0.5 0.51",
+        "where": "p. 9, Table 4 case 2"
+      }
+    ],
+    "reported_format_gap_kind": [
+      {
+        "quote": "case 1 - treating both Y and I as correct, and case 2 - considering only Y.",
+        "where": "p. 8, Section 7"
+      }
+    ],
+    "human_baseline_reported": [],
+    "human_gap_points": [],
+    "reported_best_score": [
+      {
+        "quote": "Annif 0.26 0.49 0.16 0.57 0.63",
+        "where": "p. 7, Table 3 all-subjects"
+      }
+    ],
+    "reported_cultural_asymmetry": []
+  },
+  "checks": {
+    "missing_fields": [],
+    "vocab_warnings": [],
+    "evidence": {
+      "quotes": {
+        "humanities_role": [
+          "exact"
+        ],
+        "dataset_size": [
+          "exact"
+        ],
+        "primary_evaluation_setting": [
+          "exact",
+          "exact"
+        ],
+        "gold_source": [
+          "exact"
+        ],
+        "gold_beyond_stimulus": [
+          "exact"
+        ],
+        "answer_multiplicity": [
+          "exact"
+        ],
+        "reported_format_gap": [
+          "exact"
+        ],
+        "reported_format_gap_points": [
+          "exact",
+          "exact"
+        ],
+        "reported_format_gap_kind": [
+          "exact"
+        ],
+        "reported_best_score": [
+          "exact"
+        ]
+      },
+      "unsupported": [],
+      "unverified": []
+    }
+  },
+  "extraction": {
+    "round": "2026-11_claude",
+    "agent": "ciop",
+    "role": "reader",
+    "scope": "humanist",
+    "operator": "RG",
+    "backend": "claude-cli",
+    "backend_kind": "claude-cli",
+    "model": "claude-sonnet-5-5",
+    "prompt_sha256": "b17f9954e3f6fcfaea00bfc79666d31ac51f915da45046c71b23fea2335612f0",
+    "scaffold_sha256": "48c260061fd825a1b6150c73dace26ffacf1c43be51c37f2f14c413fa32989bc",
+    "rendered_prompt_sha256": "bf34301bda0d711f8878d093146576434ea2d16e0c2446e6a6f7f4d18125e99e",
+    "fields": [
+      "analytical_tasks",
+      "analytical_tasks_explanation",
+      "answer_multiplicity",
+      "benchmark_modalities",
+      "benchmark_modalities_explanation",
+      "benchmark_name",
+      "dataset_size",
+      "evaluation_set_size",
+      "evaluation_unit",
+      "facets_explanation",
+      "gold_beyond_stimulus",
+      "gold_community_dependent",
+      "gold_concerns_genesis",
+      "gold_source",
+      "gold_upstream",
+      "gold_upstream_source",
+      "human_baseline_reported",
+      "human_gap_points",
+      "humanities_role",
+      "humanities_role_explanation",
+      "inclusion_criteria",
+      "key_findings",
+      "plurality_treatment",
+      "primary_evaluation_setting",
+      "publication_year",
+      "relevant_asjc_areas",
+      "reported_best_metric",
+      "reported_best_score",
+      "reported_cultural_asymmetry",
+      "reported_format_gap",
+      "reported_format_gap_kind",
+      "reported_format_gap_points",
+      "reported_gap_kinds",
+      "results_explanation",
+      "summary"
+    ],
+    "input": {
+      "pdf_sha256": "a6c42fa7f3f5183f74327bcfd89873786e18a9fde3b48581938664d349e9343b",
+      "text_chars": 58354
+    },
+    "started": "2026-11-10T11:10:50+00:00",
+    "seconds": 16.0
+  },
+  "paper_id": "2504.07199"
+}

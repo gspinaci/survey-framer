@@ -1,0 +1,255 @@
+{
+  "benchmark_name": "Appear2Meaning",
+  "publication_year": 2026,
+  "humanities_role": "domain",
+  "humanities_role_explanation": "The benchmark targets a core museological and art-historical competence: attributing culture, period, origin and creator to heritage objects from images alone. This is cataloguing and attribution work, not generic QA over humanities-themed items.",
+  "benchmark_modalities": [
+    "image",
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Image-only input of museum objects (ceramics, paintings, metalwork, sculpture); models output structured text metadata (title, culture, period, origin, creator), which is judged against reference text metadata.",
+  "analytical_tasks": [
+    "attribution",
+    "information_extraction",
+    "cultural_reasoning",
+    "generation",
+    "classification"
+  ],
+  "analytical_tasks_explanation": "Paper's term: 'structured cultural metadata inference' from images, predicting culture, period, geographic origin, creator (and title). This is attribution of date, origin and maker, mapped to attribution. Models caption and a language model maps the output to structured fields (information_extraction). Cultural classification into geographic-cultural regions (classification), and culture-specific reasoning (cultural_reasoning). Predictions are free-text, judged by LLM as correct, partial or incorrect.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "Scoped to one task, image-to-cultural-metadata inference for four object categories and four regions."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Nine VLMs: Qwen-VL-Max, Qwen3-VL-Plus/Flash/8B/32B, Pixtral-12B, GPT-4.1-mini, GPT-5.4-mini, Claude Haiku 4.5."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Exact-match accuracy, partial-match rate, attribute-level accuracy, per region, via an LLM judge."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "arXiv preprint 8 April 2026."
+    }
+  },
+  "summary": "Appear2Meaning is a 750-object benchmark of Getty and Met heritage items across four cultural regions. It asks VLMs to infer structured metadata (culture, period, origin, creator, title) from images alone, scored by an LLM judge. Models get very low exact-match scores but moderate partial-match, and vary by region and attribute.",
+  "key_findings": "Exact-match accuracy is 0.005-0.029; partial match is 0.453-0.658 (best Qwen3-VL-Flash 0.658). Title and creator are easier than culture, period, and origin. East Asia is strongest and Europe and the Americas weaker. Error analysis shows Eurocentric misattribution, period compression and creator memorization.",
+  "relevant_asjc_areas": [
+    "Museology",
+    "Visual Arts and Performing Arts",
+    "Conservation",
+    "History"
+  ],
+  "dataset_size": "750",
+  "evaluation_set_size": 750,
+  "evaluation_unit": "heritage object (image with structured museum metadata)",
+  "primary_evaluation_setting": "zero-shot",
+  "gold_source": "existing_metadata",
+  "gold_upstream": null,
+  "gold_upstream_source": null,
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "yes",
+  "answer_multiplicity": "graded_human_judgment",
+  "plurality_treatment": "not_stated",
+  "facets_explanation": "Reference answers are the structured metadata fields from Getty and Met Open Access records. Two human annotators selected and verified only the cultural region and object type assignments, not the metadata values. Targets (creator, origin, period, culture) are non-observable attributes requiring outside knowledge, and concern the object's genesis. Scoring uses an LLM judge with correct, partial and incorrect labels. The paper notes that plausible alternative readings are penalized but treats this as an evaluation limitation, not as a feature.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 65,
+  "reported_format_gap_kind": "scoring",
+  "reported_gap_kinds": [
+    "scoring"
+  ],
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 65.8,
+  "reported_best_metric": "other",
+  "reported_cultural_asymmetry": "yes",
+  "results_explanation": "Exact-match accuracy is 0.014 for Qwen3-VL-Flash against a partial rate of 0.658, a 0.644 gap, about 64 points. The largest gap is on the Ancient Mediterranean subset (Claude Haiku 4.5: Acc 0.000, Partial 0.710), about 71 points, but I report 65 as the headline-model figure. The best headline value is the partial-match rate of Qwen3-VL-Flash (0.658, converted to 65.8); the best exact-match accuracy is 0.029 (Qwen3-VL-32B-Instruct). No human baseline is reported. The paper states 'East Asia consistently yields the strongest performance'.",
+  "evidence": {
+    "humanities_role": [
+      {
+        "quote": "By requiring models to predict structured museum metadata from image-only input, this task asks whether VLMs can infer non-observable cultural attributes beyond perceptual features",
+        "where": "p. 2, Introduction"
+      }
+    ],
+    "dataset_size": [
+      {
+        "quote": "We sample 50 artifacts per culture–type combination, resulting in 750 objects.",
+        "where": "p. 4, Section 3.2"
+      }
+    ],
+    "evaluation_set_size": [
+      {
+        "quote": "Only verified objects are retained, resulting in 750 validated samples.",
+        "where": "p. 4, Section 3.2.1"
+      }
+    ],
+    "primary_evaluation_setting": [
+      {
+        "quote": "All models are evaluated on the benchmark described in Section 3.1 under an image-only setting.",
+        "where": "p. 4, Section 4.1"
+      }
+    ],
+    "gold_source": [
+      {
+        "quote": "Each object includes the original image and structured metadata from museum databases, used as ground truth in Section 3.1.",
+        "where": "p. 4, Section 3.2"
+      }
+    ],
+    "gold_beyond_stimulus": [
+      {
+        "quote": "these attributes are typically not directly observable from visual features alone and require cultural and historical knowledge",
+        "where": "p. 4, Section 3.1"
+      }
+    ],
+    "gold_community_dependent": [],
+    "gold_concerns_genesis": [],
+    "answer_multiplicity": [
+      {
+        "quote": "Each predicted attribute is labeled as correct, partially correct, or incorrect based on semantic alignment with the reference metadata.",
+        "where": "p. 5, Section 4.1"
+      }
+    ],
+    "plurality_treatment": [],
+    "gold_upstream_source": [],
+    "reported_format_gap": [
+      {
+        "quote": "Exact match accuracy is consistently low (around 0.01–0.03), indicating that jointly predicting all metadata fields remains highly challenging.",
+        "where": "p. 5, Section 4.2.1"
+      }
+    ],
+    "reported_format_gap_points": [
+      {
+        "quote": "Qwen3-VL-Flash 0.014 0.658",
+        "where": "p. 5, Table 3"
+      }
+    ],
+    "reported_format_gap_kind": [
+      {
+        "quote": "Metrics include exact match accuracy, partial match rate, and outcome distributions.",
+        "where": "p. 4, Section 3.3"
+      }
+    ],
+    "human_baseline_reported": [],
+    "human_gap_points": [],
+    "reported_best_score": [
+      {
+        "quote": "Qwen3-VL-Flash achieves the highest partial match rate (0.658)",
+        "where": "p. 5, Section 4.2.1"
+      }
+    ],
+    "reported_cultural_asymmetry": [
+      {
+        "quote": "East Asia consistently yields the strongest performance across models",
+        "where": "p. 5, Section 4.2.2"
+      }
+    ]
+  },
+  "checks": {
+    "missing_fields": [],
+    "vocab_warnings": [],
+    "evidence": {
+      "quotes": {
+        "humanities_role": [
+          "exact"
+        ],
+        "dataset_size": [
+          "exact"
+        ],
+        "evaluation_set_size": [
+          "exact"
+        ],
+        "primary_evaluation_setting": [
+          "exact"
+        ],
+        "gold_source": [
+          "exact"
+        ],
+        "gold_beyond_stimulus": [
+          "exact"
+        ],
+        "answer_multiplicity": [
+          "exact"
+        ],
+        "reported_format_gap": [
+          "exact"
+        ],
+        "reported_format_gap_points": [
+          "exact"
+        ],
+        "reported_format_gap_kind": [
+          "exact"
+        ],
+        "reported_best_score": [
+          "exact"
+        ],
+        "reported_cultural_asymmetry": [
+          "exact"
+        ]
+      },
+      "unsupported": [
+        "gold_concerns_genesis"
+      ],
+      "unverified": []
+    }
+  },
+  "extraction": {
+    "round": "2026-11_claude",
+    "agent": "ciop",
+    "role": "reader",
+    "scope": "humanist",
+    "operator": "RG",
+    "backend": "claude-cli",
+    "backend_kind": "claude-cli",
+    "model": "claude-sonnet-5-5",
+    "prompt_sha256": "b17f9954e3f6fcfaea00bfc79666d31ac51f915da45046c71b23fea2335612f0",
+    "scaffold_sha256": "48c260061fd825a1b6150c73dace26ffacf1c43be51c37f2f14c413fa32989bc",
+    "rendered_prompt_sha256": "560ceb3776b470b5a715e8a1866cc156447d6e62a99585abe33f7ebae1d8eb21",
+    "fields": [
+      "analytical_tasks",
+      "analytical_tasks_explanation",
+      "answer_multiplicity",
+      "benchmark_modalities",
+      "benchmark_modalities_explanation",
+      "benchmark_name",
+      "dataset_size",
+      "evaluation_set_size",
+      "evaluation_unit",
+      "facets_explanation",
+      "gold_beyond_stimulus",
+      "gold_community_dependent",
+      "gold_concerns_genesis",
+      "gold_source",
+      "gold_upstream",
+      "gold_upstream_source",
+      "human_baseline_reported",
+      "human_gap_points",
+      "humanities_role",
+      "humanities_role_explanation",
+      "inclusion_criteria",
+      "key_findings",
+      "plurality_treatment",
+      "primary_evaluation_setting",
+      "publication_year",
+      "relevant_asjc_areas",
+      "reported_best_metric",
+      "reported_best_score",
+      "reported_cultural_asymmetry",
+      "reported_format_gap",
+      "reported_format_gap_kind",
+      "reported_format_gap_points",
+      "reported_gap_kinds",
+      "results_explanation",
+      "summary"
+    ],
+    "input": {
+      "pdf_sha256": "35adc26c177d80195512ee774809ffcd75f4e22184efcc121364c2ff759583c9",
+      "text_chars": 72289
+    },
+    "started": "2026-11-10T11:10:06+00:00",
+    "seconds": 15.6
+  },
+  "paper_id": "2604.07338"
+}

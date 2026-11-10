@@ -1,0 +1,268 @@
+{
+  "benchmark_name": "MMMU-Pro",
+  "publication_year": 2024,
+  "humanities_role": "content",
+  "humanities_role_explanation": "MMMU-Pro is a general multi-discipline college-level multimodal benchmark across six disciplines (30 subjects). Humanities subjects (Art, Art Theory, Music, History, Literature) supply some items, but the competence tested is general multimodal understanding and robustness (text-only shortcuts, option count, vision-only input), not humanities scholarship.",
+  "benchmark_modalities": [
+    "text",
+    "image"
+  ],
+  "benchmark_modalities_explanation": "Standard setting pairs image and text multiple-choice questions; the vision-only setting embeds question and options within a screenshot or photo, so only an image is fed to the model.",
+  "analytical_tasks": [
+    "multiple_choice_qa",
+    "visual_reasoning",
+    "logical_and_quantitative_reasoning",
+    "factual_recall",
+    "visual_recognition"
+  ],
+  "analytical_tasks_explanation": "College-exam-style multiple-choice questions (up to 10 options) across disciplines, requiring subject knowledge and reasoning over diagrams, charts, photos, and tables. Humanities items (e.g., a political cartoon on U.S. expansionism, panning blur in photography, architectural systems from floor plans, musical key from notation, poem theme) are a minor share and are scored as single-letter answers. A secondary OCR extraction probe is measured by Levenshtein similarity.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": true,
+      "note": "Broad multi-discipline benchmark covering 30 subjects in six disciplines."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "GPT-4o, GPT-4o mini, Claude 3.5 Sonnet, Gemini 1.5 Pro, Qwen2-VL, InternVL2, LLaVA, VILA, Pixtral, MiniCPM-V, Idefics3, Phi-3.5-Vision."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Accuracy, OCR accuracy via Levenshtein similarity."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "arXiv 2409.02813, September 2024 (v3 May 2025)."
+    }
+  },
+  "summary": "MMMU-Pro is a harder, more robust version of MMMU built by filtering text-only-answerable questions, augmenting options from 4 to 10, and adding a vision-only setting where questions are embedded in screenshots or photos. Model accuracy drops substantially relative to MMMU, and the paper analyzes the effects of CoT, OCR prompts, and error types.",
+  "key_findings": "Performance falls 16.8 to 26.9 points relative to MMMU (Val). GPT-4o (0513) reaches 64.7 overall on MMMU-Pro. CoT generally helps but is weak or negative in Art and Design (LLaVA-OV-72B -17.12). OCR prompts have minimal effect. Reasoning errors rise to 46% of GPT-4o errors in the vision setting. Estimated human expert accuracy is 73.0 to 85.4.",
+  "relevant_asjc_areas": [
+    "History",
+    "Literature and Literary Theory",
+    "Music",
+    "Visual Arts and Performing Arts"
+  ],
+  "dataset_size": "3460",
+  "evaluation_set_size": 3460,
+  "evaluation_unit": "multiple-choice question (1,730 questions each in standard and vision formats)",
+  "primary_evaluation_setting": "mix",
+  "gold_source": "authored_answer_key",
+  "gold_upstream": null,
+  "gold_upstream_source": null,
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "not_stated",
+  "facets_explanation": "Questions derive from MMMU, which the paper describes as drawn from college exams, quizzes, and textbooks, so the answer keys come from existing assessment material. Options were augmented with GPT-4o, filtered by Claude 3.5, and reviewed twice by human experts. Answering requires college-level subject knowledge beyond the stimulus. Each item has one correct letter.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 27,
+  "reported_format_gap_kind": "input",
+  "reported_gap_kinds": [
+    "input",
+    "format",
+    "difficulty"
+  ],
+  "human_baseline_reported": "yes",
+  "human_gap_points": 21,
+  "reported_best_score": 64.7,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "Table 1: GPT-4o (0513) 64.7 on MMMU-Pro overall, 54.0 (10 options), 49.7 (Vision), vs 69.1 on MMMU (Val). The largest gap is VILA-1.5-40B, 14.1 Vision vs 51.9 MMMU (Val), i.e. about 38 points, but the largest same-benchmark standard-to-vision comparison is VILA-1.5-40B 35.9 to 14.1 (22) or LLaVA-OV-72B 38.0 to 24.0 (14); the reported overall drop of 26.9 for VILA is taken as the upper bound, rounded to 27. Human expert estimates: Medium 80.8, High 85.4 overall; human gap computed as High 85.4 minus the 64.7 best model, about 21.",
+  "evidence": {
+    "humanities_role": [
+      {
+        "quote": "MMMU consists of 11.5K carefully curated multimodal questions from college exams, quizzes, and textbooks, covering six core disciplines across 30 subjects and 183 sub-fields",
+        "where": "p. 2, Sec. 2.1"
+      }
+    ],
+    "dataset_size": [
+      {
+        "quote": "Ultimately, we obtain 3,460 questions—1,730 in standard format and 1,730 as screenshots or photos.",
+        "where": "p. 3, Sec. 2.2"
+      }
+    ],
+    "evaluation_set_size": [
+      {
+        "quote": "Ultimately, we obtain 3,460 questions—1,730 in standard format and 1,730 as screenshots or photos.",
+        "where": "p. 3, Sec. 2.2"
+      }
+    ],
+    "primary_evaluation_setting": [
+      {
+        "quote": "We evaluate the models with both Direct and CoT prompts (as shown in Appendix A), and report the higher ones in the overall results.",
+        "where": "p. 4, Sec. 3.1"
+      }
+    ],
+    "gold_source": [
+      {
+        "quote": "MMMU consists of 11.5K carefully curated multimodal questions from college exams, quizzes, and textbooks",
+        "where": "p. 2, Sec. 2.1"
+      }
+    ],
+    "gold_beyond_stimulus": [
+      {
+        "quote": "a comprehensive dataset designed to evaluate multimodal AI models on college-level tasks that require subject-specific knowledge and deliberate reasoning",
+        "where": "p. 2, Sec. 2.1"
+      }
+    ],
+    "gold_community_dependent": [],
+    "gold_concerns_genesis": [],
+    "answer_multiplicity": [
+      {
+        "quote": "The model is required to answer a multiple-choice question with up to 10 options",
+        "where": "p. 4, Figure 4 caption"
+      }
+    ],
+    "plurality_treatment": [],
+    "gold_upstream_source": [],
+    "reported_format_gap": [
+      {
+        "quote": "GPT-4o (0513) experienced a decrease of 10.7%, from 64.7% to 54.0%.",
+        "where": "p. 5, Sec. 3.2"
+      }
+    ],
+    "reported_format_gap_points": [
+      {
+        "quote": "more drastic drops were seen in models like VILA-1.5-40B with a 26.9% decrease.",
+        "where": "p. 6, Sec. 3.2"
+      }
+    ],
+    "reported_format_gap_kind": [
+      {
+        "quote": "GPT-4o (0513) dropped another 4.3% in accuracy when evaluated in the vision-only setting",
+        "where": "p. 5, Sec. 3.2"
+      }
+    ],
+    "human_baseline_reported": [
+      {
+        "quote": "Human Expert (High) 88.6 85.4 85.4 88.6",
+        "where": "p. 5, Table 1"
+      }
+    ],
+    "human_gap_points": [
+      {
+        "quote": "Human Expert (High)",
+        "where": "p. 5, Table 1"
+      },
+      {
+        "quote": "GPT-4o (0513) (OpenAI, 2024b) 64.7",
+        "where": "p. 5, Table 1"
+      }
+    ],
+    "reported_best_score": [
+      {
+        "quote": "GPT-4o (0513) (OpenAI, 2024b) 64.7",
+        "where": "p. 5, Table 1"
+      }
+    ],
+    "reported_cultural_asymmetry": []
+  },
+  "checks": {
+    "missing_fields": [],
+    "vocab_warnings": [],
+    "evidence": {
+      "quotes": {
+        "humanities_role": [
+          "exact"
+        ],
+        "dataset_size": [
+          "exact"
+        ],
+        "evaluation_set_size": [
+          "exact"
+        ],
+        "primary_evaluation_setting": [
+          "exact"
+        ],
+        "gold_source": [
+          "exact"
+        ],
+        "gold_beyond_stimulus": [
+          "exact"
+        ],
+        "answer_multiplicity": [
+          "exact"
+        ],
+        "reported_format_gap": [
+          "exact"
+        ],
+        "reported_format_gap_points": [
+          "exact"
+        ],
+        "reported_format_gap_kind": [
+          "exact"
+        ],
+        "human_baseline_reported": [
+          "exact"
+        ],
+        "human_gap_points": [
+          "exact",
+          "exact"
+        ],
+        "reported_best_score": [
+          "exact"
+        ]
+      },
+      "unsupported": [],
+      "unverified": []
+    }
+  },
+  "extraction": {
+    "round": "2026-11_claude",
+    "agent": "ciop",
+    "role": "reader",
+    "scope": "humanist",
+    "operator": "RG",
+    "backend": "claude-cli",
+    "backend_kind": "claude-cli",
+    "model": "claude-sonnet-5-5",
+    "prompt_sha256": "b17f9954e3f6fcfaea00bfc79666d31ac51f915da45046c71b23fea2335612f0",
+    "scaffold_sha256": "48c260061fd825a1b6150c73dace26ffacf1c43be51c37f2f14c413fa32989bc",
+    "rendered_prompt_sha256": "7c369cafe4c41675a0eb8f5f16c7cb0c889805f5effb4fb056cf7c97ce7a9823",
+    "fields": [
+      "analytical_tasks",
+      "analytical_tasks_explanation",
+      "answer_multiplicity",
+      "benchmark_modalities",
+      "benchmark_modalities_explanation",
+      "benchmark_name",
+      "dataset_size",
+      "evaluation_set_size",
+      "evaluation_unit",
+      "facets_explanation",
+      "gold_beyond_stimulus",
+      "gold_community_dependent",
+      "gold_concerns_genesis",
+      "gold_source",
+      "gold_upstream",
+      "gold_upstream_source",
+      "human_baseline_reported",
+      "human_gap_points",
+      "humanities_role",
+      "humanities_role_explanation",
+      "inclusion_criteria",
+      "key_findings",
+      "plurality_treatment",
+      "primary_evaluation_setting",
+      "publication_year",
+      "relevant_asjc_areas",
+      "reported_best_metric",
+      "reported_best_score",
+      "reported_cultural_asymmetry",
+      "reported_format_gap",
+      "reported_format_gap_kind",
+      "reported_format_gap_points",
+      "reported_gap_kinds",
+      "results_explanation",
+      "summary"
+    ],
+    "input": {
+      "pdf_sha256": "f833d6273318d53487ace892ed54289216f5d6034fcf37af2499146d12860f5b",
+      "text_chars": 173382
+    },
+    "started": "2026-11-10T11:09:08+00:00",
+    "seconds": 18.5
+  },
+  "paper_id": "2409.02813"
+}

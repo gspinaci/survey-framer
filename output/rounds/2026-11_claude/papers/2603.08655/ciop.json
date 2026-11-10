@@ -1,0 +1,271 @@
+{
+  "benchmark_name": "OfficeQA Pro",
+  "publication_year": 2026,
+  "humanities_role": "content",
+  "humanities_role_explanation": "Historical U.S. Treasury Bulletins (1939 to present) supply the documents, but the competence tested is enterprise document parsing, retrieval and quantitative analysis over financial tables. The paper frames it as proxying economically valuable enterprise tasks, not historical or disciplinary inquiry.",
+  "benchmark_modalities": [
+    "text",
+    "image"
+  ],
+  "benchmark_modalities_explanation": "Questions are text. The corpus is PDF scans and digital-native PDFs with tables, charts and figures; oracle PDF pages are given to LLMs as images, and parsed text is an alternative input. A small share (3%) requires visual reasoning over charts.",
+  "analytical_tasks": [
+    "open_ended_qa",
+    "information_extraction",
+    "logical_and_quantitative_reasoning",
+    "retrieval_and_ranking",
+    "agentic_tool_use",
+    "visual_reasoning",
+    "factual_recall"
+  ],
+  "analytical_tasks_explanation": "Grounded Reasoning: document parsing, retrieval across 89,000 pages, and quantitative analysis (e.g. OLS regression, inflation adjustment with CPI, multi-bulletin sums) yielding a numerical answer. Agents use file search, Python and web search. Revision-aware retrieval of the latest published figure is a failure mode. 3% of questions need visual reasoning over charts. Prompt-only runs test parametric recall of financial statistics.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "Scoped to one domain and task type: grounded reasoning over a single Treasury Bulletin corpus."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Claude Opus 4.6/4.5, Sonnet, Haiku, GPT-5.4/5.1/5 Mini, Gemini 3.1 Pro/3 Pro/3 Flash, via LLM baselines and agents (Claude Agent SDK, Codex CLI, Gemini CLI)."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Accuracy via exact match and thresholds of allowable absolute relative error, plus latency, cost and tool calls."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "arXiv preprint March 2026."
+    }
+  },
+  "summary": "OfficeQA Pro is a 133-question benchmark of grounded multi-document reasoning over about 100 years of U.S. Treasury Bulletins, testing parsing, retrieval and quantitative analysis. Frontier LLMs and agents score low, and structured parsing with Databricks ai_parse_document improves results. The paper also ablates parsers, table formats, retrieval tools and test-time scaling, and includes a small human baseline.",
+  "key_findings": "Prompt-only LLMs score under 3% at 0.0% error tolerance. With web search GPT-5.4 reaches 11.3%. Full-corpus agents score 48.1% (Claude Opus 4.6), 36.1% (GPT-5.4) and 18.1% (Gemini 3.1 Pro). Oracle parsed pages give 66.9% at best. Parsed documents improve agent accuracy by 6.0-20.3 points. ai_parse_document averages 50.4% versus Docling 38.4% and unstructured.io 31.1%. Agents outperform human annotators on a 30-question subset.",
+  "relevant_asjc_areas": [],
+  "dataset_size": "246",
+  "evaluation_set_size": 133,
+  "evaluation_unit": "question",
+  "primary_evaluation_setting": "mix",
+  "gold_source": "paper_authors",
+  "gold_upstream": null,
+  "gold_upstream_source": null,
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "noise",
+  "facets_explanation": "The authors wrote a seed set of questions and answers and scaled creation with annotation partners SuperAnnotate and Turing, with review by USAFacts. A second annotator re-answered each question and a third resolved mismatches. Two rounds of QA used conflicting agent answers to disambiguate questions or correct ground truth. Answering requires retrieval from the corpus and sometimes external web values such as CPI, so the answer is not in the question stimulus. Each question has a single unambiguous answer, so ambiguity is removed.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 21,
+  "reported_format_gap_kind": "input",
+  "reported_gap_kinds": [
+    "input",
+    "scoring"
+  ],
+  "human_baseline_reported": "yes",
+  "human_gap_points": -20,
+  "reported_best_score": 66.92,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "Best score is Claude Opus 4.6 agent with Oracle DBX Parsed at 66.92 correctness (%) at 0.0% allowable error. Largest input gap: Claude Opus 4.6 LLM oracle PDF-web-search 36.09 vs. Databricks parse-web-search 57.14, about 21 points. Human baseline (N=3, 30-question subset of OfficeQA-Full, oracle pages) is 51.1 vs. agent 71.1 on PDF, so the gap is -20 points, computed from the average agent rather than the best. dataset_size 246 is the Full release (133 Pro + 113 Easy); evaluation is on the 133 Pro questions.",
+  "evidence": {
+    "humanities_role": [
+      {
+        "quote": "a verifiable benchmark specifically designed to proxy economically valuable tasks centered on Grounded Reasoning",
+        "where": "p. 2, Introduction"
+      }
+    ],
+    "dataset_size": [
+      {
+        "quote": "After this filter, 246 questions remained.",
+        "where": "p. 4, Filtering"
+      },
+      {
+        "quote": "an additional set of 113 easier questions",
+        "where": "p. 14, Appendix B"
+      }
+    ],
+    "evaluation_set_size": [
+      {
+        "quote": "OfficeQA Pro consists of 133 questions.",
+        "where": "p. 3, Section 2.2"
+      }
+    ],
+    "primary_evaluation_setting": [
+      {
+        "quote": "Prompt Only: LLMs answer with the question alone, and no documents, tools, or external context.",
+        "where": "p. 5, Section 3.1"
+      }
+    ],
+    "gold_source": [
+      {
+        "quote": "We authored an initial seed set of questions and answers and scaled dataset creation in collaboration with data annotation partners SuperAnnotate and Turing.",
+        "where": "p. 3, Section 2.3"
+      }
+    ],
+    "gold_beyond_stimulus": [
+      {
+        "quote": "forces systems to navigate to the correct documents and sections, extract relevant evidence while considering context, and compute values.",
+        "where": "p. 2, Section 2.1"
+      }
+    ],
+    "gold_community_dependent": [],
+    "gold_concerns_genesis": [],
+    "answer_multiplicity": [
+      {
+        "quote": "Each question has a single, unambiguous answer.",
+        "where": "p. 3, Section 2.2"
+      }
+    ],
+    "plurality_treatment": [
+      {
+        "quote": "In case (2) the question was revised to remove ambiguity, and in case (3) the ground truth answer was corrected.",
+        "where": "p. 4, Verification"
+      }
+    ],
+    "gold_upstream_source": [],
+    "reported_format_gap": [],
+    "reported_format_gap_points": [
+      {
+        "quote": "llm-oracle PDF-web-search 36.09",
+        "where": "p. 22, Table 7 (claude-4.6-opus)"
+      },
+      {
+        "quote": "llm-oracle-Databricks parse-web-search 57.14",
+        "where": "p. 22, Table 7 (claude-4.6-opus)"
+      }
+    ],
+    "reported_format_gap_kind": [
+      {
+        "quote": "Opus 4.6 from 36.1% to 57.1% (+21.0pp)",
+        "where": "p. 7, Section 3.1"
+      }
+    ],
+    "human_baseline_reported": [
+      {
+        "quote": "Human (N=3) PDF 51.1 19.2",
+        "where": "p. 15, Table 2 (Oracle Pages)"
+      }
+    ],
+    "human_gap_points": [
+      {
+        "quote": "Agent (N=3) PDF 71.1 5.3",
+        "where": "p. 15, Table 2 (Oracle Pages)"
+      }
+    ],
+    "reported_best_score": [
+      {
+        "quote": "The Claude Opus 4.6 agent achieves the highest overall score, reaching 66.9% accuracy.",
+        "where": "p. 8, Section 3.2"
+      }
+    ],
+    "reported_cultural_asymmetry": []
+  },
+  "checks": {
+    "missing_fields": [],
+    "vocab_warnings": [],
+    "evidence": {
+      "quotes": {
+        "humanities_role": [
+          "exact"
+        ],
+        "dataset_size": [
+          "exact",
+          "exact"
+        ],
+        "evaluation_set_size": [
+          "exact"
+        ],
+        "primary_evaluation_setting": [
+          "exact"
+        ],
+        "gold_source": [
+          "exact"
+        ],
+        "gold_beyond_stimulus": [
+          "exact"
+        ],
+        "answer_multiplicity": [
+          "exact"
+        ],
+        "plurality_treatment": [
+          "exact"
+        ],
+        "reported_format_gap_points": [
+          "exact",
+          "exact"
+        ],
+        "reported_format_gap_kind": [
+          "exact"
+        ],
+        "human_baseline_reported": [
+          "exact"
+        ],
+        "human_gap_points": [
+          "exact"
+        ],
+        "reported_best_score": [
+          "exact"
+        ]
+      },
+      "unsupported": [
+        "reported_format_gap"
+      ],
+      "unverified": []
+    }
+  },
+  "extraction": {
+    "round": "2026-11_claude",
+    "agent": "ciop",
+    "role": "reader",
+    "scope": "humanist",
+    "operator": "RG",
+    "backend": "claude-cli",
+    "backend_kind": "claude-cli",
+    "model": "claude-sonnet-5-5",
+    "prompt_sha256": "b17f9954e3f6fcfaea00bfc79666d31ac51f915da45046c71b23fea2335612f0",
+    "scaffold_sha256": "48c260061fd825a1b6150c73dace26ffacf1c43be51c37f2f14c413fa32989bc",
+    "rendered_prompt_sha256": "1eca6de66f163e9fb1bc87bc92f2ffb30184e1af6f4cbc78af2c5cc0069ddb93",
+    "fields": [
+      "analytical_tasks",
+      "analytical_tasks_explanation",
+      "answer_multiplicity",
+      "benchmark_modalities",
+      "benchmark_modalities_explanation",
+      "benchmark_name",
+      "dataset_size",
+      "evaluation_set_size",
+      "evaluation_unit",
+      "facets_explanation",
+      "gold_beyond_stimulus",
+      "gold_community_dependent",
+      "gold_concerns_genesis",
+      "gold_source",
+      "gold_upstream",
+      "gold_upstream_source",
+      "human_baseline_reported",
+      "human_gap_points",
+      "humanities_role",
+      "humanities_role_explanation",
+      "inclusion_criteria",
+      "key_findings",
+      "plurality_treatment",
+      "primary_evaluation_setting",
+      "publication_year",
+      "relevant_asjc_areas",
+      "reported_best_metric",
+      "reported_best_score",
+      "reported_cultural_asymmetry",
+      "reported_format_gap",
+      "reported_format_gap_kind",
+      "reported_format_gap_points",
+      "reported_gap_kinds",
+      "results_explanation",
+      "summary"
+    ],
+    "input": {
+      "pdf_sha256": "0cf442159f94e109edeaa99d0b01f0ecc80839e853c82fcf204960ebcdf2aca2",
+      "text_chars": 78649
+    },
+    "started": "2026-11-10T11:10:42+00:00",
+    "seconds": 17.0
+  },
+  "paper_id": "2603.08655"
+}

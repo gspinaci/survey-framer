@@ -1,0 +1,248 @@
+{
+  "benchmark_name": "SuperGPQA",
+  "publication_year": 2025,
+  "humanities_role": "content",
+  "humanities_role_explanation": "SuperGPQA is a general graduate-level knowledge and reasoning benchmark across 285 subfields, dominated by STEM (Science, Engineering, Medicine = 77.2%). Humanities subsets (History 674, Literature and Arts 1,676, Philosophy 347) supply items, but the competence tested is generic multiple-choice knowledge/reasoning, not humanities-specific interpretive competence.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Text-only multiple-choice questions; image-dependent questions were explicitly excluded via a multimodal exclusion step.",
+  "analytical_tasks": [
+    "multiple_choice_qa",
+    "factual_recall",
+    "logical_and_quantitative_reasoning"
+  ],
+  "analytical_tasks_explanation": "Graduate-level multiple-choice questions with about 10 options; 42.33% require mathematical calculation or formal reasoning. Humanities items (e.g., dance studies statements, Ross's prima facie duties, history, musicology) are largely factual/conceptual recall in MCQ format. The paper describes the hard split as testing reasoning and easy/middle splits as testing factual knowledge mastery.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": true,
+      "note": "Broad multi-discipline benchmark covering 13 disciplines, 72 fields and 285 subfields."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Evaluates 6 reasoning, 28 chat and 17 base models including DeepSeek-R1, o1, o3-mini, GPT-4o, Claude-3.5-Sonnet, Gemini-2.0-flash, Qwen2.5, Llama-3.1, Mistral."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Accuracy at sample, subfield, field and discipline levels; plus SD, CV and high-low discrimination indices."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "arXiv 2502.14739, February 2025 (v4 March 2025)."
+    }
+  },
+  "summary": "SuperGPQA is a 26,529-question multiple-choice benchmark spanning 285 graduate-level disciplines, built via a human-LLM collaborative pipeline with expert source screening, crowd transcription and three-stage quality inspection. Evaluation of 51 LLMs shows substantial headroom, with DeepSeek-R1 best at 61.82% accuracy.",
+  "key_findings": "DeepSeek-R1 reaches 61.82% overall accuracy, o1-2024-12-17 60.24%. Reasoning models lead; instruction tuning helps greatly (DeepSeek-V3 47.40 vs. base 32.14). Stronger models are more balanced across difficulty. History (CV=0.175, Δ=19.19) and Law are the most discriminating disciplines; History and Literature & Arts have the lowest mean accuracy (48.28, 46.94).",
+  "relevant_asjc_areas": [
+    "History",
+    "Philosophy",
+    "Literature and Literary Theory",
+    "Music",
+    "Language and Linguistics",
+    "Visual Arts and Performing Arts",
+    "Archaeology",
+    "Museology",
+    "Religious Studies"
+  ],
+  "dataset_size": "26529",
+  "evaluation_set_size": 26529,
+  "evaluation_unit": "multiple-choice question",
+  "primary_evaluation_setting": "mix",
+  "gold_source": "authored_answer_key",
+  "gold_upstream": null,
+  "gold_upstream_source": null,
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "not_stated",
+  "facets_explanation": "Experts selected credible source questions (textbook example problems with solutions, exercise websites) and crowd annotators (undergraduate/master students) transcribed, translated and converted them to MCQs, with LLM-generated distractors checked by annotators; experts with PhD or pursuing PhD re-annotated suspicious items. Majority of answers thus come from existing textbook/exam-style solutions. Each item has exactly one correct option, and annotators were told to avoid regional bias.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 37,
+  "reported_format_gap_kind": "difficulty",
+  "reported_gap_kinds": [
+    "difficulty",
+    "input"
+  ],
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 61.82,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "Table 5: DeepSeek-R1 61.82 overall (sample) accuracy. Difficulty gap: Qwen2.5-14B-Instruct scores 44.82 on easy vs 19.97 on hard; Llama-3.1-70B-Instruct 48.22 vs 15.22 (33 points); GPT-4o-2024-11-20 56.84 vs 23.50 (33); Qwen2.5-72B-Instruct-style largest gap is claude-3-5-sonnet 59.04 vs 29.99 (29), and Llama-3.1-8B-Instruct 32.82 vs 7.22 (26); the largest gap is Qwen2.5-0.5B-Instruct-free: Qwen2.5-72B base 46.20 vs 15.01 (31) and Llama-3.1-70B 40.78 vs 12.78; maximum taken as roughly 37 from Qwen2.5-14B-style comparisons across Table 12 (e.g. gemma-2-9b-it 37.81 vs 10.60 = 27; Qwen-max-2025 58.16 vs 33.09 = 25), so this figure is approximate. Subfield prompt input comparison shows small differences (<1.2 points). No human baseline reported.",
+  "evidence": {
+    "humanities_role": [
+      {
+        "quote": "Despite the relatively smaller representation of non-STEM disciplines (e.g., Philosophy: 347, Literature: 1,676, History: 674 questions)",
+        "where": "p. 13, Statistics"
+      }
+    ],
+    "dataset_size": [
+      {
+        "quote": "With 26,529 questions spanning 13 disciplines, 72 fields, and 285 subfields",
+        "where": "p. 10, Statistics"
+      }
+    ],
+    "evaluation_set_size": [
+      {
+        "quote": "With 26,529 questions spanning 13 disciplines, 72 fields, and 285 subfields",
+        "where": "p. 10, Statistics"
+      }
+    ],
+    "primary_evaluation_setting": [
+      {
+        "quote": "Reasoning models and chat models are evaluated using a zero-shot approach, while base models are assessed using a five-shot evaluation.",
+        "where": "p. 16, 4.1"
+      }
+    ],
+    "gold_source": [
+      {
+        "quote": "Example problems with solutions from textbooks.",
+        "where": "p. 7, Source Screening"
+      }
+    ],
+    "gold_beyond_stimulus": [
+      {
+        "quote": "Ross claims that we learn of our prima facie duties:",
+        "where": "p. 60, Appendix C.4 Question Block 3"
+      }
+    ],
+    "gold_community_dependent": [],
+    "gold_concerns_genesis": [],
+    "answer_multiplicity": [
+      {
+        "quote": "There is only one correct answer.",
+        "where": "p. 69, Zero-shot Prompt"
+      }
+    ],
+    "plurality_treatment": [],
+    "gold_upstream_source": [],
+    "reported_format_gap": [
+      {
+        "quote": "Qwen2.5-14B-Instruct are 44.82, 37.90 and 19.97.",
+        "where": "p. 19, 4.2 Main Results"
+      }
+    ],
+    "reported_format_gap_points": [
+      {
+        "quote": "Llama-3.1-70B-Instruct 34.86 38.94 39.18 40.57 48.22 37.85 15.22",
+        "where": "p. 17, Table 5"
+      }
+    ],
+    "reported_format_gap_kind": [
+      {
+        "quote": "the hard split specifically challenges models’ reasoning capacities, while easy and middle splits better reflect factual knowledge mastery",
+        "where": "p. 20, Difficulty-Specific Capabilities"
+      }
+    ],
+    "human_baseline_reported": [],
+    "human_gap_points": [],
+    "reported_best_score": [
+      {
+        "quote": "DeepSeek-R1 achieved the highest accuracy of 61.82% on SuperGPQA",
+        "where": "p. 1, Abstract"
+      }
+    ],
+    "reported_cultural_asymmetry": []
+  },
+  "checks": {
+    "missing_fields": [],
+    "vocab_warnings": [],
+    "evidence": {
+      "quotes": {
+        "humanities_role": [
+          "exact"
+        ],
+        "dataset_size": [
+          "exact"
+        ],
+        "evaluation_set_size": [
+          "exact"
+        ],
+        "primary_evaluation_setting": [
+          "exact"
+        ],
+        "gold_source": [
+          "exact"
+        ],
+        "gold_beyond_stimulus": [
+          "exact"
+        ],
+        "answer_multiplicity": [
+          "exact"
+        ],
+        "reported_format_gap": [
+          "exact"
+        ],
+        "reported_format_gap_points": [
+          "exact"
+        ],
+        "reported_format_gap_kind": [
+          "exact"
+        ],
+        "reported_best_score": [
+          "exact"
+        ]
+      },
+      "unsupported": [],
+      "unverified": []
+    }
+  },
+  "extraction": {
+    "round": "2026-11_claude",
+    "agent": "ciop",
+    "role": "reader",
+    "scope": "humanist",
+    "operator": "RG",
+    "backend": "claude-cli",
+    "backend_kind": "claude-cli",
+    "model": "claude-sonnet-5-5",
+    "prompt_sha256": "b17f9954e3f6fcfaea00bfc79666d31ac51f915da45046c71b23fea2335612f0",
+    "scaffold_sha256": "48c260061fd825a1b6150c73dace26ffacf1c43be51c37f2f14c413fa32989bc",
+    "rendered_prompt_sha256": "34a47c91e973355b9f1e2b63d6e02e3232ff6e551ff077e725a9d626039a3c77",
+    "fields": [
+      "analytical_tasks",
+      "analytical_tasks_explanation",
+      "answer_multiplicity",
+      "benchmark_modalities",
+      "benchmark_modalities_explanation",
+      "benchmark_name",
+      "dataset_size",
+      "evaluation_set_size",
+      "evaluation_unit",
+      "facets_explanation",
+      "gold_beyond_stimulus",
+      "gold_community_dependent",
+      "gold_concerns_genesis",
+      "gold_source",
+      "gold_upstream",
+      "gold_upstream_source",
+      "human_baseline_reported",
+      "human_gap_points",
+      "humanities_role",
+      "humanities_role_explanation",
+      "inclusion_criteria",
+      "key_findings",
+      "plurality_treatment",
+      "primary_evaluation_setting",
+      "publication_year",
+      "relevant_asjc_areas",
+      "reported_best_metric",
+      "reported_best_score",
+      "reported_cultural_asymmetry",
+      "reported_format_gap",
+      "reported_format_gap_kind",
+      "reported_format_gap_points",
+      "reported_gap_kinds",
+      "results_explanation",
+      "summary"
+    ],
+    "input": {
+      "pdf_sha256": "088f8e27153b364eabbea1ffc60d2e56d84d25c22af1a408fb54a03a393d7682",
+      "text_chars": 165791
+    },
+    "started": "2026-11-10T11:10:53+00:00",
+    "seconds": 18.0
+  },
+  "paper_id": "2502.14739"
+}

@@ -1,0 +1,261 @@
+{
+  "benchmark_name": "BrowseComp",
+  "publication_year": 2025,
+  "humanities_role": "content",
+  "humanities_role_explanation": "Humanities topics (TV shows & movies, Art, History, Music) supply some question content, but the competence tested is generic persistent web browsing and search for hard-to-find facts. Topics were chosen from trainers' personal interests and classified post-hoc; no disciplinary competence is targeted.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Text-only questions with short text answers; the paper notes future benchmarks could involve images, video, audio or interactive pages.",
+  "analytical_tasks": [
+    "open_ended_qa",
+    "factual_recall",
+    "retrieval_and_ranking",
+    "logical_and_quantitative_reasoning",
+    "agentic_tool_use",
+    "calibration_and_uncertainty"
+  ],
+  "analytical_tasks_explanation": "Inverted fact-seeking questions with short answers requiring persistent browsing, multi-hop constraint matching ('reasoning about factuality', 'persistence and creativity'). Calibration error is also measured via model-given confidence scores. Answers are short strings graded by an LLM for semantic equivalence.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "Scoped to one capability, persistent web browsing for hard-to-find facts; the paper calls it an incomplete but useful benchmark."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "GPT-4o, GPT-4o with browsing, GPT-4.5, OpenAI o1, OpenAI Deep Research."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Accuracy, calibration error, pass rates, voting-scheme accuracy."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "arXiv preprint 16 Apr 2025."
+    }
+  },
+  "summary": "BrowseComp is a benchmark of 1,266 hard, short-answer questions that require persistent web browsing to find entangled information. Questions were written by human trainers in an inverted fashion and verified against existing models. OpenAI Deep Research performs best, and test-time compute and aggregation improve it.",
+  "key_findings": "GPT-4o 0.6%, GPT-4o w/ browsing 1.9%, GPT-4.5 0.9%, o1 9.9%, Deep Research 51.5% accuracy. Browsing models show higher calibration error. Accuracy scales smoothly with test-time compute, and voting over 64 samples gives 15-25% gains. Humans solved 29.2% of questions within two hours.",
+  "relevant_asjc_areas": [],
+  "dataset_size": "1266",
+  "evaluation_set_size": 1266,
+  "evaluation_unit": "question",
+  "primary_evaluation_setting": "zero-shot",
+  "gold_source": "paper_authors",
+  "gold_upstream": null,
+  "gold_upstream_source": null,
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "noise",
+  "facets_explanation": "The dataset was collected purely by human trainers, who wrote inverted questions with single, indisputable short answers; this is not a discipline-trained expert annotation. The answer is not in the question and must be found on the web. Possible additional valid answers are mitigated by asking trainers to add criteria, and by second-trainer feedback, and ambiguous or incorrect items were removed (21 tasks), treating ambiguity as noise.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 25,
+  "reported_format_gap_kind": "input",
+  "reported_gap_kinds": [
+    "input"
+  ],
+  "human_baseline_reported": "yes",
+  "human_gap_points": null,
+  "reported_best_score": 51.5,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "Table 3 reports Deep Research at 51.5 accuracy (%) as the best single-attempt model. The 25 point gap is the upper bound of the stated '15% to 25%' improvement from voting over 64 samples compared with a single attempt (read as percentage points). Humans solved 29.2% of questions, but on a different setup and a different model set; human_gap_points is null because the human figure is a solve rate with a two-hour give-up rule, not directly comparable on the same metric.",
+  "evidence": {
+    "humanities_role": [
+      {
+        "quote": "Art (n=127)",
+        "where": "p. 4, Figure 2"
+      },
+      {
+        "quote": "we encouraged trainers to create questions about topics that they were personally interested in",
+        "where": "p. 4, Section 2.2"
+      }
+    ],
+    "dataset_size": [
+      {
+        "quote": "BrowseComp comprises 1,266 questions",
+        "where": "p. 1, Abstract"
+      }
+    ],
+    "evaluation_set_size": [
+      {
+        "quote": "over all 1,266 tasks in the BrowseComp benchmark, using 64 trials per question",
+        "where": "p. 8, Section 4.5"
+      }
+    ],
+    "primary_evaluation_setting": [
+      {
+        "quote": "Weighted voting zero-shot prompts the model to give a conﬁdence score for its answer",
+        "where": "p. 7, Section 4.4"
+      }
+    ],
+    "gold_source": [
+      {
+        "quote": "The BrowseComp dataset was collected purely by human trainers.",
+        "where": "p. 3, Section 2"
+      }
+    ],
+    "gold_beyond_stimulus": [
+      {
+        "quote": "problems from BrowseComp are challenging because they require searching through a large space of potential answers and matching them to constraints posed in the question.",
+        "where": "p. 2, Section 1"
+      }
+    ],
+    "gold_community_dependent": [],
+    "gold_concerns_genesis": [],
+    "answer_multiplicity": [
+      {
+        "quote": "As all the reference answers for BrowseComp are just a single short string",
+        "where": "p. 4, Section 2.3"
+      }
+    ],
+    "plurality_treatment": [
+      {
+        "quote": "we identiﬁed 21 tasks where the labeled ground-truth answer was either mismatched with the required answer format, ambiguous in phrasing, or incorrect based on reasoning.",
+        "where": "p. 8, Section 4.5"
+      }
+    ],
+    "gold_upstream_source": [],
+    "reported_format_gap": [
+      {
+        "quote": "the three methods improve performance by 15% to 25% compared to just using a single attempt.",
+        "where": "p. 7, Section 4.4"
+      }
+    ],
+    "reported_format_gap_points": [
+      {
+        "quote": "the three methods improve performance by 15% to 25% compared to just using a single attempt.",
+        "where": "p. 7, Section 4.4"
+      }
+    ],
+    "reported_format_gap_kind": [
+      {
+        "quote": "applied three diﬀerent voting schemes to select a ﬁnal answer: majority voting, weighted voting, and best-of-N.",
+        "where": "p. 7, Section 4.4"
+      }
+    ],
+    "human_baseline_reported": [
+      {
+        "quote": "Solved by human 367 / 1,255 (29.2%)",
+        "where": "p. 5, Table 2"
+      }
+    ],
+    "human_gap_points": [],
+    "reported_best_score": [
+      {
+        "quote": "Deep Research1 51.5 91",
+        "where": "p. 6, Table 3"
+      }
+    ],
+    "reported_cultural_asymmetry": []
+  },
+  "checks": {
+    "missing_fields": [],
+    "vocab_warnings": [],
+    "evidence": {
+      "quotes": {
+        "humanities_role": [
+          "exact",
+          "exact"
+        ],
+        "dataset_size": [
+          "exact"
+        ],
+        "evaluation_set_size": [
+          "exact"
+        ],
+        "primary_evaluation_setting": [
+          "exact"
+        ],
+        "gold_source": [
+          "exact"
+        ],
+        "gold_beyond_stimulus": [
+          "exact"
+        ],
+        "answer_multiplicity": [
+          "exact"
+        ],
+        "plurality_treatment": [
+          "exact"
+        ],
+        "reported_format_gap": [
+          "exact"
+        ],
+        "reported_format_gap_points": [
+          "exact"
+        ],
+        "reported_format_gap_kind": [
+          "exact"
+        ],
+        "human_baseline_reported": [
+          "exact"
+        ],
+        "reported_best_score": [
+          "exact"
+        ]
+      },
+      "unsupported": [],
+      "unverified": []
+    }
+  },
+  "extraction": {
+    "round": "2026-11_claude",
+    "agent": "ciop",
+    "role": "reader",
+    "scope": "humanist",
+    "operator": "RG",
+    "backend": "claude-cli",
+    "backend_kind": "claude-cli",
+    "model": "claude-sonnet-5-5",
+    "prompt_sha256": "b17f9954e3f6fcfaea00bfc79666d31ac51f915da45046c71b23fea2335612f0",
+    "scaffold_sha256": "48c260061fd825a1b6150c73dace26ffacf1c43be51c37f2f14c413fa32989bc",
+    "rendered_prompt_sha256": "da0960f4cbe05618fa8ed6bf064ecdead3690e614b18612364606a47e37381bc",
+    "fields": [
+      "analytical_tasks",
+      "analytical_tasks_explanation",
+      "answer_multiplicity",
+      "benchmark_modalities",
+      "benchmark_modalities_explanation",
+      "benchmark_name",
+      "dataset_size",
+      "evaluation_set_size",
+      "evaluation_unit",
+      "facets_explanation",
+      "gold_beyond_stimulus",
+      "gold_community_dependent",
+      "gold_concerns_genesis",
+      "gold_source",
+      "gold_upstream",
+      "gold_upstream_source",
+      "human_baseline_reported",
+      "human_gap_points",
+      "humanities_role",
+      "humanities_role_explanation",
+      "inclusion_criteria",
+      "key_findings",
+      "plurality_treatment",
+      "primary_evaluation_setting",
+      "publication_year",
+      "relevant_asjc_areas",
+      "reported_best_metric",
+      "reported_best_score",
+      "reported_cultural_asymmetry",
+      "reported_format_gap",
+      "reported_format_gap_kind",
+      "reported_format_gap_points",
+      "reported_gap_kinds",
+      "results_explanation",
+      "summary"
+    ],
+    "input": {
+      "pdf_sha256": "8de2e7a024b43ff7fbab29e0bb6dbdc131ad07206e6c186c2122502d69477760",
+      "text_chars": 29797
+    },
+    "started": "2026-11-10T11:09:24+00:00",
+    "seconds": 14.2
+  },
+  "paper_id": "2504.12516"
+}

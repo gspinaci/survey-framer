@@ -1,0 +1,268 @@
+{
+  "benchmark_name": "CulturALL",
+  "publication_year": 2026,
+  "humanities_role": "content",
+  "humanities_role_explanation": "Cultural knowledge (festivals, etiquette, visa rules, naming order, school systems) supplies the scenarios, but the items test everyday, culturally grounded practical reasoning, not humanities disciplinary competence in history, literature, art or similar. Topics such as Heritage and Belief are only 2 of 16 everyday-life topics. The benchmark is a multilingual and multicultural LLM evaluation, not a humanities-discipline one.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Text only: a scenario plus a question in one of 14 languages, with an English translation. The Limitations section states that multimodal inputs are excluded.",
+  "analytical_tasks": [
+    "cultural_reasoning",
+    "factual_recall",
+    "multiple_choice_qa",
+    "open_ended_qa",
+    "logical_and_quantitative_reasoning"
+  ],
+  "analytical_tasks_explanation": "The paper describes 'grounded tasks' that require integrating nuanced cultural knowledge with multi-step reasoning: language comprehension, cultural knowledge acquisition and contextual reasoning. Answers are brief and objective, and items that cannot be made objective are converted to four-option multiple choice (A-D). Difficulty elevation adds 'conditional, multi-step reasoning' and 'compositional reasoning', e.g. combining entry requirements for two places. Long-tail cultural facts are needed (e.g. the chronological order of Singapore National Day songs).",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": true,
+      "note": "Broad multi-topic (16 topics), 14-language, 51-region benchmark of grounded cultural tasks, not scoped to one narrow task."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "gemini-2.5-pro, gemini-2.5-flash, gpt-5, claude-opus-4, claude-sonnet-4, qwen-max, qwen3-235b-a22b and qwen3-30b-a3b, in 15 configurations."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Accuracy, judged correct or incorrect by a gpt-4o judge."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "arXiv preprint 21 Apr 2026."
+    }
+  },
+  "summary": "CulturALL is a benchmark of 2,610 scenario-based questions in 14 languages across 51 regions and 16 everyday-life topics. It tests whether LLMs can combine language understanding, cultural knowledge and contextual reasoning. It was built with a human-LLM collaborative pipeline. The best of 15 model settings reaches 44.48% accuracy.",
+  "key_findings": "The best setting (gemini-2.5-pro with auto reasoning and web search) reaches 44.48% accuracy. Open-source qwen models lag (best 23.68%). Web search helps gemini-2.5-pro (+6.59 points). Reasoning effort helps unevenly. On the Hard subset the best setting reaches only 18.47%. English-translated prompts score 8.08 points lower than native-language prompts. Performance varies by language (e.g. Serbian easier, Japanese harder).",
+  "relevant_asjc_areas": [],
+  "dataset_size": "2610",
+  "evaluation_set_size": 2610,
+  "evaluation_unit": "scenario-based question (sample)",
+  "primary_evaluation_setting": "zero-shot",
+  "gold_source": "domain_expert",
+  "gold_upstream": null,
+  "gold_upstream_source": null,
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "yes",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "not_stated",
+  "facets_explanation": "Human annotators (15 volunteers, native or near-native speakers from universities and labs) wrote items from personal experience, extended them by cross-lingual inspiration and elevated their difficulty. They also peer-reviewed all items. Part of the items were LLM-generated from existing benchmarks and Xiaohongshu posts, and were checked by annotators. The annotators are cultural insiders, not trained humanities specialists, but this is the closest category. Each sample is written in its locale's language with locale-specific answers, so correctness is community-relative. Answers are objective and brief, and scored against a single gold answer.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 8,
+  "reported_format_gap_kind": "input",
+  "reported_gap_kinds": [
+    "input",
+    "difficulty"
+  ],
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 44.48,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "yes",
+  "results_explanation": "Table 2 reports 'gemini-2.5-pro_auto_true' at 44.48 accuracy on the full set, versus 18.47 on Hard and 92.55 on Easy. English prompts yield an accuracy of 36.40%, 'which is 8.08% lower than the accuracy achieved with the original native prompts', so the largest gap is 8 points (input). Open-source models lag proprietary ones, and the gap grows on easier items: 25.32 points on Easy. Language performance varies: Serbian is easier, Japanese harder. The Easy/Hard difference is not counted as a format gap since the subsets are defined by model success.",
+  "evidence": {
+    "humanities_role": [
+      {
+        "quote": "Generic trivia (e.g., math puzzles or textbook facts) is out of scope.",
+        "where": "p. 4, Sample Format"
+      },
+      {
+        "quote": "the 2,610 samples in CulturALL span 16 topics that encompass diverse facets of daily life and society",
+        "where": "p. 2, Introduction"
+      }
+    ],
+    "dataset_size": [
+      {
+        "quote": "The resulting CulturALL comprises 2,610 samples, spanning 14 languages and 51 regions.",
+        "where": "p. 5, Statistics"
+      }
+    ],
+    "evaluation_set_size": [
+      {
+        "quote": "on the complete CulturALL dataset",
+        "where": "p. 6-7, Results"
+      }
+    ],
+    "primary_evaluation_setting": [
+      {
+        "quote": "we conduct zero-shot prompting",
+        "where": "p. 6, Prompt Design"
+      }
+    ],
+    "gold_source": [
+      {
+        "quote": "expert annotators ensure appropriate difficulty and factual accuracy, while LLMs lighten the manual workload",
+        "where": "p. 1, Abstract"
+      },
+      {
+        "quote": "we ask annotators to draw from their personal experiences",
+        "where": "p. 4, Cultural Knowledge Sourcing"
+      }
+    ],
+    "gold_beyond_stimulus": [
+      {
+        "quote": "Ensure the query arises from the scenario and cannot be answered correctly without an understanding of the relevant cultural knowledge.",
+        "where": "p. 4, Sample Format"
+      }
+    ],
+    "gold_community_dependent": [
+      {
+        "quote": "each annotator composes samples in the dominant language of their locale",
+        "where": "p. 3, Section 2"
+      }
+    ],
+    "gold_concerns_genesis": [],
+    "answer_multiplicity": [
+      {
+        "quote": "answers should be objective and as brief as possible",
+        "where": "p. 4, Sample Format"
+      }
+    ],
+    "plurality_treatment": [],
+    "gold_upstream_source": [],
+    "reported_format_gap": [
+      {
+        "quote": "employing English prompts yields an accuracy of 36.40%, which is 8.08% lower than the accuracy achieved with the original native prompts",
+        "where": "p. 7-8, Section 4.4"
+      }
+    ],
+    "reported_format_gap_points": [
+      {
+        "quote": "which is 8.08% lower than the accuracy achieved with the original native prompts",
+        "where": "p. 8, Section 4.4"
+      }
+    ],
+    "reported_format_gap_kind": [
+      {
+        "quote": "we evaluated the performance using native prompts and their English translations",
+        "where": "p. 7, Section 4.4"
+      }
+    ],
+    "human_baseline_reported": [],
+    "human_gap_points": [],
+    "reported_best_score": [
+      {
+        "quote": "achieves the highest accuracy at 44.48%",
+        "where": "p. 6, Section 4.1"
+      }
+    ],
+    "reported_cultural_asymmetry": [
+      {
+        "quote": "Certain languages, such as Serbian, are relatively less challenging, whereas others, like Japanese, pose greater difficulties.",
+        "where": "p. 7, Section 4.3"
+      }
+    ]
+  },
+  "checks": {
+    "missing_fields": [],
+    "vocab_warnings": [],
+    "evidence": {
+      "quotes": {
+        "humanities_role": [
+          "exact",
+          "exact"
+        ],
+        "dataset_size": [
+          "exact"
+        ],
+        "evaluation_set_size": [
+          "exact"
+        ],
+        "primary_evaluation_setting": [
+          "exact"
+        ],
+        "gold_source": [
+          "exact",
+          "exact"
+        ],
+        "gold_beyond_stimulus": [
+          "exact"
+        ],
+        "gold_community_dependent": [
+          "exact"
+        ],
+        "answer_multiplicity": [
+          "exact"
+        ],
+        "reported_format_gap": [
+          "missing"
+        ],
+        "reported_format_gap_points": [
+          "fuzzy"
+        ],
+        "reported_format_gap_kind": [
+          "exact"
+        ],
+        "reported_best_score": [
+          "exact"
+        ],
+        "reported_cultural_asymmetry": [
+          "exact"
+        ]
+      },
+      "unsupported": [],
+      "unverified": [
+        "reported_format_gap"
+      ]
+    }
+  },
+  "extraction": {
+    "round": "2026-11_claude",
+    "agent": "ciop",
+    "role": "reader",
+    "scope": "humanist",
+    "operator": "RG",
+    "backend": "claude-cli",
+    "backend_kind": "claude-cli",
+    "model": "claude-sonnet-5-5",
+    "prompt_sha256": "b17f9954e3f6fcfaea00bfc79666d31ac51f915da45046c71b23fea2335612f0",
+    "scaffold_sha256": "48c260061fd825a1b6150c73dace26ffacf1c43be51c37f2f14c413fa32989bc",
+    "rendered_prompt_sha256": "5f2b916d1f596318fbeaa4131a3169e6de4e2752bc31d7f7f0fe994d2e01163e",
+    "fields": [
+      "analytical_tasks",
+      "analytical_tasks_explanation",
+      "answer_multiplicity",
+      "benchmark_modalities",
+      "benchmark_modalities_explanation",
+      "benchmark_name",
+      "dataset_size",
+      "evaluation_set_size",
+      "evaluation_unit",
+      "facets_explanation",
+      "gold_beyond_stimulus",
+      "gold_community_dependent",
+      "gold_concerns_genesis",
+      "gold_source",
+      "gold_upstream",
+      "gold_upstream_source",
+      "human_baseline_reported",
+      "human_gap_points",
+      "humanities_role",
+      "humanities_role_explanation",
+      "inclusion_criteria",
+      "key_findings",
+      "plurality_treatment",
+      "primary_evaluation_setting",
+      "publication_year",
+      "relevant_asjc_areas",
+      "reported_best_metric",
+      "reported_best_score",
+      "reported_cultural_asymmetry",
+      "reported_format_gap",
+      "reported_format_gap_kind",
+      "reported_format_gap_points",
+      "reported_gap_kinds",
+      "results_explanation",
+      "summary"
+    ],
+    "input": {
+      "pdf_sha256": "75f94d6736429c9b588bd8e12995d104a8bd4985f3dbbc640f773b6f5fd7fc49",
+      "text_chars": 62357
+    },
+    "started": "2026-11-10T11:11:25+00:00",
+    "seconds": 17.1
+  },
+  "paper_id": "2604.19262"
+}

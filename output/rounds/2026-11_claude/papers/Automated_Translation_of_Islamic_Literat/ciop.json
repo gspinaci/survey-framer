@@ -1,0 +1,173 @@
+{
+  "benchmark_name": null,
+  "publication_year": 2025,
+  "humanities_role": "content",
+  "humanities_role_explanation": "Islamic texts (Qur'an, Tafseer, Hadith, jurisprudence) from Al-Shamela supply the material for a machine-translation pipeline; the paper does not test disciplinary competence (exegesis, legal reasoning) but translation fidelity measured by embedding similarity. It is an application/validation study, not a benchmark of humanities competence.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Arabic text translated to English. gpt-4o is used for OCR of page images as a preprocessing step, but evaluation is on text only (original vs back-translated Arabic embeddings).",
+  "analytical_tasks": [
+    "translation",
+    "transcription_and_correction"
+  ],
+  "analytical_tasks_explanation": "Main task is Arabic-to-English forward translation of Islamic works with gpt-4o-mini, validated via back-translation and cosine similarity of embeddings. OCR of Arabic page images and RAG-based replacement of Qur'an/Hadith passages are described as pipeline steps (the RAG step is a recommendation) and are not evaluated.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "Single-task application (Arabic-to-English translation of Islamic literature); no benchmark is introduced."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "gpt-4o-mini (forward translation and back-translation), claude-3-haiku-20240307 (back-translation); others (Llama 3.2, Qwen 2.5, Silma, Jais, Mistral, gpt-4o, Claude 3.5) compared subjectively."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Cosine similarity of embeddings between original Arabic and back-translated Arabic; share of scores >= 0.7."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Coling-Rel workshop, January 19, 2025."
+    }
+  },
+  "summary": "The paper describes a pipeline that uses gpt-4o-mini to translate over 250,000 pages of Islamic works from the Al-Shamela library from Arabic into English, with parallel processing, OCR and storage. Quality is validated by back-translation with OpenAI and Anthropic models and cosine similarity of embeddings between source and back-translated Arabic.",
+  "key_findings": "71% of OpenAI back-translation results and 86% of Anthropic back-translation results had cosine similarity >= 0.7 (deemed acceptable). Scores from the two models are correlated. The authors recommend gpt-4o-mini and Claude Haiku as translation tools.",
+  "relevant_asjc_areas": [
+    "Religious Studies",
+    "Language and Linguistics"
+  ],
+  "dataset_size": "More than 250,000 pages translated (corpus of more than 50,000 books available)",
+  "evaluation_set_size": null,
+  "evaluation_unit": "page of translated text",
+  "primary_evaluation_setting": "zero-shot",
+  "gold_source": "not_stated",
+  "gold_upstream": null,
+  "gold_upstream_source": null,
+  "gold_beyond_stimulus": "not_stated",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "not_stated",
+  "plurality_treatment": "not_stated",
+  "facets_explanation": "There is no reference translation answer key; quality is assessed reference-free through back-translation and embedding similarity against the original Arabic. A human-in-the-loop crowd review (accepting or correcting translations, with at least two reviewers per correction) is described but no results are reported. The paper does not describe annotators or an answer key.",
+  "reported_format_gap": "no",
+  "reported_format_gap_points": null,
+  "reported_format_gap_kind": null,
+  "reported_gap_kinds": [],
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": null,
+  "reported_best_metric": null,
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "The paper reports \"71% of the OpenAI model results and 86% of the Anthropic model results had cosine similarity scores >= 0.7\". It gives no single headline score on a primary metric, so reported_best_score is null. No human baseline numbers are reported, and the evaluation set size is not stated.",
+  "evidence": {
+    "humanities_role": [
+      {
+        "quote": "We applied LLM-driven translation automation on a diverse corpus of Islamic scholarly works including: the Qur’an, Quranic exegesis (Tafseer), Hadith, and Jurisprudence from the Al-Shamela library.",
+        "where": "p. 1, Abstract"
+      }
+    ],
+    "dataset_size": [
+      {
+        "quote": "More than 250,000 pages have been translated into English",
+        "where": "p. 1, Abstract"
+      }
+    ],
+    "evaluation_set_size": [],
+    "primary_evaluation_setting": [
+      {
+        "quote": "The prompt needs to specify several key elements: 1) Provide detailed proficient translation from Arabic language to English language",
+        "where": "p. 2, Section 3.3 Prompt Engineering"
+      }
+    ],
+    "gold_source": [],
+    "gold_beyond_stimulus": [],
+    "gold_community_dependent": [],
+    "gold_concerns_genesis": [],
+    "answer_multiplicity": [],
+    "plurality_treatment": [],
+    "gold_upstream_source": [],
+    "reported_format_gap": [],
+    "reported_format_gap_points": [],
+    "reported_format_gap_kind": [],
+    "human_baseline_reported": [],
+    "human_gap_points": [],
+    "reported_best_score": [],
+    "reported_cultural_asymmetry": []
+  },
+  "checks": {
+    "missing_fields": [],
+    "vocab_warnings": [],
+    "evidence": {
+      "quotes": {
+        "humanities_role": [
+          "exact"
+        ],
+        "dataset_size": [
+          "exact"
+        ],
+        "primary_evaluation_setting": [
+          "exact"
+        ]
+      },
+      "unsupported": [],
+      "unverified": []
+    }
+  },
+  "extraction": {
+    "round": "2026-11_claude",
+    "agent": "ciop",
+    "role": "reader",
+    "scope": "humanist",
+    "operator": "RG",
+    "backend": "claude-cli",
+    "backend_kind": "claude-cli",
+    "model": "claude-sonnet-5-5",
+    "prompt_sha256": "b17f9954e3f6fcfaea00bfc79666d31ac51f915da45046c71b23fea2335612f0",
+    "scaffold_sha256": "48c260061fd825a1b6150c73dace26ffacf1c43be51c37f2f14c413fa32989bc",
+    "rendered_prompt_sha256": "8e96234b31243743d8604a9790489b09d37076ac3a121a9e61ef41a17b99a246",
+    "fields": [
+      "analytical_tasks",
+      "analytical_tasks_explanation",
+      "answer_multiplicity",
+      "benchmark_modalities",
+      "benchmark_modalities_explanation",
+      "benchmark_name",
+      "dataset_size",
+      "evaluation_set_size",
+      "evaluation_unit",
+      "facets_explanation",
+      "gold_beyond_stimulus",
+      "gold_community_dependent",
+      "gold_concerns_genesis",
+      "gold_source",
+      "gold_upstream",
+      "gold_upstream_source",
+      "human_baseline_reported",
+      "human_gap_points",
+      "humanities_role",
+      "humanities_role_explanation",
+      "inclusion_criteria",
+      "key_findings",
+      "plurality_treatment",
+      "primary_evaluation_setting",
+      "publication_year",
+      "relevant_asjc_areas",
+      "reported_best_metric",
+      "reported_best_score",
+      "reported_cultural_asymmetry",
+      "reported_format_gap",
+      "reported_format_gap_kind",
+      "reported_format_gap_points",
+      "reported_gap_kinds",
+      "results_explanation",
+      "summary"
+    ],
+    "input": {
+      "pdf_sha256": "938989fabf1bea95598f35a7d4653fb69061eea17fad419440d30e750fa3098e",
+      "text_chars": 22467
+    },
+    "started": "2026-11-10T11:10:15+00:00",
+    "seconds": 11.7
+  },
+  "paper_id": "Automated_Translation_of_Islamic_Literat"
+}

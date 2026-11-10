@@ -1,0 +1,233 @@
+{
+  "benchmark_name": "Global-MMLU",
+  "publication_year": 2025,
+  "humanities_role": "content",
+  "humanities_role_explanation": "Global-MMLU is a translated and culturally annotated MMLU covering 57 subjects (STEM, humanities, social sciences, etc.). Humanities subjects supply some items, but the competence tested is general multilingual knowledge and the paper's target is cultural bias and translation quality in evaluation, not disciplinary competence in a humanities field.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Text-only multiple-choice questions translated into 42 languages.",
+  "analytical_tasks": [
+    "multiple_choice_qa",
+    "factual_recall",
+    "cultural_reasoning",
+    "classification"
+  ],
+  "analytical_tasks_explanation": "Models answer MMLU four-option multiple-choice questions (5-shot). Annotators additionally classify questions as Culturally-Sensitive (cultural, geographic, dialect knowledge) vs Culturally-Agnostic, which is the paper's own analytic layer used to compare model performance and rankings.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": true,
+      "note": "Broad multi-task benchmark across 57 MMLU subjects and 42 languages."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "14 models from 9 families: Aya Expanse, CommandR/R+, Gemma2, SEA-LION v3, Llama 3.1, Mistral Nemo, Qwen 2.5, GPT-4o, Claude Sonnet 3.5."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Accuracy, rank changes, position shifts, standard deviation across languages, Krippendorff's alpha, ChrF++."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "arXiv preprint December 2024 (v2 February 20, 2025)."
+    }
+  },
+  "summary": "The paper audits MMLU for cultural bias, finding 28% of questions require culturally sensitive knowledge, mostly Western. It releases Global-MMLU, a 42-language version with professional and community translation edits and CS/CA subset labels, plus a Lite version, and shows model rankings shift between CS and CA subsets.",
+  "key_findings": "28% of MMLU questions require culturally sensitive knowledge; 84.9% of geography-tagged questions focus on North America or Europe; 86.5% of culture tags are Western. Rankings on CA subsets show 3.4 rank changes versus 5.7 on CS. Low-resource languages show higher variance (std 6.37 CA, 6.78 CS vs 3.21/3.86 for high-resource). Human vs machine translation matters differently across resource levels.",
+  "relevant_asjc_areas": [
+    "Language and Linguistics",
+    "History",
+    "Philosophy",
+    "Religious Studies"
+  ],
+  "dataset_size": "589764",
+  "evaluation_set_size": null,
+  "evaluation_unit": "multiple-choice question (question-answer pair)",
+  "primary_evaluation_setting": "few-shot",
+  "gold_source": "authored_answer_key",
+  "gold_upstream": null,
+  "gold_upstream_source": null,
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "noise",
+  "facets_explanation": "Answer keys are inherited from the original English MMLU exam questions; translations were machine-produced (Google Translate) then edited by professional and community annotators or taken from MMMLU. Cultural sensitivity labels were assigned by 3+ annotators and resolved by majority vote; Krippendorff's alpha was reported as agreement. Questions require outside knowledge (e.g., US history, law). The answer key remains one universal key per question across languages.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": null,
+  "reported_format_gap_kind": null,
+  "reported_gap_kinds": [
+    "difficulty",
+    "input"
+  ],
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": null,
+  "reported_best_metric": null,
+  "reported_cultural_asymmetry": "yes",
+  "results_explanation": "The paper reports rank changes, position shifts and per-language standard deviations rather than a single headline accuracy; accuracy values appear only in figures, with group averages stated (small models 51.3% CA / 54.8% CS, mid-size 59.1% / 61.7%, large 61.6% / 66.8%). reported_best_score is null because no single headline figure is given in the text. The format-gap fields compare CS vs CA subsets and human- vs machine-translated inputs, but no point figure is given in text, so reported_format_gap_points is null.",
+  "evidence": {
+    "humanities_role": [
+      {
+        "quote": "MMLU dataset (Hendrycks et al., 2020), includes 57 subjects spanning four categories: STEM, Humanities, Social Sciences, and Other.",
+        "where": "p. 7, Section 2.2"
+      }
+    ],
+    "dataset_size": [
+      {
+        "quote": "resulting in a total of 589,764 samples",
+        "where": "p. 12, Section 3.2"
+      }
+    ],
+    "evaluation_set_size": [],
+    "primary_evaluation_setting": [
+      {
+        "quote": "to evaluate the open multilingual models in a 5-shot setting",
+        "where": "p. 13, Section 4.1"
+      }
+    ],
+    "gold_source": [
+      {
+        "quote": "Originally compiled using sources in the English language across 57 diverse subject areas such as elementary mathematics, computer science, and law",
+        "where": "p. 2, Introduction"
+      }
+    ],
+    "gold_beyond_stimulus": [
+      {
+        "quote": "identify questions where correctly answering requires cultural, geographical, or dialect-specific knowledge",
+        "where": "p. 3, Introduction"
+      }
+    ],
+    "gold_community_dependent": [],
+    "gold_concerns_genesis": [],
+    "answer_multiplicity": [
+      {
+        "quote": "We use a system preamble to make the model respond with only the correct answer option and extract the answer from the output generation.",
+        "where": "p. 13, Section 4.1"
+      }
+    ],
+    "plurality_treatment": [
+      {
+        "quote": "We classify each question as presenting cultural, geographic and dialect sensitivity according to",
+        "where": "p. 5, Section 2.1"
+      },
+      {
+        "quote": "majority vote among annotators who reviewed each data point (Feldman, 1980).",
+        "where": "p. 6, Section 2.1"
+      }
+    ],
+    "gold_upstream_source": [],
+    "reported_format_gap": [
+      {
+        "quote": "models generally perform better on human-translated data for high-resource languages.",
+        "where": "p. 19, Section 4.2"
+      }
+    ],
+    "reported_format_gap_points": [],
+    "reported_format_gap_kind": [],
+    "human_baseline_reported": [],
+    "human_gap_points": [],
+    "reported_best_score": [],
+    "reported_cultural_asymmetry": [
+      {
+        "quote": "progress on MMLU depends heavily on learning Western-centric concepts, with 28% of all questions requiring culturally sensitive knowledge.",
+        "where": "p. 1, Abstract"
+      }
+    ]
+  },
+  "checks": {
+    "missing_fields": [],
+    "vocab_warnings": [],
+    "evidence": {
+      "quotes": {
+        "humanities_role": [
+          "fuzzy"
+        ],
+        "dataset_size": [
+          "exact"
+        ],
+        "primary_evaluation_setting": [
+          "exact"
+        ],
+        "gold_source": [
+          "exact"
+        ],
+        "gold_beyond_stimulus": [
+          "exact"
+        ],
+        "answer_multiplicity": [
+          "exact"
+        ],
+        "plurality_treatment": [
+          "exact",
+          "exact"
+        ],
+        "reported_format_gap": [
+          "exact"
+        ],
+        "reported_cultural_asymmetry": [
+          "exact"
+        ]
+      },
+      "unsupported": [],
+      "unverified": []
+    }
+  },
+  "extraction": {
+    "round": "2026-11_claude",
+    "agent": "ciop",
+    "role": "reader",
+    "scope": "humanist",
+    "operator": "RG",
+    "backend": "claude-cli",
+    "backend_kind": "claude-cli",
+    "model": "claude-sonnet-5-5",
+    "prompt_sha256": "b17f9954e3f6fcfaea00bfc79666d31ac51f915da45046c71b23fea2335612f0",
+    "scaffold_sha256": "48c260061fd825a1b6150c73dace26ffacf1c43be51c37f2f14c413fa32989bc",
+    "rendered_prompt_sha256": "ef58d66ffd4dc7d4f6617969a2895ed75f64778afe3a6440ed0c5f31f9969a78",
+    "fields": [
+      "analytical_tasks",
+      "analytical_tasks_explanation",
+      "answer_multiplicity",
+      "benchmark_modalities",
+      "benchmark_modalities_explanation",
+      "benchmark_name",
+      "dataset_size",
+      "evaluation_set_size",
+      "evaluation_unit",
+      "facets_explanation",
+      "gold_beyond_stimulus",
+      "gold_community_dependent",
+      "gold_concerns_genesis",
+      "gold_source",
+      "gold_upstream",
+      "gold_upstream_source",
+      "human_baseline_reported",
+      "human_gap_points",
+      "humanities_role",
+      "humanities_role_explanation",
+      "inclusion_criteria",
+      "key_findings",
+      "plurality_treatment",
+      "primary_evaluation_setting",
+      "publication_year",
+      "relevant_asjc_areas",
+      "reported_best_metric",
+      "reported_best_score",
+      "reported_cultural_asymmetry",
+      "reported_format_gap",
+      "reported_format_gap_kind",
+      "reported_format_gap_points",
+      "reported_gap_kinds",
+      "results_explanation",
+      "summary"
+    ],
+    "input": {
+      "pdf_sha256": "33355d08932663acd0631ad63c0d35977fd6944c22f28cc802abdba5c91baa8e",
+      "text_chars": 154745
+    },
+    "started": "2026-11-10T11:09:08+00:00",
+    "seconds": 15.3
+  },
+  "paper_id": "2412.03304"
+}

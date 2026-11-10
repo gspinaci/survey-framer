@@ -1,0 +1,245 @@
+{
+  "benchmark_name": "M3Exam",
+  "publication_year": 2023,
+  "humanities_role": "content",
+  "humanities_role_explanation": "M3Exam is a general-intelligence benchmark built from school exams across subjects (language, math, social science, natural science). Humanities-adjacent items (history, language, social studies) are only part of the pool and serve as generic exam questions; the competence tested is general multilingual/multimodal ability, not disciplinary humanities competence.",
+  "benchmark_modalities": [
+    "text",
+    "image"
+  ],
+  "benchmark_modalities_explanation": "Text multiple-choice questions in 9 languages; about 23% (2,816) require one or more images, marked with placeholders and supplied as image files.",
+  "analytical_tasks": [
+    "multiple_choice_qa",
+    "factual_recall",
+    "logical_and_quantitative_reasoning",
+    "visual_reasoning",
+    "cultural_reasoning"
+  ],
+  "analytical_tasks_explanation": "All items are multiple-choice exam questions (accuracy). They mix factual knowledge (history, social science), language questions (e.g. Swahili idiom, Javanese script to Latin transliteration), math/science reasoning, and image-based questions needing cross-image reasoning. Culture-specific knowledge is acknowledged, but no interpretive or genesis-oriented tasks.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": true,
+      "note": "Broad multi-subject, multilingual, multilevel exam benchmark for general intelligence."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "GPT-4, ChatGPT, Claude-instant, BLOOM, Vicuna; multimodal: BLIP-2, InstructBLIP, Fromage, OpenFlamingo (plus Flan-T5)."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Accuracy."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "NeurIPS 2023 Datasets and Benchmarks track; references include May 2023 works."
+    }
+  },
+  "summary": "M3Exam is a benchmark of 12,317 real official exam multiple-choice questions in 9 languages from primary, middle and high school graduation exams, with about 23% requiring images. It evaluates text-only and multimodal LLMs, finding that GPT-4 is the only model above 60% and that low-resource and non-Latin-script languages and complex multimodal questions remain hard.",
+  "key_findings": "GPT-4 averages 72.92% accuracy (ChatGPT 57.57%, Claude 51.80%); performance is weakest on Javanese, Thai and Swahili. Multimodal models score below 50% overall (BLIP-2 49.06%) and barely beat text-only Flan-T5 (48.30%). Performance does not decrease monotonically with educational level. ChatGPT is weakest in math. English translation helps Thai and Javanese greatly.",
+  "relevant_asjc_areas": [
+    "Language and Linguistics",
+    "History"
+  ],
+  "dataset_size": "12317",
+  "evaluation_set_size": null,
+  "evaluation_unit": "multiple-choice exam question",
+  "primary_evaluation_setting": "mix",
+  "gold_source": "authored_answer_key",
+  "gold_upstream": null,
+  "gold_upstream_source": null,
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "yes",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "not_stated",
+  "facets_explanation": "Questions and official answers were collected from real national or regional graduation exam papers by native-speaker collectors; annotators then fixed OCR errors, formatted items and entered the answer from the official answer sets. Questions require external subject and culture-specific knowledge, and data were sourced natively per country rather than translated to retain cultural background. Each item has one correct option.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 14,
+  "reported_format_gap_kind": "input",
+  "reported_gap_kinds": [
+    "input"
+  ],
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 72.92,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "yes",
+  "results_explanation": "GPT-4 reaches 72.92 average accuracy in Table 2 (zero-shot). ChatGPT on Thai improves from 34.09 (Monolingual) to 46.49 (EN-Translation) and on Javanese from 37.47 to 50.94 (the latter is the 13.47 gap, rounded up to 14). The paper reports the number of test items only as a total of 12,317, with 3 development questions per subject/level/language held out, so evaluation_set_size is not given as a single figure. No human baseline number is reported (only a passing score line).",
+  "evidence": {
+    "humanities_role": [
+      {
+        "quote": "we group the questions for each language into four subject categories, namely language, math, social science, and natural science",
+        "where": "p. 5, Section 2.4"
+      }
+    ],
+    "dataset_size": [
+      {
+        "quote": "In total, M3Exam comprises 12,317 questions in 9 diverse languages",
+        "where": "p. 2, Introduction"
+      }
+    ],
+    "evaluation_set_size": [],
+    "primary_evaluation_setting": [
+      {
+        "quote": "We primarily evaluate various LLMs in zero-shot settings.",
+        "where": "p. 5, Section 3.2"
+      }
+    ],
+    "gold_source": [
+      {
+        "quote": "collect official exam papers along with their answers at the end of each educational level",
+        "where": "p. 3, Section 2.2"
+      }
+    ],
+    "gold_beyond_stimulus": [
+      {
+        "quote": "many questions are closely tied to each specific language, translated data may lose essential information in such cases",
+        "where": "p. 7, Section 4.1"
+      }
+    ],
+    "gold_community_dependent": [],
+    "gold_concerns_genesis": [],
+    "answer_multiplicity": [
+      {
+        "quote": "As all the questions are multiple-choice questions, we utilize accuracy as the evaluation metric.",
+        "where": "p. 6, Evaluations"
+      }
+    ],
+    "plurality_treatment": [],
+    "gold_upstream_source": [],
+    "reported_format_gap": [
+      {
+        "quote": "EN-Translation 57.92 62.76 59.62 56.40 46.49 48.13 70.16 50.94",
+        "where": "p. 7, Table 3"
+      }
+    ],
+    "reported_format_gap_points": [
+      {
+        "quote": "Monolingual 75.98 61.00 67.94 62.43 57.18 34.09 53.04 68.99 37.47",
+        "where": "p. 7, Table 3"
+      }
+    ],
+    "reported_format_gap_kind": [
+      {
+        "quote": "employing a translate-test approach (i.e., translating target language data to English)",
+        "where": "p. 6, Section 4.1"
+      }
+    ],
+    "human_baseline_reported": [],
+    "human_gap_points": [],
+    "reported_best_score": [
+      {
+        "quote": "GPT-4 87.55 79.47 83.23 74.24 70.49 56.04 65.89 84.11 55.26 72.92",
+        "where": "p. 6, Table 2"
+      }
+    ],
+    "reported_cultural_asymmetry": [
+      {
+        "quote": "existing models generally perform worse for non-Latin languages, such as Chinese (despite being relatively high-resource), as well as low-resource languages like Javanese",
+        "where": "p. 6, Section 4.1"
+      }
+    ]
+  },
+  "checks": {
+    "missing_fields": [],
+    "vocab_warnings": [],
+    "evidence": {
+      "quotes": {
+        "humanities_role": [
+          "exact"
+        ],
+        "dataset_size": [
+          "exact"
+        ],
+        "primary_evaluation_setting": [
+          "exact"
+        ],
+        "gold_source": [
+          "exact"
+        ],
+        "gold_beyond_stimulus": [
+          "exact"
+        ],
+        "answer_multiplicity": [
+          "exact"
+        ],
+        "reported_format_gap": [
+          "exact"
+        ],
+        "reported_format_gap_points": [
+          "exact"
+        ],
+        "reported_format_gap_kind": [
+          "exact"
+        ],
+        "reported_best_score": [
+          "exact"
+        ],
+        "reported_cultural_asymmetry": [
+          "exact"
+        ]
+      },
+      "unsupported": [
+        "gold_community_dependent"
+      ],
+      "unverified": []
+    }
+  },
+  "extraction": {
+    "round": "2026-11_claude",
+    "agent": "ciop",
+    "role": "reader",
+    "scope": "humanist",
+    "operator": "RG",
+    "backend": "claude-cli",
+    "backend_kind": "claude-cli",
+    "model": "claude-sonnet-5-5",
+    "prompt_sha256": "b17f9954e3f6fcfaea00bfc79666d31ac51f915da45046c71b23fea2335612f0",
+    "scaffold_sha256": "48c260061fd825a1b6150c73dace26ffacf1c43be51c37f2f14c413fa32989bc",
+    "rendered_prompt_sha256": "8cdbab3c4924bd6fa12cc71b1f38920a3785947d0b14ca361cef984cbc7a278c",
+    "fields": [
+      "analytical_tasks",
+      "analytical_tasks_explanation",
+      "answer_multiplicity",
+      "benchmark_modalities",
+      "benchmark_modalities_explanation",
+      "benchmark_name",
+      "dataset_size",
+      "evaluation_set_size",
+      "evaluation_unit",
+      "facets_explanation",
+      "gold_beyond_stimulus",
+      "gold_community_dependent",
+      "gold_concerns_genesis",
+      "gold_source",
+      "gold_upstream",
+      "gold_upstream_source",
+      "human_baseline_reported",
+      "human_gap_points",
+      "humanities_role",
+      "humanities_role_explanation",
+      "inclusion_criteria",
+      "key_findings",
+      "plurality_treatment",
+      "primary_evaluation_setting",
+      "publication_year",
+      "relevant_asjc_areas",
+      "reported_best_metric",
+      "reported_best_score",
+      "reported_cultural_asymmetry",
+      "reported_format_gap",
+      "reported_format_gap_kind",
+      "reported_format_gap_points",
+      "reported_gap_kinds",
+      "results_explanation",
+      "summary"
+    ],
+    "input": {
+      "pdf_sha256": "a7c735791dea299de22468a3fd0f3d080bfddc9889f86e5fed5029c08ae45ed3",
+      "text_chars": 69190
+    },
+    "started": "2026-11-10T11:11:47+00:00",
+    "seconds": 15.0
+  },
+  "paper_id": "M3Exam:_A_Multilingual,_Multimodal,_Mult"
+}

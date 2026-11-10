@@ -1,0 +1,242 @@
+{
+  "benchmark_name": null,
+  "publication_year": 2025,
+  "humanities_role": "both",
+  "humanities_role_explanation": "Petitions are historical documents annotated for classical rhetorical sections (Salutatio, Petitio, Conclusio), so the section-tagging task tests disciplinary competence in rhetorical/diplomatic analysis (domain). However, the paper treats the work as an annotation/information-extraction test on historical text; the difficulty-estimation task is a generic calibration measure. Decision: the items measure recognition of a historiographically meaningful rhetorical structure, so domain, with the second metric (difficulty alignment) being generic.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Transcribed 18th-century Swedish and English petitions as plain text; models return tagged text plus a difficulty score.",
+  "analytical_tasks": [
+    "information_extraction",
+    "stylistic_analysis",
+    "calibration_and_uncertainty",
+    "classification"
+  ],
+  "analytical_tasks_explanation": "Models insert start/end tags marking Salutatio, Petitio and Conclusio spans in whole petitions (paper: 'identify rhetorical sections', 'fine-grained content annotation'), evaluated by token-level P/R/F1 and edit distance. Models also return a 0-2 difficulty score compared with human difficulty ratings ('compare human and model uncertainty').",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "Single-task, single-genre dataset of petitions (rhetorical section tagging)."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "GPT-4, Gemini 1.5 Pro, Mixtral 8x22B, Mistral 7B, LLaMA 3 70B and 8B."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Token-level precision, recall, F1, mean token edit distance, mean error and Spearman's rho for difficulty."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "RANLP 2025 workshop, September 2025."
+    }
+  },
+  "summary": "The paper builds a dataset of 100 Swedish and 100 English 18th-century petitions annotated for Salutatio, Petitio and Conclusio, and evaluates six LLMs with few-shot prompts of varying detail and prompt language. Models do very well on Salutatio, less well on Petitio and Conclusio especially for Swedish and small models, and underestimate document difficulty relative to human ratings.",
+  "key_findings": "Salutatio F1 reaches the high 90s for most models; Petitio and Conclusio are harder, particularly for smaller models and Swedish. Prompt length and number of examples show no consistent effect; prompt language has little systematic effect. Models mostly rate documents as easier than humans do, with Spearman correlations from -0.45 to +0.27.",
+  "relevant_asjc_areas": [
+    "History",
+    "Language and Linguistics",
+    "Literature and Literary Theory"
+  ],
+  "dataset_size": "200",
+  "evaluation_set_size": 200,
+  "evaluation_unit": "petition (document)",
+  "primary_evaluation_setting": "few-shot",
+  "gold_source": "domain_expert",
+  "gold_upstream": null,
+  "gold_upstream_source": null,
+  "gold_beyond_stimulus": "no",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "noise",
+  "facets_explanation": "Three annotators manually inserted start and end tags, with each petition annotated by two of them; disagreements were resolved after each batch and general principles agreed for consistency. Annotator disciplinary training is not explicitly described, though the work is embedded in a history research project (the Swedish transcriptions were made by a historian), so domain_expert is a best reading. Disagreement is measured (kappa, token distance) and resolved, and difficulty scores derive from it.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": null,
+  "reported_format_gap_kind": null,
+  "reported_gap_kinds": [
+    "input"
+  ],
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 100.0,
+  "reported_best_metric": "f1",
+  "reported_cultural_asymmetry": "yes",
+  "results_explanation": "Best headline figure is Gemini's Salutatio F1 of 100.0 on Swedish data (long 3-shot, Swedish prompt); the paper gives no single overall headline score, so this is the maximum per-section F1. Inter-annotator agreement is reported but not as a model comparison baseline. The prompt-condition differences are small and no gap number is derived, so reported_format_gap_points is null. English outperforms Swedish: 'the models generally found both Petitio and Conclusio more challenging to annotate in the Swedish Petitions'.",
+  "evidence": {
+    "humanities_role": [
+      {
+        "quote": "Our experiments thus primarily test the ability of language models to identify the three selected sections.",
+        "where": "p. 3, Section 3.3"
+      }
+    ],
+    "dataset_size": [
+      {
+        "quote": "we have created a dataset of 100 historical petitions in Swedish and 100 in English",
+        "where": "p. 1, Introduction"
+      }
+    ],
+    "evaluation_set_size": [
+      {
+        "quote": "Swedish 1709–1800 100 24,904 249 ± 116",
+        "where": "p. 2, Table 1"
+      }
+    ],
+    "primary_evaluation_setting": [
+      {
+        "quote": "using few-shot prompting with varying levels of detail",
+        "where": "p. 1, Abstract"
+      }
+    ],
+    "gold_source": [
+      {
+        "quote": "we manually inserted start and end tags for each section. Three annotators carried out the work, with each petition annotated by two of them.",
+        "where": "p. 3, Section 3.4"
+      }
+    ],
+    "gold_beyond_stimulus": [
+      {
+        "quote": "Salutatio: Formal salutation to the addressee.",
+        "where": "p. 3, Section 3.3"
+      }
+    ],
+    "gold_community_dependent": [],
+    "gold_concerns_genesis": [],
+    "answer_multiplicity": [
+      {
+        "quote": "comparing them to all tokens inside the corresponding gold spans for each rhetorical tag",
+        "where": "p. 5, Section 4.3"
+      }
+    ],
+    "plurality_treatment": [
+      {
+        "quote": "after each round, the specific disagreements were resolved and general principles agreed upon to support consistency in later batches",
+        "where": "p. 3, Section 3.4"
+      }
+    ],
+    "gold_upstream_source": [],
+    "reported_format_gap": [
+      {
+        "quote": "model difficulty ratings align most closely with human ratings when models are given detailed prompts with several examples (long 3-shot)",
+        "where": "p. 7, Section 5.4"
+      }
+    ],
+    "reported_format_gap_points": [],
+    "reported_format_gap_kind": [],
+    "human_baseline_reported": [],
+    "human_gap_points": [],
+    "reported_best_score": [
+      {
+        "quote": "Gemini 100.0 100.0 100.0 0.00",
+        "where": "p. 6, Table 4, long 3-shot, salutatio"
+      }
+    ],
+    "reported_cultural_asymmetry": [
+      {
+        "quote": "compared to the English data, the models generally found both Petitio and Conclusio more challenging to annotate in the Swedish Petitions",
+        "where": "p. 6, Section 5.1"
+      }
+    ]
+  },
+  "checks": {
+    "missing_fields": [],
+    "vocab_warnings": [],
+    "evidence": {
+      "quotes": {
+        "humanities_role": [
+          "exact"
+        ],
+        "dataset_size": [
+          "exact"
+        ],
+        "evaluation_set_size": [
+          "exact"
+        ],
+        "primary_evaluation_setting": [
+          "exact"
+        ],
+        "gold_source": [
+          "exact"
+        ],
+        "gold_beyond_stimulus": [
+          "exact"
+        ],
+        "answer_multiplicity": [
+          "exact"
+        ],
+        "plurality_treatment": [
+          "exact"
+        ],
+        "reported_format_gap": [
+          "exact"
+        ],
+        "reported_best_score": [
+          "exact"
+        ],
+        "reported_cultural_asymmetry": [
+          "exact"
+        ]
+      },
+      "unsupported": [],
+      "unverified": []
+    }
+  },
+  "extraction": {
+    "round": "2026-11_claude",
+    "agent": "ciop",
+    "role": "reader",
+    "scope": "humanist",
+    "operator": "RG",
+    "backend": "claude-cli",
+    "backend_kind": "claude-cli",
+    "model": "claude-sonnet-5-5",
+    "prompt_sha256": "b17f9954e3f6fcfaea00bfc79666d31ac51f915da45046c71b23fea2335612f0",
+    "scaffold_sha256": "48c260061fd825a1b6150c73dace26ffacf1c43be51c37f2f14c413fa32989bc",
+    "rendered_prompt_sha256": "1fe4bb50aff906df960734acd8e6641253600502bd6f8e9835a2c421d0b1ab48",
+    "fields": [
+      "analytical_tasks",
+      "analytical_tasks_explanation",
+      "answer_multiplicity",
+      "benchmark_modalities",
+      "benchmark_modalities_explanation",
+      "benchmark_name",
+      "dataset_size",
+      "evaluation_set_size",
+      "evaluation_unit",
+      "facets_explanation",
+      "gold_beyond_stimulus",
+      "gold_community_dependent",
+      "gold_concerns_genesis",
+      "gold_source",
+      "gold_upstream",
+      "gold_upstream_source",
+      "human_baseline_reported",
+      "human_gap_points",
+      "humanities_role",
+      "humanities_role_explanation",
+      "inclusion_criteria",
+      "key_findings",
+      "plurality_treatment",
+      "primary_evaluation_setting",
+      "publication_year",
+      "relevant_asjc_areas",
+      "reported_best_metric",
+      "reported_best_score",
+      "reported_cultural_asymmetry",
+      "reported_format_gap",
+      "reported_format_gap_kind",
+      "reported_format_gap_points",
+      "reported_gap_kinds",
+      "results_explanation",
+      "summary"
+    ],
+    "input": {
+      "pdf_sha256": "c2da4757dece0e785c5d0bfab5b84109e8f7a71bad0670bb6dd9814164af6332",
+      "text_chars": 59364
+    },
+    "started": "2026-11-10T11:10:36+00:00",
+    "seconds": 14.5
+  },
+  "paper_id": "Finding_the_Plea:_Evaluating_the_Ability"
+}

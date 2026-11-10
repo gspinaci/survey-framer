@@ -1,0 +1,262 @@
+{
+  "benchmark_name": "MultiNRC",
+  "publication_year": 2025,
+  "humanities_role": "both",
+  "humanities_role_explanation": "The Linguistic and Wordplay categories (475 items) target disciplinary linguistic competence (grammar, homophony, puns, honorifics). The Cultural/Tradition and Math-with-cultural-relevance categories use cultural material (calendars, holidays, currencies) as the setting for date and arithmetic reasoning. The paper reports per-category metrics (Table 4) and a taxonomy of linguistic vs cultural nuances (Table 9).",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Text-only native-language prompts in French, Spanish and Chinese with short text answers; human-translated English equivalents for the Cultural and Math categories.",
+  "analytical_tasks": [
+    "logical_and_quantitative_reasoning",
+    "causal_and_temporal_reasoning",
+    "cultural_reasoning",
+    "open_ended_qa",
+    "stylistic_analysis",
+    "translation"
+  ],
+  "analytical_tasks_explanation": "Paper's categories: language-specific linguistic reasoning (grammatical rules, word formation, honorifics), wordplay and riddles (puns, homophones, chengyu), cultural/tradition reasoning (timelines, holiday dates, customs), and math reasoning with cultural relevance (calendars, currencies, viager, traditional units). Questions require multi-step reasoning with short objective gold answers; purely factual questions were excluded. English-equivalent translation is an evaluation condition, plus EnT/R and EnR reasoning settings.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "Scoped to native multilingual reasoning in three languages and four categories, not a broad multi-task benchmark."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "14 models including o3-pro, o3, o4-mini, Gemini-2.5-Pro, Claude 4 Opus/Sonnet, Claude 3.7 Sonnet, DeepSeek-R1, GPT-4.1, GPT-4o, Llama-4-Maverick."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Accuracy (pass@1) with 95% CIs, judged by GPT-4.1 LLM judge; Scott's Pi 0.88 agreement with humans."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "arXiv preprint 23 July 2025."
+    }
+  },
+  "summary": "MultiNRC is a benchmark of 1,055 native, adversarially filtered reasoning questions in French, Spanish and Chinese, written by native speakers across linguistic, wordplay, cultural/tradition and culturally grounded math categories. It also provides human-translated English equivalents for two categories to compare native-language and English reasoning. Fourteen LLMs are evaluated; none exceeds 50%.",
+  "key_findings": "Best model o3-pro scores 49.00% accuracy; o3 variants and Gemini-2.5-Pro lead. Math is hardest (23.3% average) and Spanish the hardest language. English equivalents raise math accuracy (average +19.1 Spanish, +12.5 Chinese), while cultural reasoning shows negligible average change. Reasoning in English or self-translating gives no consistent gain.",
+  "relevant_asjc_areas": [
+    "Language and Linguistics",
+    "Literature and Literary Theory",
+    "History"
+  ],
+  "dataset_size": "1055",
+  "evaluation_set_size": 1055,
+  "evaluation_unit": "reasoning question (prompt with ground-truth final answer)",
+  "primary_evaluation_setting": "zero-shot",
+  "gold_source": "domain_expert",
+  "gold_upstream": null,
+  "gold_upstream_source": null,
+  "gold_beyond_stimulus": "yes",
+  "gold_community_dependent": "yes",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "not_stated",
+  "facets_explanation": "Native speakers wrote the prompts and a single short ground-truth final answer, reviewed by two native-speaker reviewer layers; the paper does not specify disciplinary training, so annotators are native speakers rather than clearly humanities experts. Many questions require external cultural knowledge (holiday dates, units, calendars). Questions are language- and culture-specific by design, with per-language native questions. The paper does not discuss disagreement between defensible readings.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 33,
+  "reported_format_gap_kind": "input",
+  "reported_gap_kinds": [
+    "input"
+  ],
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 49.0,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "yes",
+  "results_explanation": "Table 3 reports \"o3-pro-2025-06-10-high 49.00 (±3.02)\" as top accuracy in the Original setting. Table 5 shows Deepseek-R1-0528 Math ΔEs 33.0 and ΔZh 33.3 (English minus Original); 33.3 rounds to 33 and is the largest gap. Spanish is described as the most challenging language, and the average GAP between best and worst language is 13.90 points. No human baseline is given as a score on the same metric, only judge-human agreement.",
+  "evidence": {
+    "humanities_role": [
+      {
+        "quote": "language-specific linguistic reasoning, wordplay & riddles, cultural/tradition reasoning, and math reasoning with cultural relevance",
+        "where": "p. 1, Abstract"
+      }
+    ],
+    "dataset_size": [
+      {
+        "quote": "Total 1055 217 258 319 261",
+        "where": "p. 4, Table 2"
+      }
+    ],
+    "evaluation_set_size": [
+      {
+        "quote": "on the full MultiNRC benchmark, with 95% confidence intervals in parentheses",
+        "where": "p. 6, Table 3 caption"
+      }
+    ],
+    "primary_evaluation_setting": [
+      {
+        "quote": "the model is given the original multilingual question, and prompted to provide an explanation and a short final answer in the native language of the question",
+        "where": "p. 5, Section 4"
+      }
+    ],
+    "gold_source": [
+      {
+        "quote": "native speakers start by writing reasoning prompts according to the definition of one of the four categories",
+        "where": "p. 5, Section 3.3"
+      }
+    ],
+    "gold_beyond_stimulus": [
+      {
+        "quote": "the question requires the application of culturally specific knowledge about the ’viager’ real estate system and historical events",
+        "where": "p. 4, Section 3.1"
+      }
+    ],
+    "gold_community_dependent": [
+      {
+        "quote": "we introduce the Multilingual Native Reasoning Challenge (MultiNRC), a benchmark designed to assess LLMs on more than 1,000 native, linguistic and culturally grounded reasoning questions",
+        "where": "p. 1, Abstract"
+      }
+    ],
+    "gold_concerns_genesis": [],
+    "answer_multiplicity": [
+      {
+        "quote": "consisting of either a single word or a short phrase/sentence",
+        "where": "p. 5, Section 3.3"
+      }
+    ],
+    "plurality_treatment": [],
+    "gold_upstream_source": [],
+    "reported_format_gap": [
+      {
+        "quote": "Math Spanish +19.1 and Chinese +12.5 improvement when models are given English equivalents",
+        "where": "p. 7, Section 5"
+      }
+    ],
+    "reported_format_gap_points": [
+      {
+        "quote": "Deepseek-R1-0528 -1.9 17.2 -2.2 9.1 33.0 33.3",
+        "where": "p. 7, Table 5"
+      }
+    ],
+    "reported_format_gap_kind": [
+      {
+        "quote": "Positive values indicate a performance improvement on English translated queries vs Original.",
+        "where": "p. 7, Table 5 caption"
+      }
+    ],
+    "human_baseline_reported": [],
+    "human_gap_points": [],
+    "reported_best_score": [
+      {
+        "quote": "o3-pro-2025-06-10-high 49.00 (±3.02)",
+        "where": "p. 6, Table 3"
+      }
+    ],
+    "reported_cultural_asymmetry": [
+      {
+        "quote": "Spanish stands out as the most challenging language across categories, particularly for math and wordplay.",
+        "where": "p. 6, Section 5"
+      }
+    ]
+  },
+  "checks": {
+    "missing_fields": [],
+    "vocab_warnings": [],
+    "evidence": {
+      "quotes": {
+        "humanities_role": [
+          "exact"
+        ],
+        "dataset_size": [
+          "exact"
+        ],
+        "evaluation_set_size": [
+          "exact"
+        ],
+        "primary_evaluation_setting": [
+          "exact"
+        ],
+        "gold_source": [
+          "exact"
+        ],
+        "gold_beyond_stimulus": [
+          "exact"
+        ],
+        "gold_community_dependent": [
+          "exact"
+        ],
+        "answer_multiplicity": [
+          "exact"
+        ],
+        "reported_format_gap": [
+          "missing"
+        ],
+        "reported_format_gap_points": [
+          "exact"
+        ],
+        "reported_format_gap_kind": [
+          "exact"
+        ],
+        "reported_best_score": [
+          "exact"
+        ],
+        "reported_cultural_asymmetry": [
+          "exact"
+        ]
+      },
+      "unsupported": [],
+      "unverified": [
+        "reported_format_gap"
+      ]
+    }
+  },
+  "extraction": {
+    "round": "2026-11_claude",
+    "agent": "ciop",
+    "role": "reader",
+    "scope": "humanist",
+    "operator": "RG",
+    "backend": "claude-cli",
+    "backend_kind": "claude-cli",
+    "model": "claude-sonnet-5-5",
+    "prompt_sha256": "b17f9954e3f6fcfaea00bfc79666d31ac51f915da45046c71b23fea2335612f0",
+    "scaffold_sha256": "48c260061fd825a1b6150c73dace26ffacf1c43be51c37f2f14c413fa32989bc",
+    "rendered_prompt_sha256": "4f20a301d235f9403bce01e5bf38af4b87eee73f45316cb98c6f68e533802003",
+    "fields": [
+      "analytical_tasks",
+      "analytical_tasks_explanation",
+      "answer_multiplicity",
+      "benchmark_modalities",
+      "benchmark_modalities_explanation",
+      "benchmark_name",
+      "dataset_size",
+      "evaluation_set_size",
+      "evaluation_unit",
+      "facets_explanation",
+      "gold_beyond_stimulus",
+      "gold_community_dependent",
+      "gold_concerns_genesis",
+      "gold_source",
+      "gold_upstream",
+      "gold_upstream_source",
+      "human_baseline_reported",
+      "human_gap_points",
+      "humanities_role",
+      "humanities_role_explanation",
+      "inclusion_criteria",
+      "key_findings",
+      "plurality_treatment",
+      "primary_evaluation_setting",
+      "publication_year",
+      "relevant_asjc_areas",
+      "reported_best_metric",
+      "reported_best_score",
+      "reported_cultural_asymmetry",
+      "reported_format_gap",
+      "reported_format_gap_kind",
+      "reported_format_gap_points",
+      "reported_gap_kinds",
+      "results_explanation",
+      "summary"
+    ],
+    "input": {
+      "pdf_sha256": "608a1780dee3986559c250ca307e5d014da7441849aabcc83f43a69d86287737",
+      "text_chars": 61480
+    },
+    "started": "2026-11-10T11:11:12+00:00",
+    "seconds": 16.0
+  },
+  "paper_id": "2507.17476"
+}

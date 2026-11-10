@@ -1,0 +1,228 @@
+{
+  "benchmark_name": "MultiBLiMP 1.0",
+  "publication_year": 2025,
+  "humanities_role": "domain",
+  "humanities_role_explanation": "Targets formal linguistic competence (morphosyntactic subject-verb agreement) across 101 languages via grammatical/ungrammatical minimal pairs; this is linguistics itself (Language and Linguistics), not humanities material used as generic data. Includes historical and ancient languages (Latin, Ancient Greek, Sanskrit, Gothic, Old French) but they are treated as languages with agreement, not as cultural objects.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Text-only sentence pairs, each differing by one inflected word; sentences are drawn from UD treebanks.",
+  "analytical_tasks": [
+    "classification",
+    "fact_verification"
+  ],
+  "analytical_tasks_explanation": "Models are scored on whether they assign higher probability to the grammatical sentence than to its minimally different ungrammatical counterpart (the paper's 'grammaticality judgment' via sentence-level probability comparison). This is closest to a binary judgment of well-formedness. It covers subject-verb and subject-participle agreement in number, person and gender. It does not test interpretation or knowledge of culture or history.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "Scoped to one phenomenon family (subject-verb/subject-participle agreement), though multilingual at large scale."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "42 LLMs: Llama3 (1B-70B), Tülu3, Aya-expanse, Gemma3, Qwen3, OLMo2, EuroLLM, base and chat versions, plus Goldfish monolingual models."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Accuracy (grammatical sentence receives higher probability) and mean log-probability difference Δ."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "arXiv 2504.02768 (April 2025), v4 April 2026."
+    }
+  },
+  "summary": "MultiBLiMP 1.0 is a benchmark of 128,321 automatically generated linguistic minimal pairs for subject-verb and subject-participle agreement in 101 languages, built from Universal Dependencies and UniMorph. The authors evaluate 42 LLMs and Goldfish monolingual models, finding that performance is driven by model size and language frequency and that post-training lowers accuracy.",
+  "key_findings": "Llama3-70B base and Gemma3-27B base score best overall (90.2% average accuracy). Performance rises with language frequency. Post-training has a significant negative effect (β = -3.29), and model size a positive one (β = 4.30). Goldfish 125M monolingual models significantly outperform all LLMs on 14 of 101 languages, many of them low-resource. Low-resource languages score lowest, and the subword-length difference between the correct and incorrect form predicts errors.",
+  "relevant_asjc_areas": [
+    "Language and Linguistics"
+  ],
+  "dataset_size": "128321",
+  "evaluation_set_size": 128321,
+  "evaluation_unit": "minimal pair (grammatical/ungrammatical sentence pair)",
+  "primary_evaluation_setting": "zero-shot",
+  "gold_source": "existing_dataset",
+  "gold_upstream": "Universal Dependencies v2.15 (Nivre et al., 2016, 2020; de Marneffe et al., 2021; Zeman et al., 2024) and UniMorph 4.0 (Batsuren et al., 2022); this paper describes them only as 'large resources created by a large number of annotators over many years'.",
+  "gold_upstream_source": "not_stated",
+  "gold_beyond_stimulus": "no",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "not_stated",
+  "facets_explanation": "Minimal pairs are built fully automatically: grammatical sentences come from UD treebanks, and the ungrammatical counterpart is made by re-inflecting the verb using UD and UniMorph entries. The grammatical sentence is the single correct answer. The paper reports only spot checks and feedback from language experts, and does not discuss annotator disagreement.",
+  "reported_format_gap": "no",
+  "reported_format_gap_points": null,
+  "reported_format_gap_kind": null,
+  "reported_gap_kinds": [],
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 90.2,
+  "reported_best_metric": "accuracy",
+  "reported_cultural_asymmetry": "yes",
+  "results_explanation": "Table 3 reports Llama3 70B base and Gemma3 27B base at 90.2 average accuracy ('All' column). Goldfish 125M scores 93.8 but only on the 70-language subset, so it is excluded from the ranking. Performance increases with language frequency, with Llama3 70B base scoring 81.1 on low-resource languages against 97.8 on high-resource ones. No human baseline or format comparison is reported.",
+  "evidence": {
+    "humanities_role": [
+      {
+        "quote": "MultiBLiMP 1.0, a massively multilingual benchmark of linguistic minimal pairs, covering 101 languages and 2 types of subject-verb agreement",
+        "where": "p. 1, Abstract"
+      }
+    ],
+    "dataset_size": [
+      {
+        "quote": "Our procedure results in 128,321 minimal pairs across 101 languages.",
+        "where": "p. 7, Section 5"
+      }
+    ],
+    "evaluation_set_size": [
+      {
+        "quote": "Our procedure results in 128,321 minimal pairs across 101 languages.",
+        "where": "p. 7, Section 5"
+      }
+    ],
+    "primary_evaluation_setting": [
+      {
+        "quote": "we measure the grammaticality of the predictions of a model based on the probability it assigns to a grammatical sentence versus an ungrammatical one.",
+        "where": "p. 7, Section 6.1"
+      }
+    ],
+    "gold_source": [
+      {
+        "quote": "created automatically using two large-scale linguistic resources: Universal Dependencies (UD, Nivre et al., 2016, 2020; de Marneffe et al., 2021) and UniMorph (Batsuren et al., 2022).",
+        "where": "p. 1, Introduction"
+      }
+    ],
+    "gold_beyond_stimulus": [
+      {
+        "quote": "a formally competent LM is expected to assign higher probability to the grammatical version.",
+        "where": "p. 1, Introduction"
+      }
+    ],
+    "gold_community_dependent": [],
+    "gold_concerns_genesis": [],
+    "answer_multiplicity": [
+      {
+        "quote": "the number of items for which the model assigns a higher probability to the grammatical sentence",
+        "where": "p. 8, Section 6.1"
+      }
+    ],
+    "plurality_treatment": [],
+    "gold_upstream_source": [
+      {
+        "quote": "both large resources created by a large number of annotators over many years.",
+        "where": "p. 12, Discussion"
+      }
+    ],
+    "reported_format_gap": [],
+    "reported_format_gap_points": [],
+    "reported_format_gap_kind": [],
+    "human_baseline_reported": [],
+    "human_gap_points": [],
+    "reported_best_score": [
+      {
+        "quote": "Llama3-70B-base and Gemma3-27B-base perform best overall, both scoring 90.2% on average.",
+        "where": "p. 9, Section 7.1"
+      }
+    ],
+    "reported_cultural_asymmetry": [
+      {
+        "quote": "For all models, performance increases with language frequency, demonstrating much of the variance in linguistic ability can be explained by data disparity.",
+        "where": "p. 9, Section 7.1"
+      }
+    ]
+  },
+  "checks": {
+    "missing_fields": [],
+    "vocab_warnings": [],
+    "evidence": {
+      "quotes": {
+        "humanities_role": [
+          "exact"
+        ],
+        "dataset_size": [
+          "exact"
+        ],
+        "evaluation_set_size": [
+          "exact"
+        ],
+        "primary_evaluation_setting": [
+          "exact"
+        ],
+        "gold_source": [
+          "exact"
+        ],
+        "gold_beyond_stimulus": [
+          "exact"
+        ],
+        "answer_multiplicity": [
+          "exact"
+        ],
+        "gold_upstream_source": [
+          "exact"
+        ],
+        "reported_best_score": [
+          "exact"
+        ],
+        "reported_cultural_asymmetry": [
+          "exact"
+        ]
+      },
+      "unsupported": [],
+      "unverified": []
+    }
+  },
+  "extraction": {
+    "round": "2026-11_claude",
+    "agent": "ciop",
+    "role": "reader",
+    "scope": "humanist",
+    "operator": "RG",
+    "backend": "claude-cli",
+    "backend_kind": "claude-cli",
+    "model": "claude-sonnet-5-5",
+    "prompt_sha256": "b17f9954e3f6fcfaea00bfc79666d31ac51f915da45046c71b23fea2335612f0",
+    "scaffold_sha256": "48c260061fd825a1b6150c73dace26ffacf1c43be51c37f2f14c413fa32989bc",
+    "rendered_prompt_sha256": "060fee9a5505a5cce689da0f1ce1f7b4afe5e0416de111eea38f18ba9f686e73",
+    "fields": [
+      "analytical_tasks",
+      "analytical_tasks_explanation",
+      "answer_multiplicity",
+      "benchmark_modalities",
+      "benchmark_modalities_explanation",
+      "benchmark_name",
+      "dataset_size",
+      "evaluation_set_size",
+      "evaluation_unit",
+      "facets_explanation",
+      "gold_beyond_stimulus",
+      "gold_community_dependent",
+      "gold_concerns_genesis",
+      "gold_source",
+      "gold_upstream",
+      "gold_upstream_source",
+      "human_baseline_reported",
+      "human_gap_points",
+      "humanities_role",
+      "humanities_role_explanation",
+      "inclusion_criteria",
+      "key_findings",
+      "plurality_treatment",
+      "primary_evaluation_setting",
+      "publication_year",
+      "relevant_asjc_areas",
+      "reported_best_metric",
+      "reported_best_score",
+      "reported_cultural_asymmetry",
+      "reported_format_gap",
+      "reported_format_gap_kind",
+      "reported_format_gap_points",
+      "reported_gap_kinds",
+      "results_explanation",
+      "summary"
+    ],
+    "input": {
+      "pdf_sha256": "c333340e87019ef70dded0e3a4f4b26ff43fe861b9365dff30e417c871ae001d",
+      "text_chars": 85671
+    },
+    "started": "2026-11-10T11:11:41+00:00",
+    "seconds": 15.4
+  },
+  "paper_id": "MultiBLiMP_1.0:_A_Massively_Multilingual"
+}

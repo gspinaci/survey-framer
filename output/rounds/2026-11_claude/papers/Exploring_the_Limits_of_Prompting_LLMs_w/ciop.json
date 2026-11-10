@@ -1,0 +1,198 @@
+{
+  "benchmark_name": null,
+  "publication_year": 2025,
+  "humanities_role": "content",
+  "humanities_role_explanation": "Parole hearing transcripts (legal-institutional spoken discourse) supply the material; the competence tested is general LLM style imitation/impersonation via prompting, measured with linguistic features. It is not a test of disciplinary humanities competence, though it is a linguistic analysis study.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Text only: transcripts of parole hearings are input, and models generate spoken-style decision statements as text.",
+  "analytical_tasks": [
+    "generation",
+    "stylistic_analysis"
+  ],
+  "analytical_tasks_explanation": "Models generate parole decision statements impersonating a specific presiding commissioner, with or without a speaker-specific 'rhetorical fingerprint' in the prompt. Output is analysed via stylistic features (sentence complexity, MTLD lexical diversity, discourse markers, nominalizations, modals, pronouns, jargon) expressed as z-scores against original statements.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "Single-task, single-domain study (California parole hearing decision statements); no general benchmark is introduced."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "GPT-4o, GPT-4.1 and DeepSeek R1."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Per-feature z-scores of linguistic features, MTLD, relative frequencies."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "RANLP 2025 workshop, Sep 11, 2025."
+    }
+  },
+  "summary": "The paper distills speaker-specific rhetorical fingerprints from presiding commissioners' parole decision statements and uses them to enhance prompts for LLM impersonation. Comparing against a primed-by-corpus prompt, it finds LLMs only partly approximate features and retain their own model-specific fingerprint.",
+  "key_findings": "All three LLMs deviate strongly in lexical diversity and sentence complexity (z-scores 5.76 to 40.20 and 16.52 to 34.91) regardless of prompt; nominalizations are overused, discourse markers and first-person plural are underused; fingerprint prompts bring small adjustments only; GPT-4o and GPT-4.1 have near-identical shapes, DeepSeek barely changes between conditions.",
+  "relevant_asjc_areas": [
+    "Language and Linguistics"
+  ],
+  "dataset_size": "100",
+  "evaluation_set_size": 100,
+  "evaluation_unit": "parole hearing transcript (one generated decision statement per transcript per model and condition)",
+  "primary_evaluation_setting": "zero-shot",
+  "gold_source": "not_stated",
+  "gold_upstream": null,
+  "gold_upstream_source": null,
+  "gold_beyond_stimulus": "not_stated",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "not_stated",
+  "plurality_treatment": "not_stated",
+  "facets_explanation": "There are no reference answers in the usual sense: the original commissioner statements from CDCR transcripts serve as the stylistic baseline, with features computed automatically (spaCy, MTLD, PDTB markers, hand-curated wordlists). The paper does not describe an answer key, annotators or any treatment of disagreement.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": null,
+  "reported_format_gap_kind": "input",
+  "reported_gap_kinds": [
+    "input"
+  ],
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": null,
+  "reported_best_metric": null,
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "The paper compares the fingerprint prompt against the primed-by-corpus prompt on z-scores of features (Table 1), e.g. DeepSeek nominalization z-score 'was 6.47 for primed-by-corpus and 9.1 for fingerprint condition'. No numeric gap in points is given, so reported_format_gap_points is null, and no single headline score exists because results are per-feature z-scores.",
+  "evidence": {
+    "humanities_role": [
+      {
+        "quote": "we explore the limits of popular LLMs in impersonating content in a high-stakes legal setting, namely for the generation of the decision statement in parole suitability hearings",
+        "where": "p. 1, Abstract"
+      }
+    ],
+    "dataset_size": [
+      {
+        "quote": "PSH v1.0, comprises 100 parole hearing transcripts that we requested from the California Department of Corrections and Rehabilitation",
+        "where": "p. 2, Section 3.2"
+      }
+    ],
+    "evaluation_set_size": [
+      {
+        "quote": "we select two female and two male presiding commissioners with 25 transcripts per commissioner",
+        "where": "p. 2, Section 3.2"
+      }
+    ],
+    "primary_evaluation_setting": [
+      {
+        "quote": "The three state-of-the-art models, namely GPT-4o, GPT-4.1 and DeepSeek R1, were accessed and prompted via their respective API",
+        "where": "p. 5, Section 5.3"
+      }
+    ],
+    "gold_source": [],
+    "gold_beyond_stimulus": [],
+    "gold_community_dependent": [],
+    "gold_concerns_genesis": [],
+    "answer_multiplicity": [],
+    "plurality_treatment": [],
+    "gold_upstream_source": [],
+    "reported_format_gap": [
+      {
+        "quote": "z-score was 6.47 for primed-by-corpus and 9.1 for fingerprint condition",
+        "where": "p. 8, Section 6.2"
+      }
+    ],
+    "reported_format_gap_points": [],
+    "reported_format_gap_kind": [
+      {
+        "quote": "we mirror the fingerprint prompt with a simplified version of the user prompt, including only the general information about parole hearings",
+        "where": "p. 5, Section 5.2"
+      }
+    ],
+    "human_baseline_reported": [],
+    "human_gap_points": [],
+    "reported_best_score": [],
+    "reported_cultural_asymmetry": []
+  },
+  "checks": {
+    "missing_fields": [],
+    "vocab_warnings": [],
+    "evidence": {
+      "quotes": {
+        "humanities_role": [
+          "exact"
+        ],
+        "dataset_size": [
+          "exact"
+        ],
+        "evaluation_set_size": [
+          "exact"
+        ],
+        "primary_evaluation_setting": [
+          "exact"
+        ],
+        "reported_format_gap": [
+          "exact"
+        ],
+        "reported_format_gap_kind": [
+          "exact"
+        ]
+      },
+      "unsupported": [],
+      "unverified": []
+    }
+  },
+  "extraction": {
+    "round": "2026-11_claude",
+    "agent": "ciop",
+    "role": "reader",
+    "scope": "humanist",
+    "operator": "RG",
+    "backend": "claude-cli",
+    "backend_kind": "claude-cli",
+    "model": "claude-sonnet-5-5",
+    "prompt_sha256": "b17f9954e3f6fcfaea00bfc79666d31ac51f915da45046c71b23fea2335612f0",
+    "scaffold_sha256": "48c260061fd825a1b6150c73dace26ffacf1c43be51c37f2f14c413fa32989bc",
+    "rendered_prompt_sha256": "921ade6340e89b264c09b6638885fab4eacff4a02afdd5990027bf5cdd919bf1",
+    "fields": [
+      "analytical_tasks",
+      "analytical_tasks_explanation",
+      "answer_multiplicity",
+      "benchmark_modalities",
+      "benchmark_modalities_explanation",
+      "benchmark_name",
+      "dataset_size",
+      "evaluation_set_size",
+      "evaluation_unit",
+      "facets_explanation",
+      "gold_beyond_stimulus",
+      "gold_community_dependent",
+      "gold_concerns_genesis",
+      "gold_source",
+      "gold_upstream",
+      "gold_upstream_source",
+      "human_baseline_reported",
+      "human_gap_points",
+      "humanities_role",
+      "humanities_role_explanation",
+      "inclusion_criteria",
+      "key_findings",
+      "plurality_treatment",
+      "primary_evaluation_setting",
+      "publication_year",
+      "relevant_asjc_areas",
+      "reported_best_metric",
+      "reported_best_score",
+      "reported_cultural_asymmetry",
+      "reported_format_gap",
+      "reported_format_gap_kind",
+      "reported_format_gap_points",
+      "reported_gap_kinds",
+      "results_explanation",
+      "summary"
+    ],
+    "input": {
+      "pdf_sha256": "a2af0cb20c24765cfc047f37fcde3d6ece7370be275af06b4b9cec17bc985187",
+      "text_chars": 49963
+    },
+    "started": "2026-11-10T11:10:37+00:00",
+    "seconds": 12.1
+  },
+  "paper_id": "Exploring_the_Limits_of_Prompting_LLMs_w"
+}

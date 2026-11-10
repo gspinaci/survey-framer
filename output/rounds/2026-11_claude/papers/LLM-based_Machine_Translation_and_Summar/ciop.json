@@ -1,0 +1,251 @@
+{
+  "benchmark_name": null,
+  "publication_year": 2024,
+  "humanities_role": "both",
+  "humanities_role_explanation": "Two distinct evaluations: (1) Latin-to-German/English MT on an 8-letter, 121-sentence expert-translated test set, and (2) summarization of Latin and ENH-German Bullinger letters judged against edition summaries by historians, plus a manual check of names, events and correctness. The MT task tests language-technology competence on historical-language material; the summarization with historically informed error analysis (e.g., Schweiz vs. Eidgenossenschaft, caesar as emperor) engages disciplinary content. Distinct metrics (BLEU/ChrF vs. manual 4-category scores) cover each.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Text only: 16th-century Latin and Early New High German letters translated and summarized into modern German and English.",
+  "analytical_tasks": [
+    "translation",
+    "generation"
+  ],
+  "analytical_tasks_explanation": "Machine translation of Latin (and code-switched ENH-German) into modern German and English, scored by BLEU and ChrF; cross-language paragraph-wise summarization ('paraphrasing') of letters, scored by BLEU against edition summaries and by manual judgment of names, times and events, completeness and correctness.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "Scoped to MT and summarization of a single 16th-century letter corpus (Latin and ENH-German); not a broad multi-task benchmark, and no benchmark is introduced."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "GPT-4 evaluated; compared against Google Translate, LingvaNex, Yandex, ModernMT, Niutrans and DeepL."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "BLEU, ChrF, and manual evaluation scores out of 58 paragraphs."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "LT4HALA 2024 @ LREC-COLING, 25 May 2024."
+    }
+  },
+  "summary": "The paper evaluates GPT-4 for machine translation of 16th-century Latin letters (Bullinger correspondence) into German and English, finding large BLEU gains over Google Translate and other online systems. It also tests GPT-4 cross-language summarization of Latin and ENH-German letters against expert-written edition summaries, with a manual evaluation showing good capture of names, events and information.",
+  "key_findings": "On the 121-sentence test set GPT-4 reached BLEU 27.07 (LA-DE) and 34.50 (LA-EN) vs. Google Translate 17.53 and 25.22. Against edition summaries BLEU is low (GPT-4 MT 4.93 DE, 6.80 EN) but summaries look good: manual scores out of 58 were Names 47.2, Times & Events 54.5, Complete 48.2, Correct 43.5. No hallucinations were observed.",
+  "relevant_asjc_areas": [
+    "Language and Linguistics",
+    "History",
+    "Classics",
+    "Literature and Literary Theory",
+    "Religious Studies"
+  ],
+  "dataset_size": "121",
+  "evaluation_set_size": 121,
+  "evaluation_unit": "Latin sentence (test set of 8 letters); the summarization experiment uses 10 Latin and 10 ENH-German letters, 58 paragraphs judged manually",
+  "primary_evaluation_setting": "zero-shot",
+  "gold_source": "existing_dataset",
+  "gold_upstream": "Test set of Fischer et al. (2022): 8 letters manually translated into German by a domain expert; the English reference was machine-translated from the German with GPT-4. Summaries from the Heinrich Bullinger Briefwechsel edition (Gäbler et al. 1973-2022) written by experts of the Institute for Swiss Reformation Studies.",
+  "gold_upstream_source": "domain_expert",
+  "gold_beyond_stimulus": "no",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "not_stated",
+  "facets_explanation": "The MT references are the Fischer et al. (2022) test set, manually translated into German by a domain expert; the English references were produced by GPT-4 (and DeepL as a check). Summarization references are the published expert-written paragraph summaries from the Bullinger edition. The paper notes completeness is sometimes subjective because editors weigh events by importance, but does not treat this as a plurality finding.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": 22,
+  "reported_format_gap_kind": "scoring",
+  "reported_gap_kinds": [
+    "scoring",
+    "input"
+  ],
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 34.5,
+  "reported_best_metric": "bleu",
+  "reported_cultural_asymmetry": "no",
+  "results_explanation": "Best headline: GPT-4 'BLEU 34.50' for Latin into English on the 121-sentence test set (27.07 for German). The same GPT-4 translation scored 27.07 BLEU against the expert translation but only 4.93 against the human summary in German, a gap of about 22 points, derived by subtraction (27.07-4.93=22.14). No human baseline is reported; the English-German difference is attributed to resource levels, not a cultural asymmetry finding.",
+  "evidence": {
+    "humanities_role": [
+      {
+        "quote": "For each of the 3100 edited letters we have a summary in German which was written by experts of the Institute for Swiss Reformation Studies.",
+        "where": "p. 3, Section 4.2"
+      }
+    ],
+    "dataset_size": [
+      {
+        "quote": "These 8 letters sum up to a total of 121 Latin sentences",
+        "where": "p. 2, Section 4.1"
+      }
+    ],
+    "evaluation_set_size": [
+      {
+        "quote": "BLEU and ChrF scores when translating the Latin test set (121 sentences) into German and English.",
+        "where": "p. 3, Table 1 caption"
+      }
+    ],
+    "primary_evaluation_setting": [
+      {
+        "quote": "we fed the complete test set to GPT-4 with a single prompt: “Translate the following text from Latin into L”",
+        "where": "p. 2, Section 4.1"
+      }
+    ],
+    "gold_source": [
+      {
+        "quote": "We used the test set of Fischer et al. (2022) which consists of 8 letters which have been manually translated into German by a domain expert.",
+        "where": "p. 2, Section 4.1"
+      }
+    ],
+    "gold_beyond_stimulus": [
+      {
+        "quote": "GPT-4 knows a surprising number of Latin city names and translates them correctly into modern day equivalents",
+        "where": "p. 5, Section 6.1"
+      }
+    ],
+    "gold_community_dependent": [],
+    "gold_concerns_genesis": [],
+    "answer_multiplicity": [
+      {
+        "quote": "We then translated the test set with Google Translate and the other online MT systems from Latin into German and into English in order to obtain the baseline scores.",
+        "where": "p. 2, Section 4.1"
+      }
+    ],
+    "plurality_treatment": [],
+    "gold_upstream_source": [
+      {
+        "quote": "manually translated into German by a domain expert",
+        "where": "p. 2, Section 4.1"
+      }
+    ],
+    "reported_format_gap": [
+      {
+        "quote": "With this setup GPT-4 achieved a low 4.93 BLEU points when we compare the automatic translation to the human summary in German.",
+        "where": "p. 3, Section 4.2"
+      }
+    ],
+    "reported_format_gap_points": [
+      {
+        "quote": "reaching a BLEU score of 27.07 for Latin to German MT on the test set",
+        "where": "p. 2, Section 4.1"
+      }
+    ],
+    "reported_format_gap_kind": [
+      {
+        "quote": "GPT-4 achieved a low 4.93 BLEU points when we compare the automatic translation to the human summary in German.",
+        "where": "p. 3, Section 4.2"
+      }
+    ],
+    "human_baseline_reported": [],
+    "human_gap_points": [],
+    "reported_best_score": [
+      {
+        "quote": "GPT-4 unknown 27.07 50.55 34.50 54.6",
+        "where": "p. 3, Table 1"
+      }
+    ],
+    "reported_cultural_asymmetry": []
+  },
+  "checks": {
+    "missing_fields": [],
+    "vocab_warnings": [],
+    "evidence": {
+      "quotes": {
+        "humanities_role": [
+          "exact"
+        ],
+        "dataset_size": [
+          "exact"
+        ],
+        "evaluation_set_size": [
+          "exact"
+        ],
+        "primary_evaluation_setting": [
+          "exact"
+        ],
+        "gold_source": [
+          "exact"
+        ],
+        "gold_beyond_stimulus": [
+          "exact"
+        ],
+        "answer_multiplicity": [
+          "exact"
+        ],
+        "gold_upstream_source": [
+          "exact"
+        ],
+        "reported_format_gap": [
+          "exact"
+        ],
+        "reported_format_gap_points": [
+          "exact"
+        ],
+        "reported_format_gap_kind": [
+          "exact"
+        ],
+        "reported_best_score": [
+          "exact"
+        ]
+      },
+      "unsupported": [],
+      "unverified": []
+    }
+  },
+  "extraction": {
+    "round": "2026-11_claude",
+    "agent": "ciop",
+    "role": "reader",
+    "scope": "humanist",
+    "operator": "RG",
+    "backend": "claude-cli",
+    "backend_kind": "claude-cli",
+    "model": "claude-sonnet-5-5",
+    "prompt_sha256": "b17f9954e3f6fcfaea00bfc79666d31ac51f915da45046c71b23fea2335612f0",
+    "scaffold_sha256": "48c260061fd825a1b6150c73dace26ffacf1c43be51c37f2f14c413fa32989bc",
+    "rendered_prompt_sha256": "1717b15e6770cc23133631b52f47ebe7802926d50b8f5ce5c39a68f1a3d41728",
+    "fields": [
+      "analytical_tasks",
+      "analytical_tasks_explanation",
+      "answer_multiplicity",
+      "benchmark_modalities",
+      "benchmark_modalities_explanation",
+      "benchmark_name",
+      "dataset_size",
+      "evaluation_set_size",
+      "evaluation_unit",
+      "facets_explanation",
+      "gold_beyond_stimulus",
+      "gold_community_dependent",
+      "gold_concerns_genesis",
+      "gold_source",
+      "gold_upstream",
+      "gold_upstream_source",
+      "human_baseline_reported",
+      "human_gap_points",
+      "humanities_role",
+      "humanities_role_explanation",
+      "inclusion_criteria",
+      "key_findings",
+      "plurality_treatment",
+      "primary_evaluation_setting",
+      "publication_year",
+      "relevant_asjc_areas",
+      "reported_best_metric",
+      "reported_best_score",
+      "reported_cultural_asymmetry",
+      "reported_format_gap",
+      "reported_format_gap_kind",
+      "reported_format_gap_points",
+      "reported_gap_kinds",
+      "results_explanation",
+      "summary"
+    ],
+    "input": {
+      "pdf_sha256": "81561d0527af4b54bf92ab264245a6366075c4bb5b16f3fe8aa359f21d68f641",
+      "text_chars": 30896
+    },
+    "started": "2026-11-10T11:10:21+00:00",
+    "seconds": 16.2
+  },
+  "paper_id": "LLM-based_Machine_Translation_and_Summar"
+}

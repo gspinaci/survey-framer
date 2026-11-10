@@ -1,0 +1,240 @@
+{
+  "benchmark_name": "CLEF 2025 JOKER Task 2: Wordplay Translation from English into French",
+  "publication_year": 2025,
+  "humanities_role": "domain",
+  "humanities_role_explanation": "The task targets the translation of puns, a core problem in translation studies and linguistics, where preserving both form and sense of wordplay is the disciplinary competence tested; items are not generic text used as raw data.",
+  "benchmark_modalities": [
+    "text"
+  ],
+  "benchmark_modalities_explanation": "English pun sentences translated into French text; text-only.",
+  "analytical_tasks": [
+    "translation",
+    "generation",
+    "stylistic_analysis"
+  ],
+  "analytical_tasks_explanation": "Machine translation of English punning jokes into French preserving wordplay and meaning (paper: 'wordplay translation'). Evaluated with BLEU, BERTScore, a pun-location metric, and manual judgement of meaning preservation and presence of wordplay. Pun location overlap serves as a proxy for wordplay preservation.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "Scoped to a single task: English-to-French pun translation in a shared task."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "Participants used LLMs such as o4-mini, Mistral medium, Qwen2.5-14B, Lucie-7B, and Croissant, alongside NMT systems like NLLB, MarianMT, mBART."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "BLEU, BERTScore, pun location-based metric, manual success counts, Pearson correlation."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "CLEF 2025 Working Notes, September 2025."
+    }
+  },
+  "summary": "Overview of the CLEF 2025 JOKER Task 2 on English-to-French pun translation, covering data, participant approaches, and results from nine teams and 52 runs. It introduces a pun location-based automatic metric and shows it correlates strongly (0.84) with expert manual evaluation, unlike BLEU and BERTScore.",
+  "key_findings": "Best BLEU on test was 43.33 (Skommarkhos_Lucie_SFT); best BERTScore F1 was 87.42. Best pun-location result was 9.27% (dsgt_o4_mini_multi_agent_discriminator). In manual evaluation 37.5% of translations were successful; the best runs reached 74% and 72%. The location metric correlates with manual scores at Pearson 0.84, while BLEU and BERTScore rankings differ substantially. Rule-based and some other runs overfit to the training data.",
+  "relevant_asjc_areas": [
+    "Language and Linguistics",
+    "Literature and Literary Theory"
+  ],
+  "dataset_size": "4,087 (1,405 training puns + 1,682 test puns, counted as source puns; 5,838 + 2,615 reference translations)",
+  "evaluation_set_size": 1682,
+  "evaluation_unit": "English source pun (with one or more French reference translations)",
+  "primary_evaluation_setting": "mix",
+  "gold_source": "domain_expert",
+  "gold_upstream": null,
+  "gold_upstream_source": null,
+  "gold_beyond_stimulus": "no",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "answer_set",
+  "plurality_treatment": "signal",
+  "facets_explanation": "French references are human translations by professional native-speaker translators, with manually annotated pun locations; multiple references per pun are kept (up to 20+), and the location metric explicitly accommodates ambiguity. Manual evaluation was done by a single Master's student specialising in wordplay translation. Some data was reused from earlier JOKER editions, but those were built by the same organisers.",
+  "reported_format_gap": "yes",
+  "reported_format_gap_points": null,
+  "reported_format_gap_kind": "scoring",
+  "reported_gap_kinds": [
+    "scoring",
+    "input"
+  ],
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 43.33,
+  "reported_best_metric": "bleu",
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "Best test BLEU: 'Skommarkhos_Lucie_SFT 43.33'. Best BERTScore F1: 87.42 (UvA_finetunedNLLB-1.3B). The same runs are ranked very differently under the location metric and manual evaluation (e.g., pjmathematician_Q25-14 scored BLEU 100 on training vs 39 on test), but no single percentage-point gap is reported, so the gap points are null. The manual evaluation reports 37.5% overall success.",
+  "evidence": {
+    "humanities_role": [
+      {
+        "quote": "the goal is to translate English punning jokes into French in a way that preserves, as much as possible, both the form and meaning of the original",
+        "where": "p. 1, Introduction"
+      }
+    ],
+    "dataset_size": [
+      {
+        "quote": "consists of 1,405 instances of wordplay in English, with a total of 5,838 French translations sourced from human professionals",
+        "where": "p. 3, Section 2.1"
+      },
+      {
+        "quote": "we collected 2,615 new manual translations of 1,682 distinct puns in English",
+        "where": "p. 4, Section 2.2"
+      }
+    ],
+    "evaluation_set_size": [
+      {
+        "quote": "we collected 2,615 new manual translations of 1,682 distinct puns in English",
+        "where": "p. 4, Section 2.2"
+      }
+    ],
+    "primary_evaluation_setting": [
+      {
+        "quote": "Participants used a variety of methods, including LLMs, commercial machine translation engines, out-of-the-box translation models, rule-based approaches, and various fine-tuning",
+        "where": "p. 12, Conclusion"
+      }
+    ],
+    "gold_source": [
+      {
+        "quote": "5,838 French translations sourced from human professionals with manually annotated words or phrases with multiple meanings (pun locations)",
+        "where": "p. 3, Section 2.1"
+      }
+    ],
+    "gold_beyond_stimulus": [],
+    "gold_community_dependent": [],
+    "gold_concerns_genesis": [],
+    "answer_multiplicity": [
+      {
+        "quote": "Table 3 shows a histogram of the number of references and distinct locations per English pun in the test data.",
+        "where": "p. 4, Section 2.2"
+      }
+    ],
+    "plurality_treatment": [
+      {
+        "quote": "in order to provide an automatic evaluation that takes into account pun ambiguity",
+        "where": "p. 12, Conclusion"
+      }
+    ],
+    "gold_upstream_source": [],
+    "reported_format_gap": [
+      {
+        "quote": "Note that these results are drastically different from the ranking based on BLEU and BERT scores.",
+        "where": "p. 11, Section 5.2"
+      }
+    ],
+    "reported_format_gap_points": [],
+    "reported_format_gap_kind": [
+      {
+        "quote": "Manual scores and location-based metrics correlate closely but differ substantially from BLEU and BERTScore rankings",
+        "where": "p. 13, Conclusion"
+      }
+    ],
+    "human_baseline_reported": [],
+    "human_gap_points": [],
+    "reported_best_score": [
+      {
+        "quote": "Skommarkhos_Lucie_SFT 43.33",
+        "where": "p. 7, Table 4"
+      }
+    ],
+    "reported_cultural_asymmetry": []
+  },
+  "checks": {
+    "missing_fields": [],
+    "vocab_warnings": [],
+    "evidence": {
+      "quotes": {
+        "humanities_role": [
+          "exact"
+        ],
+        "dataset_size": [
+          "exact",
+          "exact"
+        ],
+        "evaluation_set_size": [
+          "exact"
+        ],
+        "primary_evaluation_setting": [
+          "exact"
+        ],
+        "gold_source": [
+          "exact"
+        ],
+        "answer_multiplicity": [
+          "exact"
+        ],
+        "plurality_treatment": [
+          "exact"
+        ],
+        "reported_format_gap": [
+          "exact"
+        ],
+        "reported_format_gap_kind": [
+          "exact"
+        ],
+        "reported_best_score": [
+          "exact"
+        ]
+      },
+      "unsupported": [
+        "gold_beyond_stimulus"
+      ],
+      "unverified": []
+    }
+  },
+  "extraction": {
+    "round": "2026-11_claude",
+    "agent": "ciop",
+    "role": "reader",
+    "scope": "humanist",
+    "operator": "RG",
+    "backend": "claude-cli",
+    "backend_kind": "claude-cli",
+    "model": "claude-sonnet-5-5",
+    "prompt_sha256": "b17f9954e3f6fcfaea00bfc79666d31ac51f915da45046c71b23fea2335612f0",
+    "scaffold_sha256": "48c260061fd825a1b6150c73dace26ffacf1c43be51c37f2f14c413fa32989bc",
+    "rendered_prompt_sha256": "de2fe632cd0bfc84e43b89cad42ad0930c6bf565c4dc78aa66f5ba248d715791",
+    "fields": [
+      "analytical_tasks",
+      "analytical_tasks_explanation",
+      "answer_multiplicity",
+      "benchmark_modalities",
+      "benchmark_modalities_explanation",
+      "benchmark_name",
+      "dataset_size",
+      "evaluation_set_size",
+      "evaluation_unit",
+      "facets_explanation",
+      "gold_beyond_stimulus",
+      "gold_community_dependent",
+      "gold_concerns_genesis",
+      "gold_source",
+      "gold_upstream",
+      "gold_upstream_source",
+      "human_baseline_reported",
+      "human_gap_points",
+      "humanities_role",
+      "humanities_role_explanation",
+      "inclusion_criteria",
+      "key_findings",
+      "plurality_treatment",
+      "primary_evaluation_setting",
+      "publication_year",
+      "relevant_asjc_areas",
+      "reported_best_metric",
+      "reported_best_score",
+      "reported_cultural_asymmetry",
+      "reported_format_gap",
+      "reported_format_gap_kind",
+      "reported_format_gap_points",
+      "reported_gap_kinds",
+      "results_explanation",
+      "summary"
+    ],
+    "input": {
+      "pdf_sha256": "565f2941b8c0cc06ee669ee928eed4fae5e4971fce62462071998679b5a15b64",
+      "text_chars": 53117
+    },
+    "started": "2026-11-10T11:09:51+00:00",
+    "seconds": 14.4
+  },
+  "paper_id": "JOKER_2025_Task_2:_Translation_of_puns_f"
+}

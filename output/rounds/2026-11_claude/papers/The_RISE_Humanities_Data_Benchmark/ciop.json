@@ -1,0 +1,214 @@
+{
+  "benchmark_name": "RISE Humanities Data Benchmark",
+  "publication_year": 2026,
+  "humanities_role": "content",
+  "humanities_role_explanation": "Historical documents (business letters, index cards, Fraktur newspapers, medieval manuscripts, library cards) supply the items, but the competence tested is document-processing: transcription, layout segmentation, structured metadata extraction, XML repair. These are generic pipeline skills applied to humanities sources, not interpretive disciplinary competence.",
+  "benchmark_modalities": [
+    "image",
+    "text"
+  ],
+  "benchmark_modalities_explanation": "Most datasets are scanned page images (JPG) paired with prompts/schemas and structured JSON output; one dataset (Book Advert XMLs) is text-only (JSON files containing XML).",
+  "analytical_tasks": [
+    "transcription_and_correction",
+    "information_extraction",
+    "visual_recognition",
+    "logical_and_quantitative_reasoning"
+  ],
+  "analytical_tasks_explanation": "Tasks: transcription, page/advert segmentation, handwritten text recognition, metadata extraction, NER, person matching and signature recognition, and correction of faulty LLM-generated XML structure (described as a reasoning task). No interpretive or generative tasks.",
+  "inclusion_criteria": {
+    "general_purpose_benchmark": {
+      "met": false,
+      "note": "Small, task-specific datasets focused on document-centred digital humanities workflows; explicitly not intended as generic leaderboard or representative of the humanities."
+    },
+    "evaluates_generative_llm": {
+      "met": true,
+      "note": "OpenAI (gpt-4o, gpt-4.1-mini, gpt-5), Anthropic Claude Sonnet 4.5, Google Gemini (gemini-2.0-pro-exp) among others."
+    },
+    "quantitative_metrics": {
+      "met": true,
+      "note": "Fuzzy matching, F1, character error rate, normalised to 0-100%."
+    },
+    "published_after_march_2023": {
+      "met": true,
+      "note": "Published 4 February 2026; v0.1 August 2025."
+    }
+  },
+  "summary": "The paper presents a framework and eight small, expert-verified datasets drawn from real digital humanities projects, together with a provider-agnostic tool that runs LLMs against them and a web interface for results. It prioritises realism, reproducibility and transparency over scale, and tracks model performance over time.",
+  "key_findings": "Best results per dataset range from 58.40% (Company Lists, gpt-5) to 97.47% (Book Advert XMLs, Claude Sonnet 4.5); Blacklist Cards 95.65%, Fraktur Adverts 95.70%, Library Cards 89.51%, Business Letters 77.00%, Medieval Manuscripts 76.90%, Bibliographic Data 71.43%. 633 test runs across 487 configurations. Scores are not comparable across datasets.",
+  "relevant_asjc_areas": [
+    "History",
+    "Language and Linguistics",
+    "Literature and Literary Theory"
+  ],
+  "dataset_size": "8 benchmark datasets (5 to 263 items each)",
+  "evaluation_set_size": null,
+  "evaluation_unit": "image (document page/card/letter) per dataset; one text-only dataset uses JSON files",
+  "primary_evaluation_setting": "zero-shot",
+  "gold_source": "domain_expert",
+  "gold_upstream": null,
+  "gold_upstream_source": null,
+  "gold_beyond_stimulus": "no",
+  "gold_community_dependent": "no",
+  "gold_concerns_genesis": "no",
+  "answer_multiplicity": "single_answer",
+  "plurality_treatment": "not_stated",
+  "facets_explanation": "Ground truths were 'either manually produced or carefully verified by domain experts' within the RISE projects; validation focused on correctness with respect to task and schema. Answers are matched against a single key via fuzzy matching or F1. The paper says ground truth is 'operationalised scholarly interpretation' but does not discuss annotator disagreement.",
+  "reported_format_gap": "no",
+  "reported_format_gap_points": null,
+  "reported_format_gap_kind": null,
+  "reported_gap_kinds": [],
+  "human_baseline_reported": "no",
+  "human_gap_points": null,
+  "reported_best_score": 97.47,
+  "reported_best_metric": "other",
+  "reported_cultural_asymmetry": "not_stated",
+  "results_explanation": "The highest per-dataset best result is 'Best result 97.47%, Anthropic, Claude Sonnet 4.5' on Book Advert XMLs (fuzzy matching on whole XML string, normalised 0-100%). Metrics differ across datasets, so the headline is not comparable with others. No format gaps or human baseline are reported.",
+  "evidence": {
+    "humanities_role": [
+      {
+        "quote": "document-centred research tasks",
+        "where": "p. 2, Purpose and scope"
+      },
+      {
+        "quote": "such as transcription, layout segmentation, and structured metadata extraction from scanned historical sources",
+        "where": "p. 2, Purpose and scope"
+      }
+    ],
+    "dataset_size": [
+      {
+        "quote": "8 benchmark datasets (detailed in Table 1) and 2 test datasets.",
+        "where": "p. 5, Dataset description"
+      }
+    ],
+    "evaluation_set_size": [],
+    "primary_evaluation_setting": [
+      {
+        "quote": "using the defined prompt and schema, captures the model output, validates it against the schema",
+        "where": "p. 4, Configured tests and execution"
+      }
+    ],
+    "gold_source": [
+      {
+        "quote": "All ground truths were either manually produced or carefully verified by domain experts.",
+        "where": "p. 4, Quality control and ground truth validation"
+      }
+    ],
+    "gold_beyond_stimulus": [
+      {
+        "quote": "Ground truths are subsequently created or verified by domain experts and represent the expected output for each source item.",
+        "where": "p. 4, Steps"
+      }
+    ],
+    "gold_community_dependent": [],
+    "gold_concerns_genesis": [],
+    "answer_multiplicity": [
+      {
+        "quote": "Fuzzy matching on each key in the JSON items.",
+        "where": "p. 6, Table 1, Bibliographic Data"
+      }
+    ],
+    "plurality_treatment": [],
+    "gold_upstream_source": [],
+    "reported_format_gap": [],
+    "reported_format_gap_points": [],
+    "reported_format_gap_kind": [],
+    "human_baseline_reported": [],
+    "human_gap_points": [],
+    "reported_best_score": [
+      {
+        "quote": "Best result 97.47%, Anthropic, Claude Sonnet 4.5.",
+        "where": "p. 7, Table 1, Book Advert XMLs"
+      }
+    ],
+    "reported_cultural_asymmetry": []
+  },
+  "checks": {
+    "missing_fields": [],
+    "vocab_warnings": [],
+    "evidence": {
+      "quotes": {
+        "humanities_role": [
+          "exact",
+          "exact"
+        ],
+        "dataset_size": [
+          "exact"
+        ],
+        "primary_evaluation_setting": [
+          "exact"
+        ],
+        "gold_source": [
+          "exact"
+        ],
+        "gold_beyond_stimulus": [
+          "exact"
+        ],
+        "answer_multiplicity": [
+          "exact"
+        ],
+        "reported_best_score": [
+          "exact"
+        ]
+      },
+      "unsupported": [],
+      "unverified": []
+    }
+  },
+  "extraction": {
+    "round": "2026-11_claude",
+    "agent": "ciop",
+    "role": "reader",
+    "scope": "humanist",
+    "operator": "RG",
+    "backend": "claude-cli",
+    "backend_kind": "claude-cli",
+    "model": "claude-sonnet-5-5",
+    "prompt_sha256": "b17f9954e3f6fcfaea00bfc79666d31ac51f915da45046c71b23fea2335612f0",
+    "scaffold_sha256": "48c260061fd825a1b6150c73dace26ffacf1c43be51c37f2f14c413fa32989bc",
+    "rendered_prompt_sha256": "487a0082e7c1fa42bc4662197ebf1a9dd88098e8777e928e0b2a71f30878c9ea",
+    "fields": [
+      "analytical_tasks",
+      "analytical_tasks_explanation",
+      "answer_multiplicity",
+      "benchmark_modalities",
+      "benchmark_modalities_explanation",
+      "benchmark_name",
+      "dataset_size",
+      "evaluation_set_size",
+      "evaluation_unit",
+      "facets_explanation",
+      "gold_beyond_stimulus",
+      "gold_community_dependent",
+      "gold_concerns_genesis",
+      "gold_source",
+      "gold_upstream",
+      "gold_upstream_source",
+      "human_baseline_reported",
+      "human_gap_points",
+      "humanities_role",
+      "humanities_role_explanation",
+      "inclusion_criteria",
+      "key_findings",
+      "plurality_treatment",
+      "primary_evaluation_setting",
+      "publication_year",
+      "relevant_asjc_areas",
+      "reported_best_metric",
+      "reported_best_score",
+      "reported_cultural_asymmetry",
+      "reported_format_gap",
+      "reported_format_gap_kind",
+      "reported_format_gap_points",
+      "reported_gap_kinds",
+      "results_explanation",
+      "summary"
+    ],
+    "input": {
+      "pdf_sha256": "5204f51c9bd929f294fb8eb5ac6d9d1ff849ada59298c52cc4698ea4e469b63f",
+      "text_chars": 29631
+    },
+    "started": "2026-11-10T11:10:59+00:00",
+    "seconds": 12.9
+  },
+  "paper_id": "The_RISE_Humanities_Data_Benchmark"
+}
